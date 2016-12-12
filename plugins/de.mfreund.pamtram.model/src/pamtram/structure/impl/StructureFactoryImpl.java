@@ -8,12 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.BeginningMatcher;
-import pamtram.structure.CardinalityType;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.EndingMatcher;
 import pamtram.structure.EqualityMatcher;
@@ -134,8 +132,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 				return createFileTypeEnumFromString(eDataType, initialValue);
 			case StructurePackage.VALUE_CONSTRAINT_TYPE:
 				return createValueConstraintTypeFromString(eDataType, initialValue);
-			case StructurePackage.CARDINALITY_TYPE:
-				return createCardinalityTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -153,8 +149,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 				return convertFileTypeEnumToString(eDataType, instanceValue);
 			case StructurePackage.VALUE_CONSTRAINT_TYPE:
 				return convertValueConstraintTypeToString(eDataType, instanceValue);
-			case StructurePackage.CARDINALITY_TYPE:
-				return convertCardinalityTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -487,26 +481,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * @generated
 	 */
 	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CardinalityType createCardinalityTypeFromString(EDataType eDataType, String initialValue) {
-		CardinalityType result = CardinalityType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertCardinalityTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

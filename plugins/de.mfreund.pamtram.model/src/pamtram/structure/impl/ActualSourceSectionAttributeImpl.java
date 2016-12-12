@@ -17,7 +17,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.ActualAttribute;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,10 +131,10 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
+					new Object[] { this, GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
 		
 		}
 		
@@ -209,7 +210,7 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE: return StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
+				case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE: return GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -225,7 +226,7 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (baseFeatureID) {
-				case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE;
+				case GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE: return StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE__ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -241,7 +242,7 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ActualAttribute.class) {
 			switch (baseOperationID) {
-				case StructurePackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+				case GenericPackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}

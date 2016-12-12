@@ -29,6 +29,8 @@ import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.impl.GenericPackageImpl;
 import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.util.PamtramValidator;
 
@@ -153,18 +155,21 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		// Obtain or create and register interdependencies
 		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
+		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePamtramPackage.createPackageContents();
 		theStructurePackage.createPackageContents();
+		theGenericPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePamtramPackage.initializePackageContents();
 		theStructurePackage.initializePackageContents();
+		theGenericPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 
@@ -611,6 +616,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theStructurePackage);
@@ -624,7 +630,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		ETypeParameter sectionModelEClass_A = addETypeParameter(sectionModelEClass, "A");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(theStructurePackage.getSection());
+		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
 		EGenericType g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -634,7 +640,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_S.getEBounds().add(g1);
-		g1 = createEGenericType(theStructurePackage.getClass_());
+		g1 = createEGenericType(theGenericPackage.getClass_());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -644,7 +650,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_C.getEBounds().add(g1);
-		g1 = createEGenericType(theStructurePackage.getReference());
+		g1 = createEGenericType(theGenericPackage.getReference());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -654,7 +660,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_R.getEBounds().add(g1);
-		g1 = createEGenericType(theStructurePackage.getAttribute());
+		g1 = createEGenericType(theGenericPackage.getAttribute());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);

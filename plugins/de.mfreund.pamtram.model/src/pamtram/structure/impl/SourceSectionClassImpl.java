@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.impl.ClassImpl;
 import pamtram.structure.SourceSection;
@@ -52,7 +53,7 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSecti
 	@Override
 	public EList<SourceSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<SourceSectionReference>(SourceSectionReference.class, this, StructurePackage.SOURCE_SECTION_CLASS__REFERENCES, StructurePackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
+			references = new EObjectContainmentWithInverseEList<SourceSectionReference>(SourceSectionReference.class, this, StructurePackage.SOURCE_SECTION_CLASS__REFERENCES, GenericPackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
 		}
 		return references;
 	}
@@ -77,7 +78,7 @@ public class SourceSectionClassImpl extends ClassImpl<SourceSection, SourceSecti
 	@Override
 	public EList<SourceSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, StructurePackage.SOURCE_SECTION_CLASS__ATTRIBUTES, StructurePackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
+			attributes = new EObjectContainmentWithInverseEList<SourceSectionAttribute>(SourceSectionAttribute.class, this, StructurePackage.SOURCE_SECTION_CLASS__ATTRIBUTES, GenericPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

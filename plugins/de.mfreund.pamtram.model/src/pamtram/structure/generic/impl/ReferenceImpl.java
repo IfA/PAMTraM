@@ -17,13 +17,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
@@ -64,7 +63,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.REFERENCE;
+		return GenericPackage.Literals.REFERENCE;
 	}
 
 	/**
@@ -78,7 +77,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.REFERENCE__EREFERENCE, oldEReference, eReference));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericPackage.REFERENCE__EREFERENCE, oldEReference, eReference));
 			}
 		}
 		return eReference;
@@ -100,7 +99,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.REFERENCE__EREFERENCE, oldEReference, eReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.REFERENCE__EREFERENCE, oldEReference, eReference));
 	}
 
 	/**
@@ -120,7 +119,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
-		if (eContainerFeatureID() != StructurePackage.REFERENCE__OWNING_CLASS) return null;
+		if (eContainerFeatureID() != GenericPackage.REFERENCE__OWNING_CLASS) return null;
 		return (C)eInternalContainer();
 	}
 
@@ -145,10 +144,10 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
 		
 		}
 		
@@ -185,10 +184,10 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__OWNING_CLASS:
+			case GenericPackage.REFERENCE__OWNING_CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return eBasicSetContainer(otherEnd, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
+				return eBasicSetContainer(otherEnd, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -200,8 +199,8 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return eBasicSetContainer(null, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return eBasicSetContainer(null, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -213,8 +212,8 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES, pamtram.structure.generic.Class.class, msgs);
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return eInternalContainer().eInverseRemove(this, GenericPackage.CLASS__REFERENCES, pamtram.structure.generic.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -226,10 +225,10 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__EREFERENCE:
+			case GenericPackage.REFERENCE__EREFERENCE:
 				if (resolve) return getEReference();
 				return basicGetEReference();
-			case StructurePackage.REFERENCE__OWNING_CLASS:
+			case GenericPackage.REFERENCE__OWNING_CLASS:
 				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -242,7 +241,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__EREFERENCE:
+			case GenericPackage.REFERENCE__EREFERENCE:
 				setEReference((EReference)newValue);
 				return;
 		}
@@ -256,7 +255,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__EREFERENCE:
+			case GenericPackage.REFERENCE__EREFERENCE:
 				setEReference((EReference)null);
 				return;
 		}
@@ -270,9 +269,9 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.REFERENCE__EREFERENCE:
+			case GenericPackage.REFERENCE__EREFERENCE:
 				return eReference != null;
-			case StructurePackage.REFERENCE__OWNING_CLASS:
+			case GenericPackage.REFERENCE__OWNING_CLASS:
 				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
@@ -286,11 +285,11 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.REFERENCE___GET_VALUES_GENERIC:
+			case GenericPackage.REFERENCE___GET_VALUES_GENERIC:
 				return getValuesGeneric();
-			case StructurePackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
+			case GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
 				addValuesGeneric((EList<C>)arguments.get(0));
 				return null;
 		}

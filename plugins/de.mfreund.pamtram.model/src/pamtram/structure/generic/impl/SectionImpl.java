@@ -14,12 +14,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +79,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.SECTION;
+		return GenericPackage.Literals.SECTION;
 	}
 
 	/**
@@ -103,7 +102,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SECTION__ABSTRACT, oldAbstract, abstract_));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.SECTION__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
@@ -114,7 +113,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public EList<S> getExtend() {
 		if (extend == null) {
-			extend = new EObjectResolvingEList<S>(Section.class, this, StructurePackage.SECTION__EXTEND);
+			extend = new EObjectResolvingEList<S>(Section.class, this, GenericPackage.SECTION__EXTEND);
 		}
 		return extend;
 	}
@@ -140,10 +139,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
+					 GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
-					 new Object [] { this, StructurePackage.Literals.SECTION__EXTEND }));
+					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
 		return result;
@@ -170,10 +169,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.SECTION__EXTEND }));
+					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
 		
 		}
 		
@@ -188,9 +187,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.SECTION__ABSTRACT:
+			case GenericPackage.SECTION__ABSTRACT:
 				return isAbstract();
-			case StructurePackage.SECTION__EXTEND:
+			case GenericPackage.SECTION__EXTEND:
 				return getExtend();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,10 +204,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.SECTION__ABSTRACT:
+			case GenericPackage.SECTION__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
-			case StructurePackage.SECTION__EXTEND:
+			case GenericPackage.SECTION__EXTEND:
 				getExtend().clear();
 				getExtend().addAll((Collection<? extends S>)newValue);
 				return;
@@ -224,10 +223,10 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.SECTION__ABSTRACT:
+			case GenericPackage.SECTION__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
-			case StructurePackage.SECTION__EXTEND:
+			case GenericPackage.SECTION__EXTEND:
 				getExtend().clear();
 				return;
 		}
@@ -242,9 +241,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.SECTION__ABSTRACT:
+			case GenericPackage.SECTION__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
-			case StructurePackage.SECTION__EXTEND:
+			case GenericPackage.SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -259,9 +258,9 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

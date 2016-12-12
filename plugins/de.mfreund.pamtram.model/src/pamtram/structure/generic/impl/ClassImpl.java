@@ -18,16 +18,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import pamtram.structure.CardinalityType;
 import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +63,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 * @ordered
 	 */
-	protected static final CardinalityType CARDINALITY_EDEFAULT = CardinalityType.ONE;
+	protected static final pamtram.structure.generic.CardinalityType CARDINALITY_EDEFAULT = pamtram.structure.generic.CardinalityType.ONE;
 
 	/**
 	 * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
@@ -75,7 +73,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 * @ordered
 	 */
-	protected CardinalityType cardinality = CARDINALITY_EDEFAULT;
+	protected pamtram.structure.generic.CardinalityType cardinality = CARDINALITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
@@ -123,7 +121,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.CLASS;
+		return GenericPackage.Literals.CLASS;
 	}
 
 	/**
@@ -138,7 +136,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			eClass = (EClass)eResolveProxy(oldEClass);
 			if (eClass != oldEClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.CLASS__ECLASS, oldEClass, eClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericPackage.CLASS__ECLASS, oldEClass, eClass));
 			}
 		}
 		return eClass;
@@ -162,7 +160,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		EClass oldEClass = eClass;
 		eClass = newEClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__ECLASS, oldEClass, eClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__ECLASS, oldEClass, eClass));
 	}
 
 	/**
@@ -180,7 +178,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	@Override
-	public CardinalityType getCardinality() {
+	public pamtram.structure.generic.CardinalityType getCardinality() {
 		return cardinality;
 	}
 
@@ -189,12 +187,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setCardinality(CardinalityType newCardinality) {
-		CardinalityType oldCardinality = cardinality;
+	public void setCardinality(pamtram.structure.generic.CardinalityType newCardinality) {
+		pamtram.structure.generic.CardinalityType oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__CARDINALITY, oldCardinality, cardinality));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__CARDINALITY, oldCardinality, cardinality));
 	}
 
 	/**
@@ -205,7 +202,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public EList<R> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, StructurePackage.CLASS__REFERENCES, StructurePackage.REFERENCE__OWNING_CLASS);
+			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, GenericPackage.CLASS__REFERENCES, GenericPackage.REFERENCE__OWNING_CLASS);
 		}
 		return references;
 	}
@@ -222,7 +219,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			container = (C)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.CLASS__CONTAINER, oldContainer, container));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericPackage.CLASS__CONTAINER, oldContainer, container));
 			}
 		}
 		return container;
@@ -261,7 +258,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		C oldContainer = container;
 		container = newContainer;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CLASS__CONTAINER, oldContainer, container));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__CONTAINER, oldContainer, container));
 	}
 
 	/**
@@ -272,7 +269,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public EList<A> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, StructurePackage.CLASS__ATTRIBUTES, StructurePackage.ATTRIBUTE__OWNING_CLASS);
+			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, GenericPackage.CLASS__ATTRIBUTES, GenericPackage.ATTRIBUTE__OWNING_CLASS);
 		}
 		return attributes;
 	}
@@ -422,10 +419,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.CLASS__ECLASS }));
+					new Object[] { this, GenericPackage.Literals.CLASS__ECLASS }));
 		
 		}
 		
@@ -450,7 +447,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			return true;
 		}
 		
-		boolean result = !(this.cardinality != CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
+		boolean result = !(this.cardinality != pamtram.structure.generic.CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
 		
 		if (!result && diagnostics != null) {
 		
@@ -458,10 +455,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.CLASS__CARDINALITY }));
+					new Object[] { this, GenericPackage.Literals.CLASS__CARDINALITY }));
 		
 		}
 		
@@ -484,10 +481,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.CLASS__CONTAINER }));
+					new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
 		
 		}
 		
@@ -503,9 +500,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReferences()).basicAdd(otherEnd, msgs);
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAttributes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -519,9 +516,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				return ((InternalEList<?>)getReferences()).basicRemove(otherEnd, msgs);
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -535,17 +532,17 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.CLASS__ECLASS:
+			case GenericPackage.CLASS__ECLASS:
 				if (resolve) return getEClass();
 				return basicGetEClass();
-			case StructurePackage.CLASS__CARDINALITY:
+			case GenericPackage.CLASS__CARDINALITY:
 				return getCardinality();
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				return getReferences();
-			case StructurePackage.CLASS__CONTAINER:
+			case GenericPackage.CLASS__CONTAINER:
 				if (resolve) return getContainer();
 				return basicGetContainer();
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				return getAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -560,20 +557,20 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.CLASS__ECLASS:
+			case GenericPackage.CLASS__ECLASS:
 				setEClass((EClass)newValue);
 				return;
-			case StructurePackage.CLASS__CARDINALITY:
-				setCardinality((CardinalityType)newValue);
+			case GenericPackage.CLASS__CARDINALITY:
+				setCardinality((pamtram.structure.generic.CardinalityType)newValue);
 				return;
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				getReferences().clear();
 				getReferences().addAll((Collection<? extends R>)newValue);
 				return;
-			case StructurePackage.CLASS__CONTAINER:
+			case GenericPackage.CLASS__CONTAINER:
 				setContainer((C)newValue);
 				return;
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				getAttributes().addAll((Collection<? extends A>)newValue);
 				return;
@@ -589,19 +586,19 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.CLASS__ECLASS:
+			case GenericPackage.CLASS__ECLASS:
 				setEClass((EClass)null);
 				return;
-			case StructurePackage.CLASS__CARDINALITY:
+			case GenericPackage.CLASS__CARDINALITY:
 				setCardinality(CARDINALITY_EDEFAULT);
 				return;
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				getReferences().clear();
 				return;
-			case StructurePackage.CLASS__CONTAINER:
+			case GenericPackage.CLASS__CONTAINER:
 				setContainer((C)null);
 				return;
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				getAttributes().clear();
 				return;
 		}
@@ -616,15 +613,15 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.CLASS__ECLASS:
+			case GenericPackage.CLASS__ECLASS:
 				return eClass != null;
-			case StructurePackage.CLASS__CARDINALITY:
+			case GenericPackage.CLASS__CARDINALITY:
 				return cardinality != CARDINALITY_EDEFAULT;
-			case StructurePackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__REFERENCES:
 				return references != null && !references.isEmpty();
-			case StructurePackage.CLASS__CONTAINER:
+			case GenericPackage.CLASS__CONTAINER:
 				return container != null;
-			case StructurePackage.CLASS__ATTRIBUTES:
+			case GenericPackage.CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -639,19 +636,19 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.CLASS___IS_CONTAINER_FOR__CLASS:
+			case GenericPackage.CLASS___IS_CONTAINER_FOR__CLASS:
 				return isContainerFor((C)arguments.get(0));
-			case StructurePackage.CLASS___IS_CONTAINED_IN__CLASS:
+			case GenericPackage.CLASS___IS_CONTAINED_IN__CLASS:
 				return isContainedIn((C)arguments.get(0));
-			case StructurePackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
+			case GenericPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE:
 				return getOwningContainmentReference();
-			case StructurePackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
+			case GenericPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST:
 				return isReferencedBy((C)arguments.get(0), (EList<C>)arguments.get(1));
-			case StructurePackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP:
 				return validateEClassMatchesParentEReference((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP:
 				return validateCardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
 				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

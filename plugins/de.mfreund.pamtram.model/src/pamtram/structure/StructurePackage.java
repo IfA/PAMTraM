@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import pamtram.PamtramPackage;
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.generic.GenericPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,450 +64,6 @@ public interface StructurePackage extends EPackage {
 	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.MetaModelElementImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
-	 * @generated
-	 */
-	int META_MODEL_ELEMENT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Meta Model Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT___GET_CONTAINING_SECTION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT___IS_LIBRARY_ENTRY = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Meta Model Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int META_MODEL_ELEMENT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.ClassImpl <em>Class</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.ClassImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
-	 * @generated
-	 */
-	int CLASS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__NAME = META_MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>EClass</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__ECLASS = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__CARDINALITY = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>References</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__CONTAINER = META_MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__ATTRIBUTES = META_MODEL_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___GET_CONTAINING_SECTION = META_MODEL_ELEMENT___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___GET_CONTAINING_SECTION_MODEL = META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_LIBRARY_ENTRY = META_MODEL_ELEMENT___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Is Container For</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_CONTAINER_FOR__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Is Contained In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_CONTAINED_IN__CLASS = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___GET_OWNING_CONTAINMENT_REFERENCE = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Is Referenced By</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___IS_REFERENCED_BY__CLASS_ELIST = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Validate EClass Matches Parent EReference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Validate Cardinality Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Validate Container Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 6;
-
-	/**
-	 * The number of operations of the '<em>Class</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 7;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.SectionImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
-	 * @generated
-	 */
-	int SECTION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>EClass</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__ECLASS = CLASS__ECLASS;
-
-	/**
-	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__CARDINALITY = CLASS__CARDINALITY;
-
-	/**
-	 * The feature id for the '<em><b>References</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__REFERENCES = CLASS__REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__CONTAINER = CLASS__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__ATTRIBUTES = CLASS__ATTRIBUTES;
-
-	/**
-	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__ABSTRACT = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Extend</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__EXTEND = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Section</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___GET_CONTAINING_SECTION = CLASS___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___GET_CONTAINING_SECTION_MODEL = CLASS___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___IS_LIBRARY_ENTRY = CLASS___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Is Container For</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___IS_CONTAINER_FOR__CLASS = CLASS___IS_CONTAINER_FOR__CLASS;
-
-	/**
-	 * The operation id for the '<em>Is Contained In</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___IS_CONTAINED_IN__CLASS = CLASS___IS_CONTAINED_IN__CLASS;
-
-	/**
-	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___GET_OWNING_CONTAINMENT_REFERENCE = CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
-
-	/**
-	 * The operation id for the '<em>Is Referenced By</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___IS_REFERENCED_BY__CLASS_ELIST = CLASS___IS_REFERENCED_BY__CLASS_ELIST;
-
-	/**
-	 * The operation id for the '<em>Validate EClass Matches Parent EReference</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Cardinality Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Container Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Extends Valid Sections</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Section</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,7 +71,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionClass()
 	 * @generated
 	 */
-	int SOURCE_SECTION_CLASS = 6;
+	int SOURCE_SECTION_CLASS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -523,7 +80,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__NAME = CLASS__NAME;
+	int SOURCE_SECTION_CLASS__NAME = GenericPackage.CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EClass</b></em>' reference.
@@ -532,7 +89,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__ECLASS = CLASS__ECLASS;
+	int SOURCE_SECTION_CLASS__ECLASS = GenericPackage.CLASS__ECLASS;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -541,7 +98,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__CARDINALITY = CLASS__CARDINALITY;
+	int SOURCE_SECTION_CLASS__CARDINALITY = GenericPackage.CLASS__CARDINALITY;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -550,7 +107,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__REFERENCES = CLASS__REFERENCES;
+	int SOURCE_SECTION_CLASS__REFERENCES = GenericPackage.CLASS__REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -559,7 +116,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__CONTAINER = CLASS__CONTAINER;
+	int SOURCE_SECTION_CLASS__CONTAINER = GenericPackage.CLASS__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -568,7 +125,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
+	int SOURCE_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Class</em>' class.
@@ -577,7 +134,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = GenericPackage.CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -586,7 +143,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___GET_CONTAINING_SECTION = CLASS___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_CLASS___GET_CONTAINING_SECTION = GenericPackage.CLASS___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -595,7 +152,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___GET_CONTAINING_SECTION_MODEL = CLASS___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_CLASS___GET_CONTAINING_SECTION_MODEL = GenericPackage.CLASS___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -604,7 +161,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_LIBRARY_ENTRY = CLASS___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_CLASS___IS_LIBRARY_ENTRY = GenericPackage.CLASS___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Is Container For</em>' operation.
@@ -613,7 +170,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = CLASS___IS_CONTAINER_FOR__CLASS;
+	int SOURCE_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = GenericPackage.CLASS___IS_CONTAINER_FOR__CLASS;
 
 	/**
 	 * The operation id for the '<em>Is Contained In</em>' operation.
@@ -622,7 +179,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN__CLASS = CLASS___IS_CONTAINED_IN__CLASS;
+	int SOURCE_SECTION_CLASS___IS_CONTAINED_IN__CLASS = GenericPackage.CLASS___IS_CONTAINED_IN__CLASS;
 
 	/**
 	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
@@ -631,7 +188,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
+	int SOURCE_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = GenericPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Is Referenced By</em>' operation.
@@ -640,7 +197,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___IS_REFERENCED_BY__CLASS_ELIST = CLASS___IS_REFERENCED_BY__CLASS_ELIST;
+	int SOURCE_SECTION_CLASS___IS_REFERENCED_BY__CLASS_ELIST = GenericPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EClass Matches Parent EReference</em>' operation.
@@ -649,7 +206,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Cardinality Is Valid</em>' operation.
@@ -658,7 +215,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Container Is Valid</em>' operation.
@@ -667,7 +224,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Source Section Class</em>' class.
@@ -676,7 +233,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_CLASS_OPERATION_COUNT = GenericPackage.CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionImpl <em>Source Section</em>}' class.
@@ -686,7 +243,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSection()
 	 * @generated
 	 */
-	int SOURCE_SECTION = 3;
+	int SOURCE_SECTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -912,7 +469,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionClass()
 	 * @generated
 	 */
-	int TARGET_SECTION_CLASS = 7;
+	int TARGET_SECTION_CLASS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -921,7 +478,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__NAME = CLASS__NAME;
+	int TARGET_SECTION_CLASS__NAME = GenericPackage.CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EClass</b></em>' reference.
@@ -930,7 +487,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__ECLASS = CLASS__ECLASS;
+	int TARGET_SECTION_CLASS__ECLASS = GenericPackage.CLASS__ECLASS;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' attribute.
@@ -939,7 +496,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__CARDINALITY = CLASS__CARDINALITY;
+	int TARGET_SECTION_CLASS__CARDINALITY = GenericPackage.CLASS__CARDINALITY;
 
 	/**
 	 * The feature id for the '<em><b>References</b></em>' containment reference list.
@@ -948,7 +505,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__REFERENCES = CLASS__REFERENCES;
+	int TARGET_SECTION_CLASS__REFERENCES = GenericPackage.CLASS__REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -957,7 +514,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__CONTAINER = CLASS__CONTAINER;
+	int TARGET_SECTION_CLASS__CONTAINER = GenericPackage.CLASS__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -966,7 +523,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS__ATTRIBUTES = CLASS__ATTRIBUTES;
+	int TARGET_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Class</em>' class.
@@ -975,7 +532,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
+	int TARGET_SECTION_CLASS_FEATURE_COUNT = GenericPackage.CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -984,7 +541,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___GET_CONTAINING_SECTION = CLASS___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_CLASS___GET_CONTAINING_SECTION = GenericPackage.CLASS___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -993,7 +550,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___GET_CONTAINING_SECTION_MODEL = CLASS___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_CLASS___GET_CONTAINING_SECTION_MODEL = GenericPackage.CLASS___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -1002,7 +559,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_LIBRARY_ENTRY = CLASS___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_CLASS___IS_LIBRARY_ENTRY = GenericPackage.CLASS___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Is Container For</em>' operation.
@@ -1011,7 +568,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = CLASS___IS_CONTAINER_FOR__CLASS;
+	int TARGET_SECTION_CLASS___IS_CONTAINER_FOR__CLASS = GenericPackage.CLASS___IS_CONTAINER_FOR__CLASS;
 
 	/**
 	 * The operation id for the '<em>Is Contained In</em>' operation.
@@ -1020,7 +577,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_CONTAINED_IN__CLASS = CLASS___IS_CONTAINED_IN__CLASS;
+	int TARGET_SECTION_CLASS___IS_CONTAINED_IN__CLASS = GenericPackage.CLASS___IS_CONTAINED_IN__CLASS;
 
 	/**
 	 * The operation id for the '<em>Get Owning Containment Reference</em>' operation.
@@ -1029,7 +586,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
+	int TARGET_SECTION_CLASS___GET_OWNING_CONTAINMENT_REFERENCE = GenericPackage.CLASS___GET_OWNING_CONTAINMENT_REFERENCE;
 
 	/**
 	 * The operation id for the '<em>Is Referenced By</em>' operation.
@@ -1038,7 +595,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___IS_REFERENCED_BY__CLASS_ELIST = CLASS___IS_REFERENCED_BY__CLASS_ELIST;
+	int TARGET_SECTION_CLASS___IS_REFERENCED_BY__CLASS_ELIST = GenericPackage.CLASS___IS_REFERENCED_BY__CLASS_ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EClass Matches Parent EReference</em>' operation.
@@ -1047,7 +604,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Cardinality Is Valid</em>' operation.
@@ -1056,7 +613,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Container Is Valid</em>' operation.
@@ -1065,7 +622,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Target Section Class</em>' class.
@@ -1074,7 +631,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
+	int TARGET_SECTION_CLASS_OPERATION_COUNT = GenericPackage.CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionImpl <em>Target Section</em>}' class.
@@ -1084,7 +641,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSection()
 	 * @generated
 	 */
-	int TARGET_SECTION = 4;
+	int TARGET_SECTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1319,7 +876,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryParameter()
 	 * @generated
 	 */
-	int LIBRARY_PARAMETER = 8;
+	int LIBRARY_PARAMETER = 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
@@ -1329,7 +886,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getAttributeParameter()
 	 * @generated
 	 */
-	int ATTRIBUTE_PARAMETER = 9;
+	int ATTRIBUTE_PARAMETER = 6;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
@@ -1339,7 +896,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getContainerParameter()
 	 * @generated
 	 */
-	int CONTAINER_PARAMETER = 10;
+	int CONTAINER_PARAMETER = 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
@@ -1349,7 +906,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getExternalReferenceParameter()
 	 * @generated
 	 */
-	int EXTERNAL_REFERENCE_PARAMETER = 11;
+	int EXTERNAL_REFERENCE_PARAMETER = 8;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
@@ -1359,37 +916,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryEntry()
 	 * @generated
 	 */
-	int LIBRARY_ENTRY = 13;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.ReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
-	 * @generated
-	 */
-	int REFERENCE = 14;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
-	 * @generated
-	 */
-	int CONTAINMENT_REFERENCE = 15;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.NonContainmentReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
-	 * @generated
-	 */
-	int NON_CONTAINMENT_REFERENCE = 16;
+	int LIBRARY_ENTRY = 10;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
@@ -1399,7 +926,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionReference()
 	 * @generated
 	 */
-	int SOURCE_SECTION_REFERENCE = 17;
+	int SOURCE_SECTION_REFERENCE = 11;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
@@ -1409,7 +936,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_REFERENCE = 18;
+	int TARGET_SECTION_REFERENCE = 12;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionContainmentReferenceImpl <em>Target Section Containment Reference</em>}' class.
@@ -1419,7 +946,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionContainmentReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE = 19;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE = 13;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl <em>Target Section Non Containment Reference</em>}' class.
@@ -1429,7 +956,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionNonContainmentReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 20;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 14;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionContainmentReferenceImpl <em>Source Section Containment Reference</em>}' class.
@@ -1439,7 +966,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionContainmentReference()
 	 * @generated
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 21;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 15;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.MetaModelSectionReferenceImpl <em>Meta Model Section Reference</em>}' class.
@@ -1449,81 +976,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelSectionReference()
 	 * @generated
 	 */
-	int META_MODEL_SECTION_REFERENCE = 22;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.AttributeImpl <em>Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.AttributeImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
-	 * @generated
-	 */
-	int ATTRIBUTE = 23;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__NAME = META_MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE__OWNING_CLASS = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE___GET_CONTAINING_SECTION = META_MODEL_ELEMENT___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE___IS_LIBRARY_ENTRY = META_MODEL_ELEMENT___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The number of operations of the '<em>Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
-
+	int META_MODEL_SECTION_REFERENCE = 16;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
@@ -1533,7 +986,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionAttribute()
 	 * @generated
 	 */
-	int TARGET_SECTION_ATTRIBUTE = 28;
+	int TARGET_SECTION_ATTRIBUTE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1542,7 +995,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
+	int TARGET_SECTION_ATTRIBUTE__NAME = GenericPackage.ATTRIBUTE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1551,7 +1004,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
+	int TARGET_SECTION_ATTRIBUTE__OWNING_CLASS = GenericPackage.ATTRIBUTE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
@@ -1560,7 +1013,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE__UNIQUE = ATTRIBUTE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_ATTRIBUTE__UNIQUE = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1569,7 +1022,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE__VALUE = ATTRIBUTE_FEATURE_COUNT + 1;
+	int TARGET_SECTION_ATTRIBUTE__VALUE = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Attribute</em>' class.
@@ -1578,7 +1031,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 2;
+	int TARGET_SECTION_ATTRIBUTE_FEATURE_COUNT = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1587,7 +1040,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = GenericPackage.ATTRIBUTE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -1596,7 +1049,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = GenericPackage.ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -1605,7 +1058,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = ATTRIBUTE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = GenericPackage.ATTRIBUTE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The number of operations of the '<em>Target Section Attribute</em>' class.
@@ -1614,7 +1067,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = GenericPackage.ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
@@ -1624,7 +1077,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getActualTargetSectionAttribute()
 	 * @generated
 	 */
-	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 29;
+	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 20;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.VirtualTargetSectionAttributeImpl <em>Virtual Target Section Attribute</em>}' class.
@@ -1634,7 +1087,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualTargetSectionAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 30;
+	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1725,7 +1178,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getFileAttribute()
 	 * @generated
 	 */
-	int FILE_ATTRIBUTE = 5;
+	int FILE_ATTRIBUTE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2032,7 +1485,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getResourceParameter()
 	 * @generated
 	 */
-	int RESOURCE_PARAMETER = 12;
+	int RESOURCE_PARAMETER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2158,7 +1611,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE__NAME = META_MODEL_ELEMENT__NAME;
+	int SOURCE_SECTION_REFERENCE__NAME = GenericPackage.REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2167,7 +1620,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE__EREFERENCE = META_MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE__EREFERENCE = GenericPackage.REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2176,340 +1629,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE__OWNING_CLASS = META_MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___GET_CONTAINING_SECTION = META_MODEL_ELEMENT___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___GET_CONTAINING_SECTION_MODEL = META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___IS_LIBRARY_ENTRY = META_MODEL_ELEMENT___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___GET_VALUES_GENERIC = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Add Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE___ADD_VALUES_GENERIC__ELIST = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE__NAME = REFERENCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE__VALUE = REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Containment Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
-
-	/**
-	 * The operation id for the '<em>Add Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Containment Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINMENT_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE__NAME = REFERENCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE__VALUE = REFERENCE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Non Containment Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Get Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
-
-	/**
-	 * The operation id for the '<em>Add Values Generic</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Non Containment Reference</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_REFERENCE__NAME = REFERENCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_SECTION_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
+	int SOURCE_SECTION_REFERENCE__OWNING_CLASS = GenericPackage.REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Reference</em>' class.
@@ -2518,7 +1638,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE_FEATURE_COUNT = GenericPackage.REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2527,7 +1647,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2536,7 +1656,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2545,7 +1665,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2554,7 +1674,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2563,7 +1683,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+	int SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC = GenericPackage.REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2572,7 +1692,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The number of operations of the '<em>Source Section Reference</em>' class.
@@ -2581,7 +1701,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = GenericPackage.REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2590,7 +1710,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE__NAME = REFERENCE__NAME;
+	int TARGET_SECTION_REFERENCE__NAME = GenericPackage.REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2599,7 +1719,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
+	int TARGET_SECTION_REFERENCE__EREFERENCE = GenericPackage.REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2608,7 +1728,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
+	int TARGET_SECTION_REFERENCE__OWNING_CLASS = GenericPackage.REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Reference</em>' class.
@@ -2617,7 +1737,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_REFERENCE_FEATURE_COUNT = GenericPackage.REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2626,7 +1746,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2635,7 +1755,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2644,7 +1764,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2653,7 +1773,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2662,7 +1782,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+	int TARGET_SECTION_REFERENCE___GET_VALUES_GENERIC = GenericPackage.REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2671,7 +1791,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int TARGET_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The number of operations of the '<em>Target Section Reference</em>' class.
@@ -2680,7 +1800,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_REFERENCE_OPERATION_COUNT = GenericPackage.REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2689,7 +1809,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__NAME = CONTAINMENT_REFERENCE__NAME;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2698,7 +1818,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = CONTAINMENT_REFERENCE__EREFERENCE;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2707,7 +1827,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
@@ -2716,7 +1836,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE = CONTAINMENT_REFERENCE__VALUE;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Containment Reference</em>' class.
@@ -2725,7 +1845,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2734,7 +1854,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2743,7 +1863,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2752,7 +1872,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2761,7 +1881,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2770,7 +1890,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2779,7 +1899,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -2788,7 +1908,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Target Section Containment Reference</em>' class.
@@ -2797,7 +1917,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2806,7 +1926,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__NAME = NON_CONTAINMENT_REFERENCE__NAME;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__NAME = GenericPackage.NON_CONTAINMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2815,7 +1935,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE = NON_CONTAINMENT_REFERENCE__EREFERENCE;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.NON_CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2824,7 +1944,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS = NON_CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.NON_CONTAINMENT_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference list.
@@ -2833,7 +1953,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE = NON_CONTAINMENT_REFERENCE__VALUE;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE = GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Non Containment Reference</em>' class.
@@ -2842,7 +1962,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_FEATURE_COUNT = NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2851,7 +1971,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2860,7 +1980,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2869,7 +1989,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2878,7 +1998,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2887,7 +2007,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2896,7 +2016,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
@@ -2905,7 +2025,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Target Section Non Containment Reference</em>' class.
@@ -2914,7 +2034,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2923,7 +2043,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__NAME = CONTAINMENT_REFERENCE__NAME;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2932,7 +2052,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = CONTAINMENT_REFERENCE__EREFERENCE;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2941,7 +2061,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
@@ -2950,7 +2070,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE = CONTAINMENT_REFERENCE__VALUE;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Containment Reference</em>' class.
@@ -2959,7 +2079,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2968,7 +2088,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2977,7 +2097,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2986,7 +2106,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2995,7 +2115,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -3004,7 +2124,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -3013,7 +2133,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -3022,7 +2142,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Source Section Containment Reference</em>' class.
@@ -3031,7 +2151,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3151,170 +2271,6 @@ public interface StructurePackage extends EPackage {
 	int META_MODEL_SECTION_REFERENCE_OPERATION_COUNT = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.ActualAttributeImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
-	 * @generated
-	 */
-	int ACTUAL_ATTRIBUTE = 24;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Attribute</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE__ATTRIBUTE = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Actual Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE___IS_LIBRARY_ENTRY = ATTRIBUTE___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Validate Attribute Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = ATTRIBUTE_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Actual Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUAL_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.VirtualAttributeImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
-	 * @generated
-	 */
-	int VIRTUAL_ATTRIBUTE = 25;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
-
-	/**
-	 * The number of structural features of the '<em>Virtual Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
-
-	/**
-	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
-
-	/**
-	 * The operation id for the '<em>Is Library Entry</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE___IS_LIBRARY_ENTRY = ATTRIBUTE___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The number of operations of the '<em>Virtual Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIRTUAL_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3322,7 +2278,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
-	int SOURCE_SECTION_ATTRIBUTE = 26;
+	int SOURCE_SECTION_ATTRIBUTE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3331,7 +2287,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE__NAME = ATTRIBUTE__NAME;
+	int SOURCE_SECTION_ATTRIBUTE__NAME = GenericPackage.ATTRIBUTE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -3340,7 +2296,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = ATTRIBUTE__OWNING_CLASS;
+	int SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = GenericPackage.ATTRIBUTE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
@@ -3349,7 +2305,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = ATTRIBUTE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Attribute</em>' class.
@@ -3358,7 +2314,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = ATTRIBUTE_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -3367,7 +2323,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = ATTRIBUTE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = GenericPackage.ATTRIBUTE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -3376,7 +2332,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = GenericPackage.ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -3385,7 +2341,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = ATTRIBUTE___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = GenericPackage.ATTRIBUTE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The number of operations of the '<em>Source Section Attribute</em>' class.
@@ -3394,7 +2350,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = ATTRIBUTE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = GenericPackage.ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
@@ -3404,7 +2360,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getActualSourceSectionAttribute()
 	 * @generated
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE = 27;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3603,7 +2559,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraint()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT = 32;
+	int VALUE_CONSTRAINT = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3649,7 +2605,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSingleReferenceValueConstraint()
 	 * @generated
 	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT = 45;
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3776,7 +2732,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 37;
+	int CASE_SENSITIVE_CONSTRAINT = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3912,7 +2868,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
-	int EQUALITY_MATCHER = 31;
+	int EQUALITY_MATCHER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4048,7 +3004,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
-	int SUBSTRING_MATCHER = 33;
+	int SUBSTRING_MATCHER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4184,7 +3140,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
-	int BEGINNING_MATCHER = 34;
+	int BEGINNING_MATCHER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4320,7 +3276,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getEndingMatcher()
 	 * @generated
 	 */
-	int ENDING_MATCHER = 35;
+	int ENDING_MATCHER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4456,7 +3412,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRegExMatcher()
 	 * @generated
 	 */
-	int REG_EX_MATCHER = 36;
+	int REG_EX_MATCHER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4583,7 +3539,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
-	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 39;
+	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4638,7 +3594,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeConstraint()
 	 * @generated
 	 */
-	int RANGE_CONSTRAINT = 38;
+	int RANGE_CONSTRAINT = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4711,7 +3667,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointer()
 	 * @generated
 	 */
-	int INSTANCE_POINTER = 40;
+	int INSTANCE_POINTER = 31;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -4784,7 +3740,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceInterface()
 	 * @generated
 	 */
-	int INSTANCE_POINTER_SOURCE_INTERFACE = 41;
+	int INSTANCE_POINTER_SOURCE_INTERFACE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4830,7 +3786,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceElement()
 	 * @generated
 	 */
-	int INSTANCE_POINTER_SOURCE_ELEMENT = 42;
+	int INSTANCE_POINTER_SOURCE_ELEMENT = 33;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4921,7 +3877,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerExternalSourceElement()
 	 * @generated
 	 */
-	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = 43;
+	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = 34;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5012,7 +3968,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeBound()
 	 * @generated
 	 */
-	int RANGE_BOUND = 44;
+	int RANGE_BOUND = 35;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -5112,7 +4068,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 46;
+	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5158,7 +4114,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 47;
+	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 38;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5249,7 +4205,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 48;
+	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5340,7 +4296,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getFileTypeEnum()
 	 * @generated
 	 */
-	int FILE_TYPE_ENUM = 49;
+	int FILE_TYPE_ENUM = 40;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.ValueConstraintType <em>Value Constraint Type</em>}' enum.
@@ -5350,245 +4306,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintType()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_TYPE = 50;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.CardinalityType <em>Cardinality Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.CardinalityType
-	 * @see pamtram.structure.impl.StructurePackageImpl#getCardinalityType()
-	 * @generated
-	 */
-	int CARDINALITY_TYPE = 51;
-
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.MetaModelElement <em>Meta Model Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Meta Model Element</em>'.
-	 * @see pamtram.structure.generic.MetaModelElement
-	 * @generated
-	 */
-	EClass getMetaModelElement();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#getContainingSection() <em>Get Containing Section</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Containing Section</em>' operation.
-	 * @see pamtram.structure.generic.MetaModelElement#getContainingSection()
-	 * @generated
-	 */
-	EOperation getMetaModelElement__GetContainingSection();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#getContainingSectionModel() <em>Get Containing Section Model</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Containing Section Model</em>' operation.
-	 * @see pamtram.structure.generic.MetaModelElement#getContainingSectionModel()
-	 * @generated
-	 */
-	EOperation getMetaModelElement__GetContainingSectionModel();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.MetaModelElement#isLibraryEntry() <em>Is Library Entry</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Library Entry</em>' operation.
-	 * @see pamtram.structure.generic.MetaModelElement#isLibraryEntry()
-	 * @generated
-	 */
-	EOperation getMetaModelElement__IsLibraryEntry();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.Class <em>Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Class</em>'.
-	 * @see pamtram.structure.generic.Class
-	 * @generated
-	 */
-	EClass getClass_();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Class#getEClass <em>EClass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>EClass</em>'.
-	 * @see pamtram.structure.generic.Class#getEClass()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_EClass();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.generic.Class#getCardinality <em>Cardinality</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Cardinality</em>'.
-	 * @see pamtram.structure.generic.Class#getCardinality()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EAttribute getClass_Cardinality();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.Class#getReferences <em>References</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>References</em>'.
-	 * @see pamtram.structure.generic.Class#getReferences()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_References();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Container</em>'.
-	 * @see pamtram.structure.generic.Class#getContainer()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_Container();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Attributes</em>'.
-	 * @see pamtram.structure.generic.Class#getAttributes()
-	 * @see #getClass_()
-	 * @generated
-	 */
-	EReference getClass_Attributes();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Container For</em>' operation.
-	 * @see pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class)
-	 * @generated
-	 */
-	EOperation getClass__IsContainerFor__Class();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainedIn(pamtram.structure.generic.Class) <em>Is Contained In</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Contained In</em>' operation.
-	 * @see pamtram.structure.generic.Class#isContainedIn(pamtram.structure.generic.Class)
-	 * @generated
-	 */
-	EOperation getClass__IsContainedIn__Class();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#getOwningContainmentReference() <em>Get Owning Containment Reference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Owning Containment Reference</em>' operation.
-	 * @see pamtram.structure.generic.Class#getOwningContainmentReference()
-	 * @generated
-	 */
-	EOperation getClass__GetOwningContainmentReference();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isReferencedBy(pamtram.structure.generic.Class, org.eclipse.emf.common.util.EList) <em>Is Referenced By</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Referenced By</em>' operation.
-	 * @see pamtram.structure.generic.Class#isReferencedBy(pamtram.structure.generic.Class, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getClass__IsReferencedBy__Class_EList();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EClass Matches Parent EReference</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate EClass Matches Parent EReference</em>' operation.
-	 * @see pamtram.structure.generic.Class#validateEClassMatchesParentEReference(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getClass__ValidateEClassMatchesParentEReference__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Cardinality Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Cardinality Is Valid</em>' operation.
-	 * @see pamtram.structure.generic.Class#validateCardinalityIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getClass__ValidateCardinalityIsValid__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Container Is Valid</em>' operation.
-	 * @see pamtram.structure.generic.Class#validateContainerIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getClass__ValidateContainerIsValid__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.Section <em>Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Section</em>'.
-	 * @see pamtram.structure.generic.Section
-	 * @generated
-	 */
-	EClass getSection();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Abstract</em>'.
-	 * @see pamtram.structure.generic.Section#isAbstract()
-	 * @see #getSection()
-	 * @generated
-	 */
-	EAttribute getSection_Abstract();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Extend</em>'.
-	 * @see pamtram.structure.generic.Section#getExtend()
-	 * @see #getSection()
-	 * @generated
-	 */
-	EReference getSection_Extend();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Matches Extend Container</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Container Matches Extend Container</em>' operation.
-	 * @see pamtram.structure.generic.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Valid Sections</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Extends Valid Sections</em>' operation.
-	 * @see pamtram.structure.generic.Section#validateExtendsValidSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getSection__ValidateExtendsValidSections__DiagnosticChain_Map();
+	int VALUE_CONSTRAINT_TYPE = 41;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSection <em>Source Section</em>}'.
@@ -5908,130 +4626,6 @@ public interface StructurePackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.Reference <em>Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reference</em>'.
-	 * @see pamtram.structure.generic.Reference
-	 * @generated
-	 */
-	EClass getReference();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.generic.Reference#getEReference <em>EReference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>EReference</em>'.
-	 * @see pamtram.structure.generic.Reference#getEReference()
-	 * @see #getReference()
-	 * @generated
-	 */
-	EReference getReference_EReference();
-
-	/**
-	 * Returns the meta object for the container reference '{@link pamtram.structure.generic.Reference#getOwningClass <em>Owning Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Class</em>'.
-	 * @see pamtram.structure.generic.Reference#getOwningClass()
-	 * @see #getReference()
-	 * @generated
-	 */
-	EReference getReference_OwningClass();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Matches Parent EClass</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * @see pamtram.structure.generic.Reference#validateEReferenceMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#getValuesGeneric() <em>Get Values Generic</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Values Generic</em>' operation.
-	 * @see pamtram.structure.generic.Reference#getValuesGeneric()
-	 * @generated
-	 */
-	EOperation getReference__GetValuesGeneric();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList) <em>Add Values Generic</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Add Values Generic</em>' operation.
-	 * @see pamtram.structure.generic.Reference#addValuesGeneric(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 */
-	EOperation getReference__AddValuesGeneric__EList();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.ContainmentReference <em>Containment Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Containment Reference</em>'.
-	 * @see pamtram.structure.generic.ContainmentReference
-	 * @generated
-	 */
-	EClass getContainmentReference();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.ContainmentReference#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value</em>'.
-	 * @see pamtram.structure.generic.ContainmentReference#getValue()
-	 * @see #getContainmentReference()
-	 * @generated
-	 */
-	EReference getContainmentReference_Value();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Containment</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate EReference Is Containment</em>' operation.
-	 * @see pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.NonContainmentReference <em>Non Containment Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Non Containment Reference</em>'.
-	 * @see pamtram.structure.generic.NonContainmentReference
-	 * @generated
-	 */
-	EClass getNonContainmentReference();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.NonContainmentReference#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Value</em>'.
-	 * @see pamtram.structure.generic.NonContainmentReference#getValue()
-	 * @see #getNonContainmentReference()
-	 * @generated
-	 */
-	EReference getNonContainmentReference_Value();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate EReference Is Non Containment</em>' operation.
-	 * @see pamtram.structure.generic.NonContainmentReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionReference <em>Source Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6111,68 +4705,6 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.Attribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute</em>'.
-	 * @see pamtram.structure.generic.Attribute
-	 * @generated
-	 */
-	EClass getAttribute();
-
-	/**
-	 * Returns the meta object for the container reference '{@link pamtram.structure.generic.Attribute#getOwningClass <em>Owning Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Class</em>'.
-	 * @see pamtram.structure.generic.Attribute#getOwningClass()
-	 * @see #getAttribute()
-	 * @generated
-	 */
-	EReference getAttribute_OwningClass();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.ActualAttribute <em>Actual Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Actual Attribute</em>'.
-	 * @see pamtram.structure.generic.ActualAttribute
-	 * @generated
-	 */
-	EClass getActualAttribute();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.generic.ActualAttribute#getAttribute <em>Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Attribute</em>'.
-	 * @see pamtram.structure.generic.ActualAttribute#getAttribute()
-	 * @see #getActualAttribute()
-	 * @generated
-	 */
-	EReference getActualAttribute_Attribute();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Attribute Matches Parent EClass</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Attribute Matches Parent EClass</em>' operation.
-	 * @see pamtram.structure.generic.ActualAttribute#validateAttributeMatchesParentEClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getActualAttribute__ValidateAttributeMatchesParentEClass__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.VirtualAttribute <em>Virtual Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Virtual Attribute</em>'.
-	 * @see pamtram.structure.generic.VirtualAttribute
-	 * @generated
-	 */
-	EClass getVirtualAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionAttribute <em>Source Section Attribute</em>}'.
@@ -6679,16 +5211,6 @@ public interface StructurePackage extends EPackage {
 	EEnum getValueConstraintType();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.structure.CardinalityType <em>Cardinality Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Cardinality Type</em>'.
-	 * @see pamtram.structure.CardinalityType
-	 * @generated
-	 */
-	EEnum getCardinalityType();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6711,188 +5233,6 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.MetaModelElementImpl <em>Meta Model Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.MetaModelElementImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelElement()
-		 * @generated
-		 */
-		EClass META_MODEL_ELEMENT = eINSTANCE.getMetaModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Containing Section</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation META_MODEL_ELEMENT___GET_CONTAINING_SECTION = eINSTANCE.getMetaModelElement__GetContainingSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Containing Section Model</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation META_MODEL_ELEMENT___GET_CONTAINING_SECTION_MODEL = eINSTANCE.getMetaModelElement__GetContainingSectionModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Library Entry</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation META_MODEL_ELEMENT___IS_LIBRARY_ENTRY = eINSTANCE.getMetaModelElement__IsLibraryEntry();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ClassImpl <em>Class</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.ClassImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getClass_()
-		 * @generated
-		 */
-		EClass CLASS = eINSTANCE.getClass_();
-
-		/**
-		 * The meta object literal for the '<em><b>EClass</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__ECLASS = eINSTANCE.getClass_EClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Cardinality</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CLASS__CARDINALITY = eINSTANCE.getClass_Cardinality();
-
-		/**
-		 * The meta object literal for the '<em><b>References</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__REFERENCES = eINSTANCE.getClass_References();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__CONTAINER = eINSTANCE.getClass_Container();
-
-		/**
-		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___IS_CONTAINER_FOR__CLASS = eINSTANCE.getClass__IsContainerFor__Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Contained In</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___IS_CONTAINED_IN__CLASS = eINSTANCE.getClass__IsContainedIn__Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Owning Containment Reference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___GET_OWNING_CONTAINMENT_REFERENCE = eINSTANCE.getClass__GetOwningContainmentReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Referenced By</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___IS_REFERENCED_BY__CLASS_ELIST = eINSTANCE.getClass__IsReferencedBy__Class_EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate EClass Matches Parent EReference</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateEClassMatchesParentEReference__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Cardinality Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateCardinalityIsValid__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Container Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateContainerIsValid__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.SectionImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getSection()
-		 * @generated
-		 */
-		EClass SECTION = eINSTANCE.getSection();
-
-		/**
-		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SECTION__ABSTRACT = eINSTANCE.getSection_Abstract();
-
-		/**
-		 * The meta object literal for the '<em><b>Extend</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SECTION__EXTEND = eINSTANCE.getSection_Extend();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Container Matches Extend Container</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Extends Valid Sections</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ValidateExtendsValidSections__DiagnosticChain_Map();
-
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionImpl <em>Source Section</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -7156,108 +5496,6 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.ReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getReference()
-		 * @generated
-		 */
-		EClass REFERENCE = eINSTANCE.getReference();
-
-		/**
-		 * The meta object literal for the '<em><b>EReference</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE__EREFERENCE = eINSTANCE.getReference_EReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE__OWNING_CLASS = eINSTANCE.getReference_OwningClass();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate EReference Matches Parent EClass</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Values Generic</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation REFERENCE___GET_VALUES_GENERIC = eINSTANCE.getReference__GetValuesGeneric();
-
-		/**
-		 * The meta object literal for the '<em><b>Add Values Generic</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getContainmentReference()
-		 * @generated
-		 */
-		EClass CONTAINMENT_REFERENCE = eINSTANCE.getContainmentReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getContainmentReference_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate EReference Is Containment</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.NonContainmentReferenceImpl <em>Non Containment Reference</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.NonContainmentReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getNonContainmentReference()
-		 * @generated
-		 */
-		EClass NON_CONTAINMENT_REFERENCE = eINSTANCE.getNonContainmentReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NON_CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getNonContainmentReference_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate EReference Is Non Containment</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7332,60 +5570,6 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.AttributeImpl <em>Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.AttributeImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getAttribute()
-		 * @generated
-		 */
-		EClass ATTRIBUTE = eINSTANCE.getAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Owning Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE__OWNING_CLASS = eINSTANCE.getAttribute_OwningClass();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ActualAttributeImpl <em>Actual Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.ActualAttributeImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getActualAttribute()
-		 * @generated
-		 */
-		EClass ACTUAL_ATTRIBUTE = eINSTANCE.getActualAttribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ACTUAL_ATTRIBUTE__ATTRIBUTE = eINSTANCE.getActualAttribute_Attribute();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Attribute Matches Parent EClass</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getActualAttribute__ValidateAttributeMatchesParentEClass__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.VirtualAttributeImpl <em>Virtual Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.VirtualAttributeImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualAttribute()
-		 * @generated
-		 */
-		EClass VIRTUAL_ATTRIBUTE = eINSTANCE.getVirtualAttribute();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
@@ -7828,16 +6012,6 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum VALUE_CONSTRAINT_TYPE = eINSTANCE.getValueConstraintType();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.CardinalityType <em>Cardinality Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.CardinalityType
-		 * @see pamtram.structure.impl.StructurePackageImpl#getCardinalityType()
-		 * @generated
-		 */
-		EEnum CARDINALITY_TYPE = eINSTANCE.getCardinalityType();
 
 	}
 

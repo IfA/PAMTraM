@@ -2,15 +2,13 @@
  */
 package pamtram.structure.generic;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Virtual Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getVirtualAttribute()
+ * @see pamtram.structure.generic.GenericPackage#getVirtualAttribute()
  * @model abstract="true"
  * @generated
  */

@@ -14,13 +14,12 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +61,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.ACTUAL_ATTRIBUTE;
+		return GenericPackage.Literals.ACTUAL_ATTRIBUTE;
 	}
 
 	/**
@@ -76,7 +75,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
 		return attribute;
@@ -100,7 +99,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
 	}
 
 	/**
@@ -124,10 +123,10 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
+					new Object[] { this, GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
 		
 		}
 		
@@ -142,7 +141,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
 				if (resolve) return getAttribute();
 				return basicGetAttribute();
 		}
@@ -157,7 +156,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)newValue);
 				return;
 		}
@@ -172,7 +171,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
 				setAttribute((EAttribute)null);
 				return;
 		}
@@ -187,7 +186,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
+			case GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE:
 				return attribute != null;
 		}
 		return super.eIsSet(featureID);
@@ -202,7 +201,7 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.ACTUAL_ATTRIBUTE___VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return validateAttributeMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

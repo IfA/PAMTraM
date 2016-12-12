@@ -12,13 +12,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.generic.util.GenericValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +59,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.NON_CONTAINMENT_REFERENCE;
+		return GenericPackage.Literals.NON_CONTAINMENT_REFERENCE;
 	}
 
 	/**
@@ -71,7 +70,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectResolvingEList<C>(pamtram.structure.generic.Class.class, this, StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectResolvingEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -92,10 +91,10 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
 		
 		}
 		
@@ -110,7 +109,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -125,7 +124,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				getValue().addAll((Collection<? extends C>)newValue);
 				return;
@@ -141,7 +140,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				getValue().clear();
 				return;
 		}
@@ -156,7 +155,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.NON_CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE:
 				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -171,7 +170,7 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

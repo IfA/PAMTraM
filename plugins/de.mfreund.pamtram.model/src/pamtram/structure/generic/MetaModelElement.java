@@ -4,7 +4,6 @@ package pamtram.structure.generic;
 
 import pamtram.NamedElement;
 import pamtram.SectionModel;
-import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +11,7 @@ import pamtram.structure.StructurePackage;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getMetaModelElement()
+ * @see pamtram.structure.generic.GenericPackage#getMetaModelElement()
  * @model abstract="true"
  * @generated
  */

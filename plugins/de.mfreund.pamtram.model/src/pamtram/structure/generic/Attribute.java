@@ -2,8 +2,6 @@
  */
 package pamtram.structure.generic;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Attribute</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.structure.StructurePackage;
  *   <li>{@link pamtram.structure.generic.Attribute#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getAttribute()
+ * @see pamtram.structure.generic.GenericPackage#getAttribute()
  * @model abstract="true"
  * @generated
  */
@@ -32,7 +30,7 @@ public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.structure.StructurePackage#getAttribute_OwningClass()
+	 * @see pamtram.structure.generic.GenericPackage#getAttribute_OwningClass()
 	 * @see pamtram.structure.generic.Class#getAttributes
 	 * @model opposite="attributes" transient="false" changeable="false"
 	 * @generated

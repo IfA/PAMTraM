@@ -13,6 +13,7 @@ import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.impl.ClassImpl;
 
@@ -52,7 +53,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSection, TargetSecti
 	@Override
 	public EList<TargetSectionReference> getReferences() {
 		if (references == null) {
-			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, StructurePackage.TARGET_SECTION_CLASS__REFERENCES, StructurePackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
+			references = new EObjectContainmentWithInverseEList<TargetSectionReference>(TargetSectionReference.class, this, StructurePackage.TARGET_SECTION_CLASS__REFERENCES, GenericPackage.REFERENCE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Reference.class; } };
 		}
 		return references;
 	}
@@ -77,7 +78,7 @@ public class TargetSectionClassImpl extends ClassImpl<TargetSection, TargetSecti
 	@Override
 	public EList<TargetSectionAttribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, StructurePackage.TARGET_SECTION_CLASS__ATTRIBUTES, StructurePackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
+			attributes = new EObjectContainmentWithInverseEList<TargetSectionAttribute>(TargetSectionAttribute.class, this, StructurePackage.TARGET_SECTION_CLASS__ATTRIBUTES, GenericPackage.ATTRIBUTE__OWNING_CLASS) { private static final long serialVersionUID = 1L; @Override public Class<?> getInverseFeatureClass() { return Attribute.class; } };
 		}
 		return attributes;
 	}

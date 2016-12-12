@@ -3,9 +3,8 @@
 package pamtram.structure.generic.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -34,7 +33,7 @@ public abstract class VirtualAttributeImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.VIRTUAL_ATTRIBUTE;
+		return GenericPackage.Literals.VIRTUAL_ATTRIBUTE;
 	}
 
 } //VirtualAttributeImpl

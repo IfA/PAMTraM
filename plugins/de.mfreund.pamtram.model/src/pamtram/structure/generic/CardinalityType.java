@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.generic;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cardinality Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see pamtram.structure.StructurePackage#getCardinalityType()
+ * @see pamtram.structure.generic.GenericPackage#getCardinalityType()
  * @model
  * @generated
  */

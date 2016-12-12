@@ -20,6 +20,7 @@ Export-Package: pamtram,
  pamtram.structure,
  pamtram.structure.generic,
  pamtram.structure.generic.impl,
+ pamtram.structure.generic.util,
  pamtram.structure.impl,
  pamtram.structure.util,
  pamtram.util

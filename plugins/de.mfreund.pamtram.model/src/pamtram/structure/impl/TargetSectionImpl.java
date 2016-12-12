@@ -24,7 +24,9 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.structure.FileAttribute;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
+import pamtram.structure.generic.util.GenericValidator;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -248,10 +250,10 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
+					 GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
-					 new Object [] { this, StructurePackage.Literals.SECTION__EXTEND }));
+					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
 		return result;
@@ -278,10 +280,10 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.SECTION__EXTEND }));
+					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
 		
 		}
 		
@@ -382,8 +384,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.TARGET_SECTION__ABSTRACT: return StructurePackage.SECTION__ABSTRACT;
-				case StructurePackage.TARGET_SECTION__EXTEND: return StructurePackage.SECTION__EXTEND;
+				case StructurePackage.TARGET_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
+				case StructurePackage.TARGET_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -399,8 +401,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseFeatureID) {
-				case StructurePackage.SECTION__ABSTRACT: return StructurePackage.TARGET_SECTION__ABSTRACT;
-				case StructurePackage.SECTION__EXTEND: return StructurePackage.TARGET_SECTION__EXTEND;
+				case GenericPackage.SECTION__ABSTRACT: return StructurePackage.TARGET_SECTION__ABSTRACT;
+				case GenericPackage.SECTION__EXTEND: return StructurePackage.TARGET_SECTION__EXTEND;
 				default: return -1;
 			}
 		}
@@ -416,8 +418,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
-				case StructurePackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case StructurePackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case GenericPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
+				case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}

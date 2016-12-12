@@ -9,8 +9,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
  *
@@ -22,7 +20,7 @@ import pamtram.structure.StructurePackage;
  *   <li>{@link pamtram.structure.generic.Reference#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getReference()
+ * @see pamtram.structure.generic.GenericPackage#getReference()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceMatchesParentEClass'"
  * @generated
@@ -40,7 +38,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>EReference</em>' reference.
 	 * @see #setEReference(EReference)
-	 * @see pamtram.structure.StructurePackage#getReference_EReference()
+	 * @see pamtram.structure.generic.GenericPackage#getReference_EReference()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -67,7 +65,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
-	 * @see pamtram.structure.StructurePackage#getReference_OwningClass()
+	 * @see pamtram.structure.generic.GenericPackage#getReference_OwningClass()
 	 * @see pamtram.structure.generic.Class#getReferences
 	 * @model opposite="references" transient="false" changeable="false"
 	 * @generated
@@ -76,7 +74,7 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof <%pamtram.structure.Class%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof <%pamtram.structure.generic.Class%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateEReferenceMatchesParentEClass(DiagnosticChain diagnostics, Map<?, ?> context);

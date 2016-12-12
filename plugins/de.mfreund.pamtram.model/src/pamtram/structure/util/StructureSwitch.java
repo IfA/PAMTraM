@@ -119,30 +119,6 @@ public class StructureSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case StructurePackage.META_MODEL_ELEMENT: {
-				MetaModelElement<?, ?, ?, ?> metaModelElement = (MetaModelElement<?, ?, ?, ?>)theEObject;
-				T result = caseMetaModelElement(metaModelElement);
-				if (result == null) result = caseNamedElement(metaModelElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.CLASS: {
-				pamtram.structure.generic.Class<?, ?, ?, ?> class_ = (pamtram.structure.generic.Class<?, ?, ?, ?>)theEObject;
-				T result = caseClass(class_);
-				if (result == null) result = caseMetaModelElement(class_);
-				if (result == null) result = caseNamedElement(class_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.SECTION: {
-				Section<?, ?, ?, ?> section = (Section<?, ?, ?, ?>)theEObject;
-				T result = caseSection(section);
-				if (result == null) result = caseClass(section);
-				if (result == null) result = caseMetaModelElement(section);
-				if (result == null) result = caseNamedElement(section);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case StructurePackage.SOURCE_SECTION: {
 				SourceSection sourceSection = (SourceSection)theEObject;
 				T result = caseSourceSection(sourceSection);
@@ -239,32 +215,6 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.REFERENCE: {
-				Reference<?, ?, ?, ?> reference = (Reference<?, ?, ?, ?>)theEObject;
-				T result = caseReference(reference);
-				if (result == null) result = caseMetaModelElement(reference);
-				if (result == null) result = caseNamedElement(reference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.CONTAINMENT_REFERENCE: {
-				ContainmentReference<?, ?, ?, ?> containmentReference = (ContainmentReference<?, ?, ?, ?>)theEObject;
-				T result = caseContainmentReference(containmentReference);
-				if (result == null) result = caseReference(containmentReference);
-				if (result == null) result = caseMetaModelElement(containmentReference);
-				if (result == null) result = caseNamedElement(containmentReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.NON_CONTAINMENT_REFERENCE: {
-				NonContainmentReference<?, ?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?, ?>)theEObject;
-				T result = caseNonContainmentReference(nonContainmentReference);
-				if (result == null) result = caseReference(nonContainmentReference);
-				if (result == null) result = caseMetaModelElement(nonContainmentReference);
-				if (result == null) result = caseNamedElement(nonContainmentReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case StructurePackage.SOURCE_SECTION_REFERENCE: {
 				SourceSectionReference sourceSectionReference = (SourceSectionReference)theEObject;
 				T result = caseSourceSectionReference(sourceSectionReference);
@@ -323,32 +273,6 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseReference(metaModelSectionReference);
 				if (result == null) result = caseMetaModelElement(metaModelSectionReference);
 				if (result == null) result = caseNamedElement(metaModelSectionReference);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.ATTRIBUTE: {
-				Attribute<?, ?, ?, ?> attribute = (Attribute<?, ?, ?, ?>)theEObject;
-				T result = caseAttribute(attribute);
-				if (result == null) result = caseMetaModelElement(attribute);
-				if (result == null) result = caseNamedElement(attribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.ACTUAL_ATTRIBUTE: {
-				ActualAttribute<?, ?, ?, ?> actualAttribute = (ActualAttribute<?, ?, ?, ?>)theEObject;
-				T result = caseActualAttribute(actualAttribute);
-				if (result == null) result = caseAttribute(actualAttribute);
-				if (result == null) result = caseMetaModelElement(actualAttribute);
-				if (result == null) result = caseNamedElement(actualAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.VIRTUAL_ATTRIBUTE: {
-				VirtualAttribute<?, ?, ?, ?> virtualAttribute = (VirtualAttribute<?, ?, ?, ?>)theEObject;
-				T result = caseVirtualAttribute(virtualAttribute);
-				if (result == null) result = caseAttribute(virtualAttribute);
-				if (result == null) result = caseMetaModelElement(virtualAttribute);
-				if (result == null) result = caseNamedElement(virtualAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -19,7 +19,6 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.CardinalityType;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.TargetSectionClass;
 
@@ -225,7 +224,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@Override
 	public boolean validateSourceClassIsVariableCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getSource() == null ? true : this.getSource().getCardinality() != CardinalityType.ONE;
+		boolean result = this.getSource() == null ? true : this.getSource().getCardinality() != pamtram.structure.generic.CardinalityType.ONE;
 		
 		if (!result && diagnostics != null) {
 		
@@ -251,7 +250,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@Override
 	public boolean validateTargetClassIsVariableCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != CardinalityType.ONE;
+		boolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != pamtram.structure.generic.CardinalityType.ONE;
 		
 		if (!result && diagnostics != null) {
 		

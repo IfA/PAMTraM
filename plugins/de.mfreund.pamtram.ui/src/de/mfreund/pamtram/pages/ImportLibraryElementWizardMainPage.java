@@ -26,8 +26,8 @@ import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.TargetSection;
 
 /**
  * This page allows to specify (1) a library (represented by a Zip file) and (2) one or multiple items from the library

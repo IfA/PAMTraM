@@ -1,126 +1,126 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel name="Variablen">
     <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Variablen">
+    <metaModelSections xsi:type="structure:SourceSection" name="Variablen">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//Variablen"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="MBTCP">
+    <metaModelSections xsi:type="structure:SourceSection" name="MBTCP">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractMBTCPItem" abstract="true">
+    <metaModelSections xsi:type="structure:SourceSection" name="AbstractMBTCPItem" abstract="true">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Variablenname">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Variablenname">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Variablenname"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Datentyp">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Datentyp">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Datentyp"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Kommentar">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Kommentar">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Kommentar"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Min">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Min">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Min"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Max">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Max">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Max"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Fractiondigits">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Fractiondigits">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Fractiondigits"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
+    <metaModelSections xsi:type="structure:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="structure:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
+    <metaModelSections xsi:type="structure:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="structure:BeginningMatcher" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" expression="rw"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
+    <metaModelSections xsi:type="structure:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="structure:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="r"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" expression="r"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
+    <metaModelSections xsi:type="structure:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="metamodel:BeginningMatcher" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="structure:BeginningMatcher" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="AccessMode">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="metamodel:EqualityMatcher" expression="rw"/>
+        <valueConstraint xsi:type="structure:EqualityMatcher" expression="rw"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel name="TDP">
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="TDP">
+    <metaModelSections xsi:type="structure:TargetSection" name="TDP">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/TechnicalDataPerspective"/>
     </metaModelSections>
   </targetSectionModel>
   <targetSectionModel name="Modbus TCP">
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ModbusTcpServer">
+    <metaModelSections xsi:type="structure:TargetSection" name="ModbusTcpServer">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpServer"/>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="ModbusTcpItem" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="structure:TargetSection" name="ModbusTcpItem" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="BaseType" value="">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="BaseType" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/BaseType"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ReferenceAddress">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ReferenceAddress">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/ReferenceAddress"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Type">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Type">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/Type"/>
       </attributes>
     </metaModelSections>
   </targetSectionModel>
   <targetSectionModel name="OPC XML DA">
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="OpcXmlDaServer">
+    <metaModelSections xsi:type="structure:TargetSection" name="OpcXmlDaServer">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="LocaleId" value="de-DE">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="LocaleId" value="de-DE">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer/LocaleId"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="OpcXmlDaItem">
+    <metaModelSections xsi:type="structure:TargetSection" name="OpcXmlDaItem">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name" value="">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemName" value="">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ItemName" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemName"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemPath" value="">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ItemPath" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemPath"/>
       </attributes>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="ItemType" value="">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ItemType" value="">
         <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemType"/>
       </attributes>
     </metaModelSections>

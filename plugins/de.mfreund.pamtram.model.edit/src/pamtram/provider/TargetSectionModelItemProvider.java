@@ -24,9 +24,9 @@ import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.commands.DeleteLibraryEntryCommand;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.MetamodelFactory;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.
@@ -166,11 +166,11 @@ extends SectionModelItemProvider {
 			// we need a compound command in case multiple entries are to be deleted
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (Object object : collection) {
-				if(!(object instanceof pamtram.metamodel.LibraryEntry)) {
+				if(!(object instanceof pamtram.structure.LibraryEntry)) {
 					throw new RuntimeException("Internal Error! This can only delete LibraryEntries...");
 				} else {
 					// create a DeleteLibraryEntryCommand for every entry to be deleted
-					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner, (pamtram.metamodel.LibraryEntry) object));
+					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner, (pamtram.structure.LibraryEntry) object));
 				}
 			}
 			return compoundCommand;

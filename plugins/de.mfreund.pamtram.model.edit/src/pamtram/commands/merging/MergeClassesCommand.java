@@ -19,15 +19,15 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.PamtramPackage;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.Attribute;
+import pamtram.structure.Class;
+import pamtram.structure.MetaModelElement;
+import pamtram.structure.Reference;
+import pamtram.structure.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link pamtram.metamodel.Class
- * pamtram.metamodel.Classes}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link pamtram.structure.Class
+ * pamtram.structure.Classes}.
  *
  * @author mfreund
  * @param <S>
@@ -35,7 +35,7 @@ import pamtram.metamodel.Section;
  * @param <R>
  * @param <A>
  */
-public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<C, C, S, C, R, A> {
 
 	/**
@@ -81,7 +81,7 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 	 *            the resource set associated with the given <em>domain</em>.
 	 * @return The created command.
 	 */
-	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
+	public static <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
 			EditingDomain domain, Set<C> classesToMerge, Set<EObject> elementsOfInterest) {
 
 		// The classes can only be merged if they all represent the same EClass

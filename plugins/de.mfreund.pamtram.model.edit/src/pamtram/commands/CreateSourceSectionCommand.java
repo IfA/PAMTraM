@@ -5,7 +5,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
+import pamtram.structure.impl.MetamodelPackageImpl;
 
 public class CreateSourceSectionCommand extends CreateChildCommand {
 

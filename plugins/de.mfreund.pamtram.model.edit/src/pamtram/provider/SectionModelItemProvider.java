@@ -47,7 +47,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.metamodel.MetamodelFactory;
+import pamtram.structure.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.

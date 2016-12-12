@@ -18,9 +18,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.PamtramPackage;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.MetamodelFactory;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.

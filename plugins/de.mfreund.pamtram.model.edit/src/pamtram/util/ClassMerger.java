@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 
 import de.mfreund.pamtram.util.NullComparator;
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.ValueConstraint;
+import pamtram.structure.ActualAttribute;
+import pamtram.structure.Attribute;
+import pamtram.structure.Class;
+import pamtram.structure.Reference;
+import pamtram.structure.Section;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.ValueConstraint;
 
 /**
  * A utility class that is able to merge a set of {@link Class Classes}.
@@ -40,7 +40,7 @@ import pamtram.metamodel.ValueConstraint;
  *
  * @author mfreund
  */
-public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> {
+public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> {
 
 	/**
 	 * After a call to {@link #merge()} this contains all the {@link EObject elements} that have been merged into other

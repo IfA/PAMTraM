@@ -23,8 +23,8 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ReferenceTargetSelector} object.

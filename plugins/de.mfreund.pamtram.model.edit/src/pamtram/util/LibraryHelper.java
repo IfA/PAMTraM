@@ -27,20 +27,20 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.metamodel.ActualTargetSectionAttribute;
-import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.ContainerParameter;
-import pamtram.metamodel.ExternalReferenceParameter;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualTargetSectionAttribute;
+import pamtram.structure.ActualTargetSectionAttribute;
+import pamtram.structure.AttributeParameter;
+import pamtram.structure.CardinalityType;
+import pamtram.structure.ContainerParameter;
+import pamtram.structure.ExternalReferenceParameter;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.LibraryParameter;
+import pamtram.structure.MetaModelElement;
+import pamtram.structure.MetamodelFactory;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.VirtualTargetSectionAttribute;
 
 /**
  * This class provides convenience functions to work with library items.
@@ -508,7 +508,7 @@ public class LibraryHelper {
 			 */
 			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
 
-				pamtram.metamodel.ResourceParameter param = MetamodelFactory.eINSTANCE.createResourceParameter();
+				pamtram.structure.ResourceParameter param = MetamodelFactory.eINSTANCE.createResourceParameter();
 				param.setOriginalParameter(resParameter);
 				param.setName(resParameter.eClass().getName());
 

@@ -27,9 +27,9 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSectionClass;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroupImporter} object.

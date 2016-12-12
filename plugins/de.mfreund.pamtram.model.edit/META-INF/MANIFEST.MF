@@ -15,7 +15,7 @@ Export-Package: pamtram.commands,
  pamtram.condition.provider,
  pamtram.converter,
  pamtram.mapping.provider,
- pamtram.metamodel.provider,
+ pamtram.structure.provider,
  pamtram.provider,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,

@@ -21,11 +21,11 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.GlobalAttribute} object.

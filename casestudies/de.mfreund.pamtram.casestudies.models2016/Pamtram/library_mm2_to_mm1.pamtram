@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm2#/"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Library">
+    <metaModelSections xsi:type="structure:SourceSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Library"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Library/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Member">
+    <metaModelSections xsi:type="structure:SourceSection" name="Member">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Member"/>
-      <references xsi:type="metamodel:MetaModelSectionReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:SourceSectionCrossReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Member/loans"/>
       </references>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Medium" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="structure:SourceSection" name="Medium" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Medium"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Medium/name"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm1#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Library">
+    <metaModelSections xsi:type="structure:TargetSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Library"/>
-      <references xsi:type="metamodel:TargetSectionContainmentReference" name="members">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="members">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Library/members"/>
-        <value xsi:type="metamodel:TargetSectionClass" name="Member" cardinality="ZERO__INFINITY">
+        <value xsi:type="structure:TargetSectionClass" name="Member" cardinality="ZERO__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm1#//Member"/>
-          <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
+          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
             <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Member/name"/>
           </attributes>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Member">
+    <metaModelSections xsi:type="structure:TargetSection" name="Member">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Member"/>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="bookLoans" value="//@targetSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:TargetSectionCrossReference" name="bookLoans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Member/bookLoans"/>
       </references>
-      <references xsi:type="metamodel:TargetSectionNonContainmentReference" name="filmLoans" value="//@targetSectionModel.0/@metaModelSections.3">
+      <references xsi:type="structure:TargetSectionCrossReference" name="filmLoans" value="//@targetSectionModel.0/@metaModelSections.3">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Member/filmLoans"/>
       </references>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Book" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="structure:TargetSection" name="Book" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Book"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Book/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Film" cardinality="ONE__INFINITY">
+    <metaModelSections xsi:type="structure:TargetSection" name="Film" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Film"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="name">
+      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
         <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Film/name"/>
       </attributes>
     </metaModelSections>

@@ -42,7 +42,6 @@ import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
 import pamtram.structure.RegExMatcher;
-import pamtram.structure.Section;
 import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
@@ -50,6 +49,7 @@ import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintType;
+import pamtram.structure.generic.Section;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.

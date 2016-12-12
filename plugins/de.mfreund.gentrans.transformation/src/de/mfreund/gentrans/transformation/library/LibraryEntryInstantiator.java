@@ -28,7 +28,7 @@ import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.VirtualAttribute;
+import pamtram.structure.generic.VirtualAttribute;
 import pamtram.util.GenLibraryManager;
 
 /**

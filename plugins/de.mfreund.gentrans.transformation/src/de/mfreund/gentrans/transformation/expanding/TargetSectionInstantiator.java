@@ -45,7 +45,6 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.structure.ActualAttribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.CardinalityType;
 import pamtram.structure.LibraryEntry;
@@ -55,6 +54,7 @@ import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.ActualAttribute;
 
 /**
  * Class for instantiating target model sections using the hints supplied by

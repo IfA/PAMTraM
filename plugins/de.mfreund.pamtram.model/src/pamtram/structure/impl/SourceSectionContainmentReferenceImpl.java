@@ -25,7 +25,6 @@ public class SourceSectionContainmentReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected SourceSectionContainmentReferenceImpl() {
@@ -34,12 +33,10 @@ public class SourceSectionContainmentReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return StructurePackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE;
 	}
 
@@ -51,12 +48,10 @@ public class SourceSectionContainmentReferenceImpl extends
 	 */
 	@Override
 	public EList<SourceSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectContainmentEList<>(SourceSectionClass.class, this,
-					StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	@Override

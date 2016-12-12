@@ -59,9 +59,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 */
 	public static StructureFactory init() {
 		try {
-			StructureFactory theMetamodelFactory = (StructureFactory)EPackage.Registry.INSTANCE.getEFactory(StructurePackage.eNS_URI);
-			if (theMetamodelFactory != null) {
-				return theMetamodelFactory;
+			StructureFactory theStructureFactory = (StructureFactory)EPackage.Registry.INSTANCE.getEFactory(StructurePackage.eNS_URI);
+			if (theStructureFactory != null) {
+				return theStructureFactory;
 			}
 		}
 		catch (Exception exception) {
@@ -515,7 +515,7 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructurePackage getMetamodelPackage() {
+	public StructurePackage getStructurePackage() {
 		return (StructurePackage)getEPackage();
 	}
 

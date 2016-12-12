@@ -25,7 +25,6 @@ public class TargetSectionNonContainmentReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected TargetSectionNonContainmentReferenceImpl() {
@@ -34,12 +33,10 @@ public class TargetSectionNonContainmentReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return StructurePackage.Literals.TARGET_SECTION_NON_CONTAINMENT_REFERENCE;
 	}
 
@@ -51,12 +48,10 @@ public class TargetSectionNonContainmentReferenceImpl extends
 	 */
 	@Override
 	public EList<TargetSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectResolvingEList<>(TargetSectionClass.class, this,
-					StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectResolvingEList<TargetSectionClass>(TargetSectionClass.class, this, StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	@Override

@@ -31,8 +31,8 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.impl.ReferenceImpl#getEReference <em>EReference</em>}</li>
- * <li>{@link pamtram.structure.impl.ReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ReferenceImpl#getEReference <em>EReference</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,9 +41,9 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 		extends MetaModelElementImpl<S, C, R, A> implements Reference<S, C, R, A> {
 
 	/**
-	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getEReference()
 	 * @generated
 	 * @ordered
@@ -52,7 +52,6 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ReferenceImpl() {
@@ -61,59 +60,47 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return StructurePackage.Literals.REFERENCE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EReference getEReference() {
-
-		if (this.eReference != null && this.eReference.eIsProxy()) {
-			InternalEObject oldEReference = (InternalEObject) this.eReference;
-			this.eReference = (EReference) this.eResolveProxy(oldEReference);
-			if (this.eReference != oldEReference) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StructurePackage.REFERENCE__EREFERENCE, oldEReference, this.eReference));
-				}
+		if (eReference != null && eReference.eIsProxy()) {
+			InternalEObject oldEReference = (InternalEObject)eReference;
+			eReference = (EReference)eResolveProxy(oldEReference);
+			if (eReference != oldEReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.REFERENCE__EREFERENCE, oldEReference, eReference));
 			}
 		}
-		return this.eReference;
+		return eReference;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EReference basicGetEReference() {
-
-		return this.eReference;
+		return eReference;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setEReferenceGen(EReference newEReference) {
-
-		EReference oldEReference = this.eReference;
-		this.eReference = newEReference;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.REFERENCE__EREFERENCE,
-					oldEReference, this.eReference));
-		}
+		EReference oldEReference = eReference;
+		eReference = newEReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.REFERENCE__EREFERENCE, oldEReference, eReference));
 	}
 
 	/**
@@ -128,152 +115,135 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
-
-		if (this.eContainerFeatureID() != StructurePackage.REFERENCE__OWNING_CLASS) {
-			return null;
-		}
-		return (C) this.eInternalContainer();
+		if (eContainerFeatureID() != StructurePackage.REFERENCE__OWNING_CLASS) return null;
+		return (C)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
-		if (this.isLibraryEntry() || this.getEReference() == null
-				|| !(this.eContainer() instanceof pamtram.structure.Class)) {
+		
+		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.Class)) {
 			return true;
 		}
-
+		
 		EClass parentEClass = ((Class<?, ?, ?, ?>) this.eContainer()).getEClass();
-
+		
 		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
-
+		
 		if (!result && diagnostics != null) {
-
-			String errorMessage = "The eReference '" + this.getEReference().getName()
-					+ "' is not allowed by the containing Class!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
+		
+			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is not allowed by the containing Class!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
+							errorMessage,
 					new Object[] { this, StructurePackage.Literals.REFERENCE__EREFERENCE }));
-
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<C> getValuesGeneric() {
-
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void addValuesGeneric(EList<C> values) {
-
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				if (this.eInternalContainer() != null) {
-					msgs = this.eBasicRemoveFromContainer(msgs);
-				}
-				return this.eBasicSetContainer(otherEnd, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return this.eBasicSetContainer(null, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
+				return eBasicSetContainer(null, StructurePackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-
-		switch (this.eContainerFeatureID()) {
+		switch (eContainerFeatureID()) {
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return this.eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES,
-						pamtram.structure.Class.class, msgs);
+				return eInternalContainer().eInverseRemove(this, StructurePackage.CLASS__REFERENCES, pamtram.structure.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__EREFERENCE:
-				if (resolve) {
-					return this.getEReference();
-				}
-				return this.basicGetEReference();
+				if (resolve) return getEReference();
+				return basicGetEReference();
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return this.getOwningClass();
+				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__EREFERENCE:
-				this.setEReference((EReference) newValue);
+				setEReference((EReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,15 +251,13 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__EREFERENCE:
-				this.setEReference((EReference) null);
+				setEReference((EReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -297,38 +265,33 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case StructurePackage.REFERENCE__EREFERENCE:
-				return this.eReference != null;
+				return eReference != null;
 			case StructurePackage.REFERENCE__OWNING_CLASS:
-				return this.getOwningClass() != null;
+				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case StructurePackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
-				return this.validateEReferenceMatchesParentEClass((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+				return validateEReferenceMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case StructurePackage.REFERENCE___GET_VALUES_GENERIC:
-				return this.getValuesGeneric();
+				return getValuesGeneric();
 			case StructurePackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
-				this.addValuesGeneric((EList<C>) arguments.get(0));
+				addValuesGeneric((EList<C>)arguments.get(0));
 				return null;
 		}
 		return super.eInvoke(operationID, arguments);

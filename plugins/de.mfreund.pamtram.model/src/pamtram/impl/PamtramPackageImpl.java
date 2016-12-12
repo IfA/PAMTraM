@@ -152,19 +152,19 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		GenLibraryPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
+		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		thePamtramPackage.createPackageContents();
-		theMetamodelPackage.createPackageContents();
+		theStructurePackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
 		// Initialize created meta-data
 		thePamtramPackage.initializePackageContents();
-		theMetamodelPackage.initializePackageContents();
+		theStructurePackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 
@@ -608,12 +608,12 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		StructurePackage theMetamodelPackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		ConditionPackage theConditionPackage = (ConditionPackage)EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
 		// Add subpackages
-		getESubpackages().add(theMetamodelPackage);
+		getESubpackages().add(theStructurePackage);
 		getESubpackages().add(theConditionPackage);
 		getESubpackages().add(theMappingPackage);
 
@@ -624,7 +624,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		ETypeParameter sectionModelEClass_A = addETypeParameter(sectionModelEClass, "A");
 
 		// Set bounds for type parameters
-		EGenericType g1 = createEGenericType(theMetamodelPackage.getSection());
+		EGenericType g1 = createEGenericType(theStructurePackage.getSection());
 		EGenericType g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -634,7 +634,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_S.getEBounds().add(g1);
-		g1 = createEGenericType(theMetamodelPackage.getClass_());
+		g1 = createEGenericType(theStructurePackage.getClass_());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -644,7 +644,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_C.getEBounds().add(g1);
-		g1 = createEGenericType(theMetamodelPackage.getReference());
+		g1 = createEGenericType(theStructurePackage.getReference());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -654,7 +654,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_R.getEBounds().add(g1);
-		g1 = createEGenericType(theMetamodelPackage.getAttribute());
+		g1 = createEGenericType(theStructurePackage.getAttribute());
 		g2 = createEGenericType(sectionModelEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(sectionModelEClass_C);
@@ -668,23 +668,23 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		// Add supertypes to classes
 		sectionModelEClass.getESuperTypes().add(this.getNamedElement());
 		g1 = createEGenericType(this.getSectionModel());
-		g2 = createEGenericType(theMetamodelPackage.getSourceSection());
+		g2 = createEGenericType(theStructurePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getSourceSectionClass());
+		g2 = createEGenericType(theStructurePackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getSourceSectionReference());
+		g2 = createEGenericType(theStructurePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getSourceSectionAttribute());
+		g2 = createEGenericType(theStructurePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		sourceSectionModelEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getSectionModel());
-		g2 = createEGenericType(theMetamodelPackage.getTargetSection());
+		g2 = createEGenericType(theStructurePackage.getTargetSection());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getTargetSectionClass());
+		g2 = createEGenericType(theStructurePackage.getTargetSectionClass());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getTargetSectionReference());
+		g2 = createEGenericType(theStructurePackage.getTargetSectionReference());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theMetamodelPackage.getTargetSectionAttribute());
+		g2 = createEGenericType(theStructurePackage.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		targetSectionModelEClass.getEGenericSuperTypes().add(g1);
 		mappingModelEClass.getESuperTypes().add(this.getNamedElement());
@@ -705,8 +705,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SharedTargetSectionModel(), this.getTargetSectionModel(), null, "sharedTargetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 1, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SourceSections(), theMetamodelPackage.getSourceSection(), null, "sourceSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_TargetSections(), theMetamodelPackage.getTargetSection(), null, "targetSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SourceSections(), theStructurePackage.getSourceSection(), null, "sourceSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_TargetSections(), theStructurePackage.getTargetSection(), null, "targetSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_Mappings(), theMappingPackage.getMapping(), null, "mappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_GlobalValues(), theMappingPackage.getFixedValue(), null, "globalValues", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -723,7 +723,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEClass(sourceSectionModelEClass, SourceSectionModel.class, "SourceSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(targetSectionModelEClass, TargetSectionModel.class, "TargetSectionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetSectionModel_LibraryElements(), theMetamodelPackage.getLibraryEntry(), null, "libraryElements", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetSectionModel_LibraryElements(), theStructurePackage.getLibraryEntry(), null, "libraryElements", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingModel_Mapping(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

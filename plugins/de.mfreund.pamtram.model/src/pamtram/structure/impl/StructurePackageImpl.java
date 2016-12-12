@@ -487,7 +487,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		if (isInited) return (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StructurePackageImpl theMetamodelPackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StructurePackageImpl());
+		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StructurePackageImpl());
 
 		isInited = true;
 
@@ -500,20 +500,20 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
 		// Create package meta-data objects
-		theMetamodelPackage.createPackageContents();
+		theStructurePackage.createPackageContents();
 		thePamtramPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theMetamodelPackage.initializePackageContents();
+		theStructurePackage.initializePackageContents();
 		thePamtramPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
-			(theMetamodelPackage, 
+			(theStructurePackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
 					 return StructureValidator.INSTANCE;
@@ -521,12 +521,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 			 });
 
 		// Mark meta-data to indicate it can't be changed
-		theMetamodelPackage.freeze();
+		theStructurePackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(StructurePackage.eNS_URI, theMetamodelPackage);
-		return theMetamodelPackage;
+		EPackage.Registry.INSTANCE.put(StructurePackage.eNS_URI, theStructurePackage);
+		return theStructurePackage;
 	}
 
 	/**
@@ -1686,7 +1686,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructureFactory getMetamodelFactory() {
+	public StructureFactory getStructureFactory() {
 		return (StructureFactory)getEFactoryInstance();
 	}
 

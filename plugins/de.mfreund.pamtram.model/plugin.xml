@@ -17,7 +17,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated pamtram -->
       <package
-            uri="http://mfreund.de/pamtram/metamodel"
+            uri="http://mfreund.de/pamtram/structure"
             class="pamtram.structure.StructurePackage"
             genModel="model/pamtram.genmodel"/>
    </extension>

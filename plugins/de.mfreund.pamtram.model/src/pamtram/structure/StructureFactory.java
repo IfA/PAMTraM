@@ -289,7 +289,7 @@ public interface StructureFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	StructurePackage getMetamodelPackage();
+	StructurePackage getStructurePackage();
 
 
 

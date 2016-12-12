@@ -36,7 +36,7 @@ public interface StructurePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "metamodel";
+	String eNAME = "structure";
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface StructurePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://mfreund.de/pamtram/metamodel";
+	String eNS_URI = "http://mfreund.de/pamtram/structure";
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface StructurePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "metamodel";
+	String eNS_PREFIX = "structure";
 
 	/**
 	 * The singleton instance of the package.
@@ -6695,7 +6695,7 @@ public interface StructurePackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	StructureFactory getMetamodelFactory();
+	StructureFactory getStructureFactory();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -45,12 +45,12 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.mapping.MappingType;
 import pamtram.mapping.ContainerSelector;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving
@@ -256,7 +256,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 						 * false changes to references of this type as the referenced objects are not contained in the resource
 						 * in focus (cf. https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#Changing_the_FeatureFilter).
 						 */
-						return reference.equals(MetamodelPackage.Literals.LIBRARY_PARAMETER__SOURCE) ||
+						return reference.equals(StructurePackage.Literals.LIBRARY_PARAMETER__SOURCE) ||
 								super.isIgnoredReference(match, reference);
 					}
 

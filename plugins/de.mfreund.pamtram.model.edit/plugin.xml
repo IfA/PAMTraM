@@ -24,7 +24,7 @@
       <!-- @generated pamtram -->
       <factory
             uri="http://mfreund.de/pamtram/metamodel"
-            class="pamtram.structure.provider.MetamodelItemProviderAdapterFactory"
+            class="pamtram.structure.provider.StructureItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -19,19 +19,19 @@ import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.Attribute;
-import pamtram.structure.Class;
-import pamtram.structure.ContainmentReference;
 import pamtram.structure.EqualityMatcher;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.NonContainmentReference;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.structure.ValueConstraintType;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * This class is responsible for the generation of {@link Section MetaModelSections} from excerpts of a model.

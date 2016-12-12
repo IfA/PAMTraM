@@ -22,7 +22,7 @@ import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditor;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Section;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**

@@ -1,7 +1,7 @@
 package de.mfreund.pamtram.model.generator;
 
 import pamtram.PAMTraM;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Section;
 
 /**
  * An enum describing the types of {@link Section Sections} that can be created by an instance of

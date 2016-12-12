@@ -46,10 +46,7 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.MetaModelElementMergeAction;
-import pamtram.structure.Attribute;
 import pamtram.structure.EqualityMatcher;
-import pamtram.structure.MetaModelElement;
-import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -58,6 +55,9 @@ import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Section;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
@@ -485,10 +485,10 @@ public class PreviewPage extends WizardPage {
 
 			List<Attribute<?, ?, ?, ?>> lines = new ArrayList<>();
 
-			if (e.item.getData() instanceof pamtram.structure.Class) {
+			if (e.item.getData() instanceof pamtram.structure.generic.Class) {
 
 				// populate the attribute view
-				lines.addAll(((pamtram.structure.Class<?, ?, ?, ?>) e.item.getData()).getAttributes());
+				lines.addAll(((pamtram.structure.generic.Class<?, ?, ?, ?>) e.item.getData()).getAttributes());
 			}
 
 			PreviewPage.this.propertiesViewer.setInput(e.item.getData());

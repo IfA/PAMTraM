@@ -22,16 +22,16 @@ import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDial
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.presentation.PamtramEditor;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionContainmentReference;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
- * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.metamodel.TargetSection, List, pamtram.mapping.MappingHintGroupType)
+ * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.structure.TargetSection, List, pamtram.mapping.MappingHintGroupType)
  * joiningSelectConnectionPathAndContainerInstance} ambiguities.
  *
  * @author mfreund
@@ -92,7 +92,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 		if (rootSectionOptional.isPresent()) {
 			rootSection = rootSectionOptional.get();
 		} else {
-			rootSection = MetamodelFactory.eINSTANCE.createTargetSection();
+			rootSection = StructureFactory.eINSTANCE.createTargetSection();
 			rootSection.setEClass(selectedPath.getPathRootClass());
 		}
 
@@ -136,7 +136,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 					rootSection.getReferences().add(this.firstReference);
 				} else {
 					addCommand.append(new AddCommand(editor.getEditingDomain(), rootSection,
-							MetamodelPackage.Literals.CLASS__REFERENCES, this.firstReference));
+							StructurePackage.Literals.CLASS__REFERENCES, this.firstReference));
 				}
 			}
 			if (!rootSectionOptional.isPresent()) {
@@ -145,7 +145,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
-					MetamodelPackage.Literals.CLASS__CONTAINER,
+					StructurePackage.Literals.CLASS__CONTAINER,
 					this.finalClass == null ? rootSection : this.finalClass));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
@@ -171,7 +171,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 			EReference eReference = (EReference) path.getPathElements().get(i);
 			EClass eClass = (EClass) path.getPathElements().get(i - 1);
 
-			TargetSectionContainmentReference ref = MetamodelFactory.eINSTANCE
+			TargetSectionContainmentReference ref = StructureFactory.eINSTANCE
 					.createTargetSectionContainmentReference();
 			ref.setEReference(eReference);
 
@@ -183,7 +183,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 				currentClass.getReferences().add(ref);
 			}
 
-			TargetSectionClass clazz = MetamodelFactory.eINSTANCE.createTargetSectionClass();
+			TargetSectionClass clazz = StructureFactory.eINSTANCE.createTargetSectionClass();
 			clazz.setEClass(eClass);
 			ref.getValue().add(clazz);
 			currentClass = clazz;

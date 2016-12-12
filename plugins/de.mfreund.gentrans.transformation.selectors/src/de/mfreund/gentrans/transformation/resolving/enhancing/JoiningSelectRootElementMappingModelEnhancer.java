@@ -20,9 +20,9 @@ import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
 import pamtram.presentation.PamtramEditor;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.TargetSection;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
@@ -46,7 +46,7 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 
 		// The TargetSection for the root element
 		//
-		TargetSection rootSection = MetamodelFactory.eINSTANCE.createTargetSection();
+		TargetSection rootSection = StructureFactory.eINSTANCE.createTargetSection();
 		rootSection.setEClass(this.dialogRunner.getSingleSelection());
 		rootSection.setName(this.dialogRunner.getSingleSelection().getName() + " (Root)");
 

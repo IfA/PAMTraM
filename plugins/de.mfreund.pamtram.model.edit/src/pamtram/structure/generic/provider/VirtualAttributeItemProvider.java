@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.Collection;
@@ -8,26 +8,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.Attribute;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.Attribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.VirtualAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeItemProvider
-extends MetaModelElementItemProvider {
+public class VirtualAttributeItemProvider extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeItemProvider(AdapterFactory adapterFactory) {
+	public VirtualAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,17 +47,15 @@ extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns Attribute.gif.
+	 * This returns VirtualAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Attribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VirtualAttribute"));
 	}
-
-
 
 	/**
 	 * This returns the label text for the adapted class.
@@ -69,20 +67,24 @@ extends MetaModelElementItemProvider {
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((Attribute<?, ?, ?, ?>)object).getName();
-
-		return new StyledString(label == null || label.length() == 0 ?
-				"" : label);
-	}
+		String label = ((VirtualAttribute<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

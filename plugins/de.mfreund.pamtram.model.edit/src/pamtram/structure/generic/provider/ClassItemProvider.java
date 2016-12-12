@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.ArrayList;
@@ -29,17 +29,17 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
-import pamtram.structure.Class;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.FileAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.Class} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -119,7 +119,7 @@ extends MetaModelElementItemProvider {
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
-				Class section = ((pamtram.structure.Class) object).getContainingSection();
+				Class section = ((pamtram.structure.generic.Class) object).getContainingSection();
 				SectionModel sectionModel = section.getContainingSectionModel();
 
 				List<EClass> choiceOfValues = new LinkedList<>();
@@ -165,7 +165,7 @@ extends MetaModelElementItemProvider {
 					return choiceOfValues;
 				} else { //not a top-level section
 					List<EClass> newChoiceOfValues = new LinkedList<>();
-					pamtram.structure.Reference ref=(Reference) ((pamtram.structure.Class)object).eContainer();
+					pamtram.structure.generic.Reference ref=(Reference) ((pamtram.structure.generic.Class)object).eContainer();
 					if(ref.getEReference() != null){
 						if(!(ref.getEReference().getEType() instanceof EClass)) {
 							throw new RuntimeException("Type checks can only be performed for instances of type 'EClass'");
@@ -298,8 +298,8 @@ extends MetaModelElementItemProvider {
 	@Override
 	public Object getStyledText(Object object) {
 
-		String label = ((pamtram.structure.Class)object).getName();
-		EClass eClass = ((pamtram.structure.Class)object).getEClass();
+		String label = ((pamtram.structure.generic.Class)object).getName();
+		EClass eClass = ((pamtram.structure.generic.Class)object).getEClass();
 
 		StyledString styledLabel = new StyledString();
 
@@ -328,7 +328,7 @@ extends MetaModelElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(pamtram.structure.Class.class)) {
+		switch (notification.getFeatureID(pamtram.structure.generic.Class.class)) {
 			case StructurePackage.CLASS__CARDINALITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

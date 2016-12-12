@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.ArrayList;
@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -20,25 +18,23 @@ import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Section;
-import pamtram.structure.SourceSection;
-import pamtram.structure.impl.StructurePackageImpl;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SourceSection} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Section} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
+public class SectionItemProvider extends ClassItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionItemProvider(AdapterFactory adapterFactory) {
+	public SectionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -55,7 +51,6 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
-			addReferencingMappingsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,87 +81,22 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * This adds a property descriptor for the Extend feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	protected void addExtendPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_extend_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-						StructurePackage.Literals.SECTION__EXTEND,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null) {
-
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				SourceSection sourceSection = (SourceSection) object;
-
-				if(sourceSection.getEClass() == null) {
-					return new BasicEList<>();
-				}
-
-				Collection<SourceSection> values = (Collection<SourceSection>) super.getChoiceOfValues(object);
-				Collection<SourceSection> ret = new BasicEList<>();
-
-				for (SourceSection val : values) {
-					// only abstract sections that have a matching eClass can be used as extended section
-					if(val.isAbstract() && (val.getEClass() == sourceSection.getEClass() || sourceSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
-						ret.add(val);
-					}
-				}
-
-				return ret;
-			}
-		});
-	}
-
-	/**
-	 * This adds a property descriptor for the Referencing Mappings feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReferencingMappingsPropertyDescriptor(Object object) {
+	protected void addExtendPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SourceSection_referencingMappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
-				 StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				 getString("_UI_Section_extend_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
+				 StructurePackage.Literals.SECTION__EXTEND,
+				 true,
 				 false,
-				 false,
-				 false,
+				 true,
 				 null,
 				 null,
 				 null));
-	}
-
-	@Override
-	protected Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
-		if(labelRelatedChildrenFeatures == null) {
-			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(StructurePackageImpl.eINSTANCE.getSection_Extend());
-		}
-		return labelRelatedChildrenFeatures;
-	}
-
-	/**
-	 * This returns SourceSection.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return super.getImage(object);
 	}
 
 	/**
@@ -189,9 +119,6 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		initializeLabelRelatedChildrenFeatureNotifications(object);
-
 		Section section = (Section) object;
 
 		StyledString styledLabel = new StyledString();
@@ -231,21 +158,16 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChangedGen(Notification notification) {
+	@Override
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SourceSection.class)) {
-			case StructurePackage.SOURCE_SECTION__ABSTRACT:
+		switch (notification.getFeatureID(Section.class)) {
+			case StructurePackage.SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
 		super.notifyChanged(notification);
-	}
-
-	@Override
-	public void notifyChanged(Notification notification) {
-		handleLabelRelatedChildrenFeatureChangeNotification(notification);
-		notifyChangedGen(notification);
 	}
 
 	/**

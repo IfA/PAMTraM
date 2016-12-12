@@ -10,6 +10,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import pamtram.structure.generic.provider.ClassItemProvider;
+
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionClass} object.
  * <!-- begin-user-doc -->

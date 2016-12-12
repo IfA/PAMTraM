@@ -14,8 +14,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.Attribute;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.Attribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.ActualSourceSectionAttribute} object.
@@ -74,7 +74,7 @@ extends SourceSectionAttributeItemProvider {
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
-				pamtram.structure.Class owner=(pamtram.structure.Class)((Attribute) object).eContainer();
+				pamtram.structure.generic.Class owner=(pamtram.structure.generic.Class)((Attribute) object).eContainer();
 				if(owner.getEClass() != null){
 					return owner.getEClass().getEAllAttributes();
 				} else {

@@ -34,13 +34,13 @@ import pamtram.structure.ContainerParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
 import pamtram.structure.TargetSectionNonContainmentReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.MetaModelElement;
 
 /**
  * This class provides convenience functions to work with library items.

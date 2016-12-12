@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.generic.provider.AttributeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionAttribute} object.

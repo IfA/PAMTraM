@@ -24,9 +24,9 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.structure.CardinalityType;
-import pamtram.structure.Class;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.SourceSectionClass;
+import pamtram.structure.generic.Class;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object.
@@ -222,8 +222,8 @@ extends MappingHintItemProvider {
 				Iterator<EObject> it = target.eAllContents();
 				while (it.hasNext()) {
 					EObject next = it.next();
-					if (next instanceof pamtram.structure.Class
-							&& ((pamtram.structure.Class) next)
+					if (next instanceof pamtram.structure.generic.Class
+							&& ((pamtram.structure.generic.Class) next)
 							.getCardinality().getValue() != CardinalityType.ONE_VALUE) {
 						choiceOfValues.add(next);
 					}

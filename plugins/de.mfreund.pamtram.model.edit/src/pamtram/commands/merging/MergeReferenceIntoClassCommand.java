@@ -15,14 +15,14 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.structure.Attribute;
-import pamtram.structure.Class;
-import pamtram.structure.ContainmentReference;
-import pamtram.structure.MetaModelElement;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.NonContainmentReference;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
@@ -33,7 +33,7 @@ import pamtram.structure.Section;
  * @param <R>
  * @param <A>
  */
-public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<C, R, S, C, R, A> {
 
 	/**

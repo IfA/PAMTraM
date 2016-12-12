@@ -16,10 +16,10 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.structure.Attribute;
-import pamtram.structure.MetaModelElement;
-import pamtram.structure.Reference;
-import pamtram.structure.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * An abstract base {@link Command} that allows to merge two {@link MetaModelElement MetaModelElements} (a given
@@ -35,7 +35,7 @@ import pamtram.structure.Section;
  * @param <R>
  * @param <A>
  */
-public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S, C, R, A>, M extends MetaModelElement<S, C, R, A>, S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S, C, R, A>, M extends MetaModelElement<S, C, R, A>, S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends CompoundCommand {
 
 	/**

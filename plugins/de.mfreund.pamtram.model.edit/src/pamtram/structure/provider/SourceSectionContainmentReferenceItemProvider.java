@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.provider.ContainmentReferenceItemProvider;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionClass;
 

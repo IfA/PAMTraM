@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.ArrayList;
@@ -11,23 +11,26 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.Class;
+import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.impl.ReferenceImpl;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.impl.ReferenceImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.NonContainmentReference} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.ContainmentReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class NonContainmentReferenceItemProvider
+public class ContainmentReferenceItemProvider
 extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -35,7 +38,7 @@ extends ReferenceItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NonContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
+	public ContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,33 +53,38 @@ extends ReferenceItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
-
-
 	/**
-	 * This adds a property descriptor for the Value feature.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_NonContainmentReference_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NonContainmentReference_value_feature", "_UI_NonContainmentReference_type"),
-				 StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -107,13 +115,13 @@ extends ReferenceItemProvider {
 				List<Object> choiceOfValues = new ArrayList<Object>();
 
 				// make sure that only those references can be selected that belong to the parent eClass
-				pamtram.structure.Class parent = (Class) ((ReferenceImpl) object).eContainer();
+				pamtram.structure.generic.Class parent = (Class) ((ReferenceImpl) object).eContainer();
 				Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
 
-				// filter the choices further so that only non-containment references are displayed
+				// filter the choices further so that only containment references are displayed
 				while(it.hasNext()) {
 					EReference ref = it.next();
-					if(!(ref.isContainment())) {
+					if(ref.isContainment()) {
 						choiceOfValues.add(ref);
 					}
 				}
@@ -124,14 +132,14 @@ extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This returns NonContainmentReference.gif.
+	 * This returns ContainmentReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonContainmentReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainmentReference"));
 	}
 
 	/**
@@ -166,6 +174,12 @@ extends ReferenceItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(ContainmentReference.class)) {
+			case StructurePackage.CONTAINMENT_REFERENCE__VALUE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -174,11 +188,33 @@ extends ReferenceItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+		(createChildParameter
+				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+						StructureFactory.eINSTANCE.createSourceSectionClass()));
+
+		// SourceSections may only be top-level elements in sections
+		//		newChildDescriptors.add
+		//			(createChildParameter
+		//				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 StructureFactory.eINSTANCE.createSourceSection()));
+
+		newChildDescriptors.add
+		(createChildParameter
+				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+						StructureFactory.eINSTANCE.createTargetSectionClass()));
+
+		// TargetSections may only be top-level elements in sections
+		//		newChildDescriptors.add
+		//			(createChildParameter
+		//				(StructurePackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+		//				 StructureFactory.eINSTANCE.createTargetSection()));
 	}
 
 }

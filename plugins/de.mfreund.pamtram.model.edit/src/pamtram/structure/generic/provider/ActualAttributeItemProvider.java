@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.Collection;
@@ -9,25 +9,27 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.VirtualAttribute;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.ActualAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.VirtualAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.ActualAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class VirtualAttributeItemProvider extends AttributeItemProvider {
+public class ActualAttributeItemProvider extends AttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VirtualAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ActualAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -42,19 +44,42 @@ public class VirtualAttributeItemProvider extends AttributeItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns VirtualAttribute.gif.
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActualAttribute_attribute_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
+				 StructurePackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns ActualAttribute.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VirtualAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActualAttribute"));
 	}
 
 	/**
@@ -76,12 +101,12 @@ public class VirtualAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((VirtualAttribute<?, ?, ?, ?>)object).getName();
+		String label = ((ActualAttribute<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_VirtualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

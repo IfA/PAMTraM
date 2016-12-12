@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.provider.ReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionReference} object.

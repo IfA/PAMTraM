@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.ArrayList;
@@ -10,31 +10,32 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Section;
-
-import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.impl.ReferenceImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.Section} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.NonContainmentReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SectionItemProvider extends ClassItemProvider {
+public class NonContainmentReferenceItemProvider
+extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SectionItemProvider(AdapterFactory adapterFactory) {
+	public NonContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,54 +50,88 @@ public class SectionItemProvider extends ClassItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAbstractPropertyDescriptor(object);
-			addExtendPropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
+
+
 	/**
-	 * This adds a property descriptor for the Abstract feature.
+	 * This adds a property descriptor for the Value feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addAbstractPropertyDescriptor(Object object) {
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 StructurePackage.Literals.SECTION__ABSTRACT,
+				 getString("_UI_NonContainmentReference_value_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NonContainmentReference_value_feature", "_UI_NonContainmentReference_type"),
+				 StructurePackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature.
+	 * This adds a property descriptor for the EReference feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	protected void addEReferencePropertyDescriptor(Object object) {
+
+		itemPropertyDescriptors.add
+		(new ItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Reference_eReference_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature", "_UI_Reference_type"),
+						StructurePackage.Literals.REFERENCE__EREFERENCE,
+						true,
+						false,
+						true,
+						null,
+						null,
+						null)
+		{
+			@Override
+			public Collection<?> getChoiceOfValues(Object object)
+			{
+				List<Object> choiceOfValues = new ArrayList<Object>();
+
+				// make sure that only those references can be selected that belong to the parent eClass
+				pamtram.structure.generic.Class parent = (Class) ((ReferenceImpl) object).eContainer();
+				Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator(); 
+
+				// filter the choices further so that only non-containment references are displayed
+				while(it.hasNext()) {
+					EReference ref = it.next();
+					if(!(ref.isContainment())) {
+						choiceOfValues.add(ref);
+					}
+				}
+
+				return choiceOfValues;
+			}
+		});
+	}
+
+	/**
+	 * This returns NonContainmentReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Section_extend_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature", "_UI_Section_type"),
-				 StructurePackage.Literals.SECTION__EXTEND,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonContainmentReference"));
 	}
 
 	/**
@@ -110,7 +145,6 @@ public class SectionItemProvider extends ClassItemProvider {
 		return ((StyledString)getStyledText(object)).getString();
 	}
 
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -119,36 +153,7 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		Section section = (Section) object;
-
-		StyledString styledLabel = new StyledString();
-
-		if(!section.isAbstract() || section.getName() == null || section.getName().isEmpty()) {
-			styledLabel.append((StyledString) super.getStyledText(object));
-		} else {
-			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
-			while(it.hasNext()) {
-				Fragment next = it.next();
-				if(next.getString().equals(section.getName())) {
-					// use the 'qualifier styler' for the label
-					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
-				} else {
-					// every other fragment is added as is
-					styledLabel.append(next.getString(), next.getStyle());
-				}
-			}
-		}
-
-		// add the 'extends'
-		if(!section.getExtend().isEmpty()) {
-			ArrayList<String> extend = new ArrayList<>();
-			for (Object e : section.getExtend()) {
-				extend.add(((Section) e).getName());
-			}
-			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
-		}
-
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**
@@ -161,12 +166,6 @@ public class SectionItemProvider extends ClassItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Section.class)) {
-			case StructurePackage.SECTION__ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

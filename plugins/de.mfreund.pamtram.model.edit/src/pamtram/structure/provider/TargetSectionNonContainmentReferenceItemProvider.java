@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.generic.provider.NonContainmentReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionNonContainmentReference} object.

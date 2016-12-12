@@ -21,6 +21,7 @@ import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
+import pamtram.structure.generic.provider.ContainmentReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionContainmentReference} object.

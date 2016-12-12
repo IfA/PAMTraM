@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.generic.provider;
 
 
 import java.util.Collection;
@@ -16,12 +16,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.Class;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Reference;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Reference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.Reference} object.
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Reference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -78,7 +78,7 @@ extends MetaModelElementItemProvider {
 			public Collection<?> getChoiceOfValues(Object object) {
 
 				// make sure that only those references can be selected that belong to the parent eClass
-				pamtram.structure.Class parent = (Class) ((Reference) object).eContainer();
+				pamtram.structure.generic.Class parent = (Class) ((Reference) object).eContainer();
 				return parent.getEClass().getEAllReferences(); 
 
 			}
@@ -108,7 +108,7 @@ extends MetaModelElementItemProvider {
 	public Object getStyledText(Object object) {
 
 		String label = ((Reference)object).getName();
-		EReference eReference = ((pamtram.structure.Reference)object).getEReference();
+		EReference eReference = ((pamtram.structure.generic.Reference)object).getEReference();
 
 		StyledString styledLabel = new StyledString();
 

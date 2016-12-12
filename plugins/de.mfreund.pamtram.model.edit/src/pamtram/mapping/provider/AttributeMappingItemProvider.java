@@ -145,7 +145,7 @@ extends MappingHintItemProvider {
 					Iterator<EObject> it = target.eAllContents();
 					while (it.hasNext()) {
 						EObject next = it.next();
-						if (next instanceof pamtram.structure.Attribute) {
+						if (next instanceof pamtram.structure.generic.Attribute) {
 							choiceOfValues.add(next);
 						}
 					}

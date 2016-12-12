@@ -33,8 +33,8 @@ import pamtram.commands.BasicDragAndDropCompoundCommand;
 import pamtram.structure.FileAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.Section;
 import pamtram.structure.TargetSection;
+import pamtram.structure.generic.Section;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object.

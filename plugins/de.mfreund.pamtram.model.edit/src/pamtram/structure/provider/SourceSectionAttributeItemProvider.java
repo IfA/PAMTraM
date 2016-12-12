@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.generic.provider.AttributeItemProvider;
 import pamtram.structure.SourceSectionAttribute;
 
 /**

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.structure.ActualAttribute;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.MetamodelPackage;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -130,8 +130,8 @@ public class ActualSourceSectionAttributeImpl extends SourceSectionAttributeImpl
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
 		

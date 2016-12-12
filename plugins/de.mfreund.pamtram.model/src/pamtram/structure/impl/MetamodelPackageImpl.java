@@ -72,7 +72,7 @@ import pamtram.structure.ValueConstraintSourceInterface;
 import pamtram.structure.ValueConstraintType;
 import pamtram.structure.VirtualAttribute;
 import pamtram.structure.VirtualTargetSectionAttribute;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -516,7 +516,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 			(theMetamodelPackage, 
 			 new EValidator.Descriptor() {
 				 public EValidator getEValidator() {
-					 return MetamodelValidator.INSTANCE;
+					 return StructureValidator.INSTANCE;
 				 }
 			 });
 

@@ -18,7 +18,7 @@ import pamtram.structure.MetamodelPackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,8 +92,8 @@ public abstract class NonContainmentReferenceImpl<S extends Section<S, C, R, A>,
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
 		

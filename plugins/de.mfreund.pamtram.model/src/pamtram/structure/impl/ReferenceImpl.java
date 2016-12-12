@@ -23,7 +23,7 @@ import pamtram.structure.Class;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
@@ -163,8 +163,8 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 			String errorMessage = "The eReference '" + this.getEReference().getName()
 					+ "' is not allowed by the containing Class!";
 
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MetamodelValidator.DIAGNOSTIC_SOURCE,
-					MetamodelValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
 
 		}

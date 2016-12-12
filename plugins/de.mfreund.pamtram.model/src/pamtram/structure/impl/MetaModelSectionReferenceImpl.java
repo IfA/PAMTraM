@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meta Model Section Reference</b></em>'. <!--
@@ -96,8 +96,8 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 					+ " of the selected target Classes (Value) are not allowed by the selected eReference '"
 					+ this.getEReference().getName() + "'!";
 
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MetamodelValidator.DIAGNOSTIC_SOURCE,
-					MetamodelValidator.META_MODEL_SECTION_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE, errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.META_MODEL_SECTION_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE, errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.META_MODEL_SECTION_REFERENCE__VALUE }));
 
 		}

@@ -71,7 +71,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * @see pamtram.structure.MetamodelPackage
  * @generated
  */
-public class MetamodelAdapterFactory extends AdapterFactoryImpl {
+public class StructureAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelAdapterFactory() {
+	public StructureAdapterFactory() {
 		if (modelPackage == null) {
 			modelPackage = MetamodelPackage.eINSTANCE;
 		}
@@ -117,8 +117,8 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetamodelSwitch<Adapter> modelSwitch =
-		new MetamodelSwitch<Adapter>() {
+	protected StructureSwitch<Adapter> modelSwitch =
+		new StructureSwitch<Adapter>() {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMetaModelElement(MetaModelElement<S, C, R, A> object) {
 				return createMetaModelElementAdapter();
@@ -1159,4 +1159,4 @@ public class MetamodelAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //MetamodelAdapterFactory
+} //StructureAdapterFactory

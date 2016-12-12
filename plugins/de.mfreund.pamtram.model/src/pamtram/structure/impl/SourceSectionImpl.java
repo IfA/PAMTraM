@@ -24,7 +24,7 @@ import pamtram.mapping.MappingType;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.Section;
 import pamtram.structure.SourceSection;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -165,8 +165,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.WARNING,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.SOURCE_SECTION }));
 		
@@ -196,8 +196,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 MetamodelValidator.DIAGNOSTIC_SOURCE,
-					MetamodelValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
+					 StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
 					 new Object [] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
 			}
@@ -226,8 +226,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
 		

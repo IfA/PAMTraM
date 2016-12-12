@@ -21,7 +21,7 @@ import pamtram.structure.ContainmentReference;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,8 +95,8 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.REFERENCE__EREFERENCE }));
 		

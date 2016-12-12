@@ -42,7 +42,7 @@ import pamtram.structure.ValueConstraintExternalSourceElement;
 import pamtram.structure.ValueConstraintSourceElement;
 import pamtram.structure.ValueConstraintSourceInterface;
 import pamtram.structure.ValueConstraintType;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -214,8 +214,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 MetamodelValidator.DIAGNOSTIC_SOURCE,
-					 MetamodelValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
+					 StructureValidator.DIAGNOSTIC_SOURCE,
+					 StructureValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
 					 errorMessage,
 					 new Object [] { this,  MetamodelPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
@@ -251,8 +251,8 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 MetamodelValidator.DIAGNOSTIC_SOURCE,
-					 MetamodelValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 StructureValidator.DIAGNOSTIC_SOURCE,
+					 StructureValidator.RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
 					 errorMessage,
 					 new Object [] { this,  MetamodelPackage.Literals.RANGE_BOUND__SOURCE_ELEMENTS }));
 			}

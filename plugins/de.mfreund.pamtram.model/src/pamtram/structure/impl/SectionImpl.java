@@ -19,7 +19,7 @@ import pamtram.structure.Attribute;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,8 +140,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 MetamodelValidator.DIAGNOSTIC_SOURCE,
-					MetamodelValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
+					 StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
 					 errorMessage,
 					 new Object [] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
 			}
@@ -170,8 +170,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.SECTION__EXTEND }));
 		

@@ -27,7 +27,7 @@ import pamtram.structure.MetamodelPackage;
 import pamtram.structure.NonContainmentReference;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -422,8 +422,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.CLASS__ECLASS }));
 		
@@ -458,8 +458,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.CLASS__CARDINALITY }));
 		
@@ -484,8 +484,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.CLASS__CONTAINER }));
 		

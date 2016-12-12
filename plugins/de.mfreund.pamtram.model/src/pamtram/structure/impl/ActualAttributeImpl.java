@@ -20,7 +20,7 @@ import pamtram.structure.Attribute;
 import pamtram.structure.MetamodelPackage;
 import pamtram.structure.Reference;
 import pamtram.structure.Section;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,8 +124,8 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));
 		

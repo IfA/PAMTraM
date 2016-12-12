@@ -75,7 +75,7 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * @see pamtram.structure.MetamodelPackage
  * @generated
  */
-public class MetamodelSwitch<T> extends Switch<T> {
+public class StructureSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -90,7 +90,7 @@ public class MetamodelSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelSwitch() {
+	public StructureSwitch() {
 		if (modelPackage == null) {
 			modelPackage = MetamodelPackage.eINSTANCE;
 		}
@@ -1443,4 +1443,4 @@ public class MetamodelSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //MetamodelSwitch
+} //StructureSwitch

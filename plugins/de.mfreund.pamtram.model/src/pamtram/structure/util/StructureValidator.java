@@ -71,14 +71,14 @@ import pamtram.structure.VirtualTargetSectionAttribute;
  * @see pamtram.structure.MetamodelPackage
  * @generated
  */
-public class MetamodelValidator extends EObjectValidator {
+public class StructureValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MetamodelValidator INSTANCE = new MetamodelValidator();
+	public static final StructureValidator INSTANCE = new StructureValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
@@ -264,7 +264,7 @@ public class MetamodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetamodelValidator() {
+	public StructureValidator() {
 		super();
 		mappingValidator = MappingValidator.INSTANCE;
 	}
@@ -1952,4 +1952,4 @@ public class MetamodelValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //MetamodelValidator
+} //StructureValidator

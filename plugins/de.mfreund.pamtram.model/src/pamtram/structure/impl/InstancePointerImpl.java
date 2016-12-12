@@ -28,7 +28,7 @@ import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.MetamodelPackage;
-import pamtram.structure.util.MetamodelValidator;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,8 +172,8 @@ public class InstancePointerImpl extends ExpressionHintImpl implements InstanceP
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MetamodelValidator.DIAGNOSTIC_SOURCE,
-							MetamodelValidator.INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
 							errorMessage,
 					new Object[] { this, MetamodelPackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS }));
 		

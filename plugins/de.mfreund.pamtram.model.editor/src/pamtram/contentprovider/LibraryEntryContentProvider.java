@@ -10,7 +10,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.LibraryEntry;
+import pamtram.structure.LibraryEntry;
 
 /**
  * A content provider for a viewer that displays the {@link TargetSectionModel TargetSectionModels} and the

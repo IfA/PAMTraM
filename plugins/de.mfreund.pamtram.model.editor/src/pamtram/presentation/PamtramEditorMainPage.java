@@ -84,17 +84,17 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.ContainerParameter;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.ContainerParameter;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.NonContainmentReference;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
@@ -432,7 +432,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				MetaModelSectionReference reference = (MetaModelSectionReference) ((TreeItem) e.item).getData();
 
-				EList<pamtram.metamodel.SourceSectionClass> referencedElements = reference.getValue();
+				EList<pamtram.structure.SourceSectionClass> referencedElements = reference.getValue();
 
 				PamtramEditorMainPage.this.sourceViewer.setSelection(
 						new StructuredSelection(referencedElements.toArray()));
@@ -497,7 +497,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				/*
 				 * This keeps track of the elements in the target viewer that correspond to the currently selected element.
 				 */
-				LinkedList<pamtram.metamodel.Class<?, ?, ?, ?>> targets = new LinkedList<>();
+				LinkedList<pamtram.structure.generic.Class<?, ?, ?, ?>> targets = new LinkedList<>();
 
 				/*
 				 * This keeps track of the elements in the library target viewer that correspond to the currently selected element.
@@ -734,7 +734,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 				sources.add(mapping.getSource());
-				pamtram.metamodel.Class<?, ?, ?, ?> target = mapping.getTarget();
+				pamtram.structure.generic.Class<?, ?, ?, ?> target = mapping.getTarget();
 
 				if(mapping.getSharedCondition() != null) {
 					sources.add(mapping.getSharedCondition());
@@ -918,7 +918,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				TargetSectionNonContainmentReference reference = (TargetSectionNonContainmentReference) ((TreeItem) e.item).getData();
 
-				EList<pamtram.metamodel.TargetSectionClass> referencedElements = reference.getValue();
+				EList<pamtram.structure.TargetSectionClass> referencedElements = reference.getValue();
 
 				PamtramEditorMainPage.this.targetViewer.setSelection(
 						new StructuredSelection(referencedElements.toArray()));

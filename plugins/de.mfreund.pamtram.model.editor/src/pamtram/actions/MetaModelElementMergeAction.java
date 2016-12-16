@@ -19,11 +19,11 @@ import pamtram.commands.merging.MergeClassesCommand;
 import pamtram.commands.merging.MergeMetaModelElementsCommand;
 import pamtram.commands.merging.MergeReferenceIntoClassCommand;
 import pamtram.commands.merging.MergeReferencesCommand;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * A {@link StaticSelectionCommandAction} that can be used to merge multiple {@link MetaModelElement MetaModelElements}
@@ -36,7 +36,7 @@ import pamtram.metamodel.Section;
  *
  * @author mfreund
  */
-public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends StaticSelectionCommandAction {
 
 	/**

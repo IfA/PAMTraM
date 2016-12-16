@@ -55,19 +55,19 @@ import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.MetaModelElement;
 
 /**
  * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class PamtramActionBarContributor extends EditingDomainActionBarContributor
@@ -75,21 +75,21 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IEditorPart activeEditorPart;
 
 	/**
 	 * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ISelectionProvider selectionProvider;
 
 	/**
 	 * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction = new Action(
@@ -109,7 +109,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This action refreshes the viewer of the current editor if the editor implements
 	 * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IAction refreshViewerAction = new Action(
@@ -136,7 +136,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
 	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<IAction> createChildActions;
@@ -152,7 +152,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
 	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<IAction> createSiblingActions;
@@ -177,7 +177,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public PamtramActionBarContributor() {
@@ -191,7 +191,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -377,12 +377,13 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 			actions.add(new GenericConversionCommandAction<>(this.activeEditorPart, selection,
 					"Convert to exported MappingHintGroup", MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 					(MappingHintGroup) descriptor, new HintGroupToExportedHintGroupConverter()));
-		} else if (descriptor instanceof pamtram.metamodel.Class) {
+		} else if (descriptor instanceof pamtram.structure.generic.Class) {
 			// the section may be 'null' if the class is not part of a target section but of a library element
-			pamtram.metamodel.Class<?, ?, ?, ?> section = ((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor)
+			pamtram.structure.generic.Class<?, ?, ?, ?> section = ((pamtram.structure.generic.Class<?, ?, ?, ?>) descriptor)
 					.getContainingSection();
 			if (section != null && !section.equals(descriptor)) {
-				actions.add(new CutClassAndPasteAsNewSectionAction((pamtram.metamodel.Class<?, ?, ?, ?>) descriptor));
+				actions.add(new CutClassAndPasteAsNewSectionAction(
+						(pamtram.structure.generic.Class<?, ?, ?, ?>) descriptor));
 			}
 		} else if (selection instanceof StructuredSelection && ((StructuredSelection) selection).size() > 1) {
 
@@ -487,7 +488,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
 	 * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
 	 * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
@@ -559,7 +560,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -577,7 +578,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

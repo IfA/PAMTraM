@@ -46,19 +46,19 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.MetaModelElementMergeAction;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.EqualityMatcher;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
+import pamtram.structure.EqualityMatcher;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionReference;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Section;
+import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
  * This {@link WizardPage} will display a preview of a generated source or target {@link Section} that will get inserted
@@ -177,7 +177,7 @@ public class PreviewPage extends WizardPage {
 		this.adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-		this.adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 	}
 
@@ -485,10 +485,10 @@ public class PreviewPage extends WizardPage {
 
 			List<Attribute<?, ?, ?, ?>> lines = new ArrayList<>();
 
-			if (e.item.getData() instanceof pamtram.metamodel.Class) {
+			if (e.item.getData() instanceof pamtram.structure.generic.Class) {
 
 				// populate the attribute view
-				lines.addAll(((pamtram.metamodel.Class<?, ?, ?, ?>) e.item.getData()).getAttributes());
+				lines.addAll(((pamtram.structure.generic.Class<?, ?, ?, ?>) e.item.getData()).getAttributes());
 			}
 
 			PreviewPage.this.propertiesViewer.setInput(e.item.getData());

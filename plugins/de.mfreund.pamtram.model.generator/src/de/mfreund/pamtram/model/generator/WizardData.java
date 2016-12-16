@@ -20,10 +20,10 @@ import pamtram.PAMTraM;
 import pamtram.SectionModel;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditor;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.generic.Section;
+import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
  * This POJO incorporates all necessary data that is collected in the course of the {@link GeneratorWizard}.
@@ -103,7 +103,7 @@ public class WizardData implements IEditingDomainProvider {
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());

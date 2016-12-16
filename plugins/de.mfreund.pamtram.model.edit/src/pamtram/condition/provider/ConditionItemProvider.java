@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
-import pamtram.metamodel.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.Condition} object.
@@ -204,7 +204,7 @@ public class ConditionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
+				 StructureFactory.eINSTANCE.createInstancePointer()));
 	}
 
 }

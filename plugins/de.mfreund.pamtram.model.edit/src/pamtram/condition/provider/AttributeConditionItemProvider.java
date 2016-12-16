@@ -16,7 +16,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.metamodel.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.AttributeCondition} object.
@@ -199,32 +199,32 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEqualityMatcher()));
+				 StructureFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createSubstringMatcher()));
+				 StructureFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createBeginningMatcher()));
+				 StructureFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createEndingMatcher()));
+				 StructureFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRegExMatcher()));
+				 StructureFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 MetamodelFactory.eINSTANCE.createRangeConstraint()));
+				 StructureFactory.eINSTANCE.createRangeConstraint()));
 	}
 	
 }

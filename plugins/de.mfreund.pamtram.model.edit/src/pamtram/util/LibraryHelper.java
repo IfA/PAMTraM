@@ -27,20 +27,20 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.metamodel.ActualTargetSectionAttribute;
-import pamtram.metamodel.AttributeParameter;
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.ContainerParameter;
-import pamtram.metamodel.ExternalReferenceParameter;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.VirtualTargetSectionAttribute;
+import pamtram.structure.ActualTargetSectionAttribute;
+import pamtram.structure.AttributeParameter;
+import pamtram.structure.ContainerParameter;
+import pamtram.structure.ExternalReferenceParameter;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.LibraryParameter;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.MetaModelElement;
 
 /**
  * This class provides convenience functions to work with library items.
@@ -111,7 +111,7 @@ public class LibraryHelper {
 
 			// first generate a target section class for the element itself and
 			// attach it to the parentObject
-			TargetSectionClass tClass = MetamodelFactory.eINSTANCE.createTargetSectionClass();
+			TargetSectionClass tClass = StructureFactory.eINSTANCE.createTargetSectionClass();
 			tClass.setEClass(currentObject.eClass());
 			tClass.setName(currentObject.eClass().getName());
 			tClass.setCardinality(CardinalityType.ONE);
@@ -123,7 +123,7 @@ public class LibraryHelper {
 			// second, generate a target section attribute for every attribute
 			for (EAttribute att : currentObject.eClass().getEAllAttributes()) {
 				if (currentObject.eGet(att) != null) {
-					ActualTargetSectionAttribute tAttribute = MetamodelFactory.eINSTANCE
+					ActualTargetSectionAttribute tAttribute = StructureFactory.eINSTANCE
 							.createActualTargetSectionAttribute();
 					tAttribute.setAttribute(att);
 					tAttribute.setName(att.getName());
@@ -140,7 +140,7 @@ public class LibraryHelper {
 			// now, iterate through all containment references
 			for (EReference ref : currentObject.eClass().getEAllContainments()) {
 				if (currentObject.eGet(ref) != null) {
-					TargetSectionContainmentReference tReference = MetamodelFactory.eINSTANCE
+					TargetSectionContainmentReference tReference = StructureFactory.eINSTANCE
 							.createTargetSectionContainmentReference();
 					tReference.setEReference(ref);
 					tReference.setName(ref.getName());
@@ -163,7 +163,7 @@ public class LibraryHelper {
 					continue;
 				}
 
-				TargetSectionNonContainmentReference tReference = MetamodelFactory.eINSTANCE
+				TargetSectionNonContainmentReference tReference = StructureFactory.eINSTANCE
 						.createTargetSectionNonContainmentReference();
 				tReference.setEReference(ref);
 				tReference.setName(ref.getName());
@@ -409,16 +409,16 @@ public class LibraryHelper {
 			// storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 
 			// create the LibraryElement to be returned
-			this.pamtramLibEntry = MetamodelFactory.eINSTANCE.createLibraryEntry();
+			this.pamtramLibEntry = StructureFactory.eINSTANCE.createLibraryEntry();
 
 			// set the path, id, etc.
 			// pamtramLibEntry.setPath(libFileEntry.getKey());
-			VirtualTargetSectionAttribute pathAttribute = MetamodelFactory.eINSTANCE
+			VirtualTargetSectionAttribute pathAttribute = StructureFactory.eINSTANCE
 					.createVirtualTargetSectionAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(this.path);
 			this.pamtramLibEntry.setPath(pathAttribute);
-			VirtualTargetSectionAttribute idAttribute = MetamodelFactory.eINSTANCE
+			VirtualTargetSectionAttribute idAttribute = StructureFactory.eINSTANCE
 					.createVirtualTargetSectionAttribute();
 			idAttribute.setName("ID");
 			idAttribute.setValue(this.libEntry.getParameterDescription().getID());
@@ -436,12 +436,12 @@ public class LibraryHelper {
 			for (AbstractAttributeParameter<EObject> attParameter : this.libEntry.getParameterDescription()
 					.getAttributeParameters()) {
 
-				AttributeParameter param = MetamodelFactory.eINSTANCE.createAttributeParameter();
+				AttributeParameter param = StructureFactory.eINSTANCE.createAttributeParameter();
 				param.setOriginalParameter(attParameter);
 				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
 
-				ActualTargetSectionAttribute attribute = MetamodelFactory.eINSTANCE
+				ActualTargetSectionAttribute attribute = StructureFactory.eINSTANCE
 						.createActualTargetSectionAttribute();
 				attribute.setAttribute(attParameter.getAttribute());
 				attribute.setName(attParameter.getAttribute().getName());
@@ -458,12 +458,12 @@ public class LibraryHelper {
 			for (AbstractContainerParameter<EObject, EObject> contParameter : this.libEntry.getParameterDescription()
 					.getContainerParameters()) {
 
-				ContainerParameter param = MetamodelFactory.eINSTANCE.createContainerParameter();
+				ContainerParameter param = StructureFactory.eINSTANCE.createContainerParameter();
 				param.setOriginalParameter(contParameter);
 				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
 
-				TargetSection section = MetamodelFactory.eINSTANCE.createTargetSection();
+				TargetSection section = StructureFactory.eINSTANCE.createTargetSection();
 				section.setEClass(contParameter.getSource().eClass());
 				section.setName(contParameter.getSource().eClass().getName());
 
@@ -487,12 +487,12 @@ public class LibraryHelper {
 
 				// create a paramter for every setting
 				for (Setting setting : crossReferences) {
-					ExternalReferenceParameter param = MetamodelFactory.eINSTANCE.createExternalReferenceParameter();
+					ExternalReferenceParameter param = StructureFactory.eINSTANCE.createExternalReferenceParameter();
 					param.setOriginalParameter(extRefParameter);
 					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
 
-					TargetSectionNonContainmentReference ref = MetamodelFactory.eINSTANCE
+					TargetSectionNonContainmentReference ref = StructureFactory.eINSTANCE
 							.createTargetSectionNonContainmentReference();
 					ref.setEReference((EReference) setting.getEStructuralFeature());
 					ref.setName(setting.getEStructuralFeature().getName());
@@ -508,11 +508,11 @@ public class LibraryHelper {
 			 */
 			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
 
-				pamtram.metamodel.ResourceParameter param = MetamodelFactory.eINSTANCE.createResourceParameter();
+				pamtram.structure.ResourceParameter param = StructureFactory.eINSTANCE.createResourceParameter();
 				param.setOriginalParameter(resParameter);
 				param.setName(resParameter.eClass().getName());
 
-				VirtualTargetSectionAttribute attribute = MetamodelFactory.eINSTANCE
+				VirtualTargetSectionAttribute attribute = StructureFactory.eINSTANCE
 						.createVirtualTargetSectionAttribute();
 				attribute.setName(resParameter.getName());
 				attribute.setValue(resParameter.getNewPath());

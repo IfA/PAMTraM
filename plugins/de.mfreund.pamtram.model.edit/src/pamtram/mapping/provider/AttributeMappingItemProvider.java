@@ -25,8 +25,8 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMapping} object.
@@ -132,8 +132,8 @@ extends MappingHintItemProvider {
 					LibraryEntry libEntry = (LibraryEntry) target.eContainer().eContainer();
 					choiceOfValues.addAll(
 							libEntry.getParameters().parallelStream()
-									.filter(p -> p instanceof pamtram.metamodel.AttributeParameter)
-									.map(p -> ((pamtram.metamodel.AttributeParameter) p).getAttribute())
+									.filter(p -> p instanceof pamtram.structure.AttributeParameter)
+									.map(p -> ((pamtram.structure.AttributeParameter) p).getAttribute())
 									.collect(Collectors.toList()));
 					choiceOfValues.addAll(libEntry.getResourceParameters().parallelStream().map(p -> p.getAttribute())
 							.collect(Collectors.toList()));
@@ -145,7 +145,7 @@ extends MappingHintItemProvider {
 					Iterator<EObject> it = target.eAllContents();
 					while (it.hasNext()) {
 						EObject next = it.next();
-						if (next instanceof pamtram.metamodel.Attribute) {
+						if (next instanceof pamtram.structure.generic.Attribute) {
 							choiceOfValues.add(next);
 						}
 					}

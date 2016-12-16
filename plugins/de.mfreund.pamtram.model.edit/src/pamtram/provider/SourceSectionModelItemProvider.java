@@ -18,9 +18,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.PamtramPackage;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
@@ -132,7 +132,7 @@ extends SectionModelItemProvider {
 				if(object instanceof SourceSection) {
 					sourceSectionClassMap.put((SourceSectionClass) object, (SourceSectionClass) object);
 				} else {
-					sourceSectionClassMap.put((SourceSectionClass) object, MetamodelFactory.eINSTANCE.createSourceSection());
+					sourceSectionClassMap.put((SourceSectionClass) object, StructureFactory.eINSTANCE.createSourceSection());
 				}
 			} else {
 				return UnexecutableCommand.INSTANCE;

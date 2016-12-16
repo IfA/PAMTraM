@@ -24,10 +24,10 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Section;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.LocalModifiedAttributeElementType} object.
@@ -190,7 +190,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 					Iterator<EObject> it = classToScan.eAllContents();
 					while(it.hasNext()) {
 						EObject next = it.next();
-						if(next instanceof pamtram.metamodel.Attribute) {
+						if(next instanceof pamtram.structure.generic.Attribute) {
 							choiceOfValues.add(next);
 						} else if(next instanceof MetaModelSectionReference){
 							List<SourceSectionClass> vals = new ArrayList<>();

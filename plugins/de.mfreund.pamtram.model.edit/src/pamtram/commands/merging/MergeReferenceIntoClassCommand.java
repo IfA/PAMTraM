@@ -15,14 +15,14 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
@@ -33,7 +33,7 @@ import pamtram.metamodel.Section;
  * @param <R>
  * @param <A>
  */
-public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<C, R, S, C, R, A> {
 
 	/**
@@ -67,10 +67,9 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftReference.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						MetamodelPackage.Literals.CLASS__REFERENCES, this.right));
+						GenericPackage.Literals.CLASS__REFERENCES, this.right));
 			}
-			this.append(
-					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__REFERENCES, this.right));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CLASS__REFERENCES, this.right));
 
 			return super.prepare();
 		}
@@ -104,13 +103,13 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		//
 		if (leftReference.get() instanceof ContainmentReference<?, ?, ?, ?>) {
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right,
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+					values));
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+					GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
 		} else if (leftReference.get() instanceof NonContainmentReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+					GenericPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
 
 		} else {
 			return false;

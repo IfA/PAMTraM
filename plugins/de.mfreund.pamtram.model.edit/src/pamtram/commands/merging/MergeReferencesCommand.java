@@ -22,14 +22,14 @@ import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.ContainmentReference;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link Reference References}.
@@ -40,7 +40,7 @@ import pamtram.metamodel.Section;
  * @param <R>
  * @param <A>
  */
-public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<R, R, S, C, R, A> {
 
 	/**
@@ -83,7 +83,7 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 *            the resource set associated with the given <em>domain</em>.
 	 * @return The created command.
 	 */
-	public static <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
+	public static <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
 			EditingDomain domain, Set<R> referencesToMerge, Set<EObject> elementsOfInterest) {
 
 		// The references can only be merged if they all represent the same EReference ...
@@ -176,13 +176,13 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		if (this.left instanceof ContainmentReference<?, ?, ?, ?>) {
 
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right,
-					MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
-			this.append(new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+					values));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
 					values));
 		} else if (this.left instanceof NonContainmentReference<?, ?, ?, ?>) {
-			this.append(new AddCommand(this.domain, this.left,
-					MetamodelPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE,
+					this.right.getValuesGeneric()));
 
 		} else {
 			return false;

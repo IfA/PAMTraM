@@ -19,16 +19,17 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.ValueConstraint;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge an {@link Attribute} into a {@link Class}.
@@ -39,7 +40,7 @@ import pamtram.metamodel.ValueConstraint;
  * @param <R>
  * @param <A>
  */
-public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends MergeMetaModelElementsCommand<C, A, S, C, R, A> {
 
 	/**
@@ -81,10 +82,9 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (!leftAttribute.isPresent()) {
 			if (this.right.eContainer() instanceof Class<?, ?, ?, ?>) {
 				this.append(new RemoveCommand(this.domain, this.right.eContainer(),
-						MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
+						GenericPackage.Literals.CLASS__ATTRIBUTES, this.right));
 			}
-			this.append(
-					new AddCommand(this.domain, this.left, MetamodelPackage.Literals.CLASS__ATTRIBUTES, this.right));
+			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CLASS__ATTRIBUTES, this.right));
 			return super.prepare();
 		}
 
@@ -133,7 +133,7 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 
 			if (!NullComparator.compare(leftValue, rightValue)) {
 				this.append(new SetCommand(this.domain, leftAttribute.get(),
-						MetamodelPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
+						StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
 			}
 
 		} else {

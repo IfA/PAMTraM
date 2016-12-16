@@ -11,7 +11,7 @@ import de.tud.et.ifa.agtele.genlibrary.LibraryImplementationRegistry;
 import de.tud.et.ifa.agtele.genlibrary.processor.impl.LibraryPluginImpl;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryContext;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
-import pamtram.metamodel.LibraryEntry;
+import pamtram.structure.LibraryEntry;
 
 /**
  * This class is responsible for creating, initializing, and (if necessary) updating an instance of the genlibrary

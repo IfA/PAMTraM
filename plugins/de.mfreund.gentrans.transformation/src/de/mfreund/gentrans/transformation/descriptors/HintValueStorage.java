@@ -18,9 +18,9 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.SourceSectionClass;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.metamodel.SourceSectionClass;
 
 /**
  * This class is used to store mapping hint values. It stores the hint values separated by their type

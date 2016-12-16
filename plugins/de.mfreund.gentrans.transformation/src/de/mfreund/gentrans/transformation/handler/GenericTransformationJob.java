@@ -18,7 +18,7 @@ import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStr
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import pamtram.PAMTraM;
-import pamtram.metamodel.FileAttribute;
+import pamtram.structure.FileAttribute;
 
 /**
  * @author Sascha Steffen

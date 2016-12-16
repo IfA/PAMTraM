@@ -39,16 +39,16 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.MultipleReferencesValueConstraint;
-import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.RangeConstraint;
-import pamtram.metamodel.RegExMatcher;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintType;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.MultipleReferencesValueConstraint;
+import pamtram.structure.RangeBound;
+import pamtram.structure.RangeConstraint;
+import pamtram.structure.RegExMatcher;
+import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.ValueConstraintType;
 
 
 /**

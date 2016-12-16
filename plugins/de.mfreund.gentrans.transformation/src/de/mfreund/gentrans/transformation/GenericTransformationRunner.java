@@ -66,9 +66,9 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.ValueModifierSet;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
 import pamtram.util.GenLibraryManager;
 
 /**

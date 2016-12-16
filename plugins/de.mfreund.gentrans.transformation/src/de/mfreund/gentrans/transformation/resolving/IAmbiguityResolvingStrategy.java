@@ -21,13 +21,13 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.SourceSection;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.generic.NonContainmentReference;
 import pamtram.mapping.ContainerSelector;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
 
 /**
  * This interface may be implemented to expose a concrete strategy to resolve ambiguities that

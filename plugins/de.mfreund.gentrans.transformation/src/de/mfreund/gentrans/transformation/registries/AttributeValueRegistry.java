@@ -6,11 +6,11 @@ import java.util.LinkedHashSet;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.ActualTargetSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.VirtualAttribute;
-import pamtram.metamodel.VirtualTargetSectionAttribute;
+import pamtram.structure.ActualTargetSectionAttribute;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.VirtualAttribute;
 
 /**
  * Storage class for values of {@link TargetSectionAttribute TargetSectionAttributes}

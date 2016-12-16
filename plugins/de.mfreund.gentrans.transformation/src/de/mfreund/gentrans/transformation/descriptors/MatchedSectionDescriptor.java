@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.ValueConstraint;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.ValueConstraint;
 
 /**
  * Class for storing matched a part of a source model that has been matched against a {@link SourceSection}.

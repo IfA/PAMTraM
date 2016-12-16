@@ -7,9 +7,9 @@ import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.ValueConstraint;
 
 /**
  * This class can be used to handle and calculate general expressions.

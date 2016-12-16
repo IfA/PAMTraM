@@ -35,21 +35,21 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.CardinalityType;
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.MultipleReferencesValueConstraint;
-import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.RangeConstraint;
-import pamtram.metamodel.RegExMatcher;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintType;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.MultipleReferencesValueConstraint;
+import pamtram.structure.RangeBound;
+import pamtram.structure.RangeConstraint;
+import pamtram.structure.RegExMatcher;
+import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.ValueConstraintType;
+import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.Section;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.
@@ -95,9 +95,9 @@ public class SourceSectionMatcher {
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so
-	 * we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
-	 * in a {@link RegExMatcher}.
+	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so we don't
+	 * need to send a potential error message twice. This might e.g. happen for a malformed regular expression in a
+	 * {@link RegExMatcher}.
 	 */
 	private final Set<ValueConstraint> constraintsWithErrors;
 
@@ -167,18 +167,16 @@ public class SourceSectionMatcher {
 				continue;
 			}
 
-
 			/*
 			 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
 			 */
 			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor);
 
 			/*
-			 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment
-			 * tree and update the 'matchedSections' map
+			 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment tree
+			 * and update the 'matchedSections' map
 			 */
 			this.updateMatchedElements(descriptor);
-
 
 		}
 
@@ -198,8 +196,8 @@ public class SourceSectionMatcher {
 		List<MatchedSectionDescriptor> descriptors = this.sections2Descriptors.containsKey(sourceSection)
 				? this.sections2Descriptors.get(sourceSection) : new ArrayList<>();
 
-				descriptors.add(descriptor);
-				this.sections2Descriptors.put(sourceSection, descriptors);
+		descriptors.add(descriptor);
+		this.sections2Descriptors.put(sourceSection, descriptors);
 	}
 
 	/**
@@ -259,7 +257,7 @@ public class SourceSectionMatcher {
 		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
 		 */
 		this.sourceSections.parallelStream().filter(section -> section.getEClass().isSuperTypeOf(element.eClass()))
-		.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
+				.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
 
 		return mappingData;
 	}
@@ -315,8 +313,8 @@ public class SourceSectionMatcher {
 			List<MatchedSectionDescriptor> resolved = this.ambiguityResolvingStrategy
 					.searchingSelectSection(new ArrayList<>(matchesWithMaximumElements), element);
 			if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).searchingSectionSelected(
-						new ArrayList<>(matchesWithMaximumElements), resolved.get(0));
+				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+						.searchingSectionSelected(new ArrayList<>(matchesWithMaximumElements), resolved.get(0));
 			}
 			this.logger.fine("[Ambiguity] ...finished.\n");
 			return resolved.get(0);
@@ -651,7 +649,7 @@ public class SourceSectionMatcher {
 				}));
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().parallelStream()
-		.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
+				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
 
 		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
 		// the current 'srcModelObject'
@@ -861,13 +859,13 @@ public class SourceSectionMatcher {
 		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
 		classes.stream().filter(val -> val.getCardinality().equals(CardinalityType.ONE))
-		.forEach(possibleSrcModelElementsNoVC::init);
+				.forEach(possibleSrcModelElementsNoVC::init);
 
 		// Map to store possible srcModelSections to MMSections (vc)
 		//
 		final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
 		classes.stream().filter(val -> !val.getCardinality().equals(CardinalityType.ONE))
-		.forEach(possibleSrcModelElementsVC::init);
+				.forEach(possibleSrcModelElementsVC::init);
 
 		final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
 
@@ -1060,22 +1058,22 @@ public class SourceSectionMatcher {
 			final MatchedSectionDescriptor descriptor) {
 
 		srcSection.getAttributes().parallelStream().filter(at -> !(at instanceof ActualSourceSectionAttribute))
-		.forEach(at -> this.logger.severe(
-				"SourceSectionAttributes of type '" + at.eClass().getName() + "' are not yet supported!"));
+				.forEach(at -> this.logger.severe(
+						"SourceSectionAttributes of type '" + at.eClass().getName() + "' are not yet supported!"));
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
 		return srcSection.getAttributes().stream().filter(at -> at instanceof ActualSourceSectionAttribute)
 				.map(at -> (ActualSourceSectionAttribute) at)
 				.allMatch(at -> AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute())
-						.parallelStream()
-						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
+						.parallelStream().allMatch(
+								srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
 
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link ValueConstraint
-	 * AttributeValueConstraints} modeled for the given {@link SourceSectionAttribute attribute}.
+	 * Check the given {@link Object attribute value} against the {@link ValueConstraint AttributeValueConstraints}
+	 * modeled for the given {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
 	 *            The {@link SourceSectionAttribute} for that the constraints shall be checked.
@@ -1149,8 +1147,8 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link ValueConstraint
-	 * AttributeValueConstraints} modeled for the given {@link SourceSectionAttribute attribute}.
+	 * Check the given {@link Object attribute value} against the {@link ValueConstraint AttributeValueConstraints}
+	 * modeled for the given {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
 	 *            The {@link SourceSectionAttribute} for that the constraints shall be checked.
@@ -1160,8 +1158,7 @@ public class SourceSectionMatcher {
 	 * @param attributeValueAsString
 	 *            A String representation of the attribute value to be checked against the given <em>constraint</em>.
 	 * @param constraint
-	 *            The {@link ValueConstraint} that the given <em>attributeValueAsString</em> shall be checked
-	 *            against.
+	 *            The {@link ValueConstraint} that the given <em>attributeValueAsString</em> shall be checked against.
 	 * @return '<em><b>true</b></em>' if the value satisfies the constraint; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
@@ -1176,8 +1173,8 @@ public class SourceSectionMatcher {
 		if (constraint instanceof SingleReferenceValueConstraint) {
 
 			String srcAttrRefValAsString = this.refValueCalculator.calculateReferenceValue(constraint);
-			constraintVal = ((SingleReferenceValueConstraint) constraint)
-					.checkConstraint(attributeValueAsString, srcAttrRefValAsString);
+			constraintVal = ((SingleReferenceValueConstraint) constraint).checkConstraint(attributeValueAsString,
+					srcAttrRefValAsString);
 
 		} else if (constraint instanceof MultipleReferencesValueConstraint) {
 
@@ -1200,13 +1197,13 @@ public class SourceSectionMatcher {
 				}
 
 				BasicEList<String> refValuesAsEList = new BasicEList<>(srcAttrRefValuesAsList);
-				constraintVal = ((MultipleReferencesValueConstraint) constraint)
-						.checkConstraint(attributeValueAsString, refValuesAsEList);
+				constraintVal = ((MultipleReferencesValueConstraint) constraint).checkConstraint(attributeValueAsString,
+						refValuesAsEList);
 
 				if (!constraintVal) { // just for debugging!
 					this.logger.info("Coonstraint " + constraint.getName()
-					+ "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString
-					+ ", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
+							+ "of AttributeValueConstraint is false while the Attribute value " + attributeValueAsString
+							+ ", the bound values are " + refValuesAsEList.get(0) + " and " + refValuesAsEList.get(1));
 				}
 			} else {
 				// If we are here, some mistake is happened
@@ -1220,7 +1217,7 @@ public class SourceSectionMatcher {
 			// more types could be supported in the future
 			// placeholder for other MultipleReferenceAttributeValueConstraints
 			this.logger
-			.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+					.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 		}
 
 		return constraintVal;
@@ -1244,7 +1241,7 @@ public class SourceSectionMatcher {
 		return this.matchedSections.containsKey(sourceSectionClass)
 				&& this.matchedSections.get(sourceSectionClass).contains(element)
 				|| this.matchedContainers.containsKey(sourceSectionClass)
-				&& this.matchedContainers.get(sourceSectionClass).contains(element);
+						&& this.matchedContainers.get(sourceSectionClass).contains(element);
 	}
 
 	/**

@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * This abstract base class represents a map that allows to collect hint values for 

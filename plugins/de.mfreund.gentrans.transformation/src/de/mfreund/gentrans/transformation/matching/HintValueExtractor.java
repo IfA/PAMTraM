@@ -35,14 +35,14 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
 
 /**
  * This class can be used to extract hint values and values of {@link GlobalAttribute GlobalAttributes}

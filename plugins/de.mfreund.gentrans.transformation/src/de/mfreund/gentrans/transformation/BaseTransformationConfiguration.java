@@ -6,8 +6,8 @@ import java.util.logging.Level;
 
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import pamtram.metamodel.FileAttribute;
-import pamtram.metamodel.LibraryEntry;
+import pamtram.structure.FileAttribute;
+import pamtram.structure.LibraryEntry;
 
 /**
  * This class captures the optional parameters that can be specified for an instance of the generic transformation. They

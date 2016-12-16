@@ -17,17 +17,17 @@ import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValue
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.RangeBound;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
-import pamtram.metamodel.ValueConstraint;
-import pamtram.metamodel.ValueConstraintExternalSourceElement;
-import pamtram.metamodel.ValueConstraintSourceElement;
-import pamtram.metamodel.ValueConstraintSourceInterface;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.RangeBound;
+import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionReference;
+import pamtram.structure.ValueConstraint;
+import pamtram.structure.ValueConstraintExternalSourceElement;
+import pamtram.structure.ValueConstraintSourceElement;
+import pamtram.structure.ValueConstraintSourceInterface;
 
 
 /**

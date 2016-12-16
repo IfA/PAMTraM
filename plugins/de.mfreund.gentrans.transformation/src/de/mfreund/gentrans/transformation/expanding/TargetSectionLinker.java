@@ -46,14 +46,14 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.metamodel.ExternalReferenceParameter;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.LibraryParameter;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.ExternalReferenceParameter;
+import pamtram.structure.LibraryEntry;
+import pamtram.structure.LibraryParameter;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
+import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionReference;
 
 /**
  * Class for linking target model sections using the hints supplied by

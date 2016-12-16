@@ -14,10 +14,10 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.ValueConstraintSourceInterface;
 import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.metamodel.ValueConstraintSourceInterface;
-import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

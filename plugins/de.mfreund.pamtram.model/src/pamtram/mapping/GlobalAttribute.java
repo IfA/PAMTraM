@@ -7,7 +7,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.structure.ActualSourceSectionAttribute;
 
 
 /**

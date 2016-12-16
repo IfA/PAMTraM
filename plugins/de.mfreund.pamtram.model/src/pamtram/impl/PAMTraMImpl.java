@@ -50,14 +50,14 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.impl.MappingFactoryImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.MetaModelElement;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
+import pamtram.structure.SourceSection;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+import pamtram.structure.generic.impl.GenericPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -356,7 +356,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			if(section.isAbstract() && sourceSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : sourceSettings.get(section)) {
-					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+					if(setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
 						concreteSections.add((Section) setting.getEObject());
 					}
 				}
@@ -368,7 +368,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			if(section.isAbstract() && targetSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : targetSettings.get(section)) {
-					if(setting.getEStructuralFeature().equals(MetamodelPackageImpl.eINSTANCE.getSection_Extend())) {
+					if(setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
 						concreteSections.add((Section) setting.getEObject());
 					}
 				}

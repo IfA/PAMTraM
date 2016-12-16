@@ -21,8 +21,8 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.Matcher;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionNonContainmentReference;
 
 /**
  * <!-- begin-user-doc -->

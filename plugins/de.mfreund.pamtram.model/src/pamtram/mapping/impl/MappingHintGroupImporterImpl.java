@@ -28,8 +28,8 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.TargetSection;
+import pamtram.structure.TargetSectionClass;
 import pamtram.util.PamtramValidator;
 
 /**

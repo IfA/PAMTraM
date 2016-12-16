@@ -17,7 +17,7 @@ import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
-import pamtram.metamodel.InstancePointer;
+import pamtram.structure.InstancePointer;
 
 /**
  * <!-- begin-user-doc -->

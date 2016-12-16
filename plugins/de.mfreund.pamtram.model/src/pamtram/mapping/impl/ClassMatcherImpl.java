@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->

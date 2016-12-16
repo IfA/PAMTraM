@@ -3,10 +3,11 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+
+import pamtram.structure.InstancePointer;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,11 +25,11 @@ import pamtram.metamodel.Section;
  * @model abstract="true"
  * @generated
  */
-public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
+public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Instance Selector</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
+	 * The list contents are of type {@link pamtram.structure.InstancePointer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance Selector</em>' containment reference list isn't clear,

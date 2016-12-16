@@ -3,7 +3,8 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.SourceSectionAttribute;
+
+import pamtram.structure.SourceSectionAttribute;
 
 
 /**

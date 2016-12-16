@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.SourceSection;
+import pamtram.structure.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -187,8 +187,8 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 		//
 		return getAdditionalConditionSpecification().parallelStream().flatMap(
 				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
-						s -> s instanceof pamtram.metamodel.InstancePointerSourceElement || 
-						s instanceof pamtram.metamodel.InstancePointerExternalSourceElement)
+						s -> s instanceof pamtram.structure.InstancePointerSourceElement || 
+						s instanceof pamtram.structure.InstancePointerExternalSourceElement)
 				).findAny().isPresent();
 	}
 

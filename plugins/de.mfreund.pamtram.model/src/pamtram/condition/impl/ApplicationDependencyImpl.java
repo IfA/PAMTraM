@@ -14,7 +14,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.metamodel.SourceSection;
+import pamtram.structure.SourceSection;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,8 +204,8 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 		//
 		return this.getAdditionalConditionSpecification().parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof pamtram.metamodel.InstancePointerSourceElement
-								|| s instanceof pamtram.metamodel.InstancePointerExternalSourceElement))
+						.filter(s -> s instanceof pamtram.structure.InstancePointerSourceElement
+								|| s instanceof pamtram.structure.InstancePointerExternalSourceElement))
 				.findAny().isPresent();
 	}
 

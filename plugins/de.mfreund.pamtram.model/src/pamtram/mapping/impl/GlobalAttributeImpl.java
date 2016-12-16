@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

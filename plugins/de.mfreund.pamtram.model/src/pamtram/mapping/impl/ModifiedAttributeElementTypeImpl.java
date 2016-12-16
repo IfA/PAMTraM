@@ -17,14 +17,14 @@ import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ValueModifierSet;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +40,7 @@ import pamtram.metamodel.Section;
  *
  * @generated
  */
-public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements ModifiedAttributeElementType<S, C, R, A> {
+public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements ModifiedAttributeElementType<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->

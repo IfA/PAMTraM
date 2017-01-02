@@ -48,7 +48,7 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.mapping.MappingType;
 import pamtram.mapping.ContainerSelector;
 
@@ -851,7 +851,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
 			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
 					throws AmbiguityResolvingException {
 
@@ -922,7 +922,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	@Override
 	public Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
-			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*

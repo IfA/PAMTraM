@@ -36,7 +36,6 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
 import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.RangeBound;
 import pamtram.structure.RangeConstraint;
@@ -45,6 +44,7 @@ import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
+import pamtram.structure.SourceSectionCrossReference;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintType;
@@ -52,7 +52,8 @@ import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Section;
 
 /**
- * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.
+ * This class can be used to match a list of {@link #sourceSections} against a
+ * {@link #containmentTree}.
  *
  *
  * @author mfreund
@@ -60,19 +61,22 @@ import pamtram.structure.generic.Section;
 public class SourceSectionMatcher {
 
 	/**
-	 * The {@link ContainmentTree} that represents the list of source models to be matched.
+	 * The {@link ContainmentTree} that represents the list of source models to
+	 * be matched.
 	 */
 	private final ContainmentTree containmentTree;
 
 	/**
-	 * The list of {@link SourceSection SourceSections} that this matcher operates on. These are matched against the
-	 * {@link #containmentTree} in the course of the matching process.
+	 * The list of {@link SourceSection SourceSections} that this matcher
+	 * operates on. These are matched against the {@link #containmentTree} in
+	 * the course of the matching process.
 	 */
 	private EList<SourceSection> sourceSections;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
-	 * execution of the transformation.
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
+	 * resolve ambiguities that arise during the execution of the
+	 * transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
@@ -82,28 +86,33 @@ public class SourceSectionMatcher {
 	private Logger logger;
 
 	/**
-	 * Registry for <em>source model elements</em> that have already been matched. The matched elements are stored in a
-	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
+	 * Registry for <em>source model elements</em> that have already been
+	 * matched. The matched elements are stored in a map where the key is the
+	 * corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private final Map<SourceSectionClass, Set<EObject>> matchedSections;
 
 	/**
-	 * Registry for <em>source model elements</em> that were not directly matched but indirectly matched as part of a
-	 * container section. The matched objects are stored in a map where the key is the corresponding
-	 * {@link SourceSectionClass container section} that they have been matched to.
+	 * Registry for <em>source model elements</em> that were not directly
+	 * matched but indirectly matched as part of a container section. The
+	 * matched objects are stored in a map where the key is the corresponding
+	 * {@link SourceSectionClass container section} that they have been matched
+	 * to.
 	 */
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so we don't
-	 * need to send a potential error message twice. This might e.g. happen for a malformed regular expression in a
-	 * {@link RegExMatcher}.
+	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints}
+	 * that could not be evaluated so we don't need to send a potential error
+	 * message twice. This might e.g. happen for a malformed regular expression
+	 * in a {@link RegExMatcher}.
 	 */
 	private final Set<ValueConstraint> constraintsWithErrors;
 
 	/**
-	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that
-	 * are needed for {@link ValueConstraint}
+	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be
+	 * used for calculating referenceValues that are needed for
+	 * {@link ValueConstraint}
 	 */
 	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
 
@@ -113,12 +122,14 @@ public class SourceSectionMatcher {
 	 * This creates an instance.
 	 *
 	 * @param containmentTree
-	 *            The {@link ContainmentTree} representing the source models to be matched.
+	 *            The {@link ContainmentTree} representing the source models to
+	 *            be matched.
 	 * @param sourceSections
-	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
-	 *            against.
+	 *            The list of {@link SourceSection SourceSections} that the '
+	 *            <em>containmentTree</em>' shall be matched against.
 	 * @param globalValues
-	 *            The list of {@link MappingModel#getGlobalValues() global values} modeled in the PAMTraM instance.
+	 *            The list of {@link MappingModel#getGlobalValues() global
+	 *            values} modeled in the PAMTraM instance.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
@@ -142,11 +153,14 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This iterates through the {@link #containmentTree} and tries to match each of the given {@link #sourceSections}
-	 * against the elements represented in the tree. The result of this process is a list of
-	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that will be returned.
+	 * This iterates through the {@link #containmentTree} and tries to match
+	 * each of the given {@link #sourceSections} against the elements
+	 * represented in the tree. The result of this process is a list of
+	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that will be
+	 * returned.
 	 *
-	 * @return The set of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the
+	 * @return The set of {@link MatchedSectionDescriptor
+	 *         MatchedSectionDescriptors} that represents the result of the
 	 *         matching process.
 	 */
 	public Map<SourceSection, List<MatchedSectionDescriptor>> matchSections() {
@@ -159,7 +173,8 @@ public class SourceSectionMatcher {
 
 			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element);
 
-			// If there are multiple matches, select the one section to actually apply.
+			// If there are multiple matches, select the one section to actually
+			// apply.
 			//
 			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element, matches);
 
@@ -168,13 +183,15 @@ public class SourceSectionMatcher {
 			}
 
 			/*
-			 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
+			 * Register the created descriptor in the 'sections2Descriptors' map
+			 * that will be returned in the end
 			 */
 			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor);
 
 			/*
-			 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment tree
-			 * and update the 'matchedSections' map
+			 * Before returning the matched sections, we mark the affected
+			 * elements as 'matched' in the containment tree and update the
+			 * 'matchedSections' map
 			 */
 			this.updateMatchedElements(descriptor);
 
@@ -184,10 +201,12 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors} map.
+	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors}
+	 * map.
 	 *
 	 * @param sourceSection
-	 *            The {@link SourceSection} that the given <em>descriptor</em> represents.
+	 *            The {@link SourceSection} that the given <em>descriptor</em>
+	 *            represents.
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} to add.
 	 */
@@ -201,11 +220,13 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Update the {@link #matchedSections} and mark matched elements in the {@link ContainmentTree#markAsMatched(Set)
-	 * containmentTree} based on the given '<em>descriptor</em>'.
+	 * Update the {@link #matchedSections} and mark matched elements in the
+	 * {@link ContainmentTree#markAsMatched(Set) containmentTree} based on the
+	 * given '<em>descriptor</em>'.
 	 *
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} describing the matched elements.
+	 *            The {@link MatchedSectionDescriptor} describing the matched
+	 *            elements.
 	 */
 	private void updateMatchedElements(MatchedSectionDescriptor descriptor) {
 
@@ -220,11 +241,13 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Update the {@link #matchedContainers} and mark matched elements in the {@link ContainmentTree#markAsMatched(Set)
-	 * containmentTree} based on the given '<em>descriptor</em>'.
+	 * Update the {@link #matchedContainers} and mark matched elements in the
+	 * {@link ContainmentTree#markAsMatched(Set) containmentTree} based on the
+	 * given '<em>descriptor</em>'.
 	 *
 	 * @param containerDescriptor
-	 *            The {@link MatchedSectionDescriptor} describing the matched container elements.
+	 *            The {@link MatchedSectionDescriptor} describing the matched
+	 *            container elements.
 	 */
 	private void updateMatchedContainers(MatchedSectionDescriptor containerDescriptor) {
 
@@ -239,22 +262,26 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This determines and returns all applicable source sections for the given source model <em>element</em>.
+	 * This determines and returns all applicable source sections for the given
+	 * source model <em>element</em>.
 	 *
 	 * @param element
-	 *            The element from the source model for that the applicable source sections shall be determined.
-	 * @return A map that contains all applicable mappings and the associated {@link MappingInstanceStorage
-	 *         MappingInstanceStorages}.
+	 *            The element from the source model for that the applicable
+	 *            source sections shall be determined.
+	 * @return A map that contains all applicable mappings and the associated
+	 *         {@link MappingInstanceStorage MappingInstanceStorages}.
 	 */
 	private Map<SourceSection, MatchedSectionDescriptor> findApplicableSections(final EObject element) {
 
 		/*
-		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every mapping).
+		 * This keeps track of all found possible sections (a
+		 * MatchedSectionDescriptor is created for every mapping).
 		 */
 		final Map<SourceSection, MatchedSectionDescriptor> mappingData = new LinkedHashMap<>();
 
 		/*
-		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
+		 * Now, iterate over all sections and find those that are applicable for
+		 * the current 'element'.
 		 */
 		this.sourceSections.parallelStream().filter(section -> section.getEClass().isSuperTypeOf(element.eClass()))
 				.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
@@ -263,17 +290,21 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * If multiple applicable sections have been found for an element of the source model during
-	 * {@link #findApplicableSections(EObject)}, one of the sections needs to be selected that shall actually be used.
-	 * Therefore, we first select those matched sections that match the most elements. If there are multiple sections
-	 * that match the same number of elements, we apply the AmbiguityResolvingStrategy.
+	 * If multiple applicable sections have been found for an element of the
+	 * source model during {@link #findApplicableSections(EObject)}, one of the
+	 * sections needs to be selected that shall actually be used. Therefore, we
+	 * first select those matched sections that match the most elements. If
+	 * there are multiple sections that match the same number of elements, we
+	 * apply the AmbiguityResolvingStrategy.
 	 *
 	 * @param element
-	 *            The {@link EObject element} of the source model for that we are selecting an applicable section.
+	 *            The {@link EObject element} of the source model for that we
+	 *            are selecting an applicable section.
 	 * @param matches
 	 *            The applicable sections.
-	 * @return The {@link MatchedSectionDescriptor} representing the selected {@link SourceSection} or '<em>null</em>'
-	 *         if no descriptor was selected.
+	 * @return The {@link MatchedSectionDescriptor} representing the selected
+	 *         {@link SourceSection} or '<em>null</em>' if no descriptor was
+	 *         selected.
 	 */
 	private MatchedSectionDescriptor selectApplicableSection(EObject element,
 			Map<SourceSection, MatchedSectionDescriptor> matches) {
@@ -284,7 +315,8 @@ public class SourceSectionMatcher {
 			return matches.values().iterator().next();
 		}
 
-		// First, we collect those matches that cover the most elements of the source model
+		// First, we collect those matches that cover the most elements of the
+		// source model
 		//
 		List<MatchedSectionDescriptor> matchesWithMaximumElements = new ArrayList<>();
 
@@ -306,7 +338,8 @@ public class SourceSectionMatcher {
 			return matchesWithMaximumElements.get(0);
 		}
 
-		// As there are multiple elements with the same number of matched elements, we need to select one of those to
+		// As there are multiple elements with the same number of matched
+		// elements, we need to select one of those to
 		// actually use.
 		try {
 			this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
@@ -325,15 +358,19 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
-	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself.}
+	 * This checks if the given {@link SourceSection} is applicable for the
+	 * given source model <em>element</em>. Therefore, it first
+	 * {@link #checkContainerSection(EObject, SourceSection) checks the
+	 * container} and then the
+	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)
+	 * section itself.}
 	 * <p />
-	 * If the section is applicable, this stores the result in the <em>mappingData</em>.
+	 * If the section is applicable, this stores the result in the
+	 * <em>mappingData</em>.
 	 *
 	 * @param element
-	 *            The {@link EObject} from the source model for that the applicability of the source section shall be
-	 *            determined.
+	 *            The {@link EObject} from the source model for that the
+	 *            applicability of the source section shall be determined.
 	 * @param mappingData
 	 *            The map where applicable sections are stored.
 	 * @param section
@@ -373,16 +410,22 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * For a given {@link MatchedSectionDescriptor}, this extracts the associated '<em>container descriptor</em>' from
-	 * the {@link #sections2Descriptors} map and
-	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor) sets} it in the descriptor.
+	 * For a given {@link MatchedSectionDescriptor}, this extracts the
+	 * associated '<em>container descriptor</em>' from the
+	 * {@link #sections2Descriptors} map and
+	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor)
+	 * sets} it in the descriptor.
 	 *
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for that the container shall be determined and set.
-	 * @return '<em><b>true</b></em>' if either the given '<em>descriptor</em>' does not represent a SourceSection but a
-	 *         SourceSectionClass, if the {@link SourceSection} represented by the given '<em>descriptor</em>' does not
-	 *         specify a {@link SourceSection#getContainer() container}, if the container descriptor has already been
-	 *         set, or if the container descriptor was set successfully; '<em><b>false</b></em>' otherwise.
+	 *            The {@link MatchedSectionDescriptor} for that the container
+	 *            shall be determined and set.
+	 * @return '<em><b>true</b></em>' if either the given '<em>descriptor</em>'
+	 *         does not represent a SourceSection but a SourceSectionClass, if
+	 *         the {@link SourceSection} represented by the given
+	 *         '<em>descriptor</em>' does not specify a
+	 *         {@link SourceSection#getContainer() container}, if the container
+	 *         descriptor has already been set, or if the container descriptor
+	 *         was set successfully; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean setContainerDescriptor(MatchedSectionDescriptor descriptor) {
 
@@ -414,15 +457,19 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Check if the container section referenced by the {@link SourceSection SourceSection's}
-	 * {@link Section#getContainer()} can be matched for the given element.
+	 * Check if the container section referenced by the {@link SourceSection
+	 * SourceSection's} {@link Section#getContainer()} can be matched for the
+	 * given element.
 	 *
 	 * @param element
-	 *            The {@link EObject element} for that the container shall be checked.
+	 *            The {@link EObject element} for that the container shall be
+	 *            checked.
 	 * @param sourceSection
-	 *            The {@link SourceSection} that specifies the container to be checked.
-	 * @return '<em>true</em>' if the {@link Section#getContainer() container} of the SourceSection has not been set or
-	 *         if a fitting container instance exists; '<em>false</em>' otherwise
+	 *            The {@link SourceSection} that specifies the container to be
+	 *            checked.
+	 * @return '<em>true</em>' if the {@link Section#getContainer() container}
+	 *         of the SourceSection has not been set or if a fitting container
+	 *         instance exists; '<em>false</em>' otherwise
 	 */
 	private boolean checkContainerSection(final EObject element, final SourceSection sourceSection) {
 
@@ -433,8 +480,9 @@ public class SourceSectionMatcher {
 		}
 
 		/*
-		 * Step 1: Identify all container sections and the corresponding elements (and check if these elements match the
-		 * EClass specified by the respective container section).
+		 * Step 1: Identify all container sections and the corresponding
+		 * elements (and check if these elements match the EClass specified by
+		 * the respective container section).
 		 */
 		final Map<SourceSection, EObject> containers = this.collectContainers(element, sourceSection);
 
@@ -443,8 +491,8 @@ public class SourceSectionMatcher {
 		}
 
 		/*
-		 * Step 2: Check if each container section (that has not already been matched) can be matched, starting from the
-		 * highest
+		 * Step 2: Check if each container section (that has not already been
+		 * matched) can be matched, starting from the highest
 		 */
 		return containers.entrySet().stream()
 				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
@@ -456,12 +504,14 @@ public class SourceSectionMatcher {
 						return false;
 					}
 
-					// Register the created container descriptor in the 'sections2Descriptors' map that will be returned
+					// Register the created container descriptor in the
+					// 'sections2Descriptors' map that will be returned
 					// in the end
 					//
 					this.registerDescriptor(container.getKey(), containerDescriptor);
 
-					// Before returning the matched sections, we mark the affected elements as 'matched' in the
+					// Before returning the matched sections, we mark the
+					// affected elements as 'matched' in the
 					// containment tree and update the 'matchedSections' map
 					//
 					this.updateMatchedContainers(containerDescriptor);
@@ -472,19 +522,24 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * For a given {@link SourceSection} and an {@link EObject element}, identify, check, and collect all container
-	 * {@link SourceSections} and the corresponding {@link EObject elements} for a given combination.
+	 * For a given {@link SourceSection} and an {@link EObject element},
+	 * identify, check, and collect all container {@link SourceSections} and the
+	 * corresponding {@link EObject elements} for a given combination.
 	 *
-	 * Note: This does not collect all elements all the way up but only those SourceSectionClasses for that
-	 * 'isSection()' returns 'true'.
+	 * Note: This does not collect all elements all the way up but only those
+	 * SourceSectionClasses for that 'isSection()' returns 'true'.
 	 *
 	 * @param element
-	 *            The {@link EObject element} for that the containers shall be identified and checked.
+	 *            The {@link EObject element} for that the containers shall be
+	 *            identified and checked.
 	 * @param sourceSection
-	 *            The {@link SourceSection} for that the containers shall be identified and checked.
-	 * @return A map of identified {@link SourceSection SourceSections} and associated {@link EObject elements} or
-	 *         '<em><b>null</b></em>' if at least one identified container {@link EObject element} was not of the
-	 *         {@link EClass} specified by the associated {@link SourceSection}.
+	 *            The {@link SourceSection} for that the containers shall be
+	 *            identified and checked.
+	 * @return A map of identified {@link SourceSection SourceSections} and
+	 *         associated {@link EObject elements} or '<em><b>null</b></em>' if
+	 *         at least one identified container {@link EObject element} was not
+	 *         of the {@link EClass} specified by the associated
+	 *         {@link SourceSection}.
 	 */
 	private Map<SourceSection, EObject> collectContainers(final EObject element, final SourceSection sourceSection) {
 
@@ -503,10 +558,11 @@ public class SourceSectionMatcher {
 			currentClass = currentClass.getContainer();
 
 			/*
-			 * scan all levels of source section until we are at a top level again
+			 * scan all levels of source section until we are at a top level
+			 * again
 			 *
-			 * we do not concern ourselves with mapping of the elements at this point, all we need are the container
-			 * sections
+			 * we do not concern ourselves with mapping of the elements at this
+			 * point, all we need are the container sections
 			 */
 			while (!currentClass.getContainingSection().equals(currentClass)) {
 
@@ -529,25 +585,30 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This recursively checks if a {@link SourceSectionClass} is applicable for a certain part of the source model.
-	 * Therefore, it iterates downward in the containment hierarchy of the source section and checks if every element
-	 * can be matched to a part of the source model.
+	 * This recursively checks if a {@link SourceSectionClass} is applicable for
+	 * a certain part of the source model. Therefore, it iterates downward in
+	 * the containment hierarchy of the source section and checks if every
+	 * element can be matched to a part of the source model.
 	 *
 	 * @param srcModelObject
-	 *            The element of the source model that is currently evaluated for applicability.
+	 *            The element of the source model that is currently evaluated
+	 *            for applicability.
 	 * @param usedOkay
-	 *            Whether elements already contained in <em>newRefsAndHints</em> can be matched again. This needs to be
-	 *            set to '<em>true</em> when
-	 *            {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} is called for a
-	 *            non-containment reference.
+	 *            Whether elements already contained in <em>newRefsAndHints</em>
+	 *            can be matched again. This needs to be set to '<em>true</em>
+	 *            when
+	 *            {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}
+	 *            is called for a non-containment reference.
 	 * @param srcSection
-	 *            The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it)
-	 *            that is currently checked.
+	 *            The {@link SourceSectionClass} (either the sourceMMSection
+	 *            itself or a direct or indirect child of it) that is currently
+	 *            checked.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the parent {@link SourceSectionClass element}.
+	 *            The {@link MatchedSectionDescriptor} for the parent
+	 *            {@link SourceSectionClass element}.
 	 *
-	 * @return The {@link MatchedSectionDescriptor} representing the matched section (including all matched child
-	 *         elements).
+	 * @return The {@link MatchedSectionDescriptor} representing the matched
+	 *         section (including all matched child elements).
 	 */
 	private MatchedSectionDescriptor checkSection(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
@@ -566,7 +627,8 @@ public class SourceSectionMatcher {
 			return null;
 		}
 
-		// this is the 'MatchedSectionDescriptor' that we will return this in case we find the mapping to be applicable
+		// this is the 'MatchedSectionDescriptor' that we will return this in
+		// case we find the mapping to be applicable
 		// else we return null
 		//
 		final MatchedSectionDescriptor descriptor = new MatchedSectionDescriptor();
@@ -591,8 +653,9 @@ public class SourceSectionMatcher {
 		}
 
 		/*
-		 * check if all modeled references can be matched; this will also iterate further down the hierarchy (and
-		 * thereby call 'checkMapping', 'checkAttributes' and 'checkReferences' multiple times)
+		 * check if all modeled references can be matched; this will also
+		 * iterate further down the hierarchy (and thereby call 'checkMapping',
+		 * 'checkAttributes' and 'checkReferences' multiple times)
 		 */
 		boolean referencesOk = this.checkReferences(srcModelObject, usedOkay, srcSection, descriptor);
 
@@ -609,37 +672,46 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if all {@link SourceSectionReference references} that have been defined for a given
-	 * {@link SourceSectionClass} can be matched for the given '<em>srcModelObject</em>'. Therefore, all
-	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced {@link SourceSectionClass classes} are
-	 * checked. <br />
-	 * <b>Note:</b> For every {@link SourceSectionClass class} that is referenced by a modeled
-	 * {@link SourceSectionReference reference}, this calls
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go
-	 * through the complete hierarchy of the modeled section.
+	 * This checks if all {@link SourceSectionReference references} that have
+	 * been defined for a given {@link SourceSectionClass} can be matched for
+	 * the given '<em>srcModelObject</em>'. Therefore, all
+	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced
+	 * {@link SourceSectionClass classes} are checked. <br />
+	 * <b>Note:</b> For every {@link SourceSectionClass class} that is
+	 * referenced by a modeled {@link SourceSectionReference reference}, this
+	 * calls
+	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}
+	 * so that we iteratively go through the complete hierarchy of the modeled
+	 * section.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
 	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
-	 *            '<em>true</em> when
+	 *            Whether elements already contained in <em>descriptor<em> can
+	 *            be matched again. This needs to be set to '<em>true</em> when
 	 *            {@link #checkReferences(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)
-	 *            checkReferences()} is called for elements referenced by a non-containment reference.
+	 *            checkReferences()} is called for elements referenced by a
+	 *            non-containment reference.
 	 * @param sourceSectionClass
-	 *            The {@link SourceSectionClass} for which the references shall be checked. The
-	 *            {@link MatchedSectionDescriptor} for the {@link SourceSection} to be evaluated. Note: The same
-	 *            instance will be used for the SourceSection and all child SourceSectionClasses.
+	 *            The {@link SourceSectionClass} for which the references shall
+	 *            be checked. The {@link MatchedSectionDescriptor} for the
+	 *            {@link SourceSection} to be evaluated. Note: The same instance
+	 *            will be used for the SourceSection and all child
+	 *            SourceSectionClasses.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the {@link SourceSectionClass} to be evaluated.
+	 *            The {@link MatchedSectionDescriptor} for the
+	 *            {@link SourceSectionClass} to be evaluated.
 	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
-	 *            {@link SourceSectionClass} that they are contained in.
+	 *            A map that collects all {@link SourceSectionReference
+	 *            SourceSectionReferences} and the {@link SourceSectionClass}
+	 *            that they are contained in.
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor descriptor) {
 
-		// Collect the modeled references and reference targets (SourceSectionClasses) for the
+		// Collect the modeled references and reference targets
+		// (SourceSectionClasses) for the
 		// current 'sourceSectionClass' and store them in to maps
 		//
 		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().parallelStream()
@@ -651,7 +723,8 @@ public class SourceSectionMatcher {
 		sourceSectionClass.getReferences().parallelStream()
 				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
 
-		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
+		// now, iterate through all the modeled references (and reference
+		// targets) and check if they can be matched for
 		// the current 'srcModelObject'
 		//
 		for (final Entry<EReference, List<SourceSectionClass>> entry : classByRefMap.entrySet()) {
@@ -668,9 +741,11 @@ public class SourceSectionMatcher {
 			if (classes.isEmpty()) {
 
 				/*
-				 * if no target SourceSectionClass has been specified, this means that there must be NO target element
-				 * in the source model; if this is not the case (meaning that there is a target element for the
-				 * reference), the mapping is not applicable
+				 * if no target SourceSectionClass has been specified, this
+				 * means that there must be NO target element in the source
+				 * model; if this is not the case (meaning that there is a
+				 * target element for the reference), the mapping is not
+				 * applicable
 				 */
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
@@ -680,7 +755,8 @@ public class SourceSectionMatcher {
 				}
 			}
 
-			// get targets of the reference in the source model, then proceed depending on the cardinality of the
+			// get targets of the reference in the source model, then proceed
+			// depending on the cardinality of the
 			// reference
 			//
 			final Object refTarget = srcModelObject.eGet(reference);
@@ -710,30 +786,40 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if the given <em>refTargetObj</em> that is referenced by a {@link EReference#isMany() single-valued}
-	 * reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing element.
+	 * This checks if the given <em>refTargetObj</em> that is referenced by a
+	 * {@link EReference#isMany() single-valued} reference can be matched for
+	 * the given {@link MatchedSectionDescriptor} representing the referencing
+	 * element.
 	 * <p />
-	 * Note: This iterates further downward in the containment hierarchy by calling
+	 * Note: This iterates further downward in the containment hierarchy by
+	 * calling
 	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
 	 * @param referencedElement
 	 *            The {@link EObject element} to check.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
+	 *            The {@link MatchedSectionDescriptor} representing the
+	 *            {@link EObject} that references the given
 	 *            <em>refTargetObj</em>.
 	 * @param classes
-	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given <em>refTargetObj</em>).
+	 *            The list of {@link SourceSectionClass SourceSectionClasses}
+	 *            that have been modeled as target for the current reference to
+	 *            be checked (these are the potential matches for the given
+	 *            <em>refTargetObj</em>).
 	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
-	 *            {@link SourceSectionReference} that they are referenced by.
+	 *            A map that collects all {@link SourceSectionClass
+	 *            SourceSectionClasses} and the {@link SourceSectionReference}
+	 *            that they are referenced by.
 	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
-	 *            '<em>true</em> when this is called if <em>refTargetObj</em> is referenced by a non-containment
-	 *            reference.
+	 *            Whether elements already contained in <em>descriptor<em> can
+	 *            be matched again. This needs to be set to '<em>true</em> when
+	 *            this is called if <em>refTargetObj</em> is referenced by a
+	 *            non-containment reference.
 	 * @param sourceSectionClass
-	 *            The parent {@link SourceSectionClass} for which the references shall be checked.
-	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 *            The parent {@link SourceSectionClass} for which the references
+	 *            shall be checked.
+	 * @return '<em><b>true</b></em>' if the check succeeded;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkSingleValuedReference(final EObject referencedElement,
 			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
@@ -747,8 +833,10 @@ public class SourceSectionMatcher {
 		MatchedSectionDescriptor childDescriptor = null;
 		boolean nonZeroCardSectionFound = false;
 
-		// check non-zero classes (classes with a lower bound != ZERO) first; it doesn't make sense in this case to
-		// model ZERO_INFINITY sections, if there is one section with a minimum cardinality of 1, but it can be handled
+		// check non-zero classes (classes with a lower bound != ZERO) first; it
+		// doesn't make sense in this case to
+		// model ZERO_INFINITY sections, if there is one section with a minimum
+		// cardinality of 1, but it can be handled
 		//
 		List<SourceSectionClass> nonZeroClasses = classes.parallelStream()
 				.filter(c -> !c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
@@ -771,12 +859,13 @@ public class SourceSectionMatcher {
 			// iterate further
 			//
 			childDescriptor = this.checkSection(referencedElement,
-					refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+					refByClassMap.get(c) instanceof SourceSectionCrossReference || usedOkay, c, descriptor);
 		}
 
 		if (!nonZeroCardSectionFound) {
 
-			// if no non-zero class has been found, try to match classes with a lower bound of ZERO
+			// if no non-zero class has been found, try to match classes with a
+			// lower bound of ZERO
 			//
 			List<SourceSectionClass> zeroClasses = classes.parallelStream()
 					.filter(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
@@ -785,7 +874,7 @@ public class SourceSectionMatcher {
 				// iterate further
 				//
 				childDescriptor = this.checkSection(referencedElement,
-						refByClassMap.get(c) instanceof MetaModelSectionReference || usedOkay, c, descriptor);
+						refByClassMap.get(c) instanceof SourceSectionCrossReference || usedOkay, c, descriptor);
 
 				if (childDescriptor != null) {
 					break;
@@ -799,14 +888,16 @@ public class SourceSectionMatcher {
 			return false;
 		}
 
-		// one of the classes could be matched, so we update the given parent descriptor
+		// one of the classes could be matched, so we update the given parent
+		// descriptor
 		//
 		descriptor.add(childDescriptor);
 
-		// if the given descriptor was retrieved via a MetaModelSectionReference, we need to register this descriptor in
+		// if the given descriptor was retrieved via a
+		// MetaModelSectionReference, we need to register this descriptor in
 		// the 'sections2Descriptors' map that will be returned in the end
 		//
-		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference
+		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
 				&& childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
 
 			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
@@ -816,43 +907,52 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if the given list of <em>referencedElements</em> that are referenced by a {@link EReference#isMany()
-	 * many-valued} reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing
-	 * element.
+	 * This checks if the given list of <em>referencedElements</em> that are
+	 * referenced by a {@link EReference#isMany() many-valued} reference can be
+	 * matched for the given {@link MatchedSectionDescriptor} representing the
+	 * referencing element.
 	 * <p />
-	 * Note: This iterates further downward in the containment hierarchy by calling
+	 * Note: This iterates further downward in the containment hierarchy by
+	 * calling
 	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
 	 * @param referencedElements
 	 *            The {@link EObject elements} to check.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
+	 *            The {@link MatchedSectionDescriptor} representing the
+	 *            {@link EObject} that references the given
 	 *            <em>referencedElements</em>.
 	 * @param classes
-	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given
+	 *            The list of {@link SourceSectionClass SourceSectionClasses}
+	 *            that have been modeled as target for the current reference to
+	 *            be checked (these are the potential matches for the given
 	 *            <em>referencedElements</em>).
 	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
-	 *            {@link SourceSectionReference} that they are referenced by.
+	 *            A map that collects all {@link SourceSectionClass
+	 *            SourceSectionClasses} and the {@link SourceSectionReference}
+	 *            that they are referenced by.
 	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
-	 *            '<em>true</em> when this is called if <em>referencedElements</em> are referenced by a non-containment
-	 *            reference.
+	 *            Whether elements already contained in <em>descriptor<em> can
+	 *            be matched again. This needs to be set to '<em>true</em> when
+	 *            this is called if <em>referencedElements</em> are referenced
+	 *            by a non-containment reference.
 	 *
-	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the check succeeded;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkManyValuedReference(final List<EObject> referencedElements,
 			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
 			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, final boolean usedOkay) {
 
 		/*
-		 * this is a little more complicated: now we need to find ONE possible way to map our referenceTargets to the
-		 * source sections
+		 * this is a little more complicated: now we need to find ONE possible
+		 * way to map our referenceTargets to the source sections
 		 *
-		 * To do this we need to find out first which MMSections are applicable to which srcModel sections.
+		 * To do this we need to find out first which MMSections are applicable
+		 * to which srcModel sections.
 		 *
-		 * Then we try to find a way to map one srcModelSection to each MMSection
+		 * Then we try to find a way to map one srcModelSection to each
+		 * MMSection
 		 */
 
 		// Map to store possible srcModelSections to MMSections (non-vc)
@@ -877,7 +977,7 @@ public class SourceSectionMatcher {
 			for (final SourceSectionClass val : classes) {
 
 				final MatchedSectionDescriptor childDescriptor = this.checkSection(rt,
-						refByClassMap.get(val) instanceof MetaModelSectionReference || usedOkay, val, descriptor);
+						refByClassMap.get(val) instanceof SourceSectionCrossReference || usedOkay, val, descriptor);
 
 				// we found a match
 				//
@@ -895,7 +995,8 @@ public class SourceSectionMatcher {
 			}
 
 			if (!foundMapping) {
-				// we need to find a mapping for every srcModelElement if the reference Type was modeled in the
+				// we need to find a mapping for every srcModelElement if the
+				// reference Type was modeled in the
 				// srcMMSection
 				//
 				return false;
@@ -904,7 +1005,8 @@ public class SourceSectionMatcher {
 
 		final List<EObject> allElementsMapped = new ArrayList<>();
 
-		// Now, try to satisfy the SourceSectionClasses with a fixed cardinality (no-vc)
+		// Now, try to satisfy the SourceSectionClasses with a fixed cardinality
+		// (no-vc)
 		//
 		while (!possibleSrcModelElementsNoVC.keySet().isEmpty()) {
 
@@ -943,11 +1045,12 @@ public class SourceSectionMatcher {
 				//
 				descriptor.add(srcSectionResult);
 
-				if (refByClassMap
-						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+				if (refByClassMap.get(
+						srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference) {
 					/*
-					 * Register the created child descriptor in the 'sections2Descriptors' map that will be returned in
-					 * the end
+					 * Register the created child descriptor in the
+					 * 'sections2Descriptors' map that will be returned in the
+					 * end
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
 						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
@@ -972,7 +1075,8 @@ public class SourceSectionMatcher {
 			}
 		}
 
-		// Now, we can match the SourceSectionClasses with a variable cardinality (vc)
+		// Now, we can match the SourceSectionClasses with a variable
+		// cardinality (vc)
 		//
 
 		// for counting cardinality
@@ -1001,11 +1105,12 @@ public class SourceSectionMatcher {
 
 				// remember mapping
 				descriptor.add(srcSectionResult);
-				if (refByClassMap
-						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof MetaModelSectionReference) {
+				if (refByClassMap.get(
+						srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference) {
 					/*
-					 * Register the created child descriptor in the 'sections2Descriptors' map that will be returned in
-					 * the end
+					 * Register the created child descriptor in the
+					 * 'sections2Descriptors' map that will be returned in the
+					 * end
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
 						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
@@ -1041,18 +1146,21 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This checks if all {@link SourceSectionAttribute attributes} that have been defined for a given
-	 * {@link SourceSectionClass} can be mapped for the given '<em>srcModelObject</em>'. Therefore, all the
+	 * This checks if all {@link SourceSectionAttribute attributes} that have
+	 * been defined for a given {@link SourceSectionClass} can be mapped for the
+	 * given '<em>srcModelObject</em>'. Therefore, all the
 	 * {@link ValueConstraint AttributeValueConstraints} are checked.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
 	 * @param srcSection
-	 *            The {@link SourceSectionClass} for which the attributes shall be checked.
+	 *            The {@link SourceSectionClass} for which the attributes shall
+	 *            be checked.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the current matching process.
-	 * @return '<em></b>true</b></em>' if all attributes are present and satisfy the modeled constraints, '
-	 *         <em><b>false</b></em>' otherwise
+	 *            The {@link MatchedSectionDescriptor} for the current matching
+	 *            process.
+	 * @return '<em></b>true</b></em>' if all attributes are present and satisfy
+	 *         the modeled constraints, ' <em><b>false</b></em>' otherwise
 	 */
 	private boolean checkAttributes(final EObject srcModelObject, final SourceSectionClass srcSection,
 			final MatchedSectionDescriptor descriptor) {
@@ -1072,15 +1180,18 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link ValueConstraint AttributeValueConstraints}
-	 * modeled for the given {@link SourceSectionAttribute attribute}.
+	 * Check the given {@link Object attribute value} against the
+	 * {@link ValueConstraint AttributeValueConstraints} modeled for the given
+	 * {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
-	 *            The {@link SourceSectionAttribute} for that the constraints shall be checked.
+	 *            The {@link SourceSectionAttribute} for that the constraints
+	 *            shall be checked.
 	 * @param value
 	 *            The attribute value to be checked against the constraints.
-	 * @return '<em><b>true</b></em>' if the value satisfies all modeled constraints; '<em><b>false</b></em>' if at
-	 *         least one constraint could not be satisfied.
+	 * @return '<em><b>true</b></em>' if the value satisfies all modeled
+	 *         constraints; '<em><b>false</b></em>' if at least one constraint
+	 *         could not be satisfied.
 	 */
 	private boolean checkAttributeValueConstraints(final SourceSectionAttribute attribute, Object value) {
 
@@ -1141,34 +1252,43 @@ public class SourceSectionMatcher {
 
 		}
 
-		// If we arrive at this point, the constraint is valid unless there is an unmatched 'inclusion'
+		// If we arrive at this point, the constraint is valid unless there is
+		// an unmatched 'inclusion'
 		//
 		return !(!inclusionMatched && containsInclusions);
 	}
 
 	/**
-	 * Check the given {@link Object attribute value} against the {@link ValueConstraint AttributeValueConstraints}
-	 * modeled for the given {@link SourceSectionAttribute attribute}.
+	 * Check the given {@link Object attribute value} against the
+	 * {@link ValueConstraint AttributeValueConstraints} modeled for the given
+	 * {@link SourceSectionAttribute attribute}.
 	 *
 	 * @param attribute
-	 *            The {@link SourceSectionAttribute} for that the constraints shall be checked.
+	 *            The {@link SourceSectionAttribute} for that the constraints
+	 *            shall be checked.
 	 * @param value
 	 *            The
 	 *
 	 * @param attributeValueAsString
-	 *            A String representation of the attribute value to be checked against the given <em>constraint</em>.
+	 *            A String representation of the attribute value to be checked
+	 *            against the given <em>constraint</em>.
 	 * @param constraint
-	 *            The {@link ValueConstraint} that the given <em>attributeValueAsString</em> shall be checked against.
-	 * @return '<em><b>true</b></em>' if the value satisfies the constraint; '<em><b>false</b></em>' otherwise.
+	 *            The {@link ValueConstraint} that the given
+	 *            <em>attributeValueAsString</em> shall be checked against.
+	 * @return '<em><b>true</b></em>' if the value satisfies the constraint;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
 			final ValueConstraint constraint) {
 
 		boolean constraintVal = false;
 
-		// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
-		// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
-		// and we need to extract the right reference Value(s) for each constraint
+		// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION)
+		// into consideration
+		// Starting from now we have to differentiate between Single- and
+		// MultipleReferenceAttributeValueConstraints
+		// and we need to extract the right reference Value(s) for each
+		// constraint
 
 		if (constraint instanceof SingleReferenceValueConstraint) {
 
@@ -1208,7 +1328,8 @@ public class SourceSectionMatcher {
 			} else {
 				// If we are here, some mistake is happened
 				// more types could be supported in the future
-				// placeholder for other MultipleReferenceAttributeValueConstraints
+				// placeholder for other
+				// MultipleReferenceAttributeValueConstraints
 				this.logger.severe(
 						"ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 			}
@@ -1224,13 +1345,16 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * This can be used to check if a given '<em>sourceSectionClass</em>' and the corresponding '<em>element</em>' have
-	 * been previously matched (by another section).
+	 * This can be used to check if a given '<em>sourceSectionClass</em>' and
+	 * the corresponding '<em>element</em>' have been previously matched (by
+	 * another section).
 	 *
 	 * @param sourceSectionClass
-	 *            The {@link SourceSectionClass} that shall be checked for previous matching.
+	 *            The {@link SourceSectionClass} that shall be checked for
+	 *            previous matching.
 	 * @param element
-	 *            The {@link EObject} that shall be checked for previous matching.
+	 *            The {@link EObject} that shall be checked for previous
+	 *            matching.
 	 */
 	private boolean checkObjectWasMapped(final SourceSectionClass sourceSectionClass, final EObject element) {
 
@@ -1246,11 +1370,13 @@ public class SourceSectionMatcher {
 
 	/**
 	 * Counts how often each {@link EObject source model element} is
-	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
-	 * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
+	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement()
+	 * referenced} by each {@link MatchedSectionDescriptor} and returns one
+	 * mapping result for the Object with the lowest count.
 	 *
 	 * @param possibleElements
-	 *            The list of possible {@link MatchedSectionDescriptor MatchedSectionDescriptors} to evaluate.
+	 *            The list of possible {@link MatchedSectionDescriptor
+	 *            MatchedSectionDescriptors} to evaluate.
 	 * @return The chosen {@link MatchedSectionDescriptor}.
 	 */
 	private static MatchedSectionDescriptor getResultForLeastUsedSrcModelElement(

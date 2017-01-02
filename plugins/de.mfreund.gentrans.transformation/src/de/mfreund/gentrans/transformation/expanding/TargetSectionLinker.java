@@ -52,7 +52,7 @@ import pamtram.structure.LibraryParameter;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
 
 /**
@@ -302,11 +302,11 @@ public class TargetSectionLinker extends CancelableElement {
 			}
 		}
 
-		List<TargetSectionNonContainmentReference> nonContainmentReferences = references.parallelStream()
-				.filter(ref -> ref instanceof TargetSectionNonContainmentReference)
-				.map(ref -> (TargetSectionNonContainmentReference) ref).collect(Collectors.toList());
+		List<TargetSectionCrossReference> nonContainmentReferences = references.parallelStream()
+				.filter(ref -> ref instanceof TargetSectionCrossReference)
+				.map(ref -> (TargetSectionCrossReference) ref).collect(Collectors.toList());
 
-		for (final TargetSectionNonContainmentReference ref : nonContainmentReferences) {
+		for (final TargetSectionCrossReference ref : nonContainmentReferences) {
 
 			final LinkedList<TargetSectionClass> refValueClone = new LinkedList<>();
 			refValueClone.addAll(ref.getValue());
@@ -996,15 +996,15 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * This creates a link from the given {@link EObject source element} to the given {@link EObject target element}
-	 * via the non-containment reference specified by the given {@link TargetSectionNonContainmentReference}.
+	 * via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
 	 *
-	 * @param ref The {@link TargetSectionNonContainmentReference} that specifies the {@link EReference} to be used
+	 * @param ref The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used
 	 * to create the link.
 	 * @param target The {@link EObject} to be linked to the <em>source</em> via the given reference.
 	 * @param source The {@link EObject} being the source of the link to be created.
 	 */
 	private void addValueToReference(
-			final TargetSectionNonContainmentReference ref,
+			final TargetSectionCrossReference ref,
 			final EObject target, final EObject source) {
 
 		if (ref.getEReference().getUpperBound() == 1) {
@@ -1037,15 +1037,15 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target elements}
-	 * via the non-containment reference specified by the given {@link TargetSectionNonContainmentReference}.
+	 * via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
 	 *
-	 * @param ref The {@link TargetSectionNonContainmentReference} that specifies the {@link EReference} to be used
+	 * @param ref The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used
 	 * to create the link.
 	 * @param targets The {@link EObject EObjects} to be linked to the <em>source</em> via the given reference.
 	 * @param source The {@link EObject} being the source of the link to be created.
 	 */
 	private void addValuesToReference(
-			final TargetSectionNonContainmentReference ref,
+			final TargetSectionCrossReference ref,
 			final List<EObject> targets, final EObject source) {
 
 		if (ref.getEReference().getUpperBound() == 1) {

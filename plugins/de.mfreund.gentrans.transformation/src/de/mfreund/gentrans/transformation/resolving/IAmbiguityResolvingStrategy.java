@@ -25,8 +25,8 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionNonContainmentReference;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.mapping.ContainerSelector;
 
 /**
@@ -302,7 +302,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
-	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is either
+	 * {@link CrossReference} during the '<em>linking</em>' step of the transformation. This method is either
 	 * called if no {@link ReferenceTargetSelector} has been defined for the affected reference or if the evaluation of
 	 * the MappingInstanceSelector's {@link ReferenceTargetSelector#getMatcher() matcher} delivered multiple possible
 	 * target elements.
@@ -310,7 +310,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * @param choices
 	 *            The list of {@link EObjectWrapper elements} that can be chosen as target.
 	 * @param reference
-	 *            The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 *            The {@link TargetSectionCrossReference} whose target shall be set.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param mappingInstanceSelector
@@ -326,7 +326,7 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default List<EObjectWrapper> linkingSelectTargetInstance(
 			List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference,
+			TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup,
 			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
 					throws AmbiguityResolvingException {
@@ -340,7 +340,7 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
-	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is only
+	 * {@link CrossReference} during the '<em>linking</em>' step of the transformation. This method is only
 	 * called if no {@link ReferenceTargetSelector} has been defined and there are multiple possible
 	 * {@link TargetSection TargetSections} and associated {@link EObjectWrapper instances}.
 	 *
@@ -348,7 +348,7 @@ public interface IAmbiguityResolvingStrategy {
 	 *            A {@link HashMap} that contains the @ {@link TargetSectionClass TargetSections} and associated lists
 	 *            of {@link EObjectWrapper elements} that can be chosen as target.
 	 * @param reference
-	 *            The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 *            The {@link TargetSectionCrossReference} whose target shall be set.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
@@ -358,7 +358,7 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
 			Map<TargetSectionClass, List<EObjectWrapper>> choices,
-			TargetSectionNonContainmentReference reference,
+			TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();

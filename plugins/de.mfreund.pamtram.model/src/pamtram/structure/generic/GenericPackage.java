@@ -741,11 +741,11 @@ public interface GenericPackage extends EPackage {
 	int CONTAINMENT_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.CrossReferenceImpl <em>Non Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.CrossReferenceImpl <em>Cross Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.generic.impl.CrossReferenceImpl
-	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getNonContainmentReference()
+	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCrossReference()
 	 * @generated
 	 */
 	int CROSS_REFERENCE = 5;
@@ -766,7 +766,7 @@ public interface GenericPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CROSS__EREFERENCE = REFERENCE__EREFERENCE;
+	int CROSS_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -787,7 +787,7 @@ public interface GenericPackage extends EPackage {
 	int CROSS_REFERENCE__VALUE = REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Non Containment Reference</em>' class.
+	 * The number of structural features of the '<em>Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -850,16 +850,16 @@ public interface GenericPackage extends EPackage {
 	int CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
-	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
+	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
+	int CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Non Containment Reference</em>' class.
+	 * The number of operations of the '<em>Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1437,14 +1437,14 @@ public interface GenericPackage extends EPackage {
 	EOperation getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.CrossReference <em>Non Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.CrossReference <em>Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Non Containment Reference</em>'.
+	 * @return the meta object for class '<em>Cross Reference</em>'.
 	 * @see pamtram.structure.generic.CrossReference
 	 * @generated
 	 */
-	EClass getNonContainmentReference();
+	EClass getCrossReference();
 
 	/**
 	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.CrossReference#getValue <em>Value</em>}'.
@@ -1452,20 +1452,20 @@ public interface GenericPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Value</em>'.
 	 * @see pamtram.structure.generic.CrossReference#getValue()
-	 * @see #getNonContainmentReference()
+	 * @see #getCrossReference()
 	 * @generated
 	 */
-	EReference getNonContainmentReference_Value();
+	EReference getCrossReference_Value();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.CrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.CrossReference#validateValuesMatchReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Values Match Reference Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate EReference Is Non Containment</em>' operation.
-	 * @see pamtram.structure.generic.CrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Values Match Reference Type</em>' operation.
+	 * @see pamtram.structure.generic.CrossReference#validateValuesMatchReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
+	EOperation getCrossReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.Attribute <em>Attribute</em>}'.
@@ -1821,14 +1821,14 @@ public interface GenericPackage extends EPackage {
 		EOperation CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.CrossReferenceImpl <em>Non Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.CrossReferenceImpl <em>Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.generic.impl.CrossReferenceImpl
-		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getNonContainmentReference()
+		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCrossReference()
 		 * @generated
 		 */
-		EClass NON_CONTAINMENT_REFERENCE = eINSTANCE.getNonContainmentReference();
+		EClass CROSS_REFERENCE = eINSTANCE.getCrossReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' reference list feature.
@@ -1836,15 +1836,15 @@ public interface GenericPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NON_CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getNonContainmentReference_Value();
+		EReference CROSS_REFERENCE__VALUE = eINSTANCE.getCrossReference_Value();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate EReference Is Non Containment</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Values Match Reference Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
+		EOperation CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCrossReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.AttributeImpl <em>Attribute</em>}' class.

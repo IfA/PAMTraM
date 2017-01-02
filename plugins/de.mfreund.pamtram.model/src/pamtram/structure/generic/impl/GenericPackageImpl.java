@@ -93,7 +93,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass nonContainmentReferenceEClass = null;
+	private EClass crossReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -494,8 +494,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNonContainmentReference() {
-		return nonContainmentReferenceEClass;
+	public EClass getCrossReference() {
+		return crossReferenceEClass;
 	}
 
 	/**
@@ -503,8 +503,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNonContainmentReference_Value() {
-		return (EReference)nonContainmentReferenceEClass.getEStructuralFeatures().get(0);
+	public EReference getCrossReference_Value() {
+		return (EReference)crossReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -512,8 +512,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map() {
-		return nonContainmentReferenceEClass.getEOperations().get(0);
+	public EOperation getCrossReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map() {
+		return crossReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -643,9 +643,9 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(containmentReferenceEClass, CONTAINMENT_REFERENCE__VALUE);
 		createEOperation(containmentReferenceEClass, CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
-		nonContainmentReferenceEClass = createEClass(CROSS_REFERENCE);
-		createEReference(nonContainmentReferenceEClass, CROSS_REFERENCE__VALUE);
-		createEOperation(nonContainmentReferenceEClass, CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		crossReferenceEClass = createEClass(CROSS_REFERENCE);
+		createEReference(crossReferenceEClass, CROSS_REFERENCE__VALUE);
+		createEOperation(crossReferenceEClass, CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__OWNING_CLASS);
@@ -707,10 +707,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		ETypeParameter containmentReferenceEClass_C = addETypeParameter(containmentReferenceEClass, "C");
 		ETypeParameter containmentReferenceEClass_R = addETypeParameter(containmentReferenceEClass, "R");
 		ETypeParameter containmentReferenceEClass_A = addETypeParameter(containmentReferenceEClass, "A");
-		ETypeParameter nonContainmentReferenceEClass_S = addETypeParameter(nonContainmentReferenceEClass, "S");
-		ETypeParameter nonContainmentReferenceEClass_C = addETypeParameter(nonContainmentReferenceEClass, "C");
-		ETypeParameter nonContainmentReferenceEClass_R = addETypeParameter(nonContainmentReferenceEClass, "R");
-		ETypeParameter nonContainmentReferenceEClass_A = addETypeParameter(nonContainmentReferenceEClass, "A");
+		ETypeParameter crossReferenceEClass_S = addETypeParameter(crossReferenceEClass, "S");
+		ETypeParameter crossReferenceEClass_C = addETypeParameter(crossReferenceEClass, "C");
+		ETypeParameter crossReferenceEClass_R = addETypeParameter(crossReferenceEClass, "R");
+		ETypeParameter crossReferenceEClass_A = addETypeParameter(crossReferenceEClass, "A");
 		ETypeParameter attributeEClass_S = addETypeParameter(attributeEClass, "S");
 		ETypeParameter attributeEClass_C = addETypeParameter(attributeEClass, "C");
 		ETypeParameter attributeEClass_R = addETypeParameter(attributeEClass, "R");
@@ -926,45 +926,45 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		containmentReferenceEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(this.getSection());
-		g2 = createEGenericType(nonContainmentReferenceEClass_S);
+		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_C);
+		g2 = createEGenericType(crossReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_R);
+		g2 = createEGenericType(crossReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_A);
+		g2 = createEGenericType(crossReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		nonContainmentReferenceEClass_S.getEBounds().add(g1);
+		crossReferenceEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(this.getClass_());
-		g2 = createEGenericType(nonContainmentReferenceEClass_S);
+		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_C);
+		g2 = createEGenericType(crossReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_R);
+		g2 = createEGenericType(crossReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_A);
+		g2 = createEGenericType(crossReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		nonContainmentReferenceEClass_C.getEBounds().add(g1);
+		crossReferenceEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(this.getReference());
-		g2 = createEGenericType(nonContainmentReferenceEClass_S);
+		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_C);
+		g2 = createEGenericType(crossReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_R);
+		g2 = createEGenericType(crossReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_A);
+		g2 = createEGenericType(crossReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		nonContainmentReferenceEClass_R.getEBounds().add(g1);
+		crossReferenceEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(this.getAttribute());
-		g2 = createEGenericType(nonContainmentReferenceEClass_S);
+		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_C);
+		g2 = createEGenericType(crossReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_R);
+		g2 = createEGenericType(crossReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_A);
+		g2 = createEGenericType(crossReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		nonContainmentReferenceEClass_A.getEBounds().add(g1);
+		crossReferenceEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(this.getSection());
 		g2 = createEGenericType(attributeEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -1129,15 +1129,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		containmentReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getReference());
-		g2 = createEGenericType(nonContainmentReferenceEClass_S);
+		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_C);
+		g2 = createEGenericType(crossReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_R);
+		g2 = createEGenericType(crossReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(nonContainmentReferenceEClass_A);
+		g2 = createEGenericType(crossReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		nonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		crossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getMetaModelElement());
 		g2 = createEGenericType(attributeEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -1311,11 +1311,11 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(nonContainmentReferenceEClass, CrossReference.class, "NonContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(nonContainmentReferenceEClass_C);
-		initEReference(getNonContainmentReference_Value(), g1, null, "value", null, 0, -1, CrossReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(crossReferenceEClass, CrossReference.class, "CrossReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(crossReferenceEClass_C);
+		initEReference(getCrossReference_Value(), g1, null, "value", null, 0, -1, CrossReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getCrossReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateValuesMatchReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1386,7 +1386,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 			 "constraints", "eReferenceIsContainment"
 		   });	
 		addAnnotation
-		  (nonContainmentReferenceEClass, 
+		  (crossReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "eReferenceIsNonContainment"

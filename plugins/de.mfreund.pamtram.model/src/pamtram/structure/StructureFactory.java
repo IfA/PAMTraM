@@ -121,10 +121,10 @@ public interface StructureFactory extends EFactory {
 	TargetSectionContainmentReference createTargetSectionContainmentReference();
 
 	/**
-	 * Returns a new object of class '<em>Target Section Non Containment Reference</em>'.
+	 * Returns a new object of class '<em>Target Section Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section Non Containment Reference</em>'.
+	 * @return a new object of class '<em>Target Section Cross Reference</em>'.
 	 * @generated
 	 */
 	TargetSectionCrossReference createTargetSectionCrossReference();
@@ -139,13 +139,13 @@ public interface StructureFactory extends EFactory {
 	SourceSectionContainmentReference createSourceSectionContainmentReference();
 
 	/**
-	 * Returns a new object of class '<em>Meta Model Section Reference</em>'.
+	 * Returns a new object of class '<em>Source Section Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Meta Model Section Reference</em>'.
+	 * @return a new object of class '<em>Source Section Cross Reference</em>'.
 	 * @generated
 	 */
-	SectionCrossReference createSourceSectionCrossReference();
+	SourceSectionCrossReference createSourceSectionCrossReference();
 
 	/**
 	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.

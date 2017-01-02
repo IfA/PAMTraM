@@ -98,8 +98,8 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(CrossReference<S, C, R, A> object) {
-				return createNonContainmentReferenceAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
+				return createCrossReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseAttribute(Attribute<S, C, R, A> object) {
@@ -208,7 +208,7 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CrossReference <em>Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CrossReference <em>Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -217,7 +217,7 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.generic.CrossReference
 	 * @generated
 	 */
-	public Adapter createNonContainmentReferenceAdapter() {
+	public Adapter createCrossReferenceAdapter() {
 		return null;
 	}
 

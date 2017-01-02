@@ -28,7 +28,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 
 /**
  * This class implements a concrete {@link AbstractAmbiguityResolvingStrategy} that performs statistical evaluations of
@@ -359,7 +359,7 @@ implements IAmbiguityResolvedAdapter {
 
 	@Override
 	public Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
-			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		// We use the concatenated names of all classes in the list of choices as key

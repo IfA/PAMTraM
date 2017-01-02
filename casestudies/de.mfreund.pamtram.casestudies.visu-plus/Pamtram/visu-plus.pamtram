@@ -43,7 +43,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:MetaModelSectionReference" name="state" value="//@sourceSectionModel.0/@metaModelSections.1">
+          <references xsi:type="structure:SourceSectionCrossReference" name="state" value="//@sourceSectionModel.0/@metaModelSections.1">
             <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
           </references>
           <references xsi:type="structure:SourceSectionContainmentReference" name="loginState">
@@ -107,7 +107,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="State" cardinality="ZERO__INFINITY">
       <eClass href="http://gfai.de/stgml.xsd#//State"/>
-      <references xsi:type="structure:MetaModelSectionReference" name="transition" value="//@sourceSectionModel.0/@metaModelSections.2 //@sourceSectionModel.0/@metaModelSections.3">
+      <references xsi:type="structure:SourceSectionCrossReference" name="transition" value="//@sourceSectionModel.0/@metaModelSections.2 //@sourceSectionModel.0/@metaModelSections.3">
         <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
@@ -392,7 +392,7 @@
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="extdataType">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.2/@metaModelSections.2">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.2/@metaModelSections.2">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -1155,7 +1155,7 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.2/@metaModelSections.5 //@sourceSectionModel.2/@metaModelSections.4 //@sourceSectionModel.2/@metaModelSections.3 //@sourceSectionModel.2/@metaModelSections.6">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.2/@metaModelSections.5 //@sourceSectionModel.2/@metaModelSections.4 //@sourceSectionModel.2/@metaModelSections.3 //@sourceSectionModel.2/@metaModelSections.6">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">

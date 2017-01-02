@@ -591,7 +591,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
                 <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="val" value="0.0">
@@ -627,7 +627,7 @@
                       </attributes>
                     </value>
                   </references>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="theme" value="//@targetSectionModel.0/@metaModelSections.0/@references.3/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="theme" value="//@targetSectionModel.0/@metaModelSections.0/@references.3/@value.0">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/theme"/>
                   </references>
                 </value>
@@ -664,7 +664,7 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
         <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="val" value="">
@@ -682,7 +682,7 @@
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
         <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="language" value="//@targetSectionModel.0/@metaModelSections.0/@references.4/@value.0">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry/language"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="val">
@@ -709,7 +709,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
+          <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/ref"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="compareType">
@@ -717,10 +717,10 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="CheckConditionTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="CheckConditionTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/CheckConditionTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/ConditionMetSignal"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name" value="">
@@ -742,7 +742,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="theme" value="//@targetSectionModel.0/@metaModelSections.0/@references.3/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="theme" value="//@targetSectionModel.0/@metaModelSections.0/@references.3/@value.0">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/theme"/>
           </references>
         </value>
@@ -781,7 +781,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
+          <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.1">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/ref"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="compareType">
@@ -789,10 +789,10 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="CheckConditionTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="CheckConditionTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/CheckConditionTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="ConditionMetSignal" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionGroup/ConditionMetSignal"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name" value="">
@@ -840,7 +840,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="GaugeBackgroundColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="GaugeBackgroundColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -901,7 +901,7 @@
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                      <references xsi:type="structure:TargetSectionNonContainmentReference" name="GaugeDynamicBackgroundColorRef" value="//@targetSectionModel.0/@metaModelSections.0/@references.6/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0">
+                      <references xsi:type="structure:TargetSectionCrossReference" name="GaugeDynamicBackgroundColorRef" value="//@targetSectionModel.0/@metaModelSections.0/@references.6/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0">
                         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                       </references>
                     </value>
@@ -925,7 +925,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup/animationGroup"/>
                 <value xsi:type="structure:TargetSectionClass" name="StylePropertyAnimation">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
                   </references>
                   <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
@@ -945,7 +945,7 @@
                   </references>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+              <references xsi:type="structure:TargetSectionCrossReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="GaugeAnimationRecordName">
@@ -982,7 +982,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="defaultVal">
@@ -1012,7 +1012,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.3">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.3">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="defaultVal">
@@ -1033,10 +1033,10 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord/animation"/>
             <value xsi:type="structure:TargetSectionClass" name="StylePropertyAnimation">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+              <references xsi:type="structure:TargetSectionCrossReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.3/@references.0/@value.0/@references.0/@value.0">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
               </references>
             </value>
@@ -1077,7 +1077,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="BorderColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="BorderColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -1132,7 +1132,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="SoundComponentReferencingValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundReferencingValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="GenericSoundItemRef">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="GenericSoundItemRef">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -1184,7 +1184,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="VibrationComponentReferencingValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="VibrationRef">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="VibrationRef">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -1236,7 +1236,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.2">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="defaultVal" value="!">
@@ -1251,7 +1251,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="LampColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="LampColorRef" value="//@targetSectionModel.0/@metaModelSections.5">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -1264,7 +1264,7 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="ColorTextRef" value="//@targetSectionModel.0/@metaModelSections.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="ColorTextRef" value="//@targetSectionModel.0/@metaModelSections.5">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
@@ -1372,7 +1372,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SoundFileItem" container="//@targetSectionModel.2/@metaModelSections.2">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundFileItem"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.2/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.2/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SoundFileItemName">
@@ -1411,7 +1411,7 @@
     <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="SingleGaugeAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.0/@references.2/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="SingleGaugeAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="SingleGaugeAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="animationGroup">
@@ -1426,14 +1426,14 @@
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="ColorResultRef" value="//@targetSectionModel.0/@metaModelSections.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="ColorResultRef" value="//@targetSectionModel.0/@metaModelSections.5">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
                   </references>
                 </value>
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2">
+          <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
           </references>
         </value>
@@ -1459,7 +1459,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SingleBorderAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.4/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="BorderAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="BorderAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="BorderAnimationName">
@@ -1468,7 +1468,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SingleSoundAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.5/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SingleSoundAnimationName">
@@ -1477,7 +1477,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SingleVibrationAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.6/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="StartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SingleVibrationAnimationName" value="">
@@ -1486,10 +1486,10 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="InfiniteBorderAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.4/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="InfiniteBorderAnimationStartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="InfiniteBorderAnimationStartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="InfiniteBorderStopTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="InfiniteBorderStopTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StopTrigger"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
@@ -1525,7 +1525,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SingleLampAnimationGroup" container="//@targetSectionModel.1/@metaModelSections.7/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="SingleLampAnimationGroupStartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="SingleLampAnimationGroupStartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
@@ -1549,7 +1549,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SoundStylePropertyAnimation" container="//@targetSectionModel.4/@metaModelSections.4">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="SoundPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="SoundPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
@@ -1560,7 +1560,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="SoundReferencingValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundReferencingValue"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="ResultSoundRef" value="//@targetSectionModel.2/@metaModelSections.2">
+              <references xsi:type="structure:TargetSectionCrossReference" name="ResultSoundRef" value="//@targetSectionModel.2/@metaModelSections.2">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
               </references>
             </value>
@@ -1570,7 +1570,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="VibrationStylePropertyAnimation" container="//@targetSectionModel.4/@metaModelSections.3">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="VibrationPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="VibrationPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
@@ -1581,7 +1581,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="VibrationReferencingValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="ResultVibrationRef" value="//@targetSectionModel.3/@metaModelSections.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="ResultVibrationRef" value="//@targetSectionModel.3/@metaModelSections.0">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
               </references>
             </value>
@@ -1591,7 +1591,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="BorderColorStylePropertyAnimation" container="//@targetSectionModel.4/@metaModelSections.1">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="BorderColorPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="BorderColorPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
       <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
@@ -1602,7 +1602,7 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="ref" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
               </references>
             </value>
@@ -1624,7 +1624,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="SoundActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="SoundActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SoundActiveAnimationName">
@@ -1642,7 +1642,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="VibrationActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="VibrationActivePropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/PropertyToAnimate"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="VibrationActiveAnimationName">
@@ -1681,7 +1681,7 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="BorderVisibilityAnimationName">
@@ -1698,14 +1698,14 @@
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LampColorResultRef" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LampColorResultRef" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/ReferencingVariable/ref"/>
               </references>
             </value>
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.7/@references.0/@value.0/@references.0/@value.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="LampColorAnimationName">

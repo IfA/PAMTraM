@@ -298,7 +298,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.1/@references.1/@value.0/@references.1/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.1/@references.1/@value.0/@references.1/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
             </value>
@@ -338,7 +338,7 @@
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
             </value>

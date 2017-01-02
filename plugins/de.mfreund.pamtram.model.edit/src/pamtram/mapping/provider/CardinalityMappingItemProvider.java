@@ -28,10 +28,9 @@ import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.CardinalityMapping} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CardinalityMappingItemProvider extends MappingHintItemProvider {
@@ -54,13 +53,13 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addSourcePropertyDescriptor(object);
-			this.addTargetPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -70,12 +69,19 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_CardinalityMapping_source_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature",
-						"_UI_CardinalityMapping_type"),
-				MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CardinalityMapping_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
+				 MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -151,12 +157,19 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_CardinalityMapping_target_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature",
-						"_UI_CardinalityMapping_type"),
-				MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CardinalityMapping_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
+				 MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -211,25 +224,25 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns CardinalityMapping.gif. <!-- begin-user-doc --> <!--
+	 * This returns CardinalityMapping.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/CardinalityMapping"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CardinalityMapping"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -259,16 +272,15 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

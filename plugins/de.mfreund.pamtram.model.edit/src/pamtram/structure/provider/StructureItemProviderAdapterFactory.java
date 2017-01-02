@@ -323,26 +323,26 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionNonContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionCrossReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionNonContainmentReferenceItemProvider targetSectionNonContainmentReferenceItemProvider;
+	protected TargetSectionCrossReferenceItemProvider targetSectionCrossReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSectionNonContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.structure.TargetSectionCrossReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTargetSectionNonContainmentReferenceAdapter() {
-		if (targetSectionNonContainmentReferenceItemProvider == null) {
-			targetSectionNonContainmentReferenceItemProvider = new TargetSectionNonContainmentReferenceItemProvider(this);
+	public Adapter createTargetSectionCrossReferenceAdapter() {
+		if (targetSectionCrossReferenceItemProvider == null) {
+			targetSectionCrossReferenceItemProvider = new TargetSectionCrossReferenceItemProvider(this);
 		}
 
-		return targetSectionNonContainmentReferenceItemProvider;
+		return targetSectionCrossReferenceItemProvider;
 	}
 
 	/**
@@ -369,26 +369,26 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.MetaModelSectionReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.SourceSectionCrossReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetaModelSectionReferenceItemProvider metaModelSectionReferenceItemProvider;
+	protected SourceSectionCrossReferenceItemProvider sourceSectionCrossReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.MetaModelSectionReference}.
+	 * This creates an adapter for a {@link pamtram.structure.SourceSectionCrossReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMetaModelSectionReferenceAdapter() {
-		if (metaModelSectionReferenceItemProvider == null) {
-			metaModelSectionReferenceItemProvider = new MetaModelSectionReferenceItemProvider(this);
+	public Adapter createSourceSectionCrossReferenceAdapter() {
+		if (sourceSectionCrossReferenceItemProvider == null) {
+			sourceSectionCrossReferenceItemProvider = new SourceSectionCrossReferenceItemProvider(this);
 		}
 
-		return metaModelSectionReferenceItemProvider;
+		return sourceSectionCrossReferenceItemProvider;
 	}
 
 	/**

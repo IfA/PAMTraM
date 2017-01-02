@@ -18,14 +18,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a
+ * {@link Reference} into a {@link Class}.
  *
  * @author mfreund
  * @param <S>
@@ -46,10 +47,12 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 	 * @param right
 	 *            The right element for the merge.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
-	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
-	 *            the resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted
+	 *            when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
+	 *            redirecting cross-references} after merging elements or
+	 *            <em>null</em> when the elements shall be determined from the
+	 *            resource set associated with the given <em>domain</em>.
 	 */
 	public MergeReferenceIntoClassCommand(EditingDomain domain, C left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
@@ -80,7 +83,8 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 			return true;
 		}
 
-		// For a single-valued reference, we cannot simply add the values (unless the 'size == 1'-constraint is
+		// For a single-valued reference, we cannot simply add the values
+		// (unless the 'size == 1'-constraint is
 		// already
 		// violated). Consequently, we try to merge the values...
 		//
@@ -107,9 +111,9 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 					values));
 			this.append(new AddCommand(this.domain, leftReference.get(),
 					GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
-		} else if (leftReference.get() instanceof NonContainmentReference<?, ?, ?, ?>) {
-			this.append(new AddCommand(this.domain, leftReference.get(),
-					GenericPackage.Literals.NON_CONTAINMENT_REFERENCE__VALUE, this.right.getValuesGeneric()));
+		} else if (leftReference.get() instanceof CrossReference<?, ?, ?, ?>) {
+			this.append(new AddCommand(this.domain, leftReference.get(), GenericPackage.Literals.CROSS_REFERENCE__VALUE,
+					this.right.getValuesGeneric()));
 
 		} else {
 			return false;

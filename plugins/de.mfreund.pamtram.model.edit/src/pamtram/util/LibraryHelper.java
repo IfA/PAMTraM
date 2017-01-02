@@ -37,7 +37,7 @@ import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
@@ -93,7 +93,7 @@ public class LibraryHelper {
 		 * This map keeps track of the non-containment references for that target values have to be found after
 		 * iterating through the containment tree.
 		 */
-		private HashMap<TargetSectionNonContainmentReference, EObject> nonContainmentTargetMap = new HashMap<>();
+		private HashMap<TargetSectionCrossReference, EObject> nonContainmentTargetMap = new HashMap<>();
 
 		/**
 		 * This function is recursively called to iterate through the LibraryEntry and generate the corresponding
@@ -163,8 +163,8 @@ public class LibraryHelper {
 					continue;
 				}
 
-				TargetSectionNonContainmentReference tReference = StructureFactory.eINSTANCE
-						.createTargetSectionNonContainmentReference();
+				TargetSectionCrossReference tReference = StructureFactory.eINSTANCE
+						.createTargetSectionCrossReference();
 				tReference.setEReference(ref);
 				tReference.setName(ref.getName());
 				tClass.getReferences().add(tReference);
@@ -188,7 +188,7 @@ public class LibraryHelper {
 		 */
 		private void findNonContainmentReferenceTargets() {
 
-			for (TargetSectionNonContainmentReference ref : this.nonContainmentTargetMap.keySet()) {
+			for (TargetSectionCrossReference ref : this.nonContainmentTargetMap.keySet()) {
 				EObject target = this.libEntries2metaModelElementsMap.get(this.nonContainmentTargetMap.get(ref));
 				if (target != null && target instanceof TargetSectionClass) {
 					ref.getValue().add((TargetSectionClass) target);
@@ -492,8 +492,8 @@ public class LibraryHelper {
 					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
 
-					TargetSectionNonContainmentReference ref = StructureFactory.eINSTANCE
-							.createTargetSectionNonContainmentReference();
+					TargetSectionCrossReference ref = StructureFactory.eINSTANCE
+							.createTargetSectionCrossReference();
 					ref.setEReference((EReference) setting.getEStructuralFeature());
 					ref.setName(setting.getEStructuralFeature().getName());
 

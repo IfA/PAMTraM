@@ -344,13 +344,13 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 				StructureFactory.eINSTANCE.createTargetSectionContainmentReference()));
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				StructureFactory.eINSTANCE.createTargetSectionNonContainmentReference()));
+				StructureFactory.eINSTANCE.createTargetSectionCrossReference()));
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
 				StructureFactory.eINSTANCE.createSourceSectionContainmentReference()));
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				StructureFactory.eINSTANCE.createMetaModelSectionReference()));
+				StructureFactory.eINSTANCE.createSourceSectionCrossReference()));
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
 				StructureFactory.eINSTANCE.createVirtualTargetSectionAttribute()));

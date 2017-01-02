@@ -29,7 +29,7 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 
 /**
  * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
@@ -303,7 +303,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
 			ReferenceTargetSelector referenceTargetSelector, EObjectWrapper sourceElement)
 			throws AmbiguityResolvingException {
 
@@ -343,7 +343,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
-			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		final PathAndInstanceSelectorRunner<TargetSectionClass> dialog = new PathAndInstanceSelectorRunner<TargetSectionClass>(

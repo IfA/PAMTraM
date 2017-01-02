@@ -17,7 +17,7 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.ResourceParameter;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
@@ -26,16 +26,15 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Meta Model Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meta
+ * Model Element</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
+public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends NamedElementImpl implements MetaModelElement<S, C, R, A> {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MetaModelElementImpl() {
@@ -43,8 +42,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -53,13 +51,12 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * This method returns the Section containing this MetaModelElement (or
-	 * the element itself if this already is the Section).
-	 * Thereby, a section is characterized by the following two conditions:
-	 * 1. The Section is an element of type 'pamtram.structure.Class'
-	 * 2. The parent element of the Section is of type 'SectionModel' or of type 'ContainerParameter'
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This method returns the Section containing this
+	 * MetaModelElement (or the element itself if this already is the Section).
+	 * Thereby, a section is characterized by the following two conditions: 1.
+	 * The Section is an element of type 'pamtram.structure.Class' 2. The parent
+	 * element of the Section is of type 'SectionModel' or of type
+	 * 'ContainerParameter' <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -76,7 +73,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 			// we have found the section
 			return (S) element;
 		} else if((element instanceof TargetSectionAttribute && (element.eContainer() instanceof AttributeParameter || element.eContainer() instanceof ResourceParameter)) || 
-				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
+				(element instanceof TargetSectionCrossReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic
@@ -101,8 +98,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,10 +117,9 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * Returns <em>true</em> if the meta-model element is part of a {@link LibraryEntry}, <em>false</em> if
-	 * it is part of a normal section.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Returns <em>true</em> if the meta-model element
+	 * is part of a {@link LibraryEntry}, <em>false</em> if it is part of a
+	 * normal section. <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -133,8 +128,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,4 +144,4 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //MetaModelElementImpl
+} // MetaModelElementImpl

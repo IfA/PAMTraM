@@ -14,7 +14,7 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -117,12 +117,12 @@ public class GenericSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GenericPackage.NON_CONTAINMENT_REFERENCE: {
-				NonContainmentReference<?, ?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?, ?>)theEObject;
-				T result = caseNonContainmentReference(nonContainmentReference);
-				if (result == null) result = caseReference(nonContainmentReference);
-				if (result == null) result = caseMetaModelElement(nonContainmentReference);
-				if (result == null) result = caseNamedElement(nonContainmentReference);
+			case GenericPackage.CROSS_REFERENCE: {
+				CrossReference<?, ?, ?, ?> crossReference = (CrossReference<?, ?, ?, ?>)theEObject;
+				T result = caseCrossReference(crossReference);
+				if (result == null) result = caseReference(crossReference);
+				if (result == null) result = caseMetaModelElement(crossReference);
+				if (result == null) result = caseNamedElement(crossReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -232,17 +232,17 @@ public class GenericSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Non Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Non Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Cross Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseCrossReference(CrossReference<S, C, R, A> object) {
 		return null;
 	}
 

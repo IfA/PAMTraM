@@ -3,79 +3,35 @@
 package pamtram.structure.util;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.BeginningMatcher;
-import pamtram.structure.CaseSensitiveConstraint;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.EndingMatcher;
-import pamtram.structure.EqualityMatcher;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.FileAttribute;
-import pamtram.structure.FileTypeEnum;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.RangeBound;
-import pamtram.structure.RangeConstraint;
-import pamtram.structure.RegExMatcher;
-import pamtram.structure.ResourceParameter;
-import pamtram.structure.SingleReferenceValueConstraint;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
-import pamtram.structure.SourceSectionReference;
-import pamtram.structure.SubstringMatcher;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
-import pamtram.structure.TargetSectionReference;
-import pamtram.structure.ValueConstraint;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceElement;
-import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.ValueConstraintType;
-import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.*;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc -->
- * The <b>Validator</b> for the model.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
+ * -->
+ * 
  * @see pamtram.structure.StructurePackage
  * @generated
  */
 public class StructureValidator extends EObjectValidator {
 	/**
 	 * The cached model package
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final StructureValidator INSTANCE = new StructureValidator();
 
 	/**
 	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
@@ -83,57 +39,57 @@ public class StructureValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.structure";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Is Referenced By Mapping' of 'Source Section'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for
+	 * constraint 'Validate Is Referenced By Mapping' of 'Source Section'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final int SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING = 1;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Is Referenced By Mapping Hint Group' of 'Target Section'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final int TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Values Match Reference Type' of 'Meta Model Section Reference'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Non Containment' of 'Target Section Cross Reference'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int META_MODEL_SECTION_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE = 3;
+	public static final int TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Modified Attribute Element Types In Condition Model Conditions' of 'Instance Pointer'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public static final int INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Range Bound'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values Or Global Attributes In Condition Model' of 'Range Bound'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 6;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Single Reference Value Constraint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for
+	 * constraint 'Validate Only Fixed Values In Source Sections' of 'Single
+	 * Reference Value Constraint'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 7;
@@ -147,49 +103,51 @@ public class StructureValidator extends EObjectValidator {
 	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 8;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Result Modifier In Source Sections' of 'Single Reference Value Constraint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for
+	 * constraint 'Validate No Result Modifier In Source Sections' of 'Single
+	 * Reference Value Constraint'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
 	 * The cached base package validator.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected GenericValidator genericValidator;
 
 	/**
 	 * The cached base package validator.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected MappingValidator mappingValidator;
 
 	/**
 	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public StructureValidator() {
@@ -211,12 +169,12 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		switch (classifierID) {
 			case StructurePackage.SOURCE_SECTION:
 				return validateSourceSection((SourceSection)value, diagnostics, context);
@@ -246,12 +204,12 @@ public class StructureValidator extends EObjectValidator {
 				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
 			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
 				return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
-			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE:
-				return validateTargetSectionNonContainmentReference((TargetSectionNonContainmentReference)value, diagnostics, context);
+			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE:
+				return validateTargetSectionCrossReference((TargetSectionCrossReference)value, diagnostics, context);
 			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
 				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
-			case StructurePackage.META_MODEL_SECTION_REFERENCE:
-				return validateMetaModelSectionReference((MetaModelSectionReference)value, diagnostics, context);
+			case StructurePackage.SOURCE_SECTION_CROSS_REFERENCE:
+				return validateSourceSectionCrossReference((SourceSectionCrossReference)value, diagnostics, context);
 			case StructurePackage.SOURCE_SECTION_ATTRIBUTE:
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
@@ -308,11 +266,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSection(SourceSection sourceSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSection(SourceSection sourceSection, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSection, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSection, diagnostics, context);
@@ -339,11 +297,11 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the isReferencedByMapping constraint of '<em>Source Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSection_isReferencedByMapping(SourceSection sourceSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSection_isReferencedByMapping(SourceSection sourceSection, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -367,20 +325,20 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the validateIsReferencedByMapping constraint of '<em>Source Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSection_validateIsReferencedByMapping(SourceSection sourceSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSection_validateIsReferencedByMapping(SourceSection sourceSection,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return sourceSection.validateIsReferencedByMapping(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSection(TargetSection targetSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSection(TargetSection targetSection, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(targetSection, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSection, diagnostics, context);
@@ -407,11 +365,11 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the isReferencedByMappingHintGroup constraint of '<em>Target Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSection_isReferencedByMappingHintGroup(TargetSection targetSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSection_isReferencedByMappingHintGroup(TargetSection targetSection,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -435,29 +393,29 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the validateIsReferencedByMappingHintGroup constraint of '<em>Target Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSection_validateIsReferencedByMappingHintGroup(TargetSection targetSection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSection_validateIsReferencedByMappingHintGroup(TargetSection targetSection,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return targetSection.validateIsReferencedByMappingHintGroup(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFileAttribute(FileAttribute fileAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateFileAttribute(FileAttribute fileAttribute, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(fileAttribute, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionClass(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionClass(SourceSectionClass sourceSectionClass, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSectionClass, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionClass, diagnostics, context);
@@ -477,11 +435,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionClass(TargetSectionClass targetSectionClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSectionClass(TargetSectionClass targetSectionClass, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(targetSectionClass, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionClass, diagnostics, context);
@@ -501,65 +459,65 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLibraryParameter(LibraryParameter<?> libraryParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLibraryParameter(LibraryParameter<?> libraryParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(libraryParameter, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeParameter(AttributeParameter attributeParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateAttributeParameter(AttributeParameter attributeParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(attributeParameter, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainerParameter(ContainerParameter containerParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateContainerParameter(ContainerParameter containerParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(containerParameter, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalReferenceParameter(ExternalReferenceParameter externalReferenceParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalReferenceParameter(ExternalReferenceParameter externalReferenceParameter,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(externalReferenceParameter, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateResourceParameter(ResourceParameter resourceParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateResourceParameter(ResourceParameter resourceParameter, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(resourceParameter, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLibraryEntry(LibraryEntry libraryEntry, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLibraryEntry(LibraryEntry libraryEntry, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(libraryEntry, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionReference(SourceSectionReference sourceSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionReference(SourceSectionReference sourceSectionReference,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSectionReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionReference, diagnostics, context);
@@ -575,11 +533,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionReference(TargetSectionReference targetSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSectionReference(TargetSectionReference targetSectionReference,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(targetSectionReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(targetSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionReference, diagnostics, context);
@@ -595,11 +553,12 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionContainmentReference(TargetSectionContainmentReference targetSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSectionContainmentReference(
+			TargetSectionContainmentReference targetSectionContainmentReference, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(targetSectionContainmentReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(targetSectionContainmentReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionContainmentReference, diagnostics, context);
@@ -621,29 +580,41 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionNonContainmentReference(TargetSectionNonContainmentReference targetSectionNonContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionNonContainmentReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateNonContainmentReference_eReferenceIsNonContainment(targetSectionNonContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateNonContainmentReference_validateEReferenceIsNonContainment(targetSectionNonContainmentReference, diagnostics, context);
+	public boolean validateTargetSectionCrossReference(TargetSectionCrossReference targetSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionCrossReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTargetSectionCrossReference_validateEReferenceIsNonContainment(targetSectionCrossReference, diagnostics, context);
 		return result;
 	}
 
 	/**
+	 * Validates the validateEReferenceIsNonContainment constraint of '<em>Target Section Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionContainmentReference(SourceSectionContainmentReference sourceSectionContainmentReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSectionCrossReference_validateEReferenceIsNonContainment(TargetSectionCrossReference targetSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return targetSectionCrossReference.validateEReferenceIsNonContainment(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionContainmentReference(
+			SourceSectionContainmentReference sourceSectionContainmentReference, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(sourceSectionContainmentReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(sourceSectionContainmentReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionContainmentReference, diagnostics, context);
@@ -665,30 +636,31 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMetaModelSectionReference(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(metaModelSectionReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMetaModelSectionReference_valuesMatchReferenceType(metaModelSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMetaModelSectionReference_validateValuesMatchReferenceType(metaModelSectionReference, diagnostics, context);
+	public boolean validateSourceSectionCrossReference(SourceSectionCrossReference sourceSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionCrossReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSourceSectionCrossReference_valuesMatchReferenceType(sourceSectionCrossReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the valuesMatchReferenceType constraint of '<em>Meta Model Section Reference</em>'.
+	 * Validates the valuesMatchReferenceType constraint of '<em>Source Section Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMetaModelSectionReference_valuesMatchReferenceType(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionCrossReference_valuesMatchReferenceType(SourceSectionCrossReference sourceSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -701,8 +673,8 @@ public class StructureValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "valuesMatchReferenceType", getObjectLabel(metaModelSectionReference, context) },
-						 new Object[] { metaModelSectionReference },
+						 new Object[] { "valuesMatchReferenceType", getObjectLabel(sourceSectionCrossReference, context) },
+						 new Object[] { sourceSectionCrossReference },
 						 context));
 			}
 			return false;
@@ -711,30 +683,20 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateValuesMatchReferenceType constraint of '<em>Meta Model Section Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMetaModelSectionReference_validateValuesMatchReferenceType(MetaModelSectionReference metaModelSectionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return metaModelSectionReference.validateValuesMatchReferenceType(diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSourceSectionAttribute(SourceSectionAttribute sourceSectionAttribute,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(sourceSectionAttribute, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateActualSourceSectionAttribute(ActualSourceSectionAttribute actualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateActualSourceSectionAttribute(ActualSourceSectionAttribute actualSourceSectionAttribute,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(actualSourceSectionAttribute, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(actualSourceSectionAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualSourceSectionAttribute, diagnostics, context);
@@ -750,20 +712,20 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionAttribute(TargetSectionAttribute targetSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateTargetSectionAttribute(TargetSectionAttribute targetSectionAttribute,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(targetSectionAttribute, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateActualTargetSectionAttribute(ActualTargetSectionAttribute actualTargetSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateActualTargetSectionAttribute(ActualTargetSectionAttribute actualTargetSectionAttribute,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(actualTargetSectionAttribute, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(actualTargetSectionAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualTargetSectionAttribute, diagnostics, context);
@@ -779,20 +741,20 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateVirtualTargetSectionAttribute(VirtualTargetSectionAttribute virtualTargetSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateVirtualTargetSectionAttribute(VirtualTargetSectionAttribute virtualTargetSectionAttribute,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(virtualTargetSectionAttribute, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEqualityMatcher(EqualityMatcher equalityMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateEqualityMatcher(EqualityMatcher equalityMatcher, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(equalityMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(equalityMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(equalityMatcher, diagnostics, context);
@@ -811,20 +773,20 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueConstraint(ValueConstraint valueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateValueConstraint(ValueConstraint valueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(valueConstraint, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSubstringMatcher(SubstringMatcher substringMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSubstringMatcher(SubstringMatcher substringMatcher, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(substringMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(substringMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(substringMatcher, diagnostics, context);
@@ -843,11 +805,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBeginningMatcher(BeginningMatcher beginningMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBeginningMatcher(BeginningMatcher beginningMatcher, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(beginningMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(beginningMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(beginningMatcher, diagnostics, context);
@@ -866,11 +828,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEndingMatcher(EndingMatcher endingMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateEndingMatcher(EndingMatcher endingMatcher, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(endingMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(endingMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(endingMatcher, diagnostics, context);
@@ -889,11 +851,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRegExMatcher(RegExMatcher regExMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRegExMatcher(RegExMatcher regExMatcher, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(regExMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(regExMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(regExMatcher, diagnostics, context);
@@ -912,11 +874,11 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCaseSensitiveConstraint(CaseSensitiveConstraint caseSensitiveConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCaseSensitiveConstraint(CaseSensitiveConstraint caseSensitiveConstraint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(caseSensitiveConstraint, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(caseSensitiveConstraint, diagnostics, context);
@@ -935,29 +897,30 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRangeConstraint(RangeConstraint rangeConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRangeConstraint(RangeConstraint rangeConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(rangeConstraint, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMultipleReferencesValueConstraint(MultipleReferencesValueConstraint multipleReferencesValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMultipleReferencesValueConstraint(
+			MultipleReferencesValueConstraint multipleReferencesValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(multipleReferencesValueConstraint, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer(InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointer(InstancePointer instancePointer, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointer, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointer, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointer, diagnostics, context);
@@ -974,11 +937,12 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the noModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Pointer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(
+			InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1002,29 +966,30 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the validateNoModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Pointer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer_validateNoModifiedAttributeElementTypesInConditionModelConditions(InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointer_validateNoModifiedAttributeElementTypesInConditionModelConditions(
+			InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return instancePointer.validateNoModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceInterface(InstancePointerSourceInterface instancePointerSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointerSourceInterface(InstancePointerSourceInterface instancePointerSourceInterface,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(instancePointerSourceInterface, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceElement(InstancePointerSourceElement instancePointerSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointerSourceElement(InstancePointerSourceElement instancePointerSourceElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointerSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointerSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointerSourceElement, diagnostics, context);
@@ -1040,11 +1005,12 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerExternalSourceElement(InstancePointerExternalSourceElement instancePointerExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstancePointerExternalSourceElement(
+			InstancePointerExternalSourceElement instancePointerExternalSourceElement, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointerExternalSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointerExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointerExternalSourceElement, diagnostics, context);
@@ -1060,8 +1026,7 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateRangeBound(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -1083,11 +1048,11 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the onlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRangeBound_onlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRangeBound_onlyFixedValuesInSourceSections(RangeBound rangeBound,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1111,11 +1076,12 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1139,30 +1105,31 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRangeBound_validateOnlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRangeBound_validateOnlyFixedValuesInSourceSections(RangeBound rangeBound,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return rangeBound.validateOnlyFixedValuesInSourceSections(diagnostics, context);
 	}
 
 	/**
 	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return rangeBound.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint(SingleReferenceValueConstraint singleReferenceValueConstraint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(singleReferenceValueConstraint, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(singleReferenceValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(singleReferenceValueConstraint, diagnostics, context);
@@ -1182,11 +1149,13 @@ public class StructureValidator extends EObjectValidator {
 
 	/**
 	 * Validates the onlyFixedValuesInSourceSections constraint of '<em>Single Reference Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(
+			SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1209,12 +1178,15 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Single Reference Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel
+	 * constraint of '<em>Single Reference Value Constraint</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(
+			SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1242,17 +1214,22 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(
+			SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return singleReferenceValueConstraint.validateOnlyFixedValuesInSourceSections(diagnostics, context);
 	}
 
 	/**
-	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Single Reference Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel
+	 * constraint of '<em>Single Reference Value Constraint</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(
+			SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return singleReferenceValueConstraint.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
@@ -1262,25 +1239,27 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(
+			SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return singleReferenceValueConstraint.validateNoResultModifierInSourceSections(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueConstraintSourceInterface(ValueConstraintSourceInterface valueConstraintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateValueConstraintSourceInterface(ValueConstraintSourceInterface valueConstraintSourceInterface,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(valueConstraintSourceInterface, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueConstraintSourceElement(ValueConstraintSourceElement valueConstraintSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateValueConstraintSourceElement(ValueConstraintSourceElement valueConstraintSourceElement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(valueConstraintSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(valueConstraintSourceElement, diagnostics, context);
@@ -1296,11 +1275,12 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement valueConstraintExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateValueConstraintExternalSourceElement(
+			ValueConstraintExternalSourceElement valueConstraintExternalSourceElement, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(valueConstraintExternalSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(valueConstraintExternalSourceElement, diagnostics, context);
@@ -1316,27 +1296,26 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFileTypeEnum(FileTypeEnum fileTypeEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateFileTypeEnum(FileTypeEnum fileTypeEnum, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueConstraintType(ValueConstraintType valueConstraintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateValueConstraintType(ValueConstraintType valueConstraintType, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
 		return true;
 	}
 
 	/**
 	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1347,4 +1326,4 @@ public class StructureValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 
-} //StructureValidator
+} // StructureValidator

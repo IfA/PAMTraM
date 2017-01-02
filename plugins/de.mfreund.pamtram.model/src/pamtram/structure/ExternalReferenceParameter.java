@@ -31,12 +31,12 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reference</em>' containment reference.
-	 * @see #setReference(TargetSectionNonContainmentReference)
+	 * @see #setReference(TargetSectionCrossReference)
 	 * @see pamtram.structure.StructurePackage#getExternalReferenceParameter_Reference()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	TargetSectionNonContainmentReference getReference();
+	TargetSectionCrossReference getReference();
 
 	/**
 	 * Sets the value of the '{@link pamtram.structure.ExternalReferenceParameter#getReference <em>Reference</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	 * @see #getReference()
 	 * @generated
 	 */
-	void setReference(TargetSectionNonContainmentReference value);
+	void setReference(TargetSectionCrossReference value);
 
 } // ExternalReferenceParameter

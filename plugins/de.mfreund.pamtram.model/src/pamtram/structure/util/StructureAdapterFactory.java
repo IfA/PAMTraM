@@ -13,52 +13,12 @@ import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.BeginningMatcher;
-import pamtram.structure.CaseSensitiveConstraint;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.EndingMatcher;
-import pamtram.structure.EqualityMatcher;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.FileAttribute;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.RangeBound;
-import pamtram.structure.RangeConstraint;
-import pamtram.structure.RegExMatcher;
-import pamtram.structure.ResourceParameter;
-import pamtram.structure.SingleReferenceValueConstraint;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
-import pamtram.structure.SourceSectionReference;
-import pamtram.structure.SubstringMatcher;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
-import pamtram.structure.TargetSectionReference;
-import pamtram.structure.ValueConstraint;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceElement;
-import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.*;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -176,16 +136,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionContainmentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseTargetSectionNonContainmentReference(TargetSectionNonContainmentReference object) {
-				return createTargetSectionNonContainmentReferenceAdapter();
+			public Adapter caseTargetSectionCrossReference(TargetSectionCrossReference object) {
+				return createTargetSectionCrossReferenceAdapter();
 			}
 			@Override
 			public Adapter caseSourceSectionContainmentReference(SourceSectionContainmentReference object) {
 				return createSourceSectionContainmentReferenceAdapter();
 			}
 			@Override
-			public Adapter caseMetaModelSectionReference(MetaModelSectionReference object) {
-				return createMetaModelSectionReferenceAdapter();
+			public Adapter caseSourceSectionCrossReference(SourceSectionCrossReference object) {
+				return createSourceSectionCrossReferenceAdapter();
 			}
 			@Override
 			public Adapter caseSourceSectionAttribute(SourceSectionAttribute object) {
@@ -312,8 +272,8 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
-				return createNonContainmentReferenceAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
+				return createCrossReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualAttribute(ActualAttribute<S, C, R, A> object) {
@@ -588,16 +548,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.NonContainmentReference <em>Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CrossReference <em>Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.generic.NonContainmentReference
+	 * @see pamtram.structure.generic.CrossReference
 	 * @generated
 	 */
-	public Adapter createNonContainmentReferenceAdapter() {
+	public Adapter createCrossReferenceAdapter() {
 		return null;
 	}
 
@@ -644,16 +604,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSectionNonContainmentReference <em>Target Section Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSectionCrossReference <em>Target Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.TargetSectionNonContainmentReference
+	 * @see pamtram.structure.TargetSectionCrossReference
 	 * @generated
 	 */
-	public Adapter createTargetSectionNonContainmentReferenceAdapter() {
+	public Adapter createTargetSectionCrossReferenceAdapter() {
 		return null;
 	}
 
@@ -672,16 +632,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.MetaModelSectionReference <em>Meta Model Section Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.MetaModelSectionReference
+	 * @see pamtram.structure.SourceSectionCrossReference
 	 * @generated
 	 */
-	public Adapter createMetaModelSectionReferenceAdapter() {
+	public Adapter createSourceSectionCrossReferenceAdapter() {
 		return null;
 	}
 

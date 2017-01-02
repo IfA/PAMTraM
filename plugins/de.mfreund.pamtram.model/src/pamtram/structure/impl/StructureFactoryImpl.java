@@ -8,39 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.BeginningMatcher;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.EndingMatcher;
-import pamtram.structure.EqualityMatcher;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.FileAttribute;
-import pamtram.structure.FileTypeEnum;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.MetaModelSectionReference;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.RangeBound;
-import pamtram.structure.RangeConstraint;
-import pamtram.structure.RegExMatcher;
-import pamtram.structure.ResourceParameter;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
-import pamtram.structure.SubstringMatcher;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceElement;
-import pamtram.structure.ValueConstraintType;
-import pamtram.structure.VirtualTargetSectionAttribute;
+import pamtram.structure.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,9 +65,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
-			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
+			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE: return createTargetSectionCrossReference();
 			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
-			case StructurePackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
+			case StructurePackage.SOURCE_SECTION_CROSS_REFERENCE: return createSourceSectionCrossReference();
 			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
@@ -269,9 +237,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionNonContainmentReference createTargetSectionNonContainmentReference() {
-		TargetSectionNonContainmentReferenceImpl targetSectionNonContainmentReference = new TargetSectionNonContainmentReferenceImpl();
-		return targetSectionNonContainmentReference;
+	public TargetSectionCrossReference createTargetSectionCrossReference() {
+		TargetSectionCrossReferenceImpl targetSectionCrossReference = new TargetSectionCrossReferenceImpl();
+		return targetSectionCrossReference;
 	}
 
 	/**
@@ -289,9 +257,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaModelSectionReference createMetaModelSectionReference() {
-		MetaModelSectionReferenceImpl metaModelSectionReference = new MetaModelSectionReferenceImpl();
-		return metaModelSectionReference;
+	public SourceSectionCrossReference createSourceSectionCrossReference() {
+		SourceSectionCrossReferenceImpl sourceSectionCrossReference = new SourceSectionCrossReferenceImpl();
+		return sourceSectionCrossReference;
 	}
 
 	/**

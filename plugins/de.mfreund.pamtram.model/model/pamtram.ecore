@@ -304,7 +304,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
-          eType="#//structure/TargetSectionNonContainmentReference" containment="true"/>
+          eType="#//structure/TargetSectionCrossReference" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
           <eTypeArguments/>
@@ -361,8 +361,20 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//structure/TargetSectionReference"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionNonContainmentReference">
-      <eGenericSuperTypes eClassifier="#//structure/generic/NonContainmentReference">
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
+      <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
         <eTypeArguments eClassifier="#//structure/TargetSection"/>
         <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
@@ -379,24 +391,17 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//structure/SourceSectionReference"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MetaModelSectionReference" eSuperTypes="#//structure/SourceSectionReference">
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionCrossReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="valuesMatchReferenceType"/>
       </eAnnotations>
-      <eOperations name="validateValuesMatchReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getValue().parallelStream().allMatch(c -> this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = this.getValue().parallelStream()&#xD;&#xA;&#x9;&#x9;.filter(c -> !this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass())).count()&#xD;&#xA;&#x9;&#x9;+ &quot; of the selected target Classes (Value) are not allowed by the selected eReference '&quot;&#xD;&#xA;&#x9;&#x9;+ this.getEReference().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.META_MODEL_SECTION_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.META_MODEL_SECTION_REFERENCE__VALUE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
-          eType="#//structure/SourceSectionClass"/>
+      <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
+        <eTypeArguments eClassifier="#//structure/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//structure/SourceSectionReference"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
@@ -676,7 +681,7 @@
         </eTypeParameters>
         <eOperations name="getContainingSection" lowerBound="1">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="MetaModelElement&lt;S,C,R,A> element = this;&#xD;&#xA;&#xD;&#xA;// move upwards in the hierarchy&#xD;&#xA;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;element = (MetaModelElement&lt;S,C,R,A>) element.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {&#xD;&#xA;&#x9;// we have found the section&#xD;&#xA;&#x9;return (S) element;&#xD;&#xA;} else if((element instanceof TargetSectionAttribute &amp;&amp; (element.eContainer() instanceof AttributeParameter || element.eContainer() instanceof ResourceParameter)) || &#xD;&#xA;&#x9;&#x9;(element instanceof TargetSectionNonContainmentReference) &amp;&amp; element.eContainer() instanceof ExternalReferenceParameter) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();&#xD;&#xA;&#x9;for (LibraryParameter&lt;?> param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return (S) ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else  if(element instanceof VirtualTargetSectionAttribute &amp;&amp; element.eContainer() instanceof LibraryEntry) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer();&#xD;&#xA;&#x9;for (LibraryParameter&lt;?> param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return (S) ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else {&#xD;&#xA;&#x9;// something went wrong&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+            <details key="body" value="MetaModelElement&lt;S,C,R,A> element = this;&#xD;&#xA;&#xD;&#xA;// move upwards in the hierarchy&#xD;&#xA;while(element.eContainer() instanceof MetaModelElement) {&#xD;&#xA;&#x9;element = (MetaModelElement&lt;S,C,R,A>) element.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if(element instanceof Section || element.eContainer() instanceof ContainerParameter) {&#xD;&#xA;&#x9;// we have found the section&#xD;&#xA;&#x9;return (S) element;&#xD;&#xA;} else if((element instanceof TargetSectionAttribute &amp;&amp; (element.eContainer() instanceof AttributeParameter || element.eContainer() instanceof ResourceParameter)) || &#xD;&#xA;&#x9;&#x9;(element instanceof TargetSectionCrossReference) &amp;&amp; element.eContainer() instanceof ExternalReferenceParameter) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();&#xD;&#xA;&#x9;for (LibraryParameter&lt;?> param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return (S) ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else  if(element instanceof VirtualTargetSectionAttribute &amp;&amp; element.eContainer() instanceof LibraryEntry) {&#xD;&#xA;&#x9;LibraryEntry libEntry = (LibraryEntry) element.eContainer();&#xD;&#xA;&#x9;for (LibraryParameter&lt;?> param : libEntry.getParameters()) {&#xD;&#xA;&#x9;&#x9;//TODO if multiple container parameters exist, there might need to be additional logic&#xD;&#xA;&#x9;&#x9;if(param instanceof ContainerParameter) {&#xD;&#xA;&#x9;&#x9;&#x9;return (S) ((ContainerParameter) param).getClass_();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return null;&#xD;&#xA;} else {&#xD;&#xA;&#x9;// something went wrong&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/MetaModelElement/S"/>
         </eOperations>
@@ -743,7 +748,7 @@
         </eOperations>
         <eOperations name="isContainedIn" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((ContainmentReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof MetaModelSectionReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((MetaModelSectionReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
+            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((ContainmentReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof CrossReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((CrossReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
           </eAnnotations>
           <eParameters name="containerClass" lowerBound="1">
             <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
@@ -1030,45 +1035,45 @@
           <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="NonContainmentReference" abstract="true">
+      <eClassifiers xsi:type="ecore:EClass" name="CrossReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceIsNonContainment"/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="C">
           <eBounds eClassifier="#//structure/generic/Class">
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="R">
           <eBounds eClassifier="#//structure/generic/Reference">
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="A">
           <eBounds eClassifier="#//structure/generic/Attribute">
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/A"/>
           </eBounds>
         </eTypeParameters>
-        <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eOperations name="validateValuesMatchReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.NON_CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getValue().parallelStream().allMatch(c -> this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = this.getValue().parallelStream()&#xD;&#xA;&#x9;&#x9;.filter(c -> !this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass())).count()&#xD;&#xA;&#x9;&#x9;+ &quot; of the selected target Classes (Value) are not allowed by the selected eReference '&quot;&#xD;&#xA;&#x9;&#x9;+ this.getEReference().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CROSS_REFERENCE__VALUE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1079,13 +1084,13 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1">
-          <eGenericType eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
+          <eGenericType eTypeParameter="#//structure/generic/CrossReference/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
-          <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/S"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/C"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/R"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/NonContainmentReference/A"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CrossReference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true">
@@ -1571,7 +1576,7 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference" lowerBound="1"
-          eType="#//structure/TargetSectionNonContainmentReference"/>
+          eType="#//structure/TargetSectionCrossReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>

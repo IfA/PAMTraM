@@ -18,19 +18,19 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.structure.MetaModelSectionReference;
+
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
-import pamtram.structure.generic.NonContainmentReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Class</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Class</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -44,11 +44,11 @@ import pamtram.structure.generic.util.GenericValidator;
  *
  * @generated
  */
-public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends MetaModelElementImpl<S, C, R, A> implements pamtram.structure.generic.Class<S, C, R, A> {
+public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends MetaModelElementImpl<S, C, R, A> implements pamtram.structure.generic.Class<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEClass()
 	 * @generated
 	 * @ordered
@@ -57,28 +57,25 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final pamtram.structure.generic.CardinalityType CARDINALITY_EDEFAULT = pamtram.structure.generic.CardinalityType.ONE;
+	protected static final CardinalityType CARDINALITY_EDEFAULT = CardinalityType.ONE;
 
 	/**
 	 * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
 	 */
-	protected pamtram.structure.generic.CardinalityType cardinality = CARDINALITY_EDEFAULT;
+	protected CardinalityType cardinality = CARDINALITY_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferences()
 	 * @generated
 	 * @ordered
@@ -87,8 +84,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getContainer()
 	 * @generated
 	 * @ordered
@@ -97,8 +93,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -106,8 +101,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	protected EList<A> attributes;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ClassImpl() {
@@ -115,8 +109,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,8 +118,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,8 +135,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EClass basicGetEClass() {
@@ -152,8 +143,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setEClassGen(EClass newEClass) {
@@ -173,30 +163,27 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public pamtram.structure.generic.CardinalityType getCardinality() {
+	public CardinalityType getCardinality() {
 		return cardinality;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCardinality(pamtram.structure.generic.CardinalityType newCardinality) {
-		pamtram.structure.generic.CardinalityType oldCardinality = cardinality;
+	public void setCardinality(CardinalityType newCardinality) {
+		CardinalityType oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__CARDINALITY, oldCardinality, cardinality));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -208,8 +195,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -226,8 +212,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public C getContainer() {
@@ -240,8 +225,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public C basicGetContainer() {
@@ -249,8 +233,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -262,8 +245,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -275,8 +257,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -299,8 +280,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -322,8 +302,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			}
 			if(ref instanceof ContainmentReference<?,?,?,?>){
 				containedClasses.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
-			} else if(ref instanceof MetaModelSectionReference) {
-				containedClasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
+			} else if(ref instanceof CrossReference) {
+				containedClasses.addAll((Collection<? extends C>) ((CrossReference) ref).getValue());
 			}
 		}
 			
@@ -340,8 +320,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -355,14 +334,14 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean isReferencedBy(final C referencingClass, EList<C> referencedClasses) {
-		if(referencedClasses == null) {
+		if (referencedClasses == null) {
 			referencedClasses = new BasicEList<>();
 		}
 		BasicEList<C> classes = new BasicEList<>();
@@ -370,21 +349,21 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		// collect all classes that are referenced
 		for (R ref : referencingClass.getReferences()) {
 
-			if(ref instanceof ContainmentReference<?,?,?,?>){
-				classes.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
-			} else if(ref instanceof MetaModelSectionReference) {
-				classes.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());
-			} else if(ref instanceof NonContainmentReference){
-				classes.addAll(((NonContainmentReference<S,C,R,A>) ref).getValue());
+			if (ref instanceof ContainmentReference<?, ?, ?, ?>) {
+				classes.addAll(((ContainmentReference<S, C, R, A>) ref).getValue());
+			} else if (ref instanceof CrossReference) {
+				classes.addAll(((CrossReference) ref).getValue());
+			} else if (ref instanceof CrossReference) {
+				classes.addAll(((CrossReference<S, C, R, A>) ref).getValue());
 			}
 		}
 
 		// recursively iterate over all referenced classes
 		for (C clazz : classes) {
-			if(clazz.equals(this) || this.isReferencedBy(clazz, referencedClasses)) {
+			if (clazz.equals(this) || this.isReferencedBy(clazz, referencedClasses)) {
 				return true;
 			} else {
-				if(!referencedClasses.contains(clazz)) {
+				if (!referencedClasses.contains(clazz)) {
 					referencedClasses.add(clazz);
 				}
 			}
@@ -394,8 +373,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -430,8 +408,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -447,7 +424,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			return true;
 		}
 		
-		boolean result = !(this.cardinality != pamtram.structure.generic.CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
+		boolean result = !(this.cardinality != CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
 		
 		if (!result && diagnostics != null) {
 		
@@ -466,8 +443,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -492,8 +468,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -509,8 +484,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -525,8 +499,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -549,8 +522,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -561,7 +533,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				setEClass((EClass)newValue);
 				return;
 			case GenericPackage.CLASS__CARDINALITY:
-				setCardinality((pamtram.structure.generic.CardinalityType)newValue);
+				setCardinality((CardinalityType)newValue);
 				return;
 			case GenericPackage.CLASS__REFERENCES:
 				getReferences().clear();
@@ -579,8 +551,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -606,8 +577,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -628,8 +598,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -655,8 +624,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -670,4 +638,4 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		return result.toString();
 	}
 
-} //ClassImpl
+} // ClassImpl

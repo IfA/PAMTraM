@@ -36,7 +36,6 @@ import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelSectionReference;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
@@ -49,13 +48,14 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.SourceSectionCrossReference;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.SubstringMatcher;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintExternalSourceElement;
@@ -177,7 +177,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass targetSectionNonContainmentReferenceEClass = null;
+	private EClass targetSectionCrossReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,7 +191,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass metaModelSectionReferenceEClass = null;
+	private EClass sourceSectionCrossReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -757,8 +757,17 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTargetSectionNonContainmentReference() {
-		return targetSectionNonContainmentReferenceEClass;
+	public EClass getTargetSectionCrossReference() {
+		return targetSectionCrossReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map() {
+		return targetSectionCrossReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -775,26 +784,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMetaModelSectionReference() {
-		return metaModelSectionReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getMetaModelSectionReference_Value() {
-		return (EReference)metaModelSectionReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map() {
-		return metaModelSectionReferenceEClass.getEOperations().get(0);
+	public EClass getSourceSectionCrossReference() {
+		return sourceSectionCrossReferenceEClass;
 	}
 
 	/**
@@ -1313,13 +1304,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		targetSectionContainmentReferenceEClass = createEClass(TARGET_SECTION_CONTAINMENT_REFERENCE);
 
-		targetSectionNonContainmentReferenceEClass = createEClass(TARGET_SECTION_NON_CONTAINMENT_REFERENCE);
+		targetSectionCrossReferenceEClass = createEClass(TARGET_SECTION_CROSS_REFERENCE);
+		createEOperation(targetSectionCrossReferenceEClass, TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
 		sourceSectionContainmentReferenceEClass = createEClass(SOURCE_SECTION_CONTAINMENT_REFERENCE);
 
-		metaModelSectionReferenceEClass = createEClass(META_MODEL_SECTION_REFERENCE);
-		createEReference(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE__VALUE);
-		createEOperation(metaModelSectionReferenceEClass, META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
+		sourceSectionCrossReferenceEClass = createEClass(SOURCE_SECTION_CROSS_REFERENCE);
 
 		sourceSectionAttributeEClass = createEClass(SOURCE_SECTION_ATTRIBUTE);
 		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
@@ -1535,7 +1525,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
 		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getNonContainmentReference());
+		g1 = createEGenericType(theGenericPackage.getCrossReference());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getTargetSectionClass());
@@ -1544,9 +1534,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		targetSectionNonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
-		targetSectionNonContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getContainmentReference());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1559,7 +1549,18 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getSourceSectionReference());
 		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
-		metaModelSectionReferenceEClass.getESuperTypes().add(this.getSourceSectionReference());
+		g1 = createEGenericType(theGenericPackage.getCrossReference());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		sourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getSourceSectionReference());
+		sourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1728,7 +1729,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEReference(getContainerParameter_Class(), this.getTargetSection(), null, "class", null, 1, 1, ContainerParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(externalReferenceParameterEClass, ExternalReferenceParameter.class, "ExternalReferenceParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExternalReferenceParameter_Reference(), this.getTargetSectionNonContainmentReference(), null, "reference", null, 1, 1, ExternalReferenceParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExternalReferenceParameter_Reference(), this.getTargetSectionCrossReference(), null, "reference", null, 1, 1, ExternalReferenceParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(resourceParameterEClass, ResourceParameter.class, "ResourceParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getResourceParameter_Attribute(), this.getVirtualTargetSectionAttribute(), null, "attribute", null, 1, 1, ResourceParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1751,14 +1752,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		initEClass(targetSectionContainmentReferenceEClass, TargetSectionContainmentReference.class, "TargetSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(targetSectionNonContainmentReferenceEClass, TargetSectionNonContainmentReference.class, "TargetSectionNonContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(targetSectionCrossReferenceEClass, TargetSectionCrossReference.class, "TargetSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(sourceSectionContainmentReferenceEClass, SourceSectionContainmentReference.class, "SourceSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(metaModelSectionReferenceEClass, MetaModelSectionReference.class, "MetaModelSectionReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMetaModelSectionReference_Value(), this.getSourceSectionClass(), null, "value", null, 0, -1, MetaModelSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateValuesMatchReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1766,6 +1762,10 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(sourceSectionContainmentReferenceEClass, SourceSectionContainmentReference.class, "SourceSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionAttributeEClass, SourceSectionAttribute.class, "SourceSectionAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionAttribute_ValueConstraint(), this.getValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1930,7 +1930,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 			 "constraints", "isReferencedByMappingHintGroup"
 		   });	
 		addAnnotation
-		  (metaModelSectionReferenceEClass, 
+		  (sourceSectionCrossReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "valuesMatchReferenceType"

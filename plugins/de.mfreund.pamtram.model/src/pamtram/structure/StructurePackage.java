@@ -949,16 +949,6 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_CONTAINMENT_REFERENCE = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl <em>Target Section Non Containment Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionNonContainmentReference()
-	 * @generated
-	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE = 14;
-
-	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionContainmentReferenceImpl <em>Source Section Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -967,16 +957,6 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 15;
-
-	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.MetaModelSectionReferenceImpl <em>Meta Model Section Reference</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.MetaModelSectionReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelSectionReference()
-	 * @generated
-	 */
-	int META_MODEL_SECTION_REFERENCE = 16;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
@@ -1920,13 +1900,23 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.impl.TargetSectionCrossReferenceImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCrossReference()
+	 * @generated
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE = 14;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__NAME = GenericPackage.NON_CONTAINMENT_REFERENCE__NAME;
+	int TARGET_SECTION_CROSS_REFERENCE__NAME = GenericPackage.CROSS_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -1935,7 +1925,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.NON_CONTAINMENT_REFERENCE__EREFERENCE;
+	int TARGET_SECTION_CROSS_REFERENCE__EREFERENCE = GenericPackage.CROSS_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1944,7 +1934,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.NON_CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int TARGET_SECTION_CROSS_REFERENCE__OWNING_CLASS = GenericPackage.CROSS_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference list.
@@ -1953,16 +1943,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE__VALUE = GenericPackage.NON_CONTAINMENT_REFERENCE__VALUE;
+	int TARGET_SECTION_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
 
 	/**
-	 * The number of structural features of the '<em>Target Section Non Containment Reference</em>' class.
+	 * The number of structural features of the '<em>Target Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.NON_CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1971,7 +1961,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -1980,7 +1970,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -1989,7 +1979,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.NON_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_CROSS_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CROSS_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -1998,7 +1988,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2007,7 +1997,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.NON_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int TARGET_SECTION_CROSS_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CROSS_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2016,7 +2006,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.NON_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int TARGET_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
@@ -2025,16 +2024,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Target Section Non Containment Reference</em>' class.
+	 * The number of operations of the '<em>Target Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_NON_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.NON_CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2154,13 +2153,23 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.impl.SourceSectionCrossReferenceImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCrossReference()
+	 * @generated
+	 */
+	int SOURCE_SECTION_CROSS_REFERENCE = 16;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE__NAME = SOURCE_SECTION_REFERENCE__NAME;
+	int SOURCE_SECTION_CROSS_REFERENCE__NAME = GenericPackage.CROSS_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2169,7 +2178,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE__EREFERENCE = SOURCE_SECTION_REFERENCE__EREFERENCE;
+	int SOURCE_SECTION_CROSS_REFERENCE__EREFERENCE = GenericPackage.CROSS_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2178,7 +2187,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE__OWNING_CLASS = SOURCE_SECTION_REFERENCE__OWNING_CLASS;
+	int SOURCE_SECTION_CROSS_REFERENCE__OWNING_CLASS = GenericPackage.CROSS_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' reference list.
@@ -2187,16 +2196,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE__VALUE = SOURCE_SECTION_REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
 
 	/**
-	 * The number of structural features of the '<em>Meta Model Section Reference</em>' class.
+	 * The number of structural features of the '<em>Source Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE_FEATURE_COUNT = SOURCE_SECTION_REFERENCE_FEATURE_COUNT + 1;
+	int SOURCE_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2205,7 +2214,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___GET_CONTAINING_SECTION = SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2214,7 +2223,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL = SOURCE_SECTION_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2223,7 +2232,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___IS_LIBRARY_ENTRY = SOURCE_SECTION_REFERENCE___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_CROSS_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CROSS_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2232,7 +2241,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2241,7 +2250,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___GET_VALUES_GENERIC = SOURCE_SECTION_REFERENCE___GET_VALUES_GENERIC;
+	int SOURCE_SECTION_CROSS_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CROSS_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2250,7 +2259,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int SOURCE_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
@@ -2259,16 +2268,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The number of operations of the '<em>Meta Model Section Reference</em>' class.
+	 * The number of operations of the '<em>Source Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int META_MODEL_SECTION_REFERENCE_OPERATION_COUNT = SOURCE_SECTION_REFERENCE_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
@@ -4656,14 +4665,24 @@ public interface StructurePackage extends EPackage {
 	EClass getTargetSectionContainmentReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionNonContainmentReference <em>Target Section Non Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionCrossReference <em>Target Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Target Section Non Containment Reference</em>'.
-	 * @see pamtram.structure.TargetSectionNonContainmentReference
+	 * @return the meta object for class '<em>Target Section Cross Reference</em>'.
+	 * @see pamtram.structure.TargetSectionCrossReference
 	 * @generated
 	 */
-	EClass getTargetSectionNonContainmentReference();
+	EClass getTargetSectionCrossReference();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate EReference Is Non Containment</em>' operation.
+	 * @see pamtram.structure.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionContainmentReference <em>Source Section Containment Reference</em>}'.
@@ -4676,35 +4695,14 @@ public interface StructurePackage extends EPackage {
 	EClass getSourceSectionContainmentReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.MetaModelSectionReference <em>Meta Model Section Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Meta Model Section Reference</em>'.
-	 * @see pamtram.structure.MetaModelSectionReference
+	 * @return the meta object for class '<em>Source Section Cross Reference</em>'.
+	 * @see pamtram.structure.SourceSectionCrossReference
 	 * @generated
 	 */
-	EClass getMetaModelSectionReference();
-
-	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.MetaModelSectionReference#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Value</em>'.
-	 * @see pamtram.structure.MetaModelSectionReference#getValue()
-	 * @see #getMetaModelSectionReference()
-	 * @generated
-	 */
-	EReference getMetaModelSectionReference_Value();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.structure.MetaModelSectionReference#validateValuesMatchReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Values Match Reference Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Values Match Reference Type</em>' operation.
-	 * @see pamtram.structure.MetaModelSectionReference#validateValuesMatchReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
+	EClass getSourceSectionCrossReference();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionAttribute <em>Source Section Attribute</em>}'.
@@ -5526,14 +5524,22 @@ public interface StructurePackage extends EPackage {
 		EClass TARGET_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionContainmentReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl <em>Target Section Non Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionNonContainmentReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionNonContainmentReference()
+		 * @see pamtram.structure.impl.TargetSectionCrossReferenceImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCrossReference()
 		 * @generated
 		 */
-		EClass TARGET_SECTION_NON_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionNonContainmentReference();
+		EClass TARGET_SECTION_CROSS_REFERENCE = eINSTANCE.getTargetSectionCrossReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate EReference Is Non Containment</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionContainmentReferenceImpl <em>Source Section Containment Reference</em>}' class.
@@ -5546,30 +5552,14 @@ public interface StructurePackage extends EPackage {
 		EClass SOURCE_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionContainmentReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.MetaModelSectionReferenceImpl <em>Meta Model Section Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.MetaModelSectionReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getMetaModelSectionReference()
+		 * @see pamtram.structure.impl.SourceSectionCrossReferenceImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCrossReference()
 		 * @generated
 		 */
-		EClass META_MODEL_SECTION_REFERENCE = eINSTANCE.getMetaModelSectionReference();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference META_MODEL_SECTION_REFERENCE__VALUE = eINSTANCE.getMetaModelSectionReference_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Values Match Reference Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation META_MODEL_SECTION_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMetaModelSectionReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map();
+		EClass SOURCE_SECTION_CROSS_REFERENCE = eINSTANCE.getSourceSectionCrossReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.

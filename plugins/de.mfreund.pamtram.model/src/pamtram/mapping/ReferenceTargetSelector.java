@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ReferenceTargetSelector</b></em>'. <!--
@@ -34,12 +34,12 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Affected Reference</em>' reference.
-	 * @see #setAffectedReference(TargetSectionNonContainmentReference)
+	 * @see #setAffectedReference(TargetSectionCrossReference)
 	 * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector_AffectedReference()
 	 * @model required="true"
 	 * @generated
 	 */
-	TargetSectionNonContainmentReference getAffectedReference();
+	TargetSectionCrossReference getAffectedReference();
 
 	/**
 	 * Sets the value of the '{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}' reference.
@@ -49,7 +49,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * @see #getAffectedReference()
 	 * @generated
 	 */
-	void setAffectedReference(TargetSectionNonContainmentReference value);
+	void setAffectedReference(TargetSectionCrossReference value);
 
 	/**
 	 * Returns the value of the '<em><b>Matcher</b></em>' containment reference.

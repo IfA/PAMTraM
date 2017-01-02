@@ -185,7 +185,7 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.24 //@sourceSectionModel.0/@metaModelSections.23 //@sourceSectionModel.0/@metaModelSections.22 //@sourceSectionModel.0/@metaModelSections.25">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.24 //@sourceSectionModel.0/@metaModelSections.23 //@sourceSectionModel.0/@metaModelSections.22 //@sourceSectionModel.0/@metaModelSections.25">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
@@ -311,7 +311,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="State">
       <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//State"/>
-      <references xsi:type="structure:MetaModelSectionReference" name="transition" value="//@sourceSectionModel.0/@metaModelSections.5">
+      <references xsi:type="structure:SourceSectionCrossReference" name="transition" value="//@sourceSectionModel.0/@metaModelSections.5">
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//State/transition"/>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
@@ -339,7 +339,7 @@
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExternalData">
           <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -370,7 +370,7 @@
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExternalData">
           <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -401,7 +401,7 @@
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExternalData">
           <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -432,7 +432,7 @@
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.2">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -463,7 +463,7 @@
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="extdataType">
           <eClass xsi:type="ecore:EClass" href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.3">
+          <references xsi:type="structure:SourceSectionCrossReference" name="extdata" value="//@sourceSectionModel.0/@metaModelSections.3">
             <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
           </references>
         </value>
@@ -571,7 +571,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:MetaModelSectionReference" name="ExtData SignalInterface" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:SourceSectionCrossReference" name="ExtData SignalInterface" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference xsi:type="ecore:EReference" href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
       </references>
     </metaModelSections>
@@ -988,7 +988,7 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.28/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/opcua/DataVariable"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="IsAccessedVia @ Double">
+      <references xsi:type="structure:TargetSectionCrossReference" name="IsAccessedVia @ Double">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/ServerDataItem/IsAccessedVia"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="BrowseName">
@@ -1049,13 +1049,13 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="ChangeViewNavigationFlow" cardinality="ZERO__INFINITY" container="//@targetSectionModel.0/@metaModelSections.26">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ChangeViewNavigationFlow"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="navSource" value="//@targetSectionModel.0/@metaModelSections.6">
+      <references xsi:type="structure:TargetSectionCrossReference" name="navSource" value="//@targetSectionModel.0/@metaModelSections.6">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="navTarget" value="//@targetSectionModel.0/@metaModelSections.6">
+      <references xsi:type="structure:TargetSectionCrossReference" name="navTarget" value="//@targetSectionModel.0/@metaModelSections.6">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="trigger" value="//@targetSectionModel.0/@metaModelSections.9 //@targetSectionModel.0/@metaModelSections.5">
+      <references xsi:type="structure:TargetSectionCrossReference" name="trigger" value="//@targetSectionModel.0/@metaModelSections.9 //@targetSectionModel.0/@metaModelSections.5">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Trigger"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name NavFlow">
@@ -1070,16 +1070,16 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="DataItem (Sig-/FuncInterface)" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="SignalOnChange" value="//@targetSectionModel.0/@metaModelSections.5">
+      <references xsi:type="structure:TargetSectionCrossReference" name="SignalOnChange" value="//@targetSectionModel.0/@metaModelSections.5">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/SignalOnChange"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.27/@references.1/@value.0 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.1 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.2 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.3">
+      <references xsi:type="structure:TargetSectionCrossReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.27/@references.1/@value.0 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.1 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.2 //@targetSectionModel.0/@metaModelSections.27/@references.1/@value.3">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Dimension"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="DataType" value="//@targetSectionModel.0/@metaModelSections.25/@references.0/@value.0 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.2 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.3 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.1">
+      <references xsi:type="structure:TargetSectionCrossReference" name="DataType" value="//@targetSectionModel.0/@metaModelSections.25/@references.0/@value.0 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.2 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.3 //@targetSectionModel.0/@metaModelSections.25/@references.0/@value.1">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Type"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.0">
+      <references xsi:type="structure:TargetSectionCrossReference" name="dummyDescription" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.0">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Description"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Logging" value="false">
@@ -1100,7 +1100,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="MonitoredItem" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="ItemToMonitor" value="//@targetSectionModel.0/@metaModelSections.10">
+      <references xsi:type="structure:TargetSectionCrossReference" name="ItemToMonitor" value="//@targetSectionModel.0/@metaModelSections.10">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem/DataItemToMonitor"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="MonItemName">
@@ -1267,10 +1267,10 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Color"/>
             <value xsi:type="structure:TargetSectionClass" name="Color">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.1">
+              <references xsi:type="structure:TargetSectionCrossReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.1">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelRepColorName">
@@ -1282,7 +1282,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Border"/>
             <value xsi:type="structure:TargetSectionClass" name="Border">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Border"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="Padding">
@@ -1323,7 +1323,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.1">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.1">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -1336,7 +1336,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextLabelAnimation/ValueOutputAnimation"/>
             <value xsi:type="structure:TargetSectionClass" name="voAnimation">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ValueOutputAnimationRecord"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Trigger vo ValueOutput:Bool" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Trigger vo ValueOutput:Bool" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ReplaceValue" value="true">
@@ -1348,17 +1348,17 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Animation/RepresentationAnimation"/>
             <value xsi:type="structure:TargetSectionClass" name="rAnimation">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RepresentationAnimationRecord"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Trigger rA ValueOutput:Bool" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Trigger rA ValueOutput:Bool" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="colorAnimation">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/RepresentationAnimationRecord/PropertyToAnimate"/>
                 <value xsi:type="structure:TargetSectionClass" name="colorAnimationOn">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
                   </references>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelColorAnimationOnName">
@@ -1367,10 +1367,10 @@
                 </value>
                 <value xsi:type="structure:TargetSectionClass" name="colorAnimationOff">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.1">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.1">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
                   </references>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelColorAnimationOffName">
@@ -1382,10 +1382,10 @@
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
                 <value xsi:type="structure:TargetSectionClass" name="BooleanComparison">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.0/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="falseEval" value="//@targetSectionModel.0/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.1">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
                   </references>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.0/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="trueEval" value="//@targetSectionModel.0/@metaModelSections.12/@references.1/@value.0/@references.1/@value.0/@references.1/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelRepBooleanCompName">
@@ -1560,17 +1560,17 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text @ Label Output:Bool" value="//@targetSectionModel.0/@metaModelSections.14">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text @ Label Output:Bool" value="//@targetSectionModel.0/@metaModelSections.14">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="structure:TargetSectionContainmentReference" name="color">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Color"/>
             <value xsi:type="structure:TargetSectionClass" name="Color">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.10 //@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.11">
+              <references xsi:type="structure:TargetSectionCrossReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.10 //@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.11">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelRepColorName" value="">
@@ -1582,7 +1582,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Border"/>
             <value xsi:type="structure:TargetSectionClass" name="Border">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Border"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="Padding">
@@ -1639,7 +1639,7 @@
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
         <value xsi:type="structure:TargetSectionClass" name="TextItem">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextDef Label value Value">
@@ -1805,10 +1805,10 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Color"/>
             <value xsi:type="structure:TargetSectionClass" name="Color">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="background  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="background  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="foreground  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelRepColorName (Out:Double)">
@@ -1820,7 +1820,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Border"/>
             <value xsi:type="structure:TargetSectionClass" name="Border">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Border"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LineColor  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="Padding">
@@ -1861,7 +1861,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.1">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.1">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -1874,7 +1874,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextLabelAnimation/ValueOutputAnimation"/>
             <value xsi:type="structure:TargetSectionClass" name="voAnimation">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ValueOutputAnimationRecord"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Trigger vo (Double:Out)" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Trigger vo (Double:Out)" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ReplaceValue" value="true">
@@ -2041,14 +2041,14 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text @ Label Output:Double" value="//@targetSectionModel.0/@metaModelSections.14">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text @ Label Output:Double" value="//@targetSectionModel.0/@metaModelSections.14">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="structure:TargetSectionContainmentReference" name="border">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Border"/>
             <value xsi:type="structure:TargetSectionClass" name="Border">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Border"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LineColor  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LineColor  (Out:Double)" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="Padding">
@@ -2201,10 +2201,10 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Color"/>
             <value xsi:type="structure:TargetSectionClass" name="Color">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Color"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="background" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Background"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="foreground" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Color/Foreground"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="TextLabelRepColorName">
@@ -2216,7 +2216,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Border"/>
             <value xsi:type="structure:TargetSectionClass" name="Border">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Border"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
+              <references xsi:type="structure:TargetSectionCrossReference" name="LineColor" value="//@targetSectionModel.0/@metaModelSections.26/@references.0/@value.0/@references.0/@value.6">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Border/LineColor"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="Padding">
@@ -2257,7 +2257,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text" value="//@targetSectionModel.0/@metaModelSections.14">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text" value="//@targetSectionModel.0/@metaModelSections.14">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
           <references xsi:type="structure:TargetSectionContainmentReference" name="format">
@@ -2324,7 +2324,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxAnimation/ValueOutputAnimation"/>
             <value xsi:type="structure:TargetSectionClass" name="VO">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ValueOutputAnimationRecord"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="Trigger  @ Input:Bool vo" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="Trigger  @ Input:Bool vo" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Repl.Val." value="true">
@@ -2342,10 +2342,10 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
             <value xsi:type="structure:TargetSectionClass" name="WriteEnteredDataEffect">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/WriteEnteredDataEffect"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="widget" value="//@targetSectionModel.0/@metaModelSections.17">
+              <references xsi:type="structure:TargetSectionCrossReference" name="widget" value="//@targetSectionModel.0/@metaModelSections.17">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/WriteEnteredDataEffect/ValueContainingWidget"/>
               </references>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="DataItem @ WriteDataEffect @ Input:Bool" value="//@targetSectionModel.0/@metaModelSections.10">
+              <references xsi:type="structure:TargetSectionCrossReference" name="DataItem @ WriteDataEffect @ Input:Bool" value="//@targetSectionModel.0/@metaModelSections.10">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DataItemEffect/DataItem"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name EnteredDAtaEffect">
@@ -2357,7 +2357,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Click">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.0/@metaModelSections.17/@references.2/@value.0/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="effect" value="//@targetSectionModel.0/@metaModelSections.17/@references.2/@value.0/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Click Name">
@@ -2369,7 +2369,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxInteraction/SubmitTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Sumbit">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Submit"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="effect" value="//@targetSectionModel.0/@metaModelSections.17/@references.2/@value.0/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="effect" value="//@targetSectionModel.0/@metaModelSections.17/@references.2/@value.0/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SumbitTrigger Name">
@@ -2533,7 +2533,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text FunctionButton" value="//@targetSectionModel.0/@metaModelSections.14">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text FunctionButton" value="//@targetSectionModel.0/@metaModelSections.14">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -2546,7 +2546,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
             <value xsi:type="structure:TargetSectionClass" name="Effect">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/WriteFixedBooleanDataEffect"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="DataItem WriteFixedBoolEffect" value="//@targetSectionModel.0/@metaModelSections.10">
+              <references xsi:type="structure:TargetSectionCrossReference" name="DataItem WriteFixedBoolEffect" value="//@targetSectionModel.0/@metaModelSections.10">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DataItemEffect/DataItem"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name WriteFixedBoolEffect">
@@ -2561,7 +2561,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Click">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.0/@metaModelSections.18/@references.1/@value.0/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="writeEffect" value="//@targetSectionModel.0/@metaModelSections.18/@references.1/@value.0/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ClickTriggerName">
@@ -2579,17 +2579,17 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Animation/RepresentationAnimation"/>
             <value xsi:type="structure:TargetSectionClass" name="FunctionButton RepAnimation">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/RepresentationAnimationRecord"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="FuncButton rAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="FuncButton rAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/AnimationRecord/Trigger"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="ownedComparator">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DiscreteAnimationRecord/OwnedComparator"/>
                 <value xsi:type="structure:TargetSectionClass" name="rAnimComp">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/BooleanComparison"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="trueEval" value="//@targetSectionModel.0/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="trueEval" value="//@targetSectionModel.0/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.2/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Comparator/TrueEvaluation"/>
                   </references>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="falseEval" value="//@targetSectionModel.0/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="falseEval" value="//@targetSectionModel.0/@metaModelSections.18/@references.2/@value.0/@references.0/@value.0/@references.2/@value.1">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Comparator/FalseEvaluation"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="rAnimCompName">
@@ -2794,7 +2794,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Text NavButton" value="//@targetSectionModel.0/@metaModelSections.14">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Text NavButton" value="//@targetSectionModel.0/@metaModelSections.14">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextContainingWidgetRepresentation/Text"/>
           </references>
         </value>
@@ -2807,7 +2807,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
             <value xsi:type="structure:TargetSectionClass" name="SendSignal">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="signal" value="//@targetSectionModel.0/@metaModelSections.9 //@targetSectionModel.0/@metaModelSections.5">
+              <references xsi:type="structure:TargetSectionCrossReference" name="signal" value="//@targetSectionModel.0/@metaModelSections.9 //@targetSectionModel.0/@metaModelSections.5">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect/Signal"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="SendSignalEffectName">
@@ -2819,7 +2819,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
             <value xsi:type="structure:TargetSectionClass" name="Click">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="writeEffect" value="//@targetSectionModel.0/@metaModelSections.19/@references.1/@value.0/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="writeEffect" value="//@targetSectionModel.0/@metaModelSections.19/@references.1/@value.0/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="ClickTriggerName">
@@ -2983,7 +2983,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.12 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.10">
+          <references xsi:type="structure:TargetSectionCrossReference" name="imgResource TODO" value="//@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.2 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.1 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.6 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.12 //@targetSectionModel.0/@metaModelSections.26/@references.1/@value.0/@references.0/@value.10">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
           </references>
         </value>
@@ -3145,7 +3145,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="imgResource TODO" value="//@targetSectionModel.0/@metaModelSections.22">
+          <references xsi:type="structure:TargetSectionCrossReference" name="imgResource TODO" value="//@targetSectionModel.0/@metaModelSections.22">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/ImageContainingWidgetRepresentation/ImageResource"/>
           </references>
         </value>
@@ -3555,7 +3555,7 @@
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItem">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="someValue">
@@ -3573,7 +3573,7 @@
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItem">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="0.0">
@@ -3591,7 +3591,7 @@
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItem">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-                  <references xsi:type="structure:TargetSectionNonContainmentReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
+                  <references xsi:type="structure:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.0/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
                   </references>
                   <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="Checkbox">
@@ -3610,10 +3610,10 @@
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedNavigationFlow"/>
         <value xsi:type="structure:TargetSectionClass" name="NewViewNavFlow">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/NewViewNavigationFlow"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="source" value="//@targetSectionModel.0/@metaModelSections.26/@references.4/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="source" value="//@targetSectionModel.0/@metaModelSections.26/@references.4/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="target" value="//@targetSectionModel.0/@metaModelSections.6">
+          <references xsi:type="structure:TargetSectionCrossReference" name="target" value="//@targetSectionModel.0/@metaModelSections.6">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
           </references>
         </value>
@@ -3646,13 +3646,13 @@
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
         <value xsi:type="structure:TargetSectionClass" name="DataItem (dummy)">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.27/@references.1/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.27/@references.1/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Dimension"/>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="Type" value="//@targetSectionModel.0/@metaModelSections.25/@references.0/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="Type" value="//@targetSectionModel.0/@metaModelSections.25/@references.0/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Type"/>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="dummyDescription" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.0">
+          <references xsi:type="structure:TargetSectionCrossReference" name="dummyDescription" value="//@targetSectionModel.0/@metaModelSections.26/@references.2/@value.0/@references.1/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Description"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="dummyDataItem">
@@ -3743,7 +3743,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/Subscription/OwnedMonitoredItem"/>
             <value xsi:type="structure:TargetSectionClass" name="dummyItem">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="DummyItem" value="//@targetSectionModel.0/@metaModelSections.27/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="DummyItem" value="//@targetSectionModel.0/@metaModelSections.27/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/MonitoredItem/DataItemToMonitor"/>
               </references>
               <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Dummy_monitored" value="Dummy_monitored">
@@ -3770,7 +3770,7 @@
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/opcua/OpcUaServer/OwnedUaItem"/>
             <value xsi:type="structure:TargetSectionClass" name="OpcUaItem Sig/FuncInterface" container="//@targetSectionModel.0/@metaModelSections.28/@references.0/@value.0">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/opcua/DataVariable"/>
-              <references xsi:type="structure:TargetSectionNonContainmentReference" name="IsAccessedVia" value="//@targetSectionModel.0/@metaModelSections.27/@references.0/@value.0">
+              <references xsi:type="structure:TargetSectionCrossReference" name="IsAccessedVia" value="//@targetSectionModel.0/@metaModelSections.27/@references.0/@value.0">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/ServerDataItem/IsAccessedVia"/>
               </references>
               <references xsi:type="structure:TargetSectionContainmentReference" name="dataType">

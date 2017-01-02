@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SectionCrossReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.util.StructureValidator;
@@ -25,12 +25,12 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.MetaModelSectionReferenceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl implements MetaModelSectionReference {
+public class SourceSectionCrossReferenceImpl extends SourceSectionReferenceImpl implements SectionCrossReference {
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' reference list.
@@ -46,7 +46,7 @@ public class MetaModelSectionReferenceImpl extends SourceSectionReferenceImpl im
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetaModelSectionReferenceImpl() {
+	protected SourceSectionCrossReferenceImpl() {
 		super();
 	}
 

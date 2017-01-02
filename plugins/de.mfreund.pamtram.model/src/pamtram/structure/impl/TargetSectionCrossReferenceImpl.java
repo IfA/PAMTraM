@@ -10,9 +10,9 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
-import pamtram.structure.generic.impl.NonContainmentReferenceImpl;
+import pamtram.structure.generic.impl.CrossReferenceImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Non Containment
@@ -20,15 +20,15 @@ import pamtram.structure.generic.impl.NonContainmentReferenceImpl;
  *
  * @generated
  */
-public class TargetSectionNonContainmentReferenceImpl extends
-		NonContainmentReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
-		implements TargetSectionNonContainmentReference {
+public class TargetSectionCrossReferenceImpl extends
+		CrossReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
+		implements TargetSectionCrossReference {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionNonContainmentReferenceImpl() {
+	protected TargetSectionCrossReferenceImpl() {
 		super();
 	}
 

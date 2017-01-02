@@ -22,7 +22,7 @@ import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SectionCrossReference;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.RangeBound;
@@ -36,7 +36,7 @@ import pamtram.structure.SubstringMatcher;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.ValueConstraintExternalSourceElement;
 import pamtram.structure.ValueConstraintSourceElement;
 import pamtram.structure.ValueConstraintType;
@@ -97,9 +97,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
-			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionNonContainmentReference();
+			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: return createTargetSectionCrossReference();
 			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
-			case StructurePackage.META_MODEL_SECTION_REFERENCE: return createMetaModelSectionReference();
+			case StructurePackage.META_MODEL_SECTION_REFERENCE: return createSourceSectionCrossReference();
 			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
@@ -269,8 +269,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionNonContainmentReference createTargetSectionNonContainmentReference() {
-		TargetSectionNonContainmentReferenceImpl targetSectionNonContainmentReference = new TargetSectionNonContainmentReferenceImpl();
+	public TargetSectionCrossReference createTargetSectionCrossReference() {
+		TargetSectionCrossReferenceImpl targetSectionNonContainmentReference = new TargetSectionCrossReferenceImpl();
 		return targetSectionNonContainmentReference;
 	}
 
@@ -289,8 +289,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MetaModelSectionReference createMetaModelSectionReference() {
-		MetaModelSectionReferenceImpl metaModelSectionReference = new MetaModelSectionReferenceImpl();
+	public SectionCrossReference createSourceSectionCrossReference() {
+		SourceSectionCrossReferenceImpl metaModelSectionReference = new SourceSectionCrossReferenceImpl();
 		return metaModelSectionReference;
 	}
 

@@ -37,7 +37,7 @@ import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.GenericFactory;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -643,9 +643,9 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(containmentReferenceEClass, CONTAINMENT_REFERENCE__VALUE);
 		createEOperation(containmentReferenceEClass, CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
-		nonContainmentReferenceEClass = createEClass(NON_CONTAINMENT_REFERENCE);
-		createEReference(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE__VALUE);
-		createEOperation(nonContainmentReferenceEClass, NON_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		nonContainmentReferenceEClass = createEClass(CROSS_REFERENCE);
+		createEReference(nonContainmentReferenceEClass, CROSS_REFERENCE__VALUE);
+		createEOperation(nonContainmentReferenceEClass, CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
 		attributeEClass = createEClass(ATTRIBUTE);
 		createEReference(attributeEClass, ATTRIBUTE__OWNING_CLASS);
@@ -1311,9 +1311,9 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(nonContainmentReferenceEClass, NonContainmentReference.class, "NonContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nonContainmentReferenceEClass, CrossReference.class, "NonContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(nonContainmentReferenceEClass_C);
-		initEReference(getNonContainmentReference_Value(), g1, null, "value", null, 0, -1, NonContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNonContainmentReference_Value(), g1, null, "value", null, 0, -1, CrossReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getNonContainmentReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

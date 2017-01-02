@@ -5,7 +5,7 @@ package pamtram.structure.impl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -37,7 +37,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionNonContainmentReference reference;
+	protected TargetSectionCrossReference reference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionNonContainmentReference getReference() {
+	public TargetSectionCrossReference getReference() {
 		return reference;
 	}
 
@@ -83,8 +83,8 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReference(TargetSectionNonContainmentReference newReference, NotificationChain msgs) {
-		TargetSectionNonContainmentReference oldReference = reference;
+	public NotificationChain basicSetReference(TargetSectionCrossReference newReference, NotificationChain msgs) {
+		TargetSectionCrossReference oldReference = reference;
 		reference = newReference;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, oldReference, newReference);
@@ -98,7 +98,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReference(TargetSectionNonContainmentReference newReference) {
+	public void setReference(TargetSectionCrossReference newReference) {
 		if (newReference != reference) {
 			NotificationChain msgs = null;
 			if (reference != null)
@@ -149,7 +149,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				setReference((TargetSectionNonContainmentReference)newValue);
+				setReference((TargetSectionCrossReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -164,7 +164,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				setReference((TargetSectionNonContainmentReference)null);
+				setReference((TargetSectionCrossReference)null);
 				return;
 		}
 		super.eUnset(featureID);

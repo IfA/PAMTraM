@@ -14,7 +14,7 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -117,8 +117,8 @@ public class GenericSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GenericPackage.NON_CONTAINMENT_REFERENCE: {
-				NonContainmentReference<?, ?, ?, ?> nonContainmentReference = (NonContainmentReference<?, ?, ?, ?>)theEObject;
+			case GenericPackage.CROSS_REFERENCE: {
+				CrossReference<?, ?, ?, ?> nonContainmentReference = (CrossReference<?, ?, ?, ?>)theEObject;
 				T result = caseNonContainmentReference(nonContainmentReference);
 				if (result == null) result = caseReference(nonContainmentReference);
 				if (result == null) result = caseMetaModelElement(nonContainmentReference);
@@ -242,7 +242,7 @@ public class GenericSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(CrossReference<S, C, R, A> object) {
 		return null;
 	}
 

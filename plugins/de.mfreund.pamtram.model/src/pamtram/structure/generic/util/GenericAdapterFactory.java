@@ -16,7 +16,7 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -98,7 +98,7 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 				return createContainmentReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseNonContainmentReference(CrossReference<S, C, R, A> object) {
 				return createNonContainmentReferenceAdapter();
 			}
 			@Override
@@ -208,13 +208,13 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.NonContainmentReference <em>Non Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CrossReference <em>Non Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.generic.NonContainmentReference
+	 * @see pamtram.structure.generic.CrossReference
 	 * @generated
 	 */
 	public Adapter createNonContainmentReferenceAdapter() {

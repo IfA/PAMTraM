@@ -127,7 +127,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Target Section Non Containment Reference</em>'.
 	 * @generated
 	 */
-	TargetSectionNonContainmentReference createTargetSectionNonContainmentReference();
+	TargetSectionCrossReference createTargetSectionCrossReference();
 
 	/**
 	 * Returns a new object of class '<em>Source Section Containment Reference</em>'.
@@ -145,7 +145,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Meta Model Section Reference</em>'.
 	 * @generated
 	 */
-	MetaModelSectionReference createMetaModelSectionReference();
+	SectionCrossReference createSourceSectionCrossReference();
 
 	/**
 	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.

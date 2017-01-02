@@ -16,14 +16,14 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.MetaModelSectionReference#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.SectionCrossReference#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getMetaModelSectionReference()
+ * @see pamtram.structure.StructurePackage#getSourceSectionCrossReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesMatchReferenceType'"
  * @generated
  */
-public interface MetaModelSectionReference extends SourceSectionReference {
+public interface SectionCrossReference extends SourceSectionReference {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' reference list.

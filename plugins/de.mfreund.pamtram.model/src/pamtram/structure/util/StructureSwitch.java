@@ -28,7 +28,7 @@ import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.MetaModelSectionReference;
+import pamtram.structure.SectionCrossReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.MultipleReferencesValueConstraint;
 import pamtram.structure.RangeBound;
@@ -46,7 +46,7 @@ import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionContainmentReference;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.ValueConstraint;
 import pamtram.structure.ValueConstraintExternalSourceElement;
@@ -57,7 +57,7 @@ import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.ContainmentReference;
 import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.generic.NonContainmentReference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
@@ -245,7 +245,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.TARGET_SECTION_NON_CONTAINMENT_REFERENCE: {
-				TargetSectionNonContainmentReference targetSectionNonContainmentReference = (TargetSectionNonContainmentReference)theEObject;
+				TargetSectionCrossReference targetSectionNonContainmentReference = (TargetSectionCrossReference)theEObject;
 				T result = caseTargetSectionNonContainmentReference(targetSectionNonContainmentReference);
 				if (result == null) result = caseNonContainmentReference(targetSectionNonContainmentReference);
 				if (result == null) result = caseTargetSectionReference(targetSectionNonContainmentReference);
@@ -267,7 +267,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.META_MODEL_SECTION_REFERENCE: {
-				MetaModelSectionReference metaModelSectionReference = (MetaModelSectionReference)theEObject;
+				SectionCrossReference metaModelSectionReference = (SectionCrossReference)theEObject;
 				T result = caseMetaModelSectionReference(metaModelSectionReference);
 				if (result == null) result = caseSourceSectionReference(metaModelSectionReference);
 				if (result == null) result = caseReference(metaModelSectionReference);
@@ -762,7 +762,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(NonContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseNonContainmentReference(CrossReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -822,7 +822,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTargetSectionNonContainmentReference(TargetSectionNonContainmentReference object) {
+	public T caseTargetSectionNonContainmentReference(TargetSectionCrossReference object) {
 		return null;
 	}
 
@@ -852,7 +852,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMetaModelSectionReference(MetaModelSectionReference object) {
+	public T caseMetaModelSectionReference(SectionCrossReference object) {
 		return null;
 	}
 

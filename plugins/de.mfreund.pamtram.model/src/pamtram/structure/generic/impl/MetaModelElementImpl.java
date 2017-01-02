@@ -17,7 +17,7 @@ import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.ResourceParameter;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionNonContainmentReference;
+import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.VirtualTargetSectionAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
@@ -76,7 +76,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 			// we have found the section
 			return (S) element;
 		} else if((element instanceof TargetSectionAttribute && (element.eContainer() instanceof AttributeParameter || element.eContainer() instanceof ResourceParameter)) || 
-				(element instanceof TargetSectionNonContainmentReference) && element.eContainer() instanceof ExternalReferenceParameter) {
+				(element instanceof TargetSectionCrossReference) && element.eContainer() instanceof ExternalReferenceParameter) {
 			LibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();
 			for (LibraryParameter<?> param : libEntry.getParameters()) {
 				//TODO if multiple container parameters exist, there might need to be additional logic

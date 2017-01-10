@@ -22,7 +22,7 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.GenericPackage;
-import pamtram.structure.generic.provider.ContainmentReferenceItemProvider;
+import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.SourceSectionContainmentReference} object. <!--
@@ -30,14 +30,14 @@ import pamtram.structure.generic.provider.ContainmentReferenceItemProvider;
  * 
  * @generated
  */
-public class SourceSectionContainmentReferenceItemProvider extends ContainmentReferenceItemProvider {
+public class SourceSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -125,7 +125,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 			int operation, Collection<?> collection) {
 
 		/*
-		 * Allow to drop Sections onto this ContainmentReference.
+		 * Allow to drop Sections onto this CompositeReference.
 		 */
 
 		if (collection.isEmpty()) {

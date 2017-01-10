@@ -19,24 +19,24 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.Class;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.ReferenceImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.ContainmentReference} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.generic.CompositeReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class ContainmentReferenceItemProvider extends ReferenceItemProvider {
+public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
+	public CompositeReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -84,14 +84,14 @@ public class ContainmentReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This returns ContainmentReference.gif.
+	 * This returns CompositeReference.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainmentReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeReference"));
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class ContainmentReferenceItemProvider extends ReferenceItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ContainmentReference.class)) {
+		switch (notification.getFeatureID(CompositeReference.class)) {
 			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -305,7 +305,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionContainmentReferenceItemProvider targetSectionContainmentReferenceItemProvider;
+	protected TargetSectionCompositeReferenceItemProvider targetSectionContainmentReferenceItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.TargetSectionContainmentReference}.
@@ -316,7 +316,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	@Override
 	public Adapter createTargetSectionContainmentReferenceAdapter() {
 		if (targetSectionContainmentReferenceItemProvider == null) {
-			targetSectionContainmentReferenceItemProvider = new TargetSectionContainmentReferenceItemProvider(this);
+			targetSectionContainmentReferenceItemProvider = new TargetSectionCompositeReferenceItemProvider(this);
 		}
 
 		return targetSectionContainmentReferenceItemProvider;
@@ -351,7 +351,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionContainmentReferenceItemProvider sourceSectionContainmentReferenceItemProvider;
+	protected SourceSectionCompositeReferenceItemProvider sourceSectionContainmentReferenceItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.SourceSectionContainmentReference}.
@@ -362,7 +362,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	@Override
 	public Adapter createSourceSectionContainmentReferenceAdapter() {
 		if (sourceSectionContainmentReferenceItemProvider == null) {
-			sourceSectionContainmentReferenceItemProvider = new SourceSectionContainmentReferenceItemProvider(this);
+			sourceSectionContainmentReferenceItemProvider = new SourceSectionCompositeReferenceItemProvider(this);
 		}
 
 		return sourceSectionContainmentReferenceItemProvider;

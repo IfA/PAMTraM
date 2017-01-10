@@ -141,7 +141,7 @@ public class LibraryHelper {
 			for (EReference ref : currentObject.eClass().getEAllContainments()) {
 				if (currentObject.eGet(ref) != null) {
 					TargetSectionContainmentReference tReference = StructureFactory.eINSTANCE
-							.createTargetSectionContainmentReference();
+							.createTargetSectionCompositeReference();
 					tReference.setEReference(ref);
 					tReference.setName(ref.getName());
 					tClass.getReferences().add(tReference);

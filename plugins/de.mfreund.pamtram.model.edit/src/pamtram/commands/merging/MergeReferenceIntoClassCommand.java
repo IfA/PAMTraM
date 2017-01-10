@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
@@ -105,7 +105,7 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 
 		// In any other case, we simply add the values
 		//
-		if (leftReference.get() instanceof ContainmentReference<?, ?, ?, ?>) {
+		if (leftReference.get() instanceof CompositeReference<?, ?, ?, ?>) {
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
 			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
 					values));

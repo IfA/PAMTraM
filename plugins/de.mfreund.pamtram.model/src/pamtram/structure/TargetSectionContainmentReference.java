@@ -2,7 +2,7 @@
  */
 package pamtram.structure;
 
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -10,9 +10,9 @@ import pamtram.structure.generic.ContainmentReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getTargetSectionContainmentReference()
+ * @see pamtram.structure.StructurePackage#getTargetSectionCompositeReference()
  * @model
  * @generated
  */
-public interface TargetSectionContainmentReference extends ContainmentReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
+public interface TargetSectionContainmentReference extends CompositeReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
 } // TargetSectionContainmentReference

@@ -64,9 +64,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
 			case StructurePackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
-			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionContainmentReference();
+			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: return createTargetSectionCompositeReference();
 			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE: return createTargetSectionCrossReference();
-			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionContainmentReference();
+			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: return createSourceSectionCompositeReference();
 			case StructurePackage.SOURCE_SECTION_CROSS_REFERENCE: return createSourceSectionCrossReference();
 			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
@@ -227,8 +227,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionContainmentReference createTargetSectionContainmentReference() {
-		TargetSectionContainmentReferenceImpl targetSectionContainmentReference = new TargetSectionContainmentReferenceImpl();
+	public TargetSectionContainmentReference createTargetSectionCompositeReference() {
+		TargetSectionCompositeReferenceImpl targetSectionContainmentReference = new TargetSectionCompositeReferenceImpl();
 		return targetSectionContainmentReference;
 	}
 
@@ -247,8 +247,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionContainmentReference createSourceSectionContainmentReference() {
-		SourceSectionContainmentReferenceImpl sourceSectionContainmentReference = new SourceSectionContainmentReferenceImpl();
+	public SourceSectionContainmentReference createSourceSectionCompositeReference() {
+		SourceSectionCompositeReferenceImpl sourceSectionContainmentReference = new SourceSectionCompositeReferenceImpl();
 		return sourceSectionContainmentReference;
 	}
 

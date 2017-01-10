@@ -614,11 +614,11 @@ public interface GenericPackage extends EPackage {
 	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.CompositeReferenceImpl <em>Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
-	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getContainmentReference()
+	 * @see pamtram.structure.generic.impl.CompositeReferenceImpl
+	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCompositeReference()
 	 * @generated
 	 */
 	int CONTAINMENT_REFERENCE = 4;
@@ -1406,35 +1406,35 @@ public interface GenericPackage extends EPackage {
 	EOperation getReference__AddValuesGeneric__EList();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.generic.ContainmentReference <em>Containment Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.generic.CompositeReference <em>Containment Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Containment Reference</em>'.
-	 * @see pamtram.structure.generic.ContainmentReference
+	 * @see pamtram.structure.generic.CompositeReference
 	 * @generated
 	 */
-	EClass getContainmentReference();
+	EClass getCompositeReference();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.ContainmentReference#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.generic.CompositeReference#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Value</em>'.
-	 * @see pamtram.structure.generic.ContainmentReference#getValue()
-	 * @see #getContainmentReference()
+	 * @see pamtram.structure.generic.CompositeReference#getValue()
+	 * @see #getCompositeReference()
 	 * @generated
 	 */
-	EReference getContainmentReference_Value();
+	EReference getCompositeReference_Value();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.generic.CompositeReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EReference Is Containment</em>' operation.
-	 * @see pamtram.structure.generic.ContainmentReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.generic.CompositeReference#validateEReferenceIsContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
+	EOperation getCompositeReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.CrossReference <em>Cross Reference</em>}'.
@@ -1795,14 +1795,14 @@ public interface GenericPackage extends EPackage {
 		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ContainmentReferenceImpl <em>Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.CompositeReferenceImpl <em>Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.generic.impl.ContainmentReferenceImpl
-		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getContainmentReference()
+		 * @see pamtram.structure.generic.impl.CompositeReferenceImpl
+		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCompositeReference()
 		 * @generated
 		 */
-		EClass CONTAINMENT_REFERENCE = eINSTANCE.getContainmentReference();
+		EClass CONTAINMENT_REFERENCE = eINSTANCE.getCompositeReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference list feature.
@@ -1810,7 +1810,7 @@ public interface GenericPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getContainmentReference_Value();
+		EReference CONTAINMENT_REFERENCE__VALUE = eINSTANCE.getCompositeReference_Value();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate EReference Is Containment</b></em>' operation.
@@ -1818,7 +1818,7 @@ public interface GenericPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
+		EOperation CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCompositeReference__ValidateEReferenceIsContainment__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.CrossReferenceImpl <em>Cross Reference</em>}' class.

@@ -352,8 +352,8 @@
         <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionContainmentReference">
-      <eGenericSuperTypes eClassifier="#//structure/generic/ContainmentReference">
+    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCompositeReference">
+      <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
         <eTypeArguments eClassifier="#//structure/TargetSection"/>
         <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
         <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
@@ -382,8 +382,8 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//structure/TargetSectionReference"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionContainmentReference">
-      <eGenericSuperTypes eClassifier="#//structure/generic/ContainmentReference">
+    <eClassifiers xsi:type="ecore:EClass" name="SourceSectionCompositeReference">
+      <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
         <eTypeArguments eClassifier="#//structure/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/SourceSectionReference"/>
@@ -748,7 +748,7 @@
         </eOperations>
         <eOperations name="isContainedIn" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof ContainmentReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((ContainmentReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof CrossReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((CrossReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
+            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof CompositeReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((CompositeReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof CrossReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((CrossReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
           </eAnnotations>
           <eParameters name="containerClass" lowerBound="1">
             <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
@@ -756,9 +756,9 @@
         </eOperations>
         <eOperations name="getOwningContainmentReference">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="if(this.eContainer() instanceof ContainmentReference&lt;?,?,?,?>) {&#xD;&#xA;&#x9;return (ContainmentReference&lt;S,C,R,A>) this.eContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+            <details key="body" value="if(this.eContainer() instanceof CompositeReference&lt;?,?,?,?>) {&#xD;&#xA;&#x9;return (CompositeReference&lt;S,C,R,A>) this.eContainer();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
           </eAnnotations>
-          <eGenericType eClassifier="#//structure/generic/ContainmentReference">
+          <eGenericType eClassifier="#//structure/generic/CompositeReference">
             <eTypeArguments eTypeParameter="#//structure/generic/Class/S"/>
             <eTypeArguments eTypeParameter="#//structure/generic/Class/C"/>
             <eTypeArguments eTypeParameter="#//structure/generic/Class/R"/>
@@ -976,45 +976,45 @@
           <eTypeArguments eTypeParameter="#//structure/generic/Reference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="ContainmentReference" abstract="true">
+      <eClassifiers xsi:type="ecore:EClass" name="CompositeReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceIsContainment"/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="C">
           <eBounds eClassifier="#//structure/generic/Class">
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="R">
           <eBounds eClassifier="#//structure/generic/Reference">
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eTypeParameters name="A">
           <eBounds eClassifier="#//structure/generic/Attribute">
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/S"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/C"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/R"/>
-            <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/A"/>
           </eBounds>
         </eTypeParameters>
         <eOperations name="validateEReferenceIsContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1026,13 +1026,13 @@
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
             containment="true">
-          <eGenericType eTypeParameter="#//structure/generic/ContainmentReference/C"/>
+          <eGenericType eTypeParameter="#//structure/generic/CompositeReference/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
-          <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/S"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/C"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/R"/>
-          <eTypeArguments eTypeParameter="#//structure/generic/ContainmentReference/A"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/CompositeReference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CrossReference" abstract="true">

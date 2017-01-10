@@ -939,21 +939,21 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_REFERENCE = 12;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionContainmentReferenceImpl <em>Target Section Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionCompositeReferenceImpl <em>Target Section Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionContainmentReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionContainmentReference()
+	 * @see pamtram.structure.impl.TargetSectionCompositeReferenceImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCompositeReference()
 	 * @generated
 	 */
 	int TARGET_SECTION_CONTAINMENT_REFERENCE = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionContainmentReferenceImpl <em>Source Section Containment Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionCompositeReferenceImpl <em>Source Section Containment Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionContainmentReferenceImpl
-	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionContainmentReference()
+	 * @see pamtram.structure.impl.SourceSectionCompositeReferenceImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCompositeReference()
 	 * @generated
 	 */
 	int SOURCE_SECTION_CONTAINMENT_REFERENCE = 15;
@@ -1789,7 +1789,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
+	int TARGET_SECTION_COMPOSITE_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -1798,7 +1798,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
+	int TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -1807,7 +1807,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int TARGET_SECTION_COMPOSITE_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
@@ -1816,7 +1816,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
+	int TARGET_SECTION_COMPOSITE_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Target Section Containment Reference</em>' class.
@@ -1825,7 +1825,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1834,7 +1834,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -1843,7 +1843,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -1852,7 +1852,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -1861,7 +1861,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -1870,7 +1870,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -1879,7 +1879,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -1888,7 +1888,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Target Section Containment Reference</em>' class.
@@ -1897,7 +1897,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
@@ -2042,7 +2042,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE__NAME = GenericPackage.CONTAINMENT_REFERENCE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>EReference</b></em>' reference.
@@ -2051,7 +2051,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE__EREFERENCE = GenericPackage.CONTAINMENT_REFERENCE__EREFERENCE;
 
 	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
@@ -2060,7 +2060,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE__OWNING_CLASS = GenericPackage.CONTAINMENT_REFERENCE__OWNING_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
@@ -2069,7 +2069,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE = GenericPackage.CONTAINMENT_REFERENCE__VALUE;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Containment Reference</em>' class.
@@ -2078,7 +2078,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.CONTAINMENT_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -2087,7 +2087,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
@@ -2096,7 +2096,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CONTAINMENT_REFERENCE___GET_CONTAINING_SECTION_MODEL;
 
 	/**
 	 * The operation id for the '<em>Is Library Entry</em>' operation.
@@ -2105,7 +2105,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CONTAINMENT_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -2114,7 +2114,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -2123,7 +2123,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CONTAINMENT_REFERENCE___GET_VALUES_GENERIC;
 
 	/**
 	 * The operation id for the '<em>Add Values Generic</em>' operation.
@@ -2132,7 +2132,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CONTAINMENT_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -2141,7 +2141,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Source Section Containment Reference</em>' class.
@@ -2150,7 +2150,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CONTAINMENT_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.CONTAINMENT_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
@@ -4662,7 +4662,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.TargetSectionContainmentReference
 	 * @generated
 	 */
-	EClass getTargetSectionContainmentReference();
+	EClass getTargetSectionCompositeReference();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionCrossReference <em>Target Section Cross Reference</em>}'.
@@ -4692,7 +4692,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.SourceSectionContainmentReference
 	 * @generated
 	 */
-	EClass getSourceSectionContainmentReference();
+	EClass getSourceSectionCompositeReference();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
@@ -5514,14 +5514,14 @@ public interface StructurePackage extends EPackage {
 		EClass TARGET_SECTION_REFERENCE = eINSTANCE.getTargetSectionReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionContainmentReferenceImpl <em>Target Section Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionCompositeReferenceImpl <em>Target Section Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionContainmentReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionContainmentReference()
+		 * @see pamtram.structure.impl.TargetSectionCompositeReferenceImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCompositeReference()
 		 * @generated
 		 */
-		EClass TARGET_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionContainmentReference();
+		EClass TARGET_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getTargetSectionCompositeReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
@@ -5542,14 +5542,14 @@ public interface StructurePackage extends EPackage {
 		EOperation TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionContainmentReferenceImpl <em>Source Section Containment Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionCompositeReferenceImpl <em>Source Section Containment Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionContainmentReferenceImpl
-		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionContainmentReference()
+		 * @see pamtram.structure.impl.SourceSectionCompositeReferenceImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCompositeReference()
 		 * @generated
 		 */
-		EClass SOURCE_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionContainmentReference();
+		EClass SOURCE_SECTION_CONTAINMENT_REFERENCE = eINSTANCE.getSourceSectionCompositeReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.

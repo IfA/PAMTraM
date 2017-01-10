@@ -118,7 +118,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Target Section Containment Reference</em>'.
 	 * @generated
 	 */
-	TargetSectionContainmentReference createTargetSectionContainmentReference();
+	TargetSectionContainmentReference createTargetSectionCompositeReference();
 
 	/**
 	 * Returns a new object of class '<em>Target Section Cross Reference</em>'.
@@ -136,7 +136,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Source Section Containment Reference</em>'.
 	 * @generated
 	 */
-	SourceSectionContainmentReference createSourceSectionContainmentReference();
+	SourceSectionContainmentReference createSourceSectionCompositeReference();
 
 	/**
 	 * Returns a new object of class '<em>Source Section Cross Reference</em>'.

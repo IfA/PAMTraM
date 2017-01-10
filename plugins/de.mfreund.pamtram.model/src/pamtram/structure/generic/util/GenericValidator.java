@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
@@ -171,7 +171,7 @@ public class GenericValidator extends EObjectValidator {
 			case GenericPackage.REFERENCE:
 				return validateReference((Reference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.CONTAINMENT_REFERENCE:
-				return validateContainmentReference((ContainmentReference<?, ?, ?, ?>)value, diagnostics, context);
+				return validateContainmentReference((CompositeReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.CROSS_REFERENCE:
 				return validateCrossReference((CrossReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.ATTRIBUTE:
@@ -503,7 +503,7 @@ public class GenericValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainmentReference(ContainmentReference<?, ?, ?, ?> containmentReference,
+	public boolean validateContainmentReference(CompositeReference<?, ?, ?, ?> containmentReference,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(containmentReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(containmentReference, diagnostics, context);
@@ -527,7 +527,7 @@ public class GenericValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainmentReference_eReferenceIsContainment(
-			ContainmentReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
+			CompositeReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
@@ -557,7 +557,7 @@ public class GenericValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateContainmentReference_validateEReferenceIsContainment(
-			ContainmentReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
+			CompositeReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return containmentReference.validateEReferenceIsContainment(diagnostics, context);
 	}

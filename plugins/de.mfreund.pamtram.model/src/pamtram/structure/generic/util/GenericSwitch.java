@@ -11,7 +11,7 @@ import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.CrossReference;
@@ -109,7 +109,7 @@ public class GenericSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case GenericPackage.CONTAINMENT_REFERENCE: {
-				ContainmentReference<?, ?, ?, ?> containmentReference = (ContainmentReference<?, ?, ?, ?>)theEObject;
+				CompositeReference<?, ?, ?, ?> containmentReference = (CompositeReference<?, ?, ?, ?>)theEObject;
 				T result = caseContainmentReference(containmentReference);
 				if (result == null) result = caseReference(containmentReference);
 				if (result == null) result = caseMetaModelElement(containmentReference);
@@ -227,7 +227,7 @@ public class GenericSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(ContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(CompositeReference<S, C, R, A> object) {
 		return null;
 	}
 

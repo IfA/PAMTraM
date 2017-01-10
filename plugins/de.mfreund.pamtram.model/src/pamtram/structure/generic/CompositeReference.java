@@ -16,15 +16,15 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.generic.ContainmentReference#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.generic.CompositeReference#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.generic.GenericPackage#getContainmentReference()
+ * @see pamtram.structure.generic.GenericPackage#getCompositeReference()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='eReferenceIsContainment'"
  * @generated
  */
-public interface ContainmentReference<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
+public interface CompositeReference<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends Reference<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference list.
@@ -35,7 +35,7 @@ public interface ContainmentReference<S extends Section<S, C, R, A>, C extends p
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference list.
-	 * @see pamtram.structure.generic.GenericPackage#getContainmentReference_Value()
+	 * @see pamtram.structure.generic.GenericPackage#getCompositeReference_Value()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -49,4 +49,4 @@ public interface ContainmentReference<S extends Section<S, C, R, A>, C extends p
 	 */
 	boolean validateEReferenceIsContainment(DiagnosticChain diagnostics, Map<?, ?> context);
 
-} // ContainmentReference
+} // CompositeReference

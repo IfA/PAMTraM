@@ -10,10 +10,10 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ZERO__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -53,7 +53,7 @@
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm0Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="structure:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
@@ -62,7 +62,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -71,15 +71,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -101,7 +101,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingRight">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingRight">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
@@ -120,7 +120,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm1Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="structure:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
@@ -129,7 +129,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -138,15 +138,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -168,7 +168,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingRight">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingRight">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
@@ -177,7 +177,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingLeft">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingLeft">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
@@ -196,7 +196,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm2Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="structure:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
@@ -205,7 +205,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -214,15 +214,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -244,7 +244,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingRight">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingRight">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
@@ -253,7 +253,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingLeft">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingLeft">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
@@ -272,7 +272,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm3Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="structure:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
@@ -281,7 +281,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -290,7 +290,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingRight">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingRight">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingRight"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingRight">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingRight"/>
@@ -299,7 +299,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingLeft">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingLeft">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
@@ -308,15 +308,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -348,7 +348,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm4Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="parent">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
         <value xsi:type="structure:SourceSectionClass" name="Parent">
           <eClass href="http://giove.isti.cnr.it/ctt#//Parent"/>
@@ -357,7 +357,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -366,7 +366,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="siblingLeft">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="siblingLeft">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/siblingLeft"/>
         <value xsi:type="structure:SourceSectionClass" name="SiblingLeft">
           <eClass href="http://giove.isti.cnr.it/ctt#//SiblingLeft"/>
@@ -375,15 +375,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -415,15 +415,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Alarm_ElementTask">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="precondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="precondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -445,15 +445,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="postcondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="postcondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/postcondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -475,7 +475,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="object">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="object">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/object"/>
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ONE__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
@@ -494,15 +494,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="abstractPreconditionTask" abstract="true">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="precondition">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="precondition">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
         <value xsi:type="structure:SourceSectionClass" name="ConditionGroup">
           <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="conditionGroup">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="conditionGroup">
             <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
             <value xsi:type="structure:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
               <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="conditionLiteral">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="conditionLiteral">
                 <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
                 <value xsi:type="structure:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
                   <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
@@ -540,25 +540,25 @@
     <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="CUIModel">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="SignalCollection">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="SignalCollection">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/SignalCollection"/>
         <value xsi:type="structure:TargetSectionClass" name="SignalCollection">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//SignalCollection"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="Conditions">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="Conditions">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/Conditions"/>
         <value xsi:type="structure:TargetSectionClass" name="ConditionModel">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/ConditionModel"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="sounds">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="sounds">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/sounds"/>
         <value xsi:type="structure:TargetSectionClass" name="SoundDefinition">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Sounds/SoundDefinition"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="colorTheme">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="colorTheme">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/colorTheme"/>
         <value xsi:type="structure:TargetSectionClass" name="ColorTheme">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorTheme"/>
@@ -567,7 +567,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="language">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="language">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/language"/>
         <value xsi:type="structure:TargetSectionClass" name="defaultLanguage">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/Language"/>
@@ -579,15 +579,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="TextDefinitions">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="TextDefinitions">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/TextDefinitions"/>
         <value xsi:type="structure:TargetSectionClass" name="TextItemGroup">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItemGroup"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="textItem">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="textItem">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItemGroup/textItem"/>
             <value xsi:type="structure:TargetSectionClass" name="FloatDefaultTextItem">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="translation">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="translation">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
                 <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
@@ -606,19 +606,19 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="colors">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="colors">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/colors"/>
         <value xsi:type="structure:TargetSectionClass" name="ColorItemGroup">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItemGroup"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="colorItem">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="colorItem">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItemGroup/colorItem"/>
             <value xsi:type="structure:TargetSectionClass" name="DefaultColorItem">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItem"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="colorEntry">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="colorEntry">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItem/colorEntry"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorEntry">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="value">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="value">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/value"/>
                     <value xsi:type="structure:TargetSectionClass" name="DefaultColorValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue"/>
@@ -636,13 +636,13 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="vibrations">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="vibrations">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/vibrations"/>
         <value xsi:type="structure:TargetSectionClass" name="VibrationDefinition">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationDefinition"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="assets">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="assets">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//CUIModel/assets"/>
         <value xsi:type="structure:TargetSectionClass" name="AssetGroup">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetGroup"/>
@@ -660,7 +660,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="testTextItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.5/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="translation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="translation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
         <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
@@ -678,7 +678,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="DefaultTextItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.5/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="translation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="translation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TextItem/translation"/>
         <value xsi:type="structure:TargetSectionClass" name="TranslationEntry">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/TextDefinition/TranslationEntry"/>
@@ -696,11 +696,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="And" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/And"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="condtionGroup">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="condtionGroup">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/And/condtionGroup"/>
         <value xsi:type="structure:TargetSectionClass" name="Condition" cardinality="ONE__INFINITY">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/val"/>
             <value xsi:type="structure:TargetSectionClass" name="FloatValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue"/>
@@ -729,11 +729,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="ColorItem" container="//@targetSectionModel.0/@metaModelSections.0/@references.6/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItem"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="colorEntry">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="colorEntry">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorItem/colorEntry"/>
         <value xsi:type="structure:TargetSectionClass" name="ColorEntry">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="value">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="value">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/ColorEntry/value"/>
             <value xsi:type="structure:TargetSectionClass" name="HEXColorValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Colors/HEXColorValue"/>
@@ -753,7 +753,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Image" container="//@targetSectionModel.0/@metaModelSections.0/@references.8/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Assets/Image"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="ref">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="ref">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/Asset/ref"/>
         <value xsi:type="structure:TargetSectionClass" name="AssetReference">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference"/>
@@ -768,11 +768,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Or" container="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Or"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="condtionGroup">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="condtionGroup">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Or/condtionGroup"/>
         <value xsi:type="structure:TargetSectionClass" name="Condition" cardinality="ONE__INFINITY">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/Condition/val"/>
             <value xsi:type="structure:TargetSectionClass" name="FloatValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//ConditionModel/FloatValue"/>
@@ -804,15 +804,15 @@
     <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="GaugeComponent" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//simpleContainer"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="Width">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Width"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="GaugeWidth">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="GaugeWidth">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="GaugeWidthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -824,7 +824,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="Height">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Height"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="GaugeHeight">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="GaugeHeight">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="GaugeHeightValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -836,7 +836,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="staticBackgroundColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BackgroundColor"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -848,7 +848,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="GaugeVisibility">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Visibility"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="VisibilityPresetValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
@@ -861,19 +861,19 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="containedElements">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="containedElements">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//simpleContainer/containedElements"/>
         <value xsi:type="structure:TargetSectionClass" name="Component">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
             <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
                 <value xsi:type="structure:TargetSectionClass" name="Width">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Width"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="GaugeWidth">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="GaugeWidth">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="structure:TargetSectionClass" name="GaugeWidthValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -885,7 +885,7 @@
                 </value>
                 <value xsi:type="structure:TargetSectionClass" name="Height">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Height"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="GaugeHeight">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="GaugeHeight">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="structure:TargetSectionClass" name="GaugeHeightValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -897,7 +897,7 @@
                 </value>
                 <value xsi:type="structure:TargetSectionClass" name="dynamicBackgroundColor">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BackgroundColor"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                     <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -913,26 +913,26 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="animation">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="animation">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord/animation"/>
             <value xsi:type="structure:TargetSectionClass" name="AnimationGroup">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="animationGroup">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="animationGroup">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup/animationGroup"/>
                 <value xsi:type="structure:TargetSectionClass" name="StylePropertyAnimation">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
                   <references xsi:type="structure:TargetSectionCrossReference" name="PropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.0/@references.0/@value.0/@references.0/@value.3">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
                   </references>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
                     <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
                     <value xsi:type="structure:TargetSectionClass" name="Visibility">
                       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Visibility"/>
-                      <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+                      <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                         <value xsi:type="structure:TargetSectionClass" name="VisibilityPresetValue">
                           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
@@ -970,15 +970,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="StaticTextComponent" container="//@targetSectionModel.1/@metaModelSections.1">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="staticText">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Text"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
@@ -1000,15 +1000,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="DynamicTextComponent" container="//@targetSectionModel.1/@metaModelSections.1">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="dynamicText">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Text"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
@@ -1025,11 +1025,11 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="animation">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="animation">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord/animation"/>
             <value xsi:type="structure:TargetSectionClass" name="StylePropertyAnimation">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
@@ -1049,15 +1049,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="BorderComponent" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="BorderVisibility">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Visibility"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="VisibilityPresetValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
@@ -1073,7 +1073,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="DefaultBorderColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BorderColor"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -1092,7 +1092,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="BorderWidth">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BorderWidth"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="LengthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -1105,7 +1105,7 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="BorderAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
@@ -1120,15 +1120,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SoundComponent" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="SoundComponentSound">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/Properties/Sound"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="SoundComponentReferencingValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundReferencingValue"/>
@@ -1141,7 +1141,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="SoundActive">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/Properties/SoundActive"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="SoundComponentActiveValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
@@ -1157,7 +1157,7 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="SoundComponentAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
@@ -1172,15 +1172,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="VibrationComponent" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="VibrationComponentReference">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/Properties/VibrationReference"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="VibrationComponentReferencingValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
@@ -1193,7 +1193,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="VibrationActive">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/Properties/VibrationActive"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="VibrationComponentActiveValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationActiveValue"/>
@@ -1209,7 +1209,7 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="VibrationComponentAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
@@ -1224,15 +1224,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Lamp" container="//@targetSectionModel.0/@metaModelSections.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Component"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="representation">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentedElement/representation"/>
         <value xsi:type="structure:TargetSectionClass" name="RepresentationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="styleProperty">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="styleProperty">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/RepresentationRecord/styleProperty"/>
             <value xsi:type="structure:TargetSectionClass" name="Text">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Text"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextItemReferencingVariable">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//Variables/TextItemReferencingVariable"/>
@@ -1247,7 +1247,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="LampBackgroundColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BackgroundColor"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -1260,7 +1260,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="TextColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/TextColor"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -1272,7 +1272,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="FontSize">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/FontSize"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="FontSizeLenght">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/FontSizeLenght"/>
@@ -1284,7 +1284,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="Width">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Width"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="LampWidth">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="LampWidth">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="LampWidthValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -1299,7 +1299,7 @@
             </value>
             <value xsi:type="structure:TargetSectionClass" name="Height">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Height"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="LampHeight">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="LampHeight">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="LampHeightValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/LengthValue"/>
@@ -1315,7 +1315,7 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationRecord">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationRecord">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimatedElement/animationRecord"/>
         <value xsi:type="structure:TargetSectionClass" name="LampAnimationRecord">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationRecord"/>
@@ -1348,7 +1348,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SoundAsset" container="//@targetSectionModel.0/@metaModelSections.0/@references.8/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Assets/Sound"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="ref">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="ref">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/Asset/ref"/>
         <value xsi:type="structure:TargetSectionClass" name="AssetReference">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Assets/AssetReference"/>
@@ -1384,7 +1384,7 @@
     <metaModelPackage href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="VibrationItemGroup" container="//@targetSectionModel.0/@metaModelSections.0/@references.7/@value.0">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroup"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="vibrationItem">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="vibrationItem">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/VibrationItemGroup/vibrationItem"/>
         <value xsi:type="structure:TargetSectionClass" name="PulsingVibrationItem">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Vibration/PulsingVibrationItem"/>
@@ -1414,15 +1414,15 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="SingleGaugeAnimationTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationGroup">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationGroup">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroup/animationGroup"/>
         <value xsi:type="structure:TargetSectionClass" name="StylePropertyAnimation">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
             <value xsi:type="structure:TargetSectionClass" name="BackgroundColor">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BackgroundColor"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="val">
                 <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
                 <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
                   <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -1438,11 +1438,11 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationProperty">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/animationProperty"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCount">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationIterationCount"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCountInt">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountInt"/>
@@ -1492,11 +1492,11 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="InfiniteBorderStopTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StopTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationProperty">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/animationProperty"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCount">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationIterationCount"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCountPresetValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountPresetValue"/>
@@ -1508,7 +1508,7 @@
         </value>
         <value xsi:type="structure:TargetSectionClass" name="AnimationDuration">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationDuration"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="AnimationDurationValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationDurationValue"/>
@@ -1528,11 +1528,11 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="SingleLampAnimationGroupStartTrigger" value="//@targetSectionModel.0/@metaModelSections.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/StartTrigger"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationProperty">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/animationProperty"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCount">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationIterationCount"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="AnimationIterationCountInt">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationIterationCountInt"/>
@@ -1552,11 +1552,11 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="SoundPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.5/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
         <value xsi:type="structure:TargetSectionClass" name="Sound">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/Properties/Sound"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="SoundReferencingValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundReferencingValue"/>
@@ -1573,11 +1573,11 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="VibrationPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.6/@references.0/@value.0/@references.0/@value.0">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
         <value xsi:type="structure:TargetSectionClass" name="VibrationReference">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/Properties/VibrationReference"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="VibrationReferencingValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationReferencingValue"/>
@@ -1594,11 +1594,11 @@
       <references xsi:type="structure:TargetSectionCrossReference" name="BorderColorPropertyToAnimate" value="//@targetSectionModel.1/@metaModelSections.4/@references.0/@value.0/@references.0/@value.1">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/PropertyToAnimate"/>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
         <value xsi:type="structure:TargetSectionClass" name="BorderColor">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BorderColor"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>
@@ -1615,7 +1615,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="SoundActivateAnimation" container="//@targetSectionModel.4/@metaModelSections.2">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="variableResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="variableResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/variableResult"/>
         <value xsi:type="structure:TargetSectionClass" name="SoundActiveValue">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/AcousticalPresentationProfile/Representation/PropertyValues/SoundActiveValue"/>
@@ -1633,7 +1633,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="VibrationActivateAnimation" container="//@targetSectionModel.4/@metaModelSections.3">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="variableResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="variableResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/VariableAnimation/variableResult"/>
         <value xsi:type="structure:TargetSectionClass" name="VibrationActiveValue">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/HapticalPresentationProfile/Representation/PropertyValues/VibrationActiveValue"/>
@@ -1651,11 +1651,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="BorderVisibilityStylePropertyAnimation" cardinality="ONE__INFINITY" container="//@targetSectionModel.4/@metaModelSections.4">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
         <value xsi:type="structure:TargetSectionClass" name="Visibility">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/Visibility"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="BorderVisibilityPresetValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/VisibilityPresetValue"/>
@@ -1666,11 +1666,11 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="animationProperty">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="animationProperty">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationGroupable/animationProperty"/>
         <value xsi:type="structure:TargetSectionClass" name="AnimationDelay">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationDelay"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/Animations/AnimationProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="BorderVisibilityAnimationDelayValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/AnimationValues/AnimationDelayValue"/>
@@ -1690,11 +1690,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="LampColorStylePropertyAnimation" container="//@targetSectionModel.4/@metaModelSections.5">
       <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="StylePropertyResult">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="StylePropertyResult">
         <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Animation/StylePropertyAnimation/StylePropertyResult"/>
         <value xsi:type="structure:TargetSectionClass" name="BackgroundColor">
           <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/Properties/BackgroundColor"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="val">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="val">
             <eReference href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/Representation/StyleProperty/val"/>
             <value xsi:type="structure:TargetSectionClass" name="ColorReferencingPropertyValue">
               <eClass href="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/HapticalPresentationProfile/Representation/Properties#//PresentationModel/VisualPresentationProfile/Representation/PropertyValues/ColorReferencingPropertyValue"/>

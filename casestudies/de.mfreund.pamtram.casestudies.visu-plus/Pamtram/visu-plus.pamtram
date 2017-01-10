@@ -4,15 +4,15 @@
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="sourceContainer">
       <eClass href="http://gfai.de/stgml.xsd#//ScxmlType"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="rootStateRef">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="rootStateRef">
         <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/state"/>
         <value xsi:type="structure:SourceSectionClass" name="RootState">
           <eClass href="http://gfai.de/stgml.xsd#//State"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="initial">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="initial">
             <eReference href="http://gfai.de/stgml.xsd#//State/initial"/>
             <value xsi:type="structure:SourceSectionClass" name="Initial">
               <eClass href="http://gfai.de/stgml.xsd#//Initial"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="transition">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="transition">
                 <eReference href="http://gfai.de/stgml.xsd#//Initial/transition"/>
                 <value xsi:type="structure:SourceSectionClass" name="initial Transition">
                   <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
@@ -23,7 +23,7 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="transition">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="transition">
             <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
             <value xsi:type="structure:SourceSectionClass" name="Transition" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
@@ -46,11 +46,11 @@
           <references xsi:type="structure:SourceSectionCrossReference" name="state" value="//@sourceSectionModel.0/@metaModelSections.1">
             <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
           </references>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="loginState">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="loginState">
             <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
             <value xsi:type="structure:SourceSectionClass" name="LoginState" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//State"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="transition">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="transition">
                 <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
                 <value xsi:type="structure:SourceSectionClass" name="initial Transition">
                   <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
@@ -71,13 +71,13 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="configuration">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="configuration">
         <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/configuration"/>
         <value xsi:type="structure:SourceSectionClass" name="Configuration">
           <eClass href="http://gfai.de/stgml.xsd#//ConfigurationType"/>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="vis">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="vis">
         <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/visualization"/>
         <value xsi:type="structure:SourceSectionClass" name="Visualization">
           <eClass href="http://gfai.de/stgml.xsd#//Visualization"/>
@@ -213,15 +213,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject with SignalInterface Base" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externalData">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externalData">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExternalData">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="Externaldataelement">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -236,15 +236,15 @@
                 </value>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Signals&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="Unknown Signal Type" cardinality="ZERO__INFINITY">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -286,11 +286,11 @@
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="Signal">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -388,7 +388,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject with FunctionInterface Base" container="//@sourceSectionModel.0/@metaModelSections.4" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="extdataType">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
@@ -481,15 +481,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externalData">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externalData">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExternalData">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="Externaldataelement">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -504,15 +504,15 @@
                 </value>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Signals&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="Unknown Signal Type" cardinality="ZERO__INFINITY">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -554,11 +554,11 @@
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="Signal" cardinality="ONE__INFINITY">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -655,11 +655,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Station" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -707,11 +707,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Assembly" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -759,11 +759,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Component" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.8">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -811,7 +811,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Stopper" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype (Stopper)">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
@@ -863,11 +863,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Conveyor Rect" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.9">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -910,11 +910,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Conveyor Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -960,11 +960,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject MergingPoint" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1004,11 +1004,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject Fork" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.2 //@sourceSectionModel.1/@metaModelSections.10">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="externaldata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="externaldata">
         <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldatatype">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1051,11 +1051,11 @@
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="ExtData &quot;Roles&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;RoleDefinition&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="extdata &quot;Id&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1091,7 +1091,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="ExtData &quot;SignalInterface/AlertInterface&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1106,15 +1106,15 @@
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Signals&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="Unknown Signal Type" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1175,7 +1175,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="ExtData &quot;FunctionInterface&quot;">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1193,11 +1193,11 @@
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Functions&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData Function" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="typeId = Function">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1215,7 +1215,7 @@
                 </value>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData DataItems">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData LockedChannel">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1282,11 +1282,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Signal  Integer (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1335,11 +1335,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Signal Double (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1388,11 +1388,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Signal Boolean (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1441,11 +1441,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Signal String (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.1">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1494,19 +1494,19 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="SignalInterface Stopper" container="//@sourceSectionModel.1/@metaModelSections.15/@references.0/@value.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
         <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         <value xsi:type="structure:SourceSectionClass" name="Externaldataelement">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
             <value xsi:type="structure:SourceSectionClass" name="Externaldataelement">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1546,11 +1546,11 @@
             </value>
             <value xsi:type="structure:SourceSectionClass" name="Externaldataelement">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+              <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                 <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  <references xsi:type="structure:SourceSectionContainmentReference" name="extdata">
+                  <references xsi:type="structure:SourceSectionCompositeReference" name="extdata">
                     <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
@@ -1620,14 +1620,14 @@
     <metaModelPackage href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="MovResource" file="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="listSynopticDraw">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="listSynopticDraw">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/listSynopticDraw"/>
         <value xsi:type="structure:TargetSectionClass" name="ListSynopticDraw">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ListSynopticDrawType"/>
           <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="layerName" value=""/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="general">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="general">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/general"/>
         <value xsi:type="structure:TargetSectionClass" name="GeneralType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//GeneralType"/>
@@ -1639,39 +1639,39 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="execution">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="execution">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/execution"/>
         <value xsi:type="structure:TargetSectionClass" name="ExecutionType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ExecutionType"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="backGround">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="backGround">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/backGround"/>
         <value xsi:type="structure:TargetSectionClass" name="BackGroundType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BackGroundType"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="style">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="style">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/style"/>
         <value xsi:type="structure:TargetSectionClass" name="StyleType1">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//StyleType1"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="variableList">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="variableList">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//MovResourceType/variableList"/>
         <value xsi:type="structure:TargetSectionClass" name="VariableListType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//VariableListType"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="variable">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="variable">
             <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//VariableListType/variable"/>
             <value xsi:type="structure:TargetSectionClass" name="VariableType">
               <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//VariableType"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="name">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="name">
                 <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//VariableType/name"/>
                 <value xsi:type="structure:TargetSectionClass" name="NameType">
                   <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//NameType"/>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="enableTrace">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="enableTrace">
                 <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//VariableType/enableTrace"/>
                 <value xsi:type="structure:TargetSectionClass" name="EnableTraceType">
                   <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//EnableTraceType"/>
@@ -1716,19 +1716,19 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="ChildType1" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="shadow">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="shadow">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/shadow"/>
         <value xsi:type="structure:TargetSectionClass" name="ShadowType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ShadowType"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="rotation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="rotation">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/rotation"/>
         <value xsi:type="structure:TargetSectionClass" name="RotationType">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//RotationType"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="commandsOnDown">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="commandsOnDown">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//ChildType1/commandsOnDown"/>
         <value xsi:type="structure:TargetSectionClass" name="NxListType" container="//@targetSectionModel.0/@metaModelSections.5">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//NxListType"/>
@@ -1882,11 +1882,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="BackgroundColorAnimation: red blinking">
       <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGListType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="dci">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="dci">
         <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//BGListType/dci"/>
         <value xsi:type="structure:TargetSectionClass" name="DciType (normal)">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="dynColor">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="dynColor">
             <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType/dynColor"/>
             <value xsi:type="structure:TargetSectionClass" name="DynColorType">
               <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType"/>
@@ -1904,7 +1904,7 @@
         </value>
         <value xsi:type="structure:TargetSectionClass" name="DciType (red blinking)">
           <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="dynColor">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="dynColor">
             <eReference href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DciType/dynColor"/>
             <value xsi:type="structure:TargetSectionClass" name="DynColorType">
               <eClass href="file:/D:/Projects/XSD4VisuPlus/prozessbild.xsd#//DynColorType"/>
@@ -1960,7 +1960,7 @@
     <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="OPCClientEditorType" file="//@targetSectionModel.1/@metaModelSections.0/@attributes.0">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="oPCDAClientData">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="oPCDAClientData">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType/oPCDAClientData"/>
         <value xsi:type="structure:TargetSectionClass" name="OPCDAClientDataType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAClientDataType"/>
@@ -1981,15 +1981,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="oPCDAList">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="oPCDAList">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCClientEditorType/oPCDAList"/>
         <value xsi:type="structure:TargetSectionClass" name="OPCDAListType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAListType"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="dAServer">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="dAServer">
             <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//OPCDAListType/dAServer"/>
             <value xsi:type="structure:TargetSectionClass" name="DAServerType">
               <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="node">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="node">
                 <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType/node"/>
                 <value xsi:type="structure:TargetSectionClass" name="NodeType">
                   <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NodeType"/>
@@ -2010,7 +2010,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="groupList">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="groupList">
                 <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//DAServerType/groupList"/>
                 <value xsi:type="structure:TargetSectionClass" name="GroupListType">
                   <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupListType"/>
@@ -2024,7 +2024,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="ItemGroup" container="//@targetSectionModel.1/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="name">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="name">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType/name"/>
         <value xsi:type="structure:TargetSectionClass" name="NameType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//NameType"/>
@@ -2054,11 +2054,11 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="itemList">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="itemList">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//GroupType/itemList"/>
         <value xsi:type="structure:TargetSectionClass" name="ItemListType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemListType"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="item">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="item">
             <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemListType/item"/>
           </references>
           <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="GroupName" unique="true"/>
@@ -2068,7 +2068,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="ItemType" cardinality="ONE__INFINITY">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="itemID">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="itemID">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemType/itemID"/>
         <value xsi:type="structure:TargetSectionClass" name="ItemIDType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visopcclient.xsd#//ItemIDType"/>
@@ -2107,7 +2107,7 @@
     <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="RealTimeDBType" file="//@targetSectionModel.2/@metaModelSections.0/@attributes.3">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="areaData">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="areaData">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/areaData"/>
         <value xsi:type="structure:TargetSectionClass" name="AreaDataType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//AreaDataType"/>
@@ -2146,7 +2146,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableRetFlags">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableRetFlags">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableRetFlags"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableRetFlagsType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableRetFlagsType"/>
@@ -2161,7 +2161,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableRetInput">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableRetInput">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableRetInput"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableRetInputType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableRetInputType"/>
@@ -2176,7 +2176,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableRetOutput">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableRetOutput">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableRetOutput"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableRetOutputType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableRetOutputType"/>
@@ -2191,7 +2191,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableOPCServer">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableOPCServer">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableOPCServer"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableOPCServerType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableOPCServerType"/>
@@ -2245,7 +2245,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableOPXServer">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableOPXServer">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableOPXServer"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableOPXServerType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableOPXServerType"/>
@@ -2290,7 +2290,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableNTSecurityOPCServerTag">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableNTSecurityOPCServerTag">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/enableNTSecurityOPCServerTag"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableNTSecurityOPCServerTagType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableNTSecurityOPCServerTagType"/>
@@ -2302,7 +2302,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="szTraceDBSettings">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="szTraceDBSettings">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/szTraceDBSettings"/>
         <value xsi:type="structure:TargetSectionClass" name="SzTraceDBSettingsType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//SzTraceDBSettingsType"/>
@@ -2401,7 +2401,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="realTimeODBCSettings">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="realTimeODBCSettings">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/realTimeODBCSettings"/>
         <value xsi:type="structure:TargetSectionClass" name="RealTimeODBCSettingsType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeODBCSettingsType"/>
@@ -2452,7 +2452,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="variableList">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="variableList">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//RealTimeDBType/variableList"/>
         <value xsi:type="structure:TargetSectionClass" name="VariableListType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableListType"/>
@@ -2471,7 +2471,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="VariableType" cardinality="ONE__INFINITY" container="//@targetSectionModel.2/@metaModelSections.0/@references.9/@value.0">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="name">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="name">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableType/name"/>
         <value xsi:type="structure:TargetSectionClass" name="NameType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//NameType"/>
@@ -2498,7 +2498,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="enableTrace">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="enableTrace">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//VariableType/enableTrace"/>
         <value xsi:type="structure:TargetSectionClass" name="EnableTraceType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visrealtimedb.xsd#//EnableTraceType"/>
@@ -2525,7 +2525,7 @@
     <metaModelPackage href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="ProjectSettingsType" file="//@targetSectionModel.3/@metaModelSections.0/@attributes.0">
       <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectSettingsType"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="platforms">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="platforms">
         <eReference href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//ProjectSettingsType/platforms"/>
         <value xsi:type="structure:TargetSectionClass" name="PlatformsType">
           <eClass href="file:/D:/git-repos/pamtram/de.mfreund.pamtram.casestudies.visu-plus.git/de.mfreund.pamtram.casestudies.visu-plus/metamodel/visprj.xsd#//PlatformsType"/>

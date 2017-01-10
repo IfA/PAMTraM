@@ -25,8 +25,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a
- * {@link Reference} into a {@link Class}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
  *
  * @author mfreund
  * @param <S>
@@ -47,12 +46,10 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 	 * @param right
 	 *            The right element for the merge.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted
-	 *            when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
-	 *            redirecting cross-references} after merging elements or
-	 *            <em>null</em> when the elements shall be determined from the
-	 *            resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
+	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
+	 *            the resource set associated with the given <em>domain</em>.
 	 */
 	public MergeReferenceIntoClassCommand(EditingDomain domain, C left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
@@ -107,10 +104,10 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		//
 		if (leftReference.get() instanceof CompositeReference<?, ?, ?, ?>) {
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE,
 					values));
 			this.append(new AddCommand(this.domain, leftReference.get(),
-					GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE, values));
+					GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE, values));
 		} else if (leftReference.get() instanceof CrossReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, leftReference.get(), GenericPackage.Literals.CROSS_REFERENCE__VALUE,
 					this.right.getValuesGeneric()));

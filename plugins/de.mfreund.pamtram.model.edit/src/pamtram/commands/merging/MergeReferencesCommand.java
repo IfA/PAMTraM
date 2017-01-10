@@ -32,8 +32,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two
- * {@link Reference References}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link Reference References}.
  *
  * @author mfreund
  * @param <S>
@@ -54,24 +53,20 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 * @param right
 	 *            The right element for the merge.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted
-	 *            when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
-	 *            redirecting cross-references} after merging elements or
-	 *            <em>null</em> when the elements shall be determined from the
-	 *            resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
+	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
+	 *            the resource set associated with the given <em>domain</em>.
 	 */
 	public MergeReferencesCommand(EditingDomain domain, R left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
 	}
 
 	/**
-	 * Factory method to create a command that will merge multiple given
-	 * <em>referencesToMerge</em>.
+	 * Factory method to create a command that will merge multiple given <em>referencesToMerge</em>.
 	 * <p />
-	 * Note: This will return a compound command that contains one
-	 * {@link MergeReferencesCommand} for each <em>referencesToMerge</em> to be
-	 * merged.
+	 * Note: This will return a compound command that contains one {@link MergeReferencesCommand} for each
+	 * <em>referencesToMerge</em> to be merged.
 	 *
 	 * @param <S>
 	 * @param <C>
@@ -82,12 +77,10 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 * @param referencesToMerge
 	 *            The set of {@link Reference References} to be merged.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted
-	 *            when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
-	 *            redirecting cross-references} after merging elements or
-	 *            <em>null</em> when the elements shall be determined from the
-	 *            resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
+	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
+	 *            the resource set associated with the given <em>domain</em>.
 	 * @return The created command.
 	 */
 	public static <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
@@ -187,10 +180,10 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		if (this.left instanceof CompositeReference<?, ?, ?, ?>) {
 
 			List<C> values = new ArrayList<>(this.right.getValuesGeneric());
-			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+			this.append(new RemoveCommand(this.domain, this.right, GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE,
 					values));
-			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
-					values));
+			this.append(
+					new AddCommand(this.domain, this.left, GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE, values));
 		} else if (this.left instanceof CrossReference<?, ?, ?, ?>) {
 			this.append(new AddCommand(this.domain, this.left, GenericPackage.Literals.CROSS_REFERENCE__VALUE,
 					this.right.getValuesGeneric()));

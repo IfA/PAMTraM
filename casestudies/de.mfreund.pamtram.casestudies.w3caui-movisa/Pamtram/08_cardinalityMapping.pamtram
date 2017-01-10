@@ -4,7 +4,7 @@
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="structure:SourceSection" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="abstractInteractionUnit">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="abstractInteractionUnit">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
         <value xsi:type="structure:SourceSectionClass" name="AbstractInteractionUnit" cardinality="ZERO__INFINITY">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
@@ -31,7 +31,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedUIComponent">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedUIComponent">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Panel/OwnedUIComponent"/>
         <value xsi:type="structure:TargetSectionClass" name="Button" cardinality="ZERO__INFINITY">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>

@@ -7,7 +7,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="sequentialComposition">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/Composition"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="associatedWith">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="associatedWith">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/Composition/associatedWith"/>
         <value xsi:type="structure:SourceSectionClass" name="Panel" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit"/>
@@ -23,7 +23,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="DrowDown">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="aggregatedIn">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="aggregatedIn">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit/aggregatedIn"/>
         <value xsi:type="structure:SourceSectionClass" name="DropDownComposition">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/Composition"/>
@@ -32,11 +32,11 @@
           </references>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="eventSupport">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit/eventSupport"/>
         <value xsi:type="structure:SourceSectionClass" name="EventSupport">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="dataInputOutputSupport">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport/dataInputOutputSupport"/>
             <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
               <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/DataInputOutputSupport"/>
@@ -50,7 +50,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="dataSelectionSupport">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="dataSelectionSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport/dataSelectionSupport"/>
             <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
               <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/DataSelectionSupport"/>
@@ -76,11 +76,11 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="DropDownOption" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.2/@references.0/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="eventSupport">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="eventSupport">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/AbstractInteractionUnit/eventSupport"/>
         <value xsi:type="structure:SourceSectionClass" name="EventSupport">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport"/>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="dataInputOutputSupport">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport/dataInputOutputSupport"/>
             <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
               <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/DataInputOutputSupport"/>
@@ -97,7 +97,7 @@
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:SourceSectionContainmentReference" name="dataSelectionSupport">
+          <references xsi:type="structure:SourceSectionCompositeReference" name="dataSelectionSupport">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-containment#/0/EventSupport/dataSelectionSupport"/>
             <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
               <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-containment#/0/DataSelectionSupport"/>
@@ -122,11 +122,11 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="VisualizationApplicationModel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="AlgorithmDomain">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="AlgorithmDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
         <value xsi:type="structure:TargetSectionClass" name="AlgorithmModel">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//AlgorithmModel"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedElement">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedElement">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//AlgorithmModel/OwnedElement"/>
             <value xsi:type="structure:TargetSectionClass" name="BooleanType">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//algorithm/BooleanType"/>
@@ -170,15 +170,15 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="ClientDataDomain">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="ClientDataDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/ClientDataDomain"/>
         <value xsi:type="structure:TargetSectionClass" name="ClientDataModel">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//ClientDataModel"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="LogicalDataPerspective">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="LogicalDataPerspective">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//ClientDataModel/LogicalDataPerspective"/>
             <value xsi:type="structure:TargetSectionClass" name="LogicalDataPerspective">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/LogicalDataPerspective"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedDataItem">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedDataItem">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
                 <value xsi:type="structure:TargetSectionClass" name="DataItem">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
@@ -196,7 +196,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedDimension">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedDimension">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/LogicalDataPerspective/OwnedDimension"/>
                 <value xsi:type="structure:TargetSectionClass" name="Dimension">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/Dimension"/>
@@ -207,15 +207,15 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="TechnicalDataPerspective">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="TechnicalDataPerspective">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//ClientDataModel/TechnicalDataPerspective"/>
             <value xsi:type="structure:TargetSectionClass" name="TechnicalDataPerspective">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/TechnicalDataPerspective"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedServer">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedServer">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/TechnicalDataPerspective/OwnedServer"/>
                 <value xsi:type="structure:TargetSectionClass" name="OpcXmlDaServer">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedXmlDaItem">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedXmlDaItem">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer/OwnedXmlDaItem"/>
                     <value xsi:type="structure:TargetSectionClass" name="OpcXmlDaItem">
                       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem"/>
@@ -257,25 +257,25 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="PresentationDomain">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="PresentationDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/PresentationDomain"/>
         <value xsi:type="structure:TargetSectionClass" name="PresentationModel">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//PresentationModel"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedNavigationRoot">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedNavigationRoot">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedNavigationRoot"/>
             <value xsi:type="structure:TargetSectionClass" name="NavigationRoot">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/NavigationRoot"/>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedMultiLingualTextDefinition">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedMultiLingualTextDefinition">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedMultiLingualTextDefinition"/>
             <value xsi:type="structure:TargetSectionClass" name="MultiLingualTextDefinition">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/MultiLingualTextDefinition"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedTextDefinition">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedTextDefinition">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/MultiLingualTextDefinition/OwnedTextDefinition"/>
                 <value xsi:type="structure:TargetSectionClass" name="TextDefinition">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
-                  <references xsi:type="structure:TargetSectionContainmentReference" name="TranslatedTextItem">
+                  <references xsi:type="structure:TargetSectionCompositeReference" name="TranslatedTextItem">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
                     <value xsi:type="structure:TargetSectionClass" name="TextItem">
                       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
@@ -292,7 +292,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedLanguageDefinition">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedLanguageDefinition">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/MultiLingualTextDefinition/OwnedLanguageDefinition"/>
                 <value xsi:type="structure:TargetSectionClass" name="LanguageDefinition">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/LanguageDefinition"/>
@@ -306,7 +306,7 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="OwnedImageBundle">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedImageBundle">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//PresentationModel/OwnedImageBundle"/>
             <value xsi:type="structure:TargetSectionClass" name="ImageBundle">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ImageBundle"/>
@@ -341,15 +341,15 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="DropDown">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDown"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="Representation">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="Representation">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DropDown/Representation"/>
         <value xsi:type="structure:TargetSectionClass" name="DropDownRepresentation">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/DropDownRepresentation"/>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="Position">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="Position">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
             <value xsi:type="structure:TargetSectionClass" name="Position">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="X">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="X">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
                 <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
@@ -361,7 +361,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="Y">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="Y">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
                 <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
@@ -373,7 +373,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="Z">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="Z">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
                 <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
@@ -387,11 +387,11 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="Size">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="Size">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
             <value xsi:type="structure:TargetSectionClass" name="Size">
               <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="Height">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="Height">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
                 <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
@@ -403,7 +403,7 @@
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionContainmentReference" name="Width">
+              <references xsi:type="structure:TargetSectionCompositeReference" name="Width">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
                 <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
@@ -417,7 +417,7 @@
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionContainmentReference" name="DropDownOption">
+          <references xsi:type="structure:TargetSectionCompositeReference" name="DropDownOption">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/DropDownRepresentation/DropDownOption"/>
           </references>
           <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="virtualDropDownRepresentationName"/>
@@ -438,7 +438,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="TextDefinition" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="TranslatedTextItem">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="TranslatedTextItem">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
         <value xsi:type="structure:TargetSectionClass" name="TextItem">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>

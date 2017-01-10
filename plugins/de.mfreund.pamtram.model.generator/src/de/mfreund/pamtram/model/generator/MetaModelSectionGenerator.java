@@ -26,7 +26,7 @@ import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.ValueConstraintType;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -241,7 +241,7 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * Creates a {@link ContainmentReference} element for the given source
+	 * Creates a {@link CompositeReference} element for the given source
 	 * {@link EObject}.
 	 *
 	 * @param source
@@ -251,18 +251,18 @@ public class MetaModelSectionGenerator {
 	 *            The parent {@link Class} for the reference to be created.
 	 * @param reference
 	 *            The containment {@link EReference} for which the
-	 *            {@link ContainmentReference} shall be created.
+	 *            {@link CompositeReference} shall be created.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void createContainmentReference(EObject source, Class<?, ?, ?, ?> parentClass, EReference reference) {
 
 		// create a 'containment reference' object
 		//
-		ContainmentReference<?, ?, ?, ?> containmentReference;
+		CompositeReference<?, ?, ?, ?> containmentReference;
 		if (this.sectionType == SectionType.SOURCE) {
-			containmentReference = StructureFactory.eINSTANCE.createSourceSectionContainmentReference();
+			containmentReference = StructureFactory.eINSTANCE.createSourceSectionCompositeReference();
 		} else {
-			containmentReference = StructureFactory.eINSTANCE.createTargetSectionContainmentReference();
+			containmentReference = StructureFactory.eINSTANCE.createTargetSectionCompositeReference();
 		}
 		containmentReference.setEReference(reference);
 		containmentReference.setName(reference.getName());

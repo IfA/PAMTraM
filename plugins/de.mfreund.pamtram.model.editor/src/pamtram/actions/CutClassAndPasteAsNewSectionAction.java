@@ -11,9 +11,9 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
+import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.SourceSectionContainmentReference;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.Section;
 
@@ -44,37 +44,42 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 	@Override
 	public void run() {
 
-		if(!this.oldElement.getContainingSection().equals(this.oldElement)){
-			List<EObject> objectsOldContainer=new LinkedList<>();
-			List<EObject> objectsNewContainer=new LinkedList<>();
+		if (!this.oldElement.getContainingSection().equals(this.oldElement)) {
+			List<EObject> objectsOldContainer = new LinkedList<>();
+			List<EObject> objectsNewContainer = new LinkedList<>();
 
-			if(this.oldElement.getContainingSection().eContainer() instanceof TargetSectionModel){
-				TargetSectionModel model=(TargetSectionModel) this.oldElement.getContainingSection().eContainer();
-				TargetSectionContainmentReference ref=(TargetSectionContainmentReference) this.oldElement.eContainer();
+			if (this.oldElement.getContainingSection().eContainer() instanceof TargetSectionModel) {
+				TargetSectionModel model = (TargetSectionModel) this.oldElement.getContainingSection().eContainer();
+				TargetSectionCompositeReference ref = (TargetSectionCompositeReference) this.oldElement.eContainer();
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE),
+						objectsOldContainer);
 
 				objectsNewContainer.addAll(model.getMetaModelSections());
 				objectsNewContainer.add(this.oldElement);
-				model.eSet(model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS), objectsNewContainer);
+				model.eSet(
+						model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS),
+						objectsNewContainer);
 
-			} else if(this.oldElement.getContainingSection().eContainer() instanceof SourceSectionModel){
-				SourceSectionModel model=(SourceSectionModel) this.oldElement.getContainingSection().eContainer();
-				SourceSectionContainmentReference ref=(SourceSectionContainmentReference) this.oldElement.eContainer();
+			} else if (this.oldElement.getContainingSection().eContainer() instanceof SourceSectionModel) {
+				SourceSectionModel model = (SourceSectionModel) this.oldElement.getContainingSection().eContainer();
+				SourceSectionCompositeReference ref = (SourceSectionCompositeReference) this.oldElement.eContainer();
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE),
+						objectsOldContainer);
 
 				objectsNewContainer.addAll(model.getMetaModelSections());
 				objectsNewContainer.add(this.oldElement);
-				model.eSet(model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS), objectsNewContainer);
+				model.eSet(
+						model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS),
+						objectsNewContainer);
 			}
 		}
 
 	}
-
 
 }

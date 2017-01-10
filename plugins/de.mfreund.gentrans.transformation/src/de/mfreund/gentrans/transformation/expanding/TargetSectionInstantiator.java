@@ -51,7 +51,7 @@ import pamtram.structure.LibraryParameter;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.CardinalityType;
@@ -72,7 +72,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * TargetSectionContainmentReferences that point to a EReference with an upporBound of 1 but at one point more than
 	 * one element was supposed to be connected with them
 	 */
-	private final Set<TargetSectionContainmentReference> wrongCardinalityContainmentRefs;
+	private final Set<TargetSectionCompositeReference> wrongCardinalityContainmentRefs;
 
 	/**
 	 * target section registry used when instantiating classes
@@ -958,13 +958,13 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		// collect all containment references
 		//
-		List<TargetSectionContainmentReference> containmentReferences = targetSectionClass.getReferences()
-				.parallelStream().filter(ref -> ref instanceof TargetSectionContainmentReference)
-				.map(ref -> (TargetSectionContainmentReference) ref).collect(Collectors.toList());
+		List<TargetSectionCompositeReference> containmentReferences = targetSectionClass.getReferences()
+				.parallelStream().filter(ref -> ref instanceof TargetSectionCompositeReference)
+				.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
 
 		// recursively instantiate the containment references
 		//
-		for (final TargetSectionContainmentReference ref : containmentReferences) {
+		for (final TargetSectionCompositeReference ref : containmentReferences) {
 
 			// Instantiate the referenced TargetSectionClass for each instance
 			//

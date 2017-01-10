@@ -66,7 +66,7 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE);
+			childrenFeatures.add(GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -81,17 +81,6 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns CompositeReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeReference"));
 	}
 
 	/**
@@ -162,7 +151,7 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeReference.class)) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

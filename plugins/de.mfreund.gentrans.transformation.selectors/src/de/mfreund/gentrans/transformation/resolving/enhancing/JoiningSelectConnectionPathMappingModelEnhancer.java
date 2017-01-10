@@ -26,7 +26,7 @@ import pamtram.presentation.PamtramEditor;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.generic.GenericPackage;
 
 /**
@@ -46,15 +46,15 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 
 	/**
 	 * The first reference create as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be connected to the 'rootSection' in the end). After the execution of this method, this will hold the
-	 * {@link TargetSectionContainmentReference} that represents the first reference of the path.
+	 * {@link TargetSectionCompositeReference} that represents the first reference of the path.
 	 */
-	private TargetSectionContainmentReference firstReference = null;
+	private TargetSectionCompositeReference firstReference = null;
 
 	/**
 	 * The final class created as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be set as 'container' for the 'sectionToConnect'). After the execution of this method, this will hold the
 	 * {@link TargetSectionClass} that represents the final class of the path (Note that the final class is the second
 	 * but last class because the last class already exists in the mapping model).
@@ -169,8 +169,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			EReference eReference = (EReference) path.getPathElements().get(i);
 			EClass eClass = (EClass) path.getPathElements().get(i - 1);
 
-			TargetSectionContainmentReference ref = StructureFactory.eINSTANCE
-					.createTargetSectionContainmentReference();
+			TargetSectionCompositeReference ref = StructureFactory.eINSTANCE.createTargetSectionCompositeReference();
 			ref.setEReference(eReference);
 
 			// we are at the beginning

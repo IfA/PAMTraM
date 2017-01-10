@@ -10,7 +10,7 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.generic.impl.CompositeReferenceImpl;
 
@@ -22,7 +22,7 @@ import pamtram.structure.generic.impl.CompositeReferenceImpl;
  */
 public class TargetSectionCompositeReferenceImpl extends
 		CompositeReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
-		implements TargetSectionContainmentReference {
+		implements TargetSectionCompositeReference {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -38,7 +38,7 @@ public class TargetSectionCompositeReferenceImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.TARGET_SECTION_COMPOSITE_REFERENCE;
 	}
 
 	/**

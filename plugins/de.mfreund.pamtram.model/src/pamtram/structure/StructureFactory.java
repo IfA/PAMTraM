@@ -112,13 +112,13 @@ public interface StructureFactory extends EFactory {
 	LibraryEntry createLibraryEntry();
 
 	/**
-	 * Returns a new object of class '<em>Target Section Containment Reference</em>'.
+	 * Returns a new object of class '<em>Target Section Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section Containment Reference</em>'.
+	 * @return a new object of class '<em>Target Section Composite Reference</em>'.
 	 * @generated
 	 */
-	TargetSectionContainmentReference createTargetSectionCompositeReference();
+	TargetSectionCompositeReference createTargetSectionCompositeReference();
 
 	/**
 	 * Returns a new object of class '<em>Target Section Cross Reference</em>'.
@@ -130,13 +130,13 @@ public interface StructureFactory extends EFactory {
 	TargetSectionCrossReference createTargetSectionCrossReference();
 
 	/**
-	 * Returns a new object of class '<em>Source Section Containment Reference</em>'.
+	 * Returns a new object of class '<em>Source Section Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Containment Reference</em>'.
+	 * @return a new object of class '<em>Source Section Composite Reference</em>'.
 	 * @generated
 	 */
-	SourceSectionContainmentReference createSourceSectionCompositeReference();
+	SourceSectionCompositeReference createSourceSectionCompositeReference();
 
 	/**
 	 * Returns a new object of class '<em>Source Section Cross Reference</em>'.

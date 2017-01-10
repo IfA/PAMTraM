@@ -202,12 +202,12 @@ public class StructureValidator extends EObjectValidator {
 				return validateSourceSectionReference((SourceSectionReference)value, diagnostics, context);
 			case StructurePackage.TARGET_SECTION_REFERENCE:
 				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
-			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE:
-				return validateTargetSectionContainmentReference((TargetSectionContainmentReference)value, diagnostics, context);
+			case StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE:
+				return validateTargetSectionCompositeReference((TargetSectionCompositeReference)value, diagnostics, context);
 			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE:
 				return validateTargetSectionCrossReference((TargetSectionCrossReference)value, diagnostics, context);
-			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE:
-				return validateSourceSectionContainmentReference((SourceSectionContainmentReference)value, diagnostics, context);
+			case StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE:
+				return validateSourceSectionCompositeReference((SourceSectionCompositeReference)value, diagnostics, context);
 			case StructurePackage.SOURCE_SECTION_CROSS_REFERENCE:
 				return validateSourceSectionCrossReference((SourceSectionCrossReference)value, diagnostics, context);
 			case StructurePackage.SOURCE_SECTION_ATTRIBUTE:
@@ -553,25 +553,24 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateTargetSectionContainmentReference(
-			TargetSectionContainmentReference targetSectionContainmentReference, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetSectionContainmentReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateContainmentReference_eReferenceIsContainment(targetSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateContainmentReference_validateEReferenceIsContainment(targetSectionContainmentReference, diagnostics, context);
+	public boolean validateTargetSectionCompositeReference(TargetSectionCompositeReference targetSectionCompositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionCompositeReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_eReferenceIsContainment(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_validateEReferenceIsContainment(targetSectionCompositeReference, diagnostics, context);
 		return result;
 	}
 
@@ -609,25 +608,24 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSourceSectionContainmentReference(
-			SourceSectionContainmentReference sourceSectionContainmentReference, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(sourceSectionContainmentReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateContainmentReference_eReferenceIsContainment(sourceSectionContainmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateContainmentReference_validateEReferenceIsContainment(sourceSectionContainmentReference, diagnostics, context);
+	public boolean validateSourceSectionCompositeReference(SourceSectionCompositeReference sourceSectionCompositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(sourceSectionCompositeReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_eReferenceIsContainment(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_validateEReferenceIsContainment(sourceSectionCompositeReference, diagnostics, context);
 		return result;
 	}
 

@@ -47,14 +47,14 @@ import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.SourceSectionCrossReference;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.SubstringMatcher;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.ValueConstraint;
@@ -1302,12 +1302,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		targetSectionReferenceEClass = createEClass(TARGET_SECTION_REFERENCE);
 
-		targetSectionCompositeReferenceEClass = createEClass(TARGET_SECTION_CONTAINMENT_REFERENCE);
+		targetSectionCompositeReferenceEClass = createEClass(TARGET_SECTION_COMPOSITE_REFERENCE);
 
 		targetSectionCrossReferenceEClass = createEClass(TARGET_SECTION_CROSS_REFERENCE);
 		createEOperation(targetSectionCrossReferenceEClass, TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
-		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_CONTAINMENT_REFERENCE);
+		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_COMPOSITE_REFERENCE);
 
 		sourceSectionCrossReferenceEClass = createEClass(SOURCE_SECTION_CROSS_REFERENCE);
 
@@ -1750,7 +1750,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		initEClass(targetSectionReferenceEClass, TargetSectionReference.class, "TargetSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(targetSectionCompositeReferenceEClass, TargetSectionContainmentReference.class, "TargetSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(targetSectionCompositeReferenceEClass, TargetSectionCompositeReference.class, "TargetSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(targetSectionCrossReferenceEClass, TargetSectionCrossReference.class, "TargetSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1763,7 +1763,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionContainmentReference.class, "SourceSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionCompositeReference.class, "SourceSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

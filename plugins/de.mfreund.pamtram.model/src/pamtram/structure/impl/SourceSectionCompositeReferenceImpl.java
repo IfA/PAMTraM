@@ -11,7 +11,7 @@ import pamtram.structure.generic.impl.CompositeReferenceImpl;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.SourceSectionReference;
 
 /**
@@ -22,7 +22,7 @@ import pamtram.structure.SourceSectionReference;
  */
 public class SourceSectionCompositeReferenceImpl extends
 		CompositeReferenceImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
-		implements SourceSectionContainmentReference {
+		implements SourceSectionCompositeReference {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -38,7 +38,7 @@ public class SourceSectionCompositeReferenceImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.SOURCE_SECTION_COMPOSITE_REFERENCE;
 	}
 
 	/**

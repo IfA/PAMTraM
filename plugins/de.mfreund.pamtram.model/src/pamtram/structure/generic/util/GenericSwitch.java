@@ -108,12 +108,12 @@ public class GenericSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case GenericPackage.CONTAINMENT_REFERENCE: {
-				CompositeReference<?, ?, ?, ?> containmentReference = (CompositeReference<?, ?, ?, ?>)theEObject;
-				T result = caseContainmentReference(containmentReference);
-				if (result == null) result = caseReference(containmentReference);
-				if (result == null) result = caseMetaModelElement(containmentReference);
-				if (result == null) result = caseNamedElement(containmentReference);
+			case GenericPackage.COMPOSITE_REFERENCE: {
+				CompositeReference<?, ?, ?, ?> compositeReference = (CompositeReference<?, ?, ?, ?>)theEObject;
+				T result = caseCompositeReference(compositeReference);
+				if (result == null) result = caseReference(compositeReference);
+				if (result == null) result = caseMetaModelElement(compositeReference);
+				if (result == null) result = caseNamedElement(compositeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,17 +217,17 @@ public class GenericSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(CompositeReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseCompositeReference(CompositeReference<S, C, R, A> object) {
 		return null;
 	}
 

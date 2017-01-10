@@ -132,16 +132,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionReferenceAdapter();
 			}
 			@Override
-			public Adapter caseTargetSectionContainmentReference(TargetSectionContainmentReference object) {
-				return createTargetSectionContainmentReferenceAdapter();
+			public Adapter caseTargetSectionCompositeReference(TargetSectionCompositeReference object) {
+				return createTargetSectionCompositeReferenceAdapter();
 			}
 			@Override
 			public Adapter caseTargetSectionCrossReference(TargetSectionCrossReference object) {
 				return createTargetSectionCrossReferenceAdapter();
 			}
 			@Override
-			public Adapter caseSourceSectionContainmentReference(SourceSectionContainmentReference object) {
-				return createSourceSectionContainmentReferenceAdapter();
+			public Adapter caseSourceSectionCompositeReference(SourceSectionCompositeReference object) {
+				return createSourceSectionCompositeReferenceAdapter();
 			}
 			@Override
 			public Adapter caseSourceSectionCrossReference(SourceSectionCrossReference object) {
@@ -268,8 +268,8 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseContainmentReference(CompositeReference<S, C, R, A> object) {
-				return createContainmentReferenceAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCompositeReference(CompositeReference<S, C, R, A> object) {
+				return createCompositeReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
@@ -534,7 +534,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CompositeReference <em>Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CompositeReference <em>Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -543,7 +543,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.generic.CompositeReference
 	 * @generated
 	 */
-	public Adapter createContainmentReferenceAdapter() {
+	public Adapter createCompositeReferenceAdapter() {
 		return null;
 	}
 
@@ -590,16 +590,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSectionContainmentReference <em>Target Section Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSectionCompositeReference <em>Target Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.TargetSectionContainmentReference
+	 * @see pamtram.structure.TargetSectionCompositeReference
 	 * @generated
 	 */
-	public Adapter createTargetSectionContainmentReferenceAdapter() {
+	public Adapter createTargetSectionCompositeReferenceAdapter() {
 		return null;
 	}
 
@@ -618,16 +618,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.SourceSectionContainmentReference <em>Source Section Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.SourceSectionCompositeReference <em>Source Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.SourceSectionContainmentReference
+	 * @see pamtram.structure.SourceSectionCompositeReference
 	 * @generated
 	 */
-	public Adapter createSourceSectionContainmentReferenceAdapter() {
+	public Adapter createSourceSectionCompositeReferenceAdapter() {
 		return null;
 	}
 

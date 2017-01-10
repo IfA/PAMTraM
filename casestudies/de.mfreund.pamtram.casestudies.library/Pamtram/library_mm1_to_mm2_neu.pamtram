@@ -4,7 +4,7 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm1#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Library"/>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="books">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="books">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Library/books"/>
         <value xsi:type="structure:SourceSectionClass" name="Book" cardinality="ZERO__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm1#//Book"/>
@@ -13,11 +13,11 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionContainmentReference" name="members">
+      <references xsi:type="structure:SourceSectionCompositeReference" name="members">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Library/members"/>
         <value xsi:type="structure:SourceSectionClass" name="Member" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
           <eClass xsi:type="ecore:EClass" href="http://mm1#//Member"/>
-          <references xsi:type="structure:MetaModelSectionReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+          <references xsi:type="structure:SourceSectionCrossReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://mm1#//Member/loans"/>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
@@ -31,7 +31,7 @@
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm2#/"/>
     <metaModelSections xsi:type="structure:TargetSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Library"/>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="members">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="members">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/members"/>
         <value xsi:type="structure:TargetSectionClass" name="Member" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Member"/>
@@ -40,14 +40,14 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="loans">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="loans">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/loans"/>
         <value xsi:type="structure:TargetSectionClass" name="Loan" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Loan"/>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="member">
+          <references xsi:type="structure:TargetSectionCrossReference" name="member">
             <eReference xsi:type="ecore:EReference" href="http://mm2#//Loan/member"/>
           </references>
-          <references xsi:type="structure:TargetSectionNonContainmentReference" name="book">
+          <references xsi:type="structure:TargetSectionCrossReference" name="book">
             <eReference xsi:type="ecore:EReference" href="http://mm2#//Loan/book"/>
           </references>
           <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
@@ -55,7 +55,7 @@
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionContainmentReference" name="books">
+      <references xsi:type="structure:TargetSectionCompositeReference" name="books">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/books"/>
         <value xsi:type="structure:TargetSectionClass" name="Book" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Book"/>

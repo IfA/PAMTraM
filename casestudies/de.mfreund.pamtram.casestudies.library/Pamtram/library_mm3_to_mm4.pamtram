@@ -10,10 +10,10 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Member">
       <eClass href="http://mm3#//Member"/>
-      <references xsi:type="structure:MetaModelSectionReference" name="bookLoans" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:SourceSectionCrossReference" name="bookLoans" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm3#//Member/bookLoans"/>
       </references>
-      <references xsi:type="structure:MetaModelSectionReference" name="filmLoans" value="//@sourceSectionModel.0/@metaModelSections.3">
+      <references xsi:type="structure:SourceSectionCrossReference" name="filmLoans" value="//@sourceSectionModel.0/@metaModelSections.3">
         <eReference href="http://mm3#//Member/filmLoans"/>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
@@ -40,10 +40,10 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Member">
       <eClass href="http://mm4#//Member"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm4#//Member/loans"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm4#//Member/loans"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">

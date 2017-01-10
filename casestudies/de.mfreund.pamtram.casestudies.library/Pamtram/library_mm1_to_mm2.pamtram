@@ -10,7 +10,7 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Member" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
       <eClass href="http://mm1#//Member"/>
-      <references xsi:type="structure:MetaModelSectionReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references xsi:type="structure:SourceSectionCrossReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm1#//Member/loans"/>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="memberName">
@@ -46,10 +46,10 @@
     </metaModelSections>
     <metaModelSections xsi:type="structure:TargetSection" name="Loan" cardinality="ONE__INFINITY" container="//@targetSectionModel.0/@metaModelSections.3">
       <eClass href="http://mm2#//Loan"/>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="member">
+      <references xsi:type="structure:TargetSectionCrossReference" name="member">
         <eReference href="http://mm2#//Loan/member"/>
       </references>
-      <references xsi:type="structure:TargetSectionNonContainmentReference" name="book">
+      <references xsi:type="structure:TargetSectionCrossReference" name="book">
         <eReference href="http://mm2#//Loan/book"/>
       </references>
       <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">

@@ -14,7 +14,6 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.ReferenceImpl;

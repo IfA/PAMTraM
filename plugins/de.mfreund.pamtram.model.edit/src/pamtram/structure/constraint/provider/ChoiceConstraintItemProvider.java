@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.condition.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -8,30 +8,38 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.condition.AttributeCondition;
-import pamtram.condition.ConditionPackage;
+
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
+
+import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
+import pamtram.structure.constraint.ConstraintPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.condition.AttributeCondition} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.ChoiceConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeConditionItemProvider extends ConditionItemProvider {
+public class ChoiceConstraintItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeConditionItemProvider(AdapterFactory adapterFactory) {
+	public ChoiceConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,52 +54,29 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addValueConstraintPropertyDescriptor(object);
-			addConditionAttributeRefPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Value Constraint feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValueConstraintPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeCondition_valueConstraint_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_valueConstraint_feature", "_UI_AttributeCondition_type"),
-				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				 getString("_UI_ValueConstraint_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+				 ConstraintPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Condition Attribute Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addConditionAttributeRefPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeCondition_conditionAttributeRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_conditionAttributeRef_feature", "_UI_AttributeCondition_type"),
-				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF,
-				 true,
 				 false,
-				 true,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -108,7 +93,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			childrenFeatures.add(ConstraintPackage.Literals.CHOICE_CONSTRAINT__CHOICES);
 		}
 		return childrenFeatures;
 	}
@@ -127,14 +112,14 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	}
 
 	/**
-	 * This returns AttributeCondition.gif.
+	 * This returns ChoiceConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeCondition"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChoiceConstraint"));
 	}
 
 	/**
@@ -156,12 +141,12 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeCondition)object).getName();
+		String label = ((ChoiceConstraint)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeCondition_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ChoiceConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeCondition_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ChoiceConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -177,8 +162,11 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(AttributeCondition.class)) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
+		switch (notification.getFeatureID(ChoiceConstraint.class)) {
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -198,48 +186,19 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				(ConstraintPackage.Literals.CHOICE_CONSTRAINT__CHOICES,
 				 ConstraintFactory.eINSTANCE.createEqualityConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createChoiceConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createStringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createSubstringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createBeginningConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createEndingConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRegExConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRangeConstraint()));
 	}
-	
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
+	}
+
 }

@@ -97,6 +97,29 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.ChoiceConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoiceConstraintItemProvider choiceConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.constraint.ChoiceConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChoiceConstraintAdapter() {
+		if (choiceConstraintItemProvider == null) {
+			choiceConstraintItemProvider = new ChoiceConstraintItemProvider(this);
+		}
+
+		return choiceConstraintItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.NumericConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,6 +140,29 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 		}
 
 		return numericConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.StringConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringConstraintItemProvider stringConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.constraint.StringConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringConstraintAdapter() {
+		if (stringConstraintItemProvider == null) {
+			stringConstraintItemProvider = new StringConstraintItemProvider(this);
+		}
+
+		return stringConstraintItemProvider;
 	}
 
 	/**
@@ -403,7 +449,9 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 */
 	public void dispose() {
 		if (equalityConstraintItemProvider != null) equalityConstraintItemProvider.dispose();
+		if (choiceConstraintItemProvider != null) choiceConstraintItemProvider.dispose();
 		if (numericConstraintItemProvider != null) numericConstraintItemProvider.dispose();
+		if (stringConstraintItemProvider != null) stringConstraintItemProvider.dispose();
 		if (substringConstraintItemProvider != null) substringConstraintItemProvider.dispose();
 		if (beginningConstraintItemProvider != null) beginningConstraintItemProvider.dispose();
 		if (endingConstraintItemProvider != null) endingConstraintItemProvider.dispose();

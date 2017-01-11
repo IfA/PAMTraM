@@ -46,8 +46,8 @@ public class StringConstraintItemProvider extends SingleReferenceValueConstraint
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCaseSensitivePropertyDescriptor(object);
 			addOperatorTypePropertyDescriptor(object);
+			addCaseSensitivePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -63,9 +63,9 @@ public class StringConstraintItemProvider extends SingleReferenceValueConstraint
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				 ConstraintPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 getString("_UI_StringConstraint_caseSensitive_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StringConstraint_caseSensitive_feature", "_UI_StringConstraint_type"),
+				 ConstraintPackage.Literals.STRING_CONSTRAINT__CASE_SENSITIVE,
 				 true,
 				 false,
 				 false,
@@ -148,8 +148,8 @@ public class StringConstraintItemProvider extends SingleReferenceValueConstraint
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StringConstraint.class)) {
-			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
+			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

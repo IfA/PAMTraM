@@ -24,7 +24,6 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EqualityConstraintImpl() {
@@ -33,12 +32,10 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConstraintPackage.Literals.EQUALITY_CONSTRAINT;
 	}
 

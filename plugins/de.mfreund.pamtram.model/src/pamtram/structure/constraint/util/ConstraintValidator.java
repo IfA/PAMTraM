@@ -141,10 +141,12 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateValueConstraint((ValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT:
 				return validateSingleReferenceValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
-			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
-				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.EQUALITY_CONSTRAINT:
 				return validateEqualityConstraint((EqualityConstraint)value, diagnostics, context);
+			case ConstraintPackage.NUMERIC_CONSTRAINT:
+				return validateNumericConstraint((NumericConstraint)value, diagnostics, context);
+			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
+				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.SUBSTRING_CONSTRAINT:
 				return validateSubstringConstraint((SubstringConstraint)value, diagnostics, context);
 			case ConstraintPackage.BEGINNING_CONSTRAINT:
@@ -167,6 +169,8 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateRangeBound((RangeBound)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_TYPE:
 				return validateValueConstraintType((ValueConstraintType)value, diagnostics, context);
+			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
+				return validateNumericConstraintOperatorType((NumericConstraintOperatorType)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -224,6 +228,29 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(equalityConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(equalityConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(equalityConstraint, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNumericConstraint(NumericConstraint numericConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(numericConstraint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(numericConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(numericConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -599,6 +626,15 @@ public class ConstraintValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateValueConstraintType(ValueConstraintType valueConstraintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateNumericConstraintOperatorType(NumericConstraintOperatorType numericConstraintOperatorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

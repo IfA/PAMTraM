@@ -243,7 +243,270 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 2;
+	int CASE_SENSITIVE_CONSTRAINT = 4;
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityConstraint()
+	 * @generated
+	 */
+	int EQUALITY_CONSTRAINT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__NAME = SINGLE_REFERENCE_VALUE_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__RESULT_MODIFIER = SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Equality Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
+	 * The number of operations of the '<em>Equality Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.impl.NumericConstraintImpl
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraint()
+	 * @generated
+	 */
+	int NUMERIC_CONSTRAINT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__NAME = SINGLE_REFERENCE_VALUE_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__RESULT_MODIFIER = SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Operator Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__OPERATOR_TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Numeric Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
+	 * The number of operations of the '<em>Numeric Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -372,133 +635,6 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityConstraint()
-	 * @generated
-	 */
-	int EQUALITY_CONSTRAINT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__NAME = SINGLE_REFERENCE_VALUE_CONSTRAINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
-
-	/**
-	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__RESULT_MODIFIER = SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
-
-	/**
-	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
-
-	/**
-	 * The number of structural features of the '<em>Equality Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Check Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
-
-	/**
-	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
-	 * The number of operations of the '<em>Equality Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -506,7 +642,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringConstraint()
 	 * @generated
 	 */
-	int SUBSTRING_CONSTRAINT = 4;
+	int SUBSTRING_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -642,7 +778,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningConstraint()
 	 * @generated
 	 */
-	int BEGINNING_CONSTRAINT = 5;
+	int BEGINNING_CONSTRAINT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -778,7 +914,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingConstraint()
 	 * @generated
 	 */
-	int ENDING_CONSTRAINT = 6;
+	int ENDING_CONSTRAINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -914,7 +1050,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExConstraint()
 	 * @generated
 	 */
-	int REG_EX_CONSTRAINT = 7;
+	int REG_EX_CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1041,7 +1177,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
-	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 9;
+	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1096,7 +1232,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeConstraint()
 	 * @generated
 	 */
-	int RANGE_CONSTRAINT = 8;
+	int RANGE_CONSTRAINT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1169,7 +1305,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 10;
+	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1215,7 +1351,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 11;
+	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1306,7 +1442,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 12;
+	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1397,7 +1533,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeBound()
 	 * @generated
 	 */
-	int RANGE_BOUND = 13;
+	int RANGE_BOUND = 14;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1497,7 +1633,18 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintType()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_TYPE = 14;
+	int VALUE_CONSTRAINT_TYPE = 15;
+
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.NumericConstraintOperatorType <em>Numeric Constraint Operator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.NumericConstraintOperatorType
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraintOperatorType()
+	 * @generated
+	 */
+	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 16;
 
 
 	/**
@@ -1551,6 +1698,27 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEqualityConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.NumericConstraint <em>Numeric Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Numeric Constraint</em>'.
+	 * @see pamtram.structure.constraint.NumericConstraint
+	 * @generated
+	 */
+	EClass getNumericConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.constraint.NumericConstraint#getOperatorType <em>Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator Type</em>'.
+	 * @see pamtram.structure.constraint.NumericConstraint#getOperatorType()
+	 * @see #getNumericConstraint()
+	 * @generated
+	 */
+	EAttribute getNumericConstraint_OperatorType();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Constraint</em>}'.
@@ -1840,6 +2008,16 @@ public interface ConstraintPackage extends EPackage {
 	EEnum getValueConstraintType();
 
 	/**
+	 * Returns the meta object for enum '{@link pamtram.structure.constraint.NumericConstraintOperatorType <em>Numeric Constraint Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Numeric Constraint Operator Type</em>'.
+	 * @see pamtram.structure.constraint.NumericConstraintOperatorType
+	 * @generated
+	 */
+	EEnum getNumericConstraintOperatorType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1907,6 +2085,24 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EQUALITY_CONSTRAINT = eINSTANCE.getEqualityConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.NumericConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraint()
+		 * @generated
+		 */
+		EClass NUMERIC_CONSTRAINT = eINSTANCE.getNumericConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUMERIC_CONSTRAINT__OPERATOR_TYPE = eINSTANCE.getNumericConstraint_OperatorType();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Constraint</em>}' class.
@@ -2155,6 +2351,16 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum VALUE_CONSTRAINT_TYPE = eINSTANCE.getValueConstraintType();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.NumericConstraintOperatorType <em>Numeric Constraint Operator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.NumericConstraintOperatorType
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraintOperatorType()
+		 * @generated
+		 */
+		EEnum NUMERIC_CONSTRAINT_OPERATOR_TYPE = eINSTANCE.getNumericConstraintOperatorType();
 
 	}
 

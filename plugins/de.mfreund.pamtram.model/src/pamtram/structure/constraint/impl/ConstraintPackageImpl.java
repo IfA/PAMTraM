@@ -36,6 +36,8 @@ import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EndingConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.NumericConstraint;
+import pamtram.structure.constraint.NumericConstraintOperatorType;
 import pamtram.structure.constraint.RangeBound;
 import pamtram.structure.constraint.RangeConstraint;
 import pamtram.structure.constraint.RegExConstraint;
@@ -82,6 +84,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EClass equalityConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass numericConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +175,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EEnum valueConstraintTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum numericConstraintOperatorTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -300,6 +316,24 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 */
 	public EClass getEqualityConstraint() {
 		return equalityConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNumericConstraint() {
+		return numericConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNumericConstraint_OperatorType() {
+		return (EAttribute)numericConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -559,6 +593,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getNumericConstraintOperatorType() {
+		return numericConstraintOperatorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ConstraintFactory getConstraintFactory() {
 		return (ConstraintFactory)getEFactoryInstance();
 	}
@@ -594,10 +637,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
 
+		equalityConstraintEClass = createEClass(EQUALITY_CONSTRAINT);
+
+		numericConstraintEClass = createEClass(NUMERIC_CONSTRAINT);
+		createEAttribute(numericConstraintEClass, NUMERIC_CONSTRAINT__OPERATOR_TYPE);
+
 		caseSensitiveConstraintEClass = createEClass(CASE_SENSITIVE_CONSTRAINT);
 		createEAttribute(caseSensitiveConstraintEClass, CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE);
-
-		equalityConstraintEClass = createEClass(EQUALITY_CONSTRAINT);
 
 		substringConstraintEClass = createEClass(SUBSTRING_CONSTRAINT);
 
@@ -630,6 +676,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		// Create enums
 		valueConstraintTypeEEnum = createEEnum(VALUE_CONSTRAINT_TYPE);
+		numericConstraintOperatorTypeEEnum = createEEnum(NUMERIC_CONSTRAINT_OPERATOR_TYPE);
 	}
 
 	/**
@@ -669,8 +716,9 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
-		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		substringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		beginningConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		endingConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
@@ -746,10 +794,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		initEOperation(getSingleReferenceValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(equalityConstraintEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(numericConstraintEClass, NumericConstraint.class, "NumericConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNumericConstraint_OperatorType(), this.getNumericConstraintOperatorType(), "operatorType", null, 1, 1, NumericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(caseSensitiveConstraintEClass, CaseSensitiveConstraint.class, "CaseSensitiveConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(equalityConstraintEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(substringConstraintEClass, SubstringConstraint.class, "SubstringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -804,6 +855,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEEnum(valueConstraintTypeEEnum, ValueConstraintType.class, "ValueConstraintType");
 		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.REQUIRED);
 		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.FORBIDDEN);
+
+		initEEnum(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.class, "NumericConstraintOperatorType");
+		addEEnumLiteral(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.EQUAL);
+		addEEnumLiteral(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.GREATER);
+		addEEnumLiteral(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.GREATER_OR_EQUAL);
+		addEEnumLiteral(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.LESS);
+		addEEnumLiteral(numericConstraintOperatorTypeEEnum, NumericConstraintOperatorType.LESS_OR_EQUAL);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

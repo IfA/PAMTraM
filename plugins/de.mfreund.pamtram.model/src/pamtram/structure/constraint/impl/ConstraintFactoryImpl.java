@@ -58,6 +58,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ConstraintPackage.EQUALITY_CONSTRAINT: return createEqualityConstraint();
+			case ConstraintPackage.NUMERIC_CONSTRAINT: return createNumericConstraint();
 			case ConstraintPackage.SUBSTRING_CONSTRAINT: return createSubstringConstraint();
 			case ConstraintPackage.BEGINNING_CONSTRAINT: return createBeginningConstraint();
 			case ConstraintPackage.ENDING_CONSTRAINT: return createEndingConstraint();
@@ -81,6 +82,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 		switch (eDataType.getClassifierID()) {
 			case ConstraintPackage.VALUE_CONSTRAINT_TYPE:
 				return createValueConstraintTypeFromString(eDataType, initialValue);
+			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
+				return createNumericConstraintOperatorTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +99,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 		switch (eDataType.getClassifierID()) {
 			case ConstraintPackage.VALUE_CONSTRAINT_TYPE:
 				return convertValueConstraintTypeToString(eDataType, instanceValue);
+			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
+				return convertNumericConstraintOperatorTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -109,6 +114,16 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	public EqualityConstraint createEqualityConstraint() {
 		EqualityConstraintImpl equalityConstraint = new EqualityConstraintImpl();
 		return equalityConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NumericConstraint createNumericConstraint() {
+		NumericConstraintImpl numericConstraint = new NumericConstraintImpl();
+		return numericConstraint;
 	}
 
 	/**
@@ -208,6 +223,26 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * @generated
 	 */
 	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NumericConstraintOperatorType createNumericConstraintOperatorTypeFromString(EDataType eDataType, String initialValue) {
+		NumericConstraintOperatorType result = NumericConstraintOperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNumericConstraintOperatorTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

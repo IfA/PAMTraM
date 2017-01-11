@@ -96,17 +96,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT: {
-				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
-				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseValueConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseExpressionHint(caseSensitiveConstraint);
-				if (result == null) result = caseModifiableHint(caseSensitiveConstraint);
-				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConstraintPackage.EQUALITY_CONSTRAINT: {
 				EqualityConstraint equalityConstraint = (EqualityConstraint)theEObject;
 				T result = caseEqualityConstraint(equalityConstraint);
@@ -115,6 +104,28 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExpressionHint(equalityConstraint);
 				if (result == null) result = caseModifiableHint(equalityConstraint);
 				if (result == null) result = caseNamedElement(equalityConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.NUMERIC_CONSTRAINT: {
+				NumericConstraint numericConstraint = (NumericConstraint)theEObject;
+				T result = caseNumericConstraint(numericConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(numericConstraint);
+				if (result == null) result = caseValueConstraint(numericConstraint);
+				if (result == null) result = caseExpressionHint(numericConstraint);
+				if (result == null) result = caseModifiableHint(numericConstraint);
+				if (result == null) result = caseNamedElement(numericConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT: {
+				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
+				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(caseSensitiveConstraint);
+				if (result == null) result = caseValueConstraint(caseSensitiveConstraint);
+				if (result == null) result = caseExpressionHint(caseSensitiveConstraint);
+				if (result == null) result = caseModifiableHint(caseSensitiveConstraint);
+				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,6 +277,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEqualityConstraint(EqualityConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Numeric Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Numeric Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNumericConstraint(NumericConstraint object) {
 		return null;
 	}
 

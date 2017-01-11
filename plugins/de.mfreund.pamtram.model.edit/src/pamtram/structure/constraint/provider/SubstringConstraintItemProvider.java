@@ -15,16 +15,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.structure.constraint.BeginningMatcher;
 import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.SubstringConstraint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.constraint.BeginningMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.SubstringConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BeginningMatcherItemProvider
+public class SubstringConstraintItemProvider
 	extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -32,7 +32,7 @@ public class BeginningMatcherItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BeginningMatcherItemProvider(AdapterFactory adapterFactory) {
+	public SubstringConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -75,14 +75,14 @@ public class BeginningMatcherItemProvider
 	}
 
 	/**
-	 * This returns BeginningMatcher.gif.
+	 * This returns SubstringConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/BeginningMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubstringConstraint"));
 	}
 
 	/**
@@ -106,17 +106,17 @@ public class BeginningMatcherItemProvider
 	public Object getStyledText(Object object) {
 		initializeLabelRelatedChildrenFeatureNotifications(object);
 
-		String label = ((BeginningMatcher)object).getName();
-		String value = ((BeginningMatcher)object).getExpression();
+		String label = ((SubstringConstraint)object).getName();
+		String value = ((SubstringConstraint)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
-		styledLabel.append(getString("_UI_BeginningMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+		styledLabel.append(getString("_UI_SubstringMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
 
 		if(value != null && !value.isEmpty()) {
 			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
 			
-			List<String> sources = ((BeginningMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			List<String> sources = ((SubstringConstraint)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
 			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
@@ -134,8 +134,8 @@ public class BeginningMatcherItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(BeginningMatcher.class)) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+		switch (notification.getFeatureID(SubstringConstraint.class)) {
+			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

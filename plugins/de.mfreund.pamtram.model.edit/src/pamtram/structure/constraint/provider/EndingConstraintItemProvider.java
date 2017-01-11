@@ -9,18 +9,22 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.constraint.RegExMatcher;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.EndingConstraint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.constraint.RegExMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.EndingConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RegExMatcherItemProvider
+public class EndingConstraintItemProvider
 	extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -28,7 +32,7 @@ public class RegExMatcherItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegExMatcherItemProvider(AdapterFactory adapterFactory) {
+	public EndingConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,19 +47,42 @@ public class RegExMatcherItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addCaseSensitivePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns RegExMatcher.gif.
+	 * This adds a property descriptor for the Case Sensitive feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCaseSensitivePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
+				 ConstraintPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns EndingConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RegExMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/EndingConstraint"));
 	}
 
 	/**
@@ -79,17 +106,17 @@ public class RegExMatcherItemProvider
 	public Object getStyledText(Object object) {
 		initializeLabelRelatedChildrenFeatureNotifications(object);
 
-		String label = ((RegExMatcher)object).getName();
-		String value = ((RegExMatcher)object).getExpression();
+		String label = ((EndingConstraint)object).getName();
+		String value = ((EndingConstraint)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
-		styledLabel.append(getString("_UI_RegExMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
+		styledLabel.append(getString("_UI_EndingMatcher_type"), StyledString.Style.QUALIFIER_STYLER).append(" ");
 
 		if(value != null && !value.isEmpty()) {
 			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
 			
-			List<String> sources = ((RegExMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			List<String> sources = ((EndingConstraint)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
 			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
@@ -106,6 +133,12 @@ public class RegExMatcherItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(EndingConstraint.class)) {
+			case ConstraintPackage.ENDING_MATCHER__CASE_SENSITIVE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

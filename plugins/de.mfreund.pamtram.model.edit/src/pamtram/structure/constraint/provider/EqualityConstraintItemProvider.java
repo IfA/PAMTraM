@@ -15,16 +15,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.constraint.EqualityMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.EqualityConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EqualityMatcherItemProvider
+public class EqualityConstraintItemProvider
 extends SingleReferenceValueConstraintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -32,7 +32,7 @@ extends SingleReferenceValueConstraintItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EqualityMatcherItemProvider(AdapterFactory adapterFactory) {
+	public EqualityConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -75,13 +75,13 @@ extends SingleReferenceValueConstraintItemProvider {
 	}
 
 	/**
-	 * This returns EqualityMatcher.gif.
+	 * This returns EqualityConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
 	@Override
 	public Object getImage(Object object) {
-		ValueConstraintType constraintType = ((EqualityMatcher) object).getType();
+		ValueConstraintType constraintType = ((EqualityConstraint) object).getType();
 		if(constraintType.equals(ValueConstraintType.INCLUSION)) {
 			return overlayImage(object, getResourceLocator().getImage("full/obj16/EqualityMatcher_Inclusion"));			
 		} else if(constraintType.equals(ValueConstraintType.EXCLUSION)) {
@@ -113,8 +113,8 @@ extends SingleReferenceValueConstraintItemProvider {
 		
 		initializeLabelRelatedChildrenFeatureNotifications(object);
 
-		String label = ((EqualityMatcher)object).getName();
-		String value = ((EqualityMatcher)object).getExpression();
+		String label = ((EqualityConstraint)object).getName();
+		String value = ((EqualityConstraint)object).getExpression();
 
 		StyledString styledLabel = new StyledString();
 
@@ -122,7 +122,7 @@ extends SingleReferenceValueConstraintItemProvider {
 			styledLabel.append(value, StyledString.Style.COUNTER_STYLER); 
 		} else {
 			
-			List<String> sources = ((EqualityMatcher)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
+			List<String> sources = ((EqualityConstraint)object).getSourceElements().parallelStream().map(s -> s.getName()).collect(Collectors.toList());
 			styledLabel.append(String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
@@ -140,7 +140,7 @@ extends SingleReferenceValueConstraintItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(EqualityMatcher.class)) {
+		switch (notification.getFeatureID(EqualityConstraint.class)) {
 			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

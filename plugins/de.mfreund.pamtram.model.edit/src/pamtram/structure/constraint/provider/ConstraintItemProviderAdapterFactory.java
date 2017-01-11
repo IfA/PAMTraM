@@ -74,15 +74,15 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EqualityMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EqualityConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EqualityMatcherItemProvider equalityMatcherItemProvider;
+	protected EqualityConstraintItemProvider equalityMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.constraint.EqualityMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.EqualityConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -90,22 +90,22 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	@Override
 	public Adapter createEqualityMatcherAdapter() {
 		if (equalityMatcherItemProvider == null) {
-			equalityMatcherItemProvider = new EqualityMatcherItemProvider(this);
+			equalityMatcherItemProvider = new EqualityConstraintItemProvider(this);
 		}
 
 		return equalityMatcherItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.SubstringMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.SubstringConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubstringMatcherItemProvider substringMatcherItemProvider;
+	protected SubstringConstraintItemProvider substringMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.constraint.SubstringMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.SubstringConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -113,22 +113,22 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	@Override
 	public Adapter createSubstringMatcherAdapter() {
 		if (substringMatcherItemProvider == null) {
-			substringMatcherItemProvider = new SubstringMatcherItemProvider(this);
+			substringMatcherItemProvider = new SubstringConstraintItemProvider(this);
 		}
 
 		return substringMatcherItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.BeginningMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.BeginningConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BeginningMatcherItemProvider beginningMatcherItemProvider;
+	protected BeginningConstraintItemProvider beginningMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.constraint.BeginningMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.BeginningConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -136,22 +136,22 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	@Override
 	public Adapter createBeginningMatcherAdapter() {
 		if (beginningMatcherItemProvider == null) {
-			beginningMatcherItemProvider = new BeginningMatcherItemProvider(this);
+			beginningMatcherItemProvider = new BeginningConstraintItemProvider(this);
 		}
 
 		return beginningMatcherItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EndingMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EndingConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EndingMatcherItemProvider endingMatcherItemProvider;
+	protected EndingConstraintItemProvider endingMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.constraint.EndingMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.EndingConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -159,22 +159,22 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	@Override
 	public Adapter createEndingMatcherAdapter() {
 		if (endingMatcherItemProvider == null) {
-			endingMatcherItemProvider = new EndingMatcherItemProvider(this);
+			endingMatcherItemProvider = new EndingConstraintItemProvider(this);
 		}
 
 		return endingMatcherItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.RegExMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.RegExConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RegExMatcherItemProvider regExMatcherItemProvider;
+	protected RegExConstraintItemProvider regExMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.constraint.RegExMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.RegExConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -182,7 +182,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	@Override
 	public Adapter createRegExMatcherAdapter() {
 		if (regExMatcherItemProvider == null) {
-			regExMatcherItemProvider = new RegExMatcherItemProvider(this);
+			regExMatcherItemProvider = new RegExConstraintItemProvider(this);
 		}
 
 		return regExMatcherItemProvider;

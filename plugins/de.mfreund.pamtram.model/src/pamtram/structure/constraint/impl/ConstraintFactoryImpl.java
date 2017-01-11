@@ -9,21 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.structure.constraint.*;
-import pamtram.structure.constraint.BeginningConstraint;
-import pamtram.structure.constraint.ChoiceConstraint;
-import pamtram.structure.constraint.ConstraintFactory;
-import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.EndingConstraint;
-import pamtram.structure.constraint.EqualityConstraint;
-import pamtram.structure.constraint.NumericConstraint;
-import pamtram.structure.constraint.NumericConstraintOperatorType;
-import pamtram.structure.constraint.RangeBound;
-import pamtram.structure.constraint.RangeConstraint;
-import pamtram.structure.constraint.RegExConstraint;
-import pamtram.structure.constraint.SubstringConstraint;
-import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
-import pamtram.structure.constraint.ValueConstraintSourceElement;
-import pamtram.structure.constraint.ValueConstraintType;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -69,14 +54,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 			case ConstraintPackage.CHOICE_CONSTRAINT: return createChoiceConstraint();
 			case ConstraintPackage.NUMERIC_CONSTRAINT: return createNumericConstraint();
 			case ConstraintPackage.STRING_CONSTRAINT: return createStringConstraint();
-			case ConstraintPackage.SUBSTRING_CONSTRAINT: return createSubstringConstraint();
-			case ConstraintPackage.BEGINNING_CONSTRAINT: return createBeginningConstraint();
-			case ConstraintPackage.ENDING_CONSTRAINT: return createEndingConstraint();
-			case ConstraintPackage.REG_EX_CONSTRAINT: return createRegExConstraint();
-			case ConstraintPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
-			case ConstraintPackage.RANGE_BOUND: return createRangeBound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -163,56 +142,6 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * @generated
 	 */
 	@Override
-	public SubstringConstraint createSubstringConstraint() {
-		SubstringConstraintImpl substringConstraint = new SubstringConstraintImpl();
-		return substringConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public BeginningConstraint createBeginningConstraint() {
-		BeginningConstraintImpl beginningConstraint = new BeginningConstraintImpl();
-		return beginningConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EndingConstraint createEndingConstraint() {
-		EndingConstraintImpl endingConstraint = new EndingConstraintImpl();
-		return endingConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RegExConstraint createRegExConstraint() {
-		RegExConstraintImpl regExConstraint = new RegExConstraintImpl();
-		return regExConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RangeConstraint createRangeConstraint() {
-		RangeConstraintImpl rangeConstraint = new RangeConstraintImpl();
-		return rangeConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ValueConstraintSourceElement createValueConstraintSourceElement() {
 		ValueConstraintSourceElementImpl valueConstraintSourceElement = new ValueConstraintSourceElementImpl();
 		return valueConstraintSourceElement;
@@ -226,16 +155,6 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
 		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
 		return valueConstraintExternalSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public RangeBound createRangeBound() {
-		RangeBoundImpl rangeBound = new RangeBoundImpl();
-		return rangeBound;
 	}
 
 	/**

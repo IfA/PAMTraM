@@ -67,28 +67,12 @@ public class ConstraintValidator extends EObjectValidator {
 	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values In Source Sections' of 'Range Bound'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS = 4;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Fixed Values Or Global Attributes In Condition Model' of 'Range Bound'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int RANGE_BOUND__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 5;
-
-	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 5;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -151,26 +135,12 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.STRING_CONSTRAINT:
 				return validateStringConstraint((StringConstraint)value, diagnostics, context);
-			case ConstraintPackage.SUBSTRING_CONSTRAINT:
-				return validateSubstringConstraint((SubstringConstraint)value, diagnostics, context);
-			case ConstraintPackage.BEGINNING_CONSTRAINT:
-				return validateBeginningConstraint((BeginningConstraint)value, diagnostics, context);
-			case ConstraintPackage.ENDING_CONSTRAINT:
-				return validateEndingConstraint((EndingConstraint)value, diagnostics, context);
-			case ConstraintPackage.REG_EX_CONSTRAINT:
-				return validateRegExConstraint((RegExConstraint)value, diagnostics, context);
-			case ConstraintPackage.RANGE_CONSTRAINT:
-				return validateRangeConstraint((RangeConstraint)value, diagnostics, context);
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT:
-				return validateMultipleReferencesValueConstraint((MultipleReferencesValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE:
 				return validateValueConstraintSourceInterface((ValueConstraintSourceInterface)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT:
 				return validateValueConstraintSourceElement((ValueConstraintSourceElement)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
 				return validateValueConstraintExternalSourceElement((ValueConstraintExternalSourceElement)value, diagnostics, context);
-			case ConstraintPackage.RANGE_BOUND:
-				return validateRangeBound((RangeBound)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_TYPE:
 				return validateValueConstraintType((ValueConstraintType)value, diagnostics, context);
 			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
@@ -290,116 +260,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(numericConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(numericConstraint, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSubstringConstraint(SubstringConstraint substringConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(substringConstraint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(substringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(substringConstraint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateBeginningConstraint(BeginningConstraint beginningConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(beginningConstraint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(beginningConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(beginningConstraint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEndingConstraint(EndingConstraint endingConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(endingConstraint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(endingConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(endingConstraint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRegExConstraint(RegExConstraint regExConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(regExConstraint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(regExConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(regExConstraint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeConstraint(RangeConstraint rangeConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(rangeConstraint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMultipleReferencesValueConstraint(MultipleReferencesValueConstraint multipleReferencesValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(multipleReferencesValueConstraint, diagnostics, context);
 	}
 
 	/**
@@ -558,104 +418,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(valueConstraintExternalSourceElement, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeBound(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(rangeBound, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRangeBound_onlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRangeBound_validateOnlyFixedValuesInSourceSections(rangeBound, diagnostics, context);
-		if (result || diagnostics != null) result &= validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(rangeBound, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the onlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeBound_onlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "onlyFixedValuesInSourceSections", getObjectLabel(rangeBound, context) },
-						 new Object[] { rangeBound },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the onlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeBound_onlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "onlyFixedValuesOrGlobalAttributesInConditionModel", getObjectLabel(rangeBound, context) },
-						 new Object[] { rangeBound },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the validateOnlyFixedValuesInSourceSections constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeBound_validateOnlyFixedValuesInSourceSections(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return rangeBound.validateOnlyFixedValuesInSourceSections(diagnostics, context);
-	}
-
-	/**
-	 * Validates the validateOnlyFixedValuesOrGlobalAttributesInConditionModel constraint of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateRangeBound_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(RangeBound rangeBound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return rangeBound.validateOnlyFixedValuesOrGlobalAttributesInConditionModel(diagnostics, context);
 	}
 
 	/**

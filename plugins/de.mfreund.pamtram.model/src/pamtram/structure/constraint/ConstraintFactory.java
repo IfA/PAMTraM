@@ -58,51 +58,6 @@ public interface ConstraintFactory extends EFactory {
 	StringConstraint createStringConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Substring Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Substring Constraint</em>'.
-	 * @generated
-	 */
-	SubstringConstraint createSubstringConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Beginning Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Beginning Constraint</em>'.
-	 * @generated
-	 */
-	BeginningConstraint createBeginningConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Ending Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ending Constraint</em>'.
-	 * @generated
-	 */
-	EndingConstraint createEndingConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Reg Ex Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reg Ex Constraint</em>'.
-	 * @generated
-	 */
-	RegExConstraint createRegExConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Range Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Range Constraint</em>'.
-	 * @generated
-	 */
-	RangeConstraint createRangeConstraint();
-
-	/**
 	 * Returns a new object of class '<em>Value Constraint Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -119,15 +74,6 @@ public interface ConstraintFactory extends EFactory {
 	 * @generated
 	 */
 	ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Range Bound</em>'.
-	 * @generated
-	 */
-	RangeBound createRangeBound();
 
 	/**
 	 * Returns the package supported by this factory.

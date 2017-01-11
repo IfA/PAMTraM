@@ -28,24 +28,16 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.structure.StructurePackage;
-
-import pamtram.structure.constraint.BeginningConstraint;
 import pamtram.structure.constraint.CaseSensitiveConstraint;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.EndingConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
-import pamtram.structure.constraint.MultipleReferencesValueConstraint;
 import pamtram.structure.constraint.NumericConstraint;
 import pamtram.structure.constraint.NumericConstraintOperatorType;
-import pamtram.structure.constraint.RangeBound;
-import pamtram.structure.constraint.RangeConstraint;
-import pamtram.structure.constraint.RegExConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.StringConstraint;
 import pamtram.structure.constraint.StringConstraintOperatorType;
-import pamtram.structure.constraint.SubstringConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
@@ -114,48 +106,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass substringConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass beginningConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass endingConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass regExConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rangeConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass multipleReferencesValueConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass singleReferenceValueConstraintEClass = null;
 
 	/**
@@ -178,13 +128,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EClass valueConstraintExternalSourceElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass rangeBoundEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -419,87 +362,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubstringConstraint() {
-		return substringConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBeginningConstraint() {
-		return beginningConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEndingConstraint() {
-		return endingConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRegExConstraint() {
-		return regExConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRangeConstraint() {
-		return rangeConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRangeConstraint_UpperBound() {
-		return (EReference)rangeConstraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRangeConstraint_LowerBound() {
-		return (EReference)rangeConstraintEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMultipleReferencesValueConstraint() {
-		return multipleReferencesValueConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getMultipleReferencesValueConstraint__CheckConstraint__String_EList() {
-		return multipleReferencesValueConstraintEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSingleReferenceValueConstraint() {
 		return singleReferenceValueConstraintEClass;
 	}
@@ -590,69 +452,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRangeBound() {
-		return rangeBoundEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRangeBound_BoundType() {
-		return (EAttribute)rangeBoundEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRangeBound_BoundReferenceValueAdditionalSpecification() {
-		return (EReference)rangeBoundEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRangeBound_SourceElements() {
-		return (EReference)rangeBoundEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getRangeBound__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map() {
-		return rangeBoundEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getRangeBound__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map() {
-		return rangeBoundEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getRangeBound__IsLocalConstraint() {
-		return rangeBoundEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getValueConstraintType() {
 		return valueConstraintTypeEEnum;
 	}
@@ -730,34 +529,11 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		stringConstraintEClass = createEClass(STRING_CONSTRAINT);
 		createEAttribute(stringConstraintEClass, STRING_CONSTRAINT__OPERATOR_TYPE);
 
-		substringConstraintEClass = createEClass(SUBSTRING_CONSTRAINT);
-
-		beginningConstraintEClass = createEClass(BEGINNING_CONSTRAINT);
-
-		endingConstraintEClass = createEClass(ENDING_CONSTRAINT);
-
-		regExConstraintEClass = createEClass(REG_EX_CONSTRAINT);
-
-		rangeConstraintEClass = createEClass(RANGE_CONSTRAINT);
-		createEReference(rangeConstraintEClass, RANGE_CONSTRAINT__UPPER_BOUND);
-		createEReference(rangeConstraintEClass, RANGE_CONSTRAINT__LOWER_BOUND);
-
-		multipleReferencesValueConstraintEClass = createEClass(MULTIPLE_REFERENCES_VALUE_CONSTRAINT);
-		createEOperation(multipleReferencesValueConstraintEClass, MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST);
-
 		valueConstraintSourceInterfaceEClass = createEClass(VALUE_CONSTRAINT_SOURCE_INTERFACE);
 
 		valueConstraintSourceElementEClass = createEClass(VALUE_CONSTRAINT_SOURCE_ELEMENT);
 
 		valueConstraintExternalSourceElementEClass = createEClass(VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT);
-
-		rangeBoundEClass = createEClass(RANGE_BOUND);
-		createEAttribute(rangeBoundEClass, RANGE_BOUND__BOUND_TYPE);
-		createEReference(rangeBoundEClass, RANGE_BOUND__BOUND_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
-		createEReference(rangeBoundEClass, RANGE_BOUND__SOURCE_ELEMENTS);
-		createEOperation(rangeBoundEClass, RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(rangeBoundEClass, RANGE_BOUND___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
-		createEOperation(rangeBoundEClass, RANGE_BOUND___IS_LOCAL_CONSTRAINT);
 
 		// Create enums
 		valueConstraintTypeEEnum = createEEnum(VALUE_CONSTRAINT_TYPE);
@@ -807,12 +583,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		stringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		substringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		beginningConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		endingConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		regExConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
-		rangeConstraintEClass.getESuperTypes().add(this.getMultipleReferencesValueConstraint());
-		multipleReferencesValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
 		EGenericType g2 = createEGenericType(theStructurePackage.getSourceSection());
@@ -838,8 +608,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getValueConstraintSourceInterface());
 		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
-		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -900,54 +668,11 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEClass(stringConstraintEClass, StringConstraint.class, "StringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringConstraint_OperatorType(), this.getStringConstraintOperatorType(), "operatorType", null, 1, 1, StringConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(substringConstraintEClass, SubstringConstraint.class, "SubstringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(beginningConstraintEClass, BeginningConstraint.class, "BeginningConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(endingConstraintEClass, EndingConstraint.class, "EndingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(regExConstraintEClass, RegExConstraint.class, "RegExConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(rangeConstraintEClass, RangeConstraint.class, "RangeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRangeConstraint_UpperBound(), this.getRangeBound(), null, "upperBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRangeConstraint_LowerBound(), this.getRangeBound(), null, "lowerBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(multipleReferencesValueConstraintEClass, MultipleReferencesValueConstraint.class, "MultipleReferencesValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getMultipleReferencesValueConstraint__CheckConstraint__String_EList(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "refValue", 1, -1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(valueConstraintSourceInterfaceEClass, ValueConstraintSourceInterface.class, "ValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(valueConstraintSourceElementEClass, ValueConstraintSourceElement.class, "ValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(valueConstraintExternalSourceElementEClass, ValueConstraintExternalSourceElement.class, "ValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(rangeBoundEClass, RangeBound.class, "RangeBound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRangeBound_BoundType(), this.getValueConstraintType(), "boundType", null, 0, 1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRangeBound_BoundReferenceValueAdditionalSpecification(), theStructurePackage.getInstancePointer(), null, "boundReferenceValueAdditionalSpecification", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRangeBound_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, RangeBound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getRangeBound__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesInSourceSections", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getRangeBound__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlyFixedValuesOrGlobalAttributesInConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getRangeBound__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(valueConstraintTypeEEnum, ValueConstraintType.class, "ValueConstraintType");
@@ -983,12 +708,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		String source = "http://www.eclipse.org/emf/2002/Ecore";	
 		addAnnotation
 		  (singleReferenceValueConstraintEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"
-		   });	
-		addAnnotation
-		  (rangeBoundEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"

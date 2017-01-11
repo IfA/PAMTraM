@@ -149,70 +149,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConstraintPackage.SUBSTRING_CONSTRAINT: {
-				SubstringConstraint substringConstraint = (SubstringConstraint)theEObject;
-				T result = caseSubstringConstraint(substringConstraint);
-				if (result == null) result = caseCaseSensitiveConstraint(substringConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(substringConstraint);
-				if (result == null) result = caseValueConstraint(substringConstraint);
-				if (result == null) result = caseExpressionHint(substringConstraint);
-				if (result == null) result = caseModifiableHint(substringConstraint);
-				if (result == null) result = caseNamedElement(substringConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.BEGINNING_CONSTRAINT: {
-				BeginningConstraint beginningConstraint = (BeginningConstraint)theEObject;
-				T result = caseBeginningConstraint(beginningConstraint);
-				if (result == null) result = caseCaseSensitiveConstraint(beginningConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(beginningConstraint);
-				if (result == null) result = caseValueConstraint(beginningConstraint);
-				if (result == null) result = caseExpressionHint(beginningConstraint);
-				if (result == null) result = caseModifiableHint(beginningConstraint);
-				if (result == null) result = caseNamedElement(beginningConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.ENDING_CONSTRAINT: {
-				EndingConstraint endingConstraint = (EndingConstraint)theEObject;
-				T result = caseEndingConstraint(endingConstraint);
-				if (result == null) result = caseCaseSensitiveConstraint(endingConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(endingConstraint);
-				if (result == null) result = caseValueConstraint(endingConstraint);
-				if (result == null) result = caseExpressionHint(endingConstraint);
-				if (result == null) result = caseModifiableHint(endingConstraint);
-				if (result == null) result = caseNamedElement(endingConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.REG_EX_CONSTRAINT: {
-				RegExConstraint regExConstraint = (RegExConstraint)theEObject;
-				T result = caseRegExConstraint(regExConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(regExConstraint);
-				if (result == null) result = caseValueConstraint(regExConstraint);
-				if (result == null) result = caseExpressionHint(regExConstraint);
-				if (result == null) result = caseModifiableHint(regExConstraint);
-				if (result == null) result = caseNamedElement(regExConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.RANGE_CONSTRAINT: {
-				RangeConstraint rangeConstraint = (RangeConstraint)theEObject;
-				T result = caseRangeConstraint(rangeConstraint);
-				if (result == null) result = caseMultipleReferencesValueConstraint(rangeConstraint);
-				if (result == null) result = caseValueConstraint(rangeConstraint);
-				if (result == null) result = caseNamedElement(rangeConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT: {
-				MultipleReferencesValueConstraint multipleReferencesValueConstraint = (MultipleReferencesValueConstraint)theEObject;
-				T result = caseMultipleReferencesValueConstraint(multipleReferencesValueConstraint);
-				if (result == null) result = caseValueConstraint(multipleReferencesValueConstraint);
-				if (result == null) result = caseNamedElement(multipleReferencesValueConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE: {
 				ValueConstraintSourceInterface valueConstraintSourceInterface = (ValueConstraintSourceInterface)theEObject;
 				T result = caseValueConstraintSourceInterface(valueConstraintSourceInterface);
@@ -240,14 +176,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(valueConstraintExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintExternalSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.RANGE_BOUND: {
-				RangeBound rangeBound = (RangeBound)theEObject;
-				T result = caseRangeBound(rangeBound);
-				if (result == null) result = caseExpressionHint(rangeBound);
-				if (result == null) result = caseModifiableHint(rangeBound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -346,96 +274,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Substring Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Substring Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubstringConstraint(SubstringConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Beginning Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Beginning Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBeginningConstraint(BeginningConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ending Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ending Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEndingConstraint(EndingConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reg Ex Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reg Ex Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRegExConstraint(RegExConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Range Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Range Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRangeConstraint(RangeConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multiple References Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multiple References Value Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMultipleReferencesValueConstraint(MultipleReferencesValueConstraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Single Reference Value Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -492,21 +330,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Range Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Range Bound</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRangeBound(RangeBound object) {
 		return null;
 	}
 

@@ -190,9 +190,9 @@ public class MetaModelSectionGenerator {
 			if (attributeValue != null) {
 				if (this.sectionType == SectionType.SOURCE) {
 					EqualityConstraint attValConstraint = ConstraintFactory.eINSTANCE.createEqualityConstraint();
-					attValConstraint.setCaseSensitive(true);
+					// attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
-					attValConstraint.setType(ValueConstraintType.INCLUSION);
+					attValConstraint.setType(ValueConstraintType.REQUIRED);
 					attValConstraint.setExpression(attributeValue.toString());
 					((ActualSourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
 				} else {

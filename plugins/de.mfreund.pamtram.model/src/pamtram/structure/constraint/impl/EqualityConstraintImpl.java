@@ -107,8 +107,8 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 			// doesn't work
 		}
 
-		return newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.INCLUSION)
-				|| !newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.EXCLUSION);
+		return newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.REQUIRED)
+				|| !newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.FORBIDDEN);
 	}
 
 	/**

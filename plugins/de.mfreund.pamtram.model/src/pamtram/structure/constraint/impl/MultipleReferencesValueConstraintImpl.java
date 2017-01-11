@@ -39,7 +39,7 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.REQUIRED;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.

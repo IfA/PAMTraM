@@ -707,7 +707,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "REQUIRED", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(caseSensitiveConstraintEClass, CaseSensitiveConstraint.class, "CaseSensitiveConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -802,8 +802,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		// Initialize enums and add enum literals
 		initEEnum(valueConstraintTypeEEnum, ValueConstraintType.class, "ValueConstraintType");
-		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.INCLUSION);
-		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.EXCLUSION);
+		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.REQUIRED);
+		addEEnumLiteral(valueConstraintTypeEEnum, ValueConstraintType.FORBIDDEN);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

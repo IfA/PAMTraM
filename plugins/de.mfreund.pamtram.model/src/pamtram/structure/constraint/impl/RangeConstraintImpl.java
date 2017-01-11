@@ -241,9 +241,9 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 			lowerBoundResult = true; // Keep True if no rangeBound were modeled
 		} else {
 			try {
-				if (this.getLowerBound().getBoundType().equals(ValueConstraintType.INCLUSION)) {
+				if (this.getLowerBound().getBoundType().equals(ValueConstraintType.REQUIRED)) {
 					lowerBoundResult = Double.valueOf(attrValue) >= Double.valueOf(lowerBoundRefValue);
-				} else if (this.getLowerBound().getBoundType().equals(ValueConstraintType.EXCLUSION)) {
+				} else if (this.getLowerBound().getBoundType().equals(ValueConstraintType.FORBIDDEN)) {
 					lowerBoundResult = Double.valueOf(attrValue) > Double.valueOf(lowerBoundRefValue);
 				}
 			} catch (NumberFormatException e) {
@@ -256,9 +256,9 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 		} else {
 			try {
 				if (refValue.get(1) != null) {
-					if (this.getUpperBound().getBoundType().equals(ValueConstraintType.INCLUSION)) {
+					if (this.getUpperBound().getBoundType().equals(ValueConstraintType.REQUIRED)) {
 						upperBoundResult = Double.valueOf(attrValue) <= Double.valueOf(upperBoundRefValue);
-					} else if (this.getUpperBound().getBoundType().equals(ValueConstraintType.EXCLUSION)) {
+					} else if (this.getUpperBound().getBoundType().equals(ValueConstraintType.FORBIDDEN)) {
 						upperBoundResult = Double.valueOf(attrValue) < Double.valueOf(upperBoundRefValue);
 					}
 				}

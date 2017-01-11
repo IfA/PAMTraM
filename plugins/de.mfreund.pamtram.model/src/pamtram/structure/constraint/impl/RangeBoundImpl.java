@@ -79,7 +79,7 @@ public class RangeBoundImpl extends ExpressionHintImpl implements RangeBound {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ValueConstraintType BOUND_TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType BOUND_TYPE_EDEFAULT = ValueConstraintType.REQUIRED;
 
 	/**
 	 * The cached value of the '{@link #getBoundType() <em>Bound Type</em>}' attribute.

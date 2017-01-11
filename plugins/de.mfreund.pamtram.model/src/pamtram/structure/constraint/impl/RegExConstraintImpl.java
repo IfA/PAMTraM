@@ -36,8 +36,8 @@ public class RegExConstraintImpl extends SingleReferenceValueConstraintImpl impl
 	public boolean checkConstraint(String attrValue, String refValue) {
 
 		boolean condition = attrValue.matches(refValue);
-		return condition && this.type.equals(ValueConstraintType.INCLUSION)
-				|| !condition && this.type.equals(ValueConstraintType.EXCLUSION);
+		return condition && this.type.equals(ValueConstraintType.REQUIRED)
+				|| !condition && this.type.equals(ValueConstraintType.FORBIDDEN);
 	}
 
 } // RegExConstraintImpl

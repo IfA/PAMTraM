@@ -90,8 +90,8 @@ public class EndingConstraintImpl extends SingleReferenceValueConstraintImpl imp
 		} else {
 			condition = attrValue.toLowerCase().endsWith(refValue.toLowerCase());
 		}
-		return condition && this.type.equals(ValueConstraintType.INCLUSION)
-				|| !condition && this.type.equals(ValueConstraintType.EXCLUSION);
+		return condition && this.type.equals(ValueConstraintType.REQUIRED)
+				|| !condition && this.type.equals(ValueConstraintType.FORBIDDEN);
 	}
 
 	/**

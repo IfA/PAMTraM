@@ -23,7 +23,7 @@ import pamtram.NamedElement;
 public interface ValueConstraint extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>"INCLUSION"</code>.
+	 * The default value is <code>"REQUIRED"</code>.
 	 * The literals are from the enumeration {@link pamtram.structure.constraint.ValueConstraintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -35,7 +35,7 @@ public interface ValueConstraint extends NamedElement {
 	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #setType(ValueConstraintType)
 	 * @see pamtram.structure.constraint.ConstraintPackage#getValueConstraint_Type()
-	 * @model default="INCLUSION" required="true"
+	 * @model default="REQUIRED" required="true"
 	 * @generated
 	 */
 	ValueConstraintType getType();

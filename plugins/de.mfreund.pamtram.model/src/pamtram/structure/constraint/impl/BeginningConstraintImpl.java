@@ -91,8 +91,8 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 			condition = attrValue.toLowerCase().startsWith(refValue.toLowerCase());
 		}
 
-		return condition && this.type.equals(ValueConstraintType.INCLUSION)
-				|| !condition && this.type.equals(ValueConstraintType.EXCLUSION);
+		return condition && this.type.equals(ValueConstraintType.REQUIRED)
+				|| !condition && this.type.equals(ValueConstraintType.FORBIDDEN);
 	}
 
 	/**

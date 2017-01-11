@@ -12,6 +12,21 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.*;
+import pamtram.structure.constraint.BeginningMatcher;
+import pamtram.structure.constraint.CaseSensitiveConstraint;
+import pamtram.structure.constraint.EndingMatcher;
+import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.RangeBound;
+import pamtram.structure.constraint.RangeConstraint;
+import pamtram.structure.constraint.RegExMatcher;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.SubstringMatcher;
+import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**

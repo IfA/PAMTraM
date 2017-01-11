@@ -2561,10 +2561,10 @@ public interface StructurePackage extends EPackage {
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.ValueConstraint <em>Value Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.ValueConstraint
+	 * @see pamtram.structure.constraint.ValueConstraint
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraint()
 	 * @generated
 	 */
@@ -2607,10 +2607,10 @@ public interface StructurePackage extends EPackage {
 	int VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl <em>Single Reference Value Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl <em>Single Reference Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SingleReferenceValueConstraintImpl
+	 * @see pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSingleReferenceValueConstraint()
 	 * @generated
 	 */
@@ -2734,10 +2734,10 @@ public interface StructurePackage extends EPackage {
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 5;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.CaseSensitiveConstraint
+	 * @see pamtram.structure.constraint.CaseSensitiveConstraint
 	 * @see pamtram.structure.impl.StructurePackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
@@ -2870,10 +2870,10 @@ public interface StructurePackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.EqualityMatcherImpl
+	 * @see pamtram.structure.constraint.impl.EqualityMatcherImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
@@ -3006,10 +3006,10 @@ public interface StructurePackage extends EPackage {
 	int EQUALITY_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SubstringMatcherImpl
+	 * @see pamtram.structure.constraint.impl.SubstringMatcherImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
@@ -3142,10 +3142,10 @@ public interface StructurePackage extends EPackage {
 	int SUBSTRING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.BeginningMatcherImpl
+	 * @see pamtram.structure.constraint.impl.BeginningMatcherImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
@@ -3278,10 +3278,10 @@ public interface StructurePackage extends EPackage {
 	int BEGINNING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.EndingMatcherImpl
+	 * @see pamtram.structure.constraint.impl.EndingMatcherImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getEndingMatcher()
 	 * @generated
 	 */
@@ -3414,10 +3414,10 @@ public interface StructurePackage extends EPackage {
 	int ENDING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.RegExMatcherImpl
+	 * @see pamtram.structure.constraint.impl.RegExMatcherImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRegExMatcher()
 	 * @generated
 	 */
@@ -3541,10 +3541,10 @@ public interface StructurePackage extends EPackage {
 	int REG_EX_MATCHER_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.MultipleReferencesValueConstraintImpl <em>Multiple References Value Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl <em>Multiple References Value Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.MultipleReferencesValueConstraintImpl
+	 * @see pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
@@ -3596,10 +3596,10 @@ public interface StructurePackage extends EPackage {
 	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.RangeConstraintImpl <em>Range Constraint</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RangeConstraintImpl <em>Range Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.RangeConstraintImpl
+	 * @see pamtram.structure.constraint.impl.RangeConstraintImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeConstraint()
 	 * @generated
 	 */
@@ -3970,10 +3970,10 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.RangeBoundImpl <em>Range Bound</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RangeBoundImpl <em>Range Bound</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.RangeBoundImpl
+	 * @see pamtram.structure.constraint.impl.RangeBoundImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getRangeBound()
 	 * @generated
 	 */
@@ -4070,10 +4070,10 @@ public interface StructurePackage extends EPackage {
 	int RANGE_BOUND_OPERATION_COUNT = MappingPackage.EXPRESSION_HINT_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.ValueConstraintSourceInterface
+	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
@@ -4116,10 +4116,10 @@ public interface StructurePackage extends EPackage {
 	int VALUE_CONSTRAINT_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ValueConstraintSourceElementImpl <em>Value Constraint Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.ValueConstraintSourceElementImpl <em>Value Constraint Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ValueConstraintSourceElementImpl
+	 * @see pamtram.structure.constraint.impl.ValueConstraintSourceElementImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
@@ -4207,10 +4207,10 @@ public interface StructurePackage extends EPackage {
 	int VALUE_CONSTRAINT_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ValueConstraintExternalSourceElementImpl <em>Value Constraint External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.ValueConstraintExternalSourceElementImpl <em>Value Constraint External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ValueConstraintExternalSourceElementImpl
+	 * @see pamtram.structure.constraint.impl.ValueConstraintExternalSourceElementImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
@@ -4308,10 +4308,10 @@ public interface StructurePackage extends EPackage {
 	int FILE_TYPE_ENUM = 40;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.ValueConstraintType <em>Value Constraint Type</em>}' enum.
+	 * The meta object id for the '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintType()
 	 * @generated
 	 */
@@ -4788,145 +4788,145 @@ public interface StructurePackage extends EPackage {
 	EClass getVirtualTargetSectionAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.EqualityMatcher <em>Equality Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityMatcher <em>Equality Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Equality Matcher</em>'.
-	 * @see pamtram.structure.EqualityMatcher
+	 * @see pamtram.structure.constraint.EqualityMatcher
 	 * @generated
 	 */
 	EClass getEqualityMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Constraint</em>'.
-	 * @see pamtram.structure.ValueConstraint
+	 * @see pamtram.structure.constraint.ValueConstraint
 	 * @generated
 	 */
 	EClass getValueConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.ValueConstraint#getType <em>Type</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.constraint.ValueConstraint#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see pamtram.structure.ValueConstraint#getType()
+	 * @see pamtram.structure.constraint.ValueConstraint#getType()
 	 * @see #getValueConstraint()
 	 * @generated
 	 */
 	EAttribute getValueConstraint_Type();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SubstringMatcher <em>Substring Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringMatcher <em>Substring Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Substring Matcher</em>'.
-	 * @see pamtram.structure.SubstringMatcher
+	 * @see pamtram.structure.constraint.SubstringMatcher
 	 * @generated
 	 */
 	EClass getSubstringMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.BeginningMatcher <em>Beginning Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.BeginningMatcher <em>Beginning Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Beginning Matcher</em>'.
-	 * @see pamtram.structure.BeginningMatcher
+	 * @see pamtram.structure.constraint.BeginningMatcher
 	 * @generated
 	 */
 	EClass getBeginningMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.EndingMatcher <em>Ending Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EndingMatcher <em>Ending Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ending Matcher</em>'.
-	 * @see pamtram.structure.EndingMatcher
+	 * @see pamtram.structure.constraint.EndingMatcher
 	 * @generated
 	 */
 	EClass getEndingMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.RegExMatcher <em>Reg Ex Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.RegExMatcher <em>Reg Ex Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reg Ex Matcher</em>'.
-	 * @see pamtram.structure.RegExMatcher
+	 * @see pamtram.structure.constraint.RegExMatcher
 	 * @generated
 	 */
 	EClass getRegExMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Case Sensitive Constraint</em>'.
-	 * @see pamtram.structure.CaseSensitiveConstraint
+	 * @see pamtram.structure.constraint.CaseSensitiveConstraint
 	 * @generated
 	 */
 	EClass getCaseSensitiveConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.constraint.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Case Sensitive</em>'.
-	 * @see pamtram.structure.CaseSensitiveConstraint#isCaseSensitive()
+	 * @see pamtram.structure.constraint.CaseSensitiveConstraint#isCaseSensitive()
 	 * @see #getCaseSensitiveConstraint()
 	 * @generated
 	 */
 	EAttribute getCaseSensitiveConstraint_CaseSensitive();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.RangeConstraint <em>Range Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.RangeConstraint <em>Range Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Range Constraint</em>'.
-	 * @see pamtram.structure.RangeConstraint
+	 * @see pamtram.structure.constraint.RangeConstraint
 	 * @generated
 	 */
 	EClass getRangeConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.RangeConstraint#getUpperBound <em>Upper Bound</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.constraint.RangeConstraint#getUpperBound <em>Upper Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Upper Bound</em>'.
-	 * @see pamtram.structure.RangeConstraint#getUpperBound()
+	 * @see pamtram.structure.constraint.RangeConstraint#getUpperBound()
 	 * @see #getRangeConstraint()
 	 * @generated
 	 */
 	EReference getRangeConstraint_UpperBound();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.RangeConstraint#getLowerBound <em>Lower Bound</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.constraint.RangeConstraint#getLowerBound <em>Lower Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Lower Bound</em>'.
-	 * @see pamtram.structure.RangeConstraint#getLowerBound()
+	 * @see pamtram.structure.constraint.RangeConstraint#getLowerBound()
 	 * @see #getRangeConstraint()
 	 * @generated
 	 */
 	EReference getRangeConstraint_LowerBound();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.MultipleReferencesValueConstraint <em>Multiple References Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.MultipleReferencesValueConstraint <em>Multiple References Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Multiple References Value Constraint</em>'.
-	 * @see pamtram.structure.MultipleReferencesValueConstraint
+	 * @see pamtram.structure.constraint.MultipleReferencesValueConstraint
 	 * @generated
 	 */
 	EClass getMultipleReferencesValueConstraint();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList) <em>Check Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList) <em>Check Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Check Constraint</em>' operation.
-	 * @see pamtram.structure.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList)
+	 * @see pamtram.structure.constraint.MultipleReferencesValueConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 */
 	EOperation getMultipleReferencesValueConstraint__CheckConstraint__String_EList();
@@ -5004,186 +5004,186 @@ public interface StructurePackage extends EPackage {
 	EClass getInstancePointerExternalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.RangeBound <em>Range Bound</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.RangeBound <em>Range Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Range Bound</em>'.
-	 * @see pamtram.structure.RangeBound
+	 * @see pamtram.structure.constraint.RangeBound
 	 * @generated
 	 */
 	EClass getRangeBound();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.RangeBound#getBoundType <em>Bound Type</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.constraint.RangeBound#getBoundType <em>Bound Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Bound Type</em>'.
-	 * @see pamtram.structure.RangeBound#getBoundType()
+	 * @see pamtram.structure.constraint.RangeBound#getBoundType()
 	 * @see #getRangeBound()
 	 * @generated
 	 */
 	EAttribute getRangeBound_BoundType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Bound Reference Value Additional Specification</em>'.
-	 * @see pamtram.structure.RangeBound#getBoundReferenceValueAdditionalSpecification()
+	 * @see pamtram.structure.constraint.RangeBound#getBoundReferenceValueAdditionalSpecification()
 	 * @see #getRangeBound()
 	 * @generated
 	 */
 	EReference getRangeBound_BoundReferenceValueAdditionalSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.RangeBound#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.RangeBound#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.structure.RangeBound#getSourceElements()
+	 * @see pamtram.structure.constraint.RangeBound#getSourceElements()
 	 * @see #getRangeBound()
 	 * @generated
 	 */
 	EReference getRangeBound_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.RangeBound#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.RangeBound#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
-	 * @see pamtram.structure.RangeBound#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.constraint.RangeBound#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getRangeBound__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.RangeBound#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.RangeBound#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
-	 * @see pamtram.structure.RangeBound#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.constraint.RangeBound#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getRangeBound__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.RangeBound#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.RangeBound#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Local Constraint</em>' operation.
-	 * @see pamtram.structure.RangeBound#isLocalConstraint()
+	 * @see pamtram.structure.constraint.RangeBound#isLocalConstraint()
 	 * @generated
 	 */
 	EOperation getRangeBound__IsLocalConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SingleReferenceValueConstraint <em>Single Reference Value Constraint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.SingleReferenceValueConstraint <em>Single Reference Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Single Reference Value Constraint</em>'.
-	 * @see pamtram.structure.SingleReferenceValueConstraint
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint
 	 * @generated
 	 */
 	EClass getSingleReferenceValueConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification()
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification()
 	 * @see #getSingleReferenceValueConstraint()
 	 * @generated
 	 */
 	EReference getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#getSourceElements()
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements()
 	 * @see #getSingleReferenceValueConstraint()
 	 * @generated
 	 */
 	EReference getSingleReferenceValueConstraint_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Check Constraint</em>' operation.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String)
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String)
 	 * @generated
 	 */
 	EOperation getSingleReferenceValueConstraint__CheckConstraint__String_String();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values In Source Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#validateOnlyFixedValuesInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleReferenceValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#validateOnlyFixedValuesOrGlobalAttributesInConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleReferenceValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SingleReferenceValueConstraint#validateNoResultModifierInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Result Modifier In Source Sections</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#validateNoResultModifierInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Result Modifier In Source Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#validateNoResultModifierInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#validateNoResultModifierInSourceSections(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SingleReferenceValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Is Local Constraint</em>' operation.
-	 * @see pamtram.structure.SingleReferenceValueConstraint#isLocalConstraint()
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#isLocalConstraint()
 	 * @generated
 	 */
 	EOperation getSingleReferenceValueConstraint__IsLocalConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Constraint Source Interface</em>'.
-	 * @see pamtram.structure.ValueConstraintSourceInterface
+	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
 	 * @generated
 	 */
 	EClass getValueConstraintSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ValueConstraintSourceElement <em>Value Constraint Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraintSourceElement <em>Value Constraint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Constraint Source Element</em>'.
-	 * @see pamtram.structure.ValueConstraintSourceElement
+	 * @see pamtram.structure.constraint.ValueConstraintSourceElement
 	 * @generated
 	 */
 	EClass getValueConstraintSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ValueConstraintExternalSourceElement <em>Value Constraint External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraintExternalSourceElement <em>Value Constraint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Constraint External Source Element</em>'.
-	 * @see pamtram.structure.ValueConstraintExternalSourceElement
+	 * @see pamtram.structure.constraint.ValueConstraintExternalSourceElement
 	 * @generated
 	 */
 	EClass getValueConstraintExternalSourceElement();
@@ -5199,11 +5199,11 @@ public interface StructurePackage extends EPackage {
 	EEnum getFileTypeEnum();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.structure.ValueConstraintType <em>Value Constraint Type</em>}'.
+	 * Returns the meta object for enum '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Value Constraint Type</em>'.
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @generated
 	 */
 	EEnum getValueConstraintType();
@@ -5636,20 +5636,20 @@ public interface StructurePackage extends EPackage {
 		EClass VIRTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getVirtualTargetSectionAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.EqualityMatcherImpl
+		 * @see pamtram.structure.constraint.impl.EqualityMatcherImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getEqualityMatcher()
 		 * @generated
 		 */
 		EClass EQUALITY_MATCHER = eINSTANCE.getEqualityMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.ValueConstraint <em>Value Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.ValueConstraint
+		 * @see pamtram.structure.constraint.ValueConstraint
 		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraint()
 		 * @generated
 		 */
@@ -5664,50 +5664,50 @@ public interface StructurePackage extends EPackage {
 		EAttribute VALUE_CONSTRAINT__TYPE = eINSTANCE.getValueConstraint_Type();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SubstringMatcherImpl
+		 * @see pamtram.structure.constraint.impl.SubstringMatcherImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSubstringMatcher()
 		 * @generated
 		 */
 		EClass SUBSTRING_MATCHER = eINSTANCE.getSubstringMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.BeginningMatcherImpl
+		 * @see pamtram.structure.constraint.impl.BeginningMatcherImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getBeginningMatcher()
 		 * @generated
 		 */
 		EClass BEGINNING_MATCHER = eINSTANCE.getBeginningMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.EndingMatcherImpl
+		 * @see pamtram.structure.constraint.impl.EndingMatcherImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getEndingMatcher()
 		 * @generated
 		 */
 		EClass ENDING_MATCHER = eINSTANCE.getEndingMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.RegExMatcherImpl
+		 * @see pamtram.structure.constraint.impl.RegExMatcherImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getRegExMatcher()
 		 * @generated
 		 */
 		EClass REG_EX_MATCHER = eINSTANCE.getRegExMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.CaseSensitiveConstraint
+		 * @see pamtram.structure.constraint.CaseSensitiveConstraint
 		 * @see pamtram.structure.impl.StructurePackageImpl#getCaseSensitiveConstraint()
 		 * @generated
 		 */
@@ -5722,10 +5722,10 @@ public interface StructurePackage extends EPackage {
 		EAttribute CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE = eINSTANCE.getCaseSensitiveConstraint_CaseSensitive();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.RangeConstraintImpl <em>Range Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RangeConstraintImpl <em>Range Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.RangeConstraintImpl
+		 * @see pamtram.structure.constraint.impl.RangeConstraintImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getRangeConstraint()
 		 * @generated
 		 */
@@ -5748,10 +5748,10 @@ public interface StructurePackage extends EPackage {
 		EReference RANGE_CONSTRAINT__LOWER_BOUND = eINSTANCE.getRangeConstraint_LowerBound();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.MultipleReferencesValueConstraintImpl <em>Multiple References Value Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl <em>Multiple References Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.MultipleReferencesValueConstraintImpl
+		 * @see pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getMultipleReferencesValueConstraint()
 		 * @generated
 		 */
@@ -5830,10 +5830,10 @@ public interface StructurePackage extends EPackage {
 		EClass INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getInstancePointerExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.RangeBoundImpl <em>Range Bound</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RangeBoundImpl <em>Range Bound</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.RangeBoundImpl
+		 * @see pamtram.structure.constraint.impl.RangeBoundImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getRangeBound()
 		 * @generated
 		 */
@@ -5888,10 +5888,10 @@ public interface StructurePackage extends EPackage {
 		EOperation RANGE_BOUND___IS_LOCAL_CONSTRAINT = eINSTANCE.getRangeBound__IsLocalConstraint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl <em>Single Reference Value Constraint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl <em>Single Reference Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SingleReferenceValueConstraintImpl
+		 * @see pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSingleReferenceValueConstraint()
 		 * @generated
 		 */
@@ -5954,30 +5954,30 @@ public interface StructurePackage extends EPackage {
 		EOperation SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = eINSTANCE.getSingleReferenceValueConstraint__IsLocalConstraint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.ValueConstraintSourceInterface
+		 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
 		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceInterface()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_SOURCE_INTERFACE = eINSTANCE.getValueConstraintSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ValueConstraintSourceElementImpl <em>Value Constraint Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.ValueConstraintSourceElementImpl <em>Value Constraint Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ValueConstraintSourceElementImpl
+		 * @see pamtram.structure.constraint.impl.ValueConstraintSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintSourceElement()
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_SOURCE_ELEMENT = eINSTANCE.getValueConstraintSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ValueConstraintExternalSourceElementImpl <em>Value Constraint External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.ValueConstraintExternalSourceElementImpl <em>Value Constraint External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ValueConstraintExternalSourceElementImpl
+		 * @see pamtram.structure.constraint.impl.ValueConstraintExternalSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintExternalSourceElement()
 		 * @generated
 		 */
@@ -5994,10 +5994,10 @@ public interface StructurePackage extends EPackage {
 		EEnum FILE_TYPE_ENUM = eINSTANCE.getFileTypeEnum();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.ValueConstraintType <em>Value Constraint Type</em>}' enum.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.ValueConstraintType
+		 * @see pamtram.structure.constraint.ValueConstraintType
 		 * @see pamtram.structure.impl.StructurePackageImpl#getValueConstraintType()
 		 * @generated
 		 */

@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionReference;
-import pamtram.structure.ValueConstraint;
 import pamtram.structure.generic.impl.AttributeImpl;
 
 /**

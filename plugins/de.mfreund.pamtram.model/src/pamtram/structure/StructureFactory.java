@@ -4,6 +4,16 @@ package pamtram.structure;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import pamtram.structure.constraint.BeginningMatcher;
+import pamtram.structure.constraint.EndingMatcher;
+import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.RangeBound;
+import pamtram.structure.constraint.RangeConstraint;
+import pamtram.structure.constraint.RegExMatcher;
+import pamtram.structure.constraint.SubstringMatcher;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

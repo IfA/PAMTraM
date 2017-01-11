@@ -1,6 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
+
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +13,7 @@ package pamtram.structure;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getCaseSensitiveConstraint()
@@ -37,7 +39,7 @@ public interface CaseSensitiveConstraint extends SingleReferenceValueConstraint 
 	boolean isCaseSensitive();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.constraint.CaseSensitiveConstraint#isCaseSensitive <em>Case Sensitive</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Case Sensitive</em>' attribute.

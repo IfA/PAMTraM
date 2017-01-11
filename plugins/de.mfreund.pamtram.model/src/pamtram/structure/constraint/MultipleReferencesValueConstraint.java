@@ -1,8 +1,10 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
 
 import org.eclipse.emf.common.util.EList;
+
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,6 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
+
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->

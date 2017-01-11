@@ -1,12 +1,14 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.ModifiableHint;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,9 +19,9 @@ import pamtram.mapping.ModifiableHint;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.RangeBound#getBoundType <em>Bound Type</em>}</li>
- *   <li>{@link pamtram.structure.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}</li>
- *   <li>{@link pamtram.structure.RangeBound#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.RangeBound#getBoundType <em>Bound Type</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.RangeBound#getBoundReferenceValueAdditionalSpecification <em>Bound Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.RangeBound#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getRangeBound()
@@ -29,7 +31,7 @@ import pamtram.mapping.ModifiableHint;
 public interface RangeBound extends ExpressionHint, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Bound Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link pamtram.structure.ValueConstraintType}.
+	 * The literals are from the enumeration {@link pamtram.structure.constraint.ValueConstraintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bound Type</em>' attribute isn't clear,
@@ -37,7 +39,7 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Bound Type</em>' attribute.
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #setBoundType(ValueConstraintType)
 	 * @see pamtram.structure.StructurePackage#getRangeBound_BoundType()
 	 * @model
@@ -46,11 +48,11 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 	ValueConstraintType getBoundType();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.RangeBound#getBoundType <em>Bound Type</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.constraint.RangeBound#getBoundType <em>Bound Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Bound Type</em>' attribute.
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #getBoundType()
 	 * @generated
 	 */
@@ -74,7 +76,7 @@ public interface RangeBound extends ExpressionHint, ModifiableHint {
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.ValueConstraintSourceInterface}.
+	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraintSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,

@@ -14,6 +14,20 @@ import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
+import pamtram.structure.constraint.BeginningMatcher;
+import pamtram.structure.constraint.CaseSensitiveConstraint;
+import pamtram.structure.constraint.EndingMatcher;
+import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.RangeBound;
+import pamtram.structure.constraint.RangeConstraint;
+import pamtram.structure.constraint.RegExMatcher;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.SubstringMatcher;
+import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
@@ -758,13 +772,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.EqualityMatcher <em>Equality Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityMatcher <em>Equality Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.EqualityMatcher
+	 * @see pamtram.structure.constraint.EqualityMatcher
 	 * @generated
 	 */
 	public Adapter createEqualityMatcherAdapter() {
@@ -772,13 +786,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ValueConstraint <em>Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ValueConstraint
+	 * @see pamtram.structure.constraint.ValueConstraint
 	 * @generated
 	 */
 	public Adapter createValueConstraintAdapter() {
@@ -786,13 +800,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.SubstringMatcher <em>Substring Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringMatcher <em>Substring Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.SubstringMatcher
+	 * @see pamtram.structure.constraint.SubstringMatcher
 	 * @generated
 	 */
 	public Adapter createSubstringMatcherAdapter() {
@@ -800,13 +814,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.BeginningMatcher <em>Beginning Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningMatcher <em>Beginning Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.BeginningMatcher
+	 * @see pamtram.structure.constraint.BeginningMatcher
 	 * @generated
 	 */
 	public Adapter createBeginningMatcherAdapter() {
@@ -814,13 +828,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.EndingMatcher <em>Ending Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingMatcher <em>Ending Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.EndingMatcher
+	 * @see pamtram.structure.constraint.EndingMatcher
 	 * @generated
 	 */
 	public Adapter createEndingMatcherAdapter() {
@@ -828,13 +842,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.RegExMatcher <em>Reg Ex Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExMatcher <em>Reg Ex Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.RegExMatcher
+	 * @see pamtram.structure.constraint.RegExMatcher
 	 * @generated
 	 */
 	public Adapter createRegExMatcherAdapter() {
@@ -842,13 +856,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.CaseSensitiveConstraint
+	 * @see pamtram.structure.constraint.CaseSensitiveConstraint
 	 * @generated
 	 */
 	public Adapter createCaseSensitiveConstraintAdapter() {
@@ -856,13 +870,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.RangeConstraint <em>Range Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RangeConstraint <em>Range Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.RangeConstraint
+	 * @see pamtram.structure.constraint.RangeConstraint
 	 * @generated
 	 */
 	public Adapter createRangeConstraintAdapter() {
@@ -870,13 +884,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.MultipleReferencesValueConstraint <em>Multiple References Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.MultipleReferencesValueConstraint <em>Multiple References Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.MultipleReferencesValueConstraint
+	 * @see pamtram.structure.constraint.MultipleReferencesValueConstraint
 	 * @generated
 	 */
 	public Adapter createMultipleReferencesValueConstraintAdapter() {
@@ -940,13 +954,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.RangeBound <em>Range Bound</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RangeBound <em>Range Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.RangeBound
+	 * @see pamtram.structure.constraint.RangeBound
 	 * @generated
 	 */
 	public Adapter createRangeBoundAdapter() {
@@ -954,13 +968,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.SingleReferenceValueConstraint <em>Single Reference Value Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SingleReferenceValueConstraint <em>Single Reference Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.SingleReferenceValueConstraint
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint
 	 * @generated
 	 */
 	public Adapter createSingleReferenceValueConstraintAdapter() {
@@ -968,13 +982,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ValueConstraintSourceInterface
+	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
 	 * @generated
 	 */
 	public Adapter createValueConstraintSourceInterfaceAdapter() {
@@ -982,13 +996,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ValueConstraintSourceElement <em>Value Constraint Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceElement <em>Value Constraint Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ValueConstraintSourceElement
+	 * @see pamtram.structure.constraint.ValueConstraintSourceElement
 	 * @generated
 	 */
 	public Adapter createValueConstraintSourceElementAdapter() {
@@ -996,13 +1010,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ValueConstraintExternalSourceElement <em>Value Constraint External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintExternalSourceElement <em>Value Constraint External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ValueConstraintExternalSourceElement
+	 * @see pamtram.structure.constraint.ValueConstraintExternalSourceElement
 	 * @generated
 	 */
 	public Adapter createValueConstraintExternalSourceElementAdapter() {

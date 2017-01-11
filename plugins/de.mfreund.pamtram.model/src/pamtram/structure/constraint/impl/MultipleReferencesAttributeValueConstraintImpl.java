@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.constraint.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.ValueConstraintType;
+import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.ValueConstraintType;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import pamtram.structure.ValueConstraintType;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.MultipleReferencesAttributeValueConstraintImpl#getType <em>Type</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.MultipleReferencesAttributeValueConstraintImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,12 +1,14 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.ModifiableHint;
+import pamtram.structure.InstancePointer;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +19,8 @@ import pamtram.mapping.ModifiableHint;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
- *   <li>{@link pamtram.structure.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getSingleReferenceValueConstraint()
@@ -45,7 +47,7 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.ValueConstraintSourceInterface}.
+	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraintSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,

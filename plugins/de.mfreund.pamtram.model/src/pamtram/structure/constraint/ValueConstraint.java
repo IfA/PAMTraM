@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
 
 import pamtram.NamedElement;
+import pamtram.structure.StructurePackage;
 
 
 /**
@@ -13,7 +14,7 @@ import pamtram.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.ValueConstraint#getType <em>Type</em>}</li>
+ * <li>{@link pamtram.structure.constraint.ValueConstraint#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getAttributeValueConstraint()
@@ -24,7 +25,7 @@ public interface ValueConstraint extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * The default value is <code>"INCLUSION"</code>.
-	 * The literals are from the enumeration {@link pamtram.structure.ValueConstraintType}.
+	 * The literals are from the enumeration {@link pamtram.structure.constraint.ValueConstraintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -32,7 +33,7 @@ public interface ValueConstraint extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #setType(ValueConstraintType)
 	 * @see pamtram.structure.StructurePackage#getValueConstraint_Type()
 	 * @model default="INCLUSION" required="true"
@@ -41,11 +42,11 @@ public interface ValueConstraint extends NamedElement {
 	ValueConstraintType getType();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ValueConstraint#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.constraint.ValueConstraint#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see pamtram.structure.ValueConstraintType
+	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #getType()
 	 * @generated
 	 */

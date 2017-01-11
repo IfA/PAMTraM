@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.constraint.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -37,12 +37,12 @@ import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.SourceSection;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceElement;
-import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.ValueConstraintType;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -53,11 +53,11 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getResultModifier <em>Result Modifier</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated

@@ -10,7 +10,7 @@ import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;

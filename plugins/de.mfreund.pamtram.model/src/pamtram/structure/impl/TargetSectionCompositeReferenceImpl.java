@@ -10,9 +10,9 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.TargetSectionReference;
-import pamtram.structure.generic.impl.ContainmentReferenceImpl;
+import pamtram.structure.generic.impl.CompositeReferenceImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Containment Reference</b></em>'.
@@ -20,15 +20,15 @@ import pamtram.structure.generic.impl.ContainmentReferenceImpl;
  *
  * @generated
  */
-public class TargetSectionContainmentReferenceImpl extends
-		ContainmentReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
-		implements TargetSectionContainmentReference {
+public class TargetSectionCompositeReferenceImpl extends
+		CompositeReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
+		implements TargetSectionCompositeReference {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionContainmentReferenceImpl() {
+	protected TargetSectionCompositeReferenceImpl() {
 		super();
 	}
 
@@ -38,7 +38,7 @@ public class TargetSectionContainmentReferenceImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.TARGET_SECTION_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.TARGET_SECTION_COMPOSITE_REFERENCE;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class TargetSectionContainmentReferenceImpl extends
 	@Override
 	public EList<TargetSectionClass> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -68,4 +68,4 @@ public class TargetSectionContainmentReferenceImpl extends
 		return this.getValue();
 	}
 
-} // TargetSectionContainmentReferenceImpl
+} // TargetSectionCompositeReferenceImpl

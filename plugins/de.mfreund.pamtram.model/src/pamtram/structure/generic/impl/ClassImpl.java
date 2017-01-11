@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
@@ -300,8 +300,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			if(!(ref.getEReference().isContainment())) {
 				continue;
 			}
-			if(ref instanceof ContainmentReference<?,?,?,?>){
-				containedClasses.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());
+			if(ref instanceof CompositeReference<?,?,?,?>){
+				containedClasses.addAll(((CompositeReference<S,C,R,A>) ref).getValue());
 			} else if(ref instanceof CrossReference) {
 				containedClasses.addAll((Collection<? extends C>) ((CrossReference) ref).getValue());
 			}
@@ -325,9 +325,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public ContainmentReference<S, C, R, A> getOwningContainmentReference() {
-		if(this.eContainer() instanceof ContainmentReference<?,?,?,?>) {
-			return (ContainmentReference<S,C,R,A>) this.eContainer();
+	public CompositeReference<S, C, R, A> getOwningContainmentReference() {
+		if(this.eContainer() instanceof CompositeReference<?,?,?,?>) {
+			return (CompositeReference<S,C,R,A>) this.eContainer();
 		} else {
 			return null;
 		}
@@ -349,8 +349,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		// collect all classes that are referenced
 		for (R ref : referencingClass.getReferences()) {
 
-			if (ref instanceof ContainmentReference<?, ?, ?, ?>) {
-				classes.addAll(((ContainmentReference<S, C, R, A>) ref).getValue());
+			if (ref instanceof CompositeReference<?, ?, ?, ?>) {
+				classes.addAll(((CompositeReference<S, C, R, A>) ref).getValue());
 			} else if (ref instanceof CrossReference) {
 				classes.addAll(((CrossReference) ref).getValue());
 			} else if (ref instanceof CrossReference) {

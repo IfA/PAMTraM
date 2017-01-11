@@ -47,14 +47,14 @@ import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.SourceSectionCrossReference;
 import pamtram.structure.SourceSectionReference;
 import pamtram.structure.SubstringMatcher;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionContainmentReference;
+import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.TargetSectionReference;
 import pamtram.structure.ValueConstraint;
@@ -170,7 +170,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass targetSectionContainmentReferenceEClass = null;
+	private EClass targetSectionCompositeReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -184,7 +184,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass sourceSectionContainmentReferenceEClass = null;
+	private EClass sourceSectionCompositeReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -748,8 +748,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTargetSectionContainmentReference() {
-		return targetSectionContainmentReferenceEClass;
+	public EClass getTargetSectionCompositeReference() {
+		return targetSectionCompositeReferenceEClass;
 	}
 
 	/**
@@ -775,8 +775,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSourceSectionContainmentReference() {
-		return sourceSectionContainmentReferenceEClass;
+	public EClass getSourceSectionCompositeReference() {
+		return sourceSectionCompositeReferenceEClass;
 	}
 
 	/**
@@ -1302,12 +1302,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		targetSectionReferenceEClass = createEClass(TARGET_SECTION_REFERENCE);
 
-		targetSectionContainmentReferenceEClass = createEClass(TARGET_SECTION_CONTAINMENT_REFERENCE);
+		targetSectionCompositeReferenceEClass = createEClass(TARGET_SECTION_COMPOSITE_REFERENCE);
 
 		targetSectionCrossReferenceEClass = createEClass(TARGET_SECTION_CROSS_REFERENCE);
 		createEOperation(targetSectionCrossReferenceEClass, TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
-		sourceSectionContainmentReferenceEClass = createEClass(SOURCE_SECTION_CONTAINMENT_REFERENCE);
+		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_COMPOSITE_REFERENCE);
 
 		sourceSectionCrossReferenceEClass = createEClass(SOURCE_SECTION_CROSS_REFERENCE);
 
@@ -1513,7 +1513,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType(this.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		targetSectionReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getContainmentReference());
+		g1 = createEGenericType(theGenericPackage.getCompositeReference());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getTargetSectionClass());
@@ -1522,9 +1522,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
-		targetSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getCrossReference());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
@@ -1537,7 +1537,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
 		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getContainmentReference());
+		g1 = createEGenericType(theGenericPackage.getCompositeReference());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getSourceSectionClass());
@@ -1546,9 +1546,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		sourceSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getSourceSectionReference());
-		sourceSectionContainmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		sourceSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getCrossReference());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1750,7 +1750,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		initEClass(targetSectionReferenceEClass, TargetSectionReference.class, "TargetSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(targetSectionContainmentReferenceEClass, TargetSectionContainmentReference.class, "TargetSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(targetSectionCompositeReferenceEClass, TargetSectionCompositeReference.class, "TargetSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(targetSectionCrossReferenceEClass, TargetSectionCrossReference.class, "TargetSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1763,7 +1763,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(sourceSectionContainmentReferenceEClass, SourceSectionContainmentReference.class, "SourceSectionContainmentReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionCompositeReference.class, "SourceSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -33,7 +33,7 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericFactory;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
@@ -86,7 +86,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass containmentReferenceEClass = null;
+	private EClass compositeReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -467,8 +467,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getContainmentReference() {
-		return containmentReferenceEClass;
+	public EClass getCompositeReference() {
+		return compositeReferenceEClass;
 	}
 
 	/**
@@ -476,8 +476,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getContainmentReference_Value() {
-		return (EReference)containmentReferenceEClass.getEStructuralFeatures().get(0);
+	public EReference getCompositeReference_Value() {
+		return (EReference)compositeReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -485,8 +485,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map() {
-		return containmentReferenceEClass.getEOperations().get(0);
+	public EOperation getCompositeReference__ValidateEReferenceIsContainment__DiagnosticChain_Map() {
+		return compositeReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -639,9 +639,9 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEOperation(referenceEClass, REFERENCE___GET_VALUES_GENERIC);
 		createEOperation(referenceEClass, REFERENCE___ADD_VALUES_GENERIC__ELIST);
 
-		containmentReferenceEClass = createEClass(CONTAINMENT_REFERENCE);
-		createEReference(containmentReferenceEClass, CONTAINMENT_REFERENCE__VALUE);
-		createEOperation(containmentReferenceEClass, CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		compositeReferenceEClass = createEClass(COMPOSITE_REFERENCE);
+		createEReference(compositeReferenceEClass, COMPOSITE_REFERENCE__VALUE);
+		createEOperation(compositeReferenceEClass, COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 
 		crossReferenceEClass = createEClass(CROSS_REFERENCE);
 		createEReference(crossReferenceEClass, CROSS_REFERENCE__VALUE);
@@ -703,10 +703,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		ETypeParameter referenceEClass_C = addETypeParameter(referenceEClass, "C");
 		ETypeParameter referenceEClass_R = addETypeParameter(referenceEClass, "R");
 		ETypeParameter referenceEClass_A = addETypeParameter(referenceEClass, "A");
-		ETypeParameter containmentReferenceEClass_S = addETypeParameter(containmentReferenceEClass, "S");
-		ETypeParameter containmentReferenceEClass_C = addETypeParameter(containmentReferenceEClass, "C");
-		ETypeParameter containmentReferenceEClass_R = addETypeParameter(containmentReferenceEClass, "R");
-		ETypeParameter containmentReferenceEClass_A = addETypeParameter(containmentReferenceEClass, "A");
+		ETypeParameter compositeReferenceEClass_S = addETypeParameter(compositeReferenceEClass, "S");
+		ETypeParameter compositeReferenceEClass_C = addETypeParameter(compositeReferenceEClass, "C");
+		ETypeParameter compositeReferenceEClass_R = addETypeParameter(compositeReferenceEClass, "R");
+		ETypeParameter compositeReferenceEClass_A = addETypeParameter(compositeReferenceEClass, "A");
 		ETypeParameter crossReferenceEClass_S = addETypeParameter(crossReferenceEClass, "S");
 		ETypeParameter crossReferenceEClass_C = addETypeParameter(crossReferenceEClass, "C");
 		ETypeParameter crossReferenceEClass_R = addETypeParameter(crossReferenceEClass, "R");
@@ -886,45 +886,45 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		referenceEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(this.getSection());
-		g2 = createEGenericType(containmentReferenceEClass_S);
+		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_C);
+		g2 = createEGenericType(compositeReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_R);
+		g2 = createEGenericType(compositeReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_A);
+		g2 = createEGenericType(compositeReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		containmentReferenceEClass_S.getEBounds().add(g1);
+		compositeReferenceEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(this.getClass_());
-		g2 = createEGenericType(containmentReferenceEClass_S);
+		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_C);
+		g2 = createEGenericType(compositeReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_R);
+		g2 = createEGenericType(compositeReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_A);
+		g2 = createEGenericType(compositeReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		containmentReferenceEClass_C.getEBounds().add(g1);
+		compositeReferenceEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(this.getReference());
-		g2 = createEGenericType(containmentReferenceEClass_S);
+		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_C);
+		g2 = createEGenericType(compositeReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_R);
+		g2 = createEGenericType(compositeReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_A);
+		g2 = createEGenericType(compositeReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		containmentReferenceEClass_R.getEBounds().add(g1);
+		compositeReferenceEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(this.getAttribute());
-		g2 = createEGenericType(containmentReferenceEClass_S);
+		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_C);
+		g2 = createEGenericType(compositeReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_R);
+		g2 = createEGenericType(compositeReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_A);
+		g2 = createEGenericType(compositeReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		containmentReferenceEClass_A.getEBounds().add(g1);
+		compositeReferenceEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(this.getSection());
 		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -1119,15 +1119,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		referenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getReference());
-		g2 = createEGenericType(containmentReferenceEClass_S);
+		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_C);
+		g2 = createEGenericType(compositeReferenceEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_R);
+		g2 = createEGenericType(compositeReferenceEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(containmentReferenceEClass_A);
+		g2 = createEGenericType(compositeReferenceEClass_A);
 		g1.getETypeArguments().add(g2);
-		containmentReferenceEClass.getEGenericSuperTypes().add(g1);
+		compositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getReference());
 		g2 = createEGenericType(crossReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -1209,7 +1209,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		addEParameter(op, g1, "containerClass", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getClass__GetOwningContainmentReference(), null, "getOwningContainmentReference", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(this.getContainmentReference());
+		g1 = createEGenericType(this.getCompositeReference());
 		g2 = createEGenericType(classEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(classEClass_C);
@@ -1298,11 +1298,11 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1 = createEGenericType(referenceEClass_C);
 		addEParameter(op, g1, "values", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(containmentReferenceEClass, ContainmentReference.class, "ContainmentReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(containmentReferenceEClass_C);
-		initEReference(getContainmentReference_Value(), g1, null, "value", null, 0, -1, ContainmentReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(compositeReferenceEClass, CompositeReference.class, "CompositeReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(compositeReferenceEClass_C);
+		initEReference(getCompositeReference_Value(), g1, null, "value", null, 0, -1, CompositeReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getContainmentReference__ValidateEReferenceIsContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getCompositeReference__ValidateEReferenceIsContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1380,7 +1380,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 			 "constraints", "eReferenceMatchesParentEClass"
 		   });	
 		addAnnotation
-		  (containmentReferenceEClass, 
+		  (compositeReferenceEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "eReferenceIsContainment"

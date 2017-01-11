@@ -13,7 +13,7 @@ import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.CrossReference;
@@ -94,8 +94,8 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 				return createReferenceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseContainmentReference(ContainmentReference<S, C, R, A> object) {
-				return createContainmentReferenceAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCompositeReference(CompositeReference<S, C, R, A> object) {
+				return createCompositeReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
@@ -194,16 +194,16 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.ContainmentReference <em>Containment Reference</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CompositeReference <em>Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.generic.ContainmentReference
+	 * @see pamtram.structure.generic.CompositeReference
 	 * @generated
 	 */
-	public Adapter createContainmentReferenceAdapter() {
+	public Adapter createCompositeReferenceAdapter() {
 		return null;
 	}
 

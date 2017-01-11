@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -30,12 +30,12 @@ import pamtram.structure.generic.util.GenericValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.generic.impl.ContainmentReferenceImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.CompositeReferenceImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ContainmentReference<S, C, R, A> {
+public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements CompositeReference<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainmentReferenceImpl() {
+	protected CompositeReferenceImpl() {
 		super();
 	}
 
@@ -62,7 +62,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return GenericPackage.Literals.CONTAINMENT_REFERENCE;
+		return GenericPackage.Literals.COMPOSITE_REFERENCE;
 	}
 
 	/**
@@ -73,7 +73,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public EList<C> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.COMPOSITE_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -95,7 +95,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
+							GenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
 							errorMessage,
 					new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
 		
@@ -112,7 +112,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -126,7 +126,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -141,7 +141,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				getValue().clear();
 				getValue().addAll((Collection<? extends C>)newValue);
 				return;
@@ -157,7 +157,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				getValue().clear();
 				return;
 		}
@@ -172,7 +172,7 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case GenericPackage.CONTAINMENT_REFERENCE__VALUE:
+			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
 				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -187,10 +187,10 @@ public abstract class ContainmentReferenceImpl<S extends Section<S, C, R, A>, C 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case GenericPackage.CONTAINMENT_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceIsContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ContainmentReferenceImpl
+} //CompositeReferenceImpl

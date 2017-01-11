@@ -7,11 +7,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 
 import pamtram.structure.StructurePackage;
-import pamtram.structure.generic.impl.ContainmentReferenceImpl;
+import pamtram.structure.generic.impl.CompositeReferenceImpl;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionContainmentReference;
+import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.SourceSectionReference;
 
 /**
@@ -20,15 +20,15 @@ import pamtram.structure.SourceSectionReference;
  *
  * @generated
  */
-public class SourceSectionContainmentReferenceImpl extends
-		ContainmentReferenceImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
-		implements SourceSectionContainmentReference {
+public class SourceSectionCompositeReferenceImpl extends
+		CompositeReferenceImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
+		implements SourceSectionCompositeReference {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionContainmentReferenceImpl() {
+	protected SourceSectionCompositeReferenceImpl() {
 		super();
 	}
 
@@ -38,7 +38,7 @@ public class SourceSectionContainmentReferenceImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.SOURCE_SECTION_CONTAINMENT_REFERENCE;
+		return StructurePackage.Literals.SOURCE_SECTION_COMPOSITE_REFERENCE;
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class SourceSectionContainmentReferenceImpl extends
 	@Override
 	public EList<SourceSectionClass> getValue() {
 		if (value == null) {
-			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE);
+			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE);
 		}
 		return value;
 	}
@@ -68,4 +68,4 @@ public class SourceSectionContainmentReferenceImpl extends
 		return this.getValue();
 	}
 
-} // SourceSectionContainmentReferenceImpl
+} // SourceSectionCompositeReferenceImpl

@@ -15,7 +15,7 @@ import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
@@ -193,14 +193,14 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.TARGET_SECTION_CONTAINMENT_REFERENCE: {
-				TargetSectionContainmentReference targetSectionContainmentReference = (TargetSectionContainmentReference)theEObject;
-				T result = caseTargetSectionContainmentReference(targetSectionContainmentReference);
-				if (result == null) result = caseContainmentReference(targetSectionContainmentReference);
-				if (result == null) result = caseTargetSectionReference(targetSectionContainmentReference);
-				if (result == null) result = caseReference(targetSectionContainmentReference);
-				if (result == null) result = caseMetaModelElement(targetSectionContainmentReference);
-				if (result == null) result = caseNamedElement(targetSectionContainmentReference);
+			case StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE: {
+				TargetSectionCompositeReference targetSectionCompositeReference = (TargetSectionCompositeReference)theEObject;
+				T result = caseTargetSectionCompositeReference(targetSectionCompositeReference);
+				if (result == null) result = caseCompositeReference(targetSectionCompositeReference);
+				if (result == null) result = caseTargetSectionReference(targetSectionCompositeReference);
+				if (result == null) result = caseReference(targetSectionCompositeReference);
+				if (result == null) result = caseMetaModelElement(targetSectionCompositeReference);
+				if (result == null) result = caseNamedElement(targetSectionCompositeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -215,14 +215,14 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.SOURCE_SECTION_CONTAINMENT_REFERENCE: {
-				SourceSectionContainmentReference sourceSectionContainmentReference = (SourceSectionContainmentReference)theEObject;
-				T result = caseSourceSectionContainmentReference(sourceSectionContainmentReference);
-				if (result == null) result = caseContainmentReference(sourceSectionContainmentReference);
-				if (result == null) result = caseSourceSectionReference(sourceSectionContainmentReference);
-				if (result == null) result = caseReference(sourceSectionContainmentReference);
-				if (result == null) result = caseMetaModelElement(sourceSectionContainmentReference);
-				if (result == null) result = caseNamedElement(sourceSectionContainmentReference);
+			case StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE: {
+				SourceSectionCompositeReference sourceSectionCompositeReference = (SourceSectionCompositeReference)theEObject;
+				T result = caseSourceSectionCompositeReference(sourceSectionCompositeReference);
+				if (result == null) result = caseCompositeReference(sourceSectionCompositeReference);
+				if (result == null) result = caseSourceSectionReference(sourceSectionCompositeReference);
+				if (result == null) result = caseReference(sourceSectionCompositeReference);
+				if (result == null) result = caseMetaModelElement(sourceSectionCompositeReference);
+				if (result == null) result = caseNamedElement(sourceSectionCompositeReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -698,17 +698,17 @@ public class StructureSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Composite Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseContainmentReference(ContainmentReference<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseCompositeReference(CompositeReference<S, C, R, A> object) {
 		return null;
 	}
 
@@ -758,17 +758,17 @@ public class StructureSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Target Section Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Target Section Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Target Section Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Target Section Composite Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTargetSectionContainmentReference(TargetSectionContainmentReference object) {
+	public T caseTargetSectionCompositeReference(TargetSectionCompositeReference object) {
 		return null;
 	}
 
@@ -788,17 +788,17 @@ public class StructureSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Source Section Containment Reference</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Source Section Composite Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Source Section Containment Reference</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Source Section Composite Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSourceSectionContainmentReference(SourceSectionContainmentReference object) {
+	public T caseSourceSectionCompositeReference(SourceSectionCompositeReference object) {
 		return null;
 	}
 

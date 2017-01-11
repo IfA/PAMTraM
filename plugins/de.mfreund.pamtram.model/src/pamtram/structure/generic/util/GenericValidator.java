@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.ContainmentReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
@@ -95,11 +95,12 @@ public class GenericValidator extends EObjectValidator {
 	public static final int REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS = 6;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Containment' of 'Containment Reference'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Containment' of 'Composite Reference'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINMENT_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT = 7;
+	public static final int COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Values Match Reference Type' of 'Cross Reference'.
@@ -170,8 +171,8 @@ public class GenericValidator extends EObjectValidator {
 				return validateSection((Section<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.REFERENCE:
 				return validateReference((Reference<?, ?, ?, ?>)value, diagnostics, context);
-			case GenericPackage.CONTAINMENT_REFERENCE:
-				return validateContainmentReference((ContainmentReference<?, ?, ?, ?>)value, diagnostics, context);
+			case GenericPackage.COMPOSITE_REFERENCE:
+				return validateCompositeReference((CompositeReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.CROSS_REFERENCE:
 				return validateCrossReference((CrossReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.ATTRIBUTE:
@@ -500,35 +501,34 @@ public class GenericValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainmentReference(ContainmentReference<?, ?, ?, ?> containmentReference,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(containmentReference, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_validateEReferenceMatchesParentEClass(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainmentReference_eReferenceIsContainment(containmentReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainmentReference_validateEReferenceIsContainment(containmentReference, diagnostics, context);
+	public boolean validateCompositeReference(CompositeReference<?, ?, ?, ?> compositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(compositeReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_validateEReferenceMatchesParentEClass(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCompositeReference_eReferenceIsContainment(compositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCompositeReference_validateEReferenceIsContainment(compositeReference, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the eReferenceIsContainment constraint of '<em>Containment Reference</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Validates the eReferenceIsContainment constraint of '<em>Composite Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainmentReference_eReferenceIsContainment(
-			ContainmentReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
+	public boolean validateCompositeReference_eReferenceIsContainment(CompositeReference<?, ?, ?, ?> compositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -541,8 +541,8 @@ public class GenericValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "eReferenceIsContainment", getObjectLabel(containmentReference, context) },
-						 new Object[] { containmentReference },
+						 new Object[] { "eReferenceIsContainment", getObjectLabel(compositeReference, context) },
+						 new Object[] { compositeReference },
 						 context));
 			}
 			return false;
@@ -551,15 +551,13 @@ public class GenericValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateEReferenceIsContainment constraint of '<em>Containment Reference</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Validates the validateEReferenceIsContainment constraint of '<em>Composite Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainmentReference_validateEReferenceIsContainment(
-			ContainmentReference<?, ?, ?, ?> containmentReference, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return containmentReference.validateEReferenceIsContainment(diagnostics, context);
+	public boolean validateCompositeReference_validateEReferenceIsContainment(CompositeReference<?, ?, ?, ?> compositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return compositeReference.validateEReferenceIsContainment(diagnostics, context);
 	}
 
 	/**

@@ -155,31 +155,6 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createStringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createSubstringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createBeginningConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createEndingConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRegExConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 	/**

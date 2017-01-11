@@ -215,31 +215,6 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createStringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createSubstringConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createBeginningConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createEndingConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRegExConstraint()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
-				 ConstraintFactory.eINSTANCE.createRangeConstraint()));
 	}
 	
 }

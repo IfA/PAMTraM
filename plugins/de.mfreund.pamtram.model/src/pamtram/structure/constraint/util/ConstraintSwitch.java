@@ -86,6 +86,16 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT: {
+				SingleReferenceValueConstraint singleReferenceValueConstraint = (SingleReferenceValueConstraint)theEObject;
+				T result = caseSingleReferenceValueConstraint(singleReferenceValueConstraint);
+				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
+				if (result == null) result = caseExpressionHint(singleReferenceValueConstraint);
+				if (result == null) result = caseModifiableHint(singleReferenceValueConstraint);
+				if (result == null) result = caseNamedElement(singleReferenceValueConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT: {
 				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
 				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
@@ -100,7 +110,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 			case ConstraintPackage.EQUALITY_CONSTRAINT: {
 				EqualityConstraint equalityConstraint = (EqualityConstraint)theEObject;
 				T result = caseEqualityConstraint(equalityConstraint);
-				if (result == null) result = caseCaseSensitiveConstraint(equalityConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(equalityConstraint);
 				if (result == null) result = caseValueConstraint(equalityConstraint);
 				if (result == null) result = caseExpressionHint(equalityConstraint);
@@ -170,16 +179,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				T result = caseMultipleReferencesValueConstraint(multipleReferencesValueConstraint);
 				if (result == null) result = caseValueConstraint(multipleReferencesValueConstraint);
 				if (result == null) result = caseNamedElement(multipleReferencesValueConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT: {
-				SingleReferenceValueConstraint singleReferenceValueConstraint = (SingleReferenceValueConstraint)theEObject;
-				T result = caseSingleReferenceValueConstraint(singleReferenceValueConstraint);
-				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
-				if (result == null) result = caseExpressionHint(singleReferenceValueConstraint);
-				if (result == null) result = caseModifiableHint(singleReferenceValueConstraint);
-				if (result == null) result = caseNamedElement(singleReferenceValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

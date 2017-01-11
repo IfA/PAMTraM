@@ -85,6 +85,10 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createValueConstraintAdapter();
 			}
 			@Override
+			public Adapter caseSingleReferenceValueConstraint(SingleReferenceValueConstraint object) {
+				return createSingleReferenceValueConstraintAdapter();
+			}
+			@Override
 			public Adapter caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
 				return createCaseSensitiveConstraintAdapter();
 			}
@@ -115,10 +119,6 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMultipleReferencesValueConstraint(MultipleReferencesValueConstraint object) {
 				return createMultipleReferencesValueConstraintAdapter();
-			}
-			@Override
-			public Adapter caseSingleReferenceValueConstraint(SingleReferenceValueConstraint object) {
-				return createSingleReferenceValueConstraintAdapter();
 			}
 			@Override
 			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {

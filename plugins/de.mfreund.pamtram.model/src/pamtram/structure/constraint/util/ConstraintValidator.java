@@ -139,6 +139,8 @@ public class ConstraintValidator extends EObjectValidator {
 		switch (classifierID) {
 			case ConstraintPackage.VALUE_CONSTRAINT:
 				return validateValueConstraint((ValueConstraint)value, diagnostics, context);
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT:
+				return validateSingleReferenceValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
 				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.EQUALITY_CONSTRAINT:
@@ -155,8 +157,6 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateRangeConstraint((RangeConstraint)value, diagnostics, context);
 			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT:
 				return validateMultipleReferencesValueConstraint((MultipleReferencesValueConstraint)value, diagnostics, context);
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT:
-				return validateSingleReferenceValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE:
 				return validateValueConstraintSourceInterface((ValueConstraintSourceInterface)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT:

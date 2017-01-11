@@ -12,5 +12,5 @@ package pamtram.structure.constraint;
  * @model
  * @generated
  */
-public interface EqualityConstraint extends CaseSensitiveConstraint {
+public interface EqualityConstraint extends SingleReferenceValueConstraint {
 } // EqualityConstraint

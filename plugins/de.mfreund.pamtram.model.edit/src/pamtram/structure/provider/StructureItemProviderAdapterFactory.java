@@ -300,26 +300,26 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionCompositeReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionContainmentReferenceItemProvider targetSectionContainmentReferenceItemProvider;
+	protected TargetSectionCompositeReferenceItemProvider targetSectionCompositeReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSectionContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.structure.TargetSectionCompositeReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createTargetSectionContainmentReferenceAdapter() {
-		if (targetSectionContainmentReferenceItemProvider == null) {
-			targetSectionContainmentReferenceItemProvider = new TargetSectionContainmentReferenceItemProvider(this);
+	public Adapter createTargetSectionCompositeReferenceAdapter() {
+		if (targetSectionCompositeReferenceItemProvider == null) {
+			targetSectionCompositeReferenceItemProvider = new TargetSectionCompositeReferenceItemProvider(this);
 		}
 
-		return targetSectionContainmentReferenceItemProvider;
+		return targetSectionCompositeReferenceItemProvider;
 	}
 
 	/**
@@ -346,26 +346,26 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.SourceSectionContainmentReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.SourceSectionCompositeReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SourceSectionContainmentReferenceItemProvider sourceSectionContainmentReferenceItemProvider;
+	protected SourceSectionCompositeReferenceItemProvider sourceSectionCompositeReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.SourceSectionContainmentReference}.
+	 * This creates an adapter for a {@link pamtram.structure.SourceSectionCompositeReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createSourceSectionContainmentReferenceAdapter() {
-		if (sourceSectionContainmentReferenceItemProvider == null) {
-			sourceSectionContainmentReferenceItemProvider = new SourceSectionContainmentReferenceItemProvider(this);
+	public Adapter createSourceSectionCompositeReferenceAdapter() {
+		if (sourceSectionCompositeReferenceItemProvider == null) {
+			sourceSectionCompositeReferenceItemProvider = new SourceSectionCompositeReferenceItemProvider(this);
 		}
 
-		return sourceSectionContainmentReferenceItemProvider;
+		return sourceSectionCompositeReferenceItemProvider;
 	}
 
 	/**

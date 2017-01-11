@@ -22,22 +22,22 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.GenericPackage;
-import pamtram.structure.generic.provider.ContainmentReferenceItemProvider;
+import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.SourceSectionContainmentReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
-public class SourceSectionContainmentReferenceItemProvider extends ContainmentReferenceItemProvider {
+public class SourceSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionContainmentReferenceItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,12 +56,13 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 	}
 
 	/**
-	 * This returns SourceSectionContainmentReference.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SourceSectionCompositeReference.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-
-		return super.getImage(object);
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionCompositeReference"));
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -89,7 +90,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -111,8 +112,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,7 +125,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 			int operation, Collection<?> collection) {
 
 		/*
-		 * Allow to drop Sections onto this ContainmentReference.
+		 * Allow to drop Sections onto this CompositeReference.
 		 */
 
 		if (collection.isEmpty()) {
@@ -149,7 +149,7 @@ public class SourceSectionContainmentReferenceItemProvider extends ContainmentRe
 		}
 
 		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
-				GenericPackage.Literals.CONTAINMENT_REFERENCE__VALUE,
+				GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE,
 				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
 
 	}

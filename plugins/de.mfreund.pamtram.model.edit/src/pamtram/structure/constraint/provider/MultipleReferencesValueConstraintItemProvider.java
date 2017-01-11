@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -21,10 +21,10 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.MultipleReferencesValueConstraint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.MultipleReferencesValueConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.MultipleReferencesValueConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

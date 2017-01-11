@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;

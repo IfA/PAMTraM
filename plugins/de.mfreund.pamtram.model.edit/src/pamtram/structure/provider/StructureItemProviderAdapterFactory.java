@@ -22,6 +22,15 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import pamtram.structure.constraint.provider.BeginningMatcherItemProvider;
+import pamtram.structure.constraint.provider.EndingMatcherItemProvider;
+import pamtram.structure.constraint.provider.EqualityMatcherItemProvider;
+import pamtram.structure.constraint.provider.RangeBoundItemProvider;
+import pamtram.structure.constraint.provider.RangeConstraintItemProvider;
+import pamtram.structure.constraint.provider.RegExMatcherItemProvider;
+import pamtram.structure.constraint.provider.SubstringMatcherItemProvider;
+import pamtram.structure.constraint.provider.ValueConstraintExternalSourceElementItemProvider;
+import pamtram.structure.constraint.provider.ValueConstraintSourceElementItemProvider;
 import pamtram.structure.util.StructureAdapterFactory;
 
 /**
@@ -461,7 +470,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.EqualityMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EqualityMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -469,7 +478,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected EqualityMatcherItemProvider equalityMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.EqualityMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.EqualityMatcher}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -484,7 +493,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.SubstringMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.SubstringMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -492,7 +501,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected SubstringMatcherItemProvider substringMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.SubstringMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.SubstringMatcher}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -507,7 +516,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.BeginningMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.BeginningMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -515,7 +524,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected BeginningMatcherItemProvider beginningMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.BeginningMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.BeginningMatcher}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -530,7 +539,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.EndingMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.EndingMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -538,7 +547,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected EndingMatcherItemProvider endingMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.EndingMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.EndingMatcher}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -553,7 +562,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.RegExMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.RegExMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -561,7 +570,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected RegExMatcherItemProvider regExMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.RegExMatcher}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.RegExMatcher}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -576,7 +585,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.RangeConstraint} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.RangeConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -584,7 +593,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected RangeConstraintItemProvider rangeConstraintItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.RangeConstraint}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.RangeConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -599,7 +608,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.RangeBound} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.RangeBound} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -607,7 +616,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected RangeBoundItemProvider rangeBoundItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.RangeBound}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.RangeBound}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -622,7 +631,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ValueConstraintSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.ValueConstraintSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -630,7 +639,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ValueConstraintSourceElementItemProvider valueConstraintSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ValueConstraintSourceElement}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.ValueConstraintSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -645,7 +654,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ValueConstraintExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.ValueConstraintExternalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -653,7 +662,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ValueConstraintExternalSourceElementItemProvider valueConstraintExternalSourceElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ValueConstraintExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.structure.constraint.ValueConstraintExternalSourceElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

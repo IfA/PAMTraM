@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Arrays;
@@ -33,10 +33,10 @@ import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SingleReferenceValueConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.SingleReferenceValueConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

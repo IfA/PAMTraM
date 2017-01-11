@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -33,10 +33,10 @@ import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.RangeBound;
+import pamtram.structure.constraint.RangeBound;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.RangeBound} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.RangeBound} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

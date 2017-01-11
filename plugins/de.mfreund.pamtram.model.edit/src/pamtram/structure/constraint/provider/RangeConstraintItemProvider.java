@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -16,10 +16,10 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.RangeConstraint;
+import pamtram.structure.constraint.RangeConstraint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.RangeConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.RangeConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

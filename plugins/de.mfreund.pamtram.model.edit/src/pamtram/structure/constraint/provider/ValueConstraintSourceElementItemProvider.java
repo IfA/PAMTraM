@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -14,24 +14,24 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.provider.ExternalModifiedAttributeElementTypeItemProvider;
+import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ValueConstraintExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.ValueConstraintSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ValueConstraintExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class ValueConstraintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueConstraintExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ValueConstraintSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,14 +51,14 @@ public class ValueConstraintExternalSourceElementItemProvider extends ExternalMo
 	}
 
 	/**
-	 * This returns ValueConstraintExternalSourceElement.gif.
+	 * This returns ValueConstraintSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueConstraintExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueConstraintSourceElement"));
 	}
 
 	/**
@@ -80,12 +80,12 @@ public class ValueConstraintExternalSourceElementItemProvider extends ExternalMo
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ValueConstraintExternalSourceElement)object).getName();
+		String label = ((ValueConstraintSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ValueConstraintExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

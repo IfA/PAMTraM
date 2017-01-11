@@ -135,7 +135,7 @@ public class SubstringConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SubstringConstraint.class)) {
-			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.SUBSTRING_CONSTRAINT__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -135,7 +135,7 @@ public class BeginningConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BeginningConstraint.class)) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

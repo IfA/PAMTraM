@@ -135,7 +135,7 @@ public class EndingConstraintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(EndingConstraint.class)) {
-			case ConstraintPackage.ENDING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.ENDING_CONSTRAINT__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

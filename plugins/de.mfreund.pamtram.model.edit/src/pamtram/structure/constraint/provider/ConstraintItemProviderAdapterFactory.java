@@ -79,7 +79,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EqualityConstraintItemProvider equalityMatcherItemProvider;
+	protected EqualityConstraintItemProvider equalityConstraintItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.constraint.EqualityConstraint}.
@@ -88,12 +88,12 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	@Override
-	public Adapter createEqualityMatcherAdapter() {
-		if (equalityMatcherItemProvider == null) {
-			equalityMatcherItemProvider = new EqualityConstraintItemProvider(this);
+	public Adapter createEqualityConstraintAdapter() {
+		if (equalityConstraintItemProvider == null) {
+			equalityConstraintItemProvider = new EqualityConstraintItemProvider(this);
 		}
 
-		return equalityMatcherItemProvider;
+		return equalityConstraintItemProvider;
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubstringConstraintItemProvider substringMatcherItemProvider;
+	protected SubstringConstraintItemProvider substringConstraintItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.constraint.SubstringConstraint}.
@@ -111,12 +111,12 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	@Override
-	public Adapter createSubstringMatcherAdapter() {
-		if (substringMatcherItemProvider == null) {
-			substringMatcherItemProvider = new SubstringConstraintItemProvider(this);
+	public Adapter createSubstringConstraintAdapter() {
+		if (substringConstraintItemProvider == null) {
+			substringConstraintItemProvider = new SubstringConstraintItemProvider(this);
 		}
 
-		return substringMatcherItemProvider;
+		return substringConstraintItemProvider;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BeginningConstraintItemProvider beginningMatcherItemProvider;
+	protected BeginningConstraintItemProvider beginningConstraintItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.constraint.BeginningConstraint}.
@@ -134,12 +134,12 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	@Override
-	public Adapter createBeginningMatcherAdapter() {
-		if (beginningMatcherItemProvider == null) {
-			beginningMatcherItemProvider = new BeginningConstraintItemProvider(this);
+	public Adapter createBeginningConstraintAdapter() {
+		if (beginningConstraintItemProvider == null) {
+			beginningConstraintItemProvider = new BeginningConstraintItemProvider(this);
 		}
 
-		return beginningMatcherItemProvider;
+		return beginningConstraintItemProvider;
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EndingConstraintItemProvider endingMatcherItemProvider;
+	protected EndingConstraintItemProvider endingConstraintItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.constraint.EndingConstraint}.
@@ -157,12 +157,12 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	@Override
-	public Adapter createEndingMatcherAdapter() {
-		if (endingMatcherItemProvider == null) {
-			endingMatcherItemProvider = new EndingConstraintItemProvider(this);
+	public Adapter createEndingConstraintAdapter() {
+		if (endingConstraintItemProvider == null) {
+			endingConstraintItemProvider = new EndingConstraintItemProvider(this);
 		}
 
-		return endingMatcherItemProvider;
+		return endingConstraintItemProvider;
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RegExConstraintItemProvider regExMatcherItemProvider;
+	protected RegExConstraintItemProvider regExConstraintItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.constraint.RegExConstraint}.
@@ -180,12 +180,12 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	@Override
-	public Adapter createRegExMatcherAdapter() {
-		if (regExMatcherItemProvider == null) {
-			regExMatcherItemProvider = new RegExConstraintItemProvider(this);
+	public Adapter createRegExConstraintAdapter() {
+		if (regExConstraintItemProvider == null) {
+			regExConstraintItemProvider = new RegExConstraintItemProvider(this);
 		}
 
-		return regExMatcherItemProvider;
+		return regExConstraintItemProvider;
 	}
 
 	/**
@@ -379,11 +379,11 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 * @generated
 	 */
 	public void dispose() {
-		if (equalityMatcherItemProvider != null) equalityMatcherItemProvider.dispose();
-		if (substringMatcherItemProvider != null) substringMatcherItemProvider.dispose();
-		if (beginningMatcherItemProvider != null) beginningMatcherItemProvider.dispose();
-		if (endingMatcherItemProvider != null) endingMatcherItemProvider.dispose();
-		if (regExMatcherItemProvider != null) regExMatcherItemProvider.dispose();
+		if (equalityConstraintItemProvider != null) equalityConstraintItemProvider.dispose();
+		if (substringConstraintItemProvider != null) substringConstraintItemProvider.dispose();
+		if (beginningConstraintItemProvider != null) beginningConstraintItemProvider.dispose();
+		if (endingConstraintItemProvider != null) endingConstraintItemProvider.dispose();
+		if (regExConstraintItemProvider != null) regExConstraintItemProvider.dispose();
 		if (rangeConstraintItemProvider != null) rangeConstraintItemProvider.dispose();
 		if (valueConstraintSourceElementItemProvider != null) valueConstraintSourceElementItemProvider.dispose();
 		if (valueConstraintExternalSourceElementItemProvider != null) valueConstraintExternalSourceElementItemProvider.dispose();

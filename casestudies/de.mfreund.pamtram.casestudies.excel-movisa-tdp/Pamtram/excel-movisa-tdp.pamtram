@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel name="Variablen">
     <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Variablen">
@@ -33,44 +33,44 @@
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="structure:BeginningMatcher" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="constraint:BeginningConstraint" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="r"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="structure:BeginningMatcher" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="constraint:BeginningConstraint" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="rw"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="rw"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="structure:BeginningMatcher" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="constraint:BeginningConstraint" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="r"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="r"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModel.0/@metaModelSections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="structure:BeginningMatcher" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="constraint:BeginningConstraint" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="rw"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="rw"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>

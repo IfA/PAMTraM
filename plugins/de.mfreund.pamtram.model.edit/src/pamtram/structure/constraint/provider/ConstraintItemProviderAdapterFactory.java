@@ -97,6 +97,29 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.NumericConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NumericConstraintItemProvider numericConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.constraint.NumericConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNumericConstraintAdapter() {
+		if (numericConstraintItemProvider == null) {
+			numericConstraintItemProvider = new NumericConstraintItemProvider(this);
+		}
+
+		return numericConstraintItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.SubstringConstraint} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,6 +403,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	 */
 	public void dispose() {
 		if (equalityConstraintItemProvider != null) equalityConstraintItemProvider.dispose();
+		if (numericConstraintItemProvider != null) numericConstraintItemProvider.dispose();
 		if (substringConstraintItemProvider != null) substringConstraintItemProvider.dispose();
 		if (beginningConstraintItemProvider != null) beginningConstraintItemProvider.dispose();
 		if (endingConstraintItemProvider != null) endingConstraintItemProvider.dispose();

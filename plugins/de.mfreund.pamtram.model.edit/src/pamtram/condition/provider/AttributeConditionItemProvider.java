@@ -204,6 +204,11 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createSubstringConstraint()));
 
 		newChildDescriptors.add

@@ -144,6 +144,11 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createSubstringConstraint()));
 
 		newChildDescriptors.add

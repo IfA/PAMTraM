@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:structure="http://mfreund.de/pamtram/structure">
   <sourceSectionModel name="Layers">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="sourceContainer">
@@ -28,7 +28,7 @@
             <value xsi:type="structure:SourceSectionClass" name="Transition" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="rootStateEvent">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="event == &quot;BACK&quot;" type="EXCLUSION" expression="BACK"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="event == &quot;BACK&quot;" type="FORBIDDEN" expression="BACK"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="rootStateTarget">
@@ -38,7 +38,7 @@
             <value xsi:type="structure:SourceSectionClass" name="Transition Rest" cardinality="ZERO__INFINITY">
               <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="rootStateEvent">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="event !== &quot;BACK&quot;" expression="BACK"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="event !== &quot;BACK&quot;" expression="BACK"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
               </attributes>
             </value>
@@ -58,13 +58,13 @@
                     <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
                   </attributes>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="event">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Login" expression="Login"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Login" expression="Login"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
                   </attributes>
                 </value>
               </references>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="LOGIN" expression="LOGIN"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="LOGIN" expression="LOGIN"/>
                 <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
               </attributes>
             </value>
@@ -108,7 +108,7 @@
         <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="LOGIN" type="EXCLUSION" expression="LOGIN"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
         <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
       </attributes>
     </metaModelSections>
@@ -118,7 +118,7 @@
         <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Target">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="LOGIN" type="EXCLUSION" expression="LOGIN"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
         <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
       </attributes>
     </metaModelSections>
@@ -128,14 +128,14 @@
         <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Target">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="LOGIN" expression="LOGIN"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="LOGIN" expression="LOGIN"/>
         <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="Layer" container="//@sourceSectionModel.0/@metaModelSections.0/@references.2/@value.0">
       <eClass href="http://gfai.de/stgml.xsd#//Layer"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="layerName">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="LOGIN" type="EXCLUSION" expression="LOGIN"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
         <attribute href="http://gfai.de/stgml.xsd#//Layer/name"/>
       </attributes>
     </metaModelSections>
@@ -187,69 +187,69 @@
     <metaModelSections xsi:type="structure:SourceSection" name="viObject Output Bool" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.1">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;Output:Bool&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Output:Bool" expression="Output:Bool"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Output:Bool" expression="Output:Bool"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject Output Double" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.1">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;Output:Double&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Output:Double" expression="Output:Double"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Output:Double" expression="Output:Double"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject Input Bool" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.1">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;Input:Bool&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Input:Bool" expression="Input:Bool"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Input:Bool" expression="Input:Bool"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject Input Double" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.1">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;Input:Double&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Input:Double" expression="Input:Double"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Input:Double" expression="Input:Double"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject FunctionButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0 //@sourceSectionModel.1/@metaModelSections.2">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;FunctionButton&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="FunctionButton" expression="FunctionButton"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="FunctionButton" expression="FunctionButton"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject NavigatorButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="NavigatorButton" expression="NavigatorButton"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="NavigatorButton" expression="NavigatorButton"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="send@NavigatorButton">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Logout" type="EXCLUSION" expression="Logout"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="ALERT" type="EXCLUSION" expression="ALERT"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Logout" type="FORBIDDEN" expression="Logout"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="ALERT" type="FORBIDDEN" expression="ALERT"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject AlertButton" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="NavigatorButton" expression="NavigatorButton"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="NavigatorButton" expression="NavigatorButton"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="send@NavigatorButton">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="ALERT" expression="ALERT"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="ALERT" expression="ALERT"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject container Rectangle" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="StructureComponentControl" expression="StructureComponentControl"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Rectangle" expression="Rectangle"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="conveyorImageName">
@@ -259,7 +259,7 @@
     <metaModelSections xsi:type="structure:SourceSection" name="Viobject AlertInterface" container="//@sourceSectionModel.0/@metaModelSections.4">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;AlertInterface&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="AlertInterface" expression="AlertInterface"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="AlertInterface" expression="AlertInterface"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="x">
@@ -275,18 +275,18 @@
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Rectangle" expression="Rectangle"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
       </attributes>
     </metaModelSections>
     <metaModelSections xsi:type="structure:SourceSection" name="viObject container Ellipse" container="//@sourceSectionModel.0/@metaModelSections.4" extend="//@sourceSectionModel.1/@metaModelSections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="StructureComponentControl" expression="StructureComponentControl"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="grType == &quot;Ellipse&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Ellipse" expression="Ellipse"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Ellipse" expression="Ellipse"/>
         <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="conveyorImageName">
@@ -322,7 +322,7 @@
             <value xsi:type="structure:SourceSectionClass" name="extdata &quot;Id&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="Id" expression="Id"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="Id" expression="Id"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Id-value">
@@ -332,7 +332,7 @@
             <value xsi:type="structure:SourceSectionClass" name="extdata &quot;Name&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="Name" expression="Name"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="Name" expression="Name"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name-value">
@@ -341,13 +341,13 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="RoleDefinition" expression="RoleDefinition"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="RoleDefinition" expression="RoleDefinition"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="Roles" expression="Roles"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Roles" expression="Roles"/>
         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
       </attributes>
     </metaModelSections>
@@ -358,11 +358,11 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Hardware" expression="Hardware"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Hardware" expression="Hardware"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueOPCUA">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCUA" expression="OPCUA"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCUA" expression="OPCUA"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -381,7 +381,7 @@
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath">
@@ -393,21 +393,21 @@
                     </value>
                   </references>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                   </attributes>
                 </value>
                 <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type&quot;">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                   </attributes>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value exclude known Types">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Integer" type="EXCLUSION" expression="Integer"/>
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Double" type="EXCLUSION" expression="Double"/>
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Bool" type="EXCLUSION" expression="Bool"/>
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="String" type="EXCLUSION" expression="String"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Integer" type="FORBIDDEN" expression="Integer"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Double" type="FORBIDDEN" expression="Double"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Bool" type="FORBIDDEN" expression="Bool"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="String" type="FORBIDDEN" expression="String"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                   </attributes>
                 </value>
@@ -421,7 +421,7 @@
             <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Signals" expression="Signals"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Signals" expression="Signals"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
@@ -430,8 +430,8 @@
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name = &quot;SignalInterface&quot; or &quot;AlertInerface&quot;">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="SignalInterface" expression="SignalInterface"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="AlertInterface" expression="AlertInterface"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="SignalInterface" expression="SignalInterface"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="AlertInterface" expression="AlertInterface"/>
         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
       </attributes>
     </metaModelSections>
@@ -442,11 +442,11 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Hardware" expression="Hardware"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Hardware" expression="Hardware"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueOPCUA">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCUA" expression="OPCUA"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCUA" expression="OPCUA"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -464,11 +464,11 @@
                 <value xsi:type="structure:SourceSectionClass" name="typeId = Function">
                   <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                   </attributes>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value Function">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="Function" expression="Function"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="Function" expression="Function"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                   </attributes>
                 </value>
@@ -482,7 +482,7 @@
                     <value xsi:type="structure:SourceSectionClass" name="ExtData LockedChannel">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="LockedChannel" expression="LockedChannel"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="LockedChannel" expression="LockedChannel"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueLockedChannel">
@@ -492,7 +492,7 @@
                     <value xsi:type="structure:SourceSectionClass" name="ExtData ParamChannel">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="ParamChannel" expression="ParamChannel"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="ParamChannel" expression="ParamChannel"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueParamChannel">
@@ -502,7 +502,7 @@
                     <value xsi:type="structure:SourceSectionClass" name="ExtData ActivateChannel">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="ActivateChannel" expression="ActivateChannel"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="ActivateChannel" expression="ActivateChannel"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueActivateChannel">
@@ -512,7 +512,7 @@
                     <value xsi:type="structure:SourceSectionClass" name="ExtData ReturnChannel">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="ReturnChannel" expression="ReturnChannel"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="ReturnChannel" expression="ReturnChannel"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueReturnChannel">
@@ -524,7 +524,7 @@
                     </value>
                   </references>
                   <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                    <valueConstraint xsi:type="structure:EqualityMatcher" name="name=DataItems" expression="DataItems"/>
+                    <valueConstraint xsi:type="constraint:EqualityConstraint" name="name=DataItems" expression="DataItems"/>
                     <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                   </attributes>
                 </value>
@@ -532,13 +532,13 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name = Functions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Functions" expression="Functions"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Functions" expression="Functions"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name = FunctionInterface">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="FunctionInterface" expression="FunctionInterface"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="FunctionInterface" expression="FunctionInterface"/>
         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
       </attributes>
     </metaModelSections>
@@ -555,27 +555,27 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="name"/>
-            <valueConstraint xsi:type="structure:BeginningMatcher" name="SignalInterface" type="EXCLUSION" expression="SignalInterface"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
+            <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="SignalInterface" type="FORBIDDEN" expression="SignalInterface"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Stopper">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Stopper" expression="Stopper"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Stopper" expression="Stopper"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameStopper">
@@ -589,11 +589,11 @@
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Hardware&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="Hardware" expression="Hardware"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="Hardware" expression="Hardware"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueOPCUA">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCUA" expression="OPCUA"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCUA" expression="OPCUA"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
               </attributes>
             </value>
@@ -612,7 +612,7 @@
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                            <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                            <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                           </attributes>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath">
@@ -624,14 +624,14 @@
                         </value>
                       </references>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value exclude known Types">
@@ -654,7 +654,7 @@
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                            <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                            <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                           </attributes>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath @ Integer">
@@ -666,29 +666,29 @@
                         </value>
                       </references>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type = Integer&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;Integer&quot;">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Integer" expression="Integer"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                       </attributes>
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;name = CarrierID&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;CarrierID&quot;">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Carrier ID" expression="Carrier ID"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Carrier ID" expression="Carrier ID"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                       </attributes>
                     </value>
@@ -708,7 +708,7 @@
                         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
                           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                            <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                            <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                           </attributes>
                           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath @ Integer">
@@ -720,29 +720,29 @@
                         </value>
                       </references>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type = Integer&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;Integer&quot;">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Integer" expression="Integer"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                       </attributes>
                     </value>
                     <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;name = ProductID&quot;">
                       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
                       </attributes>
                       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;ProductID&quot;">
-                        <valueConstraint xsi:type="structure:EqualityMatcher" name="Product ID" expression="Product ID"/>
+                        <valueConstraint xsi:type="constraint:EqualityConstraint" name="Product ID" expression="Product ID"/>
                         <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                       </attributes>
                     </value>
@@ -753,7 +753,7 @@
                 </value>
               </references>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="Signals" expression="Signals"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="Signals" expression="Signals"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
             </value>
@@ -762,7 +762,7 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name = &quot;SignalInterface&quot;">
-            <valueConstraint xsi:type="structure:BeginningMatcher" name="SignalInterface" expression="SignalInterface"/>
+            <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="SignalInterface" expression="SignalInterface"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
@@ -775,18 +775,18 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Matflow">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Matflow" expression="Matflow"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Matflow" expression="Matflow"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameMatFlow">
@@ -802,16 +802,16 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="name"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="ClassPath"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="ClassPath"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData ClassPath">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == ClassPath">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="ClassPath" expression="ClassPath"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="ClassPath" expression="ClassPath"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value ClassPath">
@@ -821,18 +821,18 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Station">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Station" expression="Station"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Station" expression="Station"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameStation">
@@ -848,27 +848,27 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Fork or Merge">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Fork" expression="Fork"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="MergingPoint" expression="MergingPoint"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Fork" expression="Fork"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="MergingPoint" expression="MergingPoint"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameFork">
@@ -884,25 +884,25 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID Conveyor">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Conveyor">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Conveyor" expression="Conveyor"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Conveyor" expression="Conveyor"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameConveyorStraight">
@@ -918,26 +918,26 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value == Conveyor">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Conveyor" expression="Conveyor"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Conveyor" expression="Conveyor"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameConveyorCorner">
@@ -953,16 +953,16 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" type="EXCLUSION" expression="name"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="ClassPath" type="EXCLUSION" expression="ClassPath"/>
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" type="EXCLUSION" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="ClassPath" type="FORBIDDEN" expression="ClassPath"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData ClassPath">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == ClassPath">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="ClassPath" expression="ClassPath"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="ClassPath" expression="ClassPath"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value ClassPath">
@@ -972,7 +972,7 @@
         <value xsi:type="structure:SourceSectionClass" name="Extdata name">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="name" expression="name"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="NameLibElement">
@@ -982,11 +982,11 @@
         <value xsi:type="structure:SourceSectionClass" name="ExtData typeID">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="typeID" expression="typeID"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value != Station">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="no Station" type="EXCLUSION" expression="Station"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="no Station" type="FORBIDDEN" expression="Station"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -1003,7 +1003,7 @@
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath @ Integer">
@@ -1015,18 +1015,18 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type = Integer&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;Integer&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Integer" expression="Integer"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -1046,7 +1046,7 @@
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath (Double)">
@@ -1058,18 +1058,18 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;Double&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Double" expression="Double"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Double" expression="Double"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -1089,7 +1089,7 @@
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath (Bool)">
@@ -1101,18 +1101,18 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;Bool&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Bool" expression="Bool"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Bool" expression="Bool"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>
@@ -1132,7 +1132,7 @@
             <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
               <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="OPCItem" expression="OPCItem"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
                 <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="valueBrowsePath (String)">
@@ -1144,18 +1144,18 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="DataItems" expression="DataItems"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
         </value>
         <value xsi:type="structure:SourceSectionClass" name="ExtData &quot;Type&quot;">
           <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="Type" expression="Type"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="value &quot;String&quot;">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="String" expression="String"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="String" expression="String"/>
             <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
           </attributes>
         </value>

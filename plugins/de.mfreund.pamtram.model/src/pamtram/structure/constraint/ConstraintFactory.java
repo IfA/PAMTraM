@@ -49,6 +49,15 @@ public interface ConstraintFactory extends EFactory {
 	NumericConstraint createNumericConstraint();
 
 	/**
+	 * Returns a new object of class '<em>String Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Constraint</em>'.
+	 * @generated
+	 */
+	StringConstraint createStringConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Substring Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

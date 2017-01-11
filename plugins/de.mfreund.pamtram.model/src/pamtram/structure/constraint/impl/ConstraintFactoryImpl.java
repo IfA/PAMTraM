@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import pamtram.structure.constraint.*;
 import pamtram.structure.constraint.BeginningConstraint;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
@@ -67,6 +68,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 			case ConstraintPackage.EQUALITY_CONSTRAINT: return createEqualityConstraint();
 			case ConstraintPackage.CHOICE_CONSTRAINT: return createChoiceConstraint();
 			case ConstraintPackage.NUMERIC_CONSTRAINT: return createNumericConstraint();
+			case ConstraintPackage.STRING_CONSTRAINT: return createStringConstraint();
 			case ConstraintPackage.SUBSTRING_CONSTRAINT: return createSubstringConstraint();
 			case ConstraintPackage.BEGINNING_CONSTRAINT: return createBeginningConstraint();
 			case ConstraintPackage.ENDING_CONSTRAINT: return createEndingConstraint();
@@ -91,6 +93,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 				return createValueConstraintTypeFromString(eDataType, initialValue);
 			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
 				return createNumericConstraintOperatorTypeFromString(eDataType, initialValue);
+			case ConstraintPackage.STRING_CONSTRAINT_OPERATOR_TYPE:
+				return createStringConstraintOperatorTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -107,6 +111,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 				return convertValueConstraintTypeToString(eDataType, instanceValue);
 			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
 				return convertNumericConstraintOperatorTypeToString(eDataType, instanceValue);
+			case ConstraintPackage.STRING_CONSTRAINT_OPERATOR_TYPE:
+				return convertStringConstraintOperatorTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -140,6 +146,16 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	public NumericConstraint createNumericConstraint() {
 		NumericConstraintImpl numericConstraint = new NumericConstraintImpl();
 		return numericConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringConstraint createStringConstraint() {
+		StringConstraintImpl stringConstraint = new StringConstraintImpl();
+		return stringConstraint;
 	}
 
 	/**
@@ -256,6 +272,26 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * @generated
 	 */
 	public String convertNumericConstraintOperatorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringConstraintOperatorType createStringConstraintOperatorTypeFromString(EDataType eDataType, String initialValue) {
+		StringConstraintOperatorType result = StringConstraintOperatorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStringConstraintOperatorTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

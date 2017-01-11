@@ -149,6 +149,8 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateNumericConstraint((NumericConstraint)value, diagnostics, context);
 			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
 				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
+			case ConstraintPackage.STRING_CONSTRAINT:
+				return validateStringConstraint((StringConstraint)value, diagnostics, context);
 			case ConstraintPackage.SUBSTRING_CONSTRAINT:
 				return validateSubstringConstraint((SubstringConstraint)value, diagnostics, context);
 			case ConstraintPackage.BEGINNING_CONSTRAINT:
@@ -173,6 +175,8 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateValueConstraintType((ValueConstraintType)value, diagnostics, context);
 			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
 				return validateNumericConstraintOperatorType((NumericConstraintOperatorType)value, diagnostics, context);
+			case ConstraintPackage.STRING_CONSTRAINT_OPERATOR_TYPE:
+				return validateStringConstraintOperatorType((StringConstraintOperatorType)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -207,6 +211,29 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(caseSensitiveConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(caseSensitiveConstraint, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStringConstraint(StringConstraint stringConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(stringConstraint, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(stringConstraint, diagnostics, context);
+		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(stringConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -646,6 +673,15 @@ public class ConstraintValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateNumericConstraintOperatorType(NumericConstraintOperatorType numericConstraintOperatorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStringConstraintOperatorType(StringConstraintOperatorType stringConstraintOperatorType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

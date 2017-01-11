@@ -708,6 +708,151 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.StringConstraintImpl <em>String Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.impl.StringConstraintImpl
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getStringConstraint()
+	 * @generated
+	 */
+	int STRING_CONSTRAINT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
+
+	/**
+	 * The feature id for the '<em><b>Operator Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__OPERATOR_TYPE = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>String Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>String Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -715,7 +860,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringConstraint()
 	 * @generated
 	 */
-	int SUBSTRING_CONSTRAINT = 6;
+	int SUBSTRING_CONSTRAINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -851,7 +996,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningConstraint()
 	 * @generated
 	 */
-	int BEGINNING_CONSTRAINT = 7;
+	int BEGINNING_CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -987,7 +1132,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingConstraint()
 	 * @generated
 	 */
-	int ENDING_CONSTRAINT = 8;
+	int ENDING_CONSTRAINT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1123,7 +1268,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExConstraint()
 	 * @generated
 	 */
-	int REG_EX_CONSTRAINT = 9;
+	int REG_EX_CONSTRAINT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1250,7 +1395,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
-	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 11;
+	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1314,7 +1459,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeConstraint()
 	 * @generated
 	 */
-	int RANGE_CONSTRAINT = 10;
+	int RANGE_CONSTRAINT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1396,7 +1541,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 12;
+	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1442,7 +1587,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 13;
+	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1533,7 +1678,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 14;
+	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1624,7 +1769,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeBound()
 	 * @generated
 	 */
-	int RANGE_BOUND = 15;
+	int RANGE_BOUND = 16;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1724,7 +1869,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintType()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_TYPE = 16;
+	int VALUE_CONSTRAINT_TYPE = 17;
 
 
 	/**
@@ -1735,7 +1880,18 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraintOperatorType()
 	 * @generated
 	 */
-	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 17;
+	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 18;
+
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.StringConstraintOperatorType <em>String Constraint Operator Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.StringConstraintOperatorType
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getStringConstraintOperatorType()
+	 * @generated
+	 */
+	int STRING_CONSTRAINT_OPERATOR_TYPE = 19;
 
 
 	/**
@@ -1789,6 +1945,27 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCaseSensitiveConstraint_CaseSensitive();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.StringConstraint <em>String Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>String Constraint</em>'.
+	 * @see pamtram.structure.constraint.StringConstraint
+	 * @generated
+	 */
+	EClass getStringConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.constraint.StringConstraint#getOperatorType <em>Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator Type</em>'.
+	 * @see pamtram.structure.constraint.StringConstraint#getOperatorType()
+	 * @see #getStringConstraint()
+	 * @generated
+	 */
+	EAttribute getStringConstraint_OperatorType();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Constraint</em>}'.
@@ -2130,6 +2307,16 @@ public interface ConstraintPackage extends EPackage {
 	EEnum getNumericConstraintOperatorType();
 
 	/**
+	 * Returns the meta object for enum '{@link pamtram.structure.constraint.StringConstraintOperatorType <em>String Constraint Operator Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>String Constraint Operator Type</em>'.
+	 * @see pamtram.structure.constraint.StringConstraintOperatorType
+	 * @generated
+	 */
+	EEnum getStringConstraintOperatorType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2195,6 +2382,24 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE = eINSTANCE.getCaseSensitiveConstraint_CaseSensitive();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.StringConstraintImpl <em>String Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.StringConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getStringConstraint()
+		 * @generated
+		 */
+		EClass STRING_CONSTRAINT = eINSTANCE.getStringConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Operator Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRING_CONSTRAINT__OPERATOR_TYPE = eINSTANCE.getStringConstraint_OperatorType();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
@@ -2491,6 +2696,16 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum NUMERIC_CONSTRAINT_OPERATOR_TYPE = eINSTANCE.getNumericConstraintOperatorType();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.StringConstraintOperatorType <em>String Constraint Operator Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.StringConstraintOperatorType
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getStringConstraintOperatorType()
+		 * @generated
+		 */
+		EEnum STRING_CONSTRAINT_OPERATOR_TYPE = eINSTANCE.getStringConstraintOperatorType();
 
 	}
 

@@ -1180,6 +1180,17 @@
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
             defaultValueLiteral="true"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorType" lowerBound="1"
+            eType="#//structure/constraint/StringConstraintOperatorType"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="StringConstraintOperatorType">
+        <eLiterals name="MATCH_EQUAL"/>
+        <eLiterals name="MATCH_BEGINNING" value="1"/>
+        <eLiterals name="MATCH_ENDING" value="2"/>
+        <eLiterals name="MATCH_SUBSTRING" value="3"/>
+        <eLiterals name="MATCH_REGEX" value="4"/>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SubstringConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
       <eClassifiers xsi:type="ecore:EClass" name="BeginningConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
       <eClassifiers xsi:type="ecore:EClass" name="EndingConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>

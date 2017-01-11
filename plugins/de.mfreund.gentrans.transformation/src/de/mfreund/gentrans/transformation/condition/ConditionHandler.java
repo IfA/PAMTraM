@@ -40,15 +40,15 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.structure.InstancePointer;
-import pamtram.structure.MultipleReferencesValueConstraint;
-import pamtram.structure.RangeBound;
-import pamtram.structure.RangeConstraint;
-import pamtram.structure.RegExMatcher;
-import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.ValueConstraint;
-import pamtram.structure.ValueConstraintType;
+import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.RangeBound;
+import pamtram.structure.constraint.RangeConstraint;
+import pamtram.structure.constraint.RegExConstraint;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraintType;
 
 
 /**
@@ -99,7 +99,7 @@ public class ConditionHandler {
 	/**
 	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated
 	 * so we don't need to send a potential error message twice. This might e.g. happen for a malformed regular expression
-	 * in a {@link RegExMatcher}.
+	 * in a {@link RegExConstraint}.
 	 */
 	private final Set<ValueConstraint> attributeConditionConstraintsWithErrors;
 

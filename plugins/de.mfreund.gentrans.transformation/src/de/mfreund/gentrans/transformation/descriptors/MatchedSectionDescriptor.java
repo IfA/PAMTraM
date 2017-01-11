@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionClass;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 
 /**
  * Class for storing matched a part of a source model that has been matched

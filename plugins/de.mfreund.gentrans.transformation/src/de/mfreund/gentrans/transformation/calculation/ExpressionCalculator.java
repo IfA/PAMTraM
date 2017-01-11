@@ -9,7 +9,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 
 /**
  * This class can be used to handle and calculate general expressions.

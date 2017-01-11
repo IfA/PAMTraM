@@ -1178,15 +1178,12 @@
         <eLiterals name="LESS" value="3" literal="LESS"/>
         <eLiterals name="LESS_OR_EQUAL" value="4" literal="LESS_OR_EQUAL"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
-          interface="true" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
+      <eClassifiers xsi:type="ecore:EClass" name="StringConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorType" lowerBound="1"
+            eType="#//structure/constraint/StringConstraintOperatorType"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
             defaultValueLiteral="true"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="StringConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorType" lowerBound="1"
-            eType="#//structure/constraint/StringConstraintOperatorType"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="StringConstraintOperatorType">
         <eLiterals name="MATCH_EQUAL"/>

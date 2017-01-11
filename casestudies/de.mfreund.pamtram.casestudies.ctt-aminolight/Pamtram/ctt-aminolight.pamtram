@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel name="it.cnr.isti.giove.ctt">
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="RootElement">
@@ -18,7 +18,7 @@
         <value xsi:type="structure:SourceSectionClass" name="Object" cardinality="ZERO__INFINITY">
           <eClass href="http://giove.isti.cnr.it/ctt#//Object"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="class">
-            <valueConstraint xsi:type="structure:EqualityMatcher" expression="Numerical"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Numerical"/>
             <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="ObjectName">
@@ -39,12 +39,12 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/name"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="class">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Numerical"/>
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Decimal"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Numerical"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Decimal"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/class"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Perceivable"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Perceivable"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Object/type"/>
       </attributes>
     </metaModelSections>
@@ -114,7 +114,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm0"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm0"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
@@ -190,7 +190,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm1"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm1"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
@@ -263,7 +263,7 @@
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm2"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm2"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Alarm2TaskName">
@@ -342,7 +342,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm3"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm3"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
@@ -409,7 +409,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="type">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm4"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm4"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
@@ -485,7 +485,7 @@
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="GaugeTaskType">
-        <valueConstraint xsi:type="structure:EqualityMatcher" expression="Alarm_Element"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm_Element"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="GaugeTaskName">
@@ -520,7 +520,7 @@
             </value>
           </references>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="PreConditionRootOperator">
-            <valueConstraint xsi:type="structure:EqualityMatcher" expression="and"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>

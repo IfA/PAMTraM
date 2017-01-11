@@ -298,7 +298,7 @@ public class ConditionHandler {
 
 				boolean constraintVal=false;
 				try {
-					// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION) into consideration
+					// Note: 'checkConstraint' already takes the type (REQUIRED/FORBIDDEN) into consideration
 					// Starting from now we have to differentiate between Single- and MultipleReferenceAttributeValueConstraints
 					// and we need to extract the right reference Value(s) for each constraint
 
@@ -355,12 +355,12 @@ public class ConditionHandler {
 
 				}
 
-				if (!constraintVal && constraint.getType().equals(ValueConstraintType.EXCLUSION)) {
+				if (!constraintVal && constraint.getType().equals(ValueConstraintType.FORBIDDEN)) {
 
 					exclusionFailed = true;
 					break;
 
-				} else if (constraint.getType().equals(ValueConstraintType.INCLUSION)) {
+				} else if (constraint.getType().equals(ValueConstraintType.REQUIRED)) {
 
 					containsInclusions = true;
 					if (constraintVal) {

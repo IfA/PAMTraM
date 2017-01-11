@@ -1231,11 +1231,11 @@ public class SourceSectionMatcher {
 
 				boolean constraintVal = this.checkAttributeValueConstraint(srcAttrAsString, constraint);
 
-				if (!constraintVal && constraint.getType().equals(ValueConstraintType.EXCLUSION)) {
+				if (!constraintVal && constraint.getType().equals(ValueConstraintType.FORBIDDEN)) {
 
 					return false;
 
-				} else if (constraint.getType().equals(ValueConstraintType.INCLUSION)) {
+				} else if (constraint.getType().equals(ValueConstraintType.REQUIRED)) {
 
 					containsInclusions = true;
 					inclusionMatched = constraintVal;
@@ -1283,7 +1283,7 @@ public class SourceSectionMatcher {
 
 		boolean constraintVal = false;
 
-		// Note: 'checkConstraint' already takes the type (INCLUSION/EXCLUSION)
+		// Note: 'checkConstraint' already takes the type (REQUIRED/FORBIDDEN)
 		// into consideration
 		// Starting from now we have to differentiate between Single- and
 		// MultipleReferenceAttributeValueConstraints

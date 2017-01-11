@@ -15,9 +15,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.BeginningMatcher;
+import pamtram.structure.constraint.ConstraintPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.constraint.BeginningMatcher} object.
@@ -66,7 +65,7 @@ public class BeginningMatcherItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				 StructurePackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
+				 ConstraintPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE,
 				 true,
 				 false,
 				 false,
@@ -136,7 +135,7 @@ public class BeginningMatcherItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BeginningMatcher.class)) {
-			case StructurePackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -9,13 +9,11 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintFactory;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.RangeConstraint;
 
 /**
@@ -46,54 +44,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUpperBoundPropertyDescriptor(object);
-			addLowerBoundPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Upper Bound feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_upperBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_upperBound_feature", "_UI_RangeConstraint_type"),
-				 StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Lower Bound feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_lowerBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_lowerBound_feature", "_UI_RangeConstraint_type"),
-				 StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 true,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -108,8 +60,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
-			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
+			childrenFeatures.add(ConstraintPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
+			childrenFeatures.add(ConstraintPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
 		}
 		return childrenFeatures;
 	}
@@ -179,8 +131,8 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RangeConstraint.class)) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,13 +152,13 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 StructureFactory.eINSTANCE.createRangeBound()));
+				(ConstraintPackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+				 ConstraintFactory.eINSTANCE.createRangeBound()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 StructureFactory.eINSTANCE.createRangeBound()));
+				(ConstraintPackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
+				 ConstraintFactory.eINSTANCE.createRangeBound()));
 	}
 
 	/**

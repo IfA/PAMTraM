@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.MultipleReferencesValueConstraint;
 
 /**
@@ -69,7 +69,7 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 				 getResourceLocator(),
 				 getString("_UI_ValueConstraint_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
-				 StructurePackage.Literals.VALUE_CONSTRAINT__TYPE,
+				 ConstraintPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
@@ -119,7 +119,7 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MultipleReferencesValueConstraint.class)) {
-			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

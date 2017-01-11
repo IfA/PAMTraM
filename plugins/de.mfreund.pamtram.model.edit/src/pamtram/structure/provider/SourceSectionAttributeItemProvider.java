@@ -15,8 +15,8 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.generic.provider.AttributeItemProvider;
 import pamtram.structure.SourceSectionAttribute;
 
@@ -139,32 +139,32 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createEqualityMatcher()));
+				 ConstraintFactory.eINSTANCE.createEqualityMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createSubstringMatcher()));
+				 ConstraintFactory.eINSTANCE.createSubstringMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createBeginningMatcher()));
+				 ConstraintFactory.eINSTANCE.createBeginningMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createEndingMatcher()));
+				 ConstraintFactory.eINSTANCE.createEndingMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createRegExMatcher()));
+				 ConstraintFactory.eINSTANCE.createRegExMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
-				 StructureFactory.eINSTANCE.createRangeConstraint()));
+				 ConstraintFactory.eINSTANCE.createRangeConstraint()));
 	}
 
 	/**

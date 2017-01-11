@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="structure:SourceSection" name="RadioButtonGroup">
@@ -9,7 +9,7 @@
         <value xsi:type="structure:SourceSectionClass" name="Composition">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="compositionRole">
-            <valueConstraint xsi:type="structure:EqualityMatcher" name="parallel" expression="parallel"/>
+            <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
           </attributes>
           <attributes xsi:type="structure:ActualSourceSectionAttribute" name="associatedWith">
@@ -26,11 +26,11 @@
             <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="dataType">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="in" expression="in"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isDynamic">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="false" expression="false"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
@@ -40,11 +40,11 @@
             <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="selectionType">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="single" expression="single"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isContinuous">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="false" expression="false"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
@@ -52,7 +52,7 @@
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name="grouping" expression="grouping"/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
@@ -70,14 +70,14 @@
             <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="dataType">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="in" expression="in"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isDynamic">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="false" expression="false"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
@@ -87,11 +87,11 @@
             <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isContinuous">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="false" expression="false"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
               <attributes xsi:type="structure:ActualSourceSectionAttribute" name="selectionType">
-                <valueConstraint xsi:type="structure:EqualityMatcher" name="single" expression="single"/>
+                <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
               </attributes>
             </value>
@@ -99,7 +99,7 @@
         </value>
       </references>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
-        <valueConstraint xsi:type="structure:EqualityMatcher" name=""/>
+        <valueConstraint xsi:type="constraint:EqualityConstraint" name=""/>
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">

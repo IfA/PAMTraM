@@ -2,6 +2,11 @@
  */
 package pamtram.structure.constraint.impl;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.structure.constraint.ConstraintPackage;
@@ -24,6 +29,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected EqualityConstraintImpl() {
@@ -32,42 +38,56 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return ConstraintPackage.Literals.EQUALITY_CONSTRAINT;
 	}
 
 	@Override
 	public boolean checkConstraint(String attrValue, String refValue) {
 
-		String newAttrValue;
-		String newRefValue;
-		// if (this.caseSensitive) {
-		newAttrValue = attrValue;
-		newRefValue = refValue;
-		// } else {
-		// newAttrValue = attrValue.toLowerCase();
-		// newRefValue = refValue.toLowerCase();
-		// }
-		// Update: EqualityConstraint useful for integer and doubles. The following example '1' versus. '1.0' represents
-		// a
-		// problem!
-		// Therefore, in case of integer and double, we try to convert twice (to Double and back to String)
-		try {
-			newAttrValue = String.valueOf(Double.valueOf(newAttrValue));
-		} catch (NumberFormatException e) {
-			// doesn't work
-		}
-		try {
-			newRefValue = String.valueOf(Double.valueOf(newRefValue));
-		} catch (NumberFormatException e) {
-			// doesn't work
+		boolean condition = false;
+
+		// First, try two compare two boolean values...
+		//
+		List<String> booleanTrueLiterals = Arrays.asList("true", "True", "1");
+		List<String> booleanFalseLiterals = Arrays.asList("false", "False", "0");
+		List<String> booleanLiterals = Stream.concat(booleanTrueLiterals.stream(), booleanFalseLiterals.stream())
+				.collect(Collectors.toList());
+		if (booleanLiterals.parallelStream().anyMatch(s -> s.equals(attrValue))
+				&& booleanLiterals.parallelStream().anyMatch(s -> s.equals(refValue))) {
+
+			boolean booleanAttrValue = booleanTrueLiterals.stream().anyMatch(l -> l.equals(attrValue));
+			boolean booleanRefValue = booleanTrueLiterals.stream().anyMatch(l -> l.equals(refValue));
+
+			condition = booleanAttrValue == booleanRefValue;
 		}
 
-		return newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.REQUIRED)
-				|| !newRefValue.equals(newAttrValue) && this.type.equals(ValueConstraintType.FORBIDDEN);
+		// If this did not work, try to compare two double values...
+		//
+		if (!condition) {
+			try {
+				double doubleAttrValue = Double.parseDouble(attrValue);
+				double doubleRefValue = Double.parseDouble(refValue);
+
+				condition = Double.compare(doubleAttrValue, doubleRefValue) == 0;
+			} catch (NumberFormatException e) {
+				// doesn't work
+			}
+		}
+
+		// At last, we simply compare two String values...
+		//
+		if (!condition) {
+			condition = refValue.equals(attrValue);
+		}
+
+		return condition && this.type.equals(ValueConstraintType.REQUIRED)
+				|| !condition && this.type.equals(ValueConstraintType.FORBIDDEN);
 	}
 
 } // EqualityConstraintImpl

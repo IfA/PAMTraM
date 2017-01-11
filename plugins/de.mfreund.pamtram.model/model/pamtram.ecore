@@ -1165,10 +1165,10 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="NumericConstraintOperatorType">
         <eLiterals name="EQUAL" literal="EQUAL"/>
-        <eLiterals name="GREATER" literal="GREATER"/>
-        <eLiterals name="GREATER_OR_EQUAL" literal="GREATER_OR_EQUAL"/>
-        <eLiterals name="LESS" literal="LESS"/>
-        <eLiterals name="LESS_OR_EQUAL" literal="LESS_OR_EQUAL"/>
+        <eLiterals name="GREATER" value="1" literal="GREATER"/>
+        <eLiterals name="GREATER_OR_EQUAL" value="2" literal="GREATER_OR_EQUAL"/>
+        <eLiterals name="LESS" value="3" literal="LESS"/>
+        <eLiterals name="LESS_OR_EQUAL" value="4" literal="LESS_OR_EQUAL"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
           interface="true" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">

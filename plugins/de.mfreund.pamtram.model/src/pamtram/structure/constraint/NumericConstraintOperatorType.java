@@ -36,7 +36,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GREATER(0, "GREATER", "GREATER"),
+	GREATER(1, "GREATER", "GREATER"),
 
 	/**
 	 * The '<em><b>GREATER OR EQUAL</b></em>' literal object.
@@ -46,7 +46,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GREATER_OR_EQUAL(0, "GREATER_OR_EQUAL", "GREATER_OR_EQUAL"),
+	GREATER_OR_EQUAL(2, "GREATER_OR_EQUAL", "GREATER_OR_EQUAL"),
 
 	/**
 	 * The '<em><b>LESS</b></em>' literal object.
@@ -56,7 +56,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LESS(0, "LESS", "LESS"),
+	LESS(3, "LESS", "LESS"),
 
 	/**
 	 * The '<em><b>LESS OR EQUAL</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LESS_OR_EQUAL(0, "LESS_OR_EQUAL", "LESS_OR_EQUAL");
+	LESS_OR_EQUAL(4, "LESS_OR_EQUAL", "LESS_OR_EQUAL");
 
 	/**
 	 * The '<em><b>EQUAL</b></em>' literal value.
@@ -96,7 +96,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATER_VALUE = 0;
+	public static final int GREATER_VALUE = 1;
 
 	/**
 	 * The '<em><b>GREATER OR EQUAL</b></em>' literal value.
@@ -111,7 +111,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GREATER_OR_EQUAL_VALUE = 0;
+	public static final int GREATER_OR_EQUAL_VALUE = 2;
 
 	/**
 	 * The '<em><b>LESS</b></em>' literal value.
@@ -126,7 +126,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESS_VALUE = 0;
+	public static final int LESS_VALUE = 3;
 
 	/**
 	 * The '<em><b>LESS OR EQUAL</b></em>' literal value.
@@ -141,7 +141,7 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LESS_OR_EQUAL_VALUE = 0;
+	public static final int LESS_OR_EQUAL_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Numeric Constraint Operator Type</b></em>' enumerators.
@@ -213,6 +213,10 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	public static NumericConstraintOperatorType get(int value) {
 		switch (value) {
 			case EQUAL_VALUE: return EQUAL;
+			case GREATER_VALUE: return GREATER;
+			case GREATER_OR_EQUAL_VALUE: return GREATER_OR_EQUAL;
+			case LESS_VALUE: return LESS;
+			case LESS_OR_EQUAL_VALUE: return LESS_OR_EQUAL;
 		}
 		return null;
 	}

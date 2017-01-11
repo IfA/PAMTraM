@@ -92,13 +92,4 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 */
 	boolean validateNoResultModifierInSourceSections(DiagnosticChain diagnostics, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.eContainer() instanceof <%pamtram.structure.ActualSourceSectionAttribute%>) {\r\n\treturn true;\r\n}\r\n\r\nif(!(this.eContainer() instanceof <%pamtram.condition.AttributeCondition%>)) {\r\n\tthrow new UnsupportedOperationException();\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> container = this;\r\n\r\nwhile(!(container instanceof <%pamtram.mapping.Mapping%>)) {\r\n\tif(container == null) {\r\n\t\treturn false;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\n\r\n// The SourceSection of the Mapping that contains the constraint\r\n//\r\n<%pamtram.structure.SourceSection%> localSection = ((Mapping) container).getSourceSection();\r\n\r\nif(getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.mapping.FixedValue%> || s instanceof <%pamtram.mapping.GlobalAttributeImporter%> ||\r\n\t\t(s instanceof <%pamtram.structure.constraint.ValueConstraintSourceElement%> &&\r\n\t\t((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||\r\n\t\t(s instanceof <%pamtram.structure.constraint.ValueConstraintExternalSourceElement%> &&\r\n\t\t\t\t((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {\r\n\treturn true;\r\n}\r\n\r\n// A constraint is also \'local\' if an InstancePointer with local or external SourceAttributes exist\r\n//\r\nreturn getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(\r\n\t\tinstancePointer -> instancePointer.getSourceElements().parallelStream().filter(\r\n\t\t\t\ts -> s instanceof <%pamtram.structure.InstancePointerSourceElement%> || \r\n\t\t\t\ts instanceof <%pamtram.structure.InstancePointerExternalSourceElement%>)\r\n\t\t).findAny().isPresent();'"
-	 * @generated
-	 */
-	boolean isLocalConstraint();
-
 } // SingleReferenceAttributeValueConstraint

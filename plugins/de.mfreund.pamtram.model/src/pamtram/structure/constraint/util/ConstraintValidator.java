@@ -143,6 +143,8 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateSingleReferenceValueConstraint((SingleReferenceValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.EQUALITY_CONSTRAINT:
 				return validateEqualityConstraint((EqualityConstraint)value, diagnostics, context);
+			case ConstraintPackage.CHOICE_CONSTRAINT:
+				return validateChoiceConstraint((ChoiceConstraint)value, diagnostics, context);
 			case ConstraintPackage.NUMERIC_CONSTRAINT:
 				return validateNumericConstraint((NumericConstraint)value, diagnostics, context);
 			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
@@ -229,6 +231,15 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(equalityConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(equalityConstraint, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateChoiceConstraint(ChoiceConstraint choiceConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(choiceConstraint, diagnostics, context);
 	}
 
 	/**

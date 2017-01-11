@@ -31,6 +31,7 @@ import pamtram.structure.StructurePackage;
 
 import pamtram.structure.constraint.BeginningConstraint;
 import pamtram.structure.constraint.CaseSensitiveConstraint;
+import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EndingConstraint;
@@ -84,6 +85,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EClass equalityConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass choiceConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -296,6 +304,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getValueConstraint__IsLocalConstraint() {
+		return valueConstraintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCaseSensitiveConstraint() {
 		return caseSensitiveConstraintEClass;
 	}
@@ -316,6 +333,24 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 */
 	public EClass getEqualityConstraint() {
 		return equalityConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getChoiceConstraint() {
+		return choiceConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getChoiceConstraint_Choices() {
+		return (EReference)choiceConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -485,15 +520,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceValueConstraint__IsLocalConstraint() {
-		return singleReferenceValueConstraintEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getValueConstraintSourceInterface() {
 		return valueConstraintSourceInterfaceEClass;
 	}
@@ -627,6 +653,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		// Create classes and their features
 		valueConstraintEClass = createEClass(VALUE_CONSTRAINT);
 		createEAttribute(valueConstraintEClass, VALUE_CONSTRAINT__TYPE);
+		createEOperation(valueConstraintEClass, VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
 
 		singleReferenceValueConstraintEClass = createEClass(SINGLE_REFERENCE_VALUE_CONSTRAINT);
 		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
@@ -635,9 +662,11 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
 
 		equalityConstraintEClass = createEClass(EQUALITY_CONSTRAINT);
+
+		choiceConstraintEClass = createEClass(CHOICE_CONSTRAINT);
+		createEReference(choiceConstraintEClass, CHOICE_CONSTRAINT__CHOICES);
 
 		numericConstraintEClass = createEClass(NUMERIC_CONSTRAINT);
 		createEAttribute(numericConstraintEClass, NUMERIC_CONSTRAINT__OPERATOR_TYPE);
@@ -717,6 +746,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		substringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
@@ -757,6 +787,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "REQUIRED", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEOperation(getValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(singleReferenceValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification(), theStructurePackage.getInstancePointer(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferenceValueConstraint_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -792,9 +824,10 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getSingleReferenceValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(equalityConstraintEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(choiceConstraintEClass, ChoiceConstraint.class, "ChoiceConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getChoiceConstraint_Choices(), this.getEqualityConstraint(), null, "choices", null, 2, -1, ChoiceConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(numericConstraintEClass, NumericConstraint.class, "NumericConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumericConstraint_OperatorType(), this.getNumericConstraintOperatorType(), "operatorType", null, 1, 1, NumericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

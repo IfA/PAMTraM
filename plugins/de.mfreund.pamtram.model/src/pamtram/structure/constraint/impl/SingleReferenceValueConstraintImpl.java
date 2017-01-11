@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
@@ -32,14 +31,15 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ValueModifierSet;
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
 import pamtram.structure.SourceSection;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
@@ -337,18 +337,23 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public boolean isLocalConstraint() {
-		if(this.eContainer() instanceof ActualSourceSectionAttribute) {
+		if (this instanceof ChoiceConstraint) {
+			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
+		}
+		
+		if (AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
 			return true;
 		}
 		
-		if(!(this.eContainer() instanceof AttributeCondition)) {
+		if (!(this instanceof SingleReferenceValueConstraint)
+				|| !AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.Literals.ATTRIBUTE_CONDITION)) {
 			throw new UnsupportedOperationException();
 		}
 		
 		EObject container = this;
 		
-		while(!(container instanceof Mapping)) {
-			if(container == null) {
+		while (!(container instanceof Mapping)) {
+			if (container == null) {
 				return false;
 			}
 			container = container.eContainer();
@@ -358,21 +363,24 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		//
 		SourceSection localSection = ((Mapping) container).getSourceSection();
 		
-		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				(s instanceof ValueConstraintSourceElement &&
-				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-				(s instanceof ValueConstraintExternalSourceElement &&
-						((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+		if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()
+				.allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter
+						|| s instanceof ValueConstraintSourceElement && ((ValueConstraintSourceElement) s).getSource()
+								.getContainingSection().equals(localSection)
+						|| s instanceof ValueConstraintExternalSourceElement
+								&& ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()
+										.isContainerFor(localSection))) {
 			return true;
 		}
 		
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement || 
-						s instanceof InstancePointerExternalSourceElement)
-				).findAny().isPresent();
+		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
+				.parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+						.filter(s -> s instanceof InstancePointerSourceElement
+								|| s instanceof InstancePointerExternalSourceElement))
+				.findAny().isPresent();
 	}
 
 	/**

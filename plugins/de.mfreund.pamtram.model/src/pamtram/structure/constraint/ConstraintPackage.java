@@ -100,13 +100,22 @@ public interface ConstraintPackage extends EPackage {
 	int VALUE_CONSTRAINT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Value Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int VALUE_CONSTRAINT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl <em>Single Reference Value Constraint</em>}' class.
@@ -182,6 +191,15 @@ public interface ConstraintPackage extends EPackage {
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT = VALUE_CONSTRAINT_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,22 +236,13 @@ public interface ConstraintPackage extends EPackage {
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = VALUE_CONSTRAINT_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = VALUE_CONSTRAINT_OPERATION_COUNT + 4;
-
-	/**
 	 * The number of operations of the '<em>Single Reference Value Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 5;
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
@@ -243,7 +252,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 4;
+	int CASE_SENSITIVE_CONSTRAINT = 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
@@ -319,6 +328,15 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,15 +373,6 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Equality Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,6 +382,70 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.ChoiceConstraintImpl <em>Choice Constraint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.impl.ChoiceConstraintImpl
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getChoiceConstraint()
+	 * @generated
+	 */
+	int CHOICE_CONSTRAINT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT__NAME = VALUE_CONSTRAINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT__TYPE = VALUE_CONSTRAINT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Choices</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT__CHOICES = VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Choice Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT_FEATURE_COUNT = VALUE_CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT___IS_LOCAL_CONSTRAINT = VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
+	 * The number of operations of the '<em>Choice Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,7 +453,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraint()
 	 * @generated
 	 */
-	int NUMERIC_CONSTRAINT = 3;
+	int NUMERIC_CONSTRAINT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -455,6 +528,15 @@ public interface ConstraintPackage extends EPackage {
 	int NUMERIC_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -489,15 +571,6 @@ public interface ConstraintPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERIC_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
 	 * The number of operations of the '<em>Numeric Constraint</em>' class.
@@ -581,6 +654,15 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -617,15 +699,6 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Case Sensitive Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -642,7 +715,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringConstraint()
 	 * @generated
 	 */
-	int SUBSTRING_CONSTRAINT = 5;
+	int SUBSTRING_CONSTRAINT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -717,6 +790,15 @@ public interface ConstraintPackage extends EPackage {
 	int SUBSTRING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTRING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -753,15 +835,6 @@ public interface ConstraintPackage extends EPackage {
 	int SUBSTRING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Substring Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -778,7 +851,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningConstraint()
 	 * @generated
 	 */
-	int BEGINNING_CONSTRAINT = 6;
+	int BEGINNING_CONSTRAINT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -853,6 +926,15 @@ public interface ConstraintPackage extends EPackage {
 	int BEGINNING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEGINNING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -889,15 +971,6 @@ public interface ConstraintPackage extends EPackage {
 	int BEGINNING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEGINNING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Beginning Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -914,7 +987,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingConstraint()
 	 * @generated
 	 */
-	int ENDING_CONSTRAINT = 7;
+	int ENDING_CONSTRAINT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -989,6 +1062,15 @@ public interface ConstraintPackage extends EPackage {
 	int ENDING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENDING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1025,15 +1107,6 @@ public interface ConstraintPackage extends EPackage {
 	int ENDING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENDING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Ending Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1050,7 +1123,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExConstraint()
 	 * @generated
 	 */
-	int REG_EX_CONSTRAINT = 8;
+	int REG_EX_CONSTRAINT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1116,6 +1189,15 @@ public interface ConstraintPackage extends EPackage {
 	int REG_EX_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EX_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1152,15 +1234,6 @@ public interface ConstraintPackage extends EPackage {
 	int REG_EX_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Is Local Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REG_EX_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
-
-	/**
 	 * The number of operations of the '<em>Reg Ex Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1177,7 +1250,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getMultipleReferencesValueConstraint()
 	 * @generated
 	 */
-	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 10;
+	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1207,6 +1280,15 @@ public interface ConstraintPackage extends EPackage {
 	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT_FEATURE_COUNT = VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTIPLE_REFERENCES_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1232,7 +1314,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeConstraint()
 	 * @generated
 	 */
-	int RANGE_CONSTRAINT = 9;
+	int RANGE_CONSTRAINT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1280,6 +1362,15 @@ public interface ConstraintPackage extends EPackage {
 	int RANGE_CONSTRAINT_FEATURE_COUNT = MULTIPLE_REFERENCES_VALUE_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Is Local Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANGE_CONSTRAINT___IS_LOCAL_CONSTRAINT = MULTIPLE_REFERENCES_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+
+	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1305,7 +1396,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceInterface()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 11;
+	int VALUE_CONSTRAINT_SOURCE_INTERFACE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1351,7 +1442,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 12;
+	int VALUE_CONSTRAINT_SOURCE_ELEMENT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1442,7 +1533,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintExternalSourceElement()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 13;
+	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1533,7 +1624,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRangeBound()
 	 * @generated
 	 */
-	int RANGE_BOUND = 14;
+	int RANGE_BOUND = 15;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1633,7 +1724,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintType()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_TYPE = 15;
+	int VALUE_CONSTRAINT_TYPE = 16;
 
 
 	/**
@@ -1644,7 +1735,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraintOperatorType()
 	 * @generated
 	 */
-	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 16;
+	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 17;
 
 
 	/**
@@ -1667,6 +1758,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getValueConstraint_Type();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.ValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Local Constraint</em>' operation.
+	 * @see pamtram.structure.constraint.ValueConstraint#isLocalConstraint()
+	 * @generated
+	 */
+	EOperation getValueConstraint__IsLocalConstraint();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
@@ -1698,6 +1799,27 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEqualityConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ChoiceConstraint <em>Choice Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Choice Constraint</em>'.
+	 * @see pamtram.structure.constraint.ChoiceConstraint
+	 * @generated
+	 */
+	EClass getChoiceConstraint();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.ChoiceConstraint#getChoices <em>Choices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Choices</em>'.
+	 * @see pamtram.structure.constraint.ChoiceConstraint#getChoices()
+	 * @see #getChoiceConstraint()
+	 * @generated
+	 */
+	EReference getChoiceConstraint_Choices();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.NumericConstraint <em>Numeric Constraint</em>}'.
@@ -1885,16 +2007,6 @@ public interface ConstraintPackage extends EPackage {
 	EOperation getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#isLocalConstraint() <em>Is Local Constraint</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Local Constraint</em>' operation.
-	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#isLocalConstraint()
-	 * @generated
-	 */
-	EOperation getSingleReferenceValueConstraint__IsLocalConstraint();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2059,6 +2171,14 @@ public interface ConstraintPackage extends EPackage {
 		EAttribute VALUE_CONSTRAINT__TYPE = eINSTANCE.getValueConstraint_Type();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Local Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = eINSTANCE.getValueConstraint__IsLocalConstraint();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2085,6 +2205,24 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EQUALITY_CONSTRAINT = eINSTANCE.getEqualityConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.ChoiceConstraintImpl <em>Choice Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.ChoiceConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getChoiceConstraint()
+		 * @generated
+		 */
+		EClass CHOICE_CONSTRAINT = eINSTANCE.getChoiceConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Choices</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHOICE_CONSTRAINT__CHOICES = eINSTANCE.getChoiceConstraint_Choices();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.
@@ -2245,14 +2383,6 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Is Local Constraint</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT = eINSTANCE.getSingleReferenceValueConstraint__IsLocalConstraint();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}' class.

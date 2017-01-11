@@ -93,6 +93,10 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createEqualityConstraintAdapter();
 			}
 			@Override
+			public Adapter caseChoiceConstraint(ChoiceConstraint object) {
+				return createChoiceConstraintAdapter();
+			}
+			@Override
 			public Adapter caseNumericConstraint(NumericConstraint object) {
 				return createNumericConstraintAdapter();
 			}
@@ -227,6 +231,20 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEqualityConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ChoiceConstraint <em>Choice Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ChoiceConstraint
+	 * @generated
+	 */
+	public Adapter createChoiceConstraintAdapter() {
 		return null;
 	}
 

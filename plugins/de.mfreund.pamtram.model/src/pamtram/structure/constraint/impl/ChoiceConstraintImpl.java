@@ -3,12 +3,17 @@
 package pamtram.structure.constraint.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.ConditionPackage;
@@ -22,7 +27,7 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
@@ -30,24 +35,24 @@ import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintType;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multiple References Value Constraint</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Choice Constraint</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl#getType <em>Type</em>}</li>
+ * <li>{@link pamtram.structure.constraint.impl.ChoiceConstraintImpl#getType <em>Type</em>}</li>
+ * <li>{@link pamtram.structure.constraint.impl.ChoiceConstraintImpl#getChoices <em>Choices</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class MultipleReferencesValueConstraintImpl extends NamedElementImpl
-		implements MultipleReferencesValueConstraint {
+public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceConstraint {
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -57,7 +62,7 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -65,10 +70,20 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	protected ValueConstraintType type = TYPE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getChoices() <em>Choices</em>}' containment reference list.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @see #getChoices()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EqualityConstraint> choices;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MultipleReferencesValueConstraintImpl() {
+	protected ChoiceConstraintImpl() {
 		super();
 	}
 
@@ -78,7 +93,7 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConstraintPackage.Literals.MULTIPLE_REFERENCES_VALUE_CONSTRAINT;
+		return ConstraintPackage.Literals.CHOICE_CONSTRAINT;
 	}
 
 	/**
@@ -99,7 +114,7 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.CHOICE_CONSTRAINT__TYPE, oldType, type));
 	}
 
 	/**
@@ -107,10 +122,11 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * @generated
 	 */
 	@Override
-	public boolean checkConstraint(String attrValue, EList<String> refValue) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public EList<EqualityConstraint> getChoices() {
+		if (choices == null) {
+			choices = new EObjectContainmentEList<EqualityConstraint>(EqualityConstraint.class, this, ConstraintPackage.CHOICE_CONSTRAINT__CHOICES);
+		}
+		return choices;
 	}
 
 	/**
@@ -170,10 +186,25 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
+				return ((InternalEList<?>)getChoices()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
 				return getType();
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
+				return getChoices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,11 +213,16 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
 				setType((ValueConstraintType)newValue);
+				return;
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
+				getChoices().clear();
+				getChoices().addAll((Collection<? extends EqualityConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -199,8 +235,11 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
 				setType(TYPE_EDEFAULT);
+				return;
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
+				getChoices().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -213,8 +252,10 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
 				return type != TYPE_EDEFAULT;
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
+				return choices != null && !choices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -224,12 +265,9 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
-				return checkConstraint((String)arguments.get(0), (EList<String>)arguments.get(1));
-			case ConstraintPackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
+			case ConstraintPackage.CHOICE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
@@ -250,4 +288,4 @@ public abstract class MultipleReferencesValueConstraintImpl extends NamedElement
 		return result.toString();
 	}
 
-} // MultipleReferencesValueConstraintImpl
+} // ChoiceConstraintImpl

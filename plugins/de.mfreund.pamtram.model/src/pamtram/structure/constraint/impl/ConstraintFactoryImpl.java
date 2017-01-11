@@ -6,24 +6,33 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import pamtram.structure.constraint.*;
+import pamtram.structure.constraint.BeginningConstraint;
+import pamtram.structure.constraint.ChoiceConstraint;
+import pamtram.structure.constraint.ConstraintFactory;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.EndingConstraint;
+import pamtram.structure.constraint.EqualityConstraint;
+import pamtram.structure.constraint.NumericConstraint;
+import pamtram.structure.constraint.NumericConstraintOperatorType;
+import pamtram.structure.constraint.RangeBound;
+import pamtram.structure.constraint.RangeConstraint;
+import pamtram.structure.constraint.RegExConstraint;
+import pamtram.structure.constraint.SubstringConstraint;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintType;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */
 public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFactory {
+
 	/**
 	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static ConstraintFactory init() {
@@ -41,8 +50,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 
 	/**
 	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ConstraintFactoryImpl() {
@@ -50,14 +58,14 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ConstraintPackage.EQUALITY_CONSTRAINT: return createEqualityConstraint();
+			case ConstraintPackage.CHOICE_CONSTRAINT: return createChoiceConstraint();
 			case ConstraintPackage.NUMERIC_CONSTRAINT: return createNumericConstraint();
 			case ConstraintPackage.SUBSTRING_CONSTRAINT: return createSubstringConstraint();
 			case ConstraintPackage.BEGINNING_CONSTRAINT: return createBeginningConstraint();
@@ -73,8 +81,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -90,8 +97,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -107,108 +113,117 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EqualityConstraint createEqualityConstraint() {
 		EqualityConstraintImpl equalityConstraint = new EqualityConstraintImpl();
 		return equalityConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public ChoiceConstraint createChoiceConstraint() {
+		ChoiceConstraintImpl choiceConstraint = new ChoiceConstraintImpl();
+		return choiceConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NumericConstraint createNumericConstraint() {
 		NumericConstraintImpl numericConstraint = new NumericConstraintImpl();
 		return numericConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SubstringConstraint createSubstringConstraint() {
 		SubstringConstraintImpl substringConstraint = new SubstringConstraintImpl();
 		return substringConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BeginningConstraint createBeginningConstraint() {
 		BeginningConstraintImpl beginningConstraint = new BeginningConstraintImpl();
 		return beginningConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EndingConstraint createEndingConstraint() {
 		EndingConstraintImpl endingConstraint = new EndingConstraintImpl();
 		return endingConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RegExConstraint createRegExConstraint() {
 		RegExConstraintImpl regExConstraint = new RegExConstraintImpl();
 		return regExConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RangeConstraint createRangeConstraint() {
 		RangeConstraintImpl rangeConstraint = new RangeConstraintImpl();
 		return rangeConstraint;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueConstraintSourceElement createValueConstraintSourceElement() {
 		ValueConstraintSourceElementImpl valueConstraintSourceElement = new ValueConstraintSourceElementImpl();
 		return valueConstraintSourceElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
 		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
 		return valueConstraintExternalSourceElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RangeBound createRangeBound() {
 		RangeBoundImpl rangeBound = new RangeBoundImpl();
 		return rangeBound;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ValueConstraintType createValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
@@ -218,8 +233,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
@@ -227,19 +241,18 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NumericConstraintOperatorType createNumericConstraintOperatorTypeFromString(EDataType eDataType, String initialValue) {
+	public NumericConstraintOperatorType createNumericConstraintOperatorTypeFromString(EDataType eDataType,
+			String initialValue) {
 		NumericConstraintOperatorType result = NumericConstraintOperatorType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String convertNumericConstraintOperatorTypeToString(EDataType eDataType, Object instanceValue) {
@@ -247,17 +260,16 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ConstraintPackage getConstraintPackage() {
 		return (ConstraintPackage)getEPackage();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
@@ -266,4 +278,4 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 		return ConstraintPackage.eINSTANCE;
 	}
 
-} //ConstraintFactoryImpl
+} // ConstraintFactoryImpl

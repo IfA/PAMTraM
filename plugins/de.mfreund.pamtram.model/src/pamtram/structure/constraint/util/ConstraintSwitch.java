@@ -107,6 +107,14 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ConstraintPackage.CHOICE_CONSTRAINT: {
+				ChoiceConstraint choiceConstraint = (ChoiceConstraint)theEObject;
+				T result = caseChoiceConstraint(choiceConstraint);
+				if (result == null) result = caseValueConstraint(choiceConstraint);
+				if (result == null) result = caseNamedElement(choiceConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ConstraintPackage.NUMERIC_CONSTRAINT: {
 				NumericConstraint numericConstraint = (NumericConstraint)theEObject;
 				T result = caseNumericConstraint(numericConstraint);
@@ -277,6 +285,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEqualityConstraint(EqualityConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Choice Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Choice Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChoiceConstraint(ChoiceConstraint object) {
 		return null;
 	}
 

@@ -31,6 +31,15 @@ public interface ConstraintFactory extends EFactory {
 	EqualityConstraint createEqualityConstraint();
 
 	/**
+	 * Returns a new object of class '<em>Choice Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Choice Constraint</em>'.
+	 * @generated
+	 */
+	ChoiceConstraint createChoiceConstraint();
+
+	/**
 	 * Returns a new object of class '<em>Numeric Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

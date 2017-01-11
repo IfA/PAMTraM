@@ -44,6 +44,18 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.constraint.presentation.ConstraintEditorID"
+            name="%_UI_ConstraintEditor_label"
+            icon="icons/full/obj16/ConstraintModelFile.gif"
+            extensions="constraint"
+            class="pamtram.structure.constraint.presentation.ConstraintEditor"
+            contributorClass="pamtram.structure.constraint.presentation.ConstraintActionBarContributor">
+      </editor>
+   </extension>
+
 null
 null
 null

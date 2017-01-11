@@ -118,6 +118,7 @@ import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactory;
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
@@ -598,6 +599,7 @@ public class MappingEditor extends MultiPageEditorPart
 		adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenericItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());

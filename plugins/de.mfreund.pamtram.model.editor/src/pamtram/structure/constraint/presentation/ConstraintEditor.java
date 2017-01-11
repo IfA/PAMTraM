@@ -1,9 +1,11 @@
 /**
  */
-package pamtram.condition.presentation;
+package pamtram.structure.constraint.presentation;
+
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,57 +24,22 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandStack;
-import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.ui.MarkerHelper;
-import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
-import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
-import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
-import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -83,13 +50,18 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.custom.CTabFolder;
+
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
+
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -101,35 +73,109 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.SaveAsDialog;
+
 import org.eclipse.ui.ide.IGotoMarker;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
-import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
-import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.presentation.PamtramEditorPlugin;
-import pamtram.provider.PamtramItemProviderAdapterFactory;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.ui.MarkerHelper;
+import org.eclipse.emf.common.ui.editor.ProblemEditorPart;
+
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+
+import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+
+import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
+
+import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
+
+import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
+
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
+
+import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
+
 import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactory;
+
+import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+
+import org.eclipse.emf.common.command.AbstractCommand;
+
+import org.eclipse.emf.common.ui.viewer.ColumnViewerInformationControlToolTipSupport;
+
+import org.eclipse.emf.edit.ui.provider.DecoratingColumLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
+import org.eclipse.emf.edit.ui.provider.DiagnosticDecorator;
+
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+
+import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
+
+import pamtram.presentation.PamtramEditorPlugin;
+
+import pamtram.provider.PamtramItemProviderAdapterFactory;
+
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
+
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
+
 /**
- * This is an example of a Condition model editor.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is an example of a Constraint model editor.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class ConditionEditor extends MultiPageEditorPart
-		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
-
+public class ConstraintEditor
+	extends MultiPageEditorPart
+	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model.
 	 * <!-- begin-user-doc -->
@@ -139,37 +185,41 @@ public class ConditionEditor extends MultiPageEditorPart
 	protected AdapterFactoryEditingDomain editingDomain;
 
 	/**
-	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This is the one adapter factory used for providing views of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
 	/**
 	 * This is the content outline page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IContentOutlinePage contentOutlinePage;
 
 	/**
 	 * This is a kludge...
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected IStatusLineManager contentOutlineStatusLineManager;
 
 	/**
 	 * This is the content outline page's viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer contentOutlineViewer;
 
 	/**
 	 * This is the property sheet page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected List<PropertySheetPage> propertySheetPages = new ArrayList<PropertySheetPage>();
@@ -177,35 +227,40 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * This is the viewer that shadows the selection in the content outline.
 	 * The parent relation must be correctly defined for this to work.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected TreeViewer selectionViewer;
 
 	/**
 	 * This keeps track of the active content viewer, which may be either one of the viewers in the pages or the content outline viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Viewer currentViewer;
 
 	/**
 	 * This listens to which ever viewer is active.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ISelectionChangedListener selectionChangedListener;
 
 	/**
 	 * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are listening to this editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
 
 	/**
 	 * This keeps track of the selection of the editor as a whole.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ISelection editorSelection = StructuredSelection.EMPTY;
@@ -213,32 +268,35 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * The MarkerHelper is responsible for creating workspace resource markers presented
 	 * in Eclipse's Problems View.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
 	/**
 	 * This listens for when the outline becomes active
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IPartListener partListener = new IPartListener() {
+	protected IPartListener partListener =
+		new IPartListener() {
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(ConditionEditor.this);
+						getActionBarContributor().setActiveEditor(ConstraintEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(ConditionEditor.this);
+						getActionBarContributor().setActiveEditor(ConstraintEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == ConditionEditor.this) {
+				else if (p == ConstraintEditor.this) {
 					handleActivate();
 				}
 			}
@@ -258,46 +316,52 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * Resources that have been removed since last activation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
 	/**
 	 * Resources that have been changed since last activation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> changedResources = new ArrayList<Resource>();
 
 	/**
 	 * Resources that have been saved.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
 	/**
 	 * Map to store the diagnostic associated with a resource.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 	/**
 	 * Controls whether the problem indication should be updated.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean updateProblemIndication = true;
 
 	/**
 	 * Adapter used to update the problem indication when resources are demanded loaded.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
+	protected EContentAdapter problemIndicationAdapter =
+		new EContentAdapter() {
 			@Override
 			public void notifyChanged(Notification notification) {
 				if (notification.getNotifier() instanceof Resource) {
@@ -353,10 +417,12 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This listens for workspace changes.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
+	protected IResourceChangeListener resourceChangeListener =
+		new IResourceChangeListener() {
 			public void resourceChanged(IResourceChangeEvent event) {
 				IResourceDelta delta = event.getDelta();
 				try {
@@ -410,7 +476,7 @@ public class ConditionEditor extends MultiPageEditorPart
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(ConditionEditor.this, false);
+										 getSite().getPage().closeEditor(ConstraintEditor.this, false);
 									 }
 								 }
 							 });
@@ -421,7 +487,7 @@ public class ConditionEditor extends MultiPageEditorPart
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == ConditionEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == ConstraintEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -436,7 +502,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * Handles activation of the editor or it's associated views.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void handleActivate() {
@@ -452,7 +519,7 @@ public class ConditionEditor extends MultiPageEditorPart
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(ConditionEditor.this, false);
+				getSite().getPage().closeEditor(ConstraintEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -470,7 +537,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * Handles what to do with changed resources on activation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void handleChangedResources() {
@@ -506,8 +574,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * Updates the problems indication with the information described in the specified diagnostic.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void updateProblemIndication() {
@@ -562,9 +630,9 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * Shows a dialog that asks if conflicting changes should be discarded. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * Shows a dialog that asks if conflicting changes should be discarded.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean handleDirtyConflict() {
@@ -577,17 +645,19 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This creates a model editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionEditor() {
+	public ConstraintEditor() {
 		super();
 		initializeEditingDomain();
 	}
 
 	/**
 	 * This sets up the editing domain for the model editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void initializeEditingDomain() {
@@ -657,17 +727,19 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is here for the listener to be able to call it.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
+			@Override
 	protected void firePropertyChange(int action) {
 		super.firePropertyChange(action);
 	}
 
 	/**
 	 * This sets the selection into whichever viewer is active.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSelectionToViewer(Collection<?> collection) {
@@ -693,22 +765,23 @@ public class ConditionEditor extends MultiPageEditorPart
 	 * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
 	 * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
 	 * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public class ReverseAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
-
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
@@ -716,7 +789,8 @@ public class ConditionEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -726,7 +800,8 @@ public class ConditionEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -736,7 +811,8 @@ public class ConditionEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -746,7 +822,8 @@ public class ConditionEditor extends MultiPageEditorPart
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		@Override
@@ -758,7 +835,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * This makes sure that one content viewer, either for the current page or the outline view, if it has focus,
 	 * is the current one.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCurrentViewer(Viewer viewer) {
@@ -802,19 +880,18 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This returns the viewer as required by the {@link IViewerProvider} interface.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public Viewer getViewer() {
 		return currentViewer;
 	}
 
 	/**
-	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
@@ -834,7 +911,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is the method called to load a resource into the editing domain's resource set based on the editor's input.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createModel() {
@@ -861,7 +939,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * Returns a diagnostic describing the errors and warnings listed in the resource
 	 * and the specified exception (if any).
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Diagnostic analyzeResourceProblems(Resource resource, Exception exception) {
@@ -892,9 +971,9 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This is the method used by the framework to install your own controls. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This is the method used by the framework to install your own controls.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -957,9 +1036,10 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * If there is just one page in the multi-page editor part, this hides the single tab at the bottom. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * If there is just one page in the multi-page editor part,
+	 * this hides the single tab at the bottom.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void hideTabs() {
@@ -974,9 +1054,10 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * If there is more than one page in the multi-page editor part, this shows the tabs at the bottom. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * If there is more than one page in the multi-page editor part,
+	 * this shows the tabs at the bottom.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void showTabs() {
@@ -992,7 +1073,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is used to track the active viewer.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1006,7 +1088,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is how the framework determines which interfaces we implement.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("rawtypes")
@@ -1028,7 +1111,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This accesses a cached version of the content outliner.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IContentOutlinePage getContentOutlinePage() {
@@ -1093,7 +1177,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This accesses a cached version of the property sheet.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IPropertySheetPage getPropertySheetPage() {
@@ -1101,8 +1186,8 @@ public class ConditionEditor extends MultiPageEditorPart
 			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.LIVE, PamtramEditorPlugin.getPlugin().getDialogSettings()) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					ConditionEditor.this.setSelectionToViewer(selection);
-					ConditionEditor.this.setFocus();
+					ConstraintEditor.this.setSelectionToViewer(selection);
+					ConstraintEditor.this.setFocus();
 				}
 
 				@Override
@@ -1119,8 +1204,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This deals with how we want selection in the outliner to affect the other views.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void handleContentOutlineSelection(ISelection selection) {
@@ -1146,8 +1231,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is for implementing {@link IEditorPart} and simply tests the command stack.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1157,8 +1242,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1221,8 +1306,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * This returns whether something has been persisted to the URI of the specified resource.
 	 * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean isPersisted(Resource resource) {
@@ -1242,7 +1327,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This always returns true because it is not currently supported.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1252,7 +1338,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This also changes the editor's input.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1269,7 +1356,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
@@ -1284,10 +1372,10 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void gotoMarker(IMarker marker) {
 		List<?> targetObjects = markerHelper.getTargetObjects(editingDomain, marker);
 		if (!targetObjects.isEmpty()) {
@@ -1297,7 +1385,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This is called during startup.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1311,7 +1400,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1320,33 +1410,31 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void addSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionChangedListeners.add(listener);
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void removeSelectionChangedListener(ISelectionChangedListener listener) {
 		selectionChangedListeners.remove(listener);
 	}
 
 	/**
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's overall selection.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ISelection getSelection() {
 		return editorSelection;
 	}
@@ -1354,10 +1442,10 @@ public class ConditionEditor extends MultiPageEditorPart
 	/**
 	 * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's overall selection.
 	 * Calling this result will notify the listeners.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setSelection(ISelection selection) {
 		editorSelection = selection;
 
@@ -1368,7 +1456,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setStatusLineManager(ISelection selection) {
@@ -1402,7 +1491,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This looks up a string in the plugin's plugin.properties file.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static String getString(String key) {
@@ -1411,7 +1501,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This looks up a string in plugin.properties, making a substitution.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
@@ -1420,16 +1511,17 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus with contributions from the Edit menu.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EditingDomainActionBarContributor getActionBarContributor() {
@@ -1437,7 +1529,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IActionBars getActionBars() {
@@ -1445,7 +1538,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AdapterFactory getAdapterFactory() {
@@ -1453,7 +1547,8 @@ public class ConditionEditor extends MultiPageEditorPart
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -1483,7 +1578,8 @@ public class ConditionEditor extends MultiPageEditorPart
 
 	/**
 	 * Returns whether the outline view should be presented to the user.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected boolean showOutlineView() {

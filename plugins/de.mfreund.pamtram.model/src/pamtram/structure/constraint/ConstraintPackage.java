@@ -70,7 +70,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraint()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT = 1;
+	int VALUE_CONSTRAINT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -243,7 +243,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getCaseSensitiveConstraint()
 	 * @generated
 	 */
-	int CASE_SENSITIVE_CONSTRAINT = 6;
+	int CASE_SENSITIVE_CONSTRAINT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -372,14 +372,14 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityMatcher()
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityConstraint()
 	 * @generated
 	 */
-	int EQUALITY_MATCHER = 0;
+	int EQUALITY_CONSTRAINT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -388,7 +388,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
+	int EQUALITY_CONSTRAINT__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -397,7 +397,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+	int EQUALITY_CONSTRAINT__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -406,7 +406,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+	int EQUALITY_CONSTRAINT__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -415,7 +415,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
+	int EQUALITY_CONSTRAINT__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -424,7 +424,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int EQUALITY_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -433,7 +433,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
+	int EQUALITY_CONSTRAINT__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -442,16 +442,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
+	int EQUALITY_CONSTRAINT__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
 
 	/**
-	 * The number of structural features of the '<em>Equality Matcher</em>' class.
+	 * The number of structural features of the '<em>Equality Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+	int EQUALITY_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -460,7 +460,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int EQUALITY_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
@@ -469,7 +469,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
@@ -478,7 +478,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int EQUALITY_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
@@ -487,7 +487,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int EQUALITY_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Is Local Constraint</em>' operation.
@@ -496,26 +496,26 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+	int EQUALITY_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
-	 * The number of operations of the '<em>Equality Matcher</em>' class.
+	 * The number of operations of the '<em>Equality Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+	int EQUALITY_CONSTRAINT_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.constraint.impl.SubstringConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringMatcher()
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringConstraint()
 	 * @generated
 	 */
-	int SUBSTRING_MATCHER = 2;
+	int SUBSTRING_CONSTRAINT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -524,7 +524,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
+	int SUBSTRING_CONSTRAINT__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -533,7 +533,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+	int SUBSTRING_CONSTRAINT__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -542,7 +542,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+	int SUBSTRING_CONSTRAINT__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -551,7 +551,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
+	int SUBSTRING_CONSTRAINT__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -560,7 +560,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int SUBSTRING_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -569,7 +569,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
+	int SUBSTRING_CONSTRAINT__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -578,16 +578,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
+	int SUBSTRING_CONSTRAINT__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
 
 	/**
-	 * The number of structural features of the '<em>Substring Matcher</em>' class.
+	 * The number of structural features of the '<em>Substring Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+	int SUBSTRING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -596,7 +596,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int SUBSTRING_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
@@ -605,7 +605,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int SUBSTRING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
@@ -614,7 +614,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int SUBSTRING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
@@ -623,7 +623,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int SUBSTRING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Is Local Constraint</em>' operation.
@@ -632,26 +632,26 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+	int SUBSTRING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
-	 * The number of operations of the '<em>Substring Matcher</em>' class.
+	 * The number of operations of the '<em>Substring Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSTRING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+	int SUBSTRING_CONSTRAINT_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.constraint.impl.BeginningConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningMatcher()
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningConstraint()
 	 * @generated
 	 */
-	int BEGINNING_MATCHER = 3;
+	int BEGINNING_CONSTRAINT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -660,7 +660,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
+	int BEGINNING_CONSTRAINT__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -669,7 +669,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+	int BEGINNING_CONSTRAINT__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -678,7 +678,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+	int BEGINNING_CONSTRAINT__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -687,7 +687,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
+	int BEGINNING_CONSTRAINT__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -696,7 +696,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int BEGINNING_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -705,7 +705,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
+	int BEGINNING_CONSTRAINT__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -714,16 +714,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
+	int BEGINNING_CONSTRAINT__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
 
 	/**
-	 * The number of structural features of the '<em>Beginning Matcher</em>' class.
+	 * The number of structural features of the '<em>Beginning Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+	int BEGINNING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -732,7 +732,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int BEGINNING_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
@@ -741,7 +741,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int BEGINNING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
@@ -750,7 +750,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int BEGINNING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
@@ -759,7 +759,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int BEGINNING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Is Local Constraint</em>' operation.
@@ -768,26 +768,26 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+	int BEGINNING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
-	 * The number of operations of the '<em>Beginning Matcher</em>' class.
+	 * The number of operations of the '<em>Beginning Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEGINNING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+	int BEGINNING_CONSTRAINT_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.constraint.impl.EndingConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingMatcher()
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingConstraint()
 	 * @generated
 	 */
-	int ENDING_MATCHER = 4;
+	int ENDING_CONSTRAINT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -796,7 +796,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
+	int ENDING_CONSTRAINT__NAME = CASE_SENSITIVE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -805,7 +805,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
+	int ENDING_CONSTRAINT__TYPE = CASE_SENSITIVE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -814,7 +814,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
+	int ENDING_CONSTRAINT__EXPRESSION = CASE_SENSITIVE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -823,7 +823,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
+	int ENDING_CONSTRAINT__RESULT_MODIFIER = CASE_SENSITIVE_CONSTRAINT__RESULT_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -832,7 +832,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int ENDING_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = CASE_SENSITIVE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -841,7 +841,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
+	int ENDING_CONSTRAINT__SOURCE_ELEMENTS = CASE_SENSITIVE_CONSTRAINT__SOURCE_ELEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Case Sensitive</b></em>' attribute.
@@ -850,16 +850,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
+	int ENDING_CONSTRAINT__CASE_SENSITIVE = CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE;
 
 	/**
-	 * The number of structural features of the '<em>Ending Matcher</em>' class.
+	 * The number of structural features of the '<em>Ending Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
+	int ENDING_CONSTRAINT_FEATURE_COUNT = CASE_SENSITIVE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -868,7 +868,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int ENDING_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = CASE_SENSITIVE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
@@ -877,7 +877,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int ENDING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
@@ -886,7 +886,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int ENDING_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
@@ -895,7 +895,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int ENDING_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = CASE_SENSITIVE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Is Local Constraint</em>' operation.
@@ -904,26 +904,26 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+	int ENDING_CONSTRAINT___IS_LOCAL_CONSTRAINT = CASE_SENSITIVE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
-	 * The number of operations of the '<em>Ending Matcher</em>' class.
+	 * The number of operations of the '<em>Ending Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENDING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
+	int ENDING_CONSTRAINT_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.constraint.impl.RegExConstraintImpl
-	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExMatcher()
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExConstraint()
 	 * @generated
 	 */
-	int REG_EX_MATCHER = 5;
+	int REG_EX_CONSTRAINT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -932,7 +932,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__NAME = SINGLE_REFERENCE_VALUE_CONSTRAINT__NAME;
+	int REG_EX_CONSTRAINT__NAME = SINGLE_REFERENCE_VALUE_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -941,7 +941,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE;
+	int REG_EX_CONSTRAINT__TYPE = SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -950,7 +950,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__EXPRESSION = SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
+	int REG_EX_CONSTRAINT__EXPRESSION = SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -959,7 +959,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__RESULT_MODIFIER = SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+	int REG_EX_CONSTRAINT__RESULT_MODIFIER = SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
@@ -968,7 +968,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int REG_EX_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -977,16 +977,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+	int REG_EX_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Reg Ex Matcher</em>' class.
+	 * The number of structural features of the '<em>Reg Ex Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
+	int REG_EX_CONSTRAINT_FEATURE_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Check Constraint</em>' operation.
@@ -995,7 +995,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
+	int REG_EX_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING = SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values In Source Sections</em>' operation.
@@ -1004,7 +1004,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int REG_EX_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Only Fixed Values Or Global Attributes In Condition Model</em>' operation.
@@ -1013,7 +1013,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int REG_EX_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Result Modifier In Source Sections</em>' operation.
@@ -1022,7 +1022,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
+	int REG_EX_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP = SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Is Local Constraint</em>' operation.
@@ -1031,16 +1031,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
+	int REG_EX_CONSTRAINT___IS_LOCAL_CONSTRAINT = SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
-	 * The number of operations of the '<em>Reg Ex Matcher</em>' class.
+	 * The number of operations of the '<em>Reg Ex Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EX_MATCHER_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+	int REG_EX_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.MultipleReferencesValueConstraintImpl <em>Multiple References Value Constraint</em>}' class.
@@ -1510,16 +1510,6 @@ public interface ConstraintPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Equality Matcher</em>'.
-	 * @see pamtram.structure.constraint.EqualityConstraint
-	 * @generated
-	 */
-	EClass getEqualityMatcher();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1541,46 +1531,6 @@ public interface ConstraintPackage extends EPackage {
 	EAttribute getValueConstraint_Type();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Substring Matcher</em>'.
-	 * @see pamtram.structure.constraint.SubstringConstraint
-	 * @generated
-	 */
-	EClass getSubstringMatcher();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Beginning Matcher</em>'.
-	 * @see pamtram.structure.constraint.BeginningConstraint
-	 * @generated
-	 */
-	EClass getBeginningMatcher();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Ending Matcher</em>'.
-	 * @see pamtram.structure.constraint.EndingConstraint
-	 * @generated
-	 */
-	EClass getEndingMatcher();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Reg Ex Matcher</em>'.
-	 * @see pamtram.structure.constraint.RegExConstraint
-	 * @generated
-	 */
-	EClass getRegExMatcher();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1600,6 +1550,56 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCaseSensitiveConstraint_CaseSensitive();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Equality Constraint</em>'.
+	 * @see pamtram.structure.constraint.EqualityConstraint
+	 * @generated
+	 */
+	EClass getEqualityConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Substring Constraint</em>'.
+	 * @see pamtram.structure.constraint.SubstringConstraint
+	 * @generated
+	 */
+	EClass getSubstringConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Beginning Constraint</em>'.
+	 * @see pamtram.structure.constraint.BeginningConstraint
+	 * @generated
+	 */
+	EClass getBeginningConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ending Constraint</em>'.
+	 * @see pamtram.structure.constraint.EndingConstraint
+	 * @generated
+	 */
+	EClass getEndingConstraint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Reg Ex Constraint</em>'.
+	 * @see pamtram.structure.constraint.RegExConstraint
+	 * @generated
+	 */
+	EClass getRegExConstraint();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.RangeConstraint <em>Range Constraint</em>}'.
@@ -1872,16 +1872,6 @@ public interface ConstraintPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
-		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityMatcher()
-		 * @generated
-		 */
-		EClass EQUALITY_MATCHER = eINSTANCE.getEqualityMatcher();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1900,46 +1890,6 @@ public interface ConstraintPackage extends EPackage {
 		EAttribute VALUE_CONSTRAINT__TYPE = eINSTANCE.getValueConstraint_Type();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.SubstringConstraintImpl
-		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringMatcher()
-		 * @generated
-		 */
-		EClass SUBSTRING_MATCHER = eINSTANCE.getSubstringMatcher();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.BeginningConstraintImpl
-		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningMatcher()
-		 * @generated
-		 */
-		EClass BEGINNING_MATCHER = eINSTANCE.getBeginningMatcher();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.EndingConstraintImpl
-		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingMatcher()
-		 * @generated
-		 */
-		EClass ENDING_MATCHER = eINSTANCE.getEndingMatcher();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.RegExConstraintImpl
-		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExMatcher()
-		 * @generated
-		 */
-		EClass REG_EX_MATCHER = eINSTANCE.getRegExMatcher();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1956,6 +1906,56 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE = eINSTANCE.getCaseSensitiveConstraint_CaseSensitive();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityConstraint()
+		 * @generated
+		 */
+		EClass EQUALITY_CONSTRAINT = eINSTANCE.getEqualityConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.SubstringConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringConstraint()
+		 * @generated
+		 */
+		EClass SUBSTRING_CONSTRAINT = eINSTANCE.getSubstringConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.BeginningConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningConstraint()
+		 * @generated
+		 */
+		EClass BEGINNING_CONSTRAINT = eINSTANCE.getBeginningConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.EndingConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingConstraint()
+		 * @generated
+		 */
+		EClass ENDING_CONSTRAINT = eINSTANCE.getEndingConstraint();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.RegExConstraintImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExConstraint()
+		 * @generated
+		 */
+		EClass REG_EX_CONSTRAINT = eINSTANCE.getRegExConstraint();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RangeConstraintImpl <em>Range Constraint</em>}' class.

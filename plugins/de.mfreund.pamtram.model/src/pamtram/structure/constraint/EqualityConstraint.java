@@ -8,7 +8,7 @@ package pamtram.structure.constraint;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.constraint.ConstraintPackage#getEqualityMatcher()
+ * @see pamtram.structure.constraint.ConstraintPackage#getEqualityConstraint()
  * @model
  * @generated
  */

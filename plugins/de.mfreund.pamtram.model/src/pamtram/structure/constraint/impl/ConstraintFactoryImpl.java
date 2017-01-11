@@ -57,11 +57,11 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ConstraintPackage.EQUALITY_MATCHER: return createEqualityMatcher();
-			case ConstraintPackage.SUBSTRING_MATCHER: return createSubstringMatcher();
-			case ConstraintPackage.BEGINNING_MATCHER: return createBeginningMatcher();
-			case ConstraintPackage.ENDING_MATCHER: return createEndingMatcher();
-			case ConstraintPackage.REG_EX_MATCHER: return createRegExMatcher();
+			case ConstraintPackage.EQUALITY_CONSTRAINT: return createEqualityConstraint();
+			case ConstraintPackage.SUBSTRING_CONSTRAINT: return createSubstringConstraint();
+			case ConstraintPackage.BEGINNING_CONSTRAINT: return createBeginningConstraint();
+			case ConstraintPackage.ENDING_CONSTRAINT: return createEndingConstraint();
+			case ConstraintPackage.REG_EX_CONSTRAINT: return createRegExConstraint();
 			case ConstraintPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
@@ -106,9 +106,9 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EqualityConstraint createEqualityMatcher() {
-		EqualityConstraintImpl equalityMatcher = new EqualityConstraintImpl();
-		return equalityMatcher;
+	public EqualityConstraint createEqualityConstraint() {
+		EqualityConstraintImpl equalityConstraint = new EqualityConstraintImpl();
+		return equalityConstraint;
 	}
 
 	/**
@@ -116,9 +116,9 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubstringConstraint createSubstringMatcher() {
-		SubstringConstraintImpl substringMatcher = new SubstringConstraintImpl();
-		return substringMatcher;
+	public SubstringConstraint createSubstringConstraint() {
+		SubstringConstraintImpl substringConstraint = new SubstringConstraintImpl();
+		return substringConstraint;
 	}
 
 	/**
@@ -126,9 +126,9 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BeginningConstraint createBeginningMatcher() {
-		BeginningConstraintImpl beginningMatcher = new BeginningConstraintImpl();
-		return beginningMatcher;
+	public BeginningConstraint createBeginningConstraint() {
+		BeginningConstraintImpl beginningConstraint = new BeginningConstraintImpl();
+		return beginningConstraint;
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EndingConstraint createEndingMatcher() {
-		EndingConstraintImpl endingMatcher = new EndingConstraintImpl();
-		return endingMatcher;
+	public EndingConstraint createEndingConstraint() {
+		EndingConstraintImpl endingConstraint = new EndingConstraintImpl();
+		return endingConstraint;
 	}
 
 	/**
@@ -146,9 +146,9 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegExConstraint createRegExMatcher() {
-		RegExConstraintImpl regExMatcher = new RegExConstraintImpl();
-		return regExMatcher;
+	public RegExConstraint createRegExConstraint() {
+		RegExConstraintImpl regExConstraint = new RegExConstraintImpl();
+		return regExConstraint;
 	}
 
 	/**

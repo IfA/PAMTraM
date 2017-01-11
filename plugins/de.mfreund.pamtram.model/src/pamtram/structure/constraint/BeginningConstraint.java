@@ -8,7 +8,7 @@ package pamtram.structure.constraint;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.constraint.ConstraintPackage#getBeginningMatcher()
+ * @see pamtram.structure.constraint.ConstraintPackage#getBeginningConstraint()
  * @model
  * @generated
  */

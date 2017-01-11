@@ -81,32 +81,32 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	protected ConstraintSwitch<Adapter> modelSwitch =
 		new ConstraintSwitch<Adapter>() {
 			@Override
-			public Adapter caseEqualityMatcher(EqualityConstraint object) {
-				return createEqualityMatcherAdapter();
-			}
-			@Override
 			public Adapter caseValueConstraint(ValueConstraint object) {
 				return createValueConstraintAdapter();
 			}
 			@Override
-			public Adapter caseSubstringMatcher(SubstringConstraint object) {
-				return createSubstringMatcherAdapter();
-			}
-			@Override
-			public Adapter caseBeginningMatcher(BeginningConstraint object) {
-				return createBeginningMatcherAdapter();
-			}
-			@Override
-			public Adapter caseEndingMatcher(EndingConstraint object) {
-				return createEndingMatcherAdapter();
-			}
-			@Override
-			public Adapter caseRegExMatcher(RegExConstraint object) {
-				return createRegExMatcherAdapter();
-			}
-			@Override
 			public Adapter caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
 				return createCaseSensitiveConstraintAdapter();
+			}
+			@Override
+			public Adapter caseEqualityConstraint(EqualityConstraint object) {
+				return createEqualityConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSubstringConstraint(SubstringConstraint object) {
+				return createSubstringConstraintAdapter();
+			}
+			@Override
+			public Adapter caseBeginningConstraint(BeginningConstraint object) {
+				return createBeginningConstraintAdapter();
+			}
+			@Override
+			public Adapter caseEndingConstraint(EndingConstraint object) {
+				return createEndingConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRegExConstraint(RegExConstraint object) {
+				return createRegExConstraintAdapter();
 			}
 			@Override
 			public Adapter caseRangeConstraint(RangeConstraint object) {
@@ -185,20 +185,6 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.EqualityConstraint
-	 * @generated
-	 */
-	public Adapter createEqualityMatcherAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -213,62 +199,6 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.SubstringConstraint
-	 * @generated
-	 */
-	public Adapter createSubstringMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.BeginningConstraint
-	 * @generated
-	 */
-	public Adapter createBeginningMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.EndingConstraint
-	 * @generated
-	 */
-	public Adapter createEndingMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.RegExConstraint
-	 * @generated
-	 */
-	public Adapter createRegExMatcherAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -279,6 +209,76 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCaseSensitiveConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.EqualityConstraint
+	 * @generated
+	 */
+	public Adapter createEqualityConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.SubstringConstraint
+	 * @generated
+	 */
+	public Adapter createSubstringConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.BeginningConstraint
+	 * @generated
+	 */
+	public Adapter createBeginningConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.EndingConstraint
+	 * @generated
+	 */
+	public Adapter createEndingConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.RegExConstraint
+	 * @generated
+	 */
+	public Adapter createRegExConstraintAdapter() {
 		return null;
 	}
 

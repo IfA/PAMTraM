@@ -57,7 +57,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConstraintPackage.Literals.BEGINNING_MATCHER;
+		return ConstraintPackage.Literals.BEGINNING_CONSTRAINT;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -115,7 +115,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -129,7 +129,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -143,7 +143,7 @@ public class BeginningConstraintImpl extends SingleReferenceValueConstraintImpl 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.BEGINNING_CONSTRAINT__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

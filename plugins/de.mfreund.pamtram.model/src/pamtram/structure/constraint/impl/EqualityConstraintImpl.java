@@ -57,7 +57,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConstraintPackage.Literals.EQUALITY_MATCHER;
+		return ConstraintPackage.Literals.EQUALITY_CONSTRAINT;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -131,7 +131,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -145,7 +145,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -159,7 +159,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);

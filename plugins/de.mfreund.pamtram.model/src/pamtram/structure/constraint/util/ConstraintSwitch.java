@@ -79,69 +79,10 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ConstraintPackage.EQUALITY_MATCHER: {
-				EqualityConstraint equalityMatcher = (EqualityConstraint)theEObject;
-				T result = caseEqualityMatcher(equalityMatcher);
-				if (result == null) result = caseCaseSensitiveConstraint(equalityMatcher);
-				if (result == null) result = caseSingleReferenceValueConstraint(equalityMatcher);
-				if (result == null) result = caseValueConstraint(equalityMatcher);
-				if (result == null) result = caseExpressionHint(equalityMatcher);
-				if (result == null) result = caseModifiableHint(equalityMatcher);
-				if (result == null) result = caseNamedElement(equalityMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConstraintPackage.VALUE_CONSTRAINT: {
 				ValueConstraint valueConstraint = (ValueConstraint)theEObject;
 				T result = caseValueConstraint(valueConstraint);
 				if (result == null) result = caseNamedElement(valueConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.SUBSTRING_MATCHER: {
-				SubstringConstraint substringMatcher = (SubstringConstraint)theEObject;
-				T result = caseSubstringMatcher(substringMatcher);
-				if (result == null) result = caseCaseSensitiveConstraint(substringMatcher);
-				if (result == null) result = caseSingleReferenceValueConstraint(substringMatcher);
-				if (result == null) result = caseValueConstraint(substringMatcher);
-				if (result == null) result = caseExpressionHint(substringMatcher);
-				if (result == null) result = caseModifiableHint(substringMatcher);
-				if (result == null) result = caseNamedElement(substringMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.BEGINNING_MATCHER: {
-				BeginningConstraint beginningMatcher = (BeginningConstraint)theEObject;
-				T result = caseBeginningMatcher(beginningMatcher);
-				if (result == null) result = caseCaseSensitiveConstraint(beginningMatcher);
-				if (result == null) result = caseSingleReferenceValueConstraint(beginningMatcher);
-				if (result == null) result = caseValueConstraint(beginningMatcher);
-				if (result == null) result = caseExpressionHint(beginningMatcher);
-				if (result == null) result = caseModifiableHint(beginningMatcher);
-				if (result == null) result = caseNamedElement(beginningMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.ENDING_MATCHER: {
-				EndingConstraint endingMatcher = (EndingConstraint)theEObject;
-				T result = caseEndingMatcher(endingMatcher);
-				if (result == null) result = caseCaseSensitiveConstraint(endingMatcher);
-				if (result == null) result = caseSingleReferenceValueConstraint(endingMatcher);
-				if (result == null) result = caseValueConstraint(endingMatcher);
-				if (result == null) result = caseExpressionHint(endingMatcher);
-				if (result == null) result = caseModifiableHint(endingMatcher);
-				if (result == null) result = caseNamedElement(endingMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConstraintPackage.REG_EX_MATCHER: {
-				RegExConstraint regExMatcher = (RegExConstraint)theEObject;
-				T result = caseRegExMatcher(regExMatcher);
-				if (result == null) result = caseSingleReferenceValueConstraint(regExMatcher);
-				if (result == null) result = caseValueConstraint(regExMatcher);
-				if (result == null) result = caseExpressionHint(regExMatcher);
-				if (result == null) result = caseModifiableHint(regExMatcher);
-				if (result == null) result = caseNamedElement(regExMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,6 +94,65 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExpressionHint(caseSensitiveConstraint);
 				if (result == null) result = caseModifiableHint(caseSensitiveConstraint);
 				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.EQUALITY_CONSTRAINT: {
+				EqualityConstraint equalityConstraint = (EqualityConstraint)theEObject;
+				T result = caseEqualityConstraint(equalityConstraint);
+				if (result == null) result = caseCaseSensitiveConstraint(equalityConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(equalityConstraint);
+				if (result == null) result = caseValueConstraint(equalityConstraint);
+				if (result == null) result = caseExpressionHint(equalityConstraint);
+				if (result == null) result = caseModifiableHint(equalityConstraint);
+				if (result == null) result = caseNamedElement(equalityConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.SUBSTRING_CONSTRAINT: {
+				SubstringConstraint substringConstraint = (SubstringConstraint)theEObject;
+				T result = caseSubstringConstraint(substringConstraint);
+				if (result == null) result = caseCaseSensitiveConstraint(substringConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(substringConstraint);
+				if (result == null) result = caseValueConstraint(substringConstraint);
+				if (result == null) result = caseExpressionHint(substringConstraint);
+				if (result == null) result = caseModifiableHint(substringConstraint);
+				if (result == null) result = caseNamedElement(substringConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.BEGINNING_CONSTRAINT: {
+				BeginningConstraint beginningConstraint = (BeginningConstraint)theEObject;
+				T result = caseBeginningConstraint(beginningConstraint);
+				if (result == null) result = caseCaseSensitiveConstraint(beginningConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(beginningConstraint);
+				if (result == null) result = caseValueConstraint(beginningConstraint);
+				if (result == null) result = caseExpressionHint(beginningConstraint);
+				if (result == null) result = caseModifiableHint(beginningConstraint);
+				if (result == null) result = caseNamedElement(beginningConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.ENDING_CONSTRAINT: {
+				EndingConstraint endingConstraint = (EndingConstraint)theEObject;
+				T result = caseEndingConstraint(endingConstraint);
+				if (result == null) result = caseCaseSensitiveConstraint(endingConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(endingConstraint);
+				if (result == null) result = caseValueConstraint(endingConstraint);
+				if (result == null) result = caseExpressionHint(endingConstraint);
+				if (result == null) result = caseModifiableHint(endingConstraint);
+				if (result == null) result = caseNamedElement(endingConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.REG_EX_CONSTRAINT: {
+				RegExConstraint regExConstraint = (RegExConstraint)theEObject;
+				T result = caseRegExConstraint(regExConstraint);
+				if (result == null) result = caseSingleReferenceValueConstraint(regExConstraint);
+				if (result == null) result = caseValueConstraint(regExConstraint);
+				if (result == null) result = caseExpressionHint(regExConstraint);
+				if (result == null) result = caseModifiableHint(regExConstraint);
+				if (result == null) result = caseNamedElement(regExConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -226,21 +226,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Equality Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Equality Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEqualityMatcher(EqualityConstraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -256,66 +241,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Substring Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Substring Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubstringMatcher(SubstringConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Beginning Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Beginning Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBeginningMatcher(BeginningConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ending Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ending Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEndingMatcher(EndingConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reg Ex Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reg Ex Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRegExMatcher(RegExConstraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Case Sensitive Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -327,6 +252,81 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Equality Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Equality Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEqualityConstraint(EqualityConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Substring Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Substring Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubstringConstraint(SubstringConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Beginning Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Beginning Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBeginningConstraint(BeginningConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ending Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ending Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEndingConstraint(EndingConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reg Ex Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reg Ex Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRegExConstraint(RegExConstraint object) {
 		return null;
 	}
 

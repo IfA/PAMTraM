@@ -29,7 +29,7 @@ public class RegExConstraintImpl extends SingleReferenceValueConstraintImpl impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConstraintPackage.Literals.REG_EX_MATCHER;
+		return ConstraintPackage.Literals.REG_EX_CONSTRAINT;
 	}
 
 	@Override

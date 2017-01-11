@@ -67,13 +67,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass equalityMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass valueConstraintEClass = null;
 
 	/**
@@ -81,35 +74,42 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass substringMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass beginningMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass endingMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass regExMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass caseSensitiveConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass equalityConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass substringConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass beginningConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass endingConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass regExConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -262,15 +262,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEqualityMatcher() {
-		return equalityMatcherEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getValueConstraint() {
 		return valueConstraintEClass;
 	}
@@ -289,42 +280,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubstringMatcher() {
-		return substringMatcherEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBeginningMatcher() {
-		return beginningMatcherEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getEndingMatcher() {
-		return endingMatcherEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRegExMatcher() {
-		return regExMatcherEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCaseSensitiveConstraint() {
 		return caseSensitiveConstraintEClass;
 	}
@@ -336,6 +291,51 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 */
 	public EAttribute getCaseSensitiveConstraint_CaseSensitive() {
 		return (EAttribute)caseSensitiveConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEqualityConstraint() {
+		return equalityConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSubstringConstraint() {
+		return substringConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBeginningConstraint() {
+		return beginningConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEndingConstraint() {
+		return endingConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRegExConstraint() {
+		return regExConstraintEClass;
 	}
 
 	/**
@@ -582,21 +582,21 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		isCreated = true;
 
 		// Create classes and their features
-		equalityMatcherEClass = createEClass(EQUALITY_MATCHER);
-
 		valueConstraintEClass = createEClass(VALUE_CONSTRAINT);
 		createEAttribute(valueConstraintEClass, VALUE_CONSTRAINT__TYPE);
 
-		substringMatcherEClass = createEClass(SUBSTRING_MATCHER);
-
-		beginningMatcherEClass = createEClass(BEGINNING_MATCHER);
-
-		endingMatcherEClass = createEClass(ENDING_MATCHER);
-
-		regExMatcherEClass = createEClass(REG_EX_MATCHER);
-
 		caseSensitiveConstraintEClass = createEClass(CASE_SENSITIVE_CONSTRAINT);
 		createEAttribute(caseSensitiveConstraintEClass, CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE);
+
+		equalityConstraintEClass = createEClass(EQUALITY_CONSTRAINT);
+
+		substringConstraintEClass = createEClass(SUBSTRING_CONSTRAINT);
+
+		beginningConstraintEClass = createEClass(BEGINNING_CONSTRAINT);
+
+		endingConstraintEClass = createEClass(ENDING_CONSTRAINT);
+
+		regExConstraintEClass = createEClass(REG_EX_CONSTRAINT);
 
 		rangeConstraintEClass = createEClass(RANGE_CONSTRAINT);
 		createEReference(rangeConstraintEClass, RANGE_CONSTRAINT__UPPER_BOUND);
@@ -665,13 +665,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		equalityMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
 		valueConstraintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		substringMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		beginningMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		endingMatcherEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
-		regExMatcherEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
+		equalityConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
+		substringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
+		beginningConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
+		endingConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
+		regExConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		rangeConstraintEClass.getESuperTypes().add(this.getMultipleReferencesValueConstraint());
 		multipleReferencesValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
@@ -706,21 +706,21 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(equalityMatcherEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(substringMatcherEClass, SubstringConstraint.class, "SubstringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(beginningMatcherEClass, BeginningConstraint.class, "BeginningConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(endingMatcherEClass, EndingConstraint.class, "EndingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(regExMatcherEClass, RegExConstraint.class, "RegExConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(caseSensitiveConstraintEClass, CaseSensitiveConstraint.class, "CaseSensitiveConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(equalityConstraintEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(substringConstraintEClass, SubstringConstraint.class, "SubstringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(beginningConstraintEClass, BeginningConstraint.class, "BeginningConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(endingConstraintEClass, EndingConstraint.class, "EndingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(regExConstraintEClass, RegExConstraint.class, "RegExConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(rangeConstraintEClass, RangeConstraint.class, "RangeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRangeConstraint_UpperBound(), this.getRangeBound(), null, "upperBound", null, 0, 1, RangeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -22,49 +22,49 @@ public interface ConstraintFactory extends EFactory {
 	ConstraintFactory eINSTANCE = pamtram.structure.constraint.impl.ConstraintFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Equality Matcher</em>'.
+	 * Returns a new object of class '<em>Equality Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Equality Matcher</em>'.
+	 * @return a new object of class '<em>Equality Constraint</em>'.
 	 * @generated
 	 */
-	EqualityConstraint createEqualityMatcher();
+	EqualityConstraint createEqualityConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Substring Matcher</em>'.
+	 * Returns a new object of class '<em>Substring Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Substring Matcher</em>'.
+	 * @return a new object of class '<em>Substring Constraint</em>'.
 	 * @generated
 	 */
-	SubstringConstraint createSubstringMatcher();
+	SubstringConstraint createSubstringConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Beginning Matcher</em>'.
+	 * Returns a new object of class '<em>Beginning Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Beginning Matcher</em>'.
+	 * @return a new object of class '<em>Beginning Constraint</em>'.
 	 * @generated
 	 */
-	BeginningConstraint createBeginningMatcher();
+	BeginningConstraint createBeginningConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Ending Matcher</em>'.
+	 * Returns a new object of class '<em>Ending Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ending Matcher</em>'.
+	 * @return a new object of class '<em>Ending Constraint</em>'.
 	 * @generated
 	 */
-	EndingConstraint createEndingMatcher();
+	EndingConstraint createEndingConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Reg Ex Matcher</em>'.
+	 * Returns a new object of class '<em>Reg Ex Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reg Ex Matcher</em>'.
+	 * @return a new object of class '<em>Reg Ex Constraint</em>'.
 	 * @generated
 	 */
-	RegExConstraint createRegExMatcher();
+	RegExConstraint createRegExConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Range Constraint</em>'.

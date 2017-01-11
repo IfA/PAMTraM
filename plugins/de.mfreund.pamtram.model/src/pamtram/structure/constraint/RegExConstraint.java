@@ -8,7 +8,7 @@ package pamtram.structure.constraint;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.constraint.ConstraintPackage#getRegExMatcher()
+ * @see pamtram.structure.constraint.ConstraintPackage#getRegExConstraint()
  * @model
  * @generated
  */

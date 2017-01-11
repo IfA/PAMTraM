@@ -1,0 +1,493 @@
+/**
+ */
+package pamtram.structure.constraint.util;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+
+import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
+import org.eclipse.emf.ecore.EObject;
+
+import pamtram.NamedElement;
+
+import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.mapping.LocalModifiedAttributeElementType;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiedAttributeElementType;
+
+import pamtram.structure.constraint.*;
+
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
+ * @see pamtram.structure.constraint.ConstraintPackage
+ * @generated
+ */
+public class ConstraintAdapterFactory extends AdapterFactoryImpl {
+	/**
+	 * The cached model package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static ConstraintPackage modelPackage;
+
+	/**
+	 * Creates an instance of the adapter factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstraintAdapterFactory() {
+		if (modelPackage == null) {
+			modelPackage = ConstraintPackage.eINSTANCE;
+		}
+	}
+
+	/**
+	 * Returns whether this factory is applicable for the type of the object.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+	 * <!-- end-user-doc -->
+	 * @return whether this factory is applicable for the type of the object.
+	 * @generated
+	 */
+	@Override
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
+			return true;
+		}
+		if (object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
+		}
+		return false;
+	}
+
+	/**
+	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConstraintSwitch<Adapter> modelSwitch =
+		new ConstraintSwitch<Adapter>() {
+			@Override
+			public Adapter caseEqualityMatcher(EqualityMatcher object) {
+				return createEqualityMatcherAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraint(ValueConstraint object) {
+				return createValueConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSubstringMatcher(SubstringMatcher object) {
+				return createSubstringMatcherAdapter();
+			}
+			@Override
+			public Adapter caseBeginningMatcher(BeginningMatcher object) {
+				return createBeginningMatcherAdapter();
+			}
+			@Override
+			public Adapter caseEndingMatcher(EndingMatcher object) {
+				return createEndingMatcherAdapter();
+			}
+			@Override
+			public Adapter caseRegExMatcher(RegExMatcher object) {
+				return createRegExMatcherAdapter();
+			}
+			@Override
+			public Adapter caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
+				return createCaseSensitiveConstraintAdapter();
+			}
+			@Override
+			public Adapter caseRangeConstraint(RangeConstraint object) {
+				return createRangeConstraintAdapter();
+			}
+			@Override
+			public Adapter caseMultipleReferencesValueConstraint(MultipleReferencesValueConstraint object) {
+				return createMultipleReferencesValueConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSingleReferenceValueConstraint(SingleReferenceValueConstraint object) {
+				return createSingleReferenceValueConstraintAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+				return createValueConstraintSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintSourceElement(ValueConstraintSourceElement object) {
+				return createValueConstraintSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement object) {
+				return createValueConstraintExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseRangeBound(RangeBound object) {
+				return createRangeBoundAdapter();
+			}
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseExpressionHint(ExpressionHint object) {
+				return createExpressionHintAdapter();
+			}
+			@Override
+			public Adapter caseModifiableHint(ModifiableHint object) {
+				return createModifiableHintAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+				return createMappingHintSourceInterfaceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+				return createModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+				return createLocalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+				return createExternalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
+
+	/**
+	 * Creates an adapter for the <code>target</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param target the object to adapt.
+	 * @return the adapter for the <code>target</code>.
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdapter(Notifier target) {
+		return modelSwitch.doSwitch((EObject)target);
+	}
+
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityMatcher <em>Equality Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.EqualityMatcher
+	 * @generated
+	 */
+	public Adapter createEqualityMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraint <em>Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraint
+	 * @generated
+	 */
+	public Adapter createValueConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringMatcher <em>Substring Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.SubstringMatcher
+	 * @generated
+	 */
+	public Adapter createSubstringMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningMatcher <em>Beginning Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.BeginningMatcher
+	 * @generated
+	 */
+	public Adapter createBeginningMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingMatcher <em>Ending Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.EndingMatcher
+	 * @generated
+	 */
+	public Adapter createEndingMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExMatcher <em>Reg Ex Matcher</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.RegExMatcher
+	 * @generated
+	 */
+	public Adapter createRegExMatcherAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.CaseSensitiveConstraint
+	 * @generated
+	 */
+	public Adapter createCaseSensitiveConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RangeConstraint <em>Range Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.RangeConstraint
+	 * @generated
+	 */
+	public Adapter createRangeConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.MultipleReferencesValueConstraint <em>Multiple References Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.MultipleReferencesValueConstraint
+	 * @generated
+	 */
+	public Adapter createMultipleReferencesValueConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SingleReferenceValueConstraint <em>Single Reference Value Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint
+	 * @generated
+	 */
+	public Adapter createSingleReferenceValueConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
+	 * @generated
+	 */
+	public Adapter createValueConstraintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceElement <em>Value Constraint Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraintSourceElement
+	 * @generated
+	 */
+	public Adapter createValueConstraintSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintExternalSourceElement <em>Value Constraint External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraintExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createValueConstraintExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RangeBound <em>Range Bound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.RangeBound
+	 * @generated
+	 */
+	public Adapter createRangeBoundAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpressionHint
+	 * @generated
+	 */
+	public Adapter createExpressionHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiableHint
+	 * @generated
+	 */
+	public Adapter createModifiableHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @generated
+	 */
+	public Adapter createMappingHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.LocalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createLocalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
+	 * @generated
+	 */
+	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for the default case.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @generated
+	 */
+	public Adapter createEObjectAdapter() {
+		return null;
+	}
+
+} //ConstraintAdapterFactory

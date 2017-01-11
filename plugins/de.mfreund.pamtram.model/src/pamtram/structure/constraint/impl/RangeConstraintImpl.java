@@ -8,8 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.RangeBound;
 import pamtram.structure.constraint.RangeConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
@@ -51,196 +50,147 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public RangeConstraintImpl() {
+	protected RangeConstraintImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.RANGE_CONSTRAINT;
+		return ConstraintPackage.Literals.RANGE_CONSTRAINT;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public RangeBound getUpperBound() {
-
-		return this.upperBound;
+		return upperBound;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetUpperBound(RangeBound newUpperBound, NotificationChain msgs) {
-
-		RangeBound oldUpperBound = this.upperBound;
-		this.upperBound = newUpperBound;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, oldUpperBound, newUpperBound);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		RangeBound oldUpperBound = upperBound;
+		upperBound = newUpperBound;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND, oldUpperBound, newUpperBound);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setUpperBound(RangeBound newUpperBound) {
-
-		if (newUpperBound != this.upperBound) {
+		if (newUpperBound != upperBound) {
 			NotificationChain msgs = null;
-			if (this.upperBound != null) {
-				msgs = ((InternalEObject) this.upperBound).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, null,
-						msgs);
-			}
-			if (newUpperBound != null) {
-				msgs = ((InternalEObject) newUpperBound).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND, null,
-						msgs);
-			}
-			msgs = this.basicSetUpperBound(newUpperBound, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND,
-					newUpperBound, newUpperBound));
+			if (upperBound != null)
+				msgs = ((InternalEObject)upperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
+			if (newUpperBound != null)
+				msgs = ((InternalEObject)newUpperBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND, null, msgs);
+			msgs = basicSetUpperBound(newUpperBound, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND, newUpperBound, newUpperBound));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public RangeBound getLowerBound() {
-
-		return this.lowerBound;
+		return lowerBound;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLowerBound(RangeBound newLowerBound, NotificationChain msgs) {
-
-		RangeBound oldLowerBound = this.lowerBound;
-		this.lowerBound = newLowerBound;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, oldLowerBound, newLowerBound);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		RangeBound oldLowerBound = lowerBound;
+		lowerBound = newLowerBound;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND, oldLowerBound, newLowerBound);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setLowerBound(RangeBound newLowerBound) {
-
-		if (newLowerBound != this.lowerBound) {
+		if (newLowerBound != lowerBound) {
 			NotificationChain msgs = null;
-			if (this.lowerBound != null) {
-				msgs = ((InternalEObject) this.lowerBound).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, null,
-						msgs);
-			}
-			if (newLowerBound != null) {
-				msgs = ((InternalEObject) newLowerBound).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND, null,
-						msgs);
-			}
-			msgs = this.basicSetLowerBound(newLowerBound, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND,
-					newLowerBound, newLowerBound));
+			if (lowerBound != null)
+				msgs = ((InternalEObject)lowerBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
+			if (newLowerBound != null)
+				msgs = ((InternalEObject)newLowerBound).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND, null, msgs);
+			msgs = basicSetLowerBound(newLowerBound, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND, newLowerBound, newLowerBound));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				return this.basicSetUpperBound(null, msgs);
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				return this.basicSetLowerBound(null, msgs);
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+				return basicSetUpperBound(null, msgs);
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				return basicSetLowerBound(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				return this.getUpperBound();
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				return this.getLowerBound();
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+				return getUpperBound();
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				return getLowerBound();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				this.setUpperBound((RangeBound) newValue);
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+				setUpperBound((RangeBound)newValue);
 				return;
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				this.setLowerBound((RangeBound) newValue);
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				setLowerBound((RangeBound)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -248,18 +198,16 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				this.setUpperBound((RangeBound) null);
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+				setUpperBound((RangeBound)null);
 				return;
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				this.setLowerBound((RangeBound) null);
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				setLowerBound((RangeBound)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -267,17 +215,15 @@ public class RangeConstraintImpl extends MultipleReferencesValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-				return this.upperBound != null;
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
-				return this.lowerBound != null;
+			case ConstraintPackage.RANGE_CONSTRAINT__UPPER_BOUND:
+				return upperBound != null;
+			case ConstraintPackage.RANGE_CONSTRAINT__LOWER_BOUND:
+				return lowerBound != null;
 		}
 		return super.eIsSet(featureID);
 	}

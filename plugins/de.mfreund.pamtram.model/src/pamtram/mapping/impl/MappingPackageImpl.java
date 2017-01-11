@@ -77,6 +77,8 @@ import pamtram.mapping.SubstringReplacer;
 import pamtram.mapping.UniqueNumberAppender;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.impl.ConstraintPackageImpl;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.GenericPackageImpl;
 import pamtram.structure.impl.StructurePackageImpl;
@@ -540,6 +542,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
 		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
+		ConstraintPackageImpl theConstraintPackage = (ConstraintPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) instanceof ConstraintPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) : ConstraintPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 
 		// Create package meta-data objects
@@ -547,6 +550,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		thePamtramPackage.createPackageContents();
 		theStructurePackage.createPackageContents();
 		theGenericPackage.createPackageContents();
+		theConstraintPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 
 		// Initialize created meta-data
@@ -554,6 +558,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		thePamtramPackage.initializePackageContents();
 		theStructurePackage.initializePackageContents();
 		theGenericPackage.initializePackageContents();
+		theConstraintPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 
 		// Register package validator
@@ -1957,6 +1962,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
+		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
@@ -2253,14 +2259,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		fixedValueEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
 		fixedValueEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theStructurePackage.getInstancePointerSourceInterface());
-		fixedValueEClass.getESuperTypes().add(theStructurePackage.getValueConstraintSourceInterface());
+		fixedValueEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
 		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getInstancePointerSourceInterface());
-		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getValueConstraintSourceInterface());
+		globalAttributeImporterEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
 		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		containerSelectorSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());

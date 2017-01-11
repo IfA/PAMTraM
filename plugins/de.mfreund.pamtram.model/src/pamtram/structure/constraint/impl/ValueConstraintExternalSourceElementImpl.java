@@ -14,7 +14,7 @@ import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionReference;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -30,32 +30,27 @@ public class ValueConstraintExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ValueConstraintExternalSourceElementImpl() {
+	protected ValueConstraintExternalSourceElementImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT;
+		return ConstraintPackage.Literals.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public SourceSectionAttribute getSourceAttribute() {
-
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -63,24 +58,19 @@ public class ValueConstraintExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE:
-					return StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				default:
-					return -1;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				default: return -1;
 			}
 		}
 		if (baseClass == ValueConstraintSourceInterface.class) {
 			switch (baseOperationID) {
-				default:
-					return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -88,15 +78,13 @@ public class ValueConstraintExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
-			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return this.getSourceAttribute();
+			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

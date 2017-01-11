@@ -3,7 +3,6 @@
 package pamtram.structure.constraint;
 
 import pamtram.NamedElement;
-import pamtram.structure.StructurePackage;
 
 
 /**
@@ -35,7 +34,7 @@ public interface ValueConstraint extends NamedElement {
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #setType(ValueConstraintType)
-	 * @see pamtram.structure.StructurePackage#getValueConstraint_Type()
+	 * @see pamtram.structure.constraint.ConstraintPackage#getValueConstraint_Type()
 	 * @model default="INCLUSION" required="true"
 	 * @generated
 	 */

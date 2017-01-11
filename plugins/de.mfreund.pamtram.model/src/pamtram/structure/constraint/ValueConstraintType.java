@@ -8,12 +8,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Value Constraint Type</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
- * @see pamtram.structure.StructurePackage#getValueConstraintType()
+ * @see pamtram.structure.constraint.ConstraintPackage#getValueConstraintType()
  * @model
  * @generated
  */

@@ -4,15 +4,13 @@ package pamtram.structure.constraint;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Multiple References Attribute Value Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getMultipleReferencesValueConstraint()
+ * @see pamtram.structure.constraint.ConstraintPackage#getMultipleReferencesValueConstraint()
  * @model abstract="true"
  * @generated
  */

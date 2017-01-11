@@ -5,8 +5,7 @@ package pamtram.structure.constraint.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityMatcher;
 import pamtram.structure.constraint.ValueConstraintType;
 
@@ -25,9 +24,9 @@ import pamtram.structure.constraint.ValueConstraintType;
 public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl implements EqualityMatcher {
 
 	/**
-	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isCaseSensitive()
 	 * @generated
 	 * @ordered
@@ -35,60 +34,51 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 	protected static final boolean CASE_SENSITIVE_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isCaseSensitive()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean caseSensitive = EqualityMatcherImpl.CASE_SENSITIVE_EDEFAULT;
+	protected boolean caseSensitive = CASE_SENSITIVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EqualityMatcherImpl() {
+	protected EqualityMatcherImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.EQUALITY_MATCHER;
+		return ConstraintPackage.Literals.EQUALITY_MATCHER;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isCaseSensitive() {
-
-		return this.caseSensitive;
+		return caseSensitive;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setCaseSensitive(boolean newCaseSensitive) {
-
-		boolean oldCaseSensitive = this.caseSensitive;
-		this.caseSensitive = newCaseSensitive;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE, oldCaseSensitive, this.caseSensitive));
-		}
+		boolean oldCaseSensitive = caseSensitive;
+		caseSensitive = newCaseSensitive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -123,30 +113,26 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE:
-				return this.isCaseSensitive();
+			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE:
-				this.setCaseSensitive((Boolean) newValue);
+			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+				setCaseSensitive((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,15 +140,13 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE:
-				this.setCaseSensitive(EqualityMatcherImpl.CASE_SENSITIVE_EDEFAULT);
+			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -170,34 +154,28 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.EQUALITY_MATCHER__CASE_SENSITIVE:
-				return this.caseSensitive != EqualityMatcherImpl.CASE_SENSITIVE_EDEFAULT;
+			case ConstraintPackage.EQUALITY_MATCHER__CASE_SENSITIVE:
+				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (caseSensitive: ");
-		result.append(this.caseSensitive);
+		result.append(caseSensitive);
 		result.append(')');
 		return result.toString();
 	}

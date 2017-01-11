@@ -3,8 +3,7 @@
 package pamtram.structure.constraint.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.RegExMatcher;
 import pamtram.structure.constraint.ValueConstraintType;
 
@@ -18,22 +17,19 @@ public class RegExMatcherImpl extends SingleReferenceValueConstraintImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public RegExMatcherImpl() {
+	protected RegExMatcherImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.REG_EX_MATCHER;
+		return ConstraintPackage.Literals.REG_EX_MATCHER;
 	}
 
 	@Override

@@ -46,7 +46,6 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.MetaModelElementMergeAction;
-import pamtram.structure.EqualityMatcher;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -55,6 +54,7 @@ import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionReference;
+import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Section;
@@ -387,7 +387,7 @@ public class PreviewPage extends WizardPage {
 	 * SourceSectionAttributes} and {@link TargetSectionAttribute TargetSectionAttributes}.
 	 * <p />
 	 * As {@link TargetSectionAttribute TargetSectionAttributes} are not equipped with a <em>value</em> attribute, the
-	 * <em>expression</em> of an associated {@link EqualityMatcher} is used as value instead.
+	 * <em>expression</em> of an associated {@link EqualityConstraint} is used as value instead.
 	 *
 	 * @author mfreund
 	 */
@@ -410,7 +410,7 @@ public class PreviewPage extends WizardPage {
 
 			return object instanceof SourceSectionAttribute
 					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint
 					|| super.canEdit(object);
 		}
 
@@ -419,7 +419,7 @@ public class PreviewPage extends WizardPage {
 
 			if (object instanceof SourceSectionAttribute
 					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
 
 				Optional<IPropertyDescriptor> expressionDescriptor = Arrays
 						.asList(this.propertySourceProvider
@@ -443,9 +443,9 @@ public class PreviewPage extends WizardPage {
 
 			if (object instanceof SourceSectionAttribute
 					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
 
-				return ((EqualityMatcher) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+				return ((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraint().get(0))
 						.getExpression();
 
 			} else {
@@ -458,9 +458,9 @@ public class PreviewPage extends WizardPage {
 
 			if (object instanceof SourceSectionAttribute && value instanceof String
 					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityMatcher) {
+					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
 
-				((EqualityMatcher) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+				((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraint().get(0))
 						.setExpression((String) value);
 
 				// We need to refresh the viewer manually so that the displayed value will be updated

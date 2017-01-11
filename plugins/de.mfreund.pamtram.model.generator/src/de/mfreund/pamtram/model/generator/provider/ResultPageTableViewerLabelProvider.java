@@ -5,8 +5,8 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.generic.Attribute;
 
 /**

@@ -19,11 +19,12 @@ import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.EqualityMatcher;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionCrossReference;
-import pamtram.structure.ValueConstraintType;
+import pamtram.structure.constraint.ConstraintFactory;
+import pamtram.structure.constraint.EqualityConstraint;
+import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CompositeReference;
@@ -32,8 +33,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * This class is responsible for the generation of {@link Section
- * MetaModelSections} from excerpts of a model.
+ * This class is responsible for the generation of {@link Section MetaModelSections} from excerpts of a model.
  *
  * @author mfreund
  */
@@ -50,14 +50,12 @@ public class MetaModelSectionGenerator {
 	private List<EObject> sources;
 
 	/**
-	 * The SectionType specifying whether to generate a Source or a
-	 * TargetSection.
+	 * The SectionType specifying whether to generate a Source or a TargetSection.
 	 */
 	private SectionType sectionType;
 
 	/**
-	 * Whether cross-references should be followed during the generation
-	 * process.
+	 * Whether cross-references should be followed during the generation process.
 	 */
 	private boolean includeCrossReferences;
 
@@ -67,8 +65,7 @@ public class MetaModelSectionGenerator {
 	private HashMap<EObject, Class<?, ?, ?, ?>> created;
 
 	/**
-	 * This contains a list of metamodel (sub-)sections that are not yet
-	 * contained by the pamtram or by another class
+	 * This contains a list of metamodel (sub-)sections that are not yet contained by the pamtram or by another class
 	 */
 	private ArrayList<Section<?, ?, ?, ?>> dangling;
 
@@ -76,18 +73,14 @@ public class MetaModelSectionGenerator {
 	 * This creates an instance.
 	 *
 	 * @param pamtram
-	 *            The PAMTraM instance where the generated Section shall be
-	 *            stored.
+	 *            The PAMTraM instance where the generated Section shall be stored.
 	 * @param sources
-	 *            The source eObjects from which the sections shall be
-	 *            generated.
+	 *            The source eObjects from which the sections shall be generated.
 	 * @param sectionType
-	 *            The SectionType specifying whether to generate a Source or a
-	 *            TargetSection.
+	 *            The SectionType specifying whether to generate a Source or a TargetSection.
 	 * @param includeCrossReferences
-	 *            Whether cross-references should be followed during the
-	 *            generation process (if this is set to <em>true</em>, multiple
-	 *            sections may be generated for a single selected element).
+	 *            Whether cross-references should be followed during the generation process (if this is set to
+	 *            <em>true</em>, multiple sections may be generated for a single selected element).
 	 */
 	public MetaModelSectionGenerator(PAMTraM pamtram, List<EObject> sources, SectionType sectionType,
 			boolean includeCrossReferences) {
@@ -101,10 +94,9 @@ public class MetaModelSectionGenerator {
 
 	/**
 	 * This generates the Section(s) and returns it/them. <br />
-	 * Note: The generated sections are not yet added to the PAMTraM model as
-	 * some might represent duplicates of existing sections (cf.
-	 * {@link #mergeDuplicates(List)}). Consequently, clients need to add the
-	 * sections to the PAMTraM model on their own.
+	 * Note: The generated sections are not yet added to the PAMTraM model as some might represent duplicates of
+	 * existing sections (cf. {@link #mergeDuplicates(List)}). Consequently, clients need to add the sections to the
+	 * PAMTraM model on their own.
 	 *
 	 * @return The generated Section(s).
 	 */
@@ -126,14 +118,12 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This method recursively generates the containment structure of the
-	 * {@link Section} and - if {@link #includeCrossReferences} is set to
-	 * <em>true</em> - possible other sections for elements that are referenced
-	 * via non-containment references.
+	 * This method recursively generates the containment structure of the {@link Section} and - if
+	 * {@link #includeCrossReferences} is set to <em>true</em> - possible other sections for elements that are
+	 * referenced via non-containment references.
 	 *
 	 * @param source
-	 *            The {@link EObject source object} for which the structure
-	 *            shall be created.
+	 *            The {@link EObject source object} for which the structure shall be created.
 	 * @return The created {@link Section section}.
 	 */
 	protected Class<?, ?, ?, ?> createMetaModelClass(EObject source) {
@@ -173,15 +163,12 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This method is responsible for the creation of the attributes inside a
-	 * {@link Class}.
+	 * This method is responsible for the creation of the attributes inside a {@link Class}.
 	 *
 	 * @param source
-	 *            The {@link EObject source element} for which the
-	 *            {@link Attribute attributes} shall be created.
+	 *            The {@link EObject source element} for which the {@link Attribute attributes} shall be created.
 	 * @param clazz
-	 *            The {@link Class} to which the created attributes shall be
-	 *            added.
+	 *            The {@link Class} to which the created attributes shall be added.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void createAttributes(EObject source, Class<?, ?, ?, ?> clazz) {
@@ -202,7 +189,7 @@ public class MetaModelSectionGenerator {
 			Object attributeValue = source.eGet(eAttribute);
 			if (attributeValue != null) {
 				if (this.sectionType == SectionType.SOURCE) {
-					EqualityMatcher attValConstraint = StructureFactory.eINSTANCE.createEqualityMatcher();
+					EqualityConstraint attValConstraint = ConstraintFactory.eINSTANCE.createEqualityConstraint();
 					attValConstraint.setCaseSensitive(true);
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(ValueConstraintType.INCLUSION);
@@ -218,12 +205,10 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This method is responsible for the creation of the references inside a
-	 * {@link Class}.
+	 * This method is responsible for the creation of the references inside a {@link Class}.
 	 *
 	 * @param source
-	 *            The source {@link EObject} for which the references shall be
-	 *            created.
+	 *            The source {@link EObject} for which the references shall be created.
 	 * @param parentClass
 	 *            The parent {@link Class} for the references to be created.
 	 */
@@ -241,17 +226,14 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * Creates a {@link CompositeReference} element for the given source
-	 * {@link EObject}.
+	 * Creates a {@link CompositeReference} element for the given source {@link EObject}.
 	 *
 	 * @param source
-	 *            The source {@link EObject} for which the reference shall be
-	 *            created.
+	 *            The source {@link EObject} for which the reference shall be created.
 	 * @param parentClass
 	 *            The parent {@link Class} for the reference to be created.
 	 * @param reference
-	 *            The containment {@link EReference} for which the
-	 *            {@link CompositeReference} shall be created.
+	 *            The containment {@link EReference} for which the {@link CompositeReference} shall be created.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void createContainmentReference(EObject source, Class<?, ?, ?, ?> parentClass, EReference reference) {
@@ -307,17 +289,14 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * Creates a {@link CrossReference} element for the given source
-	 * {@link EObject}.
+	 * Creates a {@link CrossReference} element for the given source {@link EObject}.
 	 *
 	 * @param source
-	 *            The source {@link EObject} for which the reference shall be
-	 *            created.
+	 *            The source {@link EObject} for which the reference shall be created.
 	 * @param parentClass
 	 *            The parent {@link Class} for the reference to be created.
 	 * @param reference
-	 *            The non-containment {@link EReference} for which the
-	 *            {@link CrossReference} shall be created.
+	 *            The non-containment {@link EReference} for which the {@link CrossReference} shall be created.
 	 */
 	@SuppressWarnings("unchecked")
 	protected void createNonContainmentReference(EObject source, Class<?, ?, ?, ?> parent, EReference reference) {
@@ -386,19 +365,15 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This method can be called to check if one or more of the generated
-	 * {@link Section sections} represent duplicates of sections that are
-	 * already present in the {@link PAMTraM} model. If duplicates exists, these
-	 * are not added to the PAMTraM model but deleted instead. Additionally, all
-	 * cross-references to the duplicate sections are redirected to the original
-	 * sections in the PAMTraM model.
+	 * This method can be called to check if one or more of the generated {@link Section sections} represent duplicates
+	 * of sections that are already present in the {@link PAMTraM} model. If duplicates exists, these are not added to
+	 * the PAMTraM model but deleted instead. Additionally, all cross-references to the duplicate sections are
+	 * redirected to the original sections in the PAMTraM model.
 	 *
 	 * @param created
-	 *            The list of sections (usually created by {@link #generate()}
-	 *            that shall be checked and, if necessary, merged with sections
-	 *            from the PAMTraM model.
-	 * @return The list of '<em>unique</em>' sections (after deleting
-	 *         duplicates).
+	 *            The list of sections (usually created by {@link #generate()} that shall be checked and, if necessary,
+	 *            merged with sections from the PAMTraM model.
+	 * @return The list of '<em>unique</em>' sections (after deleting duplicates).
 	 */
 	public List<Section<?, ?, ?, ?>> mergeDuplicates(List<Section<?, ?, ?, ?>> created) {
 
@@ -441,22 +416,18 @@ public class MetaModelSectionGenerator {
 	}
 
 	/**
-	 * This compares two {@link Section sections} and, if the sections are
-	 * equivalent, deletes the '<em>createdSection</em>' and redirects all
-	 * cross-references to it to the existing '<em>pamtramSections</em>'.
+	 * This compares two {@link Section sections} and, if the sections are equivalent, deletes the
+	 * '<em>createdSection</em>' and redirects all cross-references to it to the existing '<em>pamtramSections</em>'.
 	 *
 	 * @param createdSection
-	 *            The {@link Section section} that shall be compared to the
-	 *            sections from the PAMTraM model.
+	 *            The {@link Section section} that shall be compared to the sections from the PAMTraM model.
 	 * @param sectionsToCompare
-	 *            The list of {@link Section sections} that the
-	 *            '<em>createdSection</em> shall be compared to.
+	 *            The list of {@link Section sections} that the '<em>createdSection</em> shall be compared to.
 	 * @param referencingSections
-	 *            The list of {@link Section sections} that might contain
-	 *            cross-references to the <em>createdSection</em> which need to
-	 *            be redirected to a potential match.
-	 * @return '<em><b>true</b></em>' if the createdSection matches one (or
-	 *         more) of the pamtramSections, '<em><b>false</b></em>' otherwise
+	 *            The list of {@link Section sections} that might contain cross-references to the
+	 *            <em>createdSection</em> which need to be redirected to a potential match.
+	 * @return '<em><b>true</b></em>' if the createdSection matches one (or more) of the pamtramSections,
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean compare(Section<?, ?, ?, ?> createdSection, List<Section<?, ?, ?, ?>> sectionsToCompare,
 			List<Section<?, ?, ?, ?>> referencingSections) {

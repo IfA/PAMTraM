@@ -8,13 +8,8 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 
@@ -27,8 +22,8 @@ import pamtram.structure.constraint.ValueConstraintType;
 public class EqualityConstraintItemProvider extends SingleReferenceValueConstraintItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EqualityConstraintItemProvider(AdapterFactory adapterFactory) {
@@ -36,35 +31,17 @@ public class EqualityConstraintItemProvider extends SingleReferenceValueConstrai
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addCaseSensitivePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Case Sensitive feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addCaseSensitivePropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_CaseSensitiveConstraint_caseSensitive_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_CaseSensitiveConstraint_caseSensitive_feature", "_UI_CaseSensitiveConstraint_type"),
-				ConstraintPackage.Literals.CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -74,10 +51,10 @@ public class EqualityConstraintItemProvider extends SingleReferenceValueConstrai
 	public Object getImage(Object object) {
 
 		ValueConstraintType constraintType = ((EqualityConstraint) object).getType();
-		if (constraintType.equals(ValueConstraintType.INCLUSION)) {
+		if (constraintType.equals(ValueConstraintType.REQUIRED)) {
 			return this.overlayImage(object,
 					this.getResourceLocator().getImage("full/obj16/EqualityConstraint_Inclusion"));
-		} else if (constraintType.equals(ValueConstraintType.EXCLUSION)) {
+		} else if (constraintType.equals(ValueConstraintType.FORBIDDEN)) {
 			return this.overlayImage(object,
 					this.getResourceLocator().getImage("full/obj16/EqualityConstraint_Exclusion"));
 		} else {
@@ -86,14 +63,13 @@ public class EqualityConstraintItemProvider extends SingleReferenceValueConstrai
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -132,26 +108,18 @@ public class EqualityConstraintItemProvider extends SingleReferenceValueConstrai
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
-
-		switch (notification.getFeatureID(EqualityConstraint.class)) {
-			case ConstraintPackage.EQUALITY_CONSTRAINT__CASE_SENSITIVE:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

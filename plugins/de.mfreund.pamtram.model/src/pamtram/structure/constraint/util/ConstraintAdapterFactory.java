@@ -81,7 +81,7 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	protected ConstraintSwitch<Adapter> modelSwitch =
 		new ConstraintSwitch<Adapter>() {
 			@Override
-			public Adapter caseEqualityMatcher(EqualityMatcher object) {
+			public Adapter caseEqualityMatcher(EqualityConstraint object) {
 				return createEqualityMatcherAdapter();
 			}
 			@Override
@@ -89,19 +89,19 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createValueConstraintAdapter();
 			}
 			@Override
-			public Adapter caseSubstringMatcher(SubstringMatcher object) {
+			public Adapter caseSubstringMatcher(SubstringConstraint object) {
 				return createSubstringMatcherAdapter();
 			}
 			@Override
-			public Adapter caseBeginningMatcher(BeginningMatcher object) {
+			public Adapter caseBeginningMatcher(BeginningConstraint object) {
 				return createBeginningMatcherAdapter();
 			}
 			@Override
-			public Adapter caseEndingMatcher(EndingMatcher object) {
+			public Adapter caseEndingMatcher(EndingConstraint object) {
 				return createEndingMatcherAdapter();
 			}
 			@Override
-			public Adapter caseRegExMatcher(RegExMatcher object) {
+			public Adapter caseRegExMatcher(RegExConstraint object) {
 				return createRegExMatcherAdapter();
 			}
 			@Override
@@ -185,13 +185,13 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityMatcher <em>Equality Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.EqualityMatcher
+	 * @see pamtram.structure.constraint.EqualityConstraint
 	 * @generated
 	 */
 	public Adapter createEqualityMatcherAdapter() {
@@ -213,13 +213,13 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringMatcher <em>Substring Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.SubstringMatcher
+	 * @see pamtram.structure.constraint.SubstringConstraint
 	 * @generated
 	 */
 	public Adapter createSubstringMatcherAdapter() {
@@ -227,13 +227,13 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningMatcher <em>Beginning Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.BeginningMatcher
+	 * @see pamtram.structure.constraint.BeginningConstraint
 	 * @generated
 	 */
 	public Adapter createBeginningMatcherAdapter() {
@@ -241,13 +241,13 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingMatcher <em>Ending Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.EndingMatcher
+	 * @see pamtram.structure.constraint.EndingConstraint
 	 * @generated
 	 */
 	public Adapter createEndingMatcherAdapter() {
@@ -255,13 +255,13 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExMatcher <em>Reg Ex Matcher</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.RegExMatcher
+	 * @see pamtram.structure.constraint.RegExConstraint
 	 * @generated
 	 */
 	public Adapter createRegExMatcherAdapter() {

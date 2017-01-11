@@ -1093,26 +1093,26 @@
     </eSubpackages>
     <eSubpackages name="constraint" nsURI="http://mfreund.de/pamtram/structure/constraint"
         nsPrefix="constraint">
-      <eClassifiers xsi:type="ecore:EEnum" name="ValueConstraintType">
-        <eLiterals name="INCLUSION"/>
-        <eLiterals name="EXCLUSION" value="1"/>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="EqualityMatcher" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraint" abstract="true"
           interface="true" eSuperTypes="#//NamedElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
             eType="#//structure/constraint/ValueConstraintType" defaultValueLiteral="INCLUSION"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="SubstringMatcher" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
-      <eClassifiers xsi:type="ecore:EClass" name="BeginningMatcher" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
-      <eClassifiers xsi:type="ecore:EClass" name="EndingMatcher" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
-      <eClassifiers xsi:type="ecore:EClass" name="RegExMatcher" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint"/>
+      <eClassifiers xsi:type="ecore:EEnum" name="ValueConstraintType">
+        <eLiterals name="INCLUSION"/>
+        <eLiterals name="EXCLUSION" value="1"/>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CaseSensitiveConstraint" abstract="true"
           interface="true" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
             defaultValueLiteral="true"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="EqualityConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
+      <eClassifiers xsi:type="ecore:EClass" name="SubstringConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
+      <eClassifiers xsi:type="ecore:EClass" name="BeginningConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EndingConstraint" eSuperTypes="#//structure/constraint/CaseSensitiveConstraint"/>
+      <eClassifiers xsi:type="ecore:EClass" name="RegExConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint"/>
       <eClassifiers xsi:type="ecore:EClass" name="RangeConstraint" eSuperTypes="#//structure/constraint/MultipleReferencesValueConstraint">
         <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" eType="#//structure/constraint/RangeBound"
             containment="true"/>

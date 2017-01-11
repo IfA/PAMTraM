@@ -28,7 +28,7 @@ public interface ConstraintFactory extends EFactory {
 	 * @return a new object of class '<em>Equality Matcher</em>'.
 	 * @generated
 	 */
-	EqualityMatcher createEqualityMatcher();
+	EqualityConstraint createEqualityMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Substring Matcher</em>'.
@@ -37,7 +37,7 @@ public interface ConstraintFactory extends EFactory {
 	 * @return a new object of class '<em>Substring Matcher</em>'.
 	 * @generated
 	 */
-	SubstringMatcher createSubstringMatcher();
+	SubstringConstraint createSubstringMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Beginning Matcher</em>'.
@@ -46,7 +46,7 @@ public interface ConstraintFactory extends EFactory {
 	 * @return a new object of class '<em>Beginning Matcher</em>'.
 	 * @generated
 	 */
-	BeginningMatcher createBeginningMatcher();
+	BeginningConstraint createBeginningMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Ending Matcher</em>'.
@@ -55,7 +55,7 @@ public interface ConstraintFactory extends EFactory {
 	 * @return a new object of class '<em>Ending Matcher</em>'.
 	 * @generated
 	 */
-	EndingMatcher createEndingMatcher();
+	EndingConstraint createEndingMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Reg Ex Matcher</em>'.
@@ -64,7 +64,7 @@ public interface ConstraintFactory extends EFactory {
 	 * @return a new object of class '<em>Reg Ex Matcher</em>'.
 	 * @generated
 	 */
-	RegExMatcher createRegExMatcher();
+	RegExConstraint createRegExMatcher();
 
 	/**
 	 * Returns a new object of class '<em>Range Constraint</em>'.

@@ -29,18 +29,18 @@ import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.structure.StructurePackage;
 
-import pamtram.structure.constraint.BeginningMatcher;
+import pamtram.structure.constraint.BeginningConstraint;
 import pamtram.structure.constraint.CaseSensitiveConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.EndingMatcher;
-import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.EndingConstraint;
+import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.MultipleReferencesValueConstraint;
 import pamtram.structure.constraint.RangeBound;
 import pamtram.structure.constraint.RangeConstraint;
-import pamtram.structure.constraint.RegExMatcher;
+import pamtram.structure.constraint.RegExConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
-import pamtram.structure.constraint.SubstringMatcher;
+import pamtram.structure.constraint.SubstringConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
@@ -706,18 +706,18 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		rangeBoundEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(equalityMatcherEClass, EqualityMatcher.class, "EqualityMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(equalityMatcherEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getValueConstraint_Type(), this.getValueConstraintType(), "type", "INCLUSION", 1, 1, ValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(substringMatcherEClass, SubstringMatcher.class, "SubstringMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(substringMatcherEClass, SubstringConstraint.class, "SubstringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(beginningMatcherEClass, BeginningMatcher.class, "BeginningMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(beginningMatcherEClass, BeginningConstraint.class, "BeginningConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(endingMatcherEClass, EndingMatcher.class, "EndingMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(endingMatcherEClass, EndingConstraint.class, "EndingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(regExMatcherEClass, RegExMatcher.class, "RegExMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(regExMatcherEClass, RegExConstraint.class, "RegExConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(caseSensitiveConstraintEClass, CaseSensitiveConstraint.class, "CaseSensitiveConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

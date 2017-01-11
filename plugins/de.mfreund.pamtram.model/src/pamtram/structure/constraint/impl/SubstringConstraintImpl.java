@@ -5,23 +5,23 @@ package pamtram.structure.constraint.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.structure.constraint.BeginningMatcher;
 import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.SubstringConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Beginning Matcher</b></em>'. <!-- end-user-doc
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Substring Matcher</b></em>'. <!-- end-user-doc
  * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.constraint.impl.BeginningMatcherImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
+ * <li>{@link pamtram.structure.constraint.impl.SubstringConstraintImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl implements BeginningMatcher {
+public class SubstringConstraintImpl extends SingleReferenceValueConstraintImpl implements SubstringConstraint {
 
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
@@ -47,7 +47,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BeginningMatcherImpl() {
+	protected SubstringConstraintImpl() {
 		super();
 	}
 
@@ -57,7 +57,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ConstraintPackage.Literals.BEGINNING_MATCHER;
+		return ConstraintPackage.Literals.SUBSTRING_MATCHER;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 
 		boolean condition;
 		if (this.caseSensitive) {
-			condition = attrValue.startsWith(refValue);
+			condition = refValue.contains(attrValue);
 		} else {
-			condition = attrValue.toLowerCase().startsWith(refValue.toLowerCase());
+			condition = refValue.toLowerCase().contains(attrValue.toLowerCase());
 		}
 
 		return condition && this.type.equals(ValueConstraintType.INCLUSION)
@@ -102,7 +102,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -115,7 +115,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive((Boolean)newValue);
 				return;
 		}
@@ -129,7 +129,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
@@ -143,7 +143,7 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.BEGINNING_MATCHER__CASE_SENSITIVE:
+			case ConstraintPackage.SUBSTRING_MATCHER__CASE_SENSITIVE:
 				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -164,4 +164,4 @@ public class BeginningMatcherImpl extends SingleReferenceValueConstraintImpl imp
 		return result.toString();
 	}
 
-} // BeginningMatcherImpl
+} // SubstringConstraintImpl

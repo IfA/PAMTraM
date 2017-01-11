@@ -12,5 +12,5 @@ package pamtram.structure.constraint;
  * @model
  * @generated
  */
-public interface BeginningMatcher extends CaseSensitiveConstraint {
-} // BeginningMatcher
+public interface BeginningConstraint extends CaseSensitiveConstraint {
+} // BeginningConstraint

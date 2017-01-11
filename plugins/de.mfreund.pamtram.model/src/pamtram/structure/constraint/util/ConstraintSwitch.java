@@ -80,7 +80,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case ConstraintPackage.EQUALITY_MATCHER: {
-				EqualityMatcher equalityMatcher = (EqualityMatcher)theEObject;
+				EqualityConstraint equalityMatcher = (EqualityConstraint)theEObject;
 				T result = caseEqualityMatcher(equalityMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(equalityMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(equalityMatcher);
@@ -99,7 +99,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConstraintPackage.SUBSTRING_MATCHER: {
-				SubstringMatcher substringMatcher = (SubstringMatcher)theEObject;
+				SubstringConstraint substringMatcher = (SubstringConstraint)theEObject;
 				T result = caseSubstringMatcher(substringMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(substringMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(substringMatcher);
@@ -111,7 +111,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConstraintPackage.BEGINNING_MATCHER: {
-				BeginningMatcher beginningMatcher = (BeginningMatcher)theEObject;
+				BeginningConstraint beginningMatcher = (BeginningConstraint)theEObject;
 				T result = caseBeginningMatcher(beginningMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(beginningMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(beginningMatcher);
@@ -123,7 +123,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConstraintPackage.ENDING_MATCHER: {
-				EndingMatcher endingMatcher = (EndingMatcher)theEObject;
+				EndingConstraint endingMatcher = (EndingConstraint)theEObject;
 				T result = caseEndingMatcher(endingMatcher);
 				if (result == null) result = caseCaseSensitiveConstraint(endingMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(endingMatcher);
@@ -135,7 +135,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConstraintPackage.REG_EX_MATCHER: {
-				RegExMatcher regExMatcher = (RegExMatcher)theEObject;
+				RegExConstraint regExMatcher = (RegExConstraint)theEObject;
 				T result = caseRegExMatcher(regExMatcher);
 				if (result == null) result = caseSingleReferenceValueConstraint(regExMatcher);
 				if (result == null) result = caseValueConstraint(regExMatcher);
@@ -236,7 +236,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEqualityMatcher(EqualityMatcher object) {
+	public T caseEqualityMatcher(EqualityConstraint object) {
 		return null;
 	}
 
@@ -266,7 +266,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSubstringMatcher(SubstringMatcher object) {
+	public T caseSubstringMatcher(SubstringConstraint object) {
 		return null;
 	}
 
@@ -281,7 +281,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBeginningMatcher(BeginningMatcher object) {
+	public T caseBeginningMatcher(BeginningConstraint object) {
 		return null;
 	}
 
@@ -296,7 +296,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEndingMatcher(EndingMatcher object) {
+	public T caseEndingMatcher(EndingConstraint object) {
 		return null;
 	}
 
@@ -311,7 +311,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRegExMatcher(RegExMatcher object) {
+	public T caseRegExMatcher(RegExConstraint object) {
 		return null;
 	}
 

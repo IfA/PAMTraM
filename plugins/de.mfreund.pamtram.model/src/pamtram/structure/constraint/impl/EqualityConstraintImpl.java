@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.EqualityMatcher;
+import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 
 /**
@@ -16,12 +16,12 @@ import pamtram.structure.constraint.ValueConstraintType;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.constraint.impl.EqualityMatcherImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
+ * <li>{@link pamtram.structure.constraint.impl.EqualityConstraintImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl implements EqualityMatcher {
+public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl implements EqualityConstraint {
 
 	/**
 	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
@@ -47,7 +47,7 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EqualityMatcherImpl() {
+	protected EqualityConstraintImpl() {
 		super();
 	}
 
@@ -93,7 +93,7 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 			newAttrValue = attrValue.toLowerCase();
 			newRefValue = refValue.toLowerCase();
 		}
-		// Update: EqualityMatcher useful for integer and doubles. The following example '1' versus. '1.0' represents a
+		// Update: EqualityConstraint useful for integer and doubles. The following example '1' versus. '1.0' represents a
 		// problem!
 		// Therefore, in case of integer and double, we try to convert twice (to Double and back to String)
 		try {
@@ -180,4 +180,4 @@ public class EqualityMatcherImpl extends SingleReferenceValueConstraintImpl impl
 		return result.toString();
 	}
 
-} // EqualityMatcherImpl
+} // EqualityConstraintImpl

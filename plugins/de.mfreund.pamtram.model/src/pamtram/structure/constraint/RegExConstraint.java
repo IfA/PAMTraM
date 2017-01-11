@@ -12,5 +12,5 @@ package pamtram.structure.constraint;
  * @model
  * @generated
  */
-public interface RegExMatcher extends SingleReferenceValueConstraint {
-} // RegExMatcher
+public interface RegExConstraint extends SingleReferenceValueConstraint {
+} // RegExConstraint

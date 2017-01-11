@@ -12,5 +12,5 @@ package pamtram.structure.constraint;
  * @model
  * @generated
  */
-public interface SubstringMatcher extends CaseSensitiveConstraint {
-} // SubstringMatcher
+public interface SubstringConstraint extends CaseSensitiveConstraint {
+} // SubstringConstraint

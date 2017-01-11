@@ -372,10 +372,10 @@ public interface ConstraintPackage extends EPackage {
 	int CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT = SINGLE_REFERENCE_VALUE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.EqualityMatcherImpl
+	 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityMatcher()
 	 * @generated
 	 */
@@ -508,10 +508,10 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.SubstringMatcherImpl
+	 * @see pamtram.structure.constraint.impl.SubstringConstraintImpl
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringMatcher()
 	 * @generated
 	 */
@@ -644,10 +644,10 @@ public interface ConstraintPackage extends EPackage {
 	int SUBSTRING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.BeginningMatcherImpl
+	 * @see pamtram.structure.constraint.impl.BeginningConstraintImpl
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningMatcher()
 	 * @generated
 	 */
@@ -780,10 +780,10 @@ public interface ConstraintPackage extends EPackage {
 	int BEGINNING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.EndingMatcherImpl
+	 * @see pamtram.structure.constraint.impl.EndingConstraintImpl
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingMatcher()
 	 * @generated
 	 */
@@ -916,10 +916,10 @@ public interface ConstraintPackage extends EPackage {
 	int ENDING_MATCHER_OPERATION_COUNT = CASE_SENSITIVE_CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.constraint.impl.RegExMatcherImpl
+	 * @see pamtram.structure.constraint.impl.RegExConstraintImpl
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExMatcher()
 	 * @generated
 	 */
@@ -1510,11 +1510,11 @@ public interface ConstraintPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityMatcher <em>Equality Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EqualityConstraint <em>Equality Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Equality Matcher</em>'.
-	 * @see pamtram.structure.constraint.EqualityMatcher
+	 * @see pamtram.structure.constraint.EqualityConstraint
 	 * @generated
 	 */
 	EClass getEqualityMatcher();
@@ -1541,41 +1541,41 @@ public interface ConstraintPackage extends EPackage {
 	EAttribute getValueConstraint_Type();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringMatcher <em>Substring Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.SubstringConstraint <em>Substring Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Substring Matcher</em>'.
-	 * @see pamtram.structure.constraint.SubstringMatcher
+	 * @see pamtram.structure.constraint.SubstringConstraint
 	 * @generated
 	 */
 	EClass getSubstringMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.BeginningMatcher <em>Beginning Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.BeginningConstraint <em>Beginning Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Beginning Matcher</em>'.
-	 * @see pamtram.structure.constraint.BeginningMatcher
+	 * @see pamtram.structure.constraint.BeginningConstraint
 	 * @generated
 	 */
 	EClass getBeginningMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.EndingMatcher <em>Ending Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.EndingConstraint <em>Ending Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ending Matcher</em>'.
-	 * @see pamtram.structure.constraint.EndingMatcher
+	 * @see pamtram.structure.constraint.EndingConstraint
 	 * @generated
 	 */
 	EClass getEndingMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.constraint.RegExMatcher <em>Reg Ex Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.RegExConstraint <em>Reg Ex Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reg Ex Matcher</em>'.
-	 * @see pamtram.structure.constraint.RegExMatcher
+	 * @see pamtram.structure.constraint.RegExConstraint
 	 * @generated
 	 */
 	EClass getRegExMatcher();
@@ -1872,10 +1872,10 @@ public interface ConstraintPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityMatcherImpl <em>Equality Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EqualityConstraintImpl <em>Equality Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.EqualityMatcherImpl
+		 * @see pamtram.structure.constraint.impl.EqualityConstraintImpl
 		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEqualityMatcher()
 		 * @generated
 		 */
@@ -1900,40 +1900,40 @@ public interface ConstraintPackage extends EPackage {
 		EAttribute VALUE_CONSTRAINT__TYPE = eINSTANCE.getValueConstraint_Type();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringMatcherImpl <em>Substring Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.SubstringConstraintImpl <em>Substring Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.SubstringMatcherImpl
+		 * @see pamtram.structure.constraint.impl.SubstringConstraintImpl
 		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getSubstringMatcher()
 		 * @generated
 		 */
 		EClass SUBSTRING_MATCHER = eINSTANCE.getSubstringMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.BeginningMatcherImpl <em>Beginning Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.BeginningConstraintImpl <em>Beginning Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.BeginningMatcherImpl
+		 * @see pamtram.structure.constraint.impl.BeginningConstraintImpl
 		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getBeginningMatcher()
 		 * @generated
 		 */
 		EClass BEGINNING_MATCHER = eINSTANCE.getBeginningMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EndingMatcherImpl <em>Ending Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.EndingConstraintImpl <em>Ending Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.EndingMatcherImpl
+		 * @see pamtram.structure.constraint.impl.EndingConstraintImpl
 		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getEndingMatcher()
 		 * @generated
 		 */
 		EClass ENDING_MATCHER = eINSTANCE.getEndingMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RegExMatcherImpl <em>Reg Ex Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.RegExConstraintImpl <em>Reg Ex Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.constraint.impl.RegExMatcherImpl
+		 * @see pamtram.structure.constraint.impl.RegExConstraintImpl
 		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getRegExMatcher()
 		 * @generated
 		 */

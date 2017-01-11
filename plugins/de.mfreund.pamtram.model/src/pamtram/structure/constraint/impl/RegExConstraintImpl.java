@@ -4,7 +4,7 @@ package pamtram.structure.constraint.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import pamtram.structure.constraint.ConstraintPackage;
-import pamtram.structure.constraint.RegExMatcher;
+import pamtram.structure.constraint.RegExConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 
 /**
@@ -13,13 +13,13 @@ import pamtram.structure.constraint.ValueConstraintType;
  *
  * @generated
  */
-public class RegExMatcherImpl extends SingleReferenceValueConstraintImpl implements RegExMatcher {
+public class RegExConstraintImpl extends SingleReferenceValueConstraintImpl implements RegExConstraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RegExMatcherImpl() {
+	protected RegExConstraintImpl() {
 		super();
 	}
 
@@ -40,4 +40,4 @@ public class RegExMatcherImpl extends SingleReferenceValueConstraintImpl impleme
 				|| !condition && this.type.equals(ValueConstraintType.EXCLUSION);
 	}
 
-} // RegExMatcherImpl
+} // RegExConstraintImpl

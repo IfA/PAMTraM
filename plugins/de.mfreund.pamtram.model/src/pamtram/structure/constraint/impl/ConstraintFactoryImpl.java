@@ -106,8 +106,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EqualityMatcher createEqualityMatcher() {
-		EqualityMatcherImpl equalityMatcher = new EqualityMatcherImpl();
+	public EqualityConstraint createEqualityMatcher() {
+		EqualityConstraintImpl equalityMatcher = new EqualityConstraintImpl();
 		return equalityMatcher;
 	}
 
@@ -116,8 +116,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubstringMatcher createSubstringMatcher() {
-		SubstringMatcherImpl substringMatcher = new SubstringMatcherImpl();
+	public SubstringConstraint createSubstringMatcher() {
+		SubstringConstraintImpl substringMatcher = new SubstringConstraintImpl();
 		return substringMatcher;
 	}
 
@@ -126,8 +126,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BeginningMatcher createBeginningMatcher() {
-		BeginningMatcherImpl beginningMatcher = new BeginningMatcherImpl();
+	public BeginningConstraint createBeginningMatcher() {
+		BeginningConstraintImpl beginningMatcher = new BeginningConstraintImpl();
 		return beginningMatcher;
 	}
 
@@ -136,8 +136,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EndingMatcher createEndingMatcher() {
-		EndingMatcherImpl endingMatcher = new EndingMatcherImpl();
+	public EndingConstraint createEndingMatcher() {
+		EndingConstraintImpl endingMatcher = new EndingConstraintImpl();
 		return endingMatcher;
 	}
 
@@ -146,8 +146,8 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegExMatcher createRegExMatcher() {
-		RegExMatcherImpl regExMatcher = new RegExMatcherImpl();
+	public RegExConstraint createRegExMatcher() {
+		RegExConstraintImpl regExMatcher = new RegExConstraintImpl();
 		return regExMatcher;
 	}
 

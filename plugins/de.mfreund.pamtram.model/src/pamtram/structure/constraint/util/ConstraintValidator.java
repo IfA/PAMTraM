@@ -138,17 +138,17 @@ public class ConstraintValidator extends EObjectValidator {
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		switch (classifierID) {
 			case ConstraintPackage.EQUALITY_MATCHER:
-				return validateEqualityMatcher((EqualityMatcher)value, diagnostics, context);
+				return validateEqualityMatcher((EqualityConstraint)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT:
 				return validateValueConstraint((ValueConstraint)value, diagnostics, context);
 			case ConstraintPackage.SUBSTRING_MATCHER:
-				return validateSubstringMatcher((SubstringMatcher)value, diagnostics, context);
+				return validateSubstringMatcher((SubstringConstraint)value, diagnostics, context);
 			case ConstraintPackage.BEGINNING_MATCHER:
-				return validateBeginningMatcher((BeginningMatcher)value, diagnostics, context);
+				return validateBeginningMatcher((BeginningConstraint)value, diagnostics, context);
 			case ConstraintPackage.ENDING_MATCHER:
-				return validateEndingMatcher((EndingMatcher)value, diagnostics, context);
+				return validateEndingMatcher((EndingConstraint)value, diagnostics, context);
 			case ConstraintPackage.REG_EX_MATCHER:
-				return validateRegExMatcher((RegExMatcher)value, diagnostics, context);
+				return validateRegExMatcher((RegExConstraint)value, diagnostics, context);
 			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
 				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.RANGE_CONSTRAINT:
@@ -177,7 +177,7 @@ public class ConstraintValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEqualityMatcher(EqualityMatcher equalityMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateEqualityMatcher(EqualityConstraint equalityMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(equalityMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(equalityMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(equalityMatcher, diagnostics, context);
@@ -209,7 +209,7 @@ public class ConstraintValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSubstringMatcher(SubstringMatcher substringMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateSubstringMatcher(SubstringConstraint substringMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(substringMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(substringMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(substringMatcher, diagnostics, context);
@@ -232,7 +232,7 @@ public class ConstraintValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateBeginningMatcher(BeginningMatcher beginningMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateBeginningMatcher(BeginningConstraint beginningMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(beginningMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(beginningMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(beginningMatcher, diagnostics, context);
@@ -255,7 +255,7 @@ public class ConstraintValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEndingMatcher(EndingMatcher endingMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateEndingMatcher(EndingConstraint endingMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(endingMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(endingMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(endingMatcher, diagnostics, context);
@@ -278,7 +278,7 @@ public class ConstraintValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateRegExMatcher(RegExMatcher regExMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateRegExMatcher(RegExConstraint regExMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(regExMatcher, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(regExMatcher, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(regExMatcher, diagnostics, context);

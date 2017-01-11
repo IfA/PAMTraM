@@ -37,4 +37,12 @@ public interface ChoiceConstraint extends ValueConstraint {
 	 */
 	EList<EqualityConstraint> getChoices();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" attrValueRequired="true" refValueRequired="true" refValueMany="true"
+	 * @generated
+	 */
+	boolean checkConstraint(String attrValue, EList<String> refValue);
+
 } // ChoiceConstraint

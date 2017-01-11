@@ -437,13 +437,22 @@ public interface ConstraintPackage extends EPackage {
 	int CHOICE_CONSTRAINT___IS_LOCAL_CONSTRAINT = VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT;
 
 	/**
+	 * The operation id for the '<em>Check Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST = VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Choice Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CHOICE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 0;
+	int CHOICE_CONSTRAINT_OPERATION_COUNT = VALUE_CONSTRAINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.
@@ -1999,6 +2008,16 @@ public interface ConstraintPackage extends EPackage {
 	EReference getChoiceConstraint_Choices();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.constraint.ChoiceConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList) <em>Check Constraint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Check Constraint</em>' operation.
+	 * @see pamtram.structure.constraint.ChoiceConstraint#checkConstraint(java.lang.String, org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getChoiceConstraint__CheckConstraint__String_EList();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.constraint.NumericConstraint <em>Numeric Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2428,6 +2447,14 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CHOICE_CONSTRAINT__CHOICES = eINSTANCE.getChoiceConstraint_Choices();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Constraint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CHOICE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST = eINSTANCE.getChoiceConstraint__CheckConstraint__String_EList();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.NumericConstraintImpl <em>Numeric Constraint</em>}' class.

@@ -27,9 +27,9 @@ import pamtram.structure.constraint.ValueConstraintType;
 public class StringConstraintImpl extends SingleReferenceValueConstraintImpl implements StringConstraint {
 
 	/**
-	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isCaseSensitive()
 	 * @generated
 	 * @ordered
@@ -37,19 +37,19 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	protected static final boolean CASE_SENSITIVE_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isCaseSensitive()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean caseSensitive = StringConstraintImpl.CASE_SENSITIVE_EDEFAULT;
+	protected boolean caseSensitive = CASE_SENSITIVE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getOperatorType()
 	 * @generated
 	 * @ordered
@@ -57,18 +57,17 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	protected static final StringConstraintOperatorType OPERATOR_TYPE_EDEFAULT = StringConstraintOperatorType.MATCH_EQUAL;
 
 	/**
-	 * The cached value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getOperatorType()
 	 * @generated
 	 * @ordered
 	 */
-	protected StringConstraintOperatorType operatorType = StringConstraintImpl.OPERATOR_TYPE_EDEFAULT;
+	protected StringConstraintOperatorType operatorType = OPERATOR_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected StringConstraintImpl() {
@@ -77,12 +76,10 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConstraintPackage.Literals.STRING_CONSTRAINT;
 	}
 
@@ -115,89 +112,73 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean isCaseSensitive() {
-
-		return this.caseSensitive;
+		return caseSensitive;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setCaseSensitive(boolean newCaseSensitive) {
-
-		boolean oldCaseSensitive = this.caseSensitive;
-		this.caseSensitive = newCaseSensitive;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE, oldCaseSensitive, this.caseSensitive));
-		}
+		boolean oldCaseSensitive = caseSensitive;
+		caseSensitive = newCaseSensitive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public StringConstraintOperatorType getOperatorType() {
-
-		return this.operatorType;
+		return operatorType;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setOperatorType(StringConstraintOperatorType newOperatorType) {
-
-		StringConstraintOperatorType oldOperatorType = this.operatorType;
-		this.operatorType = newOperatorType == null ? StringConstraintImpl.OPERATOR_TYPE_EDEFAULT : newOperatorType;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, this.operatorType));
-		}
+		StringConstraintOperatorType oldOperatorType = operatorType;
+		operatorType = newOperatorType == null ? OPERATOR_TYPE_EDEFAULT : newOperatorType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, operatorType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				return this.isCaseSensitive();
+				return isCaseSensitive();
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
-				return this.getOperatorType();
+				return getOperatorType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				this.setCaseSensitive((Boolean) newValue);
+				setCaseSensitive((Boolean)newValue);
 				return;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
-				this.setOperatorType((StringConstraintOperatorType) newValue);
+				setOperatorType((StringConstraintOperatorType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,18 +186,16 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				this.setCaseSensitive(StringConstraintImpl.CASE_SENSITIVE_EDEFAULT);
+				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
-				this.setOperatorType(StringConstraintImpl.OPERATOR_TYPE_EDEFAULT);
+				setOperatorType(OPERATOR_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -224,38 +203,32 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				return this.caseSensitive != StringConstraintImpl.CASE_SENSITIVE_EDEFAULT;
+				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
-				return this.operatorType != StringConstraintImpl.OPERATOR_TYPE_EDEFAULT;
+				return operatorType != OPERATOR_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (caseSensitive: ");
-		result.append(this.caseSensitive);
+		result.append(caseSensitive);
 		result.append(", operatorType: ");
-		result.append(this.operatorType);
+		result.append(operatorType);
 		result.append(')');
 		return result.toString();
 	}

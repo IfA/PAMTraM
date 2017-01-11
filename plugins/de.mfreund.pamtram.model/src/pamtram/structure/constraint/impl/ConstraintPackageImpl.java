@@ -392,6 +392,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getChoiceConstraint__CheckConstraint__String_EList() {
+		return choiceConstraintEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNumericConstraint() {
 		return numericConstraintEClass;
 	}
@@ -710,6 +719,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		choiceConstraintEClass = createEClass(CHOICE_CONSTRAINT);
 		createEReference(choiceConstraintEClass, CHOICE_CONSTRAINT__CHOICES);
+		createEOperation(choiceConstraintEClass, CHOICE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST);
 
 		numericConstraintEClass = createEClass(NUMERIC_CONSTRAINT);
 		createEAttribute(numericConstraintEClass, NUMERIC_CONSTRAINT__OPERATOR_TYPE);
@@ -876,6 +886,10 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		initEClass(choiceConstraintEClass, ChoiceConstraint.class, "ChoiceConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoiceConstraint_Choices(), this.getEqualityConstraint(), null, "choices", null, 2, -1, ChoiceConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getChoiceConstraint__CheckConstraint__String_EList(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "refValue", 1, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(numericConstraintEClass, NumericConstraint.class, "NumericConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumericConstraint_OperatorType(), this.getNumericConstraintOperatorType(), "operatorType", null, 1, 1, NumericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -26,9 +26,9 @@ import pamtram.structure.constraint.ValueConstraintType;
 public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl implements NumericConstraint {
 
 	/**
-	 * The default value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getOperatorType()
 	 * @generated
 	 * @ordered
@@ -36,18 +36,17 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 	protected static final NumericConstraintOperatorType OPERATOR_TYPE_EDEFAULT = NumericConstraintOperatorType.EQUAL;
 
 	/**
-	 * The cached value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getOperatorType()
 	 * @generated
 	 * @ordered
 	 */
-	protected NumericConstraintOperatorType operatorType = NumericConstraintImpl.OPERATOR_TYPE_EDEFAULT;
+	protected NumericConstraintOperatorType operatorType = OPERATOR_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NumericConstraintImpl() {
@@ -56,12 +55,10 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConstraintPackage.Literals.NUMERIC_CONSTRAINT;
 	}
 
@@ -109,57 +106,47 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NumericConstraintOperatorType getOperatorType() {
-
-		return this.operatorType;
+		return operatorType;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setOperatorType(NumericConstraintOperatorType newOperatorType) {
-
-		NumericConstraintOperatorType oldOperatorType = this.operatorType;
-		this.operatorType = newOperatorType == null ? NumericConstraintImpl.OPERATOR_TYPE_EDEFAULT : newOperatorType;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, this.operatorType));
-		}
+		NumericConstraintOperatorType oldOperatorType = operatorType;
+		operatorType = newOperatorType == null ? OPERATOR_TYPE_EDEFAULT : newOperatorType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, operatorType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE:
-				return this.getOperatorType();
+				return getOperatorType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE:
-				this.setOperatorType((NumericConstraintOperatorType) newValue);
+				setOperatorType((NumericConstraintOperatorType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,15 +154,13 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE:
-				this.setOperatorType(NumericConstraintImpl.OPERATOR_TYPE_EDEFAULT);
+				setOperatorType(OPERATOR_TYPE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -183,34 +168,28 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE:
-				return this.operatorType != NumericConstraintImpl.OPERATOR_TYPE_EDEFAULT;
+				return operatorType != OPERATOR_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (operatorType: ");
-		result.append(this.operatorType);
+		result.append(operatorType);
 		result.append(')');
 		return result.toString();
 	}

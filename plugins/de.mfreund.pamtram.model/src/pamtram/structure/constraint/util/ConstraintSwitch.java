@@ -126,21 +126,9 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT: {
-				CaseSensitiveConstraint caseSensitiveConstraint = (CaseSensitiveConstraint)theEObject;
-				T result = caseCaseSensitiveConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseSingleReferenceValueConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseValueConstraint(caseSensitiveConstraint);
-				if (result == null) result = caseExpressionHint(caseSensitiveConstraint);
-				if (result == null) result = caseModifiableHint(caseSensitiveConstraint);
-				if (result == null) result = caseNamedElement(caseSensitiveConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConstraintPackage.STRING_CONSTRAINT: {
 				StringConstraint stringConstraint = (StringConstraint)theEObject;
 				T result = caseStringConstraint(stringConstraint);
-				if (result == null) result = caseCaseSensitiveConstraint(stringConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(stringConstraint);
 				if (result == null) result = caseValueConstraint(stringConstraint);
 				if (result == null) result = caseExpressionHint(stringConstraint);
@@ -195,21 +183,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseValueConstraint(ValueConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Case Sensitive Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Case Sensitive Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
 		return null;
 	}
 

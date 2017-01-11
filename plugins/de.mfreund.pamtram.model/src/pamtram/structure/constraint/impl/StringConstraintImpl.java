@@ -27,26 +27,6 @@ import pamtram.structure.constraint.ValueConstraintType;
 public class StringConstraintImpl extends SingleReferenceValueConstraintImpl implements StringConstraint {
 
 	/**
-	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isCaseSensitive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean CASE_SENSITIVE_EDEFAULT = true;
-
-	/**
-	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isCaseSensitive()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean caseSensitive = CASE_SENSITIVE_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getOperatorType() <em>Operator Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +45,26 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	 * @ordered
 	 */
 	protected StringConstraintOperatorType operatorType = OPERATOR_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCaseSensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CASE_SENSITIVE_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isCaseSensitive() <em>Case Sensitive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCaseSensitive()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean caseSensitive = CASE_SENSITIVE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -159,10 +159,10 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				return isCaseSensitive();
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
 				return getOperatorType();
+			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
+				return isCaseSensitive();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,11 +174,11 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				setCaseSensitive((Boolean)newValue);
-				return;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
 				setOperatorType((StringConstraintOperatorType)newValue);
+				return;
+			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
+				setCaseSensitive((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -191,11 +191,11 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
-				return;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
 				setOperatorType(OPERATOR_TYPE_EDEFAULT);
+				return;
+			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
+				setCaseSensitive(CASE_SENSITIVE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -208,10 +208,10 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
-				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 			case ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE:
 				return operatorType != OPERATOR_TYPE_EDEFAULT;
+			case ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE:
+				return caseSensitive != CASE_SENSITIVE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -225,10 +225,10 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (caseSensitive: ");
-		result.append(caseSensitive);
-		result.append(", operatorType: ");
+		result.append(" (operatorType: ");
 		result.append(operatorType);
+		result.append(", caseSensitive: ");
+		result.append(caseSensitive);
 		result.append(')');
 		return result.toString();
 	}

@@ -101,10 +101,6 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createNumericConstraintAdapter();
 			}
 			@Override
-			public Adapter caseCaseSensitiveConstraint(CaseSensitiveConstraint object) {
-				return createCaseSensitiveConstraintAdapter();
-			}
-			@Override
 			public Adapter caseStringConstraint(StringConstraint object) {
 				return createStringConstraintAdapter();
 			}
@@ -179,20 +175,6 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createValueConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.CaseSensitiveConstraint <em>Case Sensitive Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.CaseSensitiveConstraint
-	 * @generated
-	 */
-	public Adapter createCaseSensitiveConstraintAdapter() {
 		return null;
 	}
 

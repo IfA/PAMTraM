@@ -131,8 +131,6 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateChoiceConstraint((ChoiceConstraint)value, diagnostics, context);
 			case ConstraintPackage.NUMERIC_CONSTRAINT:
 				return validateNumericConstraint((NumericConstraint)value, diagnostics, context);
-			case ConstraintPackage.CASE_SENSITIVE_CONSTRAINT:
-				return validateCaseSensitiveConstraint((CaseSensitiveConstraint)value, diagnostics, context);
 			case ConstraintPackage.STRING_CONSTRAINT:
 				return validateStringConstraint((StringConstraint)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_INTERFACE:
@@ -159,29 +157,6 @@ public class ConstraintValidator extends EObjectValidator {
 	 */
 	public boolean validateValueConstraint(ValueConstraint valueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(valueConstraint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCaseSensitiveConstraint(CaseSensitiveConstraint caseSensitiveConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(caseSensitiveConstraint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(caseSensitiveConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(caseSensitiveConstraint, diagnostics, context);
-		return result;
 	}
 
 	/**

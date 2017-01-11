@@ -28,7 +28,6 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.structure.StructurePackage;
-import pamtram.structure.constraint.CaseSensitiveConstraint;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.ConstraintPackage;
@@ -65,13 +64,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EClass valueConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass caseSensitiveConstraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -272,24 +264,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCaseSensitiveConstraint() {
-		return caseSensitiveConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCaseSensitiveConstraint_CaseSensitive() {
-		return (EAttribute)caseSensitiveConstraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getStringConstraint() {
 		return stringConstraintEClass;
 	}
@@ -301,6 +275,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 */
 	public EAttribute getStringConstraint_OperatorType() {
 		return (EAttribute)stringConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringConstraint_CaseSensitive() {
+		return (EAttribute)stringConstraintEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -523,11 +506,9 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		numericConstraintEClass = createEClass(NUMERIC_CONSTRAINT);
 		createEAttribute(numericConstraintEClass, NUMERIC_CONSTRAINT__OPERATOR_TYPE);
 
-		caseSensitiveConstraintEClass = createEClass(CASE_SENSITIVE_CONSTRAINT);
-		createEAttribute(caseSensitiveConstraintEClass, CASE_SENSITIVE_CONSTRAINT__CASE_SENSITIVE);
-
 		stringConstraintEClass = createEClass(STRING_CONSTRAINT);
 		createEAttribute(stringConstraintEClass, STRING_CONSTRAINT__OPERATOR_TYPE);
+		createEAttribute(stringConstraintEClass, STRING_CONSTRAINT__CASE_SENSITIVE);
 
 		valueConstraintSourceInterfaceEClass = createEClass(VALUE_CONSTRAINT_SOURCE_INTERFACE);
 
@@ -581,8 +562,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
-		caseSensitiveConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
-		stringConstraintEClass.getESuperTypes().add(this.getCaseSensitiveConstraint());
+		stringConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
 		EGenericType g2 = createEGenericType(theStructurePackage.getSourceSection());
@@ -662,11 +642,9 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEClass(numericConstraintEClass, NumericConstraint.class, "NumericConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumericConstraint_OperatorType(), this.getNumericConstraintOperatorType(), "operatorType", null, 1, 1, NumericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(caseSensitiveConstraintEClass, CaseSensitiveConstraint.class, "CaseSensitiveConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCaseSensitiveConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, CaseSensitiveConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(stringConstraintEClass, StringConstraint.class, "StringConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringConstraint_OperatorType(), this.getStringConstraintOperatorType(), "operatorType", null, 1, 1, StringConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStringConstraint_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", "true", 1, 1, StringConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueConstraintSourceInterfaceEClass, ValueConstraintSourceInterface.class, "ValueConstraintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.constraint.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -9,44 +9,44 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl;
-import pamtram.structure.StructurePackage;
+import pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
 import pamtram.structure.SourceSectionReference;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Constraint External Source
- * Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Constraint Source Element</b></em>'. <!--
+ * end-user-doc -->
  *
  * @generated
  */
-public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements ValueConstraintExternalSourceElement {
+public class ValueConstraintSourceElementImpl extends
+		LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
+		implements ValueConstraintSourceElement {
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValueConstraintExternalSourceElementImpl() {
+	protected ValueConstraintSourceElementImpl() {
 		super();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT;
+		return ConstraintPackage.Literals.VALUE_CONSTRAINT_SOURCE_ELEMENT;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,15 +57,14 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -78,17 +77,16 @@ public class ValueConstraintExternalSourceElementImpl extends ExternalModifiedAt
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //AttributeValueConstraintExternalSourceElementImpl
+} // AttributeValueConstraintSourceElementImpl

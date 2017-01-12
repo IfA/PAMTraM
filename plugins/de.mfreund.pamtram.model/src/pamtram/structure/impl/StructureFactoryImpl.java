@@ -71,18 +71,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
-			case StructurePackage.EQUALITY_MATCHER: return createEqualityMatcher();
-			case StructurePackage.SUBSTRING_MATCHER: return createSubstringMatcher();
-			case StructurePackage.BEGINNING_MATCHER: return createBeginningMatcher();
-			case StructurePackage.ENDING_MATCHER: return createEndingMatcher();
-			case StructurePackage.REG_EX_MATCHER: return createRegExMatcher();
-			case StructurePackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case StructurePackage.INSTANCE_POINTER: return createInstancePointer();
 			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
 			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
-			case StructurePackage.RANGE_BOUND: return createRangeBound();
-			case StructurePackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
-			case StructurePackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -98,8 +89,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 		switch (eDataType.getClassifierID()) {
 			case StructurePackage.FILE_TYPE_ENUM:
 				return createFileTypeEnumFromString(eDataType, initialValue);
-			case StructurePackage.VALUE_CONSTRAINT_TYPE:
-				return createValueConstraintTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -115,8 +104,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 		switch (eDataType.getClassifierID()) {
 			case StructurePackage.FILE_TYPE_ENUM:
 				return convertFileTypeEnumToString(eDataType, instanceValue);
-			case StructurePackage.VALUE_CONSTRAINT_TYPE:
-				return convertValueConstraintTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -297,66 +284,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EqualityMatcher createEqualityMatcher() {
-		EqualityMatcherImpl equalityMatcher = new EqualityMatcherImpl();
-		return equalityMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SubstringMatcher createSubstringMatcher() {
-		SubstringMatcherImpl substringMatcher = new SubstringMatcherImpl();
-		return substringMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BeginningMatcher createBeginningMatcher() {
-		BeginningMatcherImpl beginningMatcher = new BeginningMatcherImpl();
-		return beginningMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EndingMatcher createEndingMatcher() {
-		EndingMatcherImpl endingMatcher = new EndingMatcherImpl();
-		return endingMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RegExMatcher createRegExMatcher() {
-		RegExMatcherImpl regExMatcher = new RegExMatcherImpl();
-		return regExMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RangeConstraint createRangeConstraint() {
-		RangeConstraintImpl rangeConstraint = new RangeConstraintImpl();
-		return rangeConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public InstancePointer createInstancePointer() {
 		InstancePointerImpl instancePointer = new InstancePointerImpl();
 		return instancePointer;
@@ -387,36 +314,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RangeBound createRangeBound() {
-		RangeBoundImpl rangeBound = new RangeBoundImpl();
-		return rangeBound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueConstraintSourceElement createValueConstraintSourceElement() {
-		ValueConstraintSourceElementImpl valueConstraintSourceElement = new ValueConstraintSourceElementImpl();
-		return valueConstraintSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
-		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
-		return valueConstraintExternalSourceElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public FileTypeEnum createFileTypeEnumFromString(EDataType eDataType, String initialValue) {
 		FileTypeEnum result = FileTypeEnum.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -429,26 +326,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * @generated
 	 */
 	public String convertFileTypeEnumToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueConstraintType createValueConstraintTypeFromString(EDataType eDataType, String initialValue) {
-		ValueConstraintType result = ValueConstraintType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertValueConstraintTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

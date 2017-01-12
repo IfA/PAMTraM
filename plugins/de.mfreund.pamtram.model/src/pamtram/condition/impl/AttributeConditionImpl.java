@@ -21,7 +21,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.SourceSection;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 
 /**
  * <!-- begin-user-doc -->

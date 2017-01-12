@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import pamtram.NamedElement;
 import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
 /**
  * <!-- begin-user-doc -->

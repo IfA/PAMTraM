@@ -5,7 +5,7 @@ package pamtram.condition;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import pamtram.structure.ValueConstraint;
 public interface AttributeCondition extends Condition {
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.ValueConstraint}.
+	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value Constraint</em>' reference list isn't clear,

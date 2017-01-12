@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.constraint.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import pamtram.condition.AttributeCondition;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
@@ -32,51 +31,54 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ValueModifierSet;
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.SingleReferenceValueConstraint;
 import pamtram.structure.SourceSection;
-import pamtram.structure.ValueConstraintExternalSourceElement;
-import pamtram.structure.ValueConstraintSourceElement;
-import pamtram.structure.ValueConstraintSourceInterface;
-import pamtram.structure.ValueConstraintType;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ChoiceConstraint;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.constraint.util.ConstraintValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Single Reference Value Constraint</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Value Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getResultModifier <em>Result Modifier</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
- *   <li>{@link pamtram.structure.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SingleReferenceValueConstraintImpl extends NamedElementImpl implements SingleReferenceValueConstraint {
+public abstract class SingleReferenceValueConstraintImpl extends NamedElementImpl
+		implements SingleReferenceValueConstraint {
+
 	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.INCLUSION;
+	protected static final ValueConstraintType TYPE_EDEFAULT = ValueConstraintType.REQUIRED;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -85,8 +87,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -95,8 +97,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -104,9 +106,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getResultModifier()
 	 * @generated
 	 * @ordered
@@ -115,8 +117,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 
 	/**
 	 * The cached value of the '{@link #getConstraintReferenceValueAdditionalSpecification() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getConstraintReferenceValueAdditionalSpecification()
 	 * @generated
 	 * @ordered
@@ -124,9 +125,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected EList<InstancePointer> constraintReferenceValueAdditionalSpecification;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -134,8 +135,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected EList<ValueConstraintSourceInterface> sourceElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SingleReferenceValueConstraintImpl() {
@@ -143,18 +143,16 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT;
+		return ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,8 +161,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -172,12 +169,11 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, type));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -186,8 +182,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -195,51 +190,47 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification() {
 		if (constraintReferenceValueAdditionalSpecification == null) {
-			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 		}
 		return constraintReferenceValueAdditionalSpecification;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<ValueConstraintSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -250,8 +241,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,22 +261,22 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 StructureValidator.DIAGNOSTIC_SOURCE,
-					 StructureValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
+					 ConstraintValidator.DIAGNOSTIC_SOURCE,
+					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,
 					 errorMessage,
-					 new Object [] { this,  StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
 				!AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.eINSTANCE.getComplexCondition())) {
 			return true;
@@ -308,22 +298,22 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 StructureValidator.DIAGNOSTIC_SOURCE,
-					 StructureValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
+					 ConstraintValidator.DIAGNOSTIC_SOURCE,
+					 ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,
 					 errorMessage,
-					 new Object [] { this,  StructurePackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
+					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		boolean result = this.getResultModifier().isEmpty() ||
 				!AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.eINSTANCE.getActualSourceSectionAttribute());
 		
@@ -332,8 +322,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			String errorMessage = "ValueConstraints that are part of a SourceSection must not"
 					+ " specify a ResultModifier!'";
 		
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
+					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
 					errorMessage, new Object[] { this,
 							MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER }));
 		}
@@ -342,24 +332,28 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean isLocalConstraint() {
-		if(this.eContainer() instanceof ActualSourceSectionAttribute) {
+		if (this instanceof ChoiceConstraint) {
+			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
+		}
+		
+		if (AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
 			return true;
 		}
 		
-		if(!(this.eContainer() instanceof AttributeCondition)) {
+		if (!(this instanceof SingleReferenceValueConstraint)
+				|| !AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.Literals.ATTRIBUTE_CONDITION)) {
 			throw new UnsupportedOperationException();
 		}
 		
 		EObject container = this;
 		
-		while(!(container instanceof Mapping)) {
-			if(container == null) {
+		while (!(container instanceof Mapping)) {
+			if (container == null) {
 				return false;
 			}
 			container = container.eContainer();
@@ -369,85 +363,85 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		//
 		SourceSection localSection = ((Mapping) container).getSourceSection();
 		
-		if(getSourceElements().parallelStream().allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter ||
-				(s instanceof ValueConstraintSourceElement &&
-				((ValueConstraintSourceElement) s).getSource().getContainingSection().equals(localSection)) ||
-				(s instanceof ValueConstraintExternalSourceElement &&
-						((ValueConstraintExternalSourceElement) s).getSource().getContainingSection().isContainerFor(localSection)))) {
+		if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()
+				.allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter
+						|| s instanceof ValueConstraintSourceElement && ((ValueConstraintSourceElement) s).getSource()
+								.getContainingSection().equals(localSection)
+						|| s instanceof ValueConstraintExternalSourceElement
+								&& ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()
+										.isContainerFor(localSection))) {
 			return true;
 		}
 		
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return getConstraintReferenceValueAdditionalSpecification().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
-						s -> s instanceof InstancePointerSourceElement || 
-						s instanceof InstancePointerExternalSourceElement)
-				).findAny().isPresent();
+		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
+				.parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+						.filter(s -> s instanceof InstancePointerSourceElement
+								|| s instanceof InstancePointerExternalSourceElement))
+				.findAny().isPresent();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return ((InternalEList<?>)getConstraintReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
 				return getType();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				return getExpression();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
 				return getResultModifier();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return getConstraintReferenceValueAdditionalSpecification();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
 				setType((ValueConstraintType)newValue);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();
 				getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
 				return;
@@ -456,26 +450,25 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();
 				return;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
 		}
@@ -483,43 +476,41 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE:
 				return type != TYPE_EDEFAULT;
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return constraintReferenceValueAdditionalSpecification != null && !constraintReferenceValueAdditionalSpecification.isEmpty();
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ExpressionHint.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableHint.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -527,21 +518,20 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ExpressionHint.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
+				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableHint.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -549,30 +539,28 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING:
 				return checkConstraint((String)arguments.get(0), (String)arguments.get(1));
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoResultModifierInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case StructurePackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -588,4 +576,4 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		return result.toString();
 	}
 
-} //SingleReferenceValueConstraintImpl
+} // SingleReferenceValueConstraintImpl

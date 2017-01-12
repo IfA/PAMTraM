@@ -17,7 +17,7 @@ import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.ValueConstraintSourceInterface;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 
 /**

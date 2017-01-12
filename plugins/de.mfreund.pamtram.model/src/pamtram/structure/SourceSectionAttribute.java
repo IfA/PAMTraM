@@ -4,6 +4,7 @@ package pamtram.structure;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.Attribute;
 
 
@@ -27,7 +28,7 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 
 	/**
 	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.ValueConstraint}.
+	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value Constraint</em>' containment reference list isn't clear,

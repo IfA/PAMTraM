@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.constraint;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,60 +11,60 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Value Constraint Type</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
- * @see pamtram.structure.StructurePackage#getValueConstraintType()
+ * @see pamtram.structure.constraint.ConstraintPackage#getValueConstraintType()
  * @model
  * @generated
  */
 public enum ValueConstraintType implements Enumerator {
 	/**
-	 * The '<em><b>INCLUSION</b></em>' literal object.
+	 * The '<em><b>REQUIRED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #INCLUSION_VALUE
+	 * @see #REQUIRED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INCLUSION(0, "INCLUSION", "INCLUSION"),
+	REQUIRED(0, "REQUIRED", "REQUIRED"),
 
 	/**
-	 * The '<em><b>EXCLUSION</b></em>' literal object.
+	 * The '<em><b>FORBIDDEN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #EXCLUSION_VALUE
+	 * @see #FORBIDDEN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	EXCLUSION(1, "EXCLUSION", "EXCLUSION");
+	FORBIDDEN(1, "FORBIDDEN", "FORBIDDEN");
 
 	/**
-	 * The '<em><b>INCLUSION</b></em>' literal value.
+	 * The '<em><b>REQUIRED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>INCLUSION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>REQUIRED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #INCLUSION
+	 * @see #REQUIRED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int INCLUSION_VALUE = 0;
+	public static final int REQUIRED_VALUE = 0;
 
 	/**
-	 * The '<em><b>EXCLUSION</b></em>' literal value.
+	 * The '<em><b>FORBIDDEN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>EXCLUSION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>FORBIDDEN</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #EXCLUSION
+	 * @see #FORBIDDEN
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXCLUSION_VALUE = 1;
+	public static final int FORBIDDEN_VALUE = 1;
 
 	/**
 	 * An array of all the '<em><b>Value Constraint Type</b></em>' enumerators.
@@ -74,8 +74,8 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	private static final ValueConstraintType[] VALUES_ARRAY =
 			new ValueConstraintType[] {
-			INCLUSION,
-			EXCLUSION,
+			REQUIRED,
+			FORBIDDEN,
 		};
 
 	/**
@@ -132,8 +132,8 @@ public enum ValueConstraintType implements Enumerator {
 	 */
 	public static ValueConstraintType get(int value) {
 		switch (value) {
-			case INCLUSION_VALUE: return INCLUSION;
-			case EXCLUSION_VALUE: return EXCLUSION;
+			case REQUIRED_VALUE: return REQUIRED;
+			case FORBIDDEN_VALUE: return FORBIDDEN;
 		}
 		return null;
 	}

@@ -21,7 +21,6 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.mapping.ExpandableHint;
@@ -29,6 +28,7 @@ import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->

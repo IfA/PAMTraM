@@ -62,11 +62,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
-			case MappingPackage.VALUE_MODIFIER_SET: return createValueModifierSet();
-			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
-			case MappingPackage.STRING_APPENDER: return createStringAppender();
-			case MappingPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
-			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.CONTAINER_SELECTOR: return createContainerSelector();
@@ -84,8 +79,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: return createAttributeMatcherGlobalSourceElement();
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
 			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createContainerSelectorGlobalSourceElement();
@@ -197,56 +190,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ClassMatcher createClassMatcher() {
 		ClassMatcherImpl classMatcher = new ClassMatcherImpl();
 		return classMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueModifierSet createValueModifierSet() {
-		ValueModifierSetImpl valueModifierSet = new ValueModifierSetImpl();
-		return valueModifierSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SubstringReplacer createSubstringReplacer() {
-		SubstringReplacerImpl substringReplacer = new SubstringReplacerImpl();
-		return substringReplacer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringAppender createStringAppender() {
-		StringAppenderImpl stringAppender = new StringAppenderImpl();
-		return stringAppender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UniqueNumberAppender createUniqueNumberAppender() {
-		UniqueNumberAppenderImpl uniqueNumberAppender = new UniqueNumberAppenderImpl();
-		return uniqueNumberAppender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringPrepender createStringPrepender() {
-		StringPrependerImpl stringPrepender = new StringPrependerImpl();
-		return stringPrepender;
 	}
 
 	/**
@@ -438,26 +381,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender() {
 		ExternalMappedAttributeValueAppenderImpl externalMappedAttributeValueAppender = new ExternalMappedAttributeValueAppenderImpl();
 		return externalMappedAttributeValueAppender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MatchToLowerCaseConverter createMatchToLowerCaseConverter() {
-		MatchToLowerCaseConverterImpl matchToLowerCaseConverter = new MatchToLowerCaseConverterImpl();
-		return matchToLowerCaseConverter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
-		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
-		return matchToUpperCaseConverter;
 	}
 
 	/**

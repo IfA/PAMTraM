@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
 import pamtram.NamedElement;
 
@@ -10,7 +10,7 @@ import pamtram.NamedElement;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getValueModifier()
+ * @see pamtram.mapping.modifier.ModifierPackage#getValueModifier()
  * @model interface="true" abstract="true"
  * @generated
  */

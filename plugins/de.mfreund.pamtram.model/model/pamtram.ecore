@@ -64,8 +64,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
-        eType="#//mapping/ValueModifierSet" changeable="false" volatile="true" transient="true"
-        derived="true">
+        eType="#//mapping/modifier/ValueModifierSet" changeable="false" volatile="true"
+        transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;ValueModifierSet> modifierSets = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getModifierSets().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,&#xD;&#xA;&#x9;&#x9;modifierSets.size(), modifierSets.toArray());"/>
       </eAnnotations>
@@ -135,7 +135,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
         upperBound="-1" eType="#//mapping/Mapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
-        eType="#//mapping/ValueModifierSet" containment="true"/>
+        eType="#//mapping/modifier/ValueModifierSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
         eType="#//mapping/FixedValue" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
@@ -1417,7 +1417,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModifiableHint" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
-          eType="#//mapping/ValueModifierSet"/>
+          eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1601,33 +1601,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
           eType="#//structure/TargetSectionClass"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/ValueModifier" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ValueModifier" abstract="true" interface="true"
-        eSuperTypes="#//NamedElement">
-      <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/ValueModifier">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacement" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="StringAppender" eSuperTypes="#//mapping/ValueModifier">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/ValueModifier"/>
-    <eClassifiers xsi:type="ecore:EClass" name="StringPrepender" eSuperTypes="#//mapping/ValueModifier">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModifiedAttributeElementType" abstract="true"
         eSuperTypes="#//NamedElement">
       <eTypeParameters name="S">
@@ -1676,7 +1649,7 @@
         <eGenericType eTypeParameter="#//mapping/ModifiedAttributeElementType/A"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/ValueModifierSet"/>
+          eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalModifiedAttributeElementType"
         abstract="true">
@@ -1813,7 +1786,7 @@
           <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
         </eAnnotations>
       </eOperations>
-      <eOperations name="getModifiers" upperBound="-1" eType="#//mapping/ValueModifierSet">
+      <eOperations name="getModifiers" upperBound="-1" eType="#//mapping/modifier/ValueModifierSet">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getModifier();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getModifier();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
         </eAnnotations>
@@ -1855,7 +1828,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/ActualSourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
-          eType="#//mapping/ValueModifierSet"/>
+          eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstancePointerSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
@@ -1967,14 +1940,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
         eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true" interface="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MatchToLowerCaseConverter" eSuperTypes="#//mapping/ValueModifier">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MatchToUpperCaseConverter" eSuperTypes="#//mapping/ValueModifier">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalModifiedAttributeElementType"
         abstract="true">
       <eTypeParameters name="S">
@@ -2045,5 +2010,52 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
     </eClassifiers>
+    <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
+        nsPrefix="modifier">
+      <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+            eType="#//mapping/modifier/ValueModifier" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ValueModifier" abstract="true" interface="true"
+          eSuperTypes="#//NamedElement">
+        <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eOperations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="NumericModifier" abstract="true"
+          eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExpressionModifier" eSuperTypes="#//mapping/modifier/NumericModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringModifier" abstract="true"
+          eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacement" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringAppender" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringPrepender" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ToLowerCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ToUpperCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+    </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

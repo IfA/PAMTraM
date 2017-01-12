@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,17 +15,17 @@ import pamtram.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getValueModifierSet()
+ * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet()
  * @model
  * @generated
  */
 public interface ValueModifierSet extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifier}.
+	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier</em>' containment reference list isn't clear,
@@ -33,7 +33,7 @@ public interface ValueModifierSet extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getValueModifierSet_Modifier()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifier()
 	 * @model containment="true"
 	 * @generated
 	 */

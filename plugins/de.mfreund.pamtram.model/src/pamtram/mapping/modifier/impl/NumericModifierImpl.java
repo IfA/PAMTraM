@@ -1,40 +1,32 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.modifier.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.UniqueNumberAppender;
+
+import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.NumericModifier;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Unique Number Appender</b></em>'.
+ * An implementation of the model object '<em><b>Numeric Modifier</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class UniqueNumberAppenderImpl extends NamedElementImpl implements UniqueNumberAppender {
-	private static long uniqueNumber=0;
-	public static long getUniqueNumber() {
-		if(uniqueNumber < Long.MAX_VALUE){
-			uniqueNumber++;
-		} else {
-			uniqueNumber=0; //TODO maybe throw error
-		}
-		
-		return uniqueNumber;
-	}
-
+public abstract class NumericModifierImpl extends NamedElementImpl implements NumericModifier {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UniqueNumberAppenderImpl() {
+	protected NumericModifierImpl() {
 		super();
 	}
 
@@ -45,12 +37,18 @@ public class UniqueNumberAppenderImpl extends NamedElementImpl implements Unique
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.UNIQUE_NUMBER_APPENDER;
+		return ModifierPackage.Literals.NUMERIC_MODIFIER;
 	}
 
-	@Override
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String modifyValue(String value) {
-		return value+getUniqueNumber();
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -61,10 +59,10 @@ public class UniqueNumberAppenderImpl extends NamedElementImpl implements Unique
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING:
+			case ModifierPackage.NUMERIC_MODIFIER___MODIFY_VALUE__STRING:
 				return modifyValue((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //UniqueNumberAppenderImpl
+} //NumericModifierImpl

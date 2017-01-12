@@ -6,6 +6,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.mapping.modifier.ValueModifierSet;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Modifiable Hint</b></em>'.
@@ -25,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface ModifiableHint extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result Modifier</em>' reference list isn't clear,

@@ -291,29 +291,26 @@
       <nestedGenPackages prefix="Constraint" disposableProviderFactory="true" multipleEditorPages="false"
           generateModelWizard="false" ecorePackage="pamtram.ecore#//structure/constraint">
         <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//structure/constraint/ValueConstraintType">
-          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/ValueConstraintType/INCLUSION"/>
-          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/ValueConstraintType/EXCLUSION"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/ValueConstraintType/REQUIRED"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/ValueConstraintType/FORBIDDEN"/>
         </genEnums>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/EqualityMatcher"/>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType">
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType/EQUAL"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType/GREATER"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType/GREATER_OR_EQUAL"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType/LESS"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/NumericConstraintOperatorType/LESS_OR_EQUAL"/>
+        </genEnums>
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//structure/constraint/StringConstraintOperatorType">
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_EQUAL"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_BEGINNING"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_ENDING"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_SUBSTRING"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_REGEX"/>
+        </genEnums>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraint">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/ValueConstraint/type"/>
-        </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/SubstringMatcher"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/BeginningMatcher"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/EndingMatcher"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/RegExMatcher"/>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/CaseSensitiveConstraint">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/CaseSensitiveConstraint/caseSensitive"/>
-        </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/RangeConstraint">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/RangeConstraint/upperBound"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/RangeConstraint/lowerBound"/>
-        </genClasses>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/MultipleReferencesValueConstraint">
-          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/MultipleReferencesValueConstraint/checkConstraint">
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/MultipleReferencesValueConstraint/checkConstraint/attrValue"/>
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/MultipleReferencesValueConstraint/checkConstraint/refValue"/>
-          </genOperations>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/ValueConstraint/isLocalConstraint"/>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint/constraintReferenceValueAdditionalSpecification"/>
@@ -334,25 +331,25 @@
             <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint/validateNoResultModifierInSourceSections/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint/validateNoResultModifierInSourceSections/context"/>
           </genOperations>
-          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint/isLocalConstraint"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/EqualityConstraint"/>
+        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/ChoiceConstraint">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/ChoiceConstraint/choices"/>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/ChoiceConstraint/checkConstraint">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/ChoiceConstraint/checkConstraint/attrValue"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/ChoiceConstraint/checkConstraint/refValue"/>
+          </genOperations>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/NumericConstraint">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/NumericConstraint/operatorType"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/StringConstraint">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/operatorType"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/caseSensitive"/>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraintSourceInterface"/>
         <genClasses ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraintSourceElement"/>
         <genClasses ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraintExternalSourceElement"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/constraint/RangeBound">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/RangeBound/boundType"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/RangeBound/boundReferenceValueAdditionalSpecification"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/constraint/RangeBound/sourceElements"/>
-          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesInSourceSections">
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesInSourceSections/diagnostics"/>
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesInSourceSections/context"/>
-          </genOperations>
-          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesOrGlobalAttributesInConditionModel">
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesOrGlobalAttributesInConditionModel/diagnostics"/>
-            <genParameters ecoreParameter="pamtram.ecore#//structure/constraint/RangeBound/validateOnlyFixedValuesOrGlobalAttributesInConditionModel/context"/>
-          </genOperations>
-          <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/RangeBound/isLocalConstraint"/>
-        </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Condition" basePackage="pamtram" disposableProviderFactory="true"
@@ -528,25 +525,6 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/ClassMatcher">
         <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ClassMatcher/targetClass"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ValueModifierSet">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ValueModifierSet/modifier"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ValueModifier">
-        <genOperations ecoreOperation="pamtram.ecore#//mapping/ValueModifier/modifyValue">
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/ValueModifier/modifyValue/value"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/SubstringReplacer">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/SubstringReplacer/regex"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/SubstringReplacer/replacement"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/StringAppender">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/StringAppender/string"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/UniqueNumberAppender"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/StringPrepender">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/StringPrepender/string"/>
-      </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ModifiedAttributeElementType">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/ModifiedAttributeElementType/S"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/ModifiedAttributeElementType/C"/>
@@ -642,12 +620,6 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExternalMappedAttributeValuePrepender"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExternalMappedAttributeValueAppender"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ExpandableHint"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/MatchToLowerCaseConverter">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/MatchToLowerCaseConverter/regex"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/MatchToUpperCaseConverter">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/MatchToUpperCaseConverter/regex"/>
-      </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/GlobalModifiedAttributeElementType">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/GlobalModifiedAttributeElementType/S"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//mapping/GlobalModifiedAttributeElementType/C"/>
@@ -658,6 +630,34 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherGlobalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingGlobalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorGlobalSourceElement"/>
+      <nestedGenPackages prefix="Modifier" disposableProviderFactory="true" multipleEditorPages="false"
+          generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping/modifier">
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/ValueModifierSet">
+          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/modifier/ValueModifierSet/modifier"/>
+        </genClasses>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/modifier/ValueModifier">
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/modifier/ValueModifier/modifyValue">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/modifier/ValueModifier/modifyValue/value"/>
+          </genOperations>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/SubstringReplacer">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/regex"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/replacement"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/StringAppender">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringAppender/string"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/UniqueNumberAppender"/>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/StringPrepender">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringPrepender/string"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/MatchToLowerCaseConverter">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/MatchToLowerCaseConverter/regex"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/MatchToUpperCaseConverter">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/MatchToUpperCaseConverter/regex"/>
+        </genClasses>
+      </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

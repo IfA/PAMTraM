@@ -1,7 +1,6 @@
 /**
  */
-package pamtram.mapping;
-
+package pamtram.mapping.modifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -9,7 +8,7 @@ package pamtram.mapping;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getUniqueNumberAppender()
+ * @see pamtram.mapping.modifier.ModifierPackage#getUniqueNumberAppender()
  * @model
  * @generated
  */

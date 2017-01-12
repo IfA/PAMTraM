@@ -26,10 +26,10 @@ import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.ValueModifierSet;
 import pamtram.util.PamtramValidator;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->

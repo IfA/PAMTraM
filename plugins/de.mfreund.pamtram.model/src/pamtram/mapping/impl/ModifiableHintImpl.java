@@ -12,9 +12,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->

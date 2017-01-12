@@ -7,7 +7,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.debug.core,
  org.eclipse.jface
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: de.mfreund.pamtram.preferences,
+Export-Package: de.congrace.exp4j,
+ de.mfreund.pamtram.preferences,
  de.mfreund.pamtram.properties,
  de.mfreund.pamtram.util
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Bundle-ClassPath: lib/exp4j-0.3.11.jar,
+ .

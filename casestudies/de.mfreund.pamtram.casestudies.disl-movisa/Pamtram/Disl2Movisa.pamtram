@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://disl#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="DislRoot">
@@ -3739,81 +3739,81 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_to_&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_to_" string="_to_"/>
+      <modifier xsi:type="modifier:StringAppender" name="_to_" string="_to_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_" string="_"/>
+      <modifier xsi:type="modifier:StringAppender" name="_" string="_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_pos&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_pos" string="_pos"/>
+      <modifier xsi:type="modifier:StringAppender" name="_pos" string="_pos"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_ttt&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_ttt" string="_ttt"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ttt" string="_ttt"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_size&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_size" string="_size"/>
+      <modifier xsi:type="modifier:StringAppender" name="_size" string="_size"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="prepend &quot;triggering_&quot;">
-      <modifier xsi:type="mapping:StringPrepender" name="triggering_" string="triggering_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="triggering_" string="triggering_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_SignalTrigger&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_SignalTrigger" string="_SignalTrigger"/>
+      <modifier xsi:type="modifier:StringAppender" name="_SignalTrigger" string="_SignalTrigger"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_signal&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
+      <modifier xsi:type="modifier:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_Changed&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_Changed" string="_Changed"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Changed" string="_Changed"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_state&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_state" string="_state"/>
+      <modifier xsi:type="modifier:StringAppender" name="_state" string="_state"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_activityBlock&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_activityBlock" string="_activityBlock"/>
+      <modifier xsi:type="modifier:StringAppender" name="_activityBlock" string="_activityBlock"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="prepend &quot;reception_&quot; append &quot;_signal&quot;">
-      <modifier xsi:type="mapping:StringPrepender" name="reception_" string="reception_"/>
-      <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
+      <modifier xsi:type="modifier:StringPrepender" name="reception_" string="reception_"/>
+      <modifier xsi:type="modifier:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="replace &quot;modell-ID&quot;">
-      <modifier xsi:type="mapping:SubstringReplacer" name="modell-ID_to_start" regex="modell-ID" replacement="start"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="modell-ID_to_start" regex="modell-ID" replacement="start"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_textDef&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_textDef" string="_textDef"/>
+      <modifier xsi:type="modifier:StringAppender" name="_textDef" string="_textDef"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="replace &quot;_Option_([0-9]+)$&quot;">
-      <modifier xsi:type="mapping:SubstringReplacer" name="_Option_([0-9]+)$_to_" regex="_Option_([0-9]+)$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="_Option_([0-9]+)$_to_" regex="_Option_([0-9]+)$" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="ExtractEBOIncrementingNumber">
-      <modifier xsi:type="mapping:SubstringReplacer" name="replace &quot;eBO_&quot;" regex="eBO_([0-9]).*" replacement="$1"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="replace &quot;eBO_&quot;" regex="eBO_([0-9]).*" replacement="$1"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_SAB&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_SAB" string="_SAB"/>
+      <modifier xsi:type="modifier:StringAppender" name="_SAB" string="_SAB"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_Value&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_Value" string="_Value"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Value" string="_Value"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_ControlFlow&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_ControlFlow" string="_ControlFlow"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ControlFlow" string="_ControlFlow"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_ObjectFlow&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_ObjectFlow" string="_ObjectFlow"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ObjectFlow" string="_ObjectFlow"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_Action&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_Action" string="_Action"/>
-      <modifier xsi:type="mapping:UniqueNumberAppender"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Action" string="_Action"/>
+      <modifier xsi:type="modifier:UniqueNumberAppender"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="replace &quot;_Option_[0-9]_Changed&quot;">
-      <modifier xsi:type="mapping:SubstringReplacer" name="_Option_[0-9]_Changed_to_" regex="_Option_[0-9]_Changed" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="_Option_[0-9]_Changed_to_" regex="_Option_[0-9]_Changed" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_Option&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_Option" string="_Option"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Option" string="_Option"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_Class&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_Class" string="_Class"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Class" string="_Class"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append &quot;_SM&quot;">
-      <modifier xsi:type="mapping:StringAppender" name="_SM" string="_SM"/>
+      <modifier xsi:type="modifier:StringAppender" name="_SM" string="_SM"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

@@ -13,9 +13,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ModifierFactory;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -65,7 +64,7 @@ extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER);
+			childrenFeatures.add(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER);
 		}
 		return childrenFeatures;
 	}
@@ -137,7 +136,7 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ValueModifierSet.class)) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -157,33 +156,33 @@ extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createSubstringReplacer()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createSubstringReplacer()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createStringAppender()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createStringAppender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createUniqueNumberAppender()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createUniqueNumberAppender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createStringPrepender()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createStringPrepender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createMatchToLowerCaseConverter()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createMatchToLowerCaseConverter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 MappingFactory.eINSTANCE.createMatchToUpperCaseConverter()));
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createMatchToUpperCaseConverter()));
 	}
 
 	/**

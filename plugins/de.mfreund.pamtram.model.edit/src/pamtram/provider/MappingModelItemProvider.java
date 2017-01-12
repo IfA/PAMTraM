@@ -19,6 +19,7 @@ import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
+import pamtram.mapping.modifier.ModifierFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.MappingModel} object.
@@ -252,7 +253,7 @@ public class MappingModelItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
-				 MappingFactory.eINSTANCE.createValueModifierSet()));
+				 ModifierFactory.eINSTANCE.createValueModifierSet()));
 
 		newChildDescriptors.add
 			(createChildParameter

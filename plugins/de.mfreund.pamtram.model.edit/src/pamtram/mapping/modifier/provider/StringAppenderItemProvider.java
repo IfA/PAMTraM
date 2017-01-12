@@ -14,8 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.StringAppender;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -67,7 +66,7 @@ public class StringAppenderItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StringAppender_string_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_StringAppender_string_feature", "_UI_StringAppender_type"),
-				 MappingPackage.Literals.STRING_APPENDER__STRING,
+				 ModifierPackage.Literals.STRING_APPENDER__STRING,
 				 true,
 				 false,
 				 false,
@@ -128,7 +127,7 @@ public class StringAppenderItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(StringAppender.class)) {
-			case MappingPackage.STRING_APPENDER__STRING:
+			case ModifierPackage.STRING_APPENDER__STRING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

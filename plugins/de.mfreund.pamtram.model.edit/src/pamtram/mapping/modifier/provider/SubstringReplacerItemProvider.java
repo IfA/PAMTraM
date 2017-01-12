@@ -14,8 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.SubstringReplacer;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -68,7 +67,7 @@ public class SubstringReplacerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SubstringReplacer_regex_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_regex_feature", "_UI_SubstringReplacer_type"),
-				 MappingPackage.Literals.SUBSTRING_REPLACER__REGEX,
+				 ModifierPackage.Literals.SUBSTRING_REPLACER__REGEX,
 				 true,
 				 false,
 				 false,
@@ -90,7 +89,7 @@ public class SubstringReplacerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SubstringReplacer_replacement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_replacement_feature", "_UI_SubstringReplacer_type"),
-				 MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT,
+				 ModifierPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT,
 				 true,
 				 false,
 				 false,
@@ -151,8 +150,8 @@ public class SubstringReplacerItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SubstringReplacer.class)) {
-			case MappingPackage.SUBSTRING_REPLACER__REGEX:
-			case MappingPackage.SUBSTRING_REPLACER__REPLACEMENT:
+			case ModifierPackage.SUBSTRING_REPLACER__REGEX:
+			case ModifierPackage.SUBSTRING_REPLACER__REPLACEMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

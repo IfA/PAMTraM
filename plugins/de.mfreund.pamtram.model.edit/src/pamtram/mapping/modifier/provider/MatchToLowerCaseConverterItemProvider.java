@@ -15,9 +15,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -67,7 +66,7 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 				 getResourceLocator(),
 				 getString("_UI_MatchToLowerCaseConverter_regex_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToLowerCaseConverter_regex_feature", "_UI_MatchToLowerCaseConverter_type"),
-				 MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER__REGEX,
+				 ModifierPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER__REGEX,
 				 true,
 				 false,
 				 false,
@@ -129,7 +128,7 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MatchToLowerCaseConverter.class)) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

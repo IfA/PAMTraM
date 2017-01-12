@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.modifier;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Match To Lower Case Converter</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getMatchToLowerCaseConverter()
+ * @see pamtram.mapping.modifier.ModifierPackage#getMatchToLowerCaseConverter()
  * @model
  * @generated
  */
@@ -31,7 +29,7 @@ public interface MatchToLowerCaseConverter extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
-	 * @see pamtram.mapping.MappingPackage#getMatchToLowerCaseConverter_Regex()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getMatchToLowerCaseConverter_Regex()
 	 * @model required="true"
 	 * @generated
 	 */

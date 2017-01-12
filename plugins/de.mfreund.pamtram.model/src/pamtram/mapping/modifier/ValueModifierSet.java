@@ -5,7 +5,6 @@ package pamtram.mapping.modifier;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +18,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getValueModifierSet()
+ * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet()
  * @model
  * @generated
  */
@@ -34,7 +33,7 @@ public interface ValueModifierSet extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getValueModifierSet_Modifier()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifier()
 	 * @model containment="true"
 	 * @generated
 	 */

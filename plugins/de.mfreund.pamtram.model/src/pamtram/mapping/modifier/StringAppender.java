@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.modifier;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>String Appender</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.StringAppender#getString <em>String</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getStringAppender()
+ * @see pamtram.mapping.modifier.ModifierPackage#getStringAppender()
  * @model
  * @generated
  */
@@ -32,7 +30,7 @@ public interface StringAppender extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>String</em>' attribute.
 	 * @see #setString(String)
-	 * @see pamtram.mapping.MappingPackage#getStringAppender_String()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getStringAppender_String()
 	 * @model default="" required="true"
 	 * @generated
 	 */

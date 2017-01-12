@@ -56,14 +56,8 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
-import pamtram.mapping.modifier.StringAppender;
-import pamtram.mapping.modifier.StringPrepender;
-import pamtram.mapping.modifier.SubstringReplacer;
-import pamtram.mapping.modifier.UniqueNumberAppender;
-import pamtram.mapping.modifier.ValueModifier;
-import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
 import pamtram.mapping.Matcher;
@@ -180,48 +174,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass classMatcherEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass valueModifierSetEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass valueModifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass substringReplacerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stringAppenderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass uniqueNumberAppenderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass stringPrependerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -452,20 +404,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass matchToLowerCaseConverterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass matchToUpperCaseConverterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass globalModifiedAttributeElementTypeEClass = null;
 
 	/**
@@ -544,6 +482,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
 		ConstraintPackageImpl theConstraintPackage = (ConstraintPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) instanceof ConstraintPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) : ConstraintPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
+		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMappingPackage.createPackageContents();
@@ -552,6 +491,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		theGenericPackage.createPackageContents();
 		theConstraintPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
+		theModifierPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMappingPackage.initializePackageContents();
@@ -560,6 +500,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		theGenericPackage.initializePackageContents();
 		theConstraintPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
+		theModifierPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -991,114 +932,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EReference getClassMatcher_TargetClass() {
 		return (EReference)classMatcherEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getValueModifierSet() {
-		return valueModifierSetEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getValueModifierSet_Modifier() {
-		return (EReference)valueModifierSetEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getValueModifier() {
-		return valueModifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getValueModifier__ModifyValue__String() {
-		return valueModifierEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSubstringReplacer() {
-		return substringReplacerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSubstringReplacer_Regex() {
-		return (EAttribute)substringReplacerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSubstringReplacer_Replacement() {
-		return (EAttribute)substringReplacerEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStringAppender() {
-		return stringAppenderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStringAppender_String() {
-		return (EAttribute)stringAppenderEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getUniqueNumberAppender() {
-		return uniqueNumberAppenderEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStringPrepender() {
-		return stringPrependerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getStringPrepender_String() {
-		return (EAttribute)stringPrependerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1646,42 +1479,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMatchToLowerCaseConverter() {
-		return matchToLowerCaseConverterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMatchToLowerCaseConverter_Regex() {
-		return (EAttribute)matchToLowerCaseConverterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getMatchToUpperCaseConverter() {
-		return matchToUpperCaseConverterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMatchToUpperCaseConverter_Regex() {
-		return (EAttribute)matchToUpperCaseConverterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGlobalModifiedAttributeElementType() {
 		return globalModifiedAttributeElementTypeEClass;
 	}
@@ -1821,24 +1618,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		classMatcherEClass = createEClass(CLASS_MATCHER);
 		createEReference(classMatcherEClass, CLASS_MATCHER__TARGET_CLASS);
 
-		valueModifierSetEClass = createEClass(VALUE_MODIFIER_SET);
-		createEReference(valueModifierSetEClass, VALUE_MODIFIER_SET__MODIFIER);
-
-		valueModifierEClass = createEClass(VALUE_MODIFIER);
-		createEOperation(valueModifierEClass, VALUE_MODIFIER___MODIFY_VALUE__STRING);
-
-		substringReplacerEClass = createEClass(SUBSTRING_REPLACER);
-		createEAttribute(substringReplacerEClass, SUBSTRING_REPLACER__REGEX);
-		createEAttribute(substringReplacerEClass, SUBSTRING_REPLACER__REPLACEMENT);
-
-		stringAppenderEClass = createEClass(STRING_APPENDER);
-		createEAttribute(stringAppenderEClass, STRING_APPENDER__STRING);
-
-		uniqueNumberAppenderEClass = createEClass(UNIQUE_NUMBER_APPENDER);
-
-		stringPrependerEClass = createEClass(STRING_PREPENDER);
-		createEAttribute(stringPrependerEClass, STRING_PREPENDER__STRING);
-
 		modifiedAttributeElementTypeEClass = createEClass(MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE);
 		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
@@ -1919,12 +1698,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		expandableHintEClass = createEClass(EXPANDABLE_HINT);
 
-		matchToLowerCaseConverterEClass = createEClass(MATCH_TO_LOWER_CASE_CONVERTER);
-		createEAttribute(matchToLowerCaseConverterEClass, MATCH_TO_LOWER_CASE_CONVERTER__REGEX);
-
-		matchToUpperCaseConverterEClass = createEClass(MATCH_TO_UPPER_CASE_CONVERTER);
-		createEAttribute(matchToUpperCaseConverterEClass, MATCH_TO_UPPER_CASE_CONVERTER__REGEX);
-
 		globalModifiedAttributeElementTypeEClass = createEClass(GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 		createEReference(globalModifiedAttributeElementTypeEClass, GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
 
@@ -1959,10 +1732,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		ModifierPackage theModifierPackage = (ModifierPackage)EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI);
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theModifierPackage);
 
 		// Create type parameters
 		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
@@ -2182,12 +1959,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
 		attributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		classMatcherEClass.getESuperTypes().add(this.getMatcher());
-		valueModifierSetEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		valueModifierEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		substringReplacerEClass.getESuperTypes().add(this.getValueModifier());
-		stringAppenderEClass.getESuperTypes().add(this.getValueModifier());
-		uniqueNumberAppenderEClass.getESuperTypes().add(this.getValueModifier());
-		stringPrependerEClass.getESuperTypes().add(this.getValueModifier());
 		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
 		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
@@ -2330,8 +2101,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		externalMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
 		externalMappedAttributeValuePrependerEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
-		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getValueModifier());
-		matchToUpperCaseConverterEClass.getESuperTypes().add(this.getValueModifier());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
 		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -2429,7 +2198,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEAttribute(getExpressionHint_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modifiableHintEClass, ModifiableHint.class, "ModifiableHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModifiableHint_ResultModifier(), this.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModifiableHint_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMapping_Target(), theStructurePackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2545,30 +2314,10 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(classMatcherEClass, ClassMatcher.class, "ClassMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassMatcher_TargetClass(), theStructurePackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, ClassMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(valueModifierSetEClass, ValueModifierSet.class, "ValueModifierSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getValueModifierSet_Modifier(), this.getValueModifier(), null, "modifier", null, 0, -1, ValueModifierSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(valueModifierEClass, ValueModifier.class, "ValueModifier", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getValueModifier__ModifyValue__String(), ecorePackage.getEString(), "modifyValue", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(substringReplacerEClass, SubstringReplacer.class, "SubstringReplacer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSubstringReplacer_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, SubstringReplacer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubstringReplacer_Replacement(), ecorePackage.getEString(), "replacement", null, 1, 1, SubstringReplacer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(stringAppenderEClass, StringAppender.class, "StringAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringAppender_String(), ecorePackage.getEString(), "string", "", 1, 1, StringAppender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(uniqueNumberAppenderEClass, UniqueNumberAppender.class, "UniqueNumberAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(stringPrependerEClass, StringPrepender.class, "StringPrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStringPrepender_String(), ecorePackage.getEString(), "string", "", 1, 1, StringPrepender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(modifiedAttributeElementTypeEClass, ModifiedAttributeElementType.class, "ModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(modifiedAttributeElementTypeEClass_A);
 		initEReference(getModifiedAttributeElementType_Source(), g1, null, "source", null, 1, 1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModifiedAttributeElementType_Modifier(), this.getValueModifierSet(), null, "modifier", null, 0, -1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModifiedAttributeElementType_Modifier(), theModifierPackage.getValueModifierSet(), null, "modifier", null, 0, -1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getModifiedAttributeElementType__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
@@ -2626,7 +2375,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getMappedAttributeValueExpander__GetSourceAttribute(), theStructurePackage.getSourceSectionAttribute(), "getSourceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getMappedAttributeValueExpander__GetModifiers(), this.getValueModifierSet(), "getModifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getMappedAttributeValueExpander__GetModifiers(), theModifierPackage.getValueModifierSet(), "getModifiers", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localMappedAttributeValueExpanderEClass, LocalMappedAttributeValueExpander.class, "LocalMappedAttributeValueExpander", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2639,7 +2388,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(globalAttributeEClass, GlobalAttribute.class, "GlobalAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlobalAttribute_Source(), theStructurePackage.getActualSourceSectionAttribute(), null, "source", null, 1, 1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGlobalAttribute_Modifier(), this.getValueModifierSet(), null, "modifier", null, 0, -1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGlobalAttribute_Modifier(), theModifierPackage.getValueModifierSet(), null, "modifier", null, 0, -1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getGlobalAttribute__ValidateSourceAttributeHasUpperBoundOne__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeHasUpperBoundOne", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -2685,12 +2434,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(externalMappedAttributeValueAppenderEClass, ExternalMappedAttributeValueAppender.class, "ExternalMappedAttributeValueAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(expandableHintEClass, ExpandableHint.class, "ExpandableHint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(matchToLowerCaseConverterEClass, MatchToLowerCaseConverter.class, "MatchToLowerCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMatchToLowerCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToLowerCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(matchToUpperCaseConverterEClass, MatchToUpperCaseConverter.class, "MatchToUpperCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMatchToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(globalModifiedAttributeElementTypeEClass, GlobalModifiedAttributeElementType.class, "GlobalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlobalModifiedAttributeElementType_InstanceSelector(), theStructurePackage.getInstancePointer(), null, "instanceSelector", null, 0, -1, GlobalModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

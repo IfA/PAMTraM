@@ -10,14 +10,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
-import pamtram.mapping.modifier.StringAppender;
-import pamtram.mapping.modifier.StringPrepender;
-import pamtram.mapping.modifier.SubstringReplacer;
-import pamtram.mapping.modifier.UniqueNumberAppender;
-import pamtram.mapping.modifier.ValueModifier;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -253,18 +245,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
 			case MappingPackage.CLASS_MATCHER:
 				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
-			case MappingPackage.VALUE_MODIFIER_SET:
-				return validateValueModifierSet((ValueModifierSet)value, diagnostics, context);
-			case MappingPackage.VALUE_MODIFIER:
-				return validateValueModifier((ValueModifier)value, diagnostics, context);
-			case MappingPackage.SUBSTRING_REPLACER:
-				return validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
-			case MappingPackage.STRING_APPENDER:
-				return validateStringAppender((StringAppender)value, diagnostics, context);
-			case MappingPackage.UNIQUE_NUMBER_APPENDER:
-				return validateUniqueNumberAppender((UniqueNumberAppender)value, diagnostics, context);
-			case MappingPackage.STRING_PREPENDER:
-				return validateStringPrepender((StringPrepender)value, diagnostics, context);
 			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
 				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
@@ -321,10 +301,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.EXPANDABLE_HINT:
 				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER:
-				return validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER:
-				return validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
 			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
 				return validateGlobalModifiedAttributeElementType((GlobalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT:
@@ -1047,60 +1023,6 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateValueModifierSet(ValueModifierSet valueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueModifierSet, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateValueModifier(ValueModifier valueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueModifier, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSubstringReplacer(SubstringReplacer substringReplacer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(substringReplacer, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStringAppender(StringAppender stringAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringAppender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUniqueNumberAppender(UniqueNumberAppender uniqueNumberAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(uniqueNumberAppender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStringPrepender(StringPrepender stringPrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringPrepender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
 	}
@@ -1676,24 +1598,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMatchToLowerCaseConverter(MatchToLowerCaseConverter matchToLowerCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(matchToLowerCaseConverter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMatchToUpperCaseConverter(MatchToUpperCaseConverter matchToUpperCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
 	}
 
 	/**

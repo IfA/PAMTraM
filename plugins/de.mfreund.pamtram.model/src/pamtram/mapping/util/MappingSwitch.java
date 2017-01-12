@@ -9,14 +9,6 @@ import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
-import pamtram.mapping.modifier.StringAppender;
-import pamtram.mapping.modifier.StringPrepender;
-import pamtram.mapping.modifier.SubstringReplacer;
-import pamtram.mapping.modifier.UniqueNumberAppender;
-import pamtram.mapping.modifier.ValueModifier;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
@@ -229,52 +221,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				ClassMatcher classMatcher = (ClassMatcher)theEObject;
 				T result = caseClassMatcher(classMatcher);
 				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.VALUE_MODIFIER_SET: {
-				ValueModifierSet valueModifierSet = (ValueModifierSet)theEObject;
-				T result = caseValueModifierSet(valueModifierSet);
-				if (result == null) result = caseNamedElement(valueModifierSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.VALUE_MODIFIER: {
-				ValueModifier valueModifier = (ValueModifier)theEObject;
-				T result = caseValueModifier(valueModifier);
-				if (result == null) result = caseNamedElement(valueModifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.SUBSTRING_REPLACER: {
-				SubstringReplacer substringReplacer = (SubstringReplacer)theEObject;
-				T result = caseSubstringReplacer(substringReplacer);
-				if (result == null) result = caseValueModifier(substringReplacer);
-				if (result == null) result = caseNamedElement(substringReplacer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STRING_APPENDER: {
-				StringAppender stringAppender = (StringAppender)theEObject;
-				T result = caseStringAppender(stringAppender);
-				if (result == null) result = caseValueModifier(stringAppender);
-				if (result == null) result = caseNamedElement(stringAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.UNIQUE_NUMBER_APPENDER: {
-				UniqueNumberAppender uniqueNumberAppender = (UniqueNumberAppender)theEObject;
-				T result = caseUniqueNumberAppender(uniqueNumberAppender);
-				if (result == null) result = caseValueModifier(uniqueNumberAppender);
-				if (result == null) result = caseNamedElement(uniqueNumberAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STRING_PREPENDER: {
-				StringPrepender stringPrepender = (StringPrepender)theEObject;
-				T result = caseStringPrepender(stringPrepender);
-				if (result == null) result = caseValueModifier(stringPrepender);
-				if (result == null) result = caseNamedElement(stringPrepender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -561,22 +507,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
-				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
-				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
-				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
-				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
-				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
-				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
-				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
-				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
 				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
@@ -814,96 +744,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseClassMatcher(ClassMatcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueModifierSet(ValueModifierSet object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueModifier(ValueModifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Substring Replacer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Substring Replacer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubstringReplacer(SubstringReplacer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Appender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringAppender(StringAppender object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unique Number Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unique Number Appender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniqueNumberAppender(UniqueNumberAppender object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Prepender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Prepender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringPrepender(StringPrepender object) {
 		return null;
 	}
 
@@ -1384,36 +1224,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExpandableHint(ExpandableHint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
 		return null;
 	}
 

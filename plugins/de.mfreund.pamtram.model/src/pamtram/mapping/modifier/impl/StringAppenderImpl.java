@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.StringAppender;
 
 /**
@@ -28,9 +28,9 @@ import pamtram.mapping.modifier.StringAppender;
 public class StringAppenderImpl extends NamedElementImpl implements StringAppender {
 
 	/**
-	 * The default value of the '{@link #getString() <em>String</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getString() <em>String</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getString()
 	 * @generated
 	 * @ordered
@@ -38,59 +38,50 @@ public class StringAppenderImpl extends NamedElementImpl implements StringAppend
 	protected static final String STRING_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getString() <em>String</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getString() <em>String</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getString()
 	 * @generated
 	 * @ordered
 	 */
-	protected String string = StringAppenderImpl.STRING_EDEFAULT;
+	protected String string = STRING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public StringAppenderImpl() {
+	protected StringAppenderImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return MappingPackage.Literals.STRING_APPENDER;
+		return ModifierPackage.Literals.STRING_APPENDER;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getString() {
-
-		return this.string;
+		return string;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStringGen(String newString) {
-
-		String oldString = this.string;
-		this.string = newString;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.STRING_APPENDER__STRING,
-					oldString, this.string));
-		}
+		String oldString = string;
+		string = newString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.STRING_APPENDER__STRING, oldString, string));
 	}
 
 	/**
@@ -105,30 +96,26 @@ public class StringAppenderImpl extends NamedElementImpl implements StringAppend
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case MappingPackage.STRING_APPENDER__STRING:
-				return this.getString();
+			case ModifierPackage.STRING_APPENDER__STRING:
+				return getString();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case MappingPackage.STRING_APPENDER__STRING:
-				this.setString((String) newValue);
+			case ModifierPackage.STRING_APPENDER__STRING:
+				setString((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,15 +123,13 @@ public class StringAppenderImpl extends NamedElementImpl implements StringAppend
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.STRING_APPENDER__STRING:
-				this.setString(StringAppenderImpl.STRING_EDEFAULT);
+			case ModifierPackage.STRING_APPENDER__STRING:
+				setString(STRING_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -152,50 +137,41 @@ public class StringAppenderImpl extends NamedElementImpl implements StringAppend
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.STRING_APPENDER__STRING:
-				return StringAppenderImpl.STRING_EDEFAULT == null ? this.string != null
-						: !StringAppenderImpl.STRING_EDEFAULT.equals(this.string);
+			case ModifierPackage.STRING_APPENDER__STRING:
+				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
-			case MappingPackage.STRING_APPENDER___MODIFY_VALUE__STRING:
-				return this.modifyValue((String) arguments.get(0));
+			case ModifierPackage.STRING_APPENDER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (string: ");
-		result.append(this.string);
+		result.append(string);
 		result.append(')');
 		return result.toString();
 	}

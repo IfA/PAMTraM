@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.modifier;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Match To Upper Case Converter</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getMatchToUpperCaseConverter()
+ * @see pamtram.mapping.modifier.ModifierPackage#getMatchToUpperCaseConverter()
  * @model
  * @generated
  */
@@ -31,7 +29,7 @@ public interface MatchToUpperCaseConverter extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
-	 * @see pamtram.mapping.MappingPackage#getMatchToUpperCaseConverter_Regex()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getMatchToUpperCaseConverter_Regex()
 	 * @model required="true"
 	 * @generated
 	 */

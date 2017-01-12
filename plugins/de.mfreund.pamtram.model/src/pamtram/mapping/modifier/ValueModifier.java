@@ -3,7 +3,6 @@
 package pamtram.mapping.modifier;
 
 import pamtram.NamedElement;
-import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +10,7 @@ import pamtram.mapping.MappingPackage;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getValueModifier()
+ * @see pamtram.mapping.modifier.ModifierPackage#getValueModifier()
  * @model interface="true" abstract="true"
  * @generated
  */

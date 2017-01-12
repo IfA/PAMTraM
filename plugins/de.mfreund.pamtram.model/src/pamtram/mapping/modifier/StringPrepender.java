@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.modifier;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>String Prepender</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.StringPrepender#getString <em>String</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getStringPrepender()
+ * @see pamtram.mapping.modifier.ModifierPackage#getStringPrepender()
  * @model
  * @generated
  */
@@ -32,7 +30,7 @@ public interface StringPrepender extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>String</em>' attribute.
 	 * @see #setString(String)
-	 * @see pamtram.mapping.MappingPackage#getStringPrepender_String()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getStringPrepender_String()
 	 * @model default="" required="true"
 	 * @generated
 	 */

@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.ValueModifier;
 import pamtram.mapping.modifier.ValueModifierSet;
 
@@ -23,7 +23,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,65 +42,55 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ValueModifierSetImpl() {
+	protected ValueModifierSetImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return MappingPackage.Literals.VALUE_MODIFIER_SET;
+		return ModifierPackage.Literals.VALUE_MODIFIER_SET;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ValueModifier> getModifier() {
-
-		if (this.modifier == null) {
-			this.modifier = new EObjectContainmentEList<>(ValueModifier.class, this,
-					MappingPackage.VALUE_MODIFIER_SET__MODIFIER);
+		if (modifier == null) {
+			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIER);
 		}
-		return this.modifier;
+		return modifier;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
-				return ((InternalEList<?>) this.getModifier()).basicRemove(otherEnd, msgs);
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+				return ((InternalEList<?>)getModifier()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
-				return this.getModifier();
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,17 +98,15 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	/**
 	 * <!-- begin-user-doc --> TODO update the name of the AttributeValueModifierSet based on the modifiers it contains
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
-				this.getModifier().clear();
-				this.getModifier().addAll((Collection<? extends ValueModifier>) newValue);
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+				getModifier().clear();
+				getModifier().addAll((Collection<? extends ValueModifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,15 +114,13 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
-				this.getModifier().clear();
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+				getModifier().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,15 +128,13 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.VALUE_MODIFIER_SET__MODIFIER:
-				return this.modifier != null && !this.modifier.isEmpty();
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

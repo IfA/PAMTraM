@@ -286,7 +286,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 	 * @generated
 	 */
-	int MAPPING_HINT_TYPE = 31;
+	int MAPPING_HINT_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
@@ -359,46 +359,6 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 16;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.SubstringReplacerImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
-	 * @generated
-	 */
-	int SUBSTRING_REPLACER = 19;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.StringAppenderImpl <em>String Appender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.StringAppenderImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
-	 * @generated
-	 */
-	int STRING_APPENDER = 20;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
-	 * @generated
-	 */
-	int UNIQUE_NUMBER_APPENDER = 21;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.StringPrependerImpl <em>String Prepender</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.StringPrependerImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
-	 * @generated
-	 */
-	int STRING_PREPENDER = 22;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,7 +366,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiedAttributeElementType()
 	 * @generated
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 23;
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -1394,7 +1354,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 24;
+	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1567,7 +1527,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 	 * @generated
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE = 41;
+	int MAPPING_HINT_SOURCE_INTERFACE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1613,7 +1573,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintGroupImporter()
 	 * @generated
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER = 25;
+	int MAPPING_HINT_GROUP_IMPORTER = 19;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.
@@ -1623,7 +1583,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExportedMappingHintGroup()
 	 * @generated
 	 */
-	int EXPORTED_MAPPING_HINT_GROUP = 26;
+	int EXPORTED_MAPPING_HINT_GROUP = 20;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
@@ -1633,7 +1593,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR = 27;
+	int CONTAINER_SELECTOR = 21;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -1643,7 +1603,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 28;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 22;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
@@ -1653,7 +1613,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
 	 * @generated
 	 */
-	int HINT_IMPORTER_MAPPING_HINT = 32;
+	int HINT_IMPORTER_MAPPING_HINT = 26;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -1663,7 +1623,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 33;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 27;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
@@ -1673,7 +1633,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 35;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 29;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
@@ -1683,7 +1643,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 36;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
@@ -1693,7 +1653,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE = 38;
+	int GLOBAL_ATTRIBUTE = 32;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -1703,7 +1663,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 39;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 33;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -1713,7 +1673,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 40;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 34;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorSourceElementImpl <em>Container Selector Source Element</em>}' class.
@@ -1723,7 +1683,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_SOURCE_ELEMENT = 29;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT = 23;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
@@ -1733,7 +1693,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 30;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 24;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
@@ -1807,278 +1767,6 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.ValueModifierSetImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
-	 * @generated
-	 */
-	int VALUE_MODIFIER_SET = 17;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_SET__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_SET__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Value Modifier Set</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_SET_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Value Modifier Set</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_SET_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.ValueModifier
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
-	 * @generated
-	 */
-	int VALUE_MODIFIER = 18;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Value Modifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER___MODIFY_VALUE__STRING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Value Modifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_MODIFIER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Regex</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Replacement</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER__REPLACEMENT = VALUE_MODIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Substring Replacer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>Substring Replacer</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSTRING_REPLACER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_APPENDER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>String</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_APPENDER__STRING = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>String Appender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_APPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_APPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>String Appender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_APPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_NUMBER_APPENDER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Unique Number Appender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_NUMBER_APPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>Unique Number Appender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_NUMBER_APPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_PREPENDER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>String</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_PREPENDER__STRING = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>String Prepender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_PREPENDER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_PREPENDER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>String Prepender</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_PREPENDER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2628,7 +2316,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 34;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2935,7 +2623,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getFixedValue()
 	 * @generated
 	 */
-	int FIXED_VALUE = 37;
+	int FIXED_VALUE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3125,7 +2813,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceInterface()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_SOURCE_INTERFACE = 42;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3171,7 +2859,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 44;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3253,7 +2941,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 43;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 37;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3344,7 +3032,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorExternalSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 45;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 39;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3435,7 +3123,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 46;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3526,7 +3214,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 47;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 41;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3635,7 +3323,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 48;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 42;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3744,7 +3432,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 49;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 43;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3853,7 +3541,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 50;
+	int EXPANDABLE_HINT = 44;
 
 	/**
 	 * The number of structural features of the '<em>Expandable Hint</em>' class.
@@ -3874,116 +3562,6 @@ public interface MappingPackage extends EPackage {
 	int EXPANDABLE_HINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
-	 * @generated
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 51;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Regex</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Match To Lower Case Converter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>Match To Lower Case Converter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
-	 * @generated
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 52;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__NAME = VALUE_MODIFIER__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Regex</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__REGEX = VALUE_MODIFIER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Match To Upper Case Converter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = VALUE_MODIFIER_FEATURE_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Modify Value</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = VALUE_MODIFIER___MODIFY_VALUE__STRING;
-
-	/**
-	 * The number of operations of the '<em>Match To Upper Case Converter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3991,7 +3569,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 53;
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 45;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4073,7 +3651,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherGlobalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT = 54;
+	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4164,7 +3742,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingGlobalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT = 55;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT = 47;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4255,7 +3833,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorGlobalSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = 56;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = 48;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4813,131 +4391,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getClassMatcher_TargetClass();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ValueModifierSet <em>Value Modifier Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Value Modifier Set</em>'.
-	 * @see pamtram.mapping.modifier.ValueModifierSet
-	 * @generated
-	 */
-	EClass getValueModifierSet();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.modifier.ValueModifierSet#getModifier()
-	 * @see #getValueModifierSet()
-	 * @generated
-	 */
-	EReference getValueModifierSet_Modifier();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Value Modifier</em>'.
-	 * @see pamtram.mapping.modifier.ValueModifier
-	 * @generated
-	 */
-	EClass getValueModifier();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.modifier.ValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Modify Value</em>' operation.
-	 * @see pamtram.mapping.modifier.ValueModifier#modifyValue(java.lang.String)
-	 * @generated
-	 */
-	EOperation getValueModifier__ModifyValue__String();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.SubstringReplacer <em>Substring Replacer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Substring Replacer</em>'.
-	 * @see pamtram.mapping.modifier.SubstringReplacer
-	 * @generated
-	 */
-	EClass getSubstringReplacer();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.SubstringReplacer#getRegex <em>Regex</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.modifier.SubstringReplacer#getRegex()
-	 * @see #getSubstringReplacer()
-	 * @generated
-	 */
-	EAttribute getSubstringReplacer_Regex();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.SubstringReplacer#getReplacement <em>Replacement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Replacement</em>'.
-	 * @see pamtram.mapping.modifier.SubstringReplacer#getReplacement()
-	 * @see #getSubstringReplacer()
-	 * @generated
-	 */
-	EAttribute getSubstringReplacer_Replacement();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.StringAppender <em>String Appender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Appender</em>'.
-	 * @see pamtram.mapping.modifier.StringAppender
-	 * @generated
-	 */
-	EClass getStringAppender();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.StringAppender#getString <em>String</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>String</em>'.
-	 * @see pamtram.mapping.modifier.StringAppender#getString()
-	 * @see #getStringAppender()
-	 * @generated
-	 */
-	EAttribute getStringAppender_String();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.UniqueNumberAppender <em>Unique Number Appender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Unique Number Appender</em>'.
-	 * @see pamtram.mapping.modifier.UniqueNumberAppender
-	 * @generated
-	 */
-	EClass getUniqueNumberAppender();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.StringPrepender <em>String Prepender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Prepender</em>'.
-	 * @see pamtram.mapping.modifier.StringPrepender
-	 * @generated
-	 */
-	EClass getStringPrepender();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.StringPrepender#getString <em>String</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>String</em>'.
-	 * @see pamtram.mapping.modifier.StringPrepender#getString()
-	 * @see #getStringPrepender()
-	 * @generated
-	 */
-	EAttribute getStringPrepender_String();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
@@ -5556,48 +5009,6 @@ public interface MappingPackage extends EPackage {
 	EClass getExpandableHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Match To Lower Case Converter</em>'.
-	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter
-	 * @generated
-	 */
-	EClass getMatchToLowerCaseConverter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex()
-	 * @see #getMatchToLowerCaseConverter()
-	 * @generated
-	 */
-	EAttribute getMatchToLowerCaseConverter_Regex();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Match To Upper Case Converter</em>'.
-	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter
-	 * @generated
-	 */
-	EClass getMatchToUpperCaseConverter();
-
-	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex()
-	 * @see #getMatchToUpperCaseConverter()
-	 * @generated
-	 */
-	EAttribute getMatchToUpperCaseConverter_Regex();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.GlobalModifiedAttributeElementType <em>Global Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6064,114 +5475,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.ValueModifierSetImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
-		 * @generated
-		 */
-		EClass VALUE_MODIFIER_SET = eINSTANCE.getValueModifierSet();
-
-		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference VALUE_MODIFIER_SET__MODIFIER = eINSTANCE.getValueModifierSet_Modifier();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.ValueModifier
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
-		 * @generated
-		 */
-		EClass VALUE_MODIFIER = eINSTANCE.getValueModifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Modify Value</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation VALUE_MODIFIER___MODIFY_VALUE__STRING = eINSTANCE.getValueModifier__ModifyValue__String();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.SubstringReplacerImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
-		 * @generated
-		 */
-		EClass SUBSTRING_REPLACER = eINSTANCE.getSubstringReplacer();
-
-		/**
-		 * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBSTRING_REPLACER__REGEX = eINSTANCE.getSubstringReplacer_Regex();
-
-		/**
-		 * The meta object literal for the '<em><b>Replacement</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SUBSTRING_REPLACER__REPLACEMENT = eINSTANCE.getSubstringReplacer_Replacement();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.StringAppenderImpl <em>String Appender</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.StringAppenderImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
-		 * @generated
-		 */
-		EClass STRING_APPENDER = eINSTANCE.getStringAppender();
-
-		/**
-		 * The meta object literal for the '<em><b>String</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_APPENDER__STRING = eINSTANCE.getStringAppender_String();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
-		 * @generated
-		 */
-		EClass UNIQUE_NUMBER_APPENDER = eINSTANCE.getUniqueNumberAppender();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.StringPrependerImpl <em>String Prepender</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.StringPrependerImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
-		 * @generated
-		 */
-		EClass STRING_PREPENDER = eINSTANCE.getStringPrepender();
-
-		/**
-		 * The meta object literal for the '<em><b>String</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_PREPENDER__STRING = eINSTANCE.getStringPrepender_String();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
@@ -6716,42 +6019,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
-		 * @generated
-		 */
-		EClass MATCH_TO_LOWER_CASE_CONVERTER = eINSTANCE.getMatchToLowerCaseConverter();
-
-		/**
-		 * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATCH_TO_LOWER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToLowerCaseConverter_Regex();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
-		 * @generated
-		 */
-		EClass MATCH_TO_UPPER_CASE_CONVERTER = eINSTANCE.getMatchToUpperCaseConverter();
-
-		/**
-		 * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATCH_TO_UPPER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToUpperCaseConverter_Regex();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.

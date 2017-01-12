@@ -27,6 +27,8 @@ import pamtram.mapping.MappingPackage;
 
 import pamtram.mapping.impl.MappingPackageImpl;
 
+import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintFactory;
@@ -197,6 +199,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
+		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConstraintPackage.createPackageContents();
@@ -205,6 +208,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		theGenericPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
+		theModifierPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConstraintPackage.initializePackageContents();
@@ -213,6 +217,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		theGenericPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
+		theModifierPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put

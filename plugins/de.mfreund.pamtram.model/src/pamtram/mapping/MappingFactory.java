@@ -4,14 +4,6 @@ package pamtram.mapping;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
-import pamtram.mapping.modifier.StringAppender;
-import pamtram.mapping.modifier.StringPrepender;
-import pamtram.mapping.modifier.SubstringReplacer;
-import pamtram.mapping.modifier.UniqueNumberAppender;
-import pamtram.mapping.modifier.ValueModifierSet;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -121,51 +113,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ClassMatcher createClassMatcher();
-
-	/**
-	 * Returns a new object of class '<em>Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Modifier Set</em>'.
-	 * @generated
-	 */
-	ValueModifierSet createValueModifierSet();
-
-	/**
-	 * Returns a new object of class '<em>Substring Replacer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Substring Replacer</em>'.
-	 * @generated
-	 */
-	SubstringReplacer createSubstringReplacer();
-
-	/**
-	 * Returns a new object of class '<em>String Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Appender</em>'.
-	 * @generated
-	 */
-	StringAppender createStringAppender();
-
-	/**
-	 * Returns a new object of class '<em>Unique Number Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unique Number Appender</em>'.
-	 * @generated
-	 */
-	UniqueNumberAppender createUniqueNumberAppender();
-
-	/**
-	 * Returns a new object of class '<em>String Prepender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Prepender</em>'.
-	 * @generated
-	 */
-	StringPrepender createStringPrepender();
 
 	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.
@@ -335,24 +282,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
-
-	/**
-	 * Returns a new object of class '<em>Match To Lower Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Lower Case Converter</em>'.
-	 * @generated
-	 */
-	MatchToLowerCaseConverter createMatchToLowerCaseConverter();
-
-	/**
-	 * Returns a new object of class '<em>Match To Upper Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Upper Case Converter</em>'.
-	 * @generated
-	 */
-	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Matcher Global Source Element</em>'.

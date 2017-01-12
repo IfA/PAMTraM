@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+import pamtram.mapping.modifier.ModifierPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Match To Lower Case Converter</b></em>'. <!--
@@ -22,7 +22,7 @@ import pamtram.mapping.modifier.MatchToLowerCaseConverter;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl#getRegex <em>Regex</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl#getRegex <em>Regex</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,9 +30,9 @@ import pamtram.mapping.modifier.MatchToLowerCaseConverter;
 public class MatchToLowerCaseConverterImpl extends NamedElementImpl implements MatchToLowerCaseConverter {
 
 	/**
-	 * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getRegex()
 	 * @generated
 	 * @ordered
@@ -47,81 +47,68 @@ public class MatchToLowerCaseConverterImpl extends NamedElementImpl implements M
 	 * @generated
 	 * @ordered
 	 */
-	protected String regex = MatchToLowerCaseConverterImpl.REGEX_EDEFAULT;
+	protected String regex = REGEX_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public MatchToLowerCaseConverterImpl() {
+	protected MatchToLowerCaseConverterImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER;
+		return ModifierPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getRegex() {
-
-		return this.regex;
+		return regex;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setRegex(String newRegex) {
-
-		String oldRegex = this.regex;
-		this.regex = newRegex;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX, oldRegex, this.regex));
-		}
+		String oldRegex = regex;
+		regex = newRegex;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX, oldRegex, regex));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
-				return this.getRegex();
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+				return getRegex();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
-				this.setRegex((String) newValue);
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+				setRegex((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,15 +116,13 @@ public class MatchToLowerCaseConverterImpl extends NamedElementImpl implements M
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
-				this.setRegex(MatchToLowerCaseConverterImpl.REGEX_EDEFAULT);
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+				setRegex(REGEX_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -145,50 +130,41 @@ public class MatchToLowerCaseConverterImpl extends NamedElementImpl implements M
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
-				return MatchToLowerCaseConverterImpl.REGEX_EDEFAULT == null ? this.regex != null
-						: !MatchToLowerCaseConverterImpl.REGEX_EDEFAULT.equals(this.regex);
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+				return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING:
-				return this.modifyValue((String) arguments.get(0));
+			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (regex: ");
-		result.append(this.regex);
+		result.append(regex);
 		result.append(')');
 		return result.toString();
 	}

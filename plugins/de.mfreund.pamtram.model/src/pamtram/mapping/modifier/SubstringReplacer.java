@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.modifier;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Substring Replacer</b></em>'.
@@ -17,7 +15,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.mapping.modifier.SubstringReplacer#getReplacement <em>Replacement</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getSubstringReplacer()
+ * @see pamtram.mapping.modifier.ModifierPackage#getSubstringReplacer()
  * @model
  * @generated
  */
@@ -32,7 +30,7 @@ public interface SubstringReplacer extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
-	 * @see pamtram.mapping.MappingPackage#getSubstringReplacer_Regex()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getSubstringReplacer_Regex()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -58,7 +56,7 @@ public interface SubstringReplacer extends ValueModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Replacement</em>' attribute.
 	 * @see #setReplacement(String)
-	 * @see pamtram.mapping.MappingPackage#getSubstringReplacer_Replacement()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getSubstringReplacer_Replacement()
 	 * @model required="true"
 	 * @generated
 	 */

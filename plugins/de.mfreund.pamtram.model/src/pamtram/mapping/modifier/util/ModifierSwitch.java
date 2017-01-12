@@ -143,20 +143,20 @@ public class ModifierSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ModifierPackage.TO_LOWER_CASE_CONVERTER: {
-				ToLowerCaseConverter matchToLowerCaseConverter = (ToLowerCaseConverter)theEObject;
-				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
-				if (result == null) result = caseStringModifier(matchToLowerCaseConverter);
-				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
-				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
+				ToLowerCaseConverter toLowerCaseConverter = (ToLowerCaseConverter)theEObject;
+				T result = caseToLowerCaseConverter(toLowerCaseConverter);
+				if (result == null) result = caseStringModifier(toLowerCaseConverter);
+				if (result == null) result = caseValueModifier(toLowerCaseConverter);
+				if (result == null) result = caseNamedElement(toLowerCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ModifierPackage.TO_UPPER_CASE_CONVERTER: {
-				ToUpperCaseConverter matchToUpperCaseConverter = (ToUpperCaseConverter)theEObject;
-				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
-				if (result == null) result = caseStringModifier(matchToUpperCaseConverter);
-				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
-				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
+				ToUpperCaseConverter toUpperCaseConverter = (ToUpperCaseConverter)theEObject;
+				T result = caseToUpperCaseConverter(toUpperCaseConverter);
+				if (result == null) result = caseStringModifier(toUpperCaseConverter);
+				if (result == null) result = caseValueModifier(toUpperCaseConverter);
+				if (result == null) result = caseNamedElement(toUpperCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -300,32 +300,32 @@ public class ModifierSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>To Lower Case Converter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>To Lower Case Converter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatchToLowerCaseConverter(ToLowerCaseConverter object) {
+	public T caseToLowerCaseConverter(ToLowerCaseConverter object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>To Upper Case Converter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>To Upper Case Converter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatchToUpperCaseConverter(ToUpperCaseConverter object) {
+	public T caseToUpperCaseConverter(ToUpperCaseConverter object) {
 		return null;
 	}
 

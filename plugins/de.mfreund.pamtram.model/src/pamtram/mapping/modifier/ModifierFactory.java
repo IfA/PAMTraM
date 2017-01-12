@@ -76,19 +76,19 @@ public interface ModifierFactory extends EFactory {
 	StringPrepender createStringPrepender();
 
 	/**
-	 * Returns a new object of class '<em>Match To Lower Case Converter</em>'.
+	 * Returns a new object of class '<em>To Lower Case Converter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Lower Case Converter</em>'.
+	 * @return a new object of class '<em>To Lower Case Converter</em>'.
 	 * @generated
 	 */
 	ToLowerCaseConverter createToLowerCaseConverter();
 
 	/**
-	 * Returns a new object of class '<em>Match To Upper Case Converter</em>'.
+	 * Returns a new object of class '<em>To Upper Case Converter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Upper Case Converter</em>'.
+	 * @return a new object of class '<em>To Upper Case Converter</em>'.
 	 * @generated
 	 */
 	ToUpperCaseConverter createToUpperCaseConverter();

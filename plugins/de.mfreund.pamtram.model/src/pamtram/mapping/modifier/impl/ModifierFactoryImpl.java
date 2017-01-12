@@ -135,8 +135,8 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	 * @generated
 	 */
 	public ToLowerCaseConverter createToLowerCaseConverter() {
-		ToLowerCaseConverterImpl matchToLowerCaseConverter = new ToLowerCaseConverterImpl();
-		return matchToLowerCaseConverter;
+		ToLowerCaseConverterImpl toLowerCaseConverter = new ToLowerCaseConverterImpl();
+		return toLowerCaseConverter;
 	}
 
 	/**
@@ -145,8 +145,8 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	 * @generated
 	 */
 	public ToUpperCaseConverter createToUpperCaseConverter() {
-		ToUpperCaseConverterImpl matchToUpperCaseConverter = new ToUpperCaseConverterImpl();
-		return matchToUpperCaseConverter;
+		ToUpperCaseConverterImpl toUpperCaseConverter = new ToUpperCaseConverterImpl();
+		return toUpperCaseConverter;
 	}
 
 	/**

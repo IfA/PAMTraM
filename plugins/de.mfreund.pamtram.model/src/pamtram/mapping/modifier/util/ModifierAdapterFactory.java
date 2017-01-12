@@ -106,12 +106,12 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public Adapter caseMatchToLowerCaseConverter(ToLowerCaseConverter object) {
-				return createMatchToLowerCaseConverterAdapter();
+			public Adapter caseToLowerCaseConverter(ToLowerCaseConverter object) {
+				return createToLowerCaseConverterAdapter();
 			}
 			@Override
-			public Adapter caseMatchToUpperCaseConverter(ToUpperCaseConverter object) {
-				return createMatchToUpperCaseConverterAdapter();
+			public Adapter caseToUpperCaseConverter(ToUpperCaseConverter object) {
+				return createToUpperCaseConverterAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -264,7 +264,7 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToLowerCaseConverter <em>To Lower Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -273,12 +273,12 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.mapping.modifier.ToLowerCaseConverter
 	 * @generated
 	 */
-	public Adapter createMatchToLowerCaseConverterAdapter() {
+	public Adapter createToLowerCaseConverterAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToUpperCaseConverter <em>To Upper Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -287,7 +287,7 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.mapping.modifier.ToUpperCaseConverter
 	 * @generated
 	 */
-	public Adapter createMatchToUpperCaseConverterAdapter() {
+	public Adapter createToUpperCaseConverterAdapter() {
 		return null;
 	}
 

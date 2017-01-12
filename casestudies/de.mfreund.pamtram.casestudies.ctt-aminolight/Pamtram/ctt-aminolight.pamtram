@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel name="it.cnr.isti.giove.ctt">
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="RootElement">
@@ -1737,22 +1737,22 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets name="addChange">
-      <modifier xsi:type="mapping:StringAppender" name="Change" string="Change"/>
+      <modifier xsi:type="modifier:StringAppender" name="Change" string="Change"/>
     </modifierSets>
     <modifierSets name="convertToUpperCase">
-      <modifier xsi:type="mapping:MatchToUpperCaseConverter" regex="[a-z]*"/>
+      <modifier xsi:type="modifier:ToUpperCaseConverter" regex="[a-z]*"/>
     </modifierSets>
     <modifierSets name="addActivate">
-      <modifier xsi:type="mapping:StringAppender" name="ActivateSignal" string="ActivateSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="ActivateSignal" string="ActivateSignal"/>
     </modifierSets>
     <modifierSets name="addDeactivate">
-      <modifier xsi:type="mapping:StringAppender" name="DeactivateSignal" string="DeactivateSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="DeactivateSignal" string="DeactivateSignal"/>
     </modifierSets>
     <modifierSets name="addPrecondition">
-      <modifier xsi:type="mapping:StringAppender" name="Precondition" string="Precondition"/>
+      <modifier xsi:type="modifier:StringAppender" name="Precondition" string="Precondition"/>
     </modifierSets>
     <modifierSets name="addPostcondition">
-      <modifier xsi:type="mapping:StringAppender" name="Postcondition" string="Postcondition"/>
+      <modifier xsi:type="modifier:StringAppender" name="Postcondition" string="Postcondition"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="DataItems">
@@ -1811,13 +1811,13 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets name="addTextComponent">
-      <modifier xsi:type="mapping:StringAppender" name="TextComponent" string="TextComponent"/>
+      <modifier xsi:type="modifier:StringAppender" name="TextComponent" string="TextComponent"/>
     </modifierSets>
     <modifierSets name="prependStatic">
-      <modifier xsi:type="mapping:StringPrepender" name="Static" string="Static"/>
+      <modifier xsi:type="modifier:StringPrepender" name="Static" string="Static"/>
     </modifierSets>
     <modifierSets name="prependDynamic">
-      <modifier xsi:type="mapping:StringPrepender" name="Dynamic" string="Dynamic"/>
+      <modifier xsi:type="modifier:StringPrepender" name="Dynamic" string="Dynamic"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="Alarm">
@@ -8702,40 +8702,40 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets name="deleteAfter=">
-      <modifier xsi:type="mapping:SubstringReplacer" regex="[=][a-zA-Z\d]*" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" regex="[=][a-zA-Z\d]*" replacement=""/>
     </modifierSets>
     <modifierSets name="deleteBefore=">
-      <modifier xsi:type="mapping:SubstringReplacer" regex="[a-zA-Z\d]*[=]" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" regex="[a-zA-Z\d]*[=]" replacement=""/>
     </modifierSets>
     <modifierSets name="addGauge">
-      <modifier xsi:type="mapping:StringAppender" name="Gauge" string="Gauge"/>
+      <modifier xsi:type="modifier:StringAppender" name="Gauge" string="Gauge"/>
     </modifierSets>
     <modifierSets name="addBorder">
-      <modifier xsi:type="mapping:StringAppender" name="Border" string="Border"/>
+      <modifier xsi:type="modifier:StringAppender" name="Border" string="Border"/>
     </modifierSets>
     <modifierSets name="addSound">
-      <modifier xsi:type="mapping:StringAppender" name="Sound" string="Sound"/>
+      <modifier xsi:type="modifier:StringAppender" name="Sound" string="Sound"/>
     </modifierSets>
     <modifierSets name="addVibration">
-      <modifier xsi:type="mapping:StringAppender" name="Vibration" string="Vibration"/>
+      <modifier xsi:type="modifier:StringAppender" name="Vibration" string="Vibration"/>
     </modifierSets>
     <modifierSets name="addColorAnimation">
-      <modifier xsi:type="mapping:StringAppender" name="ColorAnimation" string="ColorAnimation"/>
+      <modifier xsi:type="modifier:StringAppender" name="ColorAnimation" string="ColorAnimation"/>
     </modifierSets>
     <modifierSets name="addSoundAnimation">
-      <modifier xsi:type="mapping:StringAppender" name="SoundAnimation" string="SoundAnimation"/>
+      <modifier xsi:type="modifier:StringAppender" name="SoundAnimation" string="SoundAnimation"/>
     </modifierSets>
     <modifierSets name="addInfiniteAnimation">
-      <modifier xsi:type="mapping:StringAppender" name="InfiniteAnimations" string="InfiniteAnimations"/>
+      <modifier xsi:type="modifier:StringAppender" name="InfiniteAnimations" string="InfiniteAnimations"/>
     </modifierSets>
     <modifierSets name="addSingleAnimation">
-      <modifier xsi:type="mapping:StringAppender" name="SingleAnimation" string="SingleAnimation"/>
+      <modifier xsi:type="modifier:StringAppender" name="SingleAnimation" string="SingleAnimation"/>
     </modifierSets>
     <modifierSets name="addActivateDeactivate">
-      <modifier xsi:type="mapping:StringAppender" name="ActivateDeactivateAnimation" string="ActivateDeactivateAnimation"/>
+      <modifier xsi:type="modifier:StringAppender" name="ActivateDeactivateAnimation" string="ActivateDeactivateAnimation"/>
     </modifierSets>
     <modifierSets name="addLamp">
-      <modifier xsi:type="mapping:StringAppender" name="Lamp" string="Lamp"/>
+      <modifier xsi:type="modifier:StringAppender" name="Lamp" string="Lamp"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="Condition">

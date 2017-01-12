@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://gfai.de/stgml.xsd#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="sourceContainer">
@@ -5481,165 +5481,165 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append uniqueNumber">
-      <modifier xsi:type="mapping:UniqueNumberAppender" name="appender"/>
+      <modifier xsi:type="modifier:UniqueNumberAppender" name="appender"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _Checkbox">
-      <modifier xsi:type="mapping:StringAppender" name="_Checkbox" string="_Checkbox"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Checkbox" string="_Checkbox"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="Replace problematic Chars">
-      <modifier xsi:type="mapping:SubstringReplacer" name="Replace Space" regex=" " replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Replace (" regex="\(" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Replace )" regex="\)" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="| to _" regex="\|" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="> to _" regex=">" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="&lt; to _" regex="&lt;" replacement="_"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="- to _" regex="-" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Replace Space" regex=" " replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Replace (" regex="\(" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Replace )" regex="\)" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="| to _" regex="\|" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="> to _" regex=">" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="&lt; to _" regex="&lt;" replacement="_"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="- to _" regex="-" replacement="_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _">
-      <modifier xsi:type="mapping:StringAppender" name="_" string="_"/>
+      <modifier xsi:type="modifier:StringAppender" name="_" string="_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _to_">
-      <modifier xsi:type="mapping:StringAppender" name="_to_" string="_to_"/>
+      <modifier xsi:type="modifier:StringAppender" name="_to_" string="_to_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append SignalTrigger">
-      <modifier xsi:type="mapping:StringAppender" name="SignalTrigger" string="SignalTrigger"/>
+      <modifier xsi:type="modifier:StringAppender" name="SignalTrigger" string="SignalTrigger"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="prepend triggering_">
-      <modifier xsi:type="mapping:StringPrepender" name="triggering_" string="triggering_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="triggering_" string="triggering_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _button">
-      <modifier xsi:type="mapping:StringAppender" name="_button" string="_button"/>
+      <modifier xsi:type="modifier:StringAppender" name="_button" string="_button"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _StateAnimationAccessible">
-      <modifier xsi:type="mapping:StringAppender" name="_StateAnimationAccessible" string="_StateAnimationAccessible"/>
+      <modifier xsi:type="modifier:StringAppender" name="_StateAnimationAccessible" string="_StateAnimationAccessible"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _StateAnimationNotAccessible">
-      <modifier xsi:type="mapping:StringAppender" name="_StateAnimationNotAccessible" string="_StateAnimationNotAccessible"/>
+      <modifier xsi:type="modifier:StringAppender" name="_StateAnimationNotAccessible" string="_StateAnimationNotAccessible"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _rAnimationComparator">
-      <modifier xsi:type="mapping:StringAppender" name="_rAnimationComparator" string="_rAnimationComparator"/>
+      <modifier xsi:type="modifier:StringAppender" name="_rAnimationComparator" string="_rAnimationComparator"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _WriteEnteredDataEffect">
-      <modifier xsi:type="mapping:StringAppender" name="_WriteEnteredDataEffect" string="_WriteEnteredDataEffect"/>
+      <modifier xsi:type="modifier:StringAppender" name="_WriteEnteredDataEffect" string="_WriteEnteredDataEffect"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _Click">
-      <modifier xsi:type="mapping:StringAppender" name="_Click" string="_Click"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Click" string="_Click"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _Submit">
-      <modifier xsi:type="mapping:StringAppender" name="_Submit" string="_Submit"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Submit" string="_Submit"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="LP DataItemName">
-      <modifier xsi:type="mapping:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
-      <modifier xsi:type="mapping:StringPrepender" name="DataItem" string="DataItem"/>
-      <modifier xsi:type="mapping:StringAppender" name="_LP" string="_LP"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="DataItem" string="DataItem"/>
+      <modifier xsi:type="modifier:StringAppender" name="_LP" string="_LP"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="BrowseName Extractor">
-      <modifier xsi:type="mapping:SubstringReplacer" name="BrowseName" regex="([^\\.])*([\\.]+)" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="BrowseName" regex="([^\\.])*([\\.]+)" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="BrowsePath Extractor">
-      <modifier xsi:type="mapping:SubstringReplacer" name="delete BrowseName" regex="([^\.])+$" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="LocalHost2Objects.Supervision" regex="..LocalHost" replacement="Objects.Supervision"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Dot2Slash" regex="\." replacement="\/"/>
-      <modifier xsi:type="mapping:StringPrepender" name="Add Slash" string="/"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="delete BrowseName" regex="([^\.])+$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="LocalHost2Objects.Supervision" regex="..LocalHost" replacement="Objects.Supervision"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Dot2Slash" regex="\." replacement="\/"/>
+      <modifier xsi:type="modifier:StringPrepender" name="Add Slash" string="/"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="TP DataItemName">
-      <modifier xsi:type="mapping:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
-      <modifier xsi:type="mapping:StringPrepender" name="DataItem" string="DataItem"/>
-      <modifier xsi:type="mapping:StringAppender" name="_TP" string="_TP"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="DataItem" string="DataItem"/>
+      <modifier xsi:type="modifier:StringAppender" name="_TP" string="_TP"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="TP BaseDataTypeName">
-      <modifier xsi:type="mapping:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
-      <modifier xsi:type="mapping:StringPrepender" name="DataItem" string="DataItem"/>
-      <modifier xsi:type="mapping:StringAppender" name="_BaseDataType" string="_BaseDataType"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Remove LocalHost" regex="..LocalHost" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="DollarSign" regex="\$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="AT" regex="@" replacement="AT"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="Hashtag" regex="#" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="dot to _" regex="\." replacement="_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="DataItem" string="DataItem"/>
+      <modifier xsi:type="modifier:StringAppender" name="_BaseDataType" string="_BaseDataType"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _signal">
-      <modifier xsi:type="mapping:StringAppender" name="_signal" string="_signal"/>
+      <modifier xsi:type="modifier:StringAppender" name="_signal" string="_signal"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _size">
-      <modifier xsi:type="mapping:StringAppender" name="_size" string="_size"/>
+      <modifier xsi:type="modifier:StringAppender" name="_size" string="_size"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _width">
-      <modifier xsi:type="mapping:StringAppender" name="_width" string="_width"/>
+      <modifier xsi:type="modifier:StringAppender" name="_width" string="_width"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _height">
-      <modifier xsi:type="mapping:StringAppender" name="_height" string="_height"/>
+      <modifier xsi:type="modifier:StringAppender" name="_height" string="_height"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _pos_x">
-      <modifier xsi:type="mapping:StringAppender" name="_pos_x" string="_pos_x"/>
+      <modifier xsi:type="modifier:StringAppender" name="_pos_x" string="_pos_x"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _pos_y">
-      <modifier xsi:type="mapping:StringAppender" name="_pos_y" string="_pos_y"/>
+      <modifier xsi:type="modifier:StringAppender" name="_pos_y" string="_pos_y"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _pos_z">
-      <modifier xsi:type="mapping:StringAppender" name="_pos_z" string="_pos_z"/>
+      <modifier xsi:type="modifier:StringAppender" name="_pos_z" string="_pos_z"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _format">
-      <modifier xsi:type="mapping:StringAppender" name="_format" string="_format"/>
+      <modifier xsi:type="modifier:StringAppender" name="_format" string="_format"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _alignment">
-      <modifier xsi:type="mapping:StringAppender" name="_alignment" string="_alignment"/>
+      <modifier xsi:type="modifier:StringAppender" name="_alignment" string="_alignment"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _textLabel">
-      <modifier xsi:type="mapping:StringAppender" name="_textLabel" string="_textLabel"/>
+      <modifier xsi:type="modifier:StringAppender" name="_textLabel" string="_textLabel"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _textLabel_label">
-      <modifier xsi:type="mapping:StringAppender" name="_textLabel_label" string="_textLabel_label"/>
+      <modifier xsi:type="modifier:StringAppender" name="_textLabel_label" string="_textLabel_label"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _Color">
-      <modifier xsi:type="mapping:StringAppender" name="_Color" string="_Color"/>
+      <modifier xsi:type="modifier:StringAppender" name="_Color" string="_Color"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _border">
-      <modifier xsi:type="mapping:StringAppender" name="_border" string="_border"/>
+      <modifier xsi:type="modifier:StringAppender" name="_border" string="_border"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _ColorAnimationOn">
-      <modifier xsi:type="mapping:StringAppender" name="_ColorAnimationOn" string="_ColorAnimationOn"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ColorAnimationOn" string="_ColorAnimationOn"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _ColorAnimationOff">
-      <modifier xsi:type="mapping:StringAppender" name="_ColorAnimationOff" string="_ColorAnimationOff"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ColorAnimationOff" string="_ColorAnimationOff"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _rAnimationComparator">
-      <modifier xsi:type="mapping:StringAppender" name="_rAnimationComparator" string="_rAnimationComparator"/>
+      <modifier xsi:type="modifier:StringAppender" name="_rAnimationComparator" string="_rAnimationComparator"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="prepend text_">
-      <modifier xsi:type="mapping:StringPrepender" name="text_" string="text_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="text_" string="text_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _ColorAnimationOn_Bool:Out">
-      <modifier xsi:type="mapping:StringAppender" name="_ColorAnimationOn_Bool:Out" string="_ColorAnimationOn_Bool:Out"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ColorAnimationOn_Bool:Out" string="_ColorAnimationOn_Bool:Out"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _ColorAnimationOff_Bool:Out">
-      <modifier xsi:type="mapping:StringAppender" name="_ColorAnimationOff_Bool:Out" string="_ColorAnimationOff_Bool:Out"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ColorAnimationOff_Bool:Out" string="_ColorAnimationOff_Bool:Out"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _pos">
-      <modifier xsi:type="mapping:StringAppender" name="_pos" string="_pos"/>
+      <modifier xsi:type="modifier:StringAppender" name="_pos" string="_pos"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append _image">
-      <modifier xsi:type="mapping:StringAppender" name="_image" string="_image"/>
+      <modifier xsi:type="modifier:StringAppender" name="_image" string="_image"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="append Image">
-      <modifier xsi:type="mapping:StringAppender" name="Image" string="Image"/>
+      <modifier xsi:type="modifier:StringAppender" name="Image" string="Image"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="Image name to path">
-      <modifier xsi:type="mapping:SubstringReplacer" name="add &quot;-&quot; before uppercase" regex="([^A-Z])([A-Z])" replacement="$1-$2"/>
-      <modifier xsi:type="mapping:MatchToLowerCaseConverter" name="to lower" regex="[A-Z]"/>
-      <modifier xsi:type="mapping:StringPrepender" name="img/" string="img/"/>
-      <modifier xsi:type="mapping:StringAppender" name=".png" string=".png"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="add &quot;-&quot; before uppercase" regex="([^A-Z])([A-Z])" replacement="$1-$2"/>
+      <modifier xsi:type="modifier:ToLowerCaseConverter" name="to lower" regex="[A-Z]"/>
+      <modifier xsi:type="modifier:StringPrepender" name="img/" string="img/"/>
+      <modifier xsi:type="modifier:StringAppender" name=".png" string=".png"/>
     </modifierSets>
     <globalValues xsi:type="mapping:FixedValue" name="doubleLabelYOffset"/>
     <globalValues xsi:type="mapping:FixedValue" name="doubleOutHeightFactor" value="0.5"/>

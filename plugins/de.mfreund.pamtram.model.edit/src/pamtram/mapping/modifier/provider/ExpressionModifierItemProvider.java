@@ -8,28 +8,30 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+
+import pamtram.mapping.modifier.ExpressionModifier;
 import pamtram.mapping.modifier.ModifierPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.modifier.MatchToLowerCaseConverter} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.ExpressionModifier} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MatchToLowerCaseConverterItemProvider extends StringModifierItemProvider {
+public class ExpressionModifierItemProvider extends NumericModifierItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToLowerCaseConverterItemProvider(AdapterFactory adapterFactory) {
+	public ExpressionModifierItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,25 +46,25 @@ public class MatchToLowerCaseConverterItemProvider extends StringModifierItemPro
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRegexPropertyDescriptor(object);
+			addExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Regex feature.
+	 * This adds a property descriptor for the Expression feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegexPropertyDescriptor(Object object) {
+	protected void addExpressionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MatchToLowerCaseConverter_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToLowerCaseConverter_regex_feature", "_UI_MatchToLowerCaseConverter_type"),
-				 ModifierPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER__REGEX,
+				 getString("_UI_ExpressionModifier_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionModifier_expression_feature", "_UI_ExpressionModifier_type"),
+				 ModifierPackage.Literals.EXPRESSION_MODIFIER__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -72,14 +74,14 @@ public class MatchToLowerCaseConverterItemProvider extends StringModifierItemPro
 	}
 
 	/**
-	 * This returns MatchToLowerCaseConverter.gif.
+	 * This returns ExpressionModifier.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MatchToLowerCaseConverter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExpressionModifier"));
 	}
 
 	/**
@@ -93,7 +95,6 @@ public class MatchToLowerCaseConverterItemProvider extends StringModifierItemPro
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -102,15 +103,15 @@ public class MatchToLowerCaseConverterItemProvider extends StringModifierItemPro
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MatchToLowerCaseConverter)object).getName();
+		String label = ((ExpressionModifier)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MatchToLowerCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ExpressionModifier_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MatchToLowerCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ExpressionModifier_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -123,8 +124,8 @@ public class MatchToLowerCaseConverterItemProvider extends StringModifierItemPro
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MatchToLowerCaseConverter.class)) {
-			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
+		switch (notification.getFeatureID(ExpressionModifier.class)) {
+			case ModifierPackage.EXPRESSION_MODIFIER__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

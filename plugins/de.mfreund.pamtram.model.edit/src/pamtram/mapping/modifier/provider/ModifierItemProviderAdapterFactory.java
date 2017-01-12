@@ -166,6 +166,29 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.ExpressionModifier} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionModifierItemProvider expressionModifierItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.ExpressionModifier}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpressionModifierAdapter() {
+		if (expressionModifierItemProvider == null) {
+			expressionModifierItemProvider = new ExpressionModifierItemProvider(this);
+		}
+
+		return expressionModifierItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.StringPrepender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,9 +357,10 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	 */
 	public void dispose() {
 		if (valueModifierSetItemProvider != null) valueModifierSetItemProvider.dispose();
+		if (uniqueNumberAppenderItemProvider != null) uniqueNumberAppenderItemProvider.dispose();
+		if (expressionModifierItemProvider != null) expressionModifierItemProvider.dispose();
 		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
 		if (stringAppenderItemProvider != null) stringAppenderItemProvider.dispose();
-		if (uniqueNumberAppenderItemProvider != null) uniqueNumberAppenderItemProvider.dispose();
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
 		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();

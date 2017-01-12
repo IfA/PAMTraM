@@ -157,17 +157,22 @@ extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createUniqueNumberAppender()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				 ModifierFactory.eINSTANCE.createExpressionModifier()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
 				 ModifierFactory.eINSTANCE.createSubstringReplacer()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
 				 ModifierFactory.eINSTANCE.createStringAppender()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 ModifierFactory.eINSTANCE.createUniqueNumberAppender()));
 
 		newChildDescriptors.add
 			(createChildParameter

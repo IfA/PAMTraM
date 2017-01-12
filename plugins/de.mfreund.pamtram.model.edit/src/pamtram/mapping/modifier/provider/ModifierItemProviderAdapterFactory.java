@@ -217,7 +217,7 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
+	protected ToLowerCaseConverterItemProvider toLowerCaseConverterItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.modifier.ToLowerCaseConverter}.
@@ -226,12 +226,12 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	 * @generated
 	 */
 	@Override
-	public Adapter createMatchToLowerCaseConverterAdapter() {
-		if (matchToLowerCaseConverterItemProvider == null) {
-			matchToLowerCaseConverterItemProvider = new ToLowerCaseConverterItemProvider(this);
+	public Adapter createToLowerCaseConverterAdapter() {
+		if (toLowerCaseConverterItemProvider == null) {
+			toLowerCaseConverterItemProvider = new ToLowerCaseConverterItemProvider(this);
 		}
 
-		return matchToLowerCaseConverterItemProvider;
+		return toLowerCaseConverterItemProvider;
 	}
 
 	/**
@@ -240,7 +240,7 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
+	protected ToUpperCaseConverterItemProvider toUpperCaseConverterItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.mapping.modifier.ToUpperCaseConverter}.
@@ -249,12 +249,12 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	 * @generated
 	 */
 	@Override
-	public Adapter createMatchToUpperCaseConverterAdapter() {
-		if (matchToUpperCaseConverterItemProvider == null) {
-			matchToUpperCaseConverterItemProvider = new ToUpperCaseConverterItemProvider(this);
+	public Adapter createToUpperCaseConverterAdapter() {
+		if (toUpperCaseConverterItemProvider == null) {
+			toUpperCaseConverterItemProvider = new ToUpperCaseConverterItemProvider(this);
 		}
 
-		return matchToUpperCaseConverterItemProvider;
+		return toUpperCaseConverterItemProvider;
 	}
 
 	/**
@@ -362,8 +362,8 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
 		if (stringAppenderItemProvider != null) stringAppenderItemProvider.dispose();
 		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
-		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
-		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
+		if (toLowerCaseConverterItemProvider != null) toLowerCaseConverterItemProvider.dispose();
+		if (toUpperCaseConverterItemProvider != null) toUpperCaseConverterItemProvider.dispose();
 	}
 
 }

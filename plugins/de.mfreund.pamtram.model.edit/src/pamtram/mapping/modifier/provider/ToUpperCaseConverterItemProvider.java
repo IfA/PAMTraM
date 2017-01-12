@@ -60,8 +60,8 @@ public class ToUpperCaseConverterItemProvider extends StringModifierItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MatchToUpperCaseConverter_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToUpperCaseConverter_regex_feature", "_UI_MatchToUpperCaseConverter_type"),
+				 getString("_UI_ToUpperCaseConverter_regex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToUpperCaseConverter_regex_feature", "_UI_ToUpperCaseConverter_type"),
 				 ModifierPackage.Literals.TO_UPPER_CASE_CONVERTER__REGEX,
 				 true,
 				 false,
@@ -105,9 +105,9 @@ public class ToUpperCaseConverterItemProvider extends StringModifierItemProvider
 		String label = ((ToUpperCaseConverter)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

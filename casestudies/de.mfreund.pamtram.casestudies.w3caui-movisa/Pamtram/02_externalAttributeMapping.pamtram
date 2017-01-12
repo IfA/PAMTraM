@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
@@ -44,13 +44,13 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="getNumber">
-      <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="prependButton">
-      <modifier xsi:type="mapping:StringPrepender" name="NextButton" string="Button_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
     </modifierSets>
     <modifierSets xsi:type="mapping:ValueModifierSet" name="add one">
-      <modifier xsi:type="mapping:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

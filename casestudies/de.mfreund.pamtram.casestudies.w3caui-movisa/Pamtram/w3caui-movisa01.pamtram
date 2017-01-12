@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Root">
@@ -3250,43 +3250,43 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModel.1/@metaModelSections.6"/>
     </mapping>
     <modifierSets name="getNumber">
-      <modifier xsi:type="mapping:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
     <modifierSets name="buttonClick">
-      <modifier xsi:type="mapping:StringAppender" name="ButtonClickSignal" string="ButtonClickSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="ButtonClickSignal" string="ButtonClickSignal"/>
     </modifierSets>
     <modifierSets name="RadioButtonClick">
-      <modifier xsi:type="mapping:StringAppender" name="RadioButtonClick" string="RadioButtonClickSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="RadioButtonClick" string="RadioButtonClickSignal"/>
     </modifierSets>
     <modifierSets name="CheckBoxClick">
-      <modifier xsi:type="mapping:StringAppender" name="CheckBoxClickSignal" string="CheckBoxClickSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="CheckBoxClickSignal" string="CheckBoxClickSignal"/>
     </modifierSets>
     <modifierSets name="DropDownClick">
-      <modifier xsi:type="mapping:StringAppender" name="DropDownClickSignal" string="DropDownClickSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="DropDownClickSignal" string="DropDownClickSignal"/>
     </modifierSets>
     <modifierSets name="InputClick">
-      <modifier xsi:type="mapping:StringAppender" name="InputClick" string="InputClick"/>
+      <modifier xsi:type="modifier:StringAppender" name="InputClick" string="InputClick"/>
     </modifierSets>
     <modifierSets name="appendRepresentation">
-      <modifier xsi:type="mapping:StringAppender" name="Representation" string="Representation"/>
+      <modifier xsi:type="modifier:StringAppender" name="Representation" string="Representation"/>
     </modifierSets>
     <modifierSets name="getLastNumber">
-      <modifier xsi:type="mapping:SubstringReplacer" name="getLastNumber" regex="([a-zA-Z]+[0-9]+[_])([0-9]+[_])*+" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="getLastNumber" regex="([a-zA-Z]+[0-9]+[_])([0-9]+[_])*+" replacement=""/>
     </modifierSets>
     <modifierSets name="addNext">
-      <modifier xsi:type="mapping:StringAppender" name="addNext" string=" next"/>
+      <modifier xsi:type="modifier:StringAppender" name="addNext" string=" next"/>
     </modifierSets>
     <modifierSets name="prependPanel">
-      <modifier xsi:type="mapping:StringPrepender" name="Panel " string="Panel "/>
+      <modifier xsi:type="modifier:StringPrepender" name="Panel " string="Panel "/>
     </modifierSets>
     <modifierSets name="getParentPanel">
-      <modifier xsi:type="mapping:SubstringReplacer" regex="[_]\d+$" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" regex="[_]\d+$" replacement=""/>
     </modifierSets>
     <modifierSets name="prependNavigateTo">
-      <modifier xsi:type="mapping:StringPrepender" name="Navigate_to_" string="Navigate_to_"/>
+      <modifier xsi:type="modifier:StringPrepender" name="Navigate_to_" string="Navigate_to_"/>
     </modifierSets>
     <modifierSets name="append _ClickedSignal">
-      <modifier xsi:type="mapping:StringAppender" name="_ClickedSignal" string="_ClickedSignal"/>
+      <modifier xsi:type="modifier:StringAppender" name="_ClickedSignal" string="_ClickedSignal"/>
     </modifierSets>
   </mappingModel>
   <mappingModel name="AIUs">

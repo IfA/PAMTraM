@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <metaModelSections xsi:type="structure:SourceSection" name="AbstractUserInterfaceModel">
@@ -36,7 +36,7 @@
       </mappingHintGroups>
     </mapping>
     <modifierSets name="replaceComp">
-      <modifier xsi:type="mapping:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

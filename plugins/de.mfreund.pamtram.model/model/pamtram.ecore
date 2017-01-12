@@ -2022,28 +2022,37 @@
           <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eOperations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/modifier/ValueModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="NumericModifier" abstract="true"
+          eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExpressionModifier" eSuperTypes="#//mapping/modifier/NumericModifier">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+            defaultValueLiteral=""/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="StringModifier" abstract="true"
+          eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacement" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="StringAppender" eSuperTypes="#//mapping/modifier/ValueModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="StringAppender" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral=""/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/modifier/ValueModifier"/>
-      <eClassifiers xsi:type="ecore:EClass" name="StringPrepender" eSuperTypes="#//mapping/modifier/ValueModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="StringPrepender" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral=""/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MatchToLowerCaseConverter" eSuperTypes="#//mapping/modifier/ValueModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="MatchToLowerCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MatchToUpperCaseConverter" eSuperTypes="#//mapping/modifier/ValueModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="MatchToUpperCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>

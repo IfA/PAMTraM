@@ -11,14 +11,14 @@ package pamtram.mapping.modifier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.ToUpperCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.modifier.ModifierPackage#getMatchToUpperCaseConverter()
+ * @see pamtram.mapping.modifier.ModifierPackage#getToUpperCaseConverter()
  * @model
  * @generated
  */
-public interface MatchToUpperCaseConverter extends StringModifier {
+public interface ToUpperCaseConverter extends StringModifier {
 	/**
 	 * Returns the value of the '<em><b>Regex</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -29,14 +29,14 @@ public interface MatchToUpperCaseConverter extends StringModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
-	 * @see pamtram.mapping.modifier.ModifierPackage#getMatchToUpperCaseConverter_Regex()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getToUpperCaseConverter_Regex()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getRegex();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.modifier.ToUpperCaseConverter#getRegex <em>Regex</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Regex</em>' attribute.
@@ -45,4 +45,4 @@ public interface MatchToUpperCaseConverter extends StringModifier {
 	 */
 	void setRegex(String value);
 
-} // MatchToUpperCaseConverter
+} // ToUpperCaseConverter

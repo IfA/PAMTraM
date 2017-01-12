@@ -82,7 +82,7 @@ public interface ModifierFactory extends EFactory {
 	 * @return a new object of class '<em>Match To Lower Case Converter</em>'.
 	 * @generated
 	 */
-	MatchToLowerCaseConverter createMatchToLowerCaseConverter();
+	ToLowerCaseConverter createToLowerCaseConverter();
 
 	/**
 	 * Returns a new object of class '<em>Match To Upper Case Converter</em>'.
@@ -91,7 +91,7 @@ public interface ModifierFactory extends EFactory {
 	 * @return a new object of class '<em>Match To Upper Case Converter</em>'.
 	 * @generated
 	 */
-	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
+	ToUpperCaseConverter createToUpperCaseConverter();
 
 	/**
 	 * Returns the package supported by this factory.

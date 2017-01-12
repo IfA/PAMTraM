@@ -11,14 +11,14 @@ package pamtram.mapping.modifier;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.ToLowerCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.modifier.ModifierPackage#getMatchToLowerCaseConverter()
+ * @see pamtram.mapping.modifier.ModifierPackage#getToLowerCaseConverter()
  * @model
  * @generated
  */
-public interface MatchToLowerCaseConverter extends StringModifier {
+public interface ToLowerCaseConverter extends StringModifier {
 	/**
 	 * Returns the value of the '<em><b>Regex</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -29,14 +29,14 @@ public interface MatchToLowerCaseConverter extends StringModifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
-	 * @see pamtram.mapping.modifier.ModifierPackage#getMatchToLowerCaseConverter_Regex()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getToLowerCaseConverter_Regex()
 	 * @model required="true"
 	 * @generated
 	 */
 	String getRegex();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.modifier.ToLowerCaseConverter#getRegex <em>Regex</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Regex</em>' attribute.
@@ -45,4 +45,4 @@ public interface MatchToLowerCaseConverter extends StringModifier {
 	 */
 	void setRegex(String value);
 
-} // MatchToLowerCaseConverter
+} // ToLowerCaseConverter

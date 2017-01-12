@@ -8,22 +8,22 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.ToLowerCaseConverter;
 import pamtram.mapping.modifier.ModifierPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Match To Upper Case Converter</b></em>'. <!--
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Match To Lower Case Converter</b></em>'. <!--
  * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl#getRegex <em>Regex</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.impl.ToLowerCaseConverterImpl#getRegex <em>Regex</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements MatchToUpperCaseConverter {
+public class ToLowerCaseConverterImpl extends StringModifierImpl implements ToLowerCaseConverter {
 
 	/**
 	 * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
@@ -49,7 +49,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MatchToUpperCaseConverterImpl() {
+	protected ToLowerCaseConverterImpl() {
 		super();
 	}
 
@@ -59,7 +59,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModifierPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER;
+		return ModifierPackage.Literals.TO_LOWER_CASE_CONVERTER;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 		String oldRegex = regex;
 		regex = newRegex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX, oldRegex, regex));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX, oldRegex, regex));
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX:
 				return getRegex();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -103,7 +103,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX:
 				setRegex((String)newValue);
 				return;
 		}
@@ -117,7 +117,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX:
 				setRegex(REGEX_EDEFAULT);
 				return;
 		}
@@ -131,7 +131,7 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX:
 				return REGEX_EDEFAULT == null ? regex != null : !REGEX_EDEFAULT.equals(regex);
 		}
 		return super.eIsSet(featureID);
@@ -161,11 +161,11 @@ public class MatchToUpperCaseConverterImpl extends StringModifierImpl implements
 		Matcher m = Pattern.compile(this.regex != null ? this.regex : "").matcher(value);
 		StringBuffer sb = new StringBuffer();
 		while (m.find()) {
-			m.appendReplacement(sb, m.group().toUpperCase());
+			m.appendReplacement(sb, m.group().toLowerCase());
 		}
 		m.appendTail(sb);
 
 		return sb.toString();
 	}
 
-} // MatchToUpperCaseConverterImpl
+} // ToLowerCaseConverterImpl

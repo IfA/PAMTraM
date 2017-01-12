@@ -142,8 +142,8 @@ public class ModifierSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
-				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER: {
+				ToLowerCaseConverter matchToLowerCaseConverter = (ToLowerCaseConverter)theEObject;
 				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
 				if (result == null) result = caseStringModifier(matchToLowerCaseConverter);
 				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
@@ -151,8 +151,8 @@ public class ModifierSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
-				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
+			case ModifierPackage.TO_UPPER_CASE_CONVERTER: {
+				ToUpperCaseConverter matchToUpperCaseConverter = (ToUpperCaseConverter)theEObject;
 				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
 				if (result == null) result = caseStringModifier(matchToUpperCaseConverter);
 				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
@@ -310,7 +310,7 @@ public class ModifierSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
+	public T caseMatchToLowerCaseConverter(ToLowerCaseConverter object) {
 		return null;
 	}
 
@@ -325,7 +325,7 @@ public class ModifierSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
+	public T caseMatchToUpperCaseConverter(ToUpperCaseConverter object) {
 		return null;
 	}
 

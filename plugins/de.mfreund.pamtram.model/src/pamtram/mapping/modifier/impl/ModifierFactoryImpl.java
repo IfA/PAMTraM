@@ -62,8 +62,8 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 			case ModifierPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case ModifierPackage.STRING_APPENDER: return createStringAppender();
 			case ModifierPackage.STRING_PREPENDER: return createStringPrepender();
-			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
-			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
+			case ModifierPackage.TO_LOWER_CASE_CONVERTER: return createToLowerCaseConverter();
+			case ModifierPackage.TO_UPPER_CASE_CONVERTER: return createToUpperCaseConverter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -134,8 +134,8 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToLowerCaseConverter createMatchToLowerCaseConverter() {
-		MatchToLowerCaseConverterImpl matchToLowerCaseConverter = new MatchToLowerCaseConverterImpl();
+	public ToLowerCaseConverter createToLowerCaseConverter() {
+		ToLowerCaseConverterImpl matchToLowerCaseConverter = new ToLowerCaseConverterImpl();
 		return matchToLowerCaseConverter;
 	}
 
@@ -144,8 +144,8 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
-		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
+	public ToUpperCaseConverter createToUpperCaseConverter() {
+		ToUpperCaseConverterImpl matchToUpperCaseConverter = new ToUpperCaseConverterImpl();
 		return matchToUpperCaseConverter;
 	}
 

@@ -2048,11 +2048,11 @@
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral=""/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MatchToLowerCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="ToLowerCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MatchToUpperCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+      <eClassifiers xsi:type="ecore:EClass" name="ToUpperCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>

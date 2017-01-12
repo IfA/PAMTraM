@@ -25,8 +25,8 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.mapping.modifier.ExpressionModifier;
-import pamtram.mapping.modifier.MatchToLowerCaseConverter;
-import pamtram.mapping.modifier.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.ToLowerCaseConverter;
+import pamtram.mapping.modifier.ToUpperCaseConverter;
 import pamtram.mapping.modifier.ModifierFactory;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.NumericModifier;
@@ -125,14 +125,14 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass matchToLowerCaseConverterEClass = null;
+	private EClass toLowerCaseConverterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass matchToUpperCaseConverterEClass = null;
+	private EClass toUpperCaseConverterEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -367,8 +367,8 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMatchToLowerCaseConverter() {
-		return matchToLowerCaseConverterEClass;
+	public EClass getToLowerCaseConverter() {
+		return toLowerCaseConverterEClass;
 	}
 
 	/**
@@ -376,8 +376,8 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMatchToLowerCaseConverter_Regex() {
-		return (EAttribute)matchToLowerCaseConverterEClass.getEStructuralFeatures().get(0);
+	public EAttribute getToLowerCaseConverter_Regex() {
+		return (EAttribute)toLowerCaseConverterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -385,8 +385,8 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getMatchToUpperCaseConverter() {
-		return matchToUpperCaseConverterEClass;
+	public EClass getToUpperCaseConverter() {
+		return toUpperCaseConverterEClass;
 	}
 
 	/**
@@ -394,8 +394,8 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMatchToUpperCaseConverter_Regex() {
-		return (EAttribute)matchToUpperCaseConverterEClass.getEStructuralFeatures().get(0);
+	public EAttribute getToUpperCaseConverter_Regex() {
+		return (EAttribute)toUpperCaseConverterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -451,11 +451,11 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		stringPrependerEClass = createEClass(STRING_PREPENDER);
 		createEAttribute(stringPrependerEClass, STRING_PREPENDER__STRING);
 
-		matchToLowerCaseConverterEClass = createEClass(MATCH_TO_LOWER_CASE_CONVERTER);
-		createEAttribute(matchToLowerCaseConverterEClass, MATCH_TO_LOWER_CASE_CONVERTER__REGEX);
+		toLowerCaseConverterEClass = createEClass(TO_LOWER_CASE_CONVERTER);
+		createEAttribute(toLowerCaseConverterEClass, TO_LOWER_CASE_CONVERTER__REGEX);
 
-		matchToUpperCaseConverterEClass = createEClass(MATCH_TO_UPPER_CASE_CONVERTER);
-		createEAttribute(matchToUpperCaseConverterEClass, MATCH_TO_UPPER_CASE_CONVERTER__REGEX);
+		toUpperCaseConverterEClass = createEClass(TO_UPPER_CASE_CONVERTER);
+		createEAttribute(toUpperCaseConverterEClass, TO_UPPER_CASE_CONVERTER__REGEX);
 	}
 
 	/**
@@ -498,8 +498,8 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		substringReplacerEClass.getESuperTypes().add(this.getStringModifier());
 		stringAppenderEClass.getESuperTypes().add(this.getStringModifier());
 		stringPrependerEClass.getESuperTypes().add(this.getStringModifier());
-		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
-		matchToUpperCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
+		toLowerCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
+		toUpperCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueModifierSetEClass, ValueModifierSet.class, "ValueModifierSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -529,11 +529,11 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		initEClass(stringPrependerEClass, StringPrepender.class, "StringPrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringPrepender_String(), ecorePackage.getEString(), "string", "", 1, 1, StringPrepender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(matchToLowerCaseConverterEClass, MatchToLowerCaseConverter.class, "MatchToLowerCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMatchToLowerCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToLowerCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(toLowerCaseConverterEClass, ToLowerCaseConverter.class, "ToLowerCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getToLowerCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, ToLowerCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(matchToUpperCaseConverterEClass, MatchToUpperCaseConverter.class, "MatchToUpperCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMatchToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, MatchToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(toUpperCaseConverterEClass, ToUpperCaseConverter.class, "ToUpperCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, ToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ModifierPackageImpl

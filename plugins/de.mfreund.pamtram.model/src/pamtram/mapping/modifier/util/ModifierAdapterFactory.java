@@ -106,11 +106,11 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 				return createStringPrependerAdapter();
 			}
 			@Override
-			public Adapter caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
+			public Adapter caseMatchToLowerCaseConverter(ToLowerCaseConverter object) {
 				return createMatchToLowerCaseConverterAdapter();
 			}
 			@Override
-			public Adapter caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
+			public Adapter caseMatchToUpperCaseConverter(ToUpperCaseConverter object) {
 				return createMatchToUpperCaseConverterAdapter();
 			}
 			@Override
@@ -264,13 +264,13 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter
+	 * @see pamtram.mapping.modifier.ToLowerCaseConverter
 	 * @generated
 	 */
 	public Adapter createMatchToLowerCaseConverterAdapter() {
@@ -278,13 +278,13 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter
+	 * @see pamtram.mapping.modifier.ToUpperCaseConverter
 	 * @generated
 	 */
 	public Adapter createMatchToUpperCaseConverterAdapter() {

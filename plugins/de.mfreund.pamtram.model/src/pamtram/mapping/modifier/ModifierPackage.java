@@ -519,14 +519,14 @@ public interface ModifierPackage extends EPackage {
 	int STRING_PREPENDER_OPERATION_COUNT = STRING_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.ToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
-	 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getMatchToLowerCaseConverter()
+	 * @see pamtram.mapping.modifier.impl.ToLowerCaseConverterImpl
+	 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getToLowerCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER = 9;
+	int TO_LOWER_CASE_CONVERTER = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -535,7 +535,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__NAME = STRING_MODIFIER__NAME;
+	int TO_LOWER_CASE_CONVERTER__NAME = STRING_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Regex</b></em>' attribute.
@@ -544,7 +544,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER__REGEX = STRING_MODIFIER_FEATURE_COUNT + 0;
+	int TO_LOWER_CASE_CONVERTER__REGEX = STRING_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Match To Lower Case Converter</em>' class.
@@ -553,7 +553,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = STRING_MODIFIER_FEATURE_COUNT + 1;
+	int TO_LOWER_CASE_CONVERTER_FEATURE_COUNT = STRING_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -562,7 +562,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = STRING_MODIFIER___MODIFY_VALUE__STRING;
+	int TO_LOWER_CASE_CONVERTER___MODIFY_VALUE__STRING = STRING_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Match To Lower Case Converter</em>' class.
@@ -571,17 +571,17 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = STRING_MODIFIER_OPERATION_COUNT + 0;
+	int TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = STRING_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.ToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
-	 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getMatchToUpperCaseConverter()
+	 * @see pamtram.mapping.modifier.impl.ToUpperCaseConverterImpl
+	 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getToUpperCaseConverter()
 	 * @generated
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER = 10;
+	int TO_UPPER_CASE_CONVERTER = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -590,7 +590,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__NAME = STRING_MODIFIER__NAME;
+	int TO_UPPER_CASE_CONVERTER__NAME = STRING_MODIFIER__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Regex</b></em>' attribute.
@@ -599,7 +599,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER__REGEX = STRING_MODIFIER_FEATURE_COUNT + 0;
+	int TO_UPPER_CASE_CONVERTER__REGEX = STRING_MODIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Match To Upper Case Converter</em>' class.
@@ -608,7 +608,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = STRING_MODIFIER_FEATURE_COUNT + 1;
+	int TO_UPPER_CASE_CONVERTER_FEATURE_COUNT = STRING_MODIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Modify Value</em>' operation.
@@ -617,7 +617,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = STRING_MODIFIER___MODIFY_VALUE__STRING;
+	int TO_UPPER_CASE_CONVERTER___MODIFY_VALUE__STRING = STRING_MODIFIER___MODIFY_VALUE__STRING;
 
 	/**
 	 * The number of operations of the '<em>Match To Upper Case Converter</em>' class.
@@ -626,7 +626,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = STRING_MODIFIER_OPERATION_COUNT + 0;
+	int TO_UPPER_CASE_CONVERTER_OPERATION_COUNT = STRING_MODIFIER_OPERATION_COUNT + 0;
 
 
 	/**
@@ -796,46 +796,46 @@ public interface ModifierPackage extends EPackage {
 	EAttribute getStringPrepender_String();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Match To Lower Case Converter</em>'.
-	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter
+	 * @see pamtram.mapping.modifier.ToLowerCaseConverter
 	 * @generated
 	 */
-	EClass getMatchToLowerCaseConverter();
+	EClass getToLowerCaseConverter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.ToLowerCaseConverter#getRegex <em>Regex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex()
-	 * @see #getMatchToLowerCaseConverter()
+	 * @see pamtram.mapping.modifier.ToLowerCaseConverter#getRegex()
+	 * @see #getToLowerCaseConverter()
 	 * @generated
 	 */
-	EAttribute getMatchToLowerCaseConverter_Regex();
+	EAttribute getToLowerCaseConverter_Regex();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Match To Upper Case Converter</em>'.
-	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter
+	 * @see pamtram.mapping.modifier.ToUpperCaseConverter
 	 * @generated
 	 */
-	EClass getMatchToUpperCaseConverter();
+	EClass getToUpperCaseConverter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.ToUpperCaseConverter#getRegex <em>Regex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex()
-	 * @see #getMatchToUpperCaseConverter()
+	 * @see pamtram.mapping.modifier.ToUpperCaseConverter#getRegex()
+	 * @see #getToUpperCaseConverter()
 	 * @generated
 	 */
-	EAttribute getMatchToUpperCaseConverter_Regex();
+	EAttribute getToUpperCaseConverter_Regex();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1007,14 +1007,14 @@ public interface ModifierPackage extends EPackage {
 		EAttribute STRING_PREPENDER__STRING = eINSTANCE.getStringPrepender_String();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.ToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
-		 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getMatchToLowerCaseConverter()
+		 * @see pamtram.mapping.modifier.impl.ToLowerCaseConverterImpl
+		 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getToLowerCaseConverter()
 		 * @generated
 		 */
-		EClass MATCH_TO_LOWER_CASE_CONVERTER = eINSTANCE.getMatchToLowerCaseConverter();
+		EClass TO_LOWER_CASE_CONVERTER = eINSTANCE.getToLowerCaseConverter();
 
 		/**
 		 * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
@@ -1022,17 +1022,17 @@ public interface ModifierPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MATCH_TO_LOWER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToLowerCaseConverter_Regex();
+		EAttribute TO_LOWER_CASE_CONVERTER__REGEX = eINSTANCE.getToLowerCaseConverter_Regex();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.ToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
-		 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getMatchToUpperCaseConverter()
+		 * @see pamtram.mapping.modifier.impl.ToUpperCaseConverterImpl
+		 * @see pamtram.mapping.modifier.impl.ModifierPackageImpl#getToUpperCaseConverter()
 		 * @generated
 		 */
-		EClass MATCH_TO_UPPER_CASE_CONVERTER = eINSTANCE.getMatchToUpperCaseConverter();
+		EClass TO_UPPER_CASE_CONVERTER = eINSTANCE.getToUpperCaseConverter();
 
 		/**
 		 * The meta object literal for the '<em><b>Regex</b></em>' attribute feature.
@@ -1040,7 +1040,7 @@ public interface ModifierPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MATCH_TO_UPPER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToUpperCaseConverter_Regex();
+		EAttribute TO_UPPER_CASE_CONVERTER__REGEX = eINSTANCE.getToUpperCaseConverter_Regex();
 
 	}
 

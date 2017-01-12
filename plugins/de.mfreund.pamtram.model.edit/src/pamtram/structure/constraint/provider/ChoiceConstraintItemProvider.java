@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -8,30 +8,38 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.RangeConstraint;
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
+
+import pamtram.structure.constraint.ChoiceConstraint;
+import pamtram.structure.constraint.ConstraintFactory;
+import pamtram.structure.constraint.ConstraintPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.RangeConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.ChoiceConstraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RangeConstraintItemProvider extends MultipleReferencesValueConstraintItemProvider {
+public class ChoiceConstraintItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RangeConstraintItemProvider(AdapterFactory adapterFactory) {
+	public ChoiceConstraintItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,52 +54,29 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUpperBoundPropertyDescriptor(object);
-			addLowerBoundPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Upper Bound feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_upperBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_upperBound_feature", "_UI_RangeConstraint_type"),
-				 StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
+				 getString("_UI_ValueConstraint_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+				 ConstraintPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Lower Bound feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RangeConstraint_lowerBound_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RangeConstraint_lowerBound_feature", "_UI_RangeConstraint_type"),
-				 StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 true,
-				 false,
-				 false,
-				 null,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -108,8 +93,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND);
-			childrenFeatures.add(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND);
+			childrenFeatures.add(ConstraintPackage.Literals.CHOICE_CONSTRAINT__CHOICES);
 		}
 		return childrenFeatures;
 	}
@@ -128,14 +112,14 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	}
 
 	/**
-	 * This returns RangeConstraint.gif.
+	 * This returns ChoiceConstraint.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/RangeConstraint"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ChoiceConstraint"));
 	}
 
 	/**
@@ -148,7 +132,7 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-
+	
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -157,15 +141,15 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((RangeConstraint)object).getName();
+		String label = ((ChoiceConstraint)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ChoiceConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_RangeConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ChoiceConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -178,9 +162,11 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RangeConstraint.class)) {
-			case StructurePackage.RANGE_CONSTRAINT__UPPER_BOUND:
-			case StructurePackage.RANGE_CONSTRAINT__LOWER_BOUND:
+		switch (notification.getFeatureID(ChoiceConstraint.class)) {
+			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -200,37 +186,19 @@ public class RangeConstraintItemProvider extends MultipleReferencesValueConstrai
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND,
-				 StructureFactory.eINSTANCE.createRangeBound()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND,
-				 StructureFactory.eINSTANCE.createRangeBound()));
+				(ConstraintPackage.Literals.CHOICE_CONSTRAINT__CHOICES,
+				 ConstraintFactory.eINSTANCE.createEqualityConstraint()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-
-		// Object childFeature = feature;
-		// Object childObject = child;
-		//
-		// boolean qualify =
-		// childFeature == StructurePackage.Literals.RANGE_CONSTRAINT__UPPER_BOUND ||
-		// childFeature == StructurePackage.Literals.RANGE_CONSTRAINT__LOWER_BOUND;
-		//
-		// if (qualify) {
-		// return getString
-		// ("_UI_CreateChild_text2",
-		// new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-		// }
-		return super.getCreateChildText(owner, feature, child, selection);
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

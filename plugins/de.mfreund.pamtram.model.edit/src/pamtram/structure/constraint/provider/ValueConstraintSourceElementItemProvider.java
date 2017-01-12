@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -11,32 +11,27 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.provider.NamedElementItemProvider;
+import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.MultipleReferencesValueConstraint;
+import pamtram.structure.constraint.ValueConstraintSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.MultipleReferencesValueConstraint} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.ValueConstraintSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MultipleReferencesValueConstraintItemProvider extends NamedElementItemProvider {
+public class ValueConstraintSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MultipleReferencesValueConstraintItemProvider(AdapterFactory adapterFactory) {
+	public ValueConstraintSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,31 +46,19 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This returns ValueConstraintSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
-				 StructurePackage.Literals.VALUE_CONSTRAINT__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueConstraintSourceElement"));
 	}
 
 	/**
@@ -97,12 +80,12 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MultipleReferencesValueConstraint)object).getName();
+		String label = ((ValueConstraintSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MultipleReferencesValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MultipleReferencesValueConstraint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -117,12 +100,6 @@ public class MultipleReferencesValueConstraintItemProvider extends NamedElementI
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(MultipleReferencesValueConstraint.class)) {
-			case StructurePackage.MULTIPLE_REFERENCES_VALUE_CONSTRAINT__TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

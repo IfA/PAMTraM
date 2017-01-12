@@ -22,7 +22,7 @@ import pamtram.PamtramPackage;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;

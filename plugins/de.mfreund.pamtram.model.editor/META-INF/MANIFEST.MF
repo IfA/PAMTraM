@@ -12,6 +12,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: pamtram.actions,
  pamtram.condition.presentation,
+ pamtram.mapping.modifier.presentation,
  pamtram.mapping.presentation,
  pamtram.structure.presentation,
  pamtram.presentation,

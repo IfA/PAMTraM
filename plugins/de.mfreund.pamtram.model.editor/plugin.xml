@@ -23,6 +23,18 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated pamtram -->
       <editor
+            id="pamtram.mapping.modifier.presentation.ModifierEditorID"
+            name="%_UI_ModifierEditor_label"
+            icon="icons/full/obj16/ModifierModelFile.gif"
+            extensions="modifier"
+            class="pamtram.mapping.modifier.presentation.ModifierEditor"
+            contributorClass="pamtram.mapping.modifier.presentation.ModifierActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
             id="pamtram.presentation.PamtramEditorID"
             name="%_UI_PamtramEditor_label"
             icon="icons/full/obj16/PamtramModelFile.gif"

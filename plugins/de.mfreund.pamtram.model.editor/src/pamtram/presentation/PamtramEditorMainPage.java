@@ -83,7 +83,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.LibraryEntry;

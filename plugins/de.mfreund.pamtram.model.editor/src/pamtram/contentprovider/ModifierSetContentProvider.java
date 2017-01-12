@@ -11,7 +11,7 @@ import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.mapping.FixedValue;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the contained

@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.mapping.ValueModifierSet;
 import pamtram.structure.SourceSection;
 import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.SourceSectionClass;
@@ -22,6 +21,7 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->

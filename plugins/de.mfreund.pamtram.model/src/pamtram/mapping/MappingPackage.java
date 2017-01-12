@@ -359,40 +359,40 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 16;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.SubstringReplacerImpl
+	 * @see pamtram.mapping.modifier.impl.SubstringReplacerImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
 	 * @generated
 	 */
 	int SUBSTRING_REPLACER = 19;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.StringAppenderImpl <em>String Appender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.StringAppenderImpl <em>String Appender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.StringAppenderImpl
+	 * @see pamtram.mapping.modifier.impl.StringAppenderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
 	 * @generated
 	 */
 	int STRING_APPENDER = 20;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.UniqueNumberAppenderImpl
+	 * @see pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
 	 * @generated
 	 */
 	int UNIQUE_NUMBER_APPENDER = 21;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.StringPrependerImpl <em>String Prepender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.StringPrependerImpl <em>String Prepender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.StringPrependerImpl
+	 * @see pamtram.mapping.modifier.impl.StringPrependerImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
 	 * @generated
 	 */
@@ -1809,10 +1809,10 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ValueModifierSetImpl
+	 * @see pamtram.mapping.modifier.impl.ValueModifierSetImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
 	 * @generated
 	 */
@@ -1855,10 +1855,10 @@ public interface MappingPackage extends EPackage {
 	int VALUE_MODIFIER_SET_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ValueModifier
+	 * @see pamtram.mapping.modifier.ValueModifier
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
 	 * @generated
 	 */
@@ -3874,10 +3874,10 @@ public interface MappingPackage extends EPackage {
 	int EXPANDABLE_HINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MatchToLowerCaseConverterImpl
+	 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 	 * @generated
 	 */
@@ -3929,10 +3929,10 @@ public interface MappingPackage extends EPackage {
 	int MATCH_TO_LOWER_CASE_CONVERTER_OPERATION_COUNT = VALUE_MODIFIER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MatchToUpperCaseConverterImpl
+	 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 	 * @generated
 	 */
@@ -4815,125 +4815,125 @@ public interface MappingPackage extends EPackage {
 	EReference getClassMatcher_TargetClass();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifierSet <em>Value Modifier Set</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ValueModifierSet <em>Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Modifier Set</em>'.
-	 * @see pamtram.mapping.ValueModifierSet
+	 * @see pamtram.mapping.modifier.ValueModifierSet
 	 * @generated
 	 */
 	EClass getValueModifierSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ValueModifierSet#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.ValueModifierSet#getModifier()
+	 * @see pamtram.mapping.modifier.ValueModifierSet#getModifier()
 	 * @see #getValueModifierSet()
 	 * @generated
 	 */
 	EReference getValueModifierSet_Modifier();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Value Modifier</em>'.
-	 * @see pamtram.mapping.ValueModifier
+	 * @see pamtram.mapping.modifier.ValueModifier
 	 * @generated
 	 */
 	EClass getValueModifier();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.modifier.ValueModifier#modifyValue(java.lang.String) <em>Modify Value</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Modify Value</em>' operation.
-	 * @see pamtram.mapping.ValueModifier#modifyValue(java.lang.String)
+	 * @see pamtram.mapping.modifier.ValueModifier#modifyValue(java.lang.String)
 	 * @generated
 	 */
 	EOperation getValueModifier__ModifyValue__String();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.SubstringReplacer <em>Substring Replacer</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.SubstringReplacer <em>Substring Replacer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Substring Replacer</em>'.
-	 * @see pamtram.mapping.SubstringReplacer
+	 * @see pamtram.mapping.modifier.SubstringReplacer
 	 * @generated
 	 */
 	EClass getSubstringReplacer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.SubstringReplacer#getRegex <em>Regex</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.SubstringReplacer#getRegex <em>Regex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.SubstringReplacer#getRegex()
+	 * @see pamtram.mapping.modifier.SubstringReplacer#getRegex()
 	 * @see #getSubstringReplacer()
 	 * @generated
 	 */
 	EAttribute getSubstringReplacer_Regex();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.SubstringReplacer#getReplacement <em>Replacement</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.SubstringReplacer#getReplacement <em>Replacement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Replacement</em>'.
-	 * @see pamtram.mapping.SubstringReplacer#getReplacement()
+	 * @see pamtram.mapping.modifier.SubstringReplacer#getReplacement()
 	 * @see #getSubstringReplacer()
 	 * @generated
 	 */
 	EAttribute getSubstringReplacer_Replacement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.StringAppender <em>String Appender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.StringAppender <em>String Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>String Appender</em>'.
-	 * @see pamtram.mapping.StringAppender
+	 * @see pamtram.mapping.modifier.StringAppender
 	 * @generated
 	 */
 	EClass getStringAppender();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.StringAppender#getString <em>String</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.StringAppender#getString <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>String</em>'.
-	 * @see pamtram.mapping.StringAppender#getString()
+	 * @see pamtram.mapping.modifier.StringAppender#getString()
 	 * @see #getStringAppender()
 	 * @generated
 	 */
 	EAttribute getStringAppender_String();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.UniqueNumberAppender <em>Unique Number Appender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.UniqueNumberAppender <em>Unique Number Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Unique Number Appender</em>'.
-	 * @see pamtram.mapping.UniqueNumberAppender
+	 * @see pamtram.mapping.modifier.UniqueNumberAppender
 	 * @generated
 	 */
 	EClass getUniqueNumberAppender();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.StringPrepender <em>String Prepender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.StringPrepender <em>String Prepender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>String Prepender</em>'.
-	 * @see pamtram.mapping.StringPrepender
+	 * @see pamtram.mapping.modifier.StringPrepender
 	 * @generated
 	 */
 	EClass getStringPrepender();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.StringPrepender#getString <em>String</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.StringPrepender#getString <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>String</em>'.
-	 * @see pamtram.mapping.StringPrepender#getString()
+	 * @see pamtram.mapping.modifier.StringPrepender#getString()
 	 * @see #getStringPrepender()
 	 * @generated
 	 */
@@ -5556,42 +5556,42 @@ public interface MappingPackage extends EPackage {
 	EClass getExpandableHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Match To Lower Case Converter</em>'.
-	 * @see pamtram.mapping.MatchToLowerCaseConverter
+	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter
 	 * @generated
 	 */
 	EClass getMatchToLowerCaseConverter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.MatchToLowerCaseConverter#getRegex <em>Regex</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.MatchToLowerCaseConverter#getRegex()
+	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex()
 	 * @see #getMatchToLowerCaseConverter()
 	 * @generated
 	 */
 	EAttribute getMatchToLowerCaseConverter_Regex();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Match To Upper Case Converter</em>'.
-	 * @see pamtram.mapping.MatchToUpperCaseConverter
+	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter
 	 * @generated
 	 */
 	EClass getMatchToUpperCaseConverter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.MatchToUpperCaseConverter#getRegex <em>Regex</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex <em>Regex</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Regex</em>'.
-	 * @see pamtram.mapping.MatchToUpperCaseConverter#getRegex()
+	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter#getRegex()
 	 * @see #getMatchToUpperCaseConverter()
 	 * @generated
 	 */
@@ -6066,10 +6066,10 @@ public interface MappingPackage extends EPackage {
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl <em>Value Modifier Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ValueModifierSetImpl
+		 * @see pamtram.mapping.modifier.impl.ValueModifierSetImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifierSet()
 		 * @generated
 		 */
@@ -6084,10 +6084,10 @@ public interface MappingPackage extends EPackage {
 		EReference VALUE_MODIFIER_SET__MODIFIER = eINSTANCE.getValueModifierSet_Modifier();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.ValueModifier
+		 * @see pamtram.mapping.modifier.ValueModifier
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getValueModifier()
 		 * @generated
 		 */
@@ -6102,10 +6102,10 @@ public interface MappingPackage extends EPackage {
 		EOperation VALUE_MODIFIER___MODIFY_VALUE__STRING = eINSTANCE.getValueModifier__ModifyValue__String();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.SubstringReplacerImpl <em>Substring Replacer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.SubstringReplacerImpl
+		 * @see pamtram.mapping.modifier.impl.SubstringReplacerImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getSubstringReplacer()
 		 * @generated
 		 */
@@ -6128,10 +6128,10 @@ public interface MappingPackage extends EPackage {
 		EAttribute SUBSTRING_REPLACER__REPLACEMENT = eINSTANCE.getSubstringReplacer_Replacement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.StringAppenderImpl <em>String Appender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.StringAppenderImpl <em>String Appender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.StringAppenderImpl
+		 * @see pamtram.mapping.modifier.impl.StringAppenderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getStringAppender()
 		 * @generated
 		 */
@@ -6146,20 +6146,20 @@ public interface MappingPackage extends EPackage {
 		EAttribute STRING_APPENDER__STRING = eINSTANCE.getStringAppender_String();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl <em>Unique Number Appender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.UniqueNumberAppenderImpl
+		 * @see pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getUniqueNumberAppender()
 		 * @generated
 		 */
 		EClass UNIQUE_NUMBER_APPENDER = eINSTANCE.getUniqueNumberAppender();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.StringPrependerImpl <em>String Prepender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.StringPrependerImpl <em>String Prepender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.StringPrependerImpl
+		 * @see pamtram.mapping.modifier.impl.StringPrependerImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getStringPrepender()
 		 * @generated
 		 */
@@ -6718,10 +6718,10 @@ public interface MappingPackage extends EPackage {
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl <em>Match To Lower Case Converter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MatchToLowerCaseConverterImpl
+		 * @see pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToLowerCaseConverter()
 		 * @generated
 		 */
@@ -6736,10 +6736,10 @@ public interface MappingPackage extends EPackage {
 		EAttribute MATCH_TO_LOWER_CASE_CONVERTER__REGEX = eINSTANCE.getMatchToLowerCaseConverter_Regex();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl <em>Match To Upper Case Converter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MatchToUpperCaseConverterImpl
+		 * @see pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMatchToUpperCaseConverter()
 		 * @generated
 		 */

@@ -4,11 +4,12 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import pamtram.mapping.ValueModifierSet;
+
 import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -205,7 +206,7 @@ public interface PAMTraM extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Modifier Sets</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier Sets</em>' reference list isn't clear,

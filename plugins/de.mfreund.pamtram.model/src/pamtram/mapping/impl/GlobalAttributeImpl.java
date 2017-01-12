@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->

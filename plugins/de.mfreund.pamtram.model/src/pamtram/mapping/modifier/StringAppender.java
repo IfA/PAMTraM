@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +13,7 @@ package pamtram.mapping;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.StringAppender#getString <em>String</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.StringAppender#getString <em>String</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getStringAppender()
@@ -38,7 +39,7 @@ public interface StringAppender extends ValueModifier {
 	String getString();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.StringAppender#getString <em>String</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.modifier.StringAppender#getString <em>String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>String</em>' attribute.

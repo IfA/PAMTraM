@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->

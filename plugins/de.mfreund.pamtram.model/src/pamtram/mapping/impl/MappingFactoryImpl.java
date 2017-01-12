@@ -9,6 +9,20 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import pamtram.mapping.*;
+import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+import pamtram.mapping.modifier.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.StringAppender;
+import pamtram.mapping.modifier.StringPrepender;
+import pamtram.mapping.modifier.SubstringReplacer;
+import pamtram.mapping.modifier.UniqueNumberAppender;
+import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.mapping.modifier.impl.MatchToLowerCaseConverterImpl;
+import pamtram.mapping.modifier.impl.MatchToUpperCaseConverterImpl;
+import pamtram.mapping.modifier.impl.StringAppenderImpl;
+import pamtram.mapping.modifier.impl.StringPrependerImpl;
+import pamtram.mapping.modifier.impl.SubstringReplacerImpl;
+import pamtram.mapping.modifier.impl.UniqueNumberAppenderImpl;
+import pamtram.mapping.modifier.impl.ValueModifierSetImpl;
 
 /**
  * <!-- begin-user-doc -->

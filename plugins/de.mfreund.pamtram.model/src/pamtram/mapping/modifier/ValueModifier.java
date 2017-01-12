@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
 import pamtram.NamedElement;
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -10,6 +10,14 @@ import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
+import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+import pamtram.mapping.modifier.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.StringAppender;
+import pamtram.mapping.modifier.StringPrepender;
+import pamtram.mapping.modifier.SubstringReplacer;
+import pamtram.mapping.modifier.UniqueNumberAppender;
+import pamtram.mapping.modifier.ValueModifier;
+import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
@@ -523,13 +531,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifierSet <em>Value Modifier Set</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ValueModifierSet <em>Value Modifier Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ValueModifierSet
+	 * @see pamtram.mapping.modifier.ValueModifierSet
 	 * @generated
 	 */
 	public Adapter createValueModifierSetAdapter() {
@@ -537,13 +545,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ValueModifier <em>Value Modifier</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ValueModifier
+	 * @see pamtram.mapping.modifier.ValueModifier
 	 * @generated
 	 */
 	public Adapter createValueModifierAdapter() {
@@ -551,13 +559,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.SubstringReplacer <em>Substring Replacer</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.SubstringReplacer <em>Substring Replacer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.SubstringReplacer
+	 * @see pamtram.mapping.modifier.SubstringReplacer
 	 * @generated
 	 */
 	public Adapter createSubstringReplacerAdapter() {
@@ -565,13 +573,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.StringAppender <em>String Appender</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.StringAppender <em>String Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.StringAppender
+	 * @see pamtram.mapping.modifier.StringAppender
 	 * @generated
 	 */
 	public Adapter createStringAppenderAdapter() {
@@ -579,13 +587,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.UniqueNumberAppender <em>Unique Number Appender</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.UniqueNumberAppender <em>Unique Number Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.UniqueNumberAppender
+	 * @see pamtram.mapping.modifier.UniqueNumberAppender
 	 * @generated
 	 */
 	public Adapter createUniqueNumberAppenderAdapter() {
@@ -593,13 +601,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.StringPrepender <em>String Prepender</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.StringPrepender <em>String Prepender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.StringPrepender
+	 * @see pamtram.mapping.modifier.StringPrepender
 	 * @generated
 	 */
 	public Adapter createStringPrependerAdapter() {
@@ -1055,13 +1063,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter <em>Match To Lower Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MatchToLowerCaseConverter
+	 * @see pamtram.mapping.modifier.MatchToLowerCaseConverter
 	 * @generated
 	 */
 	public Adapter createMatchToLowerCaseConverterAdapter() {
@@ -1069,13 +1077,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.MatchToUpperCaseConverter <em>Match To Upper Case Converter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MatchToUpperCaseConverter
+	 * @see pamtram.mapping.modifier.MatchToUpperCaseConverter
 	 * @generated
 	 */
 	public Adapter createMatchToUpperCaseConverterAdapter() {

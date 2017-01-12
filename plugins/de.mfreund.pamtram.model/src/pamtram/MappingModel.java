@@ -3,9 +3,10 @@
 package pamtram;
 
 import org.eclipse.emf.common.util.EList;
-import pamtram.mapping.ValueModifierSet;
+
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +46,7 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 
 	/**
 	 * Returns the value of the '<em><b>Modifier Sets</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier Sets</em>' containment reference list isn't clear,

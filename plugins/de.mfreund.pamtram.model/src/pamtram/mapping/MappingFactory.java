@@ -4,6 +4,14 @@ package pamtram.mapping;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import pamtram.mapping.modifier.MatchToLowerCaseConverter;
+import pamtram.mapping.modifier.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.StringAppender;
+import pamtram.mapping.modifier.StringPrepender;
+import pamtram.mapping.modifier.SubstringReplacer;
+import pamtram.mapping.modifier.UniqueNumberAppender;
+import pamtram.mapping.modifier.ValueModifierSet;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

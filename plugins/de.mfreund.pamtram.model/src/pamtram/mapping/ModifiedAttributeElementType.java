@@ -5,6 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
+import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -55,7 +56,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 
 	/**
 	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
+	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,

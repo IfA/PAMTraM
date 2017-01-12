@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.modifier;
 
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +13,7 @@ package pamtram.mapping;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.MatchToLowerCaseConverter#getRegex <em>Regex</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMatchToLowerCaseConverter()
@@ -37,7 +38,7 @@ public interface MatchToLowerCaseConverter extends ValueModifier {
 	String getRegex();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MatchToLowerCaseConverter#getRegex <em>Regex</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.modifier.MatchToLowerCaseConverter#getRegex <em>Regex</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Regex</em>' attribute.

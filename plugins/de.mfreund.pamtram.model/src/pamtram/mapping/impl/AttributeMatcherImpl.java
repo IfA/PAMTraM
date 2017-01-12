@@ -28,7 +28,7 @@ import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.TargetSectionAttribute;
 

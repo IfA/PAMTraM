@@ -82,22 +82,6 @@ public class ModifierSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModifierPackage.SUBSTRING_REPLACER: {
-				SubstringReplacer substringReplacer = (SubstringReplacer)theEObject;
-				T result = caseSubstringReplacer(substringReplacer);
-				if (result == null) result = caseValueModifier(substringReplacer);
-				if (result == null) result = caseNamedElement(substringReplacer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModifierPackage.STRING_APPENDER: {
-				StringAppender stringAppender = (StringAppender)theEObject;
-				T result = caseStringAppender(stringAppender);
-				if (result == null) result = caseValueModifier(stringAppender);
-				if (result == null) result = caseNamedElement(stringAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ModifierPackage.UNIQUE_NUMBER_APPENDER: {
 				UniqueNumberAppender uniqueNumberAppender = (UniqueNumberAppender)theEObject;
 				T result = caseUniqueNumberAppender(uniqueNumberAppender);
@@ -106,9 +90,53 @@ public class ModifierSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ModifierPackage.NUMERIC_MODIFIER: {
+				NumericModifier numericModifier = (NumericModifier)theEObject;
+				T result = caseNumericModifier(numericModifier);
+				if (result == null) result = caseValueModifier(numericModifier);
+				if (result == null) result = caseNamedElement(numericModifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModifierPackage.EXPRESSION_MODIFIER: {
+				ExpressionModifier expressionModifier = (ExpressionModifier)theEObject;
+				T result = caseExpressionModifier(expressionModifier);
+				if (result == null) result = caseNumericModifier(expressionModifier);
+				if (result == null) result = caseValueModifier(expressionModifier);
+				if (result == null) result = caseNamedElement(expressionModifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModifierPackage.STRING_MODIFIER: {
+				StringModifier stringModifier = (StringModifier)theEObject;
+				T result = caseStringModifier(stringModifier);
+				if (result == null) result = caseValueModifier(stringModifier);
+				if (result == null) result = caseNamedElement(stringModifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModifierPackage.SUBSTRING_REPLACER: {
+				SubstringReplacer substringReplacer = (SubstringReplacer)theEObject;
+				T result = caseSubstringReplacer(substringReplacer);
+				if (result == null) result = caseStringModifier(substringReplacer);
+				if (result == null) result = caseValueModifier(substringReplacer);
+				if (result == null) result = caseNamedElement(substringReplacer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModifierPackage.STRING_APPENDER: {
+				StringAppender stringAppender = (StringAppender)theEObject;
+				T result = caseStringAppender(stringAppender);
+				if (result == null) result = caseStringModifier(stringAppender);
+				if (result == null) result = caseValueModifier(stringAppender);
+				if (result == null) result = caseNamedElement(stringAppender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ModifierPackage.STRING_PREPENDER: {
 				StringPrepender stringPrepender = (StringPrepender)theEObject;
 				T result = caseStringPrepender(stringPrepender);
+				if (result == null) result = caseStringModifier(stringPrepender);
 				if (result == null) result = caseValueModifier(stringPrepender);
 				if (result == null) result = caseNamedElement(stringPrepender);
 				if (result == null) result = defaultCase(theEObject);
@@ -117,6 +145,7 @@ public class ModifierSwitch<T> extends Switch<T> {
 			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
 				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
 				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
+				if (result == null) result = caseStringModifier(matchToLowerCaseConverter);
 				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
 				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
@@ -125,6 +154,7 @@ public class ModifierSwitch<T> extends Switch<T> {
 			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
 				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
 				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
+				if (result == null) result = caseStringModifier(matchToUpperCaseConverter);
 				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
 				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
 				if (result == null) result = defaultCase(theEObject);
@@ -206,6 +236,51 @@ public class ModifierSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseUniqueNumberAppender(UniqueNumberAppender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Numeric Modifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Numeric Modifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNumericModifier(NumericModifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Modifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Modifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpressionModifier(ExpressionModifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Modifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Modifier</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringModifier(StringModifier object) {
 		return null;
 	}
 

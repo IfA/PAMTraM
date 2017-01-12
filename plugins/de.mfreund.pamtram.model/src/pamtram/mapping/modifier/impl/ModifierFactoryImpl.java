@@ -57,9 +57,10 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ModifierPackage.VALUE_MODIFIER_SET: return createValueModifierSet();
+			case ModifierPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
+			case ModifierPackage.EXPRESSION_MODIFIER: return createExpressionModifier();
 			case ModifierPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
 			case ModifierPackage.STRING_APPENDER: return createStringAppender();
-			case ModifierPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
 			case ModifierPackage.STRING_PREPENDER: return createStringPrepender();
 			case ModifierPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
 			case ModifierPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
@@ -106,6 +107,16 @@ public class ModifierFactoryImpl extends EFactoryImpl implements ModifierFactory
 	public UniqueNumberAppender createUniqueNumberAppender() {
 		UniqueNumberAppenderImpl uniqueNumberAppender = new UniqueNumberAppenderImpl();
 		return uniqueNumberAppender;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionModifier createExpressionModifier() {
+		ExpressionModifierImpl expressionModifier = new ExpressionModifierImpl();
+		return expressionModifier;
 	}
 
 	/**

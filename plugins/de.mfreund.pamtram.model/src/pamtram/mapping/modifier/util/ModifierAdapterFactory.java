@@ -78,16 +78,28 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 				return createValueModifierAdapter();
 			}
 			@Override
+			public Adapter caseUniqueNumberAppender(UniqueNumberAppender object) {
+				return createUniqueNumberAppenderAdapter();
+			}
+			@Override
+			public Adapter caseNumericModifier(NumericModifier object) {
+				return createNumericModifierAdapter();
+			}
+			@Override
+			public Adapter caseExpressionModifier(ExpressionModifier object) {
+				return createExpressionModifierAdapter();
+			}
+			@Override
+			public Adapter caseStringModifier(StringModifier object) {
+				return createStringModifierAdapter();
+			}
+			@Override
 			public Adapter caseSubstringReplacer(SubstringReplacer object) {
 				return createSubstringReplacerAdapter();
 			}
 			@Override
 			public Adapter caseStringAppender(StringAppender object) {
 				return createStringAppenderAdapter();
-			}
-			@Override
-			public Adapter caseUniqueNumberAppender(UniqueNumberAppender object) {
-				return createUniqueNumberAppenderAdapter();
 			}
 			@Override
 			public Adapter caseStringPrepender(StringPrepender object) {
@@ -192,6 +204,48 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUniqueNumberAppenderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.NumericModifier <em>Numeric Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.modifier.NumericModifier
+	 * @generated
+	 */
+	public Adapter createNumericModifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.ExpressionModifier <em>Expression Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.modifier.ExpressionModifier
+	 * @generated
+	 */
+	public Adapter createExpressionModifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.modifier.StringModifier <em>String Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.modifier.StringModifier
+	 * @generated
+	 */
+	public Adapter createStringModifierAdapter() {
 		return null;
 	}
 

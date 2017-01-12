@@ -18,7 +18,7 @@ package pamtram.mapping.modifier;
  * @model
  * @generated
  */
-public interface StringPrepender extends ValueModifier {
+public interface StringPrepender extends StringModifier {
 	/**
 	 * Returns the value of the '<em><b>String</b></em>' attribute.
 	 * The default value is <code>""</code>.

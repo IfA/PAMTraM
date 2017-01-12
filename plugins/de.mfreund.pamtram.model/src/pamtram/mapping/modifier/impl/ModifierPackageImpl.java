@@ -24,11 +24,14 @@ import pamtram.mapping.MappingPackage;
 
 import pamtram.mapping.impl.MappingPackageImpl;
 
+import pamtram.mapping.modifier.ExpressionModifier;
 import pamtram.mapping.modifier.MatchToLowerCaseConverter;
 import pamtram.mapping.modifier.MatchToUpperCaseConverter;
 import pamtram.mapping.modifier.ModifierFactory;
 import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.NumericModifier;
 import pamtram.mapping.modifier.StringAppender;
+import pamtram.mapping.modifier.StringModifier;
 import pamtram.mapping.modifier.StringPrepender;
 import pamtram.mapping.modifier.SubstringReplacer;
 import pamtram.mapping.modifier.UniqueNumberAppender;
@@ -88,6 +91,27 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * @generated
 	 */
 	private EClass uniqueNumberAppenderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass numericModifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionModifierEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringModifierEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -289,6 +313,42 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNumericModifier() {
+		return numericModifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpressionModifier() {
+		return expressionModifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExpressionModifier_Expression() {
+		return (EAttribute)expressionModifierEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringModifier() {
+		return stringModifierEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStringPrepender() {
 		return stringPrependerEClass;
 	}
@@ -372,14 +432,21 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		valueModifierEClass = createEClass(VALUE_MODIFIER);
 		createEOperation(valueModifierEClass, VALUE_MODIFIER___MODIFY_VALUE__STRING);
 
+		uniqueNumberAppenderEClass = createEClass(UNIQUE_NUMBER_APPENDER);
+
+		numericModifierEClass = createEClass(NUMERIC_MODIFIER);
+
+		expressionModifierEClass = createEClass(EXPRESSION_MODIFIER);
+		createEAttribute(expressionModifierEClass, EXPRESSION_MODIFIER__EXPRESSION);
+
+		stringModifierEClass = createEClass(STRING_MODIFIER);
+
 		substringReplacerEClass = createEClass(SUBSTRING_REPLACER);
 		createEAttribute(substringReplacerEClass, SUBSTRING_REPLACER__REGEX);
 		createEAttribute(substringReplacerEClass, SUBSTRING_REPLACER__REPLACEMENT);
 
 		stringAppenderEClass = createEClass(STRING_APPENDER);
 		createEAttribute(stringAppenderEClass, STRING_APPENDER__STRING);
-
-		uniqueNumberAppenderEClass = createEClass(UNIQUE_NUMBER_APPENDER);
 
 		stringPrependerEClass = createEClass(STRING_PREPENDER);
 		createEAttribute(stringPrependerEClass, STRING_PREPENDER__STRING);
@@ -424,12 +491,15 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		// Add supertypes to classes
 		valueModifierSetEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		valueModifierEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		substringReplacerEClass.getESuperTypes().add(this.getValueModifier());
-		stringAppenderEClass.getESuperTypes().add(this.getValueModifier());
 		uniqueNumberAppenderEClass.getESuperTypes().add(this.getValueModifier());
-		stringPrependerEClass.getESuperTypes().add(this.getValueModifier());
-		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getValueModifier());
-		matchToUpperCaseConverterEClass.getESuperTypes().add(this.getValueModifier());
+		numericModifierEClass.getESuperTypes().add(this.getValueModifier());
+		expressionModifierEClass.getESuperTypes().add(this.getNumericModifier());
+		stringModifierEClass.getESuperTypes().add(this.getValueModifier());
+		substringReplacerEClass.getESuperTypes().add(this.getStringModifier());
+		stringAppenderEClass.getESuperTypes().add(this.getStringModifier());
+		stringPrependerEClass.getESuperTypes().add(this.getStringModifier());
+		matchToLowerCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
+		matchToUpperCaseConverterEClass.getESuperTypes().add(this.getStringModifier());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueModifierSetEClass, ValueModifierSet.class, "ValueModifierSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -440,14 +510,21 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		EOperation op = initEOperation(getValueModifier__ModifyValue__String(), ecorePackage.getEString(), "modifyValue", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(uniqueNumberAppenderEClass, UniqueNumberAppender.class, "UniqueNumberAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(numericModifierEClass, NumericModifier.class, "NumericModifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(expressionModifierEClass, ExpressionModifier.class, "ExpressionModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExpressionModifier_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stringModifierEClass, StringModifier.class, "StringModifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(substringReplacerEClass, SubstringReplacer.class, "SubstringReplacer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSubstringReplacer_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, SubstringReplacer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSubstringReplacer_Replacement(), ecorePackage.getEString(), "replacement", null, 1, 1, SubstringReplacer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringAppenderEClass, StringAppender.class, "StringAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringAppender_String(), ecorePackage.getEString(), "string", "", 1, 1, StringAppender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(uniqueNumberAppenderEClass, UniqueNumberAppender.class, "UniqueNumberAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(stringPrependerEClass, StringPrepender.class, "StringPrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStringPrepender_String(), ecorePackage.getEString(), "string", "", 1, 1, StringPrepender.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

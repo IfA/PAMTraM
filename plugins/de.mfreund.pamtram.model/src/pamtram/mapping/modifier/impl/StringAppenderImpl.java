@@ -2,14 +2,9 @@
  */
 package pamtram.mapping.modifier.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.StringAppender;
 
@@ -25,7 +20,7 @@ import pamtram.mapping.modifier.StringAppender;
  *
  * @generated
  */
-public class StringAppenderImpl extends NamedElementImpl implements StringAppender {
+public class StringAppenderImpl extends StringModifierImpl implements StringAppender {
 
 	/**
 	 * The default value of the '{@link #getString() <em>String</em>}' attribute.
@@ -146,19 +141,6 @@ public class StringAppenderImpl extends NamedElementImpl implements StringAppend
 				return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ModifierPackage.STRING_APPENDER___MODIFY_VALUE__STRING:
-				return modifyValue((String)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

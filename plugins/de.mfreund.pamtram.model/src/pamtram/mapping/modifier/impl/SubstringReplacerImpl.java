@@ -2,14 +2,9 @@
  */
 package pamtram.mapping.modifier.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.SubstringReplacer;
 
@@ -26,7 +21,7 @@ import pamtram.mapping.modifier.SubstringReplacer;
  *
  * @generated
  */
-public class SubstringReplacerImpl extends NamedElementImpl implements SubstringReplacer {
+public class SubstringReplacerImpl extends StringModifierImpl implements SubstringReplacer {
 
 	/**
 	 * The default value of the '{@link #getRegex() <em>Regex</em>}' attribute.
@@ -210,19 +205,6 @@ public class SubstringReplacerImpl extends NamedElementImpl implements Substring
 				return REPLACEMENT_EDEFAULT == null ? replacement != null : !REPLACEMENT_EDEFAULT.equals(replacement);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case ModifierPackage.SUBSTRING_REPLACER___MODIFY_VALUE__STRING:
-				return modifyValue((String)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

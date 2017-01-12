@@ -58,6 +58,15 @@ public interface ModifierFactory extends EFactory {
 	UniqueNumberAppender createUniqueNumberAppender();
 
 	/**
+	 * Returns a new object of class '<em>Expression Modifier</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression Modifier</em>'.
+	 * @generated
+	 */
+	ExpressionModifier createExpressionModifier();
+
+	/**
 	 * Returns a new object of class '<em>String Prepender</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

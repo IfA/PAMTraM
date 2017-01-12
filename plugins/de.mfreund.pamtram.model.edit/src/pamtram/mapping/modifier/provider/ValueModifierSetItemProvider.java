@@ -182,12 +182,12 @@ extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 ModifierFactory.eINSTANCE.createMatchToLowerCaseConverter()));
+				 ModifierFactory.eINSTANCE.createToLowerCaseConverter()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
-				 ModifierFactory.eINSTANCE.createMatchToUpperCaseConverter()));
+				 ModifierFactory.eINSTANCE.createToUpperCaseConverter()));
 	}
 
 	/**

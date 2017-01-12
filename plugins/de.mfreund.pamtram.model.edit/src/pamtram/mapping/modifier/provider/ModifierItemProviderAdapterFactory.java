@@ -212,15 +212,15 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.MatchToLowerCaseConverter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.ToLowerCaseConverter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MatchToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
+	protected ToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.modifier.MatchToLowerCaseConverter}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.ToLowerCaseConverter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -228,22 +228,22 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	@Override
 	public Adapter createMatchToLowerCaseConverterAdapter() {
 		if (matchToLowerCaseConverterItemProvider == null) {
-			matchToLowerCaseConverterItemProvider = new MatchToLowerCaseConverterItemProvider(this);
+			matchToLowerCaseConverterItemProvider = new ToLowerCaseConverterItemProvider(this);
 		}
 
 		return matchToLowerCaseConverterItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.MatchToUpperCaseConverter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.ToUpperCaseConverter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MatchToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
+	protected ToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.modifier.MatchToUpperCaseConverter}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.ToUpperCaseConverter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -251,7 +251,7 @@ public class ModifierItemProviderAdapterFactory extends ModifierAdapterFactory i
 	@Override
 	public Adapter createMatchToUpperCaseConverterAdapter() {
 		if (matchToUpperCaseConverterItemProvider == null) {
-			matchToUpperCaseConverterItemProvider = new MatchToUpperCaseConverterItemProvider(this);
+			matchToUpperCaseConverterItemProvider = new ToUpperCaseConverterItemProvider(this);
 		}
 
 		return matchToUpperCaseConverterItemProvider;

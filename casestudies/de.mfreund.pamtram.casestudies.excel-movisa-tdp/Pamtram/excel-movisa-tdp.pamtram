@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel name="Variablen">
     <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
     <metaModelSections xsi:type="structure:SourceSection" name="Variablen">
@@ -33,7 +33,7 @@
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="constraint:BeginningConstraint" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
@@ -44,7 +44,7 @@
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="constraint:BeginningConstraint" name="0xxxxx" expression="0"/>
+        <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
@@ -55,7 +55,7 @@
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="constraint:BeginningConstraint" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
@@ -66,7 +66,7 @@
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="Adresse">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraint xsi:type="constraint:BeginningConstraint" name="4xxxxx" expression="4"/>
+        <valueConstraint xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
       </attributes>
       <attributes xsi:type="structure:ActualSourceSectionAttribute" name="AccessMode">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
@@ -218,12 +218,12 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModel.2/@metaModelSections.1" extend="//@mappingModel.2/@mapping.1/@mappingHintGroups.0"/>
     </mapping>
     <modifierSets name="preprend &quot;Schneider/&quot;">
-      <modifier xsi:type="mapping:StringPrepender" name="Schneider/" string="Schneider/"/>
+      <modifier xsi:type="modifier:StringPrepender" name="Schneider/" string="Schneider/"/>
     </modifierSets>
     <modifierSets name="Convert Modbus to XML DA Data Types">
-      <modifier xsi:type="mapping:SubstringReplacer" name="BOOL2boolean" regex="BOOL" replacement="boolean"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="INT2int" regex="INT" replacement="int"/>
-      <modifier xsi:type="mapping:SubstringReplacer" name="REAL2float" regex="REAL" replacement="float"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="BOOL2boolean" regex="BOOL" replacement="boolean"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="INT2int" regex="INT" replacement="int"/>
+      <modifier xsi:type="modifier:SubstringReplacer" name="REAL2float" regex="REAL" replacement="float"/>
     </modifierSets>
   </mappingModel>
 </pamtram:PAMTraM>

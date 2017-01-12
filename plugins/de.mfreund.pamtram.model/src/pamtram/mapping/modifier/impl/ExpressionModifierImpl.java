@@ -83,8 +83,7 @@ public class ExpressionModifierImpl extends NumericModifierImpl implements Expre
 	 *
 	 * @generated
 	 */
-	@Override
-	public void setExpression(String newExpression) {
+	public void setExpressionGen(String newExpression) {
 
 		String oldExpression = this.expression;
 		this.expression = newExpression;
@@ -92,6 +91,16 @@ public class ExpressionModifierImpl extends NumericModifierImpl implements Expre
 			this.eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.EXPRESSION_MODIFIER__EXPRESSION,
 					oldExpression, this.expression));
 		}
+	}
+
+	/**
+	 * Before setting the {@link newExpression}, update the name
+	 */
+	@Override
+	public void setExpression(String newExpression) {
+
+		this.setNameDerived(this.expression, newExpression, "", "");
+		this.setExpressionGen(newExpression);
 	}
 
 	/**

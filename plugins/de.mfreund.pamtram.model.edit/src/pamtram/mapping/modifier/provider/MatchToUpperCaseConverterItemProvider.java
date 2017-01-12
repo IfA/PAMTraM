@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.modifier.provider;
 
 
 import java.util.Collection;
@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -16,25 +17,24 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.SubstringReplacer;
+import pamtram.mapping.modifier.MatchToUpperCaseConverter;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.SubstringReplacer} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.MatchToUpperCaseConverter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubstringReplacerItemProvider
-	extends NamedElementItemProvider {
+public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubstringReplacerItemProvider(AdapterFactory adapterFactory) {
+	public MatchToUpperCaseConverterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,7 +50,6 @@ public class SubstringReplacerItemProvider
 			super.getPropertyDescriptors(object);
 
 			addRegexPropertyDescriptor(object);
-			addReplacementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -66,9 +65,9 @@ public class SubstringReplacerItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_SubstringReplacer_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_regex_feature", "_UI_SubstringReplacer_type"),
-				 MappingPackage.Literals.SUBSTRING_REPLACER__REGEX,
+				 getString("_UI_MatchToUpperCaseConverter_regex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToUpperCaseConverter_regex_feature", "_UI_MatchToUpperCaseConverter_type"),
+				 MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER__REGEX,
 				 true,
 				 false,
 				 false,
@@ -78,36 +77,14 @@ public class SubstringReplacerItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Replacement feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReplacementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SubstringReplacer_replacement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_replacement_feature", "_UI_SubstringReplacer_type"),
-				 MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns SubstringReplacer.gif.
+	 * This returns MatchToUpperCaseConverter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubstringReplacer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MatchToUpperCaseConverter"));
 	}
 
 	/**
@@ -120,6 +97,7 @@ public class SubstringReplacerItemProvider
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
+	
 
 	/**
 	 * This returns the label styled text for the adapted class.
@@ -129,12 +107,12 @@ public class SubstringReplacerItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((SubstringReplacer)object).getName();
+		String label = ((MatchToUpperCaseConverter)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_SubstringReplacer_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_SubstringReplacer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -150,9 +128,8 @@ public class SubstringReplacerItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SubstringReplacer.class)) {
-			case MappingPackage.SUBSTRING_REPLACER__REGEX:
-			case MappingPackage.SUBSTRING_REPLACER__REPLACEMENT:
+		switch (notification.getFeatureID(MatchToUpperCaseConverter.class)) {
+			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

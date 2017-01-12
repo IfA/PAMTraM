@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.modifier.provider;
 
 
 import java.util.Collection;
@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -17,24 +16,25 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MatchToUpperCaseConverter;
+import pamtram.mapping.modifier.StringPrepender;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MatchToUpperCaseConverter} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.StringPrepender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvider {
+public class StringPrependerItemProvider
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToUpperCaseConverterItemProvider(AdapterFactory adapterFactory) {
+	public StringPrependerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,25 +49,25 @@ public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRegexPropertyDescriptor(object);
+			addStringPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Regex feature.
+	 * This adds a property descriptor for the String feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegexPropertyDescriptor(Object object) {
+	protected void addStringPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_MatchToUpperCaseConverter_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToUpperCaseConverter_regex_feature", "_UI_MatchToUpperCaseConverter_type"),
-				 MappingPackage.Literals.MATCH_TO_UPPER_CASE_CONVERTER__REGEX,
+				 getString("_UI_StringPrepender_string_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StringPrepender_string_feature", "_UI_StringPrepender_type"),
+				 MappingPackage.Literals.STRING_PREPENDER__STRING,
 				 true,
 				 false,
 				 false,
@@ -77,14 +77,14 @@ public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvi
 	}
 
 	/**
-	 * This returns MatchToUpperCaseConverter.gif.
+	 * This returns StringPrepender.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MatchToUpperCaseConverter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringPrepender"));
 	}
 
 	/**
@@ -97,7 +97,6 @@ public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvi
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
 
 	/**
 	 * This returns the label styled text for the adapted class.
@@ -107,12 +106,12 @@ public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvi
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MatchToUpperCaseConverter)object).getName();
+		String label = ((StringPrepender)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_StringPrepender_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MatchToUpperCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_StringPrepender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -128,8 +127,8 @@ public class MatchToUpperCaseConverterItemProvider extends NamedElementItemProvi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(MatchToUpperCaseConverter.class)) {
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER__REGEX:
+		switch (notification.getFeatureID(StringPrepender.class)) {
+			case MappingPackage.STRING_PREPENDER__STRING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

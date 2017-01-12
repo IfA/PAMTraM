@@ -21,6 +21,13 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import pamtram.mapping.modifier.provider.MatchToLowerCaseConverterItemProvider;
+import pamtram.mapping.modifier.provider.MatchToUpperCaseConverterItemProvider;
+import pamtram.mapping.modifier.provider.StringAppenderItemProvider;
+import pamtram.mapping.modifier.provider.StringPrependerItemProvider;
+import pamtram.mapping.modifier.provider.SubstringReplacerItemProvider;
+import pamtram.mapping.modifier.provider.UniqueNumberAppenderItemProvider;
+import pamtram.mapping.modifier.provider.ValueModifierSetItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -234,7 +241,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ValueModifierSet} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.ValueModifierSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -242,7 +249,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected ValueModifierSetItemProvider valueModifierSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ValueModifierSet}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -257,7 +264,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SubstringReplacer} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.SubstringReplacer} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -265,7 +272,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected SubstringReplacerItemProvider substringReplacerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.SubstringReplacer}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.SubstringReplacer}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -280,7 +287,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.StringAppender} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.StringAppender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -288,7 +295,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected StringAppenderItemProvider stringAppenderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.StringAppender}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.StringAppender}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -303,7 +310,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.UniqueNumberAppender} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.UniqueNumberAppender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -311,7 +318,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected UniqueNumberAppenderItemProvider uniqueNumberAppenderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.UniqueNumberAppender}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.UniqueNumberAppender}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -326,7 +333,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.StringPrepender} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.StringPrepender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -334,7 +341,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected StringPrependerItemProvider stringPrependerItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.StringPrepender}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.StringPrepender}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -763,7 +770,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToLowerCaseConverter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.MatchToLowerCaseConverter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -771,7 +778,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected MatchToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MatchToLowerCaseConverter}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.MatchToLowerCaseConverter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -786,7 +793,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToUpperCaseConverter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.modifier.MatchToUpperCaseConverter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -794,7 +801,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected MatchToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MatchToUpperCaseConverter}.
+	 * This creates an adapter for a {@link pamtram.mapping.modifier.MatchToUpperCaseConverter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

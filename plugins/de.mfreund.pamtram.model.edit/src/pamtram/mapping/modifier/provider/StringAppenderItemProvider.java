@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.modifier.provider;
 
 
 import java.util.Collection;
@@ -16,12 +16,12 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.StringAppender;
+import pamtram.mapping.modifier.StringAppender;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.StringAppender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.StringAppender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

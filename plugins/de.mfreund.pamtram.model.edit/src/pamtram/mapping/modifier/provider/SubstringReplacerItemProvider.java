@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.modifier.provider;
 
 
 import java.util.Collection;
@@ -16,17 +16,17 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.StringPrepender;
+import pamtram.mapping.modifier.SubstringReplacer;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.StringPrepender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.SubstringReplacer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StringPrependerItemProvider
+public class SubstringReplacerItemProvider
 	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -34,7 +34,7 @@ public class StringPrependerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringPrependerItemProvider(AdapterFactory adapterFactory) {
+	public SubstringReplacerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,25 +49,26 @@ public class StringPrependerItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addStringPropertyDescriptor(object);
+			addRegexPropertyDescriptor(object);
+			addReplacementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the String feature.
+	 * This adds a property descriptor for the Regex feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStringPropertyDescriptor(Object object) {
+	protected void addRegexPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_StringPrepender_string_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringPrepender_string_feature", "_UI_StringPrepender_type"),
-				 MappingPackage.Literals.STRING_PREPENDER__STRING,
+				 getString("_UI_SubstringReplacer_regex_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_regex_feature", "_UI_SubstringReplacer_type"),
+				 MappingPackage.Literals.SUBSTRING_REPLACER__REGEX,
 				 true,
 				 false,
 				 false,
@@ -77,14 +78,36 @@ public class StringPrependerItemProvider
 	}
 
 	/**
-	 * This returns StringPrepender.gif.
+	 * This adds a property descriptor for the Replacement feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReplacementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SubstringReplacer_replacement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_replacement_feature", "_UI_SubstringReplacer_type"),
+				 MappingPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns SubstringReplacer.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StringPrepender"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubstringReplacer"));
 	}
 
 	/**
@@ -106,12 +129,12 @@ public class StringPrependerItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((StringPrepender)object).getName();
+		String label = ((SubstringReplacer)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_StringPrepender_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_SubstringReplacer_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_StringPrepender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_SubstringReplacer_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -127,8 +150,9 @@ public class StringPrependerItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StringPrepender.class)) {
-			case MappingPackage.STRING_PREPENDER__STRING:
+		switch (notification.getFeatureID(SubstringReplacer.class)) {
+			case MappingPackage.SUBSTRING_REPLACER__REGEX:
+			case MappingPackage.SUBSTRING_REPLACER__REPLACEMENT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

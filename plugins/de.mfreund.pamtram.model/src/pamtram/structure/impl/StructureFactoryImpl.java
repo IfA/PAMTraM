@@ -9,16 +9,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.structure.*;
-import pamtram.structure.source.ActualSourceSectionAttribute;
-import pamtram.structure.source.SourceSection;
-import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCompositeReference;
-import pamtram.structure.source.SourceSectionCrossReference;
-import pamtram.structure.source.impl.ActualSourceSectionAttributeImpl;
-import pamtram.structure.source.impl.SourceSectionClassImpl;
-import pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl;
-import pamtram.structure.source.impl.SourceSectionCrossReferenceImpl;
-import pamtram.structure.source.impl.SourceSectionImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,10 +54,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case StructurePackage.SOURCE_SECTION: return createSourceSection();
 			case StructurePackage.TARGET_SECTION: return createTargetSection();
 			case StructurePackage.FILE_ATTRIBUTE: return createFileAttribute();
-			case StructurePackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case StructurePackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
 			case StructurePackage.ATTRIBUTE_PARAMETER: return createAttributeParameter();
 			case StructurePackage.CONTAINER_PARAMETER: return createContainerParameter();
@@ -76,9 +64,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
 			case StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE: return createTargetSectionCompositeReference();
 			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE: return createTargetSectionCrossReference();
-			case StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE: return createSourceSectionCompositeReference();
-			case StructurePackage.SOURCE_SECTION_CROSS_REFERENCE: return createSourceSectionCrossReference();
-			case StructurePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case StructurePackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case StructurePackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			case StructurePackage.INSTANCE_POINTER: return createInstancePointer();
@@ -124,16 +109,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSection createSourceSection() {
-		SourceSectionImpl sourceSection = new SourceSectionImpl();
-		return sourceSection;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TargetSection createTargetSection() {
 		TargetSectionImpl targetSection = new TargetSectionImpl();
 		return targetSection;
@@ -147,16 +122,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	public FileAttribute createFileAttribute() {
 		FileAttributeImpl fileAttribute = new FileAttributeImpl();
 		return fileAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionClass createSourceSectionClass() {
-		SourceSectionClassImpl sourceSectionClass = new SourceSectionClassImpl();
-		return sourceSectionClass;
 	}
 
 	/**
@@ -237,36 +202,6 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	public TargetSectionCrossReference createTargetSectionCrossReference() {
 		TargetSectionCrossReferenceImpl targetSectionCrossReference = new TargetSectionCrossReferenceImpl();
 		return targetSectionCrossReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionCompositeReference createSourceSectionCompositeReference() {
-		SourceSectionCompositeReferenceImpl sourceSectionCompositeReference = new SourceSectionCompositeReferenceImpl();
-		return sourceSectionCompositeReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionCrossReference createSourceSectionCrossReference() {
-		SourceSectionCrossReferenceImpl sourceSectionCrossReference = new SourceSectionCrossReferenceImpl();
-		return sourceSectionCrossReference;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualSourceSectionAttribute createActualSourceSectionAttribute() {
-		ActualSourceSectionAttributeImpl actualSourceSectionAttribute = new ActualSourceSectionAttributeImpl();
-		return actualSourceSectionAttribute;
 	}
 
 	/**

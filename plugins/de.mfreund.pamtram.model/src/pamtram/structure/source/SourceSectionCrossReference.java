@@ -2,7 +2,6 @@
  */
 package pamtram.structure.source;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.CrossReference;
 
 /**
@@ -11,7 +10,7 @@ import pamtram.structure.generic.CrossReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getSourceSectionCrossReference()
+ * @see pamtram.structure.source.SourcePackage#getSourceSectionCrossReference()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesMatchReferenceType'"
  * @generated
  */

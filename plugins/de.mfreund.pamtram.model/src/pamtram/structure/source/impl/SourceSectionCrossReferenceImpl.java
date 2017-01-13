@@ -5,9 +5,8 @@ package pamtram.structure.source.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
+import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -26,22 +25,19 @@ public class SourceSectionCrossReferenceImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public SourceSectionCrossReferenceImpl() {
+	protected SourceSectionCrossReferenceImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.SOURCE_SECTION_CROSS_REFERENCE;
+		return SourcePackage.Literals.SOURCE_SECTION_CROSS_REFERENCE;
 	}
 
 	/**
@@ -52,12 +48,10 @@ public class SourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public EList<SourceSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectResolvingEList<>(SourceSectionClass.class, this,
-					StructurePackage.SOURCE_SECTION_CROSS_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectResolvingEList<SourceSectionClass>(SourceSectionClass.class, this, SourcePackage.SOURCE_SECTION_CROSS_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	@Override

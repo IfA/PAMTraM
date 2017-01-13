@@ -2,15 +2,13 @@
  */
 package pamtram.structure.source;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Source Section Class</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getSourceSectionClass()
+ * @see pamtram.structure.source.SourcePackage#getSourceSectionClass()
  * @model
  * @generated
  */

@@ -4,12 +4,6 @@ package pamtram.structure;
 
 import org.eclipse.emf.ecore.EFactory;
 
-import pamtram.structure.source.ActualSourceSectionAttribute;
-import pamtram.structure.source.SourceSection;
-import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCompositeReference;
-import pamtram.structure.source.SourceSectionCrossReference;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.
@@ -28,15 +22,6 @@ public interface StructureFactory extends EFactory {
 	StructureFactory eINSTANCE = pamtram.structure.impl.StructureFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Source Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section</em>'.
-	 * @generated
-	 */
-	SourceSection createSourceSection();
-
-	/**
 	 * Returns a new object of class '<em>Target Section</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,15 +38,6 @@ public interface StructureFactory extends EFactory {
 	 * @generated
 	 */
 	FileAttribute createFileAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Class</em>'.
-	 * @generated
-	 */
-	SourceSectionClass createSourceSectionClass();
 
 	/**
 	 * Returns a new object of class '<em>Target Section Class</em>'.
@@ -134,33 +110,6 @@ public interface StructureFactory extends EFactory {
 	 * @generated
 	 */
 	TargetSectionCrossReference createTargetSectionCrossReference();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Composite Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Composite Reference</em>'.
-	 * @generated
-	 */
-	SourceSectionCompositeReference createSourceSectionCompositeReference();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Cross Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Cross Reference</em>'.
-	 * @generated
-	 */
-	SourceSectionCrossReference createSourceSectionCrossReference();
-
-	/**
-	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Source Section Attribute</em>'.
-	 * @generated
-	 */
-	ActualSourceSectionAttribute createActualSourceSectionAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.

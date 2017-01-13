@@ -22,13 +22,6 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
-import pamtram.structure.source.ActualSourceSectionAttribute;
-import pamtram.structure.source.SourceSection;
-import pamtram.structure.source.SourceSectionAttribute;
-import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCompositeReference;
-import pamtram.structure.source.SourceSectionCrossReference;
-import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,20 +80,12 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	protected StructureSwitch<Adapter> modelSwitch =
 		new StructureSwitch<Adapter>() {
 			@Override
-			public Adapter caseSourceSection(SourceSection object) {
-				return createSourceSectionAdapter();
-			}
-			@Override
 			public Adapter caseTargetSection(TargetSection object) {
 				return createTargetSectionAdapter();
 			}
 			@Override
 			public Adapter caseFileAttribute(FileAttribute object) {
 				return createFileAttributeAdapter();
-			}
-			@Override
-			public Adapter caseSourceSectionClass(SourceSectionClass object) {
-				return createSourceSectionClassAdapter();
 			}
 			@Override
 			public Adapter caseTargetSectionClass(TargetSectionClass object) {
@@ -131,10 +116,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public Adapter caseSourceSectionReference(SourceSectionReference object) {
-				return createSourceSectionReferenceAdapter();
-			}
-			@Override
 			public Adapter caseTargetSectionReference(TargetSectionReference object) {
 				return createTargetSectionReferenceAdapter();
 			}
@@ -145,22 +126,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTargetSectionCrossReference(TargetSectionCrossReference object) {
 				return createTargetSectionCrossReferenceAdapter();
-			}
-			@Override
-			public Adapter caseSourceSectionCompositeReference(SourceSectionCompositeReference object) {
-				return createSourceSectionCompositeReferenceAdapter();
-			}
-			@Override
-			public Adapter caseSourceSectionCrossReference(SourceSectionCrossReference object) {
-				return createSourceSectionCrossReferenceAdapter();
-			}
-			@Override
-			public Adapter caseSourceSectionAttribute(SourceSectionAttribute object) {
-				return createSourceSectionAttributeAdapter();
-			}
-			@Override
-			public Adapter caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
-				return createActualSourceSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseTargetSectionAttribute(TargetSectionAttribute object) {
@@ -317,20 +282,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSection <em>Source Section</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSection
-	 * @generated
-	 */
-	public Adapter createSourceSectionAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSection <em>Target Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -355,20 +306,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFileAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionClass <em>Source Section Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSectionClass
-	 * @generated
-	 */
-	public Adapter createSourceSectionClassAdapter() {
 		return null;
 	}
 
@@ -513,20 +450,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionReference <em>Source Section Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSectionReference
-	 * @generated
-	 */
-	public Adapter createSourceSectionReferenceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetSectionReference <em>Target Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -569,34 +492,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionCompositeReference <em>Source Section Composite Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSectionCompositeReference
-	 * @generated
-	 */
-	public Adapter createSourceSectionCompositeReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSectionCrossReference
-	 * @generated
-	 */
-	public Adapter createSourceSectionCrossReferenceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Attribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -635,34 +530,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVirtualAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionAttribute <em>Source Section Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.SourceSectionAttribute
-	 * @generated
-	 */
-	public Adapter createSourceSectionAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.source.ActualSourceSectionAttribute
-	 * @generated
-	 */
-	public Adapter createActualSourceSectionAttributeAdapter() {
 		return null;
 	}
 

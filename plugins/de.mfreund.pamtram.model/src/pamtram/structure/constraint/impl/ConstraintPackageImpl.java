@@ -52,6 +52,8 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.GenericPackageImpl;
 
 import pamtram.structure.impl.StructurePackageImpl;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.impl.SourcePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -197,6 +199,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
 		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
+		SourcePackageImpl theSourcePackage = (SourcePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) instanceof SourcePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) : SourcePackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
@@ -206,6 +209,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		thePamtramPackage.createPackageContents();
 		theStructurePackage.createPackageContents();
 		theGenericPackage.createPackageContents();
+		theSourcePackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
@@ -215,6 +219,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		thePamtramPackage.initializePackageContents();
 		theStructurePackage.initializePackageContents();
 		theGenericPackage.initializePackageContents();
+		theSourcePackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
@@ -554,6 +559,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -570,25 +576,25 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		stringConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
-		EGenericType g2 = createEGenericType(theStructurePackage.getSourceSection());
+		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionClass());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionReference());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionAttribute());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getValueConstraintSourceInterface());
 		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theMappingPackage.getExternalModifiedAttributeElementType());
-		g2 = createEGenericType(theStructurePackage.getSourceSection());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionClass());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionReference());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theStructurePackage.getSourceSectionAttribute());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getValueConstraintSourceInterface());

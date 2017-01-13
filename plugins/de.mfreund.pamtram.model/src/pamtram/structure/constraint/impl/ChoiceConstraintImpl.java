@@ -23,7 +23,6 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityConstraint;
@@ -32,6 +31,7 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 
 /**
@@ -150,7 +150,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
 		}
 		
-		if (AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
+		if (AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
 			return true;
 		}
 		

@@ -78,14 +78,6 @@ public class ConditionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConditionPackage.CONDITION: {
-				Condition condition = (Condition)theEObject;
-				T result = caseCondition(condition);
-				if (result == null) result = caseComplexCondition(condition);
-				if (result == null) result = caseNamedElement(condition);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConditionPackage.VARIADIC_CONDITION: {
 				VariadicCondition variadicCondition = (VariadicCondition)theEObject;
 				T result = caseVariadicCondition(variadicCondition);
@@ -126,6 +118,14 @@ public class ConditionSwitch<T> extends Switch<T> {
 				if (result == null) result = caseUnaryCondition(not);
 				if (result == null) result = caseComplexCondition(not);
 				if (result == null) result = caseNamedElement(not);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConditionPackage.CONDITION: {
+				Condition condition = (Condition)theEObject;
+				T result = caseCondition(condition);
+				if (result == null) result = caseComplexCondition(condition);
+				if (result == null) result = caseNamedElement(condition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

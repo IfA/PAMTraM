@@ -41,6 +41,14 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated pamtram -->
       <package
+            uri="http://mfreund.de/pamtram/structure/source"
+            class="pamtram.structure.source.SourcePackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
             uri="http://mfreund.de/pamtram/condition"
             class="pamtram.condition.ConditionPackage"
             genModel="model/pamtram.genmodel"/>

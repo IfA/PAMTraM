@@ -3,8 +3,6 @@
 package pamtram.structure.source;
 
 import org.eclipse.emf.common.util.EList;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.Attribute;
 
@@ -21,7 +19,7 @@ import pamtram.structure.generic.Attribute;
  *   <li>{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getSourceSectionAttribute()
+ * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute()
  * @model abstract="true"
  * @generated
  */
@@ -37,7 +35,7 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
-	 * @see pamtram.structure.StructurePackage#getSourceSectionAttribute_ValueConstraint()
+	 * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute_ValueConstraint()
 	 * @model containment="true"
 	 * @generated
 	 */

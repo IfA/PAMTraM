@@ -69,10 +69,12 @@ import pamtram.mapping.MappingPackage;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
 import pamtram.structure.source.SourceFactory;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetPackage;
+import pamtram.structure.target.TargetSection;
 
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -118,14 +120,24 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	protected StructurePackage structurePackage = StructurePackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'source' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected SourceFactory sourceFactory = this.sourcePackage.getSourceFactory();
 
 	/**
-	 * This caches an instance of the 'structure' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'source' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected SourcePackage sourcePackage = SourcePackage.eINSTANCE;
+
+	/**
+	 * This caches an instance of the 'target' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	protected TargetFactory targetFactory = this.targetPackage.getTargetFactory();
+
+	/**
+	 * This caches an instance of the 'target' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	protected TargetPackage targetPackage = TargetPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -293,7 +305,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		// add an empty target section to each target section model
 		for (TargetSectionModel tsm : pamtram.getTargetSectionModel()) {
 			MappingHintGroup mappingHintGroup = this.mappingFactory.createMappingHintGroup();
-			TargetSection targetSection = this.structureFactory.createTargetSection();
+			TargetSection targetSection = this.targetFactory.createTargetSection();
 			targetSection.setName("target");
 			pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetSection);
 		}

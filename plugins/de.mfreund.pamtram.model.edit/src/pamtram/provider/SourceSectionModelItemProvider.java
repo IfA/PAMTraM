@@ -22,16 +22,16 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SourceSectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -53,25 +53,23 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This returns SourceSectionModel.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns SourceSectionModel.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/SourceSectionModel"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionModel"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -94,20 +92,18 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

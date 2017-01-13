@@ -29,11 +29,11 @@ import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.commands.BasicDragAndDropCompoundCommand;
-import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
@@ -66,6 +66,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
 			addReferencingMappingHintGroupsPropertyDescriptor(object);
+			addFilePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -143,10 +144,32 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
-				 StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+				 TargetPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				 false,
 				 false,
 				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the File feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFilePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetSection_file_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_file_feature", "_UI_TargetSection_type"),
+				 TargetPackage.Literals.TARGET_SECTION__FILE,
+				 true,
+				 false,
+				 true,
 				 null,
 				 null,
 				 null));
@@ -237,8 +260,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TargetSection.class)) {
-			case StructurePackage.TARGET_SECTION__ABSTRACT:
-			case StructurePackage.TARGET_SECTION__FILE:
+			case TargetPackage.TARGET_SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -261,11 +283,6 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.TARGET_SECTION__FILE,
-				 StructureFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

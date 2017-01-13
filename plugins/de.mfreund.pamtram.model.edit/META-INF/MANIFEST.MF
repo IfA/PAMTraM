@@ -21,6 +21,7 @@ Export-Package: pamtram.commands,
  pamtram.structure.generic.provider,
  pamtram.structure.provider,
  pamtram.structure.source.provider,
+ pamtram.structure.target.provider,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,
  de.mfreund.pamtram.model;bundle-version="1.8.0";visibility:=reexport,

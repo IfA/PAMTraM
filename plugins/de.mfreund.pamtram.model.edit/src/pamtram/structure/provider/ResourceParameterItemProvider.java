@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.target.TargetFactory;
 import pamtram.structure.ResourceParameter;
 
 /**
@@ -183,12 +183,12 @@ public class ResourceParameterItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 StructureFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+				 TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 StructureFactory.eINSTANCE.createFileAttribute()));
+				 TargetFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

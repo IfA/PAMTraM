@@ -68,6 +68,18 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.source.presentation.SourceEditorID"
+            name="%_UI_SourceEditor_label"
+            icon="icons/full/obj16/SourceModelFile.gif"
+            extensions="source"
+            class="pamtram.structure.source.presentation.SourceEditor"
+            contributorClass="pamtram.structure.source.presentation.SourceActionBarContributor">
+      </editor>
+   </extension>
+
 null
 null
 null

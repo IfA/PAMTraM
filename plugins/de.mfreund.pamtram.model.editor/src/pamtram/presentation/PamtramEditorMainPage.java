@@ -87,13 +87,13 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source
@@ -435,7 +435,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				CrossReference reference = (CrossReference) ((TreeItem) e.item).getData();
 
-				EList<pamtram.structure.SourceSectionClass> referencedElements = reference.getValue();
+				EList<pamtram.structure.source.SourceSectionClass> referencedElements = reference.getValue();
 
 				PamtramEditorMainPage.this.sourceViewer
 						.setSelection(new StructuredSelection(referencedElements.toArray()));

@@ -15,6 +15,7 @@ Export-Package: pamtram.actions,
  pamtram.mapping.modifier.presentation,
  pamtram.mapping.presentation,
  pamtram.structure.presentation,
+ pamtram.structure.source.presentation,
  pamtram.presentation,
  pamtram.structure.constraint.presentation
 Require-Bundle: org.eclipse.core.runtime,

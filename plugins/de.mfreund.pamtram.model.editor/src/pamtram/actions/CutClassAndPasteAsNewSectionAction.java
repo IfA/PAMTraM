@@ -11,11 +11,12 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.structure.SourceSectionCompositeReference;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
  * An {@link Action} that allows to cut a {@link Class} from a modeled {@link Section}, convert it to a {@link Section}
@@ -69,7 +70,7 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE),
+				ref.eSet(ref.eClass().getEStructuralFeature(SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE),
 						objectsOldContainer);
 
 				objectsNewContainer.addAll(model.getMetaModelSections());

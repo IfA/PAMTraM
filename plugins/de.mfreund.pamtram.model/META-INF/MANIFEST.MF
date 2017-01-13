@@ -32,6 +32,8 @@ Export-Package: pamtram,
  pamtram.structure.source.impl,
  pamtram.structure.source.util,
  pamtram.structure.target,
+ pamtram.structure.target.impl,
+ pamtram.structure.target.util,
  pamtram.structure.util,
  pamtram.util
 Require-Bundle: org.eclipse.core.runtime,

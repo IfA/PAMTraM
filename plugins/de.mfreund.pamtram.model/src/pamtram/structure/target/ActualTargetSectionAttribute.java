@@ -2,7 +2,6 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.ActualAttribute;
 
 /**
@@ -11,7 +10,7 @@ import pamtram.structure.generic.ActualAttribute;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getActualTargetSectionAttribute()
+ * @see pamtram.structure.target.TargetPackage#getActualTargetSectionAttribute()
  * @model
  * @generated
  */

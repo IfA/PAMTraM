@@ -2,15 +2,13 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Target Section Class</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getTargetSectionClass()
+ * @see pamtram.structure.target.TargetPackage#getTargetSectionClass()
  * @model
  * @generated
  */

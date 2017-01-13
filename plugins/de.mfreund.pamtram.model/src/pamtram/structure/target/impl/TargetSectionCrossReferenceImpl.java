@@ -12,15 +12,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 import pamtram.structure.target.TargetSectionReference;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.target.util.TargetValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Non Containment
@@ -34,22 +34,19 @@ public class TargetSectionCrossReferenceImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public TargetSectionCrossReferenceImpl() {
+	protected TargetSectionCrossReferenceImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.TARGET_SECTION_CROSS_REFERENCE;
+		return TargetPackage.Literals.TARGET_SECTION_CROSS_REFERENCE;
 	}
 
 	/**
@@ -60,50 +57,46 @@ public class TargetSectionCrossReferenceImpl
 	 */
 	@Override
 	public EList<TargetSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectResolvingEList<>(TargetSectionClass.class, this,
-					StructurePackage.TARGET_SECTION_CROSS_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectResolvingEList<TargetSectionClass>(TargetSectionClass.class, this, TargetPackage.TARGET_SECTION_CROSS_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateEReferenceIsNonContainment(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
+		
 		boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();
-
+		
 		if (!result && diagnostics != null) {
-
-			String errorMessage = "The eReference '" + this.getEReference().getName()
-					+ "' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
-					errorMessage, new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
-
+		
+			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					TargetValidator.DIAGNOSTIC_SOURCE,
+							TargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,
+							errorMessage,
+					new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
-			case StructurePackage.TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
-				return this.validateEReferenceIsNonContainment((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+			case TargetPackage.TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP:
+				return validateEReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

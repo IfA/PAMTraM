@@ -5,9 +5,8 @@ package pamtram.structure.target.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.AttributeImpl;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -82,7 +81,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE;
+		return TargetPackage.Literals.TARGET_SECTION_ATTRIBUTE;
 	}
 
 	/**
@@ -103,7 +102,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 		boolean oldUnique = unique;
 		unique = newUnique;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE, oldUnique, unique));
+			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE, oldUnique, unique));
 	}
 
 	/**
@@ -124,7 +123,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE, oldValue, value));
 	}
 
 	/**
@@ -135,9 +134,9 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return isUnique();
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -151,10 +150,10 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				setUnique((Boolean)newValue);
 				return;
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				setValue((String)newValue);
 				return;
 		}
@@ -169,10 +168,10 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				setUnique(UNIQUE_EDEFAULT);
 				return;
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -187,9 +186,9 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE:
 				return unique != UNIQUE_EDEFAULT;
-			case StructurePackage.TARGET_SECTION_ATTRIBUTE__VALUE:
+			case TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);

@@ -2,7 +2,6 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 
 /**
@@ -18,7 +17,7 @@ import pamtram.structure.generic.Attribute;
  *   <li>{@link pamtram.structure.target.TargetSectionAttribute#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getTargetSectionAttribute()
+ * @see pamtram.structure.target.TargetPackage#getTargetSectionAttribute()
  * @model abstract="true"
  * @generated
  */
@@ -34,7 +33,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSection, TargetS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Unique</em>' attribute.
 	 * @see #setUnique(boolean)
-	 * @see pamtram.structure.StructurePackage#getTargetSectionAttribute_Unique()
+	 * @see pamtram.structure.target.TargetPackage#getTargetSectionAttribute_Unique()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
@@ -60,7 +59,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSection, TargetS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
-	 * @see pamtram.structure.StructurePackage#getTargetSectionAttribute_Value()
+	 * @see pamtram.structure.target.TargetPackage#getTargetSectionAttribute_Value()
 	 * @model
 	 * @generated
 	 */

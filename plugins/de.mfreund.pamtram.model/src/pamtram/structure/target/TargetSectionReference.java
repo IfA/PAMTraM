@@ -2,7 +2,6 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Reference;
 
 /**
@@ -11,7 +10,7 @@ import pamtram.structure.generic.Reference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getTargetSectionReference()
+ * @see pamtram.structure.target.TargetPackage#getTargetSectionReference()
  * @model abstract="true"
  * @generated
  */

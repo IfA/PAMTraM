@@ -3,8 +3,7 @@
 package pamtram.structure.target.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.structure.StructurePackage;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
@@ -18,22 +17,19 @@ public class VirtualTargetSectionAttributeImpl extends TargetSectionAttributeImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public VirtualTargetSectionAttributeImpl() {
+	protected VirtualTargetSectionAttributeImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
+		return TargetPackage.Literals.VIRTUAL_TARGET_SECTION_ATTRIBUTE;
 	}
 
 } // VirtualAttributeImpl

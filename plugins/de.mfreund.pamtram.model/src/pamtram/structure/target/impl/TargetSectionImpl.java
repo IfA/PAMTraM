@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.util.StructureValidator;
+import pamtram.structure.target.util.TargetValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section</b></em>'. <!-- end-user-doc -->
@@ -36,11 +36,10 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.target.impl.TargetSectionImpl#isAbstract <em>Abstract</em>}</li>
- * <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
- * <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping
- * Hint Groups</em>}</li>
- * <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getFile <em>File</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#isAbstract <em>Abstract</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getFile <em>File</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,9 +47,9 @@ import pamtram.structure.util.StructureValidator;
 public class TargetSectionImpl extends TargetSectionClassImpl implements TargetSection {
 
 	/**
-	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -58,19 +57,19 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	protected static final boolean ABSTRACT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean abstract_ = TargetSectionImpl.ABSTRACT_EDEFAULT;
+	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getExtend()
 	 * @generated
 	 * @ordered
@@ -80,7 +79,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	/**
 	 * The cached value of the '{@link #getFile() <em>File</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @see #getFile()
 	 * @generated
 	 * @ordered
@@ -89,261 +88,236 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public TargetSectionImpl() {
+	protected TargetSectionImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.TARGET_SECTION;
+		return TargetPackage.Literals.TARGET_SECTION;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isAbstract() {
-
-		return this.abstract_;
+		return abstract_;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setAbstract(boolean newAbstract) {
-
-		boolean oldAbstract = this.abstract_;
-		this.abstract_ = newAbstract;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION__ABSTRACT,
-					oldAbstract, this.abstract_));
-		}
+		boolean oldAbstract = abstract_;
+		abstract_ = newAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION__ABSTRACT, oldAbstract, abstract_));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<TargetSection> getExtend() {
-
-		if (this.extend == null) {
-			this.extend = new EObjectResolvingEList<>(TargetSection.class, this,
-					StructurePackage.TARGET_SECTION__EXTEND);
+		if (extend == null) {
+			extend = new EObjectResolvingEList<TargetSection>(TargetSection.class, this, TargetPackage.TARGET_SECTION__EXTEND);
 		}
-		return this.extend;
+		return extend;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<MappingHintGroupType> getReferencingMappingHintGroups() {
-
+		
 		List<Mapping> mappings = new ArrayList<>();
-
+		
 		if (this.eResource() != null) {
-
+		
 			mappings = this.eResource().getResourceSet().getResources().stream()
 					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
 					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
 					.collect(Collectors.toList());
 		}
-
-		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream()
-				.flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection()))
-				.collect(Collectors.toList());
-
-		return new UnmodifiableEList<>(this, StructurePackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
+		
+		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
+		
+		return new UnmodifiableEList<>(this, TargetPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				referencingHintGroups.size(), referencingHintGroups.toArray());
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public FileAttribute getFile() {
-
-		if (this.file != null && this.file.eIsProxy()) {
-			InternalEObject oldFile = (InternalEObject) this.file;
-			this.file = (FileAttribute) this.eResolveProxy(oldFile);
-			if (this.file != oldFile) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StructurePackage.TARGET_SECTION__FILE, oldFile, this.file));
-				}
+		if (file != null && file.eIsProxy()) {
+			InternalEObject oldFile = (InternalEObject)file;
+			file = (FileAttribute)eResolveProxy(oldFile);
+			if (file != oldFile) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TargetPackage.TARGET_SECTION__FILE, oldFile, file));
 			}
 		}
-		return this.file;
+		return file;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FileAttribute basicGetFile() {
-
-		return this.file;
+		return file;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setFile(FileAttribute newFile) {
-
-		FileAttribute oldFile = this.file;
-		this.file = newFile;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_SECTION__FILE, oldFile,
-					this.file));
-		}
+		FileAttribute oldFile = file;
+		file = newFile;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION__FILE, oldFile, file));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateIsReferencedByMappingHintGroup(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
+		
 		boolean result = !this.getReferencingMappingHintGroups().isEmpty();
-
+		
 		if (!result && diagnostics != null) {
-
+		
 			String errorMessage = "The section is not referenced by any hint group and will not be instantiated!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, StructureValidator.DIAGNOSTIC_SOURCE,
-					StructureValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP, errorMessage,
-					new Object[] { this, StructurePackage.Literals.TARGET_SECTION }));
-
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					TargetValidator.DIAGNOSTIC_SOURCE,
+							TargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,
+							errorMessage,
+					new Object[] { this, TargetPackage.Literals.TARGET_SECTION }));
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateContainerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
-		if (this.getContainer() == null) {
+		if(this.getContainer() == null) {
 			return true;
 		}
-
-		boolean result = this.getExtend().parallelStream()
-				.allMatch(e -> e.getContainer() == null || e.getContainer() == this.getContainer());
-
+		
+		boolean result = this.getExtend().parallelStream().allMatch(
+				e -> e.getContainer() == null || e.getContainer() == this.getContainer());
+		
 		if (!result && diagnostics != null) {
-
+			
 			String errorMessage = "The section extends a section that specifies a different container!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
-					GenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER, errorMessage,
-					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
-		}
-
+			
+			diagnostics.add
+				(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					 GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,
+					 errorMessage,
+					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
+			}
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateExtendsValidSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
-		if (this.getEClass() == null) {
+		
+		if(this.getEClass() == null) {
 			return true;
 		}
-
+		
 		boolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null
 				&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));
-
+		
 		if (!result && diagnostics != null) {
-
+		
 			String errorMessage = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
-					GenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS, errorMessage,
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,
+							errorMessage,
 					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
-
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION__ABSTRACT:
-				return this.isAbstract();
-			case StructurePackage.TARGET_SECTION__EXTEND:
-				return this.getExtend();
-			case StructurePackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
-				return this.getReferencingMappingHintGroups();
-			case StructurePackage.TARGET_SECTION__FILE:
-				if (resolve) {
-					return this.getFile();
-				}
-				return this.basicGetFile();
+			case TargetPackage.TARGET_SECTION__ABSTRACT:
+				return isAbstract();
+			case TargetPackage.TARGET_SECTION__EXTEND:
+				return getExtend();
+			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+				return getReferencingMappingHintGroups();
+			case TargetPackage.TARGET_SECTION__FILE:
+				if (resolve) return getFile();
+				return basicGetFile();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION__ABSTRACT:
-				this.setAbstract((Boolean) newValue);
+			case TargetPackage.TARGET_SECTION__ABSTRACT:
+				setAbstract((Boolean)newValue);
 				return;
-			case StructurePackage.TARGET_SECTION__EXTEND:
-				this.getExtend().clear();
-				this.getExtend().addAll((Collection<? extends TargetSection>) newValue);
+			case TargetPackage.TARGET_SECTION__EXTEND:
+				getExtend().clear();
+				getExtend().addAll((Collection<? extends TargetSection>)newValue);
 				return;
-			case StructurePackage.TARGET_SECTION__FILE:
-				this.setFile((FileAttribute) newValue);
+			case TargetPackage.TARGET_SECTION__FILE:
+				setFile((FileAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -351,21 +325,19 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION__ABSTRACT:
-				this.setAbstract(TargetSectionImpl.ABSTRACT_EDEFAULT);
+			case TargetPackage.TARGET_SECTION__ABSTRACT:
+				setAbstract(ABSTRACT_EDEFAULT);
 				return;
-			case StructurePackage.TARGET_SECTION__EXTEND:
-				this.getExtend().clear();
+			case TargetPackage.TARGET_SECTION__EXTEND:
+				getExtend().clear();
 				return;
-			case StructurePackage.TARGET_SECTION__FILE:
-				this.setFile((FileAttribute) null);
+			case TargetPackage.TARGET_SECTION__FILE:
+				setFile((FileAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -373,41 +345,34 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.TARGET_SECTION__ABSTRACT:
-				return this.abstract_ != TargetSectionImpl.ABSTRACT_EDEFAULT;
-			case StructurePackage.TARGET_SECTION__EXTEND:
-				return this.extend != null && !this.extend.isEmpty();
-			case StructurePackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
-				return !this.getReferencingMappingHintGroups().isEmpty();
-			case StructurePackage.TARGET_SECTION__FILE:
-				return this.file != null;
+			case TargetPackage.TARGET_SECTION__ABSTRACT:
+				return abstract_ != ABSTRACT_EDEFAULT;
+			case TargetPackage.TARGET_SECTION__EXTEND:
+				return extend != null && !extend.isEmpty();
+			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
+				return !getReferencingMappingHintGroups().isEmpty();
+			case TargetPackage.TARGET_SECTION__FILE:
+				return file != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-
 		if (baseClass == Section.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.TARGET_SECTION__ABSTRACT:
-					return GenericPackage.SECTION__ABSTRACT;
-				case StructurePackage.TARGET_SECTION__EXTEND:
-					return GenericPackage.SECTION__EXTEND;
-				default:
-					return -1;
+				case TargetPackage.TARGET_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
+				case TargetPackage.TARGET_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -415,20 +380,15 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-
 		if (baseClass == Section.class) {
 			switch (baseFeatureID) {
-				case GenericPackage.SECTION__ABSTRACT:
-					return StructurePackage.TARGET_SECTION__ABSTRACT;
-				case GenericPackage.SECTION__EXTEND:
-					return StructurePackage.TARGET_SECTION__EXTEND;
-				default:
-					return -1;
+				case GenericPackage.SECTION__ABSTRACT: return TargetPackage.TARGET_SECTION__ABSTRACT;
+				case GenericPackage.SECTION__EXTEND: return TargetPackage.TARGET_SECTION__EXTEND;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -436,20 +396,15 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-
 		if (baseClass == Section.class) {
 			switch (baseOperationID) {
-				case GenericPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
-					return StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
-				case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
-					return StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
-				default:
-					return -1;
+				case GenericPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return TargetPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
+				case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return TargetPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -457,42 +412,33 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
-			case StructurePackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
-				return this.validateIsReferencedByMappingHintGroup((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
-			case StructurePackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
-				return this.validateContainerMatchesExtendContainer((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
-			case StructurePackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
-				return this.validateExtendsValidSections((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+			case TargetPackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
+				return validateIsReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case TargetPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
+				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case TargetPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
+				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (abstract: ");
-		result.append(this.abstract_);
+		result.append(abstract_);
 		result.append(')');
 		return result.toString();
 	}

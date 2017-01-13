@@ -5,9 +5,8 @@ package pamtram.structure.target.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.CompositeReferenceImpl;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -26,22 +25,19 @@ public class TargetSectionCompositeReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public TargetSectionCompositeReferenceImpl() {
+	protected TargetSectionCompositeReferenceImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.TARGET_SECTION_COMPOSITE_REFERENCE;
+		return TargetPackage.Literals.TARGET_SECTION_COMPOSITE_REFERENCE;
 	}
 
 	/**
@@ -52,12 +48,10 @@ public class TargetSectionCompositeReferenceImpl extends
 	 */
 	@Override
 	public EList<TargetSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectContainmentEList<>(TargetSectionClass.class, this,
-					StructurePackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	@Override

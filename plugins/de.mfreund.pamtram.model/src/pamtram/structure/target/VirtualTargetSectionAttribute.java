@@ -2,7 +2,6 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.VirtualAttribute;
 
 /**
@@ -11,7 +10,7 @@ import pamtram.structure.generic.VirtualAttribute;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getVirtualTargetSectionAttribute()
+ * @see pamtram.structure.target.TargetPackage#getVirtualTargetSectionAttribute()
  * @model
  * @generated
  */

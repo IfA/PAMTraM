@@ -51,6 +51,8 @@ import pamtram.structure.generic.impl.GenericPackageImpl;
 import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.impl.SourcePackageImpl;
+import pamtram.structure.target.TargetPackage;
+import pamtram.structure.target.impl.TargetPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -191,6 +193,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
 		ConstraintPackageImpl theConstraintPackage = (ConstraintPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) instanceof ConstraintPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) : ConstraintPackage.eINSTANCE);
 		SourcePackageImpl theSourcePackage = (SourcePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) instanceof SourcePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) : SourcePackage.eINSTANCE);
+		TargetPackageImpl theTargetPackage = (TargetPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) instanceof TargetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) : TargetPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 
@@ -201,6 +204,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		theGenericPackage.createPackageContents();
 		theConstraintPackage.createPackageContents();
 		theSourcePackage.createPackageContents();
+		theTargetPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 
@@ -211,6 +215,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		theGenericPackage.initializePackageContents();
 		theConstraintPackage.initializePackageContents();
 		theSourcePackage.initializePackageContents();
+		theTargetPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 

@@ -3,9 +3,8 @@
 package pamtram.structure.target.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.ReferenceImpl;
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -35,7 +34,7 @@ public abstract class TargetSectionReferenceImpl extends ReferenceImpl<TargetSec
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.TARGET_SECTION_REFERENCE;
+		return TargetPackage.Literals.TARGET_SECTION_REFERENCE;
 	}
 
 } //TargetSectionReferenceImpl

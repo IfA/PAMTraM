@@ -2,8 +2,6 @@
  */
 package pamtram.structure.target;
 
-import pamtram.structure.StructurePackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>File Attribute</b></em>'.
@@ -16,7 +14,7 @@ import pamtram.structure.StructurePackage;
  *   <li>{@link pamtram.structure.target.FileAttribute#getFileType <em>File Type</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getFileAttribute()
+ * @see pamtram.structure.target.TargetPackage#getFileAttribute()
  * @model
  * @generated
  */
@@ -34,7 +32,7 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * @return the value of the '<em>File Type</em>' attribute.
 	 * @see pamtram.structure.target.FileTypeEnum
 	 * @see #setFileType(FileTypeEnum)
-	 * @see pamtram.structure.StructurePackage#getFileAttribute_FileType()
+	 * @see pamtram.structure.target.TargetPackage#getFileAttribute_FileType()
 	 * @model required="true"
 	 * @generated
 	 */

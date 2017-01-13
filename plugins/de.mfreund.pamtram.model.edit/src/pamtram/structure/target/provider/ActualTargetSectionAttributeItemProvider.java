@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,23 +12,25 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.structure.generic.Attribute;
+
+import pamtram.structure.AttributeParameter;
 import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.target.ActualTargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ActualSourceSectionAttribute} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.target.ActualTargetSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttributeItemProvider {
+public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttributeItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
+	public ActualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -54,27 +56,31 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_SourceSectionAttribute_attribute_feature"),
-						this.getString("_UI_PropertyDescriptor_description",
-								"_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
+						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature",
+								"_UI_ActualAttribute_type"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
-						pamtram.structure.generic.Class owner = (pamtram.structure.generic.Class) ((Attribute) object)
-								.eContainer();
-						if (owner.getEClass() != null) {
-							return owner.getEClass().getEAllAttributes();
-						} else {
-							return new ArrayList<>();
+						ActualTargetSectionAttribute att = (ActualTargetSectionAttribute) object;
+
+						// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
+						if (att.getOwningClass() != null) {
+							return att.getOwningClass().getEClass().getEAllAttributes();
+							// in case of an AttributeParameter, the attribute of its source can be chosen
+						} else if (att.eContainer() instanceof AttributeParameter
+								&& ((AttributeParameter) att.eContainer()).getSource() != null) {
+							return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
 						}
+						return new ArrayList<>();
 					}
 				});
 	}
 
 	/**
-	 * This returns SourceSectionAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns ActualAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public Object getImage(Object object) {

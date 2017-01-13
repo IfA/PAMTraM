@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,10 +8,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.Disposable;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -21,7 +21,8 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import pamtram.structure.util.StructureAdapterFactory;
+
+import pamtram.structure.target.util.TargetAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -32,7 +33,7 @@ import pamtram.structure.util.StructureAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StructureItemProviderAdapterFactory extends StructureAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class TargetItemProviderAdapterFactory extends TargetAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -50,14 +51,6 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-	 * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Disposable disposable = new Disposable();
-
-	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +64,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructureItemProviderAdapterFactory() {
+	public TargetItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -81,175 +74,164 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.AttributeParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSection} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeParameterItemProvider attributeParameterItemProvider;
+	protected TargetSectionItemProvider targetSectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.AttributeParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAttributeParameterAdapter() {
-		if (attributeParameterItemProvider == null) {
-			attributeParameterItemProvider = new AttributeParameterItemProvider(this);
+	public Adapter createTargetSectionAdapter() {
+		if (targetSectionItemProvider == null) {
+			targetSectionItemProvider = new TargetSectionItemProvider(this);
 		}
 
-		return attributeParameterItemProvider;
+		return targetSectionItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ContainerParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.FileAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerParameterItemProvider containerParameterItemProvider;
+	protected FileAttributeItemProvider fileAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ContainerParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.target.FileAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createContainerParameterAdapter() {
-		if (containerParameterItemProvider == null) {
-			containerParameterItemProvider = new ContainerParameterItemProvider(this);
+	public Adapter createFileAttributeAdapter() {
+		if (fileAttributeItemProvider == null) {
+			fileAttributeItemProvider = new FileAttributeItemProvider(this);
 		}
 
-		return containerParameterItemProvider;
+		return fileAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ExternalReferenceParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExternalReferenceParameterItemProvider externalReferenceParameterItemProvider;
+	protected TargetSectionClassItemProvider targetSectionClassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ExternalReferenceParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionClass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createExternalReferenceParameterAdapter() {
-		if (externalReferenceParameterItemProvider == null) {
-			externalReferenceParameterItemProvider = new ExternalReferenceParameterItemProvider(this);
+	public Adapter createTargetSectionClassAdapter() {
+		if (targetSectionClassItemProvider == null) {
+			targetSectionClassItemProvider = new TargetSectionClassItemProvider(this);
 		}
 
-		return externalReferenceParameterItemProvider;
+		return targetSectionClassItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ResourceParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionCompositeReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ResourceParameterItemProvider resourceParameterItemProvider;
+	protected TargetSectionCompositeReferenceItemProvider targetSectionCompositeReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ResourceParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionCompositeReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createResourceParameterAdapter() {
-		if (resourceParameterItemProvider == null) {
-			resourceParameterItemProvider = new ResourceParameterItemProvider(this);
+	public Adapter createTargetSectionCompositeReferenceAdapter() {
+		if (targetSectionCompositeReferenceItemProvider == null) {
+			targetSectionCompositeReferenceItemProvider = new TargetSectionCompositeReferenceItemProvider(this);
 		}
 
-		return resourceParameterItemProvider;
+		return targetSectionCompositeReferenceItemProvider;
 	}
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.LibraryEntry}.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionCrossReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TargetSectionCrossReferenceItemProvider targetSectionCrossReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionCrossReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createLibraryEntryAdapter() {
-		return new LibraryEntryItemProvider(this);
+	public Adapter createTargetSectionCrossReferenceAdapter() {
+		if (targetSectionCrossReferenceItemProvider == null) {
+			targetSectionCrossReferenceItemProvider = new TargetSectionCrossReferenceItemProvider(this);
+		}
+
+		return targetSectionCrossReferenceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstancePointer} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.ActualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstancePointerItemProvider instancePointerItemProvider;
+	protected ActualTargetSectionAttributeItemProvider actualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstancePointer}.
+	 * This creates an adapter for a {@link pamtram.structure.target.ActualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstancePointerAdapter() {
-		if (instancePointerItemProvider == null) {
-			instancePointerItemProvider = new InstancePointerItemProvider(this);
+	public Adapter createActualTargetSectionAttributeAdapter() {
+		if (actualTargetSectionAttributeItemProvider == null) {
+			actualTargetSectionAttributeItemProvider = new ActualTargetSectionAttributeItemProvider(this);
 		}
 
-		return instancePointerItemProvider;
+		return actualTargetSectionAttributeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstancePointerSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.VirtualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstancePointerSourceElementItemProvider instancePointerSourceElementItemProvider;
+	protected VirtualTargetSectionAttributeItemProvider virtualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstancePointerSourceElement}.
+	 * This creates an adapter for a {@link pamtram.structure.target.VirtualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstancePointerSourceElementAdapter() {
-		if (instancePointerSourceElementItemProvider == null) {
-			instancePointerSourceElementItemProvider = new InstancePointerSourceElementItemProvider(this);
+	public Adapter createVirtualTargetSectionAttributeAdapter() {
+		if (virtualTargetSectionAttributeItemProvider == null) {
+			virtualTargetSectionAttributeItemProvider = new VirtualTargetSectionAttributeItemProvider(this);
 		}
 
-		return instancePointerSourceElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstancePointerExternalSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected InstancePointerExternalSourceElementItemProvider instancePointerExternalSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstancePointerExternalSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createInstancePointerExternalSourceElementAdapter() {
-		if (instancePointerExternalSourceElementItemProvider == null) {
-			instancePointerExternalSourceElementItemProvider = new InstancePointerExternalSourceElementItemProvider(this);
-		}
-
-		return instancePointerExternalSourceElementItemProvider;
+		return virtualTargetSectionAttributeItemProvider;
 	}
 
 	/**
@@ -311,20 +293,6 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void associate(Adapter adapter, Notifier target) {
-		super.associate(adapter, target);
-		if (adapter != null) {
-			disposable.add(adapter);
-		}
-	}
-
-	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -365,7 +333,13 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		disposable.dispose();
+		if (targetSectionItemProvider != null) targetSectionItemProvider.dispose();
+		if (fileAttributeItemProvider != null) fileAttributeItemProvider.dispose();
+		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
+		if (targetSectionCompositeReferenceItemProvider != null) targetSectionCompositeReferenceItemProvider.dispose();
+		if (targetSectionCrossReferenceItemProvider != null) targetSectionCrossReferenceItemProvider.dispose();
+		if (actualTargetSectionAttributeItemProvider != null) actualTargetSectionAttributeItemProvider.dispose();
+		if (virtualTargetSectionAttributeItemProvider != null) virtualTargetSectionAttributeItemProvider.dispose();
 	}
 
 }

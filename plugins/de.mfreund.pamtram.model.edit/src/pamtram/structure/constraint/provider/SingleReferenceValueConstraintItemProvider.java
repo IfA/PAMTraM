@@ -31,10 +31,10 @@ import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.source.SourcePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.constraint.SingleReferenceValueConstraint} object.
@@ -250,7 +250,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		// Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			newChildDescriptors.add(this.createChildParameter(
 					ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
@@ -261,7 +261,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		// SourceSectionAttributes as these are only supported as part of Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
-				StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			// Do not allow to add local/external source attributes below
 			// Conditions that are located inside a ConditionModel or that are MappingModel conditions

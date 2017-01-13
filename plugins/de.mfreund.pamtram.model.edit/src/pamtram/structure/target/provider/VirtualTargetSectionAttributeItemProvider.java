@@ -1,34 +1,35 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
-import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.generic.provider.ClassItemProvider;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SourceSectionClass} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.VirtualTargetSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionClassItemProvider
-extends ClassItemProvider {
+public class VirtualTargetSectionAttributeItemProvider
+extends TargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClassItemProvider(AdapterFactory adapterFactory) {
+	public VirtualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -48,13 +49,14 @@ extends ClassItemProvider {
 	}
 
 	/**
-	 * This returns SourceSectionClass.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns VirtualTargetSectionAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return super.getImage(object);
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/VirtualAttribute"));
 	}
 
 	/**
@@ -76,7 +78,28 @@ extends ClassItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return super.getStyledText(object);
+
+		VirtualTargetSectionAttribute attribute = (VirtualTargetSectionAttribute) object;
+
+		StyledString styledLabel = new StyledString();
+
+		if(attribute.getName() == null || attribute.getName().isEmpty()) {
+			styledLabel.append((StyledString) super.getStyledText(object));
+		} else {
+			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
+			while(it.hasNext()) {
+				Fragment next = it.next();
+				if(next.getString().equals(attribute.getName())) {
+					// use the 'qualifier styler' for the label
+					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
+				} else {
+					// every other fragment is added as is
+					styledLabel.append(next.getString(), next.getStyle());
+				}
+			}
+		}
+
+		return styledLabel;
 	}
 
 	/**
@@ -102,17 +125,6 @@ extends ClassItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

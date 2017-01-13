@@ -23,8 +23,8 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionCrossReference;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ReferenceTargetSelector} object.

@@ -23,8 +23,8 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object.

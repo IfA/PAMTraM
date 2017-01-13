@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 
 import java.util.Collection;
@@ -15,22 +15,23 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.provider.ReferenceItemProvider;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SourceSectionReference} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.TargetSectionReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionReferenceItemProvider
-extends ReferenceItemProvider {
+public class TargetSectionReferenceItemProvider
+	extends ReferenceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionReferenceItemProvider(AdapterFactory adapterFactory) {
+	public TargetSectionReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,11 +65,18 @@ extends ReferenceItemProvider {
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return super.getStyledText(object);
+		String label = ((TargetSectionReference)object).getName();
+    	StyledString styledLabel = new StyledString();
+		if (label == null || label.length() == 0) {
+			styledLabel.append(getString("_UI_TargetSectionReference_type"), StyledString.Style.QUALIFIER_STYLER); 
+		} else {
+			styledLabel.append(getString("_UI_TargetSectionReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+		}
+		return styledLabel;
 	}
 
 	/**

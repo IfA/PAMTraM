@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.source.provider;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,26 +18,26 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
+import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSectionContainmentReference} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.SourceSectionContainmentReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class TargetSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
+public class SourceSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -56,13 +56,13 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This returns TargetSectionCompositeReference.gif.
+	 * This returns SourceSectionCompositeReference.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionCompositeReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionCompositeReference"));
 	}
 
 	/**
@@ -125,23 +125,23 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 			int operation, Collection<?> collection) {
 
 		/*
-		 * Allow to drop Classes onto this CompositeReference.
+		 * Allow to drop Sections onto this CompositeReference.
 		 */
 
 		if (collection.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		HashMap<EObject, EObject> targetSectionClassMap = new HashMap<>();
+		HashMap<EObject, EObject> sourceSectionClassMap = new HashMap<>();
 
 		for (Object object : collection) {
 
-			if (object instanceof TargetSectionClass) {
-				if (object instanceof TargetSection) {
-					targetSectionClassMap.put((TargetSectionClass) object,
-							StructureFactory.eINSTANCE.createTargetSectionClass());
+			if (object instanceof SourceSectionClass) {
+				if (object instanceof SourceSection) {
+					sourceSectionClassMap.put((SourceSectionClass) object,
+							SourceFactory.eINSTANCE.createSourceSectionClass());
 				} else {
-					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
+					sourceSectionClassMap.put((SourceSectionClass) object, (SourceSectionClass) object);
 				}
 			} else {
 				return UnexecutableCommand.INSTANCE;
@@ -150,7 +150,8 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 
 		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
 				GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE,
-				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
+				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
 
 	}
+
 }

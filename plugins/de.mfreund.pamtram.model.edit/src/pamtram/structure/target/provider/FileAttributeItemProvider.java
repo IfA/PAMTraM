@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 
 import java.util.Collection;
@@ -15,14 +15,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
+import pamtram.structure.target.FileAttribute;
 
-import pamtram.structure.FileAttribute;
-import pamtram.structure.StructurePackage;
-
+import pamtram.structure.target.TargetPackage;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.FileAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.FileAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -67,7 +66,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 				 getResourceLocator(),
 				 getString("_UI_FileAttribute_fileType_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FileAttribute_fileType_feature", "_UI_FileAttribute_type"),
-				 StructurePackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
+				 TargetPackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
 				 true,
 				 false,
 				 false,
@@ -142,7 +141,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FileAttribute.class)) {
-			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
+			case TargetPackage.FILE_ATTRIBUTE__FILE_TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

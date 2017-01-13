@@ -23,10 +23,10 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.SourceSectionClass;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a

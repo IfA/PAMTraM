@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 
 import de.mfreund.pamtram.util.NullComparator;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * A utility class that is able to merge a set of {@link Class Classes}.

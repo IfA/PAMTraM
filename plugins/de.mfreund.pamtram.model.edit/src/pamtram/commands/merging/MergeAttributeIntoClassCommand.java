@@ -19,9 +19,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PamtramPackage;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.Attribute;
@@ -30,6 +27,9 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.target.TargetPackage;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge an {@link Attribute} into a {@link Class}.
@@ -133,7 +133,7 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 
 			if (!NullComparator.compare(leftValue, rightValue)) {
 				this.append(new SetCommand(this.domain, leftAttribute.get(),
-						StructurePackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
+						TargetPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, null));
 			}
 
 		} else {

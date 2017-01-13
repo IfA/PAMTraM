@@ -22,10 +22,10 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.SourceSectionClass;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object.

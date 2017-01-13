@@ -1,37 +1,34 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.TargetSectionReference;
-import pamtram.structure.generic.provider.ReferenceItemProvider;
+import pamtram.structure.generic.provider.ClassItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSectionReference} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.TargetSectionClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TargetSectionReferenceItemProvider
-	extends ReferenceItemProvider {
+public class TargetSectionClassItemProvider
+extends ClassItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionReferenceItemProvider(AdapterFactory adapterFactory) {
+	public TargetSectionClassItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,6 +48,16 @@ public class TargetSectionReferenceItemProvider
 	}
 
 	/**
+	 * This returns TargetSectionClass.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return super.getImage(object);
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,18 +72,11 @@ public class TargetSectionReferenceItemProvider
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((TargetSectionReference)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_TargetSectionReference_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_TargetSectionReference_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return super.getStyledText(object);
 	}
 
 	/**

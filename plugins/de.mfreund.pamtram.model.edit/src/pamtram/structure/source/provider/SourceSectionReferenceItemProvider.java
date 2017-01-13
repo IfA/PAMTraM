@@ -1,6 +1,7 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.source.provider;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -9,33 +10,34 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.generic.provider.CrossReferenceItemProvider;
+import pamtram.structure.generic.provider.ReferenceItemProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.SourceSectionCrossReference} object. <!--
- * begin-user-doc --> <!-- end-user-doc -->
- *
+ * This is the item provider adapter for a {@link pamtram.structure.source.SourceSectionReference} object.
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * @generated
  */
-public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemProvider {
+public class SourceSectionReferenceItemProvider
+extends ReferenceItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionCrossReferenceItemProvider(AdapterFactory adapterFactory) {
+	public SourceSectionReferenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -48,20 +50,9 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	}
 
 	/**
-	 * This returns SourceSectionCrossReference.gif.
+	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionCrossReference"));
-	}
-
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,9 +61,9 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
@@ -83,8 +74,8 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -94,10 +85,10 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -106,9 +97,9 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

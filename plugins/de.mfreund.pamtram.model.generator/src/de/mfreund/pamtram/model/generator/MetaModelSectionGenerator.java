@@ -17,10 +17,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
-import pamtram.structure.ActualTargetSectionAttribute;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
@@ -32,6 +28,10 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * This class is responsible for the generation of {@link Section MetaModelSections} from excerpts of a model.
@@ -141,8 +141,8 @@ public class MetaModelSectionGenerator {
 			clazz = isSection ? SourceFactory.eINSTANCE.createSourceSection()
 					: SourceFactory.eINSTANCE.createSourceSectionClass();
 		} else {
-			clazz = isSection ? StructureFactory.eINSTANCE.createTargetSection()
-					: StructureFactory.eINSTANCE.createTargetSectionClass();
+			clazz = isSection ? TargetFactory.eINSTANCE.createTargetSection()
+					: TargetFactory.eINSTANCE.createTargetSectionClass();
 		}
 		clazz.setEClass(source.eClass());
 		clazz.setName(source.eClass().getName());
@@ -183,7 +183,7 @@ public class MetaModelSectionGenerator {
 				attribute = SourceFactory.eINSTANCE.createActualSourceSectionAttribute();
 				((ActualSourceSectionAttribute) attribute).setAttribute(eAttribute);
 			} else {
-				attribute = StructureFactory.eINSTANCE.createActualTargetSectionAttribute();
+				attribute = TargetFactory.eINSTANCE.createActualTargetSectionAttribute();
 				((ActualTargetSectionAttribute) attribute).setAttribute(eAttribute);
 			}
 			attribute.setName(eAttribute.getName());
@@ -245,7 +245,7 @@ public class MetaModelSectionGenerator {
 		if (this.sectionType == SectionType.SOURCE) {
 			containmentReference = SourceFactory.eINSTANCE.createSourceSectionCompositeReference();
 		} else {
-			containmentReference = StructureFactory.eINSTANCE.createTargetSectionCompositeReference();
+			containmentReference = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 		}
 		containmentReference.setEReference(reference);
 		containmentReference.setName(reference.getName());
@@ -307,7 +307,7 @@ public class MetaModelSectionGenerator {
 		if (this.sectionType == SectionType.SOURCE) {
 			nonContainmentReference = SourceFactory.eINSTANCE.createSourceSectionCrossReference();
 		} else {
-			nonContainmentReference = StructureFactory.eINSTANCE.createTargetSectionCrossReference();
+			nonContainmentReference = TargetFactory.eINSTANCE.createTargetSectionCrossReference();
 		}
 		nonContainmentReference.setEReference(reference);
 		nonContainmentReference.setName(reference.getName());

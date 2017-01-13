@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,15 +29,15 @@ import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.commands.BasicDragAndDropCompoundCommand;
-import pamtram.structure.FileAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetSection;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSection} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.TargetSection} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated

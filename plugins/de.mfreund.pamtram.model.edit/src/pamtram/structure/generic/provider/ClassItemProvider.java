@@ -29,15 +29,15 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.FileAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetSection;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--

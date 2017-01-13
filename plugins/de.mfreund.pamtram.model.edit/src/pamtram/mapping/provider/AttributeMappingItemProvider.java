@@ -26,7 +26,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMapping} object.

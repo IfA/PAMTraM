@@ -25,8 +25,8 @@ import pamtram.TargetSectionModel;
 import pamtram.commands.DeleteLibraryEntryCommand;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.

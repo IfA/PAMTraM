@@ -27,20 +27,20 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionCompositeReference;
-import pamtram.structure.TargetSectionCrossReference;
-import pamtram.structure.VirtualTargetSectionAttribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * This class provides convenience functions to work with library items.

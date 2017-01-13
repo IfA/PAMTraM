@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,11 +16,11 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.generic.provider.AttributeItemProvider;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSectionAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.TargetSectionAttribute} object.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated

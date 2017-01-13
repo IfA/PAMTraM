@@ -1,33 +1,36 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.generic.provider.CrossReferenceItemProvider;
+import pamtram.structure.AttributeParameter;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.target.ActualTargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.TargetSectionCrossReference} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.target.ActualTargetSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemProvider {
+public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttributeItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionCrossReferenceItemProvider(AdapterFactory adapterFactory) {
+	public ActualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -41,18 +44,48 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns TargetSectionCrossReference.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	protected void addAttributePropertyDescriptor(Object object) {
+
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature",
+								"_UI_ActualAttribute_type"),
+						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null, null, null) {
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+
+						ActualTargetSectionAttribute att = (ActualTargetSectionAttribute) object;
+
+						// in case of a 'normal' TargetSectionClass, the attribute of this class can be chosen
+						if (att.getOwningClass() != null) {
+							return att.getOwningClass().getEClass().getEAllAttributes();
+							// in case of an AttributeParameter, the attribute of its source can be chosen
+						} else if (att.eContainer() instanceof AttributeParameter
+								&& ((AttributeParameter) att.eContainer()).getSource() != null) {
+							return ((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes();
+						}
+						return new ArrayList<>();
+					}
+				});
+	}
+
+	/**
+	 * This returns ActualAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionCrossReference"));
+
+		return super.getImage(object);
 	}
 
 	/**
@@ -67,7 +100,7 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -98,16 +131,6 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

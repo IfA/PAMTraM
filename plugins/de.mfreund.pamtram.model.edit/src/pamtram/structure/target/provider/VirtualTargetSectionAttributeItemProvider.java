@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 
 import java.util.Collection;
@@ -9,32 +9,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
-import pamtram.structure.FileAttribute;
-import pamtram.structure.StructurePackage;
-
-import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.FileAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.target.VirtualTargetSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItemProvider {
+public class VirtualTargetSectionAttributeItemProvider
+extends TargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileAttributeItemProvider(AdapterFactory adapterFactory) {
+	public VirtualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,42 +44,19 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addFileTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the File Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFileTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_FileAttribute_fileType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FileAttribute_fileType_feature", "_UI_FileAttribute_type"),
-				 StructurePackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns FileAttribute.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns VirtualTargetSectionAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FileAttribute"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/VirtualAttribute"));
 	}
 
 	/**
@@ -97,7 +69,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -106,13 +78,13 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		
-		FileAttribute attribute = (FileAttribute) object;
+
+		VirtualTargetSectionAttribute attribute = (VirtualTargetSectionAttribute) object;
 
 		StyledString styledLabel = new StyledString();
 
 		if(attribute.getName() == null || attribute.getName().isEmpty()) {
-			styledLabel.append("File", StyledString.Style.QUALIFIER_STYLER).append((StyledString) super.getStyledText(object));
+			styledLabel.append((StyledString) super.getStyledText(object));
 		} else {
 			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
 			while(it.hasNext()) {
@@ -128,7 +100,7 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 		}
 
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -140,12 +112,6 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(FileAttribute.class)) {
-			case StructurePackage.FILE_ATTRIBUTE__FILE_TYPE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

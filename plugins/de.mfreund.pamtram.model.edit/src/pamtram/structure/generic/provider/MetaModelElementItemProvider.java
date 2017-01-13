@@ -22,14 +22,14 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.commands.BasicDragAndDropCompoundCommand;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.FileAttribute;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
-import pamtram.structure.provider.TargetSectionItemProvider;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.provider.TargetSectionItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.MetaModelElement} object. <!--

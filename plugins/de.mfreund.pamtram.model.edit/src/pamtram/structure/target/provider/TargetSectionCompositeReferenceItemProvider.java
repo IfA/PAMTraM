@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.target.provider;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,10 +19,10 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetSectionContainmentReference} object. <!--

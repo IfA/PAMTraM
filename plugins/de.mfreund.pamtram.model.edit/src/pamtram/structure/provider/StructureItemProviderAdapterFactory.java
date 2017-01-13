@@ -21,6 +21,14 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import pamtram.structure.target.provider.ActualTargetSectionAttributeItemProvider;
+import pamtram.structure.target.provider.FileAttributeItemProvider;
+import pamtram.structure.target.provider.TargetSectionClassItemProvider;
+import pamtram.structure.target.provider.TargetSectionCompositeReferenceItemProvider;
+import pamtram.structure.target.provider.TargetSectionCrossReferenceItemProvider;
+import pamtram.structure.target.provider.TargetSectionItemProvider;
+import pamtram.structure.target.provider.VirtualTargetSectionAttributeItemProvider;
 import pamtram.structure.util.StructureAdapterFactory;
 
 /**
@@ -81,7 +89,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSection} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSection} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,7 +97,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected TargetSectionItemProvider targetSectionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSection}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSection}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,7 +112,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.FileAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.FileAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +120,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected FileAttributeItemProvider fileAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.FileAttribute}.
+	 * This creates an adapter for a {@link pamtram.structure.target.FileAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,7 +135,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionClass} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionClass} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,7 +143,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected TargetSectionClassItemProvider targetSectionClassItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSectionClass}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionClass}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -253,7 +261,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionCompositeReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionCompositeReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -261,7 +269,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected TargetSectionCompositeReferenceItemProvider targetSectionCompositeReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSectionCompositeReference}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionCompositeReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -276,7 +284,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSectionCrossReference} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionCrossReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -284,7 +292,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected TargetSectionCrossReferenceItemProvider targetSectionCrossReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.TargetSectionCrossReference}.
+	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionCrossReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -299,7 +307,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ActualTargetSectionAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.ActualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -307,7 +315,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ActualTargetSectionAttributeItemProvider actualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ActualTargetSectionAttribute}.
+	 * This creates an adapter for a {@link pamtram.structure.target.ActualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -322,7 +330,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.VirtualTargetSectionAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.VirtualTargetSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -330,7 +338,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected VirtualTargetSectionAttributeItemProvider virtualTargetSectionAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.VirtualTargetSectionAttribute}.
+	 * This creates an adapter for a {@link pamtram.structure.target.VirtualTargetSectionAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

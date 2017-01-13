@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.modifier.provider;
 
 
 import java.util.Collection;
@@ -8,33 +8,30 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MatchToLowerCaseConverter;
+import org.eclipse.emf.edit.provider.StyledString;
+
+import pamtram.mapping.modifier.UniqueNumberAppender;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MatchToLowerCaseConverter} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.modifier.UniqueNumberAppender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvider {
+public class UniqueNumberAppenderItemProvider
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToLowerCaseConverterItemProvider(AdapterFactory adapterFactory) {
+	public UniqueNumberAppenderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -49,42 +46,19 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRegexPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Regex feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addRegexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MatchToLowerCaseConverter_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MatchToLowerCaseConverter_regex_feature", "_UI_MatchToLowerCaseConverter_type"),
-				 MappingPackage.Literals.MATCH_TO_LOWER_CASE_CONVERTER__REGEX,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns MatchToLowerCaseConverter.gif.
+	 * This returns UniqueNumberAppender.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MatchToLowerCaseConverter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UniqueNumberAppender"));
 	}
 
 	/**
@@ -97,7 +71,6 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
 
 	/**
 	 * This returns the label styled text for the adapted class.
@@ -107,12 +80,12 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MatchToLowerCaseConverter)object).getName();
+		String label = ((UniqueNumberAppender)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MatchToLowerCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_UniqueNumberAppender_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MatchToLowerCaseConverter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_UniqueNumberAppender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -127,12 +100,6 @@ public class MatchToLowerCaseConverterItemProvider extends NamedElementItemProvi
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(MatchToLowerCaseConverter.class)) {
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER__REGEX:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 

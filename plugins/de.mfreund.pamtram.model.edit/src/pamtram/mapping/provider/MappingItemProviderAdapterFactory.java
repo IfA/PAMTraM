@@ -20,7 +20,6 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -231,121 +230,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		}
 
 		return classMatcherItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ValueModifierSet} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ValueModifierSetItemProvider valueModifierSetItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createValueModifierSetAdapter() {
-		if (valueModifierSetItemProvider == null) {
-			valueModifierSetItemProvider = new ValueModifierSetItemProvider(this);
-		}
-
-		return valueModifierSetItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.SubstringReplacer} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SubstringReplacerItemProvider substringReplacerItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.SubstringReplacer}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSubstringReplacerAdapter() {
-		if (substringReplacerItemProvider == null) {
-			substringReplacerItemProvider = new SubstringReplacerItemProvider(this);
-		}
-
-		return substringReplacerItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.StringAppender} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringAppenderItemProvider stringAppenderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.StringAppender}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStringAppenderAdapter() {
-		if (stringAppenderItemProvider == null) {
-			stringAppenderItemProvider = new StringAppenderItemProvider(this);
-		}
-
-		return stringAppenderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.UniqueNumberAppender} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UniqueNumberAppenderItemProvider uniqueNumberAppenderItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.UniqueNumberAppender}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createUniqueNumberAppenderAdapter() {
-		if (uniqueNumberAppenderItemProvider == null) {
-			uniqueNumberAppenderItemProvider = new UniqueNumberAppenderItemProvider(this);
-		}
-
-		return uniqueNumberAppenderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.StringPrepender} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected StringPrependerItemProvider stringPrependerItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.StringPrepender}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createStringPrependerAdapter() {
-		if (stringPrependerItemProvider == null) {
-			stringPrependerItemProvider = new StringPrependerItemProvider(this);
-		}
-
-		return stringPrependerItemProvider;
 	}
 
 	/**
@@ -763,52 +647,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToLowerCaseConverter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MatchToLowerCaseConverterItemProvider matchToLowerCaseConverterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MatchToLowerCaseConverter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMatchToLowerCaseConverterAdapter() {
-		if (matchToLowerCaseConverterItemProvider == null) {
-			matchToLowerCaseConverterItemProvider = new MatchToLowerCaseConverterItemProvider(this);
-		}
-
-		return matchToLowerCaseConverterItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MatchToUpperCaseConverter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MatchToUpperCaseConverterItemProvider matchToUpperCaseConverterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MatchToUpperCaseConverter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMatchToUpperCaseConverterAdapter() {
-		if (matchToUpperCaseConverterItemProvider == null) {
-			matchToUpperCaseConverterItemProvider = new MatchToUpperCaseConverterItemProvider(this);
-		}
-
-		return matchToUpperCaseConverterItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherGlobalSourceElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -984,11 +822,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
-		if (valueModifierSetItemProvider != null) valueModifierSetItemProvider.dispose();
-		if (substringReplacerItemProvider != null) substringReplacerItemProvider.dispose();
-		if (stringAppenderItemProvider != null) stringAppenderItemProvider.dispose();
-		if (uniqueNumberAppenderItemProvider != null) uniqueNumberAppenderItemProvider.dispose();
-		if (stringPrependerItemProvider != null) stringPrependerItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
@@ -1006,8 +839,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
-		if (matchToLowerCaseConverterItemProvider != null) matchToLowerCaseConverterItemProvider.dispose();
-		if (matchToUpperCaseConverterItemProvider != null) matchToUpperCaseConverterItemProvider.dispose();
 		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
 		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
 		if (containerSelectorGlobalSourceElementItemProvider != null) containerSelectorGlobalSourceElementItemProvider.dispose();

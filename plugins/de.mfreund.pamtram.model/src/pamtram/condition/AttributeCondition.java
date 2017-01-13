@@ -4,8 +4,8 @@ package pamtram.condition;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

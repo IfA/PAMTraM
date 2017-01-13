@@ -3,6 +3,7 @@
 package pamtram.structure;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
+import pamtram.structure.target.TargetSection;
 
 
 /**

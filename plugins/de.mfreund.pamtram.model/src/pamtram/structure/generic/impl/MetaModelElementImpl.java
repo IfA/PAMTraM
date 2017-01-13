@@ -16,14 +16,14 @@ import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionCrossReference;
-import pamtram.structure.VirtualTargetSectionAttribute;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meta

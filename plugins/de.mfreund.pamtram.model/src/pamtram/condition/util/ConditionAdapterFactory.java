@@ -76,10 +76,6 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createComplexConditionAdapter();
 			}
 			@Override
-			public Adapter caseCondition(Condition object) {
-				return createConditionAdapter();
-			}
-			@Override
 			public Adapter caseVariadicCondition(VariadicCondition object) {
 				return createVariadicConditionAdapter();
 			}
@@ -98,6 +94,10 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNot(Not object) {
 				return createNotAdapter();
+			}
+			@Override
+			public Adapter caseCondition(Condition object) {
+				return createConditionAdapter();
 			}
 			@Override
 			public Adapter caseAttributeCondition(AttributeCondition object) {

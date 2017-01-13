@@ -19,9 +19,9 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.TargetSectionClass;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->

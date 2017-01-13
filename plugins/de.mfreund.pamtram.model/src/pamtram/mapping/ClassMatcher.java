@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 
 /**

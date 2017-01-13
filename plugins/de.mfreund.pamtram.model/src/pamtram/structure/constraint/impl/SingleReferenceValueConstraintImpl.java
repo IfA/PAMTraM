@@ -34,8 +34,6 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.SourceSection;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -45,6 +43,8 @@ import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.constraint.util.ConstraintValidator;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Value Constraint</b></em>'.
@@ -247,7 +247,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	@Override
 	public boolean validateOnlyFixedValuesInSourceSections(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getSourceElements().isEmpty() || 
-				!AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.eINSTANCE.getActualSourceSectionAttribute())) {
+				!AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 			return true;
 		}
 		
@@ -315,7 +315,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		boolean result = this.getResultModifier().isEmpty() ||
-				!AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.eINSTANCE.getActualSourceSectionAttribute());
+				!AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.eINSTANCE.getActualSourceSectionAttribute());
 		
 		if (!result && diagnostics != null) {
 		
@@ -341,7 +341,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
 		}
 		
-		if (AgteleEcoreUtil.hasAncestorOfKind(this, StructurePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
+		if (AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
 			return true;
 		}
 		

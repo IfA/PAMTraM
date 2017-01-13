@@ -3,9 +3,9 @@
 package pamtram.structure.impl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
-import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.target.ActualTargetSectionAttribute;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

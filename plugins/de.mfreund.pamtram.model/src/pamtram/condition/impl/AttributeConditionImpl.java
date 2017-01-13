@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
-import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.SourceSection;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc -->

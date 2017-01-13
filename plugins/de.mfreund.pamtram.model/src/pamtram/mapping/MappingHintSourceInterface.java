@@ -3,7 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

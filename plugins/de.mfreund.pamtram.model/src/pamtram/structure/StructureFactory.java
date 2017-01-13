@@ -22,51 +22,6 @@ public interface StructureFactory extends EFactory {
 	StructureFactory eINSTANCE = pamtram.structure.impl.StructureFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Source Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section</em>'.
-	 * @generated
-	 */
-	SourceSection createSourceSection();
-
-	/**
-	 * Returns a new object of class '<em>Target Section</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section</em>'.
-	 * @generated
-	 */
-	TargetSection createTargetSection();
-
-	/**
-	 * Returns a new object of class '<em>File Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>File Attribute</em>'.
-	 * @generated
-	 */
-	FileAttribute createFileAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Class</em>'.
-	 * @generated
-	 */
-	SourceSectionClass createSourceSectionClass();
-
-	/**
-	 * Returns a new object of class '<em>Target Section Class</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section Class</em>'.
-	 * @generated
-	 */
-	TargetSectionClass createTargetSectionClass();
-
-	/**
 	 * Returns a new object of class '<em>Attribute Parameter</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,69 +65,6 @@ public interface StructureFactory extends EFactory {
 	 * @generated
 	 */
 	LibraryEntry createLibraryEntry();
-
-	/**
-	 * Returns a new object of class '<em>Target Section Composite Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section Composite Reference</em>'.
-	 * @generated
-	 */
-	TargetSectionCompositeReference createTargetSectionCompositeReference();
-
-	/**
-	 * Returns a new object of class '<em>Target Section Cross Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Section Cross Reference</em>'.
-	 * @generated
-	 */
-	TargetSectionCrossReference createTargetSectionCrossReference();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Composite Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Composite Reference</em>'.
-	 * @generated
-	 */
-	SourceSectionCompositeReference createSourceSectionCompositeReference();
-
-	/**
-	 * Returns a new object of class '<em>Source Section Cross Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Source Section Cross Reference</em>'.
-	 * @generated
-	 */
-	SourceSectionCrossReference createSourceSectionCrossReference();
-
-	/**
-	 * Returns a new object of class '<em>Actual Source Section Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Source Section Attribute</em>'.
-	 * @generated
-	 */
-	ActualSourceSectionAttribute createActualSourceSectionAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Actual Target Section Attribute</em>'.
-	 * @generated
-	 */
-	ActualTargetSectionAttribute createActualTargetSectionAttribute();
-
-	/**
-	 * Returns a new object of class '<em>Virtual Target Section Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Virtual Target Section Attribute</em>'.
-	 * @generated
-	 */
-	VirtualTargetSectionAttribute createVirtualTargetSectionAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Instance Pointer</em>'.

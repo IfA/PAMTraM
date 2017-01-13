@@ -5,8 +5,8 @@ package pamtram.mapping;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import pamtram.structure.TargetSectionClass;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 
 /**

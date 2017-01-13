@@ -13,6 +13,16 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.*;
 import pamtram.structure.generic.util.GenericValidator;
+import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.TargetSectionReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc

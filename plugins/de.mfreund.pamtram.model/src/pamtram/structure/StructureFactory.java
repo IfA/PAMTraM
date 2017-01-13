@@ -4,6 +4,14 @@ package pamtram.structure;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

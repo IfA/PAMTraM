@@ -9,6 +9,21 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.structure.*;
+import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
+import pamtram.structure.target.impl.ActualTargetSectionAttributeImpl;
+import pamtram.structure.target.impl.FileAttributeImpl;
+import pamtram.structure.target.impl.TargetSectionClassImpl;
+import pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl;
+import pamtram.structure.target.impl.TargetSectionCrossReferenceImpl;
+import pamtram.structure.target.impl.TargetSectionImpl;
+import pamtram.structure.target.impl.VirtualTargetSectionAttributeImpl;
 
 /**
  * <!-- begin-user-doc -->

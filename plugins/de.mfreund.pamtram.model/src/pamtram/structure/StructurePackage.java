@@ -64,10 +64,10 @@ public interface StructurePackage extends EPackage {
 	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionClassImpl
+	 * @see pamtram.structure.target.impl.TargetSectionClassImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionClass()
 	 * @generated
 	 */
@@ -236,10 +236,10 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_CLASS_OPERATION_COUNT = GenericPackage.CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionImpl <em>Target Section</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionImpl <em>Target Section</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionImpl
+	 * @see pamtram.structure.target.impl.TargetSectionImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSection()
 	 * @generated
 	 */
@@ -521,20 +521,20 @@ public interface StructurePackage extends EPackage {
 	int LIBRARY_ENTRY = 8;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionReferenceImpl
+	 * @see pamtram.structure.target.impl.TargetSectionReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionReference()
 	 * @generated
 	 */
 	int TARGET_SECTION_REFERENCE = 9;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionAttributeImpl
+	 * @see pamtram.structure.target.impl.TargetSectionAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionAttribute()
 	 * @generated
 	 */
@@ -622,20 +622,20 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = GenericPackage.ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ActualTargetSectionAttributeImpl
+	 * @see pamtram.structure.target.impl.ActualTargetSectionAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getActualTargetSectionAttribute()
 	 * @generated
 	 */
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.VirtualTargetSectionAttributeImpl <em>Virtual Target Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.VirtualTargetSectionAttributeImpl <em>Virtual Target Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.VirtualTargetSectionAttributeImpl
+	 * @see pamtram.structure.target.impl.VirtualTargetSectionAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualTargetSectionAttribute()
 	 * @generated
 	 */
@@ -723,10 +723,10 @@ public interface StructurePackage extends EPackage {
 	int VIRTUAL_TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.FileAttributeImpl <em>File Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.FileAttributeImpl <em>File Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.FileAttributeImpl
+	 * @see pamtram.structure.target.impl.FileAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getFileAttribute()
 	 * @generated
 	 */
@@ -1256,10 +1256,10 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_REFERENCE_OPERATION_COUNT = GenericPackage.REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionCompositeReferenceImpl <em>Target Section Composite Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl <em>Target Section Composite Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionCompositeReferenceImpl
+	 * @see pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCompositeReference()
 	 * @generated
 	 */
@@ -1383,10 +1383,10 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.TargetSectionCrossReferenceImpl
+	 * @see pamtram.structure.target.impl.TargetSectionCrossReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCrossReference()
 	 * @generated
 	 */
@@ -1919,84 +1919,84 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.FileTypeEnum <em>File Type Enum</em>}' enum.
+	 * The meta object id for the '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.FileTypeEnum
+	 * @see pamtram.structure.target.FileTypeEnum
 	 * @see pamtram.structure.impl.StructurePackageImpl#getFileTypeEnum()
 	 * @generated
 	 */
 	int FILE_TYPE_ENUM = 19;
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSection <em>Target Section</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSection <em>Target Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section</em>'.
-	 * @see pamtram.structure.TargetSection
+	 * @see pamtram.structure.target.TargetSection
 	 * @generated
 	 */
 	EClass getTargetSection();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.TargetSection#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.target.TargetSection#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Referencing Mapping Hint Groups</em>'.
-	 * @see pamtram.structure.TargetSection#getReferencingMappingHintGroups()
+	 * @see pamtram.structure.target.TargetSection#getReferencingMappingHintGroups()
 	 * @see #getTargetSection()
 	 * @generated
 	 */
 	EReference getTargetSection_ReferencingMappingHintGroups();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.TargetSection#getFile <em>File</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.target.TargetSection#getFile <em>File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>File</em>'.
-	 * @see pamtram.structure.TargetSection#getFile()
+	 * @see pamtram.structure.target.TargetSection#getFile()
 	 * @see #getTargetSection()
 	 * @generated
 	 */
 	EReference getTargetSection_File();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.TargetSection#validateIsReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Referenced By Mapping Hint Group</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSection#validateIsReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Referenced By Mapping Hint Group</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Is Referenced By Mapping Hint Group</em>' operation.
-	 * @see pamtram.structure.TargetSection#validateIsReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.target.TargetSection#validateIsReferencedByMappingHintGroup(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.FileAttribute <em>File Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.FileAttribute <em>File Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>File Attribute</em>'.
-	 * @see pamtram.structure.FileAttribute
+	 * @see pamtram.structure.target.FileAttribute
 	 * @generated
 	 */
 	EClass getFileAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.FileAttribute#getFileType <em>File Type</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.target.FileAttribute#getFileType <em>File Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>File Type</em>'.
-	 * @see pamtram.structure.FileAttribute#getFileType()
+	 * @see pamtram.structure.target.FileAttribute#getFileType()
 	 * @see #getFileAttribute()
 	 * @generated
 	 */
 	EAttribute getFileAttribute_FileType();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionClass <em>Target Section Class</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionClass <em>Target Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section Class</em>'.
-	 * @see pamtram.structure.TargetSectionClass
+	 * @see pamtram.structure.target.TargetSectionClass
 	 * @generated
 	 */
 	EClass getTargetSectionClass();
@@ -2205,93 +2205,93 @@ public interface StructurePackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionReference <em>Target Section Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionReference <em>Target Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section Reference</em>'.
-	 * @see pamtram.structure.TargetSectionReference
+	 * @see pamtram.structure.target.TargetSectionReference
 	 * @generated
 	 */
 	EClass getTargetSectionReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionCompositeReference <em>Target Section Composite Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionCompositeReference <em>Target Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section Composite Reference</em>'.
-	 * @see pamtram.structure.TargetSectionCompositeReference
+	 * @see pamtram.structure.target.TargetSectionCompositeReference
 	 * @generated
 	 */
 	EClass getTargetSectionCompositeReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionCrossReference <em>Target Section Cross Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionCrossReference <em>Target Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section Cross Reference</em>'.
-	 * @see pamtram.structure.TargetSectionCrossReference
+	 * @see pamtram.structure.target.TargetSectionCrossReference
 	 * @generated
 	 */
 	EClass getTargetSectionCrossReference();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate EReference Is Non Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate EReference Is Non Containment</em>' operation.
-	 * @see pamtram.structure.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.target.TargetSectionCrossReference#validateEReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.TargetSectionAttribute <em>Target Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionAttribute <em>Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Target Section Attribute</em>'.
-	 * @see pamtram.structure.TargetSectionAttribute
+	 * @see pamtram.structure.target.TargetSectionAttribute
 	 * @generated
 	 */
 	EClass getTargetSectionAttribute();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.TargetSectionAttribute#isUnique <em>Unique</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.target.TargetSectionAttribute#isUnique <em>Unique</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Unique</em>'.
-	 * @see pamtram.structure.TargetSectionAttribute#isUnique()
+	 * @see pamtram.structure.target.TargetSectionAttribute#isUnique()
 	 * @see #getTargetSectionAttribute()
 	 * @generated
 	 */
 	EAttribute getTargetSectionAttribute_Unique();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.TargetSectionAttribute#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.target.TargetSectionAttribute#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see pamtram.structure.TargetSectionAttribute#getValue()
+	 * @see pamtram.structure.target.TargetSectionAttribute#getValue()
 	 * @see #getTargetSectionAttribute()
 	 * @generated
 	 */
 	EAttribute getTargetSectionAttribute_Value();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ActualTargetSectionAttribute <em>Actual Target Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.ActualTargetSectionAttribute <em>Actual Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actual Target Section Attribute</em>'.
-	 * @see pamtram.structure.ActualTargetSectionAttribute
+	 * @see pamtram.structure.target.ActualTargetSectionAttribute
 	 * @generated
 	 */
 	EClass getActualTargetSectionAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.VirtualTargetSectionAttribute <em>Virtual Target Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.target.VirtualTargetSectionAttribute <em>Virtual Target Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Virtual Target Section Attribute</em>'.
-	 * @see pamtram.structure.VirtualTargetSectionAttribute
+	 * @see pamtram.structure.target.VirtualTargetSectionAttribute
 	 * @generated
 	 */
 	EClass getVirtualTargetSectionAttribute();
@@ -2369,11 +2369,11 @@ public interface StructurePackage extends EPackage {
 	EClass getInstancePointerExternalSourceElement();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.structure.FileTypeEnum <em>File Type Enum</em>}'.
+	 * Returns the meta object for enum '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>File Type Enum</em>'.
-	 * @see pamtram.structure.FileTypeEnum
+	 * @see pamtram.structure.target.FileTypeEnum
 	 * @generated
 	 */
 	EEnum getFileTypeEnum();
@@ -2402,10 +2402,10 @@ public interface StructurePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionImpl <em>Target Section</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionImpl <em>Target Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionImpl
+		 * @see pamtram.structure.target.impl.TargetSectionImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSection()
 		 * @generated
 		 */
@@ -2436,10 +2436,10 @@ public interface StructurePackage extends EPackage {
 		EOperation TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.FileAttributeImpl <em>File Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.FileAttributeImpl <em>File Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.FileAttributeImpl
+		 * @see pamtram.structure.target.impl.FileAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getFileAttribute()
 		 * @generated
 		 */
@@ -2454,10 +2454,10 @@ public interface StructurePackage extends EPackage {
 		EAttribute FILE_ATTRIBUTE__FILE_TYPE = eINSTANCE.getFileAttribute_FileType();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionClassImpl <em>Target Section Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionClassImpl
+		 * @see pamtram.structure.target.impl.TargetSectionClassImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionClass()
 		 * @generated
 		 */
@@ -2628,30 +2628,30 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionReferenceImpl <em>Target Section Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionReferenceImpl
+		 * @see pamtram.structure.target.impl.TargetSectionReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionReference()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_REFERENCE = eINSTANCE.getTargetSectionReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionCompositeReferenceImpl <em>Target Section Composite Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl <em>Target Section Composite Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionCompositeReferenceImpl
+		 * @see pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCompositeReference()
 		 * @generated
 		 */
 		EClass TARGET_SECTION_COMPOSITE_REFERENCE = eINSTANCE.getTargetSectionCompositeReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionCrossReferenceImpl <em>Target Section Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionCrossReferenceImpl
+		 * @see pamtram.structure.target.impl.TargetSectionCrossReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionCrossReference()
 		 * @generated
 		 */
@@ -2666,10 +2666,10 @@ public interface StructurePackage extends EPackage {
 		EOperation TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Target Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.TargetSectionAttributeImpl
+		 * @see pamtram.structure.target.impl.TargetSectionAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetSectionAttribute()
 		 * @generated
 		 */
@@ -2692,20 +2692,20 @@ public interface StructurePackage extends EPackage {
 		EAttribute TARGET_SECTION_ATTRIBUTE__VALUE = eINSTANCE.getTargetSectionAttribute_Value();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ActualTargetSectionAttributeImpl
+		 * @see pamtram.structure.target.impl.ActualTargetSectionAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getActualTargetSectionAttribute()
 		 * @generated
 		 */
 		EClass ACTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getActualTargetSectionAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.VirtualTargetSectionAttributeImpl <em>Virtual Target Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.VirtualTargetSectionAttributeImpl <em>Virtual Target Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.VirtualTargetSectionAttributeImpl
+		 * @see pamtram.structure.target.impl.VirtualTargetSectionAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getVirtualTargetSectionAttribute()
 		 * @generated
 		 */
@@ -2776,10 +2776,10 @@ public interface StructurePackage extends EPackage {
 		EClass INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getInstancePointerExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.FileTypeEnum <em>File Type Enum</em>}' enum.
+		 * The meta object literal for the '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.FileTypeEnum
+		 * @see pamtram.structure.target.FileTypeEnum
 		 * @see pamtram.structure.impl.StructurePackageImpl#getFileTypeEnum()
 		 * @generated
 		 */

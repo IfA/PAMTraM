@@ -5,7 +5,7 @@ package pamtram.structure.impl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSectionCrossReference;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

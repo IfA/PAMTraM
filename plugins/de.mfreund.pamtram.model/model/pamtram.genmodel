@@ -66,23 +66,6 @@
     </genClasses>
     <nestedGenPackages prefix="Structure" basePackage="pamtram" disposableProviderFactory="true"
         multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//structure">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//structure/FileTypeEnum">
-        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/FileTypeEnum/XMI"/>
-        <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/FileTypeEnum/XML"/>
-      </genEnums>
-      <genClasses ecoreClass="pamtram.ecore#//structure/TargetSection">
-        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/TargetSection/referencingMappingHintGroups"/>
-        <genFeatures property="None" createChild="true" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//structure/TargetSection/file"/>
-        <genOperations ecoreOperation="pamtram.ecore#//structure/TargetSection/validateIsReferencedByMappingHintGroup">
-          <genParameters ecoreParameter="pamtram.ecore#//structure/TargetSection/validateIsReferencedByMappingHintGroup/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//structure/TargetSection/validateIsReferencedByMappingHintGroup/context"/>
-        </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//structure/FileAttribute">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/FileAttribute/fileType"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//structure/TargetSectionClass"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//structure/LibraryParameter">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/LibraryParameter/ParameterType"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -112,20 +95,6 @@
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/LibraryEntry/id"/>
         <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/LibraryEntry/resourceParameters"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//structure/TargetSectionReference"/>
-      <genClasses ecoreClass="pamtram.ecore#//structure/TargetSectionCompositeReference"/>
-      <genClasses ecoreClass="pamtram.ecore#//structure/TargetSectionCrossReference">
-        <genOperations ecoreOperation="pamtram.ecore#//structure/TargetSectionCrossReference/validateEReferenceIsNonContainment">
-          <genParameters ecoreParameter="pamtram.ecore#//structure/TargetSectionCrossReference/validateEReferenceIsNonContainment/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//structure/TargetSectionCrossReference/validateEReferenceIsNonContainment/context"/>
-        </genOperations>
-      </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//structure/TargetSectionAttribute">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/TargetSectionAttribute/unique"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/TargetSectionAttribute/value"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//structure/ActualTargetSectionAttribute"/>
-      <genClasses ecoreClass="pamtram.ecore#//structure/VirtualTargetSectionAttribute"/>
       <genClasses ecoreClass="pamtram.ecore#//structure/InstancePointer">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//structure/InstancePointer/target"/>
@@ -353,6 +322,40 @@
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/source/SourceSectionAttribute/valueConstraint"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/source/ActualSourceSectionAttribute"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="Target" disposableProviderFactory="true" multipleEditorPages="false"
+          generateModelWizard="false" ecorePackage="pamtram.ecore#//structure/target">
+        <genEnums typeSafeEnumCompatible="false" ecoreEnum="pamtram.ecore#//structure/target/FileTypeEnum">
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/target/FileTypeEnum/XMI"/>
+          <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/target/FileTypeEnum/XML"/>
+        </genEnums>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSection">
+          <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/target/TargetSection/referencingMappingHintGroups"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference pamtram.ecore#//structure/target/TargetSection/file"/>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSection/validateIsReferencedByMappingHintGroup">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSection/validateIsReferencedByMappingHintGroup/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSection/validateIsReferencedByMappingHintGroup/context"/>
+          </genOperations>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/FileAttribute">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/FileAttribute/fileType"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionClass"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionReference"/>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionCompositeReference"/>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionCrossReference">
+          <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/context"/>
+          </genOperations>
+        </genClasses>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAttribute">
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/unique"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/value"/>
+        </genClasses>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/ActualTargetSectionAttribute"/>
+        <genClasses ecoreClass="pamtram.ecore#//structure/target/VirtualTargetSectionAttribute"/>
       </nestedGenPackages>
     </nestedGenPackages>
     <nestedGenPackages prefix="Condition" basePackage="pamtram" disposableProviderFactory="true"

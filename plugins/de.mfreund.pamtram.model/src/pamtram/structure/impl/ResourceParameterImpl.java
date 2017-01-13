@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

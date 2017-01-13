@@ -1,11 +1,12 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.target;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Section;
 
 
@@ -18,8 +19,8 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.TargetSection#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
- *   <li>{@link pamtram.structure.TargetSection#getFile <em>File</em>}</li>
+ *   <li>{@link pamtram.structure.target.TargetSection#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
+ *   <li>{@link pamtram.structure.target.TargetSection#getFile <em>File</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getTargetSection()
@@ -62,7 +63,7 @@ public interface TargetSection extends TargetSectionClass, Section<TargetSection
 	FileAttribute getFile();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.TargetSection#getFile <em>File</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.target.TargetSection#getFile <em>File</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File</em>' reference.

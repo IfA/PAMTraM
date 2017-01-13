@@ -1,9 +1,11 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.target;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
+
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.CrossReference;
 
 /**

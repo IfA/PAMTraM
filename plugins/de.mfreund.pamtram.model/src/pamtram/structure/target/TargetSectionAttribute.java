@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.target;
 
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 
 /**
@@ -13,8 +14,8 @@ import pamtram.structure.generic.Attribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.TargetSectionAttribute#isUnique <em>Unique</em>}</li>
- *   <li>{@link pamtram.structure.TargetSectionAttribute#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.target.TargetSectionAttribute#isUnique <em>Unique</em>}</li>
+ *   <li>{@link pamtram.structure.target.TargetSectionAttribute#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getTargetSectionAttribute()
@@ -40,7 +41,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSection, TargetS
 	boolean isUnique();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.TargetSectionAttribute#isUnique <em>Unique</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.target.TargetSectionAttribute#isUnique <em>Unique</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Unique</em>' attribute.
@@ -66,7 +67,7 @@ public interface TargetSectionAttribute extends Attribute<TargetSection, TargetS
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.TargetSectionAttribute#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.target.TargetSectionAttribute#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.

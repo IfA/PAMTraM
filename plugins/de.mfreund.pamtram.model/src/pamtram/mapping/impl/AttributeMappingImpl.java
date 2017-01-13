@@ -22,7 +22,7 @@ import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingHintGroupType;

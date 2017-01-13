@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.target;
 
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,7 +13,7 @@ package pamtram.structure;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.FileAttribute#getFileType <em>File Type</em>}</li>
+ *   <li>{@link pamtram.structure.target.FileAttribute#getFileType <em>File Type</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getFileAttribute()
@@ -23,7 +24,7 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 
 	/**
 	 * Returns the value of the '<em><b>File Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link pamtram.structure.FileTypeEnum}.
+	 * The literals are from the enumeration {@link pamtram.structure.target.FileTypeEnum}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Type</em>' attribute isn't clear,
@@ -31,7 +32,7 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File Type</em>' attribute.
-	 * @see pamtram.structure.FileTypeEnum
+	 * @see pamtram.structure.target.FileTypeEnum
 	 * @see #setFileType(FileTypeEnum)
 	 * @see pamtram.structure.StructurePackage#getFileAttribute_FileType()
 	 * @model required="true"
@@ -40,11 +41,11 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	FileTypeEnum getFileType();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.FileAttribute#getFileType <em>File Type</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.structure.target.FileAttribute#getFileType <em>File Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Type</em>' attribute.
-	 * @see pamtram.structure.FileTypeEnum
+	 * @see pamtram.structure.target.FileTypeEnum
 	 * @see #getFileType()
 	 * @generated
 	 */

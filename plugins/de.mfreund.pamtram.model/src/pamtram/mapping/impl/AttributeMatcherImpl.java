@@ -30,7 +30,7 @@ import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

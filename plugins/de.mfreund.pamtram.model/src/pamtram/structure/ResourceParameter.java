@@ -3,6 +3,7 @@
 package pamtram.structure;
 
 import pamtram.NamedElement;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

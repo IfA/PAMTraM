@@ -5,7 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->

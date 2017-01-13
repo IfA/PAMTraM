@@ -1,17 +1,17 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.target.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionReference;
 import pamtram.structure.generic.impl.AttributeImpl;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,8 +21,8 @@ import pamtram.structure.generic.impl.AttributeImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.TargetSectionAttributeImpl#isUnique <em>Unique</em>}</li>
- *   <li>{@link pamtram.structure.impl.TargetSectionAttributeImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionAttributeImpl#isUnique <em>Unique</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated

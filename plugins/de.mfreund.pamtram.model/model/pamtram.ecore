@@ -36,8 +36,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSections" upperBound="-1"
-        eType="#//structure/TargetSection" changeable="false" volatile="true" transient="true"
-        derived="true">
+        eType="#//structure/target/TargetSection" changeable="false" volatile="true"
+        transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="List&lt;TargetSection> targetSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getTargetSectionModel().parallelStream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedTargetSectionModel().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,&#xD;&#xA;&#x9;&#x9;targetSections.size(), targetSections.toArray());"/>
       </eAnnotations>
@@ -125,10 +125,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
         eType="#//structure/LibraryEntry" containment="true"/>
     <eGenericSuperTypes eClassifier="#//SectionModel">
-      <eTypeArguments eClassifier="#//structure/TargetSection"/>
-      <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-      <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-      <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
+      <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+      <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+      <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+      <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement">
@@ -187,54 +187,6 @@
       <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="isReferencedByMappingHintGroup"/>
-      </eAnnotations>
-      <eOperations name="validateIsReferencedByMappingHintGroup" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappingHintGroups().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any hint group and will not be instantiated!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.TARGET_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappingHintGroups"
-          upperBound="-1" eType="#//mapping/MappingHintGroupType" changeable="false"
-          volatile="true" transient="true" derived="true">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.structure.StructurePackage%>.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,&#xD;&#xA;&#x9;&#x9;referencingHintGroups.size(), referencingHintGroups.toArray());"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//structure/FileAttribute"/>
-      <eGenericSuperTypes eClassifier="#//structure/TargetSectionClass"/>
-      <eGenericSuperTypes eClassifier="#//structure/generic/Section">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//structure/VirtualTargetSectionAttribute">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
-          eType="#//structure/FileTypeEnum"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="FileTypeEnum">
-      <eLiterals name="XMI"/>
-      <eLiterals name="XML" value="1"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
-      <eGenericSuperTypes eClassifier="#//structure/generic/Class">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
         eSuperTypes="#//NamedElement">
       <eTypeParameters name="ParameterType"/>
@@ -246,7 +198,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="#//structure/ActualTargetSectionAttribute" containment="true"/>
+          eType="#//structure/target/ActualTargetSectionAttribute" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
           <eTypeArguments/>
@@ -255,7 +207,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
-          eType="#//structure/TargetSection" containment="true"/>
+          eType="#//structure/target/TargetSection" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
           <eTypeArguments/>
@@ -265,7 +217,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
-          eType="#//structure/TargetSectionCrossReference" containment="true"/>
+          eType="#//structure/target/TargetSectionCrossReference" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
         <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
           <eTypeArguments/>
@@ -275,7 +227,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="#//structure/VirtualTargetSectionAttribute" containment="true"/>
+          eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter" lowerBound="1"
           eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter"/>
     </eClassifiers>
@@ -291,79 +243,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
           lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="path" lowerBound="1"
-          eType="#//structure/VirtualTargetSectionAttribute" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//structure/VirtualTargetSectionAttribute"
+          eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//structure/target/VirtualTargetSectionAttribute"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
           eType="#//structure/ResourceParameter" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true">
-      <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCompositeReference">
-      <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//structure/TargetSectionReference"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
-      <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//structure/TargetSectionReference"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="false"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute">
-      <eGenericSuperTypes eClassifier="#//structure/TargetSectionAttribute"/>
-      <eGenericSuperTypes eClassifier="#//structure/generic/ActualAttribute">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute">
-      <eGenericSuperTypes eClassifier="#//structure/TargetSectionAttribute"/>
-      <eGenericSuperTypes eClassifier="#//structure/generic/VirtualAttribute">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1216,6 +1100,125 @@
         </eGenericSuperTypes>
       </eClassifiers>
     </eSubpackages>
+    <eSubpackages name="target" nsURI="http://mfreund.de/pamtram/structure/target"
+        nsPrefix="target">
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="isReferencedByMappingHintGroup"/>
+        </eAnnotations>
+        <eOperations name="validateIsReferencedByMappingHintGroup" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappingHintGroups().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any hint group and will not be instantiated!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="referencingMappingHintGroups"
+            upperBound="-1" eType="#//mapping/MappingHintGroupType" changeable="false"
+            volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,&#xD;&#xA;&#x9;&#x9;referencingHintGroups.size(), referencingHintGroups.toArray());"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//structure/target/FileAttribute"/>
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionClass"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Section">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//structure/target/VirtualTargetSectionAttribute">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
+            eType="#//structure/target/FileTypeEnum"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EEnum" name="FileTypeEnum">
+        <eLiterals name="XMI"/>
+        <eLiterals name="XML" value="1"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
+        <eGenericSuperTypes eClassifier="#//structure/generic/Class">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true">
+        <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCompositeReference">
+        <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
+        <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+            defaultValueLiteral="false"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute">
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionAttribute"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualAttribute">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute">
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionAttribute"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/VirtualAttribute">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+    </eSubpackages>
   </eSubpackages>
   <eSubpackages name="condition" nsURI="http://mfreund.de/pamtram/condition" nsPrefix="condition">
     <eAnnotations source="http://www.eclipse.org/OCL/Import">
@@ -1398,7 +1401,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupType" abstract="true"
         eSuperTypes="#//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetSection" lowerBound="1"
-          eType="#//structure/TargetSection"/>
+          eType="#//structure/target/TargetSection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
           eType="#//mapping/MappingHint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1"
@@ -1450,7 +1453,7 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/TargetSectionAttribute"/>
+          eType="#//structure/target/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface" containment="true"/>
     </eClassifiers>
@@ -1521,7 +1524,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/source/SourceSectionClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/TargetSectionClass"/>
+          eType="#//structure/target/TargetSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1541,7 +1544,7 @@
       </eOperations>
       <eOperations name="validateAffectedReferenceMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getAffectedReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.TargetSection%> targetSection = this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((&lt;%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + hintGroupName + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="&#xD;&#xA;if(this.getAffectedReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((&lt;%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + hintGroupName + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1552,7 +1555,7 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference" lowerBound="1"
-          eType="#//structure/TargetSectionCrossReference"/>
+          eType="#//structure/target/TargetSectionCrossReference"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>
@@ -1585,7 +1588,7 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/TargetSectionAttribute"/>
+          eType="#//structure/target/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/AttributeMatcherSourceInterface" containment="true"/>
     </eClassifiers>
@@ -1602,7 +1605,7 @@
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
-          eType="#//structure/TargetSectionClass"/>
+          eType="#//structure/target/TargetSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModifiedAttributeElementType" abstract="true"
         eSuperTypes="#//NamedElement">
@@ -1714,7 +1717,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
           eType="#//mapping/ExportedMappingHintGroup"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//structure/TargetSectionClass"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//structure/target/TargetSectionClass"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
           eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
@@ -1762,7 +1765,7 @@
       </eAnnotations>
       <eOperations name="validateSourceMatchesPossibleContainerType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the parent hint group's target section ('&quot; + &#xD;&#xA;&#x9;&#x9;((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + &#xD;&#xA;&#x9;&#x9;&quot;') cannot be connected to (contained in) the type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getName() + &quot;')!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the parent hint group's target section ('&quot; + &#xD;&#xA;&#x9;&#x9;((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + &#xD;&#xA;&#x9;&#x9;&quot;') cannot be connected to (contained in) the type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getName() + &quot;')!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1773,10 +1776,10 @@
         </eParameters>
       </eOperations>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/TargetSectionAttribute"/>
+        <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+        <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//mapping/MappingHintBaseType"/>

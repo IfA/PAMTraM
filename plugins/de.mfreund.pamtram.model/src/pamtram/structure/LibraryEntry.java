@@ -5,6 +5,8 @@ package pamtram.structure;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.structure.target.VirtualTargetSectionAttribute;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Library Entry</b></em>'.

@@ -5,7 +5,7 @@ package pamtram.structure.impl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetSection;
+import pamtram.structure.target.TargetSection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

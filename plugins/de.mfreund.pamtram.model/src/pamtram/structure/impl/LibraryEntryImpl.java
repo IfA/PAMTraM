@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 import pamtram.structure.ResourceParameter;
-import pamtram.structure.VirtualTargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->

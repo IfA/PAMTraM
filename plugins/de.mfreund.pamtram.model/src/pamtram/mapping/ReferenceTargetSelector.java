@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import pamtram.structure.TargetSectionCrossReference;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ReferenceTargetSelector</b></em>'. <!--

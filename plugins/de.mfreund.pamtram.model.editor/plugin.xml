@@ -80,6 +80,18 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.target.presentation.TargetEditorID"
+            name="%_UI_TargetEditor_label"
+            icon="icons/full/obj16/TargetModelFile.gif"
+            extensions="target"
+            class="pamtram.structure.target.presentation.TargetEditor"
+            contributorClass="pamtram.structure.target.presentation.TargetActionBarContributor">
+      </editor>
+   </extension>
+
 null
 null
 null

@@ -122,6 +122,7 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactory;
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
+import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
@@ -603,6 +604,7 @@ public class StructureEditor extends MultiPageEditorPart
 		adapterFactory.addAdapterFactory(new GenericItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new SourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TargetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ModifierItemProviderAdapterFactory());

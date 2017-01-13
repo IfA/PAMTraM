@@ -171,6 +171,8 @@ import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactor
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
+import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
+import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 
 
 /**
@@ -676,6 +678,8 @@ public class ModifierEditor
 		adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenericItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TargetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ModifierItemProviderAdapterFactory());

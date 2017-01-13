@@ -102,6 +102,7 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -121,6 +122,8 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactory;
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
+import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
+import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 
 /**
  * This is an example of a Condition model editor.
@@ -600,8 +603,11 @@ public class ConditionEditor extends MultiPageEditorPart
 		adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenericItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TargetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ModifierItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

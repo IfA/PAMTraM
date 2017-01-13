@@ -156,6 +156,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 
+import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 
 import pamtram.presentation.PamtramEditorPlugin;
@@ -165,6 +166,8 @@ import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
+import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
+import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 
 
 /**
@@ -670,8 +673,11 @@ public class ConstraintEditor
 		adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenericItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new SourceItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new TargetItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new ModifierItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

@@ -55,82 +55,88 @@ import pamtram.contentprovider.IFeatureValidator;
 import pamtram.converter.HintGroupToExportedHintGroupConverter;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionAttribute;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionReference;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
- * This is the action bar contributor for the Pamtram model editor.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PamtramActionBarContributor extends EditingDomainActionBarContributor
 		implements ISelectionChangedListener {
 
 	/**
-	 * This keeps track of the active editor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IEditorPart activeEditorPart;
 
 	/**
-	 * This keeps track of the current selection provider.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ISelectionProvider selectionProvider;
 
 	/**
-	 * This action opens the Properties view.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction = new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-			@Override
-			public void run() {
-				try {
-					getPage().showView("org.eclipse.ui.views.PropertySheet");
-				}
-				catch (PartInitException exception) {
-					PamtramEditorPlugin.INSTANCE.log(exception);
-				}
+	protected IAction showPropertiesViewAction = new Action(
+			PamtramEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+
+		@Override
+		public void run() {
+
+			try {
+				PamtramActionBarContributor.this.getPage().showView("org.eclipse.ui.views.PropertySheet");
+			} catch (PartInitException exception) {
+				PamtramEditorPlugin.INSTANCE.log(exception);
 			}
-		};
+		}
+	};
 
 	/**
-	 * This action refreshes the viewer of the current editor if the editor
-	 * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This action refreshes the viewer of the current editor if the editor implements
+	 * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected IAction refreshViewerAction = new Action(PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-			@Override
-			public boolean isEnabled() {
-				return activeEditorPart instanceof IViewerProvider;
-			}
+	protected IAction refreshViewerAction = new Action(
+			PamtramEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 
-			@Override
-			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
-					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-					if (viewer != null) {
-						viewer.refresh();
-					}
+		@Override
+		public boolean isEnabled() {
+
+			return PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider;
+		}
+
+		@Override
+		public void run() {
+
+			if (PamtramActionBarContributor.this.activeEditorPart instanceof IViewerProvider) {
+				Viewer viewer = ((IViewerProvider) PamtramActionBarContributor.this.activeEditorPart).getViewer();
+				if (viewer != null) {
+					viewer.refresh();
 				}
 			}
-		};
+		}
+	};
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<IAction> createChildActions;
@@ -145,8 +151,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected Collection<IAction> createSiblingActions;
@@ -170,25 +176,27 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	protected IMenuManager otherActionsMenuManager;
 
 	/**
-	 * This creates an instance of the contributor.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PamtramActionBarContributor() {
-		super(ADDITIONS_LAST_STYLE);
-		loadResourceAction = new LoadResourceAction();
-		validateAction = new ValidateAction();
-		liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(PamtramEditorPlugin.getPlugin().getDialogSettings());
-		controlAction = new ControlAction();
+		super(EditingDomainActionBarContributor.ADDITIONS_LAST_STYLE);
+		this.loadResourceAction = new LoadResourceAction();
+		this.validateAction = new ValidateAction();
+		this.liveValidationAction = new DiagnosticDecorator.LiveValidator.LiveValidationAction(
+				PamtramEditorPlugin.getPlugin().getDialogSettings());
+		this.controlAction = new ControlAction();
 	}
 
 	/**
-	 * This adds Separators for editor additions to the tool bar.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+
 		toolBarManager.add(new Separator("pamtram-settings"));
 		toolBarManager.add(new Separator("pamtram-additions"));
 	}
@@ -242,25 +250,26 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	 */
 	@Override
 	public void setActiveEditor(IEditorPart part) {
+
 		super.setActiveEditor(part);
-		activeEditorPart = part;
+		this.activeEditorPart = part;
 
 		// Switch to the new selection provider.
 		//
-		if (selectionProvider != null) {
-			selectionProvider.removeSelectionChangedListener(this);
+		if (this.selectionProvider != null) {
+			this.selectionProvider.removeSelectionChangedListener(this);
 		}
 		if (part == null) {
-			selectionProvider = null;
-		}
-		else {
-			selectionProvider = part.getSite().getSelectionProvider();
-			selectionProvider.addSelectionChangedListener(this);
+			this.selectionProvider = null;
+		} else {
+			this.selectionProvider = part.getSite().getSelectionProvider();
+			this.selectionProvider.addSelectionChangedListener(this);
 
 			// Fake a selection changed event to update the menus.
 			//
-			if (selectionProvider.getSelection() != null) {
-				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
+			if (this.selectionProvider.getSelection() != null) {
+				this.selectionChanged(
+						new SelectionChangedEvent(this.selectionProvider, this.selectionProvider.getSelection()));
 			}
 		}
 	}
@@ -476,20 +485,20 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
-	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection,
-	 * by inserting them before the specified contribution item <code>contributionID</code>.
-	 * If <code>contributionID</code> is <code>null</code>, they are simply added.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
+	 * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
+	 * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
 			String contributionID) {
+
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
-				}
-				else {
+				} else {
 					manager.add(action);
 				}
 			}
@@ -504,20 +513,21 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	 * @generated
 	 */
 	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
+
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
-			for (int i = 0; i < items.length; i++) {
+			for (IContributionItem item : items) {
 				// Look into SubContributionItems
 				//
-				IContributionItem contributionItem = items[i];
+				IContributionItem contributionItem = item;
 				while (contributionItem instanceof SubContributionItem) {
-					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
+					contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
 				if (contributionItem instanceof ActionContributionItem) {
-					IAction action = ((ActionContributionItem)contributionItem).getAction();
+					IAction action = ((ActionContributionItem) contributionItem).getAction();
 					if (actions.contains(action)) {
 						manager.remove(contributionItem);
 					}
@@ -549,29 +559,31 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This inserts global actions before the "additions-end" separator.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager) {
-		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
-		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
-		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
-		menuManager.insertAfter("ui-actions", refreshViewerAction);
+		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
+		menuManager.insertAfter("ui-actions", this.showPropertiesViewAction);
+
+		this.refreshViewerAction.setEnabled(this.refreshViewerAction.isEnabled());
+		menuManager.insertAfter("ui-actions", this.refreshViewerAction);
 
 		super.addGlobalActions(menuManager);
 	}
 
 	/**
-	 * This ensures that a delete action will clean up all references to deleted objects.
-	 * <!-- begin-user-doc --> <!--
+	 * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected boolean removeAllReferencesOnDelete() {
+
 		return true;
 	}
 

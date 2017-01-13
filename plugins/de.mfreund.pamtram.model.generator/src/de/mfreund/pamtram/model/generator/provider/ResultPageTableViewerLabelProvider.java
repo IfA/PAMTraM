@@ -4,10 +4,10 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
  * A simple {@link ITableLabelProvider} that displays names and values of {@link Attribute Attributes}.

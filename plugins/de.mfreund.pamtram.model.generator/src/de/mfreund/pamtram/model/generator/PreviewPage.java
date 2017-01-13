@@ -46,10 +46,6 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.EnhancedContainerCheckedTreeViewer;
 import pamtram.actions.MetaModelElementMergeAction;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
@@ -59,6 +55,10 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Section;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This {@link WizardPage} will display a preview of a generated source or target {@link Section} that will get inserted

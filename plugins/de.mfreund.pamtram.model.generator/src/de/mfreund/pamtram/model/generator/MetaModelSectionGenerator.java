@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.ActualTargetSectionAttribute;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.TargetSectionClass;
@@ -31,6 +30,8 @@ import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceFactory;
 
 /**
  * This class is responsible for the generation of {@link Section MetaModelSections} from excerpts of a model.
@@ -137,8 +138,8 @@ public class MetaModelSectionGenerator {
 		boolean isSection = !this.sources.parallelStream()
 				.anyMatch(s -> EcoreUtil.isAncestor(s, source) && s != source);
 		if (this.sectionType == SectionType.SOURCE) {
-			clazz = isSection ? StructureFactory.eINSTANCE.createSourceSection()
-					: StructureFactory.eINSTANCE.createSourceSectionClass();
+			clazz = isSection ? SourceFactory.eINSTANCE.createSourceSection()
+					: SourceFactory.eINSTANCE.createSourceSectionClass();
 		} else {
 			clazz = isSection ? StructureFactory.eINSTANCE.createTargetSection()
 					: StructureFactory.eINSTANCE.createTargetSectionClass();
@@ -179,7 +180,7 @@ public class MetaModelSectionGenerator {
 		for (EAttribute eAttribute : eAttributes) {
 			Attribute<?, ?, ?, ?> attribute;
 			if (this.sectionType == SectionType.SOURCE) {
-				attribute = StructureFactory.eINSTANCE.createActualSourceSectionAttribute();
+				attribute = SourceFactory.eINSTANCE.createActualSourceSectionAttribute();
 				((ActualSourceSectionAttribute) attribute).setAttribute(eAttribute);
 			} else {
 				attribute = StructureFactory.eINSTANCE.createActualTargetSectionAttribute();
@@ -242,7 +243,7 @@ public class MetaModelSectionGenerator {
 		//
 		CompositeReference<?, ?, ?, ?> containmentReference;
 		if (this.sectionType == SectionType.SOURCE) {
-			containmentReference = StructureFactory.eINSTANCE.createSourceSectionCompositeReference();
+			containmentReference = SourceFactory.eINSTANCE.createSourceSectionCompositeReference();
 		} else {
 			containmentReference = StructureFactory.eINSTANCE.createTargetSectionCompositeReference();
 		}
@@ -304,7 +305,7 @@ public class MetaModelSectionGenerator {
 		// create a 'non containment reference' object
 		Reference<?, ?, ?, ?> nonContainmentReference;
 		if (this.sectionType == SectionType.SOURCE) {
-			nonContainmentReference = StructureFactory.eINSTANCE.createSourceSectionCrossReference();
+			nonContainmentReference = SourceFactory.eINSTANCE.createSourceSectionCrossReference();
 		} else {
 			nonContainmentReference = StructureFactory.eINSTANCE.createTargetSectionCrossReference();
 		}

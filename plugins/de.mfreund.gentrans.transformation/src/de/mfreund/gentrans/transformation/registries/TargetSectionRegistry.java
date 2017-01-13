@@ -22,8 +22,8 @@ import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * Registry for instances of targetMetamodelSections and certain structural

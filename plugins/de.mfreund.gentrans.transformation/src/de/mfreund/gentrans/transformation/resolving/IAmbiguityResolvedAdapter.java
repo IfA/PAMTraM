@@ -11,7 +11,7 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.mapping.Mapping;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This interface my be implemented to indicate that one is interested in how {@link IAmbiguityResolvingStrategy
@@ -72,7 +72,7 @@ public interface IAmbiguityResolvedAdapter {
 
 	/**
 	 * This method is called when a
-	 * {@link IAmbiguityResolvingStrategy#instantiatingSelectCardinality(List, pamtram.structure.TargetSectionClass, pamtram.mapping.InstantiableMappingHintGroup)
+	 * {@link IAmbiguityResolvingStrategy#instantiatingSelectCardinality(List, pamtram.structure.target.TargetSectionClass, pamtram.mapping.InstantiableMappingHintGroup)
 	 * instantiatingSelectCardinality} ambiguity has been resolved.
 	 *
 	 * @param choices

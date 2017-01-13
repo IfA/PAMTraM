@@ -39,9 +39,9 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.structure.FileTypeEnum;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
+import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This class is responsible for joining the unconnected target sections to form one coherent target model.

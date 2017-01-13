@@ -19,7 +19,7 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * This class can be used to calculate values of {@link TargetSectionAttribute}s.

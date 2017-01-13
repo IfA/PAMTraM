@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
-import pamtram.structure.FileAttribute;
-import pamtram.structure.FileTypeEnum;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * This class provides wrapper functionality for {@link EObject EObjects} that have been created during the transformation and

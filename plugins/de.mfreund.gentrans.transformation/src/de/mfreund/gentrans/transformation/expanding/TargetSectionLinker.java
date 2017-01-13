@@ -49,11 +49,11 @@ import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.ExternalReferenceParameter;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionCompositeReference;
-import pamtram.structure.TargetSectionCrossReference;
-import pamtram.structure.TargetSectionReference;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
+import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
  * Class for linking target model sections using the hints supplied by {@link MappingInstanceStorage

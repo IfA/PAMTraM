@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.structure.SourceSection;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc -->

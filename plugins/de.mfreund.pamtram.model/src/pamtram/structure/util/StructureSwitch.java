@@ -21,6 +21,13 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->

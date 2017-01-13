@@ -1,9 +1,10 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.source;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.Attribute;
 
@@ -17,7 +18,7 @@ import pamtram.structure.generic.Attribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getSourceSectionAttribute()

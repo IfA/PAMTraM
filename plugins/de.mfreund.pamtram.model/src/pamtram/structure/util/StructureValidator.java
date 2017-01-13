@@ -13,6 +13,13 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.*;
 import pamtram.structure.generic.util.GenericValidator;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc

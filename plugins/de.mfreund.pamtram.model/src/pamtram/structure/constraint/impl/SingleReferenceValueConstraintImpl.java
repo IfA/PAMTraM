@@ -34,7 +34,6 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.SourceSection;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
@@ -45,6 +44,7 @@ import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.constraint.util.ConstraintValidator;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Reference Value Constraint</b></em>'.

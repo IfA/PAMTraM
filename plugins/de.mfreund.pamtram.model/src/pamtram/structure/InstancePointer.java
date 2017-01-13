@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.ModifiableHint;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc

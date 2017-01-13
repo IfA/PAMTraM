@@ -23,7 +23,6 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.structure.InstancePointerExternalSourceElement;
 import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.SourceSection;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
@@ -33,6 +32,7 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Choice Constraint</b></em>'. <!-- end-user-doc

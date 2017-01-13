@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorExternalSourceElement;
 import pamtram.mapping.ContainerSelectorSourceElement;

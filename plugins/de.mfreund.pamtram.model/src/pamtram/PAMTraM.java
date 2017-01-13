@@ -5,8 +5,8 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
+import pamtram.structure.source.SourceSection;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
@@ -121,7 +121,7 @@ public interface PAMTraM extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Source Sections</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.structure.SourceSection}.
+	 * The list contents are of type {@link pamtram.structure.source.SourceSection}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Sections</em>' reference list isn't clear,

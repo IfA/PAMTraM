@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.mapping.Mapping;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->

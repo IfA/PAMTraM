@@ -10,13 +10,13 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Value Constraint Source Element</b></em>'. <!--

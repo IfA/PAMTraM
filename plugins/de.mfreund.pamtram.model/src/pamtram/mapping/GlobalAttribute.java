@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 
 /**

@@ -1,15 +1,15 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.source.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.ReferenceImpl;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Source Section Reference</b></em>'. <!--

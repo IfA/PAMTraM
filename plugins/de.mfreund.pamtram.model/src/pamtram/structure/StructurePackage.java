@@ -64,10 +64,10 @@ public interface StructurePackage extends EPackage {
 	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionClassImpl
+	 * @see pamtram.structure.source.impl.SourceSectionClassImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionClass()
 	 * @generated
 	 */
@@ -236,10 +236,10 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_SECTION_CLASS_OPERATION_COUNT = GenericPackage.CLASS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionImpl <em>Source Section</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionImpl <em>Source Section</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionImpl
+	 * @see pamtram.structure.source.impl.SourceSectionImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSection()
 	 * @generated
 	 */
@@ -919,10 +919,10 @@ public interface StructurePackage extends EPackage {
 	int LIBRARY_ENTRY = 10;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionReferenceImpl
+	 * @see pamtram.structure.source.impl.SourceSectionReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionReference()
 	 * @generated
 	 */
@@ -2026,10 +2026,10 @@ public interface StructurePackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionCompositeReferenceImpl <em>Source Section Composite Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl <em>Source Section Composite Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionCompositeReferenceImpl
+	 * @see pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCompositeReference()
 	 * @generated
 	 */
@@ -2153,10 +2153,10 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionCrossReferenceImpl
+	 * @see pamtram.structure.source.impl.SourceSectionCrossReferenceImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCrossReference()
 	 * @generated
 	 */
@@ -2280,10 +2280,10 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.SourceSectionAttributeImpl
+	 * @see pamtram.structure.source.impl.SourceSectionAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
@@ -2362,10 +2362,10 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = GenericPackage.ATTRIBUTE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.source.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ActualSourceSectionAttributeImpl
+	 * @see pamtram.structure.source.impl.ActualSourceSectionAttributeImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getActualSourceSectionAttribute()
 	 * @generated
 	 */
@@ -2872,32 +2872,32 @@ public interface StructurePackage extends EPackage {
 	int FILE_TYPE_ENUM = 26;
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSection <em>Source Section</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSection <em>Source Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section</em>'.
-	 * @see pamtram.structure.SourceSection
+	 * @see pamtram.structure.source.SourceSection
 	 * @generated
 	 */
 	EClass getSourceSection();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.SourceSection#getReferencingMappings <em>Referencing Mappings</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.source.SourceSection#getReferencingMappings <em>Referencing Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Referencing Mappings</em>'.
-	 * @see pamtram.structure.SourceSection#getReferencingMappings()
+	 * @see pamtram.structure.source.SourceSection#getReferencingMappings()
 	 * @see #getSourceSection()
 	 * @generated
 	 */
 	EReference getSourceSection_ReferencingMappings();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.SourceSection#validateIsReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Referenced By Mapping</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.source.SourceSection#validateIsReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Referenced By Mapping</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Is Referenced By Mapping</em>' operation.
-	 * @see pamtram.structure.SourceSection#validateIsReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.source.SourceSection#validateIsReferencedByMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getSourceSection__ValidateIsReferencedByMapping__DiagnosticChain_Map();
@@ -2966,11 +2966,11 @@ public interface StructurePackage extends EPackage {
 	EAttribute getFileAttribute_FileType();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionClass <em>Source Section Class</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionClass <em>Source Section Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Class</em>'.
-	 * @see pamtram.structure.SourceSectionClass
+	 * @see pamtram.structure.source.SourceSectionClass
 	 * @generated
 	 */
 	EClass getSourceSectionClass();
@@ -3189,11 +3189,11 @@ public interface StructurePackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionReference <em>Source Section Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionReference <em>Source Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Reference</em>'.
-	 * @see pamtram.structure.SourceSectionReference
+	 * @see pamtram.structure.source.SourceSectionReference
 	 * @generated
 	 */
 	EClass getSourceSectionReference();
@@ -3239,52 +3239,52 @@ public interface StructurePackage extends EPackage {
 	EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionCompositeReference <em>Source Section Composite Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionCompositeReference <em>Source Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Composite Reference</em>'.
-	 * @see pamtram.structure.SourceSectionCompositeReference
+	 * @see pamtram.structure.source.SourceSectionCompositeReference
 	 * @generated
 	 */
 	EClass getSourceSectionCompositeReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionCrossReference <em>Source Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Cross Reference</em>'.
-	 * @see pamtram.structure.SourceSectionCrossReference
+	 * @see pamtram.structure.source.SourceSectionCrossReference
 	 * @generated
 	 */
 	EClass getSourceSectionCrossReference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.SourceSectionAttribute <em>Source Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionAttribute <em>Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Source Section Attribute</em>'.
-	 * @see pamtram.structure.SourceSectionAttribute
+	 * @see pamtram.structure.source.SourceSectionAttribute
 	 * @generated
 	 */
 	EClass getSourceSectionAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
-	 * @see pamtram.structure.SourceSectionAttribute#getValueConstraint()
+	 * @see pamtram.structure.source.SourceSectionAttribute#getValueConstraint()
 	 * @see #getSourceSectionAttribute()
 	 * @generated
 	 */
 	EReference getSourceSectionAttribute_ValueConstraint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.source.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actual Source Section Attribute</em>'.
-	 * @see pamtram.structure.ActualSourceSectionAttribute
+	 * @see pamtram.structure.source.ActualSourceSectionAttribute
 	 * @generated
 	 */
 	EClass getActualSourceSectionAttribute();
@@ -3447,10 +3447,10 @@ public interface StructurePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionImpl <em>Source Section</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionImpl <em>Source Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionImpl
+		 * @see pamtram.structure.source.impl.SourceSectionImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSection()
 		 * @generated
 		 */
@@ -3525,10 +3525,10 @@ public interface StructurePackage extends EPackage {
 		EAttribute FILE_ATTRIBUTE__FILE_TYPE = eINSTANCE.getFileAttribute_FileType();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionClassImpl <em>Source Section Class</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionClassImpl
+		 * @see pamtram.structure.source.impl.SourceSectionClassImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionClass()
 		 * @generated
 		 */
@@ -3709,10 +3709,10 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionReferenceImpl <em>Source Section Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionReferenceImpl
+		 * @see pamtram.structure.source.impl.SourceSectionReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionReference()
 		 * @generated
 		 */
@@ -3757,30 +3757,30 @@ public interface StructurePackage extends EPackage {
 		EOperation TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionCompositeReferenceImpl <em>Source Section Composite Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl <em>Source Section Composite Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionCompositeReferenceImpl
+		 * @see pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCompositeReference()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_COMPOSITE_REFERENCE = eINSTANCE.getSourceSectionCompositeReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionCrossReferenceImpl <em>Source Section Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionCrossReferenceImpl
+		 * @see pamtram.structure.source.impl.SourceSectionCrossReferenceImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionCrossReference()
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CROSS_REFERENCE = eINSTANCE.getSourceSectionCrossReference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionAttributeImpl <em>Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.SourceSectionAttributeImpl
+		 * @see pamtram.structure.source.impl.SourceSectionAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getSourceSectionAttribute()
 		 * @generated
 		 */
@@ -3795,10 +3795,10 @@ public interface StructurePackage extends EPackage {
 		EReference SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = eINSTANCE.getSourceSectionAttribute_ValueConstraint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ActualSourceSectionAttributeImpl
+		 * @see pamtram.structure.source.impl.ActualSourceSectionAttributeImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getActualSourceSectionAttribute()
 		 * @generated
 		 */

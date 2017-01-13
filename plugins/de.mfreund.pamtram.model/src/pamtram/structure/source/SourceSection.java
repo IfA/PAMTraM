@@ -1,11 +1,12 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.source;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.mapping.MappingType;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Section;
 
 
@@ -18,7 +19,7 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.SourceSection#getReferencingMappings <em>Referencing Mappings</em>}</li>
+ *   <li>{@link pamtram.structure.source.SourceSection#getReferencingMappings <em>Referencing Mappings</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getSourceSection()

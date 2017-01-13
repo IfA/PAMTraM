@@ -12,7 +12,7 @@ import pamtram.PamtramPackage;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.MappingType;
-import pamtram.structure.SourceSection;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc -->

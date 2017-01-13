@@ -9,6 +9,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.structure.*;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.impl.ActualSourceSectionAttributeImpl;
+import pamtram.structure.source.impl.SourceSectionClassImpl;
+import pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl;
+import pamtram.structure.source.impl.SourceSectionCrossReferenceImpl;
+import pamtram.structure.source.impl.SourceSectionImpl;
 
 /**
  * <!-- begin-user-doc -->

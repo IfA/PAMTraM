@@ -2,7 +2,7 @@
  */
 package pamtram.condition;
 
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->

@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.ActualSourceSectionAttribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 
 /**

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.source.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ValueConstraint;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
 import pamtram.structure.generic.impl.AttributeImpl;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import pamtram.structure.generic.impl.AttributeImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.structure.source.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
  * </ul>
  *
  * @generated

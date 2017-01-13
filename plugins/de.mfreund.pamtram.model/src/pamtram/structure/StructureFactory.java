@@ -4,6 +4,12 @@ package pamtram.structure;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionCrossReference;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

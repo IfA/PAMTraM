@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.source.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -8,11 +8,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.impl.CompositeReferenceImpl;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionCompositeReference;
-import pamtram.structure.SourceSectionReference;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Source Section Containment Reference</b></em>'.
@@ -26,18 +26,21 @@ public class SourceSectionCompositeReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected SourceSectionCompositeReferenceImpl() {
+	public SourceSectionCompositeReferenceImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return StructurePackage.Literals.SOURCE_SECTION_COMPOSITE_REFERENCE;
 	}
 
@@ -49,10 +52,12 @@ public class SourceSectionCompositeReferenceImpl extends
 	 */
 	@Override
 	public EList<SourceSectionClass> getValue() {
-		if (value == null) {
-			value = new EObjectContainmentEList<SourceSectionClass>(SourceSectionClass.class, this, StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE);
+
+		if (this.value == null) {
+			this.value = new EObjectContainmentEList<>(SourceSectionClass.class, this,
+					StructurePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE);
 		}
-		return value;
+		return this.value;
 	}
 
 	@Override

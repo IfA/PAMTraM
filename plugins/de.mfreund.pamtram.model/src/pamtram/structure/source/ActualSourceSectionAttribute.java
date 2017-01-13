@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.source;
 
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.ActualAttribute;
 
 /**

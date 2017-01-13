@@ -5,7 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 
 /**

@@ -14,7 +14,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.structure.SourceSection;
+import pamtram.structure.source.SourceSection;
 
 /**
  * <!-- begin-user-doc -->

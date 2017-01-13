@@ -24,10 +24,10 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.impl.ExpressionHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.util.StructureValidator;
 
 /**

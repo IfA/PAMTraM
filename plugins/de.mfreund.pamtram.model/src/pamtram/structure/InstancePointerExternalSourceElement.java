@@ -3,6 +3,10 @@
 package pamtram.structure;
 
 import pamtram.mapping.ExternalModifiedAttributeElementType;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->

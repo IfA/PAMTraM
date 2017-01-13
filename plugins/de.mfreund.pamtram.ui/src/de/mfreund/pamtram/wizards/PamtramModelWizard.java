@@ -67,10 +67,12 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.SourceSection;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSection;
+import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.SourceSection;
 
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -114,6 +116,16 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	 * This caches an instance of the 'structure' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected StructurePackage structurePackage = StructurePackage.eINSTANCE;
+
+	/**
+	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	protected SourceFactory sourceFactory = this.sourcePackage.getSourceFactory();
+
+	/**
+	 * This caches an instance of the 'structure' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	protected SourcePackage sourcePackage = SourcePackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -254,7 +266,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		}
 		for (SourceSectionModel ssm : pamtram.getSourceSectionModel()) {
 			// add an empty source section to each source section model
-			SourceSection sourceSection = this.structureFactory.createSourceSection();
+			SourceSection sourceSection = this.sourceFactory.createSourceSection();
 			sourceSection.setName("source");
 			ssm.getMetaModelSections().add(sourceSection);
 		}

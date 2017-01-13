@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:structure="http://mfreund.de/pamtram/structure">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModel>
     <metaModelPackage href="http://mm3#/"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="Library">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Library">
       <eClass href="http://mm3#//Library"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm3#//Library/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="Member">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Member">
       <eClass href="http://mm3#//Member"/>
-      <references xsi:type="structure:SourceSectionCrossReference" name="bookLoans" value="//@sourceSectionModel.0/@metaModelSections.2">
+      <references 
+xsi:type="source:SourceSectionCrossReference" name="bookLoans" value="//@sourceSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm3#//Member/bookLoans"/>
       </references>
-      <references xsi:type="structure:SourceSectionCrossReference" name="filmLoans" value="//@sourceSectionModel.0/@metaModelSections.3">
+      <references 
+xsi:type="source:SourceSectionCrossReference" name="filmLoans" value="//@sourceSectionModel.0/@metaModelSections.3">
         <eReference href="http://mm3#//Member/filmLoans"/>
       </references>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm3#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="Book" cardinality="ZERO__INFINITY">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Book" cardinality="ZERO__INFINITY">
       <eClass href="http://mm3#//Book"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm3#//Book/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="Film" cardinality="ZERO__INFINITY">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Film" cardinality="ZERO__INFINITY">
       <eClass href="http://mm3#//Film"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm3#//Film/name"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://mm4#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="Library">
+    <metaModelSections xsi:type="target:TargetSection" name="Library">
       <eClass href="http://mm4#//Library"/>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="Member">
+    <metaModelSections xsi:type="target:TargetSection" name="Member">
       <eClass href="http://mm4#//Member"/>
-      <references xsi:type="structure:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
+      <references xsi:type="target:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm4#//Member/loans"/>
       </references>
-      <references xsi:type="structure:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
+      <references xsi:type="target:TargetSectionCrossReference" name="loans" value="//@targetSectionModel.0/@metaModelSections.2">
         <eReference href="http://mm4#//Member/loans"/>
       </references>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm4#//Member/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="Medium">
+    <metaModelSections xsi:type="target:TargetSection" name="Medium">
       <eClass href="http://mm4#//Medium"/>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm4#//Medium/name"/>
       </attributes>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="type">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="type">
         <attribute href="http://mm4#//Medium/type"/>
       </attributes>
     </metaModelSections>

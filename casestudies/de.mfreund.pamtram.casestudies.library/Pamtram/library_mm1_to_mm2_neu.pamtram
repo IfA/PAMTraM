@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel" name="mm1">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm1#/"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="Library">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm1#//Library"/>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="books">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="books">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Library/books"/>
-        <value xsi:type="structure:SourceSectionClass" name="Book" cardinality="ZERO__INFINITY">
+        <value 
+xsi:type="source:SourceSectionClass" name="Book" cardinality="ZERO__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm1#//Book"/>
-          <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+          <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
             <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Book/name"/>
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="members">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="members">
         <eReference xsi:type="ecore:EReference" href="http://mm1#//Library/members"/>
-        <value xsi:type="structure:SourceSectionClass" name="Member" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
+        <value 
+xsi:type="source:SourceSectionClass" name="Member" cardinality="ZERO__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.0">
           <eClass xsi:type="ecore:EClass" href="http://mm1#//Member"/>
-          <references xsi:type="structure:SourceSectionCrossReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0">
+          <references 
+xsi:type="source:SourceSectionCrossReference" name="loans" value="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://mm1#//Member/loans"/>
           </references>
-          <attributes xsi:type="structure:ActualSourceSectionAttribute" name="name">
+          <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="name">
             <attribute xsi:type="ecore:EAttribute" href="http://mm1#//Member/name"/>
           </attributes>
         </value>
@@ -29,37 +37,37 @@
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel" name="mm2">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm2#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="Library">
+    <metaModelSections xsi:type="target:TargetSection" name="Library">
       <eClass xsi:type="ecore:EClass" href="http://mm2#//Library"/>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="members">
+      <references xsi:type="target:TargetSectionCompositeReference" name="members">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/members"/>
-        <value xsi:type="structure:TargetSectionClass" name="Member" cardinality="ONE__INFINITY">
+        <value xsi:type="target:TargetSectionClass" name="Member" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Member"/>
-          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name" unique="true">
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="name" unique="true">
             <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Member/name"/>
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="loans">
+      <references xsi:type="target:TargetSectionCompositeReference" name="loans">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/loans"/>
-        <value xsi:type="structure:TargetSectionClass" name="Loan" cardinality="ONE__INFINITY">
+        <value xsi:type="target:TargetSectionClass" name="Loan" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Loan"/>
-          <references xsi:type="structure:TargetSectionCrossReference" name="member">
+          <references xsi:type="target:TargetSectionCrossReference" name="member">
             <eReference xsi:type="ecore:EReference" href="http://mm2#//Loan/member"/>
           </references>
-          <references xsi:type="structure:TargetSectionCrossReference" name="book">
+          <references xsi:type="target:TargetSectionCrossReference" name="book">
             <eReference xsi:type="ecore:EReference" href="http://mm2#//Loan/book"/>
           </references>
-          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name">
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
             <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Loan/name"/>
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="books">
+      <references xsi:type="target:TargetSectionCompositeReference" name="books">
         <eReference xsi:type="ecore:EReference" href="http://mm2#//Library/books"/>
-        <value xsi:type="structure:TargetSectionClass" name="Book" cardinality="ONE__INFINITY">
+        <value xsi:type="target:TargetSectionClass" name="Book" cardinality="ONE__INFINITY">
           <eClass xsi:type="ecore:EClass" href="http://mm2#//Book"/>
-          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="name" unique="true">
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="name" unique="true">
             <attribute xsi:type="ecore:EAttribute" href="http://mm2#//Book/name"/>
           </attributes>
         </value>

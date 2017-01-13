@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
       </attributes>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="associatedWith">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="AbstractInteractionUnit">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="AbstractInteractionUnit">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>

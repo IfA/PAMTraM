@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="Confirmation">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="Confirmation">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="role">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
       </attributes>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="Button">
+    <metaModelSections xsi:type="target:TargetSection" name="Button">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Comment">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Comment">
         <attribute href="http://stefan-hennig.de/movisa#//CommentedMovisaModelElement/Comment"/>
       </attributes>
     </metaModelSections>

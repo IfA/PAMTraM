@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="AbstractUserInterfaceModel">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="abstractInteractionUnit">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="abstractInteractionUnit">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
-        <value xsi:type="structure:SourceSectionClass" name="AbstractInteractionUnit" cardinality="ZERO__INFINITY">
+        <value 
+xsi:type="source:SourceSectionClass" name="AbstractInteractionUnit" cardinality="ZERO__INFINITY">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-          <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+          <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
           </attributes>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="AbstractInteractionUnit">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="AbstractInteractionUnit">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+    <metaModelSections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="Button">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="Button">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="Panel">
+    <metaModelSections xsi:type="target:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedUIComponent">
+      <references xsi:type="target:TargetSectionCompositeReference" name="OwnedUIComponent">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Panel/OwnedUIComponent"/>
-        <value xsi:type="structure:TargetSectionClass" name="Button" cardinality="ZERO__INFINITY">
+        <value xsi:type="target:TargetSectionClass" name="Button" cardinality="ZERO__INFINITY">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="Button_inside_Panel">
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="Button_inside_Panel">
             <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
           </attributes>
         </value>

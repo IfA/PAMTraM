@@ -1,49 +1,64 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModel>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="structure:SourceSection" name="RadioButtonGroup">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="RadioButtonGroup">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="aggregatedIn">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value xsi:type="structure:SourceSectionClass" name="Composition">
+        <value 
+xsi:type="source:SourceSectionClass" name="Composition">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes xsi:type="structure:ActualSourceSectionAttribute" name="compositionRole">
+          <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes xsi:type="structure:ActualSourceSectionAttribute" name="associatedWith">
+          <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
             <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="eventSupport">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value xsi:type="structure:SourceSectionClass" name="EventSupport">
+        <value 
+xsi:type="source:SourceSectionClass" name="EventSupport">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references xsi:type="structure:SourceSectionCompositeReference" name="dataInputOutputSupport">
+          <references 
+xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
+            <value 
+xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="dataType">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:SourceSectionCompositeReference" name="dataSelectionSupport">
+          <references 
+xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
+            <value 
+xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="selectionType">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
@@ -51,46 +66,60 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="RadioButton">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="RadioButton">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references xsi:type="structure:SourceSectionCompositeReference" name="eventSupport">
+      <references 
+xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value xsi:type="structure:SourceSectionClass" name="EventSupport">
+        <value 
+xsi:type="source:SourceSectionClass" name="EventSupport">
           <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references xsi:type="structure:SourceSectionCompositeReference" name="dataInputOutputSupport">
+          <references 
+xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value xsi:type="structure:SourceSectionClass" name="DataInputOutputSupport">
+            <value 
+xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="dataType">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="defaultValue">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:SourceSectionCompositeReference" name="dataSelectionSupport">
+          <references 
+xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value xsi:type="structure:SourceSectionClass" name="DataSelectionSupport">
+            <value 
+xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
               <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
-              <attributes xsi:type="structure:ActualSourceSectionAttribute" name="selectionType">
+              <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
                 <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
               </attributes>
@@ -98,269 +127,273 @@
           </references>
         </value>
       </references>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="role">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name=""/>
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:SourceSection" name="AIU base" abstract="true">
+    <metaModelSections 
+xsi:type="source:SourceSection" name="AIU base" abstract="true">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="structure:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <targetSectionModel>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="structure:TargetSection" name="RadioButtonGroup">
+    <metaModelSections xsi:type="target:TargetSection" name="RadioButtonGroup">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup"/>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Representation">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup/Representation"/>
-        <value xsi:type="structure:TargetSectionClass" name="RadioButtonGroupRepresentation">
+        <value xsi:type="target:TargetSectionClass" name="RadioButtonGroupRepresentation">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroupRepresentation"/>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="Position">
+          <references xsi:type="target:TargetSectionCompositeReference" name="Position">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
-            <value xsi:type="structure:TargetSectionClass" name="Position">
+            <value xsi:type="target:TargetSectionClass" name="Position">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="X">
+              <references xsi:type="target:TargetSectionCompositeReference" name="X">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="xValueRadioButtonGroup" value="">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="xValueRadioButtonGroup" value="">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Y">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Y">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="yValueRadioButtonGroup" value="0">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="yValueRadioButtonGroup" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Z">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Z">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="zValueRadioButtonGroup" value="0">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="zValueRadioButtonGroup" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupPosition">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupPosition">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="Size">
+          <references xsi:type="target:TargetSectionCompositeReference" name="Size">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
-            <value xsi:type="structure:TargetSectionClass" name="Size">
+            <value xsi:type="target:TargetSectionClass" name="Size">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Height">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Height">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
-                <value xsi:type="structure:TargetSectionClass" name="RadioButtonGroupHeight">
+                <value xsi:type="target:TargetSectionClass" name="RadioButtonGroupHeight">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupHeight">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupHeight">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="5">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="5">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Width">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Width">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
-                <value xsi:type="structure:TargetSectionClass" name="RadioButtonGroupWidth">
+                <value xsi:type="target:TargetSectionClass" name="RadioButtonGroupWidth">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupWidth">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupWidth">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="5">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="5">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupSize">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="RadioButtonGroupSize">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="virtualRadioButtonGroupRepresentationName" value=""/>
+          <attributes xsi:type="target:VirtualTargetSectionAttribute" name="virtualRadioButtonGroupRepresentationName" value=""/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Option">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Option">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/RadioButtonGroup/Option"/>
       </references>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="RadioButtonGroupName" value="">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="RadioButtonGroupName" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="DropDown">
+    <metaModelSections xsi:type="target:TargetSection" name="DropDown">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/DropDown"/>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Representation">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/DropDown/Representation"/>
-        <value xsi:type="structure:TargetSectionClass" name="DropDownRepresentation">
+        <value xsi:type="target:TargetSectionClass" name="DropDownRepresentation">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/DropDownRepresentation"/>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="DropDownOption">
+          <references xsi:type="target:TargetSectionCompositeReference" name="DropDownOption">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/DropDownRepresentation/DropDownOption"/>
           </references>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="Position">
+          <references xsi:type="target:TargetSectionCompositeReference" name="Position">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Position"/>
-            <value xsi:type="structure:TargetSectionClass" name="Position">
+            <value xsi:type="target:TargetSectionClass" name="Position">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Position"/>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="X">
+              <references xsi:type="target:TargetSectionCompositeReference" name="X">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/X"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="XPropertyDropDown">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="XPropertyDropDown">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="xValueDropDown" value="0">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="xValueDropDown" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Y">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Y">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Y"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="y">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="y">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="0">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Z">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Z">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Position/Z"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="z">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="z">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="0">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="0">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="position">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="position">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="Size">
+          <references xsi:type="target:TargetSectionCompositeReference" name="Size">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Representation/Size"/>
-            <value xsi:type="structure:TargetSectionClass" name="Size">
+            <value xsi:type="target:TargetSectionClass" name="Size">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Size"/>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Height">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Height">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Height"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="height">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="height">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="0.5">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="0.5">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <references xsi:type="structure:TargetSectionCompositeReference" name="Width">
+              <references xsi:type="target:TargetSectionCompositeReference" name="Width">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Size/Width"/>
-                <value xsi:type="structure:TargetSectionClass" name="ScaledProperty">
+                <value xsi:type="target:TargetSectionClass" name="ScaledProperty">
                   <eClass href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty"/>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="width">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="width">
                     <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
                   </attributes>
-                  <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value" value="3">
+                  <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="3">
                     <attribute href="http://stefan-hennig.de/movisa#//presentation/ScaledProperty/Value"/>
                   </attributes>
                 </value>
               </references>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Name" value="size">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="size">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
-          <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="virtualDropDownRepresentationName"/>
+          <attributes xsi:type="target:VirtualTargetSectionAttribute" name="virtualDropDownRepresentationName"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Interaction">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Interaction">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/DropDown/Interaction"/>
-        <value xsi:type="structure:TargetSectionClass" name="DropDownInteraction">
+        <value xsi:type="target:TargetSectionClass" name="DropDownInteraction">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/DropDownInteraction"/>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="CommonTrigger">
+          <references xsi:type="target:TargetSectionCompositeReference" name="CommonTrigger">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
-            <value xsi:type="structure:TargetSectionClass" name="Click">
+            <value xsi:type="target:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.1/@references.1/@value.0/@references.1/@value.0">
+              <references xsi:type="target:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.1/@references.1/@value.0/@references.1/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedEffect">
+          <references xsi:type="target:TargetSectionCompositeReference" name="OwnedEffect">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
-            <value xsi:type="structure:TargetSectionClass" name="DropDownSendSignalEffect">
+            <value xsi:type="target:TargetSectionClass" name="DropDownSendSignalEffect">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="DropDownSignalName">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="DropDownSignalName">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="DropDownName">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="DropDownName">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="RadioButton">
+    <metaModelSections xsi:type="target:TargetSection" name="RadioButton">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/RadioButton"/>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Representation">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/RadioButton/Representation"/>
-        <value xsi:type="structure:TargetSectionClass" name="RadioButtonRepresentation">
+        <value xsi:type="target:TargetSectionClass" name="RadioButtonRepresentation">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/RadioButtonRepresentation"/>
-          <attributes xsi:type="structure:ActualTargetSectionAttribute" name="RadioButtonValue">
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="RadioButtonValue">
             <attribute href="http://stefan-hennig.de/movisa#//presentation/RadioButtonRepresentation/Value"/>
           </attributes>
-          <attributes xsi:type="structure:VirtualTargetSectionAttribute" name="virtualRadioButtonRepresentationName"/>
+          <attributes xsi:type="target:VirtualTargetSectionAttribute" name="virtualRadioButtonRepresentationName"/>
         </value>
       </references>
-      <references xsi:type="structure:TargetSectionCompositeReference" name="Interaction">
+      <references xsi:type="target:TargetSectionCompositeReference" name="Interaction">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/RadioButton/Interaction"/>
-        <value xsi:type="structure:TargetSectionClass" name="RadioButtonInteraction">
+        <value xsi:type="target:TargetSectionClass" name="RadioButtonInteraction">
           <eClass href="http://stefan-hennig.de/movisa#//presentation/RadioButtonInteraction"/>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="CommonTrigger">
+          <references xsi:type="target:TargetSectionCompositeReference" name="CommonTrigger">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/CommonTrigger"/>
-            <value xsi:type="structure:TargetSectionClass" name="Click">
+            <value xsi:type="target:TargetSectionClass" name="Click">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/Click"/>
-              <references xsi:type="structure:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0">
+              <references xsi:type="target:TargetSectionCrossReference" name="Effect" value="//@targetSectionModel.0/@metaModelSections.2/@references.1/@value.0/@references.1/@value.0">
                 <eReference href="http://stefan-hennig.de/movisa#//presentation/Trigger/Effect"/>
               </references>
             </value>
           </references>
-          <references xsi:type="structure:TargetSectionCompositeReference" name="OwnedEffect">
+          <references xsi:type="target:TargetSectionCompositeReference" name="OwnedEffect">
             <eReference href="http://stefan-hennig.de/movisa#//presentation/Interaction/OwnedEffect"/>
-            <value xsi:type="structure:TargetSectionClass" name="RadioButtonSendSignalEffect">
+            <value xsi:type="target:TargetSectionClass" name="RadioButtonSendSignalEffect">
               <eClass href="http://stefan-hennig.de/movisa#//presentation/SendSignalEffect"/>
-              <attributes xsi:type="structure:ActualTargetSectionAttribute" name="RadioButtonSignalName">
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="RadioButtonSignalName">
                 <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="RadioButtonName" value="">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="RadioButtonName" value="">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="structure:TargetSection" name="DropDownOption" container="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0">
+    <metaModelSections xsi:type="target:TargetSection" name="DropDownOption" container="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/DropDownOption"/>
-      <attributes xsi:type="structure:ActualTargetSectionAttribute" name="Value">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value">
         <attribute href="http://stefan-hennig.de/movisa#//presentation/DropDownOption/Value"/>
       </attributes>
     </metaModelSections>

@@ -21,12 +21,6 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import pamtram.structure.source.provider.ActualSourceSectionAttributeItemProvider;
-import pamtram.structure.source.provider.SourceSectionClassItemProvider;
-import pamtram.structure.source.provider.SourceSectionCompositeReferenceItemProvider;
-import pamtram.structure.source.provider.SourceSectionCrossReferenceItemProvider;
-import pamtram.structure.source.provider.SourceSectionItemProvider;
 import pamtram.structure.util.StructureAdapterFactory;
 
 /**
@@ -87,29 +81,6 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.SourceSection} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SourceSectionItemProvider sourceSectionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.source.SourceSection}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSourceSectionAdapter() {
-		if (sourceSectionItemProvider == null) {
-			sourceSectionItemProvider = new SourceSectionItemProvider(this);
-		}
-
-		return sourceSectionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetSection} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,29 +124,6 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 		}
 
 		return fileAttributeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.SourceSectionClass} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SourceSectionClassItemProvider sourceSectionClassItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.source.SourceSectionClass}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSourceSectionClassAdapter() {
-		if (sourceSectionClassItemProvider == null) {
-			sourceSectionClassItemProvider = new SourceSectionClassItemProvider(this);
-		}
-
-		return sourceSectionClassItemProvider;
 	}
 
 	/**
@@ -348,75 +296,6 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 		}
 
 		return targetSectionCrossReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.SourceSectionCompositeReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SourceSectionCompositeReferenceItemProvider sourceSectionCompositeReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.source.SourceSectionCompositeReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSourceSectionCompositeReferenceAdapter() {
-		if (sourceSectionCompositeReferenceItemProvider == null) {
-			sourceSectionCompositeReferenceItemProvider = new SourceSectionCompositeReferenceItemProvider(this);
-		}
-
-		return sourceSectionCompositeReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.SourceSectionCrossReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SourceSectionCrossReferenceItemProvider sourceSectionCrossReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.source.SourceSectionCrossReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSourceSectionCrossReferenceAdapter() {
-		if (sourceSectionCrossReferenceItemProvider == null) {
-			sourceSectionCrossReferenceItemProvider = new SourceSectionCrossReferenceItemProvider(this);
-		}
-
-		return sourceSectionCrossReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.ActualSourceSectionAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ActualSourceSectionAttributeItemProvider actualSourceSectionAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.source.ActualSourceSectionAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createActualSourceSectionAttributeAdapter() {
-		if (actualSourceSectionAttributeItemProvider == null) {
-			actualSourceSectionAttributeItemProvider = new ActualSourceSectionAttributeItemProvider(this);
-		}
-
-		return actualSourceSectionAttributeItemProvider;
 	}
 
 	/**

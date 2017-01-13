@@ -65,6 +65,20 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated pamtram -->
       <factory
+            uri="http://mfreund.de/pamtram/structure/source"
+            class="pamtram.structure.source.provider.SourceItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource
+               org.eclipse.emf.edit.provider.IItemStyledLabelProvider"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated pamtram -->
+      <factory
             uri="http://mfreund.de/pamtram/condition"
             class="pamtram.condition.provider.ConditionItemProviderAdapterFactory"
             supportedTypes=

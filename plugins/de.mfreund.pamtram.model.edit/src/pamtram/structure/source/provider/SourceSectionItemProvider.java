@@ -17,11 +17,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
+import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 
 /**
@@ -131,7 +130,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_SourceSection_referencingMappings_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
-				 StructurePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
+				 SourcePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
 				 false,
 				 false,
 				 false,
@@ -224,7 +223,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSection.class)) {
-			case StructurePackage.SOURCE_SECTION__ABSTRACT:
+			case SourcePackage.SOURCE_SECTION__ABSTRACT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

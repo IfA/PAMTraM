@@ -15,9 +15,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.generic.provider.AttributeItemProvider;
+import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSectionAttribute;
 
 /**
@@ -64,7 +64,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			childrenFeatures.add(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
-			case StructurePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,22 +138,22 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createEqualityConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createChoiceConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
 				 ConstraintFactory.eINSTANCE.createStringConstraint()));
 	}
 

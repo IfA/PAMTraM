@@ -18,15 +18,15 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.InstancePointer;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class can be used to calculate reference values of {@link ValueConstraint AttributeValueConstraints}.

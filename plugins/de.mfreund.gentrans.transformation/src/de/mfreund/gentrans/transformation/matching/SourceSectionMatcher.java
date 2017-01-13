@@ -35,12 +35,6 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
 import pamtram.mapping.FixedValue;
-import pamtram.structure.ActualSourceSectionAttribute;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionCrossReference;
-import pamtram.structure.SourceSectionReference;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -48,6 +42,12 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.

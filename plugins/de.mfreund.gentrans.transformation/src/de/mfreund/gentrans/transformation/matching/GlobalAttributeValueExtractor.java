@@ -18,7 +18,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.structure.SourceSection;
+import pamtram.structure.source.SourceSection;
 
 /**
  * This class can be used to extract values of {@link GlobalAttribute GlobalAttributes}

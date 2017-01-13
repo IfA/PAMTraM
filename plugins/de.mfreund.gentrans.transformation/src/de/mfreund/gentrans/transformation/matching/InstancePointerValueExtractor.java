@@ -15,10 +15,10 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionAttribute;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionReference;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class can be used to extract values required by an {@link InstancePointer}

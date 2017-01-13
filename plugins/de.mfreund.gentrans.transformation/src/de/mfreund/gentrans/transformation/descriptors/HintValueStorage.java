@@ -18,7 +18,7 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 

@@ -67,8 +67,8 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.LibraryEntry;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 import pamtram.util.GenLibraryManager;
 
 /**

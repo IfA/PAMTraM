@@ -30,7 +30,7 @@ import pamtram.condition.ApplicationDependency;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.structure.SourceSection;
+import pamtram.structure.source.SourceSection;
 
 /**
  * This class can be used to {@link #selectMappings() select suitable mappings} for a list of

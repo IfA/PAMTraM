@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.maps;
 
 import pamtram.mapping.CardinalityMapping;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This class represents a map that allows to collect hint values for 

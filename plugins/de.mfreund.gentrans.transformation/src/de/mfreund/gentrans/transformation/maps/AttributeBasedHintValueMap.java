@@ -9,7 +9,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This abstract base class represents a map that allows to collect hint values for 

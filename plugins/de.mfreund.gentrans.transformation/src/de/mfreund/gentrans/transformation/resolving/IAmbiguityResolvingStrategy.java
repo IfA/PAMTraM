@@ -21,12 +21,12 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.SourceSection;
 import pamtram.structure.TargetSection;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.TargetSectionClass;
 import pamtram.structure.TargetSectionCrossReference;
 import pamtram.structure.generic.CrossReference;
+import pamtram.structure.source.SourceSection;
 import pamtram.mapping.ContainerSelector;
 
 /**

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import pamtram.structure.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * Extended Map with some helper functions used when matching the source model.

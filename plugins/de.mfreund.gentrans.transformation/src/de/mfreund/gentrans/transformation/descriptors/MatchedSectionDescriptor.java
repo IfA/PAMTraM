@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionClass;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * Class for storing matched a part of a source model that has been matched

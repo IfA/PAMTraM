@@ -40,13 +40,13 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.structure.InstancePointer;
-import pamtram.structure.SourceSection;
-import pamtram.structure.SourceSectionClass;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This class will be used to evaluate conditions and store their result.

@@ -21,8 +21,8 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.presentation.PamtramEditor;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
@@ -30,7 +30,8 @@ import pamtram.structure.TargetSection;
  *
  * @author mfreund
  */
-public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
+public class JoiningSelectRootElementMappingModelEnhancer
+		extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
 
 	/**
 	 * This creates an instance.
@@ -46,7 +47,7 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 
 		// The TargetSection for the root element
 		//
-		TargetSection rootSection = StructureFactory.eINSTANCE.createTargetSection();
+		TargetSection rootSection = TargetFactory.eINSTANCE.createTargetSection();
 		rootSection.setEClass(this.dialogRunner.getSingleSelection());
 		rootSection.setName(this.dialogRunner.getSingleSelection().getName() + " (Root)");
 

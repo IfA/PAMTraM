@@ -23,15 +23,15 @@ import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.presentation.PamtramEditor;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.TargetSection;
-import pamtram.structure.TargetSectionClass;
-import pamtram.structure.TargetSectionCompositeReference;
 import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
- * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPath(List, pamtram.structure.TargetSection)
+ * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPath(List, pamtram.structure.target.TargetSection)
  * joiningSelectConnectionPath} ambiguities.
  *
  * @author mfreund
@@ -91,7 +91,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 		if (rootSectionOptional.isPresent()) {
 			rootSection = rootSectionOptional.get();
 		} else {
-			rootSection = StructureFactory.eINSTANCE.createTargetSection();
+			rootSection = TargetFactory.eINSTANCE.createTargetSection();
 			rootSection.setEClass(selectedPath.getPathRootClass());
 		}
 
@@ -169,7 +169,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			EReference eReference = (EReference) path.getPathElements().get(i);
 			EClass eClass = (EClass) path.getPathElements().get(i - 1);
 
-			TargetSectionCompositeReference ref = StructureFactory.eINSTANCE.createTargetSectionCompositeReference();
+			TargetSectionCompositeReference ref = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 			ref.setEReference(eReference);
 
 			// we are at the beginning
@@ -180,7 +180,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 				currentClass.getReferences().add(ref);
 			}
 
-			TargetSectionClass clazz = StructureFactory.eINSTANCE.createTargetSectionClass();
+			TargetSectionClass clazz = TargetFactory.eINSTANCE.createTargetSectionClass();
 			clazz.setEClass(eClass);
 			ref.getValue().add(clazz);
 			currentClass = clazz;

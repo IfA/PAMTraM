@@ -18,9 +18,9 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
+import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -33,8 +33,8 @@ import pamtram.structure.target.TargetSectionClass;
 public class TargetSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TargetSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -42,37 +42,41 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns TargetSectionCompositeReference.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns TargetSectionCompositeReference.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionCompositeReference"));
+
+		return this.overlayImage(object,
+				this.getResourceLocator().getImage("full/obj16/TargetSectionCompositeReference"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -95,28 +99,31 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+
 		return PamtramEditPlugin.INSTANCE;
 	}
 
@@ -139,7 +146,7 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 			if (object instanceof TargetSectionClass) {
 				if (object instanceof TargetSection) {
 					targetSectionClassMap.put((TargetSectionClass) object,
-							StructureFactory.eINSTANCE.createTargetSectionClass());
+							TargetFactory.eINSTANCE.createTargetSectionClass());
 				} else {
 					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
 				}

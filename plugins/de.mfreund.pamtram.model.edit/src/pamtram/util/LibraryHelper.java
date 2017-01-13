@@ -36,6 +36,7 @@ import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.target.ActualTargetSectionAttribute;
+import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
@@ -111,7 +112,7 @@ public class LibraryHelper {
 
 			// first generate a target section class for the element itself and
 			// attach it to the parentObject
-			TargetSectionClass tClass = StructureFactory.eINSTANCE.createTargetSectionClass();
+			TargetSectionClass tClass = TargetFactory.eINSTANCE.createTargetSectionClass();
 			tClass.setEClass(currentObject.eClass());
 			tClass.setName(currentObject.eClass().getName());
 			tClass.setCardinality(CardinalityType.ONE);
@@ -123,7 +124,7 @@ public class LibraryHelper {
 			// second, generate a target section attribute for every attribute
 			for (EAttribute att : currentObject.eClass().getEAllAttributes()) {
 				if (currentObject.eGet(att) != null) {
-					ActualTargetSectionAttribute tAttribute = StructureFactory.eINSTANCE
+					ActualTargetSectionAttribute tAttribute = TargetFactory.eINSTANCE
 							.createActualTargetSectionAttribute();
 					tAttribute.setAttribute(att);
 					tAttribute.setName(att.getName());
@@ -140,7 +141,7 @@ public class LibraryHelper {
 			// now, iterate through all containment references
 			for (EReference ref : currentObject.eClass().getEAllContainments()) {
 				if (currentObject.eGet(ref) != null) {
-					TargetSectionCompositeReference tReference = StructureFactory.eINSTANCE
+					TargetSectionCompositeReference tReference = TargetFactory.eINSTANCE
 							.createTargetSectionCompositeReference();
 					tReference.setEReference(ref);
 					tReference.setName(ref.getName());
@@ -163,7 +164,7 @@ public class LibraryHelper {
 					continue;
 				}
 
-				TargetSectionCrossReference tReference = StructureFactory.eINSTANCE.createTargetSectionCrossReference();
+				TargetSectionCrossReference tReference = TargetFactory.eINSTANCE.createTargetSectionCrossReference();
 				tReference.setEReference(ref);
 				tReference.setName(ref.getName());
 				tClass.getReferences().add(tReference);
@@ -412,13 +413,11 @@ public class LibraryHelper {
 
 			// set the path, id, etc.
 			// pamtramLibEntry.setPath(libFileEntry.getKey());
-			VirtualTargetSectionAttribute pathAttribute = StructureFactory.eINSTANCE
-					.createVirtualTargetSectionAttribute();
+			VirtualTargetSectionAttribute pathAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(this.path);
 			this.pamtramLibEntry.setPath(pathAttribute);
-			VirtualTargetSectionAttribute idAttribute = StructureFactory.eINSTANCE
-					.createVirtualTargetSectionAttribute();
+			VirtualTargetSectionAttribute idAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			idAttribute.setName("ID");
 			idAttribute.setValue(this.libEntry.getParameterDescription().getID());
 			this.pamtramLibEntry.setId(idAttribute);
@@ -440,8 +439,7 @@ public class LibraryHelper {
 				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
 
-				ActualTargetSectionAttribute attribute = StructureFactory.eINSTANCE
-						.createActualTargetSectionAttribute();
+				ActualTargetSectionAttribute attribute = TargetFactory.eINSTANCE.createActualTargetSectionAttribute();
 				attribute.setAttribute(attParameter.getAttribute());
 				attribute.setName(attParameter.getAttribute().getName());
 
@@ -462,7 +460,7 @@ public class LibraryHelper {
 				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
 
-				TargetSection section = StructureFactory.eINSTANCE.createTargetSection();
+				TargetSection section = TargetFactory.eINSTANCE.createTargetSection();
 				section.setEClass(contParameter.getSource().eClass());
 				section.setName(contParameter.getSource().eClass().getName());
 
@@ -491,7 +489,7 @@ public class LibraryHelper {
 					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
 
-					TargetSectionCrossReference ref = StructureFactory.eINSTANCE.createTargetSectionCrossReference();
+					TargetSectionCrossReference ref = TargetFactory.eINSTANCE.createTargetSectionCrossReference();
 					ref.setEReference((EReference) setting.getEStructuralFeature());
 					ref.setName(setting.getEStructuralFeature().getName());
 
@@ -510,8 +508,7 @@ public class LibraryHelper {
 				param.setOriginalParameter(resParameter);
 				param.setName(resParameter.eClass().getName());
 
-				VirtualTargetSectionAttribute attribute = StructureFactory.eINSTANCE
-						.createVirtualTargetSectionAttribute();
+				VirtualTargetSectionAttribute attribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 				attribute.setName(resParameter.getName());
 				attribute.setValue(resParameter.getNewPath());
 

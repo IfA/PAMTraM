@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.source.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +16,7 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ActualSourceSectionAttribute} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.source.ActualSourceSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

@@ -18,8 +18,8 @@ import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.SourceSectionClass;
-import pamtram.structure.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ExternalModifiedAttributeElementType} object. <!--

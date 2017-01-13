@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.PamtramPackage;
-import pamtram.structure.SourceSectionAttribute;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetSectionAttribute;
 import pamtram.structure.constraint.ValueConstraint;
@@ -30,6 +29,7 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * A concrete {@link MergeMetaModelElementsCommand} that allows to merge an {@link Attribute} into a {@link Class}.

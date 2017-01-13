@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.source.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +16,7 @@ import pamtram.structure.generic.provider.CrossReferenceItemProvider;
 
 /**
  * This is the item provider adapter for a
- * {@link pamtram.structure.SourceSectionCrossReference} object. <!--
+ * {@link pamtram.structure.source.SourceSectionCrossReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated

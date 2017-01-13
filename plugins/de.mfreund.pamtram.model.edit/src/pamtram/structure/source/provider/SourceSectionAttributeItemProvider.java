@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.source.provider;
 
 
 import java.util.Collection;
@@ -18,10 +18,10 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.generic.provider.AttributeItemProvider;
-import pamtram.structure.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.SourceSectionAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.structure.source.SourceSectionAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

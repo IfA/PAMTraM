@@ -28,10 +28,10 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.provider.ExpressionHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.ActualSourceSectionAttribute;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.InstancePointer} object.

@@ -4,6 +4,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="de.mfreund.pamtram.model.generator.exportMetaModelSectionMenuCategory"
             defaultHandler="de.mfreund.pamtram.model.generator.handler.ExportMetaModelSectionHandler"
             id="de.mfreund.pamtram.model.generator.exportMetaModelSection"
             name="exportMetaModelSection">
@@ -12,17 +13,64 @@
                name="IncludeCrossReferences"
                optional="false">
          </commandParameter>
+         <commandParameter
+               id="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeContainedElementsParameter"
+               name="IncludeContainedElements"
+               optional="false">
+         </commandParameter>
       </command>
+      <category
+            id="de.mfreund.pamtram.model.generator.exportMetaModelSectionMenuCategory"
+            name="PAMTraM: Export MetaModelSection">
+      </category>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="true"
             locationURI="popup:org.eclipse.ui.popup.any">
-         <command
-               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
-               label="PAMTraM: Export MetaModelSection"
-               style="push">
+         <menu
+               id="de.mfreund.pamtram.model.generator.exportMetaModelSectionMenu"
+               label="PAMTraM: Export MetaModelSection">
+            <command
+                  commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+                  label="Export only selected elements"
+                  style="push">
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+                     value="0">
+               </parameter>
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeContainedElementsParameter"
+                     value="0">
+               </parameter>
+            </command>
+            <command
+                  commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+                  label="Export selected and contained elements"
+                  style="push">
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+                     value="0">
+               </parameter>
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeContainedElementsParameter"
+                     value="1">
+               </parameter>
+            </command>
+            <command
+                  commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
+                  label="Export selected, contained and referenced elements"
+                  style="push">
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
+                     value="1">
+               </parameter>
+               <parameter
+                     name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeContainedElementsParameter"
+                     value="1">
+               </parameter>
+            </command>
             <visibleWhen
                   checkEnabled="false">
                <with
@@ -36,37 +84,7 @@
                   </iterate>
                </with>
             </visibleWhen>
-            <parameter
-                  name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
-                  value="0">
-            </parameter>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="true"
-            locationURI="popup:org.eclipse.ui.popup.any">
-         <command
-               commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
-               label="PAMTraM: Export MetaModelSection (including cross references)"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="activeMenuSelection">
-                  <iterate
-                        ifEmpty="false"
-                        operator="or">
-                     <adapt
-                           type="org.eclipse.emf.ecore.EObject">
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-            <parameter
-                  name="de.mfreund.pamtram.model.generator.exportMetaModelSection.includeCrossReferencesParameter"
-                  value="1">
-            </parameter>
-         </command>
+         </menu>
       </menuContribution>
    </extension>
 

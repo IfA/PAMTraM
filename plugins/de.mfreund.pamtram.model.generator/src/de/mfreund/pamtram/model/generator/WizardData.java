@@ -59,7 +59,12 @@ public class WizardData implements IEditingDomainProvider {
 	private List<Section<?, ?, ?, ?>> createdSections;
 
 	/**
-	 * Whether cross
+	 * Whether contained elements shall be regarded in the creation process
+	 */
+	private boolean includeContainedElements;
+
+	/**
+	 * Whether cross references shall be regarded in the creation process
 	 */
 	private boolean includeCrossReferences;
 
@@ -221,6 +226,27 @@ public class WizardData implements IEditingDomainProvider {
 	public WizardData setCreatedSections(List<Section<?, ?, ?, ?>> createdEObjects) {
 
 		this.createdSections = createdEObjects;
+		return this;
+	}
+
+	/**
+	 * @return the {@link #includeContainedElements}
+	 */
+	public boolean isIncludeContainedElements() {
+
+		return this.includeContainedElements;
+	}
+
+	/**
+	 * This is the setter for the {@link #includeContainedElements}.
+	 *
+	 * @param includeContainedElements
+	 *            the {@link #includeContainedElements} to set.
+	 * @return The {@link WizardData}.
+	 */
+	public WizardData setIncludeContainedElements(boolean includeContainedElements) {
+
+		this.includeContainedElements = includeContainedElements;
 		return this;
 	}
 

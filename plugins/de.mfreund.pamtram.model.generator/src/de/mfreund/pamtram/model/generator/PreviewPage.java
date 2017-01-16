@@ -323,7 +323,7 @@ public class PreviewPage extends WizardPage {
 
 		MetaModelSectionGenerator generator = new MetaModelSectionGenerator(this.wizardData.getPamtram(),
 				this.wizardData.getSourceElements(), this.wizardData.getSectionType(),
-				this.wizardData.isIncludeCrossReferences());
+				this.wizardData.isIncludeContainedElements(), this.wizardData.isIncludeCrossReferences());
 
 		this.wizardData.setGenerator(generator);
 

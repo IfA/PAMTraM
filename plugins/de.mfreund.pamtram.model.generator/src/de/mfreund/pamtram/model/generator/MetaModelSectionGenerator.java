@@ -56,6 +56,11 @@ public class MetaModelSectionGenerator {
 	private SectionType sectionType;
 
 	/**
+	 * Whether contained elements shall be regarded in the creation process.
+	 */
+	private boolean includeContainedElements;
+
+	/**
 	 * Whether cross-references should be followed during the generation process.
 	 */
 	private boolean includeCrossReferences;
@@ -79,15 +84,18 @@ public class MetaModelSectionGenerator {
 	 *            The source eObjects from which the sections shall be generated.
 	 * @param sectionType
 	 *            The SectionType specifying whether to generate a Source or a TargetSection.
+	 * @param includeContainedElements
+	 *            Whether contained elements shall be regarded in the creation process.
 	 * @param includeCrossReferences
 	 *            Whether cross-references should be followed during the generation process (if this is set to
 	 *            <em>true</em>, multiple sections may be generated for a single selected element).
 	 */
 	public MetaModelSectionGenerator(PAMTraM pamtram, List<EObject> sources, SectionType sectionType,
-			boolean includeCrossReferences) {
+			boolean includeContainedElements, boolean includeCrossReferences) {
 		this.pamtram = pamtram;
-		this.sources = EcoreUtil.filterDescendants(sources);
+		this.sources = includeContainedElements ? EcoreUtil.filterDescendants(sources) : sources;
 		this.sectionType = sectionType;
+		this.includeContainedElements = includeContainedElements;
 		this.includeCrossReferences = includeCrossReferences;
 		this.created = new HashMap<>();
 		this.dangling = new ArrayList<>();
@@ -158,7 +166,9 @@ public class MetaModelSectionGenerator {
 		// sections for elements referenced via non-containment references if
 		// 'includeCrossReferences' is set to 'true')
 		//
-		this.createReferences(source, clazz);
+		if (this.includeContainedElements) {
+			this.createReferences(source, clazz);
+		}
 
 		return clazz;
 	}

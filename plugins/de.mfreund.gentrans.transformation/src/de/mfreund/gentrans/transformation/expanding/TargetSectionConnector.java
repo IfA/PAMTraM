@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -842,7 +843,17 @@ public class TargetSectionConnector extends CancelableElement {
 					resolved = new HashMap<>();
 					resolved.put(modelConnectionPath, this.ambiguityResolvingStrategy.joiningSelectContainerInstance(
 							choices.get(modelConnectionPath), rootInstances, mappingGroup, null, null));
+				} else if (choices.values().stream().flatMap(v -> v.stream()).collect(Collectors.toSet()).size() == 1) {
+					// If there is only one possible container instance, we only need to let the user choose the
+					// connection path...
+					//
+					List<ModelConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy
+							.joiningSelectConnectionPath(new ArrayList<>(choices.keySet()), section);
+					resolved = resolvedPaths.stream().collect(Collectors.toMap(Function.identity(), choices::get));
+					modelConnectionPath = resolvedPaths.get(0);
 				} else {
+					// ... otherwise, the user also needs to select the container instance.
+					//
 					resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(choices,
 							section, rootInstances, mappingGroup);
 					modelConnectionPath = resolved.entrySet().iterator().next().getKey();

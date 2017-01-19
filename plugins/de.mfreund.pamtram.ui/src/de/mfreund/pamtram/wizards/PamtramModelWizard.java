@@ -120,9 +120,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	protected StructurePackage structurePackage = StructurePackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'source' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
-	protected SourceFactory sourceFactory = this.sourcePackage.getSourceFactory();
+	protected StructureFactory structureFactory = this.structurePackage.getStructureFactory();
 
 	/**
 	 * This caches an instance of the 'source' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -130,9 +130,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	protected SourcePackage sourcePackage = SourcePackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'target' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'source' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
-	protected TargetFactory targetFactory = this.targetPackage.getTargetFactory();
+	protected SourceFactory sourceFactory = this.sourcePackage.getSourceFactory();
 
 	/**
 	 * This caches an instance of the 'target' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -140,9 +140,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	protected TargetPackage targetPackage = TargetPackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'target' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
-	protected StructureFactory structureFactory = this.structurePackage.getStructureFactory();
+	protected TargetFactory targetFactory = this.targetPackage.getTargetFactory();
 
 	/**
 	 * This caches an instance of the 'mapping' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -132,7 +132,7 @@ public class AttributeValueCalculator {
 
 	/**
 	 * This calculates an attribute value based on a list of given hint values.
-	 ** 
+	 **
 	 * @param hint
 	 *            A {@link MappingHint} to be used for the calculation (typically, this should be either an
 	 *            {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or
@@ -162,7 +162,7 @@ public class AttributeValueCalculator {
 
 	/**
 	 * This calculates an attribute value based on a list of given hint values and an expression.
-	 ** 
+	 **
 	 * @param hint
 	 *            A {@link MappingHint} to be used for the calculation (typically, this should be either an
 	 *            {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or
@@ -242,12 +242,6 @@ public class AttributeValueCalculator {
 	public String calculateValueWithExpression(Map<?, AttributeValueRepresentation> valueParts, String expression,
 			List<ValueModifierSet> resultModifiers) {
 
-		// If no hint values are passed, we simply use the expression as return value
-		//
-		if (valueParts.isEmpty()) {
-			return expression;
-		}
-
 		final Map<String, Double> vars = new HashMap<>();
 
 		// Add global variables
@@ -274,6 +268,7 @@ public class AttributeValueCalculator {
 		String attrValue = expCalc.calculateExpression(expression, vars);
 
 		// Apply the result modifiers
-		return this.attributeValuemodifier.applyAttributeValueModifiers(attrValue, resultModifiers);
+		return attrValue == null ? expression
+				: this.attributeValuemodifier.applyAttributeValueModifiers(attrValue, resultModifiers);
 	}
 }

@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 
+import de.mfreund.pamtram.util.NullComparator;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
@@ -16,12 +17,6 @@ import pamtram.structure.constraint.ValueConstraintType;
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Equality Matcher</b></em>'. <!-- end-user-doc
  * -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- * <li>{@link pamtram.structure.constraint.impl.EqualityConstraintImpl#isCaseSensitive <em>Case Sensitive</em>}</li>
- * </ul>
  *
  * @generated
  */
@@ -29,6 +24,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected EqualityConstraintImpl() {
@@ -37,10 +33,12 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return ConstraintPackage.Literals.EQUALITY_CONSTRAINT;
 	}
 
@@ -72,7 +70,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 				double doubleRefValue = Double.parseDouble(refValue);
 
 				condition = Double.compare(doubleAttrValue, doubleRefValue) == 0;
-			} catch (NumberFormatException e) {
+			} catch (NullPointerException | NumberFormatException e) {
 				// doesn't work
 			}
 		}
@@ -80,7 +78,7 @@ public class EqualityConstraintImpl extends SingleReferenceValueConstraintImpl i
 		// At last, we simply compare two String values...
 		//
 		if (!condition) {
-			condition = refValue.equals(attrValue);
+			condition = NullComparator.compare(refValue, attrValue);
 		}
 
 		return condition && this.type.equals(ValueConstraintType.REQUIRED)

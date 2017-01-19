@@ -506,22 +506,23 @@ public class ConditionHandler {
 	private List<EObject> getInstancesToConsider(Condition condition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The SourceSection holding the attribute that the AttributeCondition is based on
+		// The SourceSectionClass holding the attribute that the AttributeCondition is based on
 		//
-		SourceSection affectedSection;
+		SourceSectionClass affectedClass;
 
 		if (condition instanceof CardinalityCondition) {
-			affectedSection = ((CardinalityCondition) condition).getConditionSectionRef().getContainingSection();
+			affectedClass = ((CardinalityCondition) condition).getConditionSectionRef();
 		} else if (condition instanceof AttributeCondition) {
-			affectedSection = ((AttributeCondition) condition).getConditionAttributeRef().getContainingSection();
+			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getConditionAttributeRef()
+					.eContainer();
 		} else if (condition instanceof ApplicationDependency) {
 			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getConditionalElement();
 			if (conditionalElement instanceof Mapping) {
-				affectedSection = ((Mapping) conditionalElement).getSourceSection();
+				affectedClass = ((Mapping) conditionalElement).getSourceSection();
 			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
-				affectedSection = ((Mapping) conditionalElement.eContainer()).getSourceSection();
+				affectedClass = ((Mapping) conditionalElement.eContainer()).getSourceSection();
 			} else if (conditionalElement instanceof MappingHint) {
-				affectedSection = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
+				affectedClass = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
 			} else {
 				this.logger.severe(
 						"Unknown type of ConditionalElement '" + conditionalElement.eClass().getName() + "' found!");
@@ -546,13 +547,13 @@ public class ConditionHandler {
 			// In case of a 'global' condition or if an InstancePointer has been specified, we
 			// have to consider all 'descriptors' for the SourceSection under consideration
 			//
-			descriptorsToConsider = this.matchedSections.get(affectedSection);
+			descriptorsToConsider = this.matchedSections.get(affectedClass);
 		}
 
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection).stream())
+				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedClass).stream())
 				.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers

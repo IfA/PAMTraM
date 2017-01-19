@@ -51,7 +51,7 @@
   </sourceSectionModel>
   <sourceSectionModel name="AlarmTasks">
     <metaModelPackage href="http://giove.isti.cnr.it/ctt#/"/>
-    <metaModelSections xsi:type="source:SourceSection" name="Alarm0Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
+    <metaModelSections xsi:type="source:SourceSection" name="Alarm0Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
@@ -110,6 +110,37 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="source:SourceSectionCompositeReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="source:SourceSectionClass" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="source:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="source:SourceSectionCompositeReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="source:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionObject">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionValue">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionOperator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionRootOperator">
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="Alarm0TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
@@ -118,7 +149,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="source:SourceSection" name="Alarm1Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
+    <metaModelSections xsi:type="source:SourceSection" name="Alarm1Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
@@ -186,6 +217,37 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="source:SourceSectionCompositeReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="source:SourceSectionClass" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="source:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="source:SourceSectionCompositeReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="source:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionObject">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionValue">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionOperator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionRootOperator">
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="Alarm1TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
@@ -194,7 +256,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="source:SourceSection" name="Alarm2Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
+    <metaModelSections xsi:type="source:SourceSection" name="Alarm2Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
@@ -262,6 +324,37 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="source:SourceSectionCompositeReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="source:SourceSectionClass" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="source:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="source:SourceSectionCompositeReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="source:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionObject">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionValue">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionOperator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionRootOperator">
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="type">
         <valueConstraint xsi:type="constraint:EqualityConstraint" expression="Alarm2"/>
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
@@ -270,7 +363,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="source:SourceSection" name="Alarm3Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
+    <metaModelSections xsi:type="source:SourceSection" name="Alarm3Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
@@ -338,6 +431,37 @@
           </attributes>
         </value>
       </references>
+      <references xsi:type="source:SourceSectionCompositeReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="source:SourceSectionClass" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="source:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="source:SourceSectionCompositeReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="source:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionObject">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionValue">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionOperator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionRootOperator">
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="Alarm3TaskName">
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/name"/>
       </attributes>
@@ -346,7 +470,7 @@
         <attribute href="http://giove.isti.cnr.it/ctt#//Task/type"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections xsi:type="source:SourceSection" name="Alarm4Task" extend="//@sourceSectionModel.2/@metaModelSections.6">
+    <metaModelSections xsi:type="source:SourceSection" name="Alarm4Task">
       <eClass href="http://giove.isti.cnr.it/ctt#//Task"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="parent">
         <eReference href="http://giove.isti.cnr.it/ctt#//Task/parent"/>
@@ -401,6 +525,37 @@
             </value>
           </references>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="PostConditionRootOperator">
+            <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+          </attributes>
+        </value>
+      </references>
+      <references xsi:type="source:SourceSectionCompositeReference" name="precondition">
+        <eReference href="http://giove.isti.cnr.it/ctt#//Task/precondition"/>
+        <value xsi:type="source:SourceSectionClass" name="ConditionGroup">
+          <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="conditionGroup">
+            <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionGroup"/>
+            <value xsi:type="source:SourceSectionClass" name="ConditionGroup" cardinality="ZERO__INFINITY">
+              <eClass href="http://giove.isti.cnr.it/ctt#//ConditionGroup"/>
+              <references xsi:type="source:SourceSectionCompositeReference" name="conditionLiteral">
+                <eReference href="http://giove.isti.cnr.it/ctt#//ConditionGroup/conditionLiteral"/>
+                <value xsi:type="source:SourceSectionClass" name="ConditionLiteral" cardinality="ZERO__INFINITY">
+                  <eClass href="http://giove.isti.cnr.it/ctt#//ConditionLiteral"/>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionObject">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/object"/>
+                  </attributes>
+                  <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionValue">
+                    <attribute href="http://giove.isti.cnr.it/ctt#//ConditionLiteral/value"/>
+                  </attributes>
+                </value>
+              </references>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionOperator">
+                <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
+              </attributes>
+            </value>
+          </references>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="PreConditionRootOperator">
+            <valueConstraint xsi:type="constraint:EqualityConstraint" expression="and"/>
             <attribute href="http://giove.isti.cnr.it/ctt#//ConditionGroup/operator"/>
           </attributes>
         </value>
@@ -1941,7 +2096,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -1956,6 +2111,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -2174,7 +2340,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -2189,6 +2355,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -2407,7 +2584,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -2422,6 +2599,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -2640,7 +2828,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -2655,6 +2843,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -3018,7 +3217,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -3033,6 +3232,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -3396,7 +3606,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -3411,6 +3621,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -3774,7 +3995,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -3789,6 +4010,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -4152,7 +4384,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -4167,6 +4399,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -4530,7 +4773,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -4545,6 +4788,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -4908,7 +5162,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -4923,6 +5177,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -5089,7 +5354,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -5104,6 +5369,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -5798,7 +6074,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -5813,6 +6089,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -5959,7 +6246,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -5974,6 +6261,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -6265,7 +6563,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -6280,6 +6578,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -6571,7 +6880,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -6586,6 +6895,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -6671,7 +6991,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -6686,6 +7006,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -6802,7 +7133,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -6817,6 +7148,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -6970,7 +7312,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -6985,6 +7327,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -7283,7 +7636,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -7298,6 +7651,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -7596,7 +7960,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -7611,6 +7975,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -7746,7 +8121,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -7761,6 +8136,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8008,7 +8394,7 @@
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -8023,6 +8409,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModel.2/@metaModelSections.0/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModel.2/@metaModelSections.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.0/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8104,7 +8501,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -8119,6 +8516,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1ParentName" source="//@sourceSectionModel.2/@metaModelSections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm1TaskName" source="//@sourceSectionModel.2/@metaModelSections.1/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.1/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8345,7 +8753,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -8360,6 +8768,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2ParentName" source="//@sourceSectionModel.2/@metaModelSections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm2TaskName" source="//@sourceSectionModel.2/@metaModelSections.2/@attributes.1" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.2/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8586,7 +9005,7 @@
           <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -8601,6 +9020,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3ParentName" source="//@sourceSectionModel.2/@metaModelSections.3/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm3TaskName" source="//@sourceSectionModel.2/@metaModelSections.3/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.3/@references.5/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8655,7 +9085,7 @@
           <sourceElements xsi:type="mapping:FixedValue" name="img/boom.png" value="img/boom.png"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4" extend="//@mappingModel.3/@mapping.0/@mappingHintGroups.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="And" targetSection="//@targetSectionModel.0/@metaModelSections.4">
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CheckConditionTrigger" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
             <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ConditionObjectName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.1/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
@@ -8670,6 +9100,17 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4ParentName" source="//@sourceSectionModel.2/@metaModelSections.4/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Alarm4TaskName" source="//@sourceSectionModel.2/@metaModelSections.4/@attributes.0" modifier="//@mappingModel.0/@modifierSets.4"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="compareTypeMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionOperator" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="valMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="PreConditionValue" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.1">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="PreConditionObject" source="//@sourceSectionModel.2/@metaModelSections.4/@references.4/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" modifier="//@mappingModel.0/@modifierSets.0"/>
+          </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Or" targetSection="//@targetSectionModel.0/@metaModelSections.7">
@@ -8754,10 +9195,6 @@
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-  </mappingModel>
-  <mappingModel name="Platform">
-    <mapping name="MonoSpeakerSystemMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.0"/>
-    <mapping name="TouchscreenVibrationMotorMapping" sourceSection="//@sourceSectionModel.3/@metaModelSections.1"/>
   </mappingModel>
   <conditionModel>
     <condition xsi:type="condition:CardinalityCondition" name="MonoSpeaker" comparator="GE" conditionSectionRef="//@sourceSectionModel.3/@metaModelSections.0"/>

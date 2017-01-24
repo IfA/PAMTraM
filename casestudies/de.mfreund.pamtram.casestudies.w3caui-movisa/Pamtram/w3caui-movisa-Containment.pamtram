@@ -549,7 +549,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         </mappingHints>
       </mappingHintGroups>
     </mapping>
-    <modifierSets xsi:type="mapping:ValueModifierSet" name="getParent">
+    <modifierSets xsi:type="modifier:ValueModifierSet" name="getParent">
       <modifier xsi:type="modifier:SubstringReplacer" regex="[_]\d+$" replacement=""/>
     </modifierSets>
   </mappingModel>

@@ -1,1344 +1,1036 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModel>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Root">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-uiCommons#/0"/>
+    <metaModelSections xsi:type="source:SourceSection" name="Root">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractUserInterfaceModel"/>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="sequentialComposition">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="sequentialComposition">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="sequential" expression="sequential"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/id"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel name="AIUs">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="AIU base" abstract="true">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-uiCommons#/0"/>
+    <metaModelSections xsi:type="source:SourceSection" name="AIU base" abstract="true">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/id"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Navigation" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="triggerSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="TriggerSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="triggerType">
+    <metaModelSections xsi:type="source:SourceSection" name="Navigation" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="triggerSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/triggerSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="TriggerSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="navigation" expression="navigation"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport/triggerType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="triggerExpression">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerExpression">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport/triggerExpression"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="navigation" expression="navigation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicNavigation" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="triggerSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="TriggerSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="triggerType">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicNavigation" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="triggerSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/triggerSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="TriggerSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="next" expression="next"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport/triggerType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="triggerExpression">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerExpression">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/TriggerSupport/triggerExpression"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="navigation" expression="navigation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Grouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="Grouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicGrouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicGrouping" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel name="AIUs - Input">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Confirmation" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-uiCommons#/0"/>
+    <metaModelSections xsi:type="source:SourceSection" name="Confirmation" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicConfirmation" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicConfirmation" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Slider" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="Slider" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="end">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="end">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/end"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="start">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/start"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="start">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/start"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionStep">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionStep">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionStep"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicSlider" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicSlider" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="end">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="end">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/end"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="start">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/start"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="start">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/start"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionStep">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionStep">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionStep"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="inOut" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="inOut" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="inOut" expression="in_out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="CheckBoxArray" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="CheckBoxArray" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicCheckBoxArray" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicCheckBoxArray" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="CheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+    <metaModelSections xsi:type="source:SourceSection" name="CheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name=""/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicCheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicCheckBox" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name=""/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="RadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="RadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicRadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicRadioButtonGroup" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="RadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="RadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name=""/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicRadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicRadioButton" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/isContinuous"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataSelectionSupport/selectionType"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" type="FORBIDDEN" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Input" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="Input" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicInput" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-          <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicInput" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraint xsi:type="constraint:EqualityConstraint" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/compositionRole"/>
           </attributes>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataSelectionSupport"/>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" type="FORBIDDEN" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel name="AIUs - Output">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="ErrorManagement" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-uiCommons#/0"/>
+    <metaModelSections xsi:type="source:SourceSection" name="ErrorManagement" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="error management" expression="error management"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicErrorManagement" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicErrorManagement" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <value xsi:type="source:SourceSectionClass" name="Composition">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
         </value>
       </references>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="error management" expression="error management"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Output" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="Output" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="dynamicOutput" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+    <metaModelSections xsi:type="source:SourceSection" name="dynamicOutput" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/isDynamic"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="guidance" container="//@sourceSectionModel.2/@metaModelSections.14" extend="//@sourceSectionModel.1/@metaModelSections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
-        <value 
-xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
-          <references 
-xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
-            <value 
-xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+    <metaModelSections xsi:type="source:SourceSection" name="guidance" container="//@sourceSectionModel.2/@metaModelSections.14" extend="//@sourceSectionModel.1/@metaModelSections.0">
+      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
+        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/eventSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="EventSupport">
+          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport"/>
+          <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
+            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/EventSupport/dataInputOutputSupport"/>
+            <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
+              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport"/>
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/defaultValue"/>
               </attributes>
-              <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="dataType">
+              <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraint xsi:type="constraint:EqualityConstraint" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/DataInputOutputSupport/dataType"/>
               </attributes>
             </value>
           </references>
         </value>
       </references>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="role">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraint xsi:type="constraint:EqualityConstraint" name="guidance" expression="guidance"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </metaModelSections>
   </sourceSectionModel>
   <sourceSectionModel name="Platform Sections">
     <metaModelPackage href="http://ifa/et/tu/dresden/platform/metamodel#/"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Display">
+    <metaModelSections xsi:type="source:SourceSection" name="Display">
       <eClass href="http://ifa/et/tu/dresden/platform/metamodel#//Display"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="ressourceName">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="ressourceName">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Ressource/ressourceName"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="xPixel">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="xPixel">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/xPixel"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="yPixel">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="yPixel">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/yPixel"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="height">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="height">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/height"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="width">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="width">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/width"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isColorCapable">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="isColorCapable">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isColorCapable"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isImagesCapable">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="isImagesCapable">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isImagesCapable"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
         <attribute href="http://ifa/et/tu/dresden/platform/metamodel#//Display/isVideosCapable"/>
       </attributes>
     </metaModelSections>
@@ -3964,7 +3656,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
       <localCondition xsi:type="condition:Or" name="Cond 2">
         <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.6/@localCondition/@localCondParts.0/@localCondParts.1">
           <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-          <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE"  conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
         </localCondParts>
         <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@localCondition"/>
       </localCondition>
@@ -4002,7 +3694,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
     <mapping name="RadioButtonMapping" sourceSection="//@sourceSectionModel.2/@metaModelSections.11">
       <localCondition xsi:type="condition:And" name="Cond 1">
         <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModel.0/@condition.0 //@conditionModel.0/@condition.1"/>
-        <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE"  conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+        <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
         <localCondParts xsi:type="condition:And" name="Resolution">
           <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.1">
             <additionalConditionSpecification expression="Samsung Syncmaster 206bw" target="//@sourceSectionModel.4/@metaModelSections.0/@attributes.0"/>
@@ -4058,7 +3750,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
       <localCondition xsi:type="condition:Or" name="Cond 2">
         <localCondParts xsi:type="condition:And" sharedCondParts="//@mappingModel.2/@mapping.8/@localCondition/@localCondParts.0/@localCondParts.1">
           <localCondParts xsi:type="condition:Or" sharedCondParts="//@conditionModel.0/@condition.2 //@conditionModel.0/@condition.3"/>
-          <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE"  conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
+          <localCondParts xsi:type="condition:CardinalityCondition" name=">= than 4 selectable Elements" value="4" comparator="GE" conditionSectionRef="//@sourceSectionModel.2/@metaModelSections.11"/>
         </localCondParts>
         <localCondParts xsi:type="condition:Not" name="" sharedCondPart="//@mappingModel.2/@mapping.5/@localCondition"/>
       </localCondition>
@@ -4789,38 +4481,38 @@ xsi:type="source:ActualSourceSectionAttribute" name="isVideosCapable">
   <conditionModel>
     <condition xsi:type="condition:And" name="Large Screen">
       <localCondParts xsi:type="condition:AttributeCondition" name="Large Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" operatorType="GREATER_OR_EQUAL" expression="375"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="375" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
       <localCondParts xsi:type="condition:AttributeCondition" name="Large Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" operatorType="GREATER_OR_EQUAL" expression="250+2*screenBarOffset"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250+2*screenBarOffset" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Medium Screen">
       <localCondParts xsi:type="condition:AttributeCondition" name="Medium Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="375" operatorType="LESS" />
-          <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="GREATER_OR_EQUAL" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="375" operatorType="LESS"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
       <localCondParts xsi:type="condition:AttributeCondition" name="Medium Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
-           <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="LESS" />
-          <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="200+2*screenBarOffset" operatorType="GREATER_OR_EQUAL" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="LESS"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="200+2*screenBarOffset" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Small Screen">
       <localCondParts xsi:type="condition:AttributeCondition" name="Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="LESS" />
-          <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="140" operatorType="GREATER_OR_EQUAL" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="250" operatorType="LESS"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="140" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
       <localCondParts xsi:type="condition:AttributeCondition" name="Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="200" operatorType="LESS" />
-          <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="105+2*screenBarOffset" operatorType="GREATER_OR_EQUAL" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="200" operatorType="LESS"/>
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="105+2*screenBarOffset" operatorType="GREATER_OR_EQUAL"/>
       </localCondParts>
     </condition>
     <condition xsi:type="condition:And" name="Extra Small Screen">
       <localCondParts xsi:type="condition:AttributeCondition" name="Extra Small Width Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.4">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="140" operatorType="LESS" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="140" operatorType="LESS"/>
       </localCondParts>
       <localCondParts xsi:type="condition:AttributeCondition" name="Extra Small Height Constraint" comparator="GE" conditionAttributeRef="//@sourceSectionModel.4/@metaModelSections.0/@attributes.3">
-        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="105" operatorType="LESS" />
+        <valueConstraint xsi:type="constraint:NumericConstraint" name="" expression="105" operatorType="LESS"/>
       </localCondParts>
     </condition>
   </conditionModel>

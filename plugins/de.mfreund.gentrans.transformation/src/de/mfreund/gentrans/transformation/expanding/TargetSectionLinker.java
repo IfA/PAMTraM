@@ -1003,6 +1003,11 @@ public class TargetSectionLinker extends CancelableElement {
 						"More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 								+ ref.getName() + "' in the target section '" + ref.getContainingSection()
 								+ "Please check your mapping model.");
+			} else if (targets.isEmpty()) {
+
+				this.logger.warning("No value found to be connected to the TargetSectionNonContainmentReference '"
+						+ ref.getName() + "' in the target section '" + ref.getContainingSection()
+						+ "Please check your mapping model.");
 			} else {
 
 				this.addValueToReference(ref, targets.get(0), source);

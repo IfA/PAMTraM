@@ -525,8 +525,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 							&& ((InstantiableMappingHintGroup) hintGroup).getSharedCondition() != null) {
 						conditions.add(((InstantiableMappingHintGroup) hintGroup).getSharedCondition());
 					}
-					expanded.add(mapping);
-					expanded.add(hintGroup);
+					// expanded.add(mapping);
+					// expanded.add(hintGroup);
 
 					/*
 					 * If a MappingHintGroup is selected, expand the importer itself and the parent mapping.
@@ -550,8 +550,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if (hintGroupImporter.getSharedCondition() != null) {
 						conditions.add(hintGroupImporter.getSharedCondition());
 					}
-					expanded.add(mapping);
-					expanded.add(hintGroupImporter);
+					// expanded.add(mapping);
+					// expanded.add(hintGroupImporter);
 
 					/*
 					 * If a GlobalAttribute is selected, expand the attribute itself and the parent mapping.
@@ -565,8 +565,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					} else {
 						source = mapping.getSourceSection();
 					}
-					expanded.add(mapping);
-					expanded.add(g);
+					// expanded.add(mapping);
+					// expanded.add(g);
 
 					/*
 					 * If a ComplexCondition is selected, expand referenced conditions, sections, and/or attributes.
@@ -596,7 +596,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if (mapping.getSharedCondition() != null) {
 						conditions.add(mapping.getSharedCondition());
 					}
-					expanded.add(mapping);
+					// expanded.add(mapping);
 					for (MappingHintGroupType group : mapping.getMappingHintGroups()) {
 						if (group.getTargetSection() != null) {
 							TargetSectionClass target = group.getTargetSection();

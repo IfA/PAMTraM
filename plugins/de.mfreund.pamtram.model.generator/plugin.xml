@@ -31,7 +31,7 @@
             locationURI="popup:org.eclipse.ui.popup.any">
          <menu
                id="de.mfreund.pamtram.model.generator.exportMetaModelSectionMenu"
-               label="PAMTraM: Export MetaModelSection">
+               label="PAMTraM: Create Source/TargetSection">
             <command
                   commandId="de.mfreund.pamtram.model.generator.exportMetaModelSection"
                   label="Export only selected elements"

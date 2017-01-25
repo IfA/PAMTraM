@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -25,8 +26,13 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
@@ -60,6 +66,7 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -786,12 +793,23 @@ public class GenericTransformationRunner extends CancelableElement {
 			return false;
 		}
 
+		// Let the user specify a name for the transformation model
+		//
+		final AtomicReference<String> result = new AtomicReference<>();
+		Display.getDefault().syncExec(() -> result.set(TransformationModelNameDialog.open(UIHelper.getShell())));
+
+		String transformationModelName = result.get();
+		if (transformationModelName == null) {
+			return false;
+		}
+
 		// Create the TransformationModel
 		//
 		Transformation transformationModel = TransformationFactory.eINSTANCE.createTransformation();
 		transformationModel.setId(Integer.toString(this.hashCode()));
 		transformationModel.setStartDate(startTime);
 		transformationModel.setEndDate(endTime);
+		transformationModel.setName(transformationModelName);
 
 		// Populate the transformation model with the participating models
 		//
@@ -870,9 +888,11 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * save the transformation model and create copies of all referenced resources
 		 */
 		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
-		final URI transformationModelUri = URI
+		URI transformationModelUri = URI
 				.createPlatformResourceURI(this.transformationConfig.getTransformationModelPath(), true);
-		final URI transformationFolderUri = transformationModelUri.trimSegments(1);
+		URI transformationFolderUri = transformationModelUri.trimSegments(1);
+		transformationFolderUri = URI.createURI(transformationFolderUri.toString() + " - " + transformationModelName);
+		transformationModelUri = transformationFolderUri.appendSegment(transformationModelUri.lastSegment());
 		final Map<Object, Object> options = new LinkedHashMap<>();
 		options.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE); // suppress 'document root' element in case of
 																			// xml models
@@ -1475,6 +1495,66 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			ErrorDialog dialog = new ErrorDialog(parentShell, dialogMessage);
 			return dialog.open() == 0;
+		}
+	}
+
+	/**
+	 * A {@link MessageDialog} that asks for a name for the name of the TransformationModel to be created..
+	 *
+	 * @author mfreund
+	 */
+	private static class TransformationModelNameDialog extends MessageDialog {
+
+		/**
+		 * The {@link Text} where the user enters the name for the TransformationModel.
+		 */
+		private Text transformationModelNameTextField;
+
+		/**
+		 * The name for the TransformationModel that was specified by the user.
+		 */
+		private String transformationModelName = "";
+
+		private TransformationModelNameDialog(Shell parentShell) {
+			super(parentShell, "TransformationModel", null,
+					"Please specify a name for the TransformationModel to be created for this transformation...",
+					MessageDialog.QUESTION, new String[] { "OK", "Abort" }, 0);
+		}
+
+		@Override
+		protected Control createCustomArea(Composite parent) {
+
+			this.transformationModelNameTextField = new Text(parent, SWT.BORDER);
+			GridDataFactory.swtDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false)
+					.applyTo(this.transformationModelNameTextField);
+			this.transformationModelNameTextField.addModifyListener(
+					e -> TransformationModelNameDialog.this.transformationModelName = TransformationModelNameDialog.this.transformationModelNameTextField
+							.getText());
+			return this.transformationModelNameTextField;
+		}
+
+		/**
+		 * Return the name that was specified by the user.
+		 *
+		 * @return The name that was specified by the user or an empty String if the user did not specify anything.
+		 */
+		private String getResult() {
+
+			return this.transformationModelName;
+		}
+
+		/**
+		 * This creates and opens a dialog.
+		 *
+		 * @param parentShell
+		 *            The parent shell of the dialog, or <code>null</code> if none.
+		 * @return If the user selected 'OK', this returns the name that was specified by the user or an empty String if
+		 *         the user did not specify anything; if the user selected 'Abort', this returns '<em>null</em>'.
+		 */
+		public static String open(Shell parentShell) {
+
+			TransformationModelNameDialog dialog = new TransformationModelNameDialog(parentShell);
+			return dialog.open() == 0 ? dialog.getResult() : null;
 		}
 	}
 }

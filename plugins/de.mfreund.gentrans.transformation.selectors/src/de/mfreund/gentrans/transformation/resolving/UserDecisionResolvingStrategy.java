@@ -93,7 +93,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throws AmbiguityResolvingException {
 
 		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(
-				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'", 0, false,
+				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'", 0, true,
 				choices, null) {
 
 			@Override

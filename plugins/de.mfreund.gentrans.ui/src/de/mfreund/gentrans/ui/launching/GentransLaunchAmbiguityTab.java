@@ -120,7 +120,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnEnableHistory.setToolTipText(
 				"Enable to use a strategy that resolves ambiguities based on previous decisions stored in a transformation model...");
 		this.btnEnableHistory.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 3, 1));
-		this.btnEnableHistory.setText("History Strategy");
+		this.btnEnableHistory.setText("TraceabilityLink Strategy");
 		this.btnEnableHistory.addSelectionListener(
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 

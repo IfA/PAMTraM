@@ -263,8 +263,11 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		if (project.hasNature("de.mfreund.pamtram.pamtramNature")) {
 
 			// set the library paths
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, Arrays.asList(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, project).split(";")));
+			String concatenatedLibPaths = PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS,
+					project);
+			java.util.List<String> libPathList = concatenatedLibPaths.isEmpty() ? new ArrayList<>()
+					: Arrays.asList(concatenatedLibPaths.split(";"));
+			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, libPathList);
 
 		} else {
 			return;

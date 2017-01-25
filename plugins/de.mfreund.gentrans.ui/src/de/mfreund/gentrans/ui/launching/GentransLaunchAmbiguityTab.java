@@ -2,12 +2,16 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -39,10 +43,22 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
  */
 public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
+	/**
+	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
+	 */
+	private static final String PAMTRAM_FOLDER = "Pamtram";
+
+	/**
+	 * The name of the folder in the PAMTraM folder where transformation models are stored.
+	 */
+	private static final String TRANSFORMATION_MODEL_FOLDER = "transformation";
+
 	private Button btnEnableHistory;
 
 	private Button btnUseLatestTransformation;
+
 	private Button btnUseSpecificTransformation;
+
 	private Combo comboSelectTransformation;
 
 	private Button btnEnableStatistics;
@@ -50,6 +66,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private Scale scaleStatisticsFactor;
 
 	private Button btnEnableUser;
+
 	private Button btnHandleExpandingAmbiguities;
 
 	/**
@@ -93,32 +110,36 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		ambiguityStrategyGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		ambiguityStrategyGroup.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
 		ambiguityStrategyGroup.setText("Strategies");
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1).applyTo(ambiguityStrategyGroup);
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
+				.applyTo(ambiguityStrategyGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(ambiguityStrategyGroup);
 
 		// a button to enable/disable the HistoryStrategy
 		//
 		this.btnEnableHistory = new Button(ambiguityStrategyGroup, SWT.CHECK);
-		this.btnEnableHistory.setToolTipText("Enable to use a strategy that resolves ambiguities based on previous decisions stored in a transformation model...");
+		this.btnEnableHistory.setToolTipText(
+				"Enable to use a strategy that resolves ambiguities based on previous decisions stored in a transformation model...");
 		this.btnEnableHistory.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 3, 1));
 		this.btnEnableHistory.setText("History Strategy");
-		this.btnEnableHistory.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+		this.btnEnableHistory.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
 		// a composite for additional setting to customize the HistoryStrategy
 		//
 		Composite historyComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(2).extendedMargins(10, 0, 0, 0)
-		.applyTo(historyComposite);
+		GridLayoutFactory.swtDefaults().numColumns(2).extendedMargins(10, 0, 0, 0).applyTo(historyComposite);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1)
-		.applyTo(historyComposite);
+				.applyTo(historyComposite);
 
 		// a button to control the use of the latest transformation model in the HistoryStrategy
 		//
 		this.btnUseLatestTransformation = new Button(historyComposite, SWT.RADIO);
 		this.btnUseLatestTransformation.setSelection(true);
-		this.btnUseLatestTransformation.setToolTipText("Always use the latest stored transformation model to resolve ambiguities");
+		this.btnUseLatestTransformation
+				.setToolTipText("Always use the latest stored transformation model to resolve ambiguities");
 		this.btnUseLatestTransformation.setText("Use latest transformation model");
-		this.btnUseLatestTransformation.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+		this.btnUseLatestTransformation.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
 		// just to fill the grid
 		//
@@ -129,7 +150,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnUseSpecificTransformation = new Button(historyComposite, SWT.RADIO);
 		this.btnUseSpecificTransformation.setToolTipText("Use a specific transformation model to resolve ambiguities");
 		this.btnUseSpecificTransformation.setText("Use specific transformation model");
-		this.btnUseSpecificTransformation.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+		this.btnUseSpecificTransformation.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
 		// a combo to select the transformation model to be used in the HistoryStrategy
 		//
@@ -138,7 +160,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.comboSelectTransformation.addSelectionListener(
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false)
-		.applyTo(this.comboSelectTransformation);
+				.applyTo(this.comboSelectTransformation);
 
 		// just a separator
 		//
@@ -152,17 +174,16 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnEnableStatistics.setToolTipText(
 				"Enable to use a strategy that resolves ambiguities based on statistical evaluations of previous selections...");
 		this.btnEnableStatistics.setText("Statistics Strategy");
-		this.btnEnableStatistics.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().span(3, 1)
-		.applyTo(this.btnEnableStatistics);
+		this.btnEnableStatistics.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+		GridDataFactory.swtDefaults().span(3, 1).applyTo(this.btnEnableStatistics);
 
 		// a composite for additional setting to customize the StatisticsStrategy
 		//
 		Composite statisticsComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(4).extendedMargins(10, 0, 0, 0)
-		.applyTo(statisticsComposite);
+		GridLayoutFactory.swtDefaults().numColumns(4).extendedMargins(10, 0, 0, 0).applyTo(statisticsComposite);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1)
-		.applyTo(statisticsComposite);
+				.applyTo(statisticsComposite);
 
 		// a simple label
 		//
@@ -201,18 +222,18 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		//
 		this.btnEnableUser = new Button(ambiguityStrategyGroup, SWT.CHECK);
 		this.btnEnableUser.setSelection(true);
-		this.btnEnableUser.setToolTipText("Enable to use a strategy that resolves ambiguities based on user decisions...");
+		this.btnEnableUser
+				.setToolTipText("Enable to use a strategy that resolves ambiguities based on user decisions...");
 		this.btnEnableUser.setText("User Decision Strategy");
-		this.btnEnableUser.addSelectionListener((SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
+		this.btnEnableUser.addSelectionListener(
+				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().span(3, 1).applyTo(this.btnEnableUser);
 
 		// a composite for additional setting to customize the UserDecisionStrategy
 		//
 		Composite userComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
-		GridLayoutFactory.swtDefaults().extendedMargins(10, 0, 0, 0)
-		.applyTo(userComposite);
-		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1)
-		.applyTo(userComposite);
+		GridLayoutFactory.swtDefaults().extendedMargins(10, 0, 0, 0).applyTo(userComposite);
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1).applyTo(userComposite);
 
 		// a button to enable the handling of expanding ambiguities in the UserDecisionStrategy
 		//
@@ -220,8 +241,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnHandleExpandingAmbiguities.setSelection(true);
 		this.btnHandleExpandingAmbiguities.setEnabled(false);
 		this.btnHandleExpandingAmbiguities
-		.setToolTipText("Also handle ambiguities that occur during the expanding step "
-				+ "(Warning: This might lead to many user dialogs!)...");
+				.setToolTipText("Also handle ambiguities that occur during the expanding step "
+						+ "(Warning: This might lead to many user dialogs!)...");
 		this.btnHandleExpandingAmbiguities.setText("Handle expanding ambiguities");
 		this.btnHandleExpandingAmbiguities.addSelectionListener(
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
@@ -272,9 +293,24 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 			this.btnUseSpecificTransformation.setSelection(!transformationToUse.isEmpty());
 			this.btnUseSpecificTransformation.setEnabled(
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_ENABLE_HISTORY, false));
+
+			try {
+
+				List<IResource> transformationModels = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot()
+						.getProject(this.context.getProject()).getFolder(GentransLaunchAmbiguityTab.PAMTRAM_FOLDER)
+						.getFolder(GentransLaunchAmbiguityTab.TRANSFORMATION_MODEL_FOLDER).members());
+				transformationModels = transformationModels.stream().filter(r -> r instanceof IFolder)
+						.collect(Collectors.toList());
+				String[] transformationModelNames = transformationModels.stream().map(r -> ((IFolder) r).getName())
+						.collect(Collectors.toList()).toArray(new String[] {});
+				this.comboSelectTransformation.setItems(transformationModelNames);
+			} catch (Exception e1) {
+				// error while determining the list of stored transformation models
+			}
+
 			String[] transformationsToChooseFrom = this.comboSelectTransformation.getItems();
 			int index = Arrays.asList(transformationsToChooseFrom).indexOf(transformationToUse);
-			if(index == -1 ) {
+			if (index == -1) {
 				this.comboSelectTransformation.deselectAll();
 			} else {
 				this.comboSelectTransformation.select(index);
@@ -315,7 +351,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		// set the transformationModel attribute
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TRANSFORMATION_MODEL,
 				this.btnEnableHistory.getSelection() && this.btnUseSpecificTransformation.getSelection()
-				? this.comboSelectTransformation.getText() : "");
+						? this.comboSelectTransformation.getText() : "");
 
 		// set the enableStatistics attribute
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_ENABLE_STATISTICS,
@@ -337,6 +373,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public String getName() {
+
 		return "Ambiguity resolving";
 	}
 
@@ -392,18 +429,15 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		IObservableValue<Boolean> transformationModelToUseContextObserveValue = BeanProperties
 				.value(GentransLaunchContext.PROPERTY_NAME_TRANSFORMATION_MODEL_TO_USE).observe(this.context);
 		IObservableList<List<?>> modelsToChooseFromContextObserveList = BeanProperties
-				.list(GentransLaunchContext.PROPERTY_NAME_MODELS_TO_CHOOSE_FROM)
-				.observe(this.context);
+				.list(GentransLaunchContext.PROPERTY_NAME_MODELS_TO_CHOOSE_FROM).observe(this.context);
 
 		IObservableValue<Boolean> enableStatisticsAmbiguityResolvingContextObserveValue = BeanProperties
 				.value(GentransLaunchContext.PROPERTY_NAME_ENABLE_STATISTICS).observe(this.context);
 		IObservableValue<Integer> scaleStatisticsFactorContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_WEIGHTING_FACTOR)
-				.observe(this.context);
+				.value(GentransLaunchContext.PROPERTY_NAME_WEIGHTING_FACTOR).observe(this.context);
 
 		IObservableValue<Boolean> enableUserAmbiguityResolvingContextObserveValue = BeanProperties
-				.value(GentransLaunchContext.PROPERTY_NAME_ENABLE_USER)
-				.observe(this.context);
+				.value(GentransLaunchContext.PROPERTY_NAME_ENABLE_USER).observe(this.context);
 		IObservableValue<Boolean> handleExpandingAmbiguitiesContextObserveValue = BeanProperties
 				.value(GentransLaunchContext.PROPERTY_NAME_HANDLE_EXPANDING_AMBIGUITIES).observe(this.context);
 
@@ -433,10 +467,15 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 				enableStatisticsAmbiguityResolvingContextObserveValue, null, null);
 		this.bindingContext.bindValue(observeSelectionScaleStatisticsFactorObserveWidget,
 				scaleStatisticsFactorContextObserveValue, null, null);
-		this.bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget, enableUserAmbiguityResolvingContextObserveValue, null, null);
-		this.bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget, useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
-		this.bindingContext.bindList(itemsComboSelectTransformationObserveWidget, modelsToChooseFromContextObserveList, null, null);
-		this.bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget, transformationModelToUseContextObserveValue, null, null);
-		this.bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget, handleExpandingAmbiguitiesContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnEnableUserObserveWidget,
+				enableUserAmbiguityResolvingContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnUseSpecificTransformationObserveWidget,
+				useSpecificTransformationModelAmbiguityResolvingContextObserveValue, null, null);
+		this.bindingContext.bindList(itemsComboSelectTransformationObserveWidget, modelsToChooseFromContextObserveList,
+				null, null);
+		this.bindingContext.bindValue(observeSelectionComboSelectTransformationObserveWidget,
+				transformationModelToUseContextObserveValue, null, null);
+		this.bindingContext.bindValue(observeSelectionBtnHandleExpandingCardinalitiesObserveWidget,
+				handleExpandingAmbiguitiesContextObserveValue, null, null);
 	}
 }

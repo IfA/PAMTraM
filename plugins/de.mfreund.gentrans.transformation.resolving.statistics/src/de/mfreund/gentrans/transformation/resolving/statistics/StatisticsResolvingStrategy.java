@@ -40,7 +40,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * @author mfreund
  */
 public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrategy
-implements IAmbiguityResolvedAdapter {
+		implements IAmbiguityResolvedAdapter {
 
 	/**
 	 * The weighting factor to be used when calculating
@@ -81,8 +81,7 @@ implements IAmbiguityResolvedAdapter {
 
 		IDialogSettings mapping = DialogSettings.getOrCreateSection(section, "MAPPING");
 
-		this.mappingSection = DialogSettings.getOrCreateSection(mapping,
-				pamtramModel.eResource().getURI().toString());
+		this.mappingSection = DialogSettings.getOrCreateSection(mapping, pamtramModel.eResource().getURI().toString());
 
 		IDialogSettings metamodel = DialogSettings.getOrCreateSection(section, "METAMODEL");
 
@@ -122,15 +121,14 @@ implements IAmbiguityResolvedAdapter {
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName())
-						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
+						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName()).compareTo(
+								this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
 				.collect(Collectors.toList());
 
 	}
 
 	@Override
-	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices,
-			MatchedSectionDescriptor resolved) {
+	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices, MatchedSectionDescriptor resolved) {
 
 		// We use the concatenated names of all sections in the list of choices as key
 		//
@@ -154,33 +152,38 @@ implements IAmbiguityResolvedAdapter {
 		// We use the concatenated names of all mappings in the list of choices as key
 		//
 		String key = String.join(";",
-				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
+				choices.parallelStream().map(Mapping::getName).sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
 		// Sort the choices in descending order based on the number of previous count
 		//
-		return choices.parallelStream()
-				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
+		return choices
+				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
 						.getCount(choicesSection, o2.getName()).compareTo(this.getCount(choicesSection, o1.getName())))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public void searchingMappingSelected(List<Mapping> choices, Mapping resolved) {
+	public void searchingMappingSelected(List<Mapping> choices, List<Mapping> resolved) {
 
 		// We use the concatenated names of all mappings in the list of choices as key
 		//
-		String key = String.join(";", choices.parallelStream().map(m -> m.getName())
-				.sorted().collect(Collectors.toList()));
+		String key = String.join(";",
+				choices.parallelStream().map(Mapping::getName).sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
-		// The previous count for the given selected choice
+		// We enhance the count for each selected mapping
 		//
-		int count = this.getCount(choicesSection, resolved.getName());
+		for (Mapping mapping : resolved) {
 
-		choicesSection.put(resolved.getName(), ++count);
+			// The previous count for the given selected choice
+			//
+			int count = this.getCount(choicesSection, mapping.getName());
+
+			choicesSection.put(mapping.getName(), ++count);
+		}
 
 	}
 
@@ -223,10 +226,12 @@ implements IAmbiguityResolvedAdapter {
 		// Sort the choices in descending order based on the number of previous count
 		// (we only sort the keys as, up to now, we do not perform statistical analysis on instances)
 		//
-		List<ModelConnectionPath> sortedKeys = choices.keySet()
-				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o2.toString()).compareTo(
-								this.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o1.toString())))
+		List<ModelConnectionPath> sortedKeys = choices.keySet().parallelStream()
+				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
+						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor,
+								o2.toString())
+						.compareTo(this.getWeightedCount(mappingLayerSection, metamodelLayerSection,
+								this.weightingFactor, o1.toString())))
 				.collect(Collectors.toList());
 
 		// We create a new LinkedHashMap as this guarantees ordering of keys
@@ -252,9 +257,12 @@ implements IAmbiguityResolvedAdapter {
 
 		// Sort the choices in descending order based on the number of previous count
 		//
-		return choices.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
-				.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o2.toString())
-				.compareTo(this.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor, o1.toString())))
+		return choices.parallelStream()
+				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
+						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor,
+								o2.toString())
+						.compareTo(this.getWeightedCount(mappingLayerSection, metamodelLayerSection,
+								this.weightingFactor, o1.toString())))
 				.collect(Collectors.toList());
 	}
 
@@ -281,8 +289,7 @@ implements IAmbiguityResolvedAdapter {
 		 * Store on the meta-model layer
 		 */
 		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getPathRootClass()).getNsURI();
-		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(
-				this.metamodelSections.get(nsURI),
+		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections.get(nsURI),
 				key);
 
 		// The previous count for the given selected choice

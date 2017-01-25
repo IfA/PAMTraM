@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -145,7 +146,8 @@ public class MappingSelector extends CancelableElement {
 
 		Set<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
 				.filter(m -> !this.checkCondition(m)).collect(Collectors.toSet());
-		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMapping().stream()).collect(Collectors.toList()));
+		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMapping().stream())
+				.collect(Collectors.toList()));
 
 		// TODO also filter if sub-conditions of type ApplicationDependency
 		this.dependentMappings.addAll(this.mappings.parallelStream()
@@ -240,24 +242,34 @@ public class MappingSelector extends CancelableElement {
 					/*
 					 * Consult the specified resolving strategy to resolve the ambiguity.
 					 */
-					// TODO maybe we need to allow to also select multiple mappings
 					try {
 						if (this.onlyAskOnceOnAmbiguousMappings) {
 							MatchedSectionDescriptor descriptor = entry.getValue().iterator().next();
 							List<Mapping> resolved = this.selectMappingForDescriptor(descriptor, entry.getKey());
 
-							// create a MappingInstanceStorage for each descriptor
-							Mapping resolvedMapping = resolved.iterator().next();
-							ret.addAll(entry.getValue().parallelStream()
-									.map(d -> this.createMappingInstanceStorage(d, resolvedMapping))
-									.collect(Collectors.toList()));
+							// create a MappingInstanceStorage for each descriptor and each selected mapping
+							//
+							Iterator<Mapping> it = resolved.iterator();
+							while (it.hasNext()) {
+
+								Mapping resolvedMapping = it.next();
+								ret.addAll(entry.getValue().parallelStream()
+										.map(d -> this.createMappingInstanceStorage(d, resolvedMapping))
+										.collect(Collectors.toList()));
+							}
 						} else {
 
 							for (MatchedSectionDescriptor descriptor : entry.getValue()) {
 								List<Mapping> resolved = this.selectMappingForDescriptor(descriptor, entry.getKey());
 
-								// create a MappingInstanceStorage for each descriptor
-								ret.add(this.createMappingInstanceStorage(descriptor, resolved.iterator().next()));
+								// create a MappingInstanceStorage for each descriptor and each selected mapping
+								//
+								Iterator<Mapping> it = resolved.iterator();
+								while (it.hasNext()) {
+
+									Mapping resolvedMapping = it.next();
+									ret.add(this.createMappingInstanceStorage(descriptor, resolvedMapping));
+								}
 							}
 						}
 					} catch (Exception e) {
@@ -311,7 +323,7 @@ public class MappingSelector extends CancelableElement {
 			//
 			Optional<Entry<Set<Mapping>, Set<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors
 					.entrySet().stream().filter(entry -> entry.getKey().size() == localApplicableMappings.size()
-					&& entry.getKey().containsAll(localApplicableMappings))
+							&& entry.getKey().containsAll(localApplicableMappings))
 					.findFirst();
 
 			if (existing.isPresent()) {
@@ -358,22 +370,22 @@ public class MappingSelector extends CancelableElement {
 		// check conditions of all corresponding MappingHintGroups
 		//
 		mappingInstance.getMapping().getActiveMappingHintGroups().parallelStream()
-		.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
+				.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
 
-			boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
+					boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
 
-			if (result) {
+					if (result) {
 
-				// Iterate now over all corresponding MappingHints
-				//
-				hg.getMappingHints().parallelStream().forEach(m -> this.checkCondition(m, mappingInstance));
-			}
-		});
+						// Iterate now over all corresponding MappingHints
+						//
+						hg.getMappingHints().parallelStream().forEach(m -> this.checkCondition(m, mappingInstance));
+					}
+				});
 
 		// check Condition of corresponding IMPORTED MappingHintGroups
 		//
 		mappingInstance.getMapping().getActiveImportedMappingHintGroups().parallelStream()
-		.forEach(hg -> this.checkCondition(hg, mappingInstance));
+				.forEach(hg -> this.checkCondition(hg, mappingInstance));
 
 	}
 
@@ -414,8 +426,8 @@ public class MappingSelector extends CancelableElement {
 
 		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(), descriptor,
 				this.selectedMappings) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
-						descriptor, this.selectedMappings) == CondResult.FALSE);
+				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(), descriptor,
+						this.selectedMappings) == CondResult.FALSE);
 
 	}
 
@@ -456,7 +468,7 @@ public class MappingSelector extends CancelableElement {
 				new ArrayList<>(applicableMappings), descriptor.getAssociatedSourceModelElement());
 		if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 			((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-			.searchingMappingSelected(new ArrayList<>(applicableMappings), resolved.get(0));
+					.searchingMappingSelected(new ArrayList<>(applicableMappings), resolved);
 		}
 		this.logger.fine("[Ambiguity] ...finished.\n");
 		return resolved;

@@ -14,6 +14,7 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.PAMTraM;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -22,7 +23,6 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
-import pamtram.mapping.ContainerSelector;
 
 /**
  * This provides support for composing several {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
@@ -33,7 +33,7 @@ import pamtram.mapping.ContainerSelector;
  * @author mfreund
  */
 public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvingStrategy
-implements IAmbiguityResolvedAdapter {
+		implements IAmbiguityResolvedAdapter {
 
 	/**
 	 * This keeps track of the strategies that this ComposedStrategy composes.
@@ -43,7 +43,8 @@ implements IAmbiguityResolvedAdapter {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param composedStrategies The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 * @param composedStrategies
+	 *            The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 */
 	public ComposedAmbiguityResolvingStrategy(List<IAmbiguityResolvingStrategy> composedStrategies) {
 		this.composedStrategies = composedStrategies;
@@ -51,17 +52,22 @@ implements IAmbiguityResolvedAdapter {
 
 	/**
 	 * This is the getter for the {@link #composedStrategies}.
+	 * 
 	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 */
 	public List<IAmbiguityResolvingStrategy> getComposedStrategies() {
+
 		return this.composedStrategies;
 	}
 
 	/**
 	 * This adds a new strategy to end of the list of {@link #composedStrategies}.
-	 * @param strategyToAdd The {@link IAmbiguityResolvingStrategy strategy} to add.
+	 * 
+	 * @param strategyToAdd
+	 *            The {@link IAmbiguityResolvingStrategy strategy} to add.
 	 */
 	public void addStrategy(IAmbiguityResolvingStrategy strategyToAdd) {
+
 		this.composedStrategies.add(strategyToAdd);
 	}
 
@@ -114,19 +120,19 @@ implements IAmbiguityResolvedAdapter {
 			throws AmbiguityResolvingException {
 
 		List<Mapping> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.size() <= 1) {
+		if (ret.size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.searchingSelectMapping(ret, element);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -139,19 +145,19 @@ implements IAmbiguityResolvedAdapter {
 			EObject element) throws AmbiguityResolvingException {
 
 		List<String> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.isEmpty() || ret.size() == 1 && ret.get(0) != null) {
+		if (ret.isEmpty() || ret.size() == 1 && ret.get(0) != null) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.instantiatingSelectAttributeValue(ret, attribute, element);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -164,19 +170,19 @@ implements IAmbiguityResolvedAdapter {
 			InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		List<Integer> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.isEmpty() || ret.size() == 1 && ret.get(0) != null) {
+		if (ret.isEmpty() || ret.size() == 1 && ret.get(0) != null) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.instantiatingSelectCardinality(ret, targetSectionClass, mappingHintGroup);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -185,24 +191,24 @@ implements IAmbiguityResolvedAdapter {
 	}
 
 	@Override
-	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices, List<EObjectWrapper> element,
-			MappingHintGroupType hintGroup, ContainerSelector modelConnectionHint, String hintValue)
-					throws AmbiguityResolvingException {
+	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
+			List<EObjectWrapper> element, MappingHintGroupType hintGroup, ContainerSelector modelConnectionHint,
+			String hintValue) throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.size() <= 1) {
+		if (ret.size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.joiningSelectContainerInstance(ret, element, hintGroup, modelConnectionHint, hintValue);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -214,22 +220,23 @@ implements IAmbiguityResolvedAdapter {
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
 			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
-					throws AmbiguityResolvingException {
+			throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.size() <= 1) {
+		if (ret.size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			ret = strategy.linkingSelectTargetInstance(ret, reference, hintGroup, mappingInstanceSelector, sourceElement);
-			if(ret == null) {
+			ret = strategy.linkingSelectTargetInstance(ret, reference, hintGroup, mappingInstanceSelector,
+					sourceElement);
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -241,19 +248,19 @@ implements IAmbiguityResolvedAdapter {
 	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
 		List<EClass> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.size() <= 1) {
+		if (ret.size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.joiningSelectRootElement(ret);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -266,19 +273,19 @@ implements IAmbiguityResolvedAdapter {
 			TargetSection section) throws AmbiguityResolvingException {
 
 		List<ModelConnectionPath> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 
-		if(ret.size() <= 1) {
+		if (ret.size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.joiningSelectConnectionPath(ret, section);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.size() <= 1) {
+			} else if (ret.size() <= 1) {
 				break;
 			}
 		}
@@ -292,21 +299,23 @@ implements IAmbiguityResolvedAdapter {
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		Map<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-		if(choices != null) {
+		if (choices != null) {
 			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
 		}
 
-		if(ret.entrySet().isEmpty() || ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
+		if (ret.entrySet().isEmpty()
+				|| ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.entrySet().isEmpty() || ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
+			} else if (ret.entrySet().isEmpty()
+					|| ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
 				break;
 			}
 		}
@@ -320,21 +329,23 @@ implements IAmbiguityResolvedAdapter {
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		Map<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		if(choices != null) {
+		if (choices != null) {
 			for (Entry<TargetSectionClass, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
 		}
 
-		if(ret.entrySet().isEmpty() || ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
+		if (ret.entrySet().isEmpty()
+				|| ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);
-			if(ret == null) {
+			if (ret == null) {
 				return null;
-			} else if(ret.entrySet().isEmpty() || ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
+			} else if (ret.entrySet().isEmpty()
+					|| ret.entrySet().size() == 1 && ret.entrySet().iterator().next().getValue().size() <= 1) {
 				break;
 			}
 		}
@@ -343,8 +354,7 @@ implements IAmbiguityResolvedAdapter {
 	}
 
 	@Override
-	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices,
-			MatchedSectionDescriptor resolved) {
+	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices, MatchedSectionDescriptor resolved) {
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			if (strategy instanceof IAmbiguityResolvedAdapter) {
@@ -355,7 +365,7 @@ implements IAmbiguityResolvedAdapter {
 	}
 
 	@Override
-	public void searchingMappingSelected(List<Mapping> choices, Mapping resolved) {
+	public void searchingMappingSelected(List<Mapping> choices, List<Mapping> resolved) {
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			if (strategy instanceof IAmbiguityResolvedAdapter) {

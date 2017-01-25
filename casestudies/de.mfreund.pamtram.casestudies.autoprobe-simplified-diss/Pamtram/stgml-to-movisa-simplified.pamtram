@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModel name="stgml-simplified">
+    <metaModelPackage href="http://stgml-simplified#/"/>
+    <metaModelSections xsi:type="source:SourceSection" name="source"/>
+  </sourceSectionModel>
+  <targetSectionModel name="movisa-simplified">
+    <metaModelPackage href="http://stefan-hennig.de/movisa-simplified#/"/>
+    <metaModelSections xsi:type="target:TargetSection" name="target"/>
+  </targetSectionModel>
+  <mappingModel>
+    <mapping name="sourceMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
+    </mapping>
+  </mappingModel>
+  <conditionModel/>
+</pamtram:PAMTraM>

@@ -52,7 +52,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 	/**
 	 * This is the getter for the {@link #composedStrategies}.
-	 * 
+	 *
 	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 */
 	public List<IAmbiguityResolvingStrategy> getComposedStrategies() {
@@ -62,7 +62,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 	/**
 	 * This adds a new strategy to end of the list of {@link #composedStrategies}.
-	 * 
+	 *
 	 * @param strategyToAdd
 	 *            The {@link IAmbiguityResolvingStrategy strategy} to add.
 	 */
@@ -142,7 +142,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 	@Override
 	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
-			EObject element) throws AmbiguityResolvingException {
+			EObject element, InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		List<String> ret = new ArrayList<>();
 		if (choices != null) {
@@ -154,7 +154,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			ret = strategy.instantiatingSelectAttributeValue(ret, attribute, element);
+			ret = strategy.instantiatingSelectAttributeValue(ret, attribute, element, mappingHintGroup);
 			if (ret == null) {
 				return null;
 			} else if (ret.size() <= 1) {

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -59,7 +60,7 @@ public interface IAmbiguityResolvedAdapter {
 
 	/**
 	 * This method is called when a
-	 * {@link IAmbiguityResolvingStrategy#instantiatingSelectAttributeValue(List, pamtram.structure.target.TargetSectionAttribute, org.eclipse.emf.ecore.EObject)
+	 * {@link IAmbiguityResolvingStrategy#instantiatingSelectAttributeValue(List, pamtram.structure.target.TargetSectionAttribute, org.eclipse.emf.ecore.EObject, InstantiableMappingHintGroup)
 	 * instantiatingSelectAttributeValue} ambiguity has been resolved.
 	 *
 	 * @param choices

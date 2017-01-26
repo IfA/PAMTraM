@@ -807,7 +807,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 					try {
 						this.logger.fine("[Ambiguity] Resolve expanding ambiguity...");
 						List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
-								Arrays.asList((String) null), attr, instance.getEObject());
+								Arrays.asList((String) null), attr, instance.getEObject(), mappingGroup);
 						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
 									.instantiatingAttributeValueSelected(Arrays.asList((String) null), resolved.get(0));

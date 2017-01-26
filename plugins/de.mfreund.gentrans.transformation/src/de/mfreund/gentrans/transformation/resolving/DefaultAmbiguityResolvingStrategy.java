@@ -59,7 +59,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 
 	@Override
 	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
-			EObject element) {
+			EObject element, InstantiableMappingHintGroup mappingHintGroup) {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();

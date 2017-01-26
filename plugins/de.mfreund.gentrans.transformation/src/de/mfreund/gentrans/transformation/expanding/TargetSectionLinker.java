@@ -827,9 +827,25 @@ public class TargetSectionLinker extends CancelableElement {
 						}
 						try {
 							this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-							Map<TargetSectionClass, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
-									.linkingSelectTargetSectionAndInstance(choices, ref,
-											(MappingHintGroupType) mappingGroup);
+
+							Map<TargetSectionClass, List<EObjectWrapper>> resolved;
+							if (choices.size() == 1) {
+								// If there is only one possible TargetSection, we only need to let the user choose the
+								// instance...
+								//
+								TargetSectionClass resolvedSection = choices.keySet().iterator().next();
+								List<EObjectWrapper> resolvedInstances = this.ambiguityResolvingStrategy
+										.linkingSelectTargetInstance(choices.values().iterator().next(), ref,
+												(MappingHintGroupType) mappingGroup, null, null);
+								resolved = new HashMap<>();
+								resolved.put(resolvedSection, resolvedInstances);
+							} else {
+								// ... otherwise, the user also needs to select the container instance.
+								//
+								resolved = this.ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(
+										choices, ref, (MappingHintGroupType) mappingGroup);
+							}
+
 							Entry<TargetSectionClass, List<EObjectWrapper>> selected = resolved.entrySet().iterator()
 									.next();
 							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {

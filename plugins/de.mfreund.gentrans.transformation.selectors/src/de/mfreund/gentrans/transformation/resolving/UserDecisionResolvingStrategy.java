@@ -320,7 +320,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ reference.getName() + "' of TargetMMSection " + hintGroup.getTargetSection().getName()
 					+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
 					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
-					+ ") . Please select a target element for the following source:\n" + sourceElement.toString();
+					+ ") . Please select a target element"
+					+ (sourceElement != null ? " for the following source:\n" + sourceElement.toString() : ".");
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,

@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+
 /**
  * A simple {@link AbstractDialog} that allows the user to enter a single value.
  *
@@ -24,11 +26,26 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	/**
 	 * Create the dialog.
 	 *
-	 * @param message The message that shall be displayed in the dialog.
+	 * @param message
+	 *            The message that shall be displayed in the dialog.
 	 */
 	public ValueSpecificationDialog(final String message) {
 
 		super(message);
+	}
+
+	/**
+	 * Create the dialog.
+	 *
+	 * @param message
+	 *            The message that shall be displayed in the dialog.
+	 * @param enhanceMappingModelListener
+	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
+	 *            clicked.
+	 */
+	public ValueSpecificationDialog(final String message, final SelectionListener2 enhanceMappingModelListener) {
+
+		super(message, enhanceMappingModelListener);
 	}
 
 	@Override

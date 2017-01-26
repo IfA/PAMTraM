@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.enhancing.InstantiatingSelectAttributeValueMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
@@ -113,7 +114,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
-			EObject element) throws AmbiguityResolvingException {
+			EObject element, InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();
@@ -124,7 +125,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		String dialogMessage = "Please specify a value for the TargetSectionAttribute '"
 				+ attribute.getOwningClass().getName() + "." + attribute.getName() + "':";
 
-		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+		InstantiatingSelectAttributeValueMappingModelEnhancer enhancer = new InstantiatingSelectAttributeValueMappingModelEnhancer(
+				this.pamtramModel, attribute, mappingHintGroup);
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage, enhancer);
 
 		Display.getDefault().syncExec(dialog);
 

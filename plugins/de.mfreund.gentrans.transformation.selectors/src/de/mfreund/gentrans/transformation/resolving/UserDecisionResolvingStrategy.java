@@ -316,11 +316,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ (sourceElement != null ? "following element should point to:\n\n" + sourceElement.toString()
 							: "affected elements should point to.");
 		} else {
-			dialogMessage = "There was more than one target element found for the NonContainmmentReference '"
-					+ reference.getName() + "' of TargetMMSection " + hintGroup.getTargetSection().getName()
-					+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
-					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
-					+ ") . Please select a target element"
+			dialogMessage = "There was more than one target element found for the CrossReference '"
+					+ reference.getName() + "' of TargetSection "
+					+ (hintGroup.getTargetSection().getName().isEmpty() ? hintGroup.getTargetSection().getName()
+							: hintGroup.getTargetSection().getEClass().getName())
+					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
+					+ hintGroup.getName() + ") . Please select a target element"
 					+ (sourceElement != null ? " for the following source:\n" + sourceElement.toString() : ".");
 		}
 

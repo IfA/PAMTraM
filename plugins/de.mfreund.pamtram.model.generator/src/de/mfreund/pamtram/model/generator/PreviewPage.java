@@ -197,7 +197,10 @@ public class PreviewPage extends WizardPage {
 			}
 
 			if (this.wizardData.getCreatedSections() != null) {
-				this.viewer.setInput(this.wizardData.getCreatedSections().toArray());
+				// use the temporary SectionModel that contains all generated sections as input for the viewer as this
+				// simplifies refreshing the viewer when some of the sections are deleted e.g. via a ClassMergeAction
+				//
+				this.viewer.setInput(this.wizardData.getCreatedSections().get(0).eContainer());
 
 				// expand the tree so that the tree item map can be generated
 				this.viewer.expandAll();
@@ -327,7 +330,7 @@ public class PreviewPage extends WizardPage {
 
 		this.wizardData.setGenerator(generator);
 
-		List<Section<?, ?, ?, ?>> created = generator.generate();
+		List<Section<?, ?, ?, ?>> created = new ArrayList<>(generator.generate().getMetaModelSections());
 
 		this.wizardData.setCreatedSections(created);
 

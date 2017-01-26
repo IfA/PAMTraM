@@ -14,9 +14,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.DeleteCommand;
 
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
+import pamtram.PamtramFactory;
+import pamtram.SectionModel;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
@@ -28,8 +33,10 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
@@ -105,11 +112,13 @@ public class MetaModelSectionGenerator {
 	 * This generates the Section(s) and returns it/them. <br />
 	 * Note: The generated sections are not yet added to the PAMTraM model as some might represent duplicates of
 	 * existing sections (cf. {@link #mergeDuplicates(List)}). Consequently, clients need to add the sections to the
-	 * PAMTraM model on their own.
+	 * PAMTraM model on their own. Note: The generated sections are returned in a temporary SectionModel as this
+	 * facilitates excluding/deleting some of the generated sections via commands like a {@link DeleteCommand}.
 	 *
-	 * @return The generated Section(s).
+	 * @return The generated Section(s) in a temporary SectionModel.
 	 */
-	public List<Section<?, ?, ?, ?>> generate() {
+	@SuppressWarnings("unchecked")
+	public SectionModel<?, ?, ?, ?> generate() {
 
 		List<Section<?, ?, ?, ?>> ret = new ArrayList<>();
 
@@ -123,7 +132,18 @@ public class MetaModelSectionGenerator {
 
 		ret.addAll(this.dangling);
 
-		return ret;
+		SectionModel<?, ?, ?, ?> sectionModel;
+		if (ret.get(0) instanceof SourceSection) {
+			sectionModel = PamtramFactory.eINSTANCE.createSourceSectionModel();
+			((SourceSectionModel) sectionModel).getMetaModelSections()
+					.addAll((Collection<? extends SourceSection>) ret);
+		} else {
+			sectionModel = PamtramFactory.eINSTANCE.createTargetSectionModel();
+			((TargetSectionModel) sectionModel).getMetaModelSections()
+					.addAll((Collection<? extends TargetSection>) ret);
+		}
+
+		return sectionModel;
 	}
 
 	/**

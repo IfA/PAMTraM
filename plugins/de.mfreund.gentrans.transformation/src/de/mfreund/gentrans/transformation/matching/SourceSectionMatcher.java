@@ -1078,19 +1078,11 @@ public class SourceSectionMatcher {
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
-		List<ActualSourceSectionAttribute> actualAttributes = srcSection.getAttributes().stream()
-				.filter(at -> at instanceof ActualSourceSectionAttribute).map(at -> (ActualSourceSectionAttribute) at)
-				.collect(Collectors.toList());
-
-		return actualAttributes.parallelStream().allMatch(at -> {
-			List<Object> values = AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute());
-			if (values.isEmpty()) {
-				// add an 'empty' value
-				values.add(null);
-			}
-			return values.parallelStream()
-					.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
-		});
+		return srcSection.getAttributes().stream().filter(at -> at instanceof ActualSourceSectionAttribute)
+				.map(at -> (ActualSourceSectionAttribute) at)
+				.allMatch(at -> AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute())
+						.parallelStream().allMatch(
+								srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
 
 	}
 
@@ -1167,7 +1159,7 @@ public class SourceSectionMatcher {
 		// If we arrive at this point, the constraint is valid unless there is
 		// an unmatched 'inclusion'
 		//
-		return !containsInclusions || inclusionMatched;
+		return !(!inclusionMatched && containsInclusions);
 	}
 
 	/**

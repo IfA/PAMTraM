@@ -99,7 +99,7 @@ public class ExpressionCalculator {
 		} catch (final Exception e) {
 
 			if (this.logger != null) {
-				this.logger.warning("Message:\n" + e.getMessage() + "\n nothing calculated!");
+				this.logger.fine("Message:\n" + e.getMessage() + "\n nothing calculated!");
 			} else {
 				System.out.println("Message:\n" + e.getMessage() + "\n nothing calculated!");
 			}

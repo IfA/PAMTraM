@@ -25,7 +25,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
-import pamtram.SectionModel;
 import pamtram.commands.CreateSharedModelCommand;
 import pamtram.util.PamtramItemProviderAdapter;
 
@@ -232,8 +231,8 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)) {
-			return CreateSharedModelCommand.createCreateSharedModelCommand(domain, (PAMTraM) owner,
-					(SectionModel<?, ?, ?, ?>) value, collection, this);
+			return CreateSharedModelCommand.createCreateSharedModelCommand(domain, (PAMTraM) owner, (EObject) value,
+					collection, this);
 		}
 		return super.createCreateChildCommand(domain, owner, feature, value, index, collection);
 	}

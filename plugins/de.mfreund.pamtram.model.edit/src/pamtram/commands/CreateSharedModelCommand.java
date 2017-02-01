@@ -77,9 +77,9 @@ public class CreateSharedModelCommand extends CreateChildCommand {
 			feature = PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL;
 		} else if (sharedModelRoot instanceof TargetSectionModel) {
 			feature = PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL;
-		} else if (sharedModelRoot instanceof SourceSectionModel) {
+		} else if (sharedModelRoot instanceof MappingModel) {
 			feature = PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL;
-		} else if (sharedModelRoot instanceof SourceSectionModel) {
+		} else if (sharedModelRoot instanceof ConditionModel) {
 			feature = PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL;
 		} else {
 			return UnexecutableCommand.INSTANCE;

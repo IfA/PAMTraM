@@ -26,8 +26,10 @@
         eType="#//TargetSectionModel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedTargetSectionModel"
         upperBound="-1" eType="#//TargetSectionModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingModel" lowerBound="1"
-        upperBound="-1" eType="#//MappingModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingModel" upperBound="-1"
+        eType="#//MappingModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedMappingModel" upperBound="-1"
+        eType="#//MappingModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSections" upperBound="-1"
         eType="#//structure/source/SourceSection" changeable="false" volatile="true"
         transient="true" derived="true">
@@ -46,7 +48,7 @@
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="List&lt;Mapping> mappings = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+        <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.Mapping%>> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
@@ -60,18 +62,20 @@
         eType="#//mapping/FixedValue" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="&lt;%java.util.List%>&lt;FixedValue> globalValues = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalValues().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,&#xD;&#xA;&#x9;&#x9;globalValues.size(), globalValues.toArray());"/>
+        <details key="get" value="&lt;%java.util.List%>&lt;FixedValue> globalValues = &lt;%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalValues().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,&#xD;&#xA;&#x9;&#x9;globalValues.size(), globalValues.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet" changeable="false" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="&lt;%java.util.List%>&lt;ValueModifierSet> modifierSets = this.getMappingModel().parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getModifierSets().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,&#xD;&#xA;&#x9;&#x9;modifierSets.size(), modifierSets.toArray());"/>
+        <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.modifier.ValueModifierSet%>> modifierSets = &lt;%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getModifierSets().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,&#xD;&#xA;&#x9;&#x9;modifierSets.size(), modifierSets.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionModel" upperBound="-1"
         eType="#//ConditionModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedConditionModel" upperBound="-1"
+        eType="#//ConditionModel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
     <eTypeParameters name="S">

@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard;
-import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard.SectionModelType;
+import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard.SharedModelType;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -266,7 +266,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SectionModelType.SOURCE));
+						this.editor.getEditingDomain(), SharedModelType.SOURCE));
 
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
@@ -282,7 +282,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.conditionViewerGroup = new MinimizableTreeViewerGroup(this.sourceSash, this.adapterFactory,
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions",
-				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption());
+				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
+				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain(), SharedModelType.CONDITION));
 		this.conditionViewer = this.conditionViewerGroup.getViewer();
 		this.conditionViewer.setContentProvider(new ConditionContentProvider(this.adapterFactory));
 		this.conditionViewer.setInput(this.editor.pamtram);
@@ -308,7 +310,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 		this.mappingViewerGroup = new MinimizableTreeViewerGroup(this.mappingSash, this.adapterFactory,
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Mappings",
-				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption());
+				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
+				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain(), SharedModelType.MAPPING));
 		this.mappingViewer = this.mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an element gets (de-)activated. Otherwise,
@@ -335,7 +339,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.globalElementsViewerGroup = new MinimizableTreeViewerGroup(this.mappingSash, this.adapterFactory,
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Modifier Sets and Global Values", new TreeViewerGroupToolbarAddButtonOption(),
-				new TreeViewerGroupToolbarCollapseAllButtonOption());
+				new TreeViewerGroupToolbarCollapseAllButtonOption(),
+				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
+						this.editor.getEditingDomain(), SharedModelType.MAPPING));
 		this.globalElementsViewer = this.globalElementsViewerGroup.getViewer();
 
 		this.globalElementsViewer.setContentProvider(new ModifierSetContentProvider(this.adapterFactory));
@@ -368,7 +374,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Target Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SectionModelType.TARGET));
+						this.editor.getEditingDomain(), SharedModelType.TARGET));
 
 		this.targetViewer = this.targetViewerGroup.getViewer();
 
@@ -991,19 +997,19 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 *            The {@link PAMTraM} instance into which elements shall be imported.
 		 * @param editingDomain
 		 *            The {@link EditingDomain} that shall be used to import elements.
-		 * @param sectionModelType
-		 *            The {@link SectionModelType type} of SectionModel to be imported (source or target).
+		 * @param sharedModelType
+		 *            The {@link SharedModelType type} of shared model to be imported.
 		 */
 		public TreeViewerGroupToolbarImportSharedSectionModelButtonOption(PAMTraM pamtram, EditingDomain editingDomain,
-				SectionModelType sectionModelType) {
+				SharedModelType sharedModelType) {
 
-			super("Import Shared SectionModel", (SelectionListener2) e -> {
+			super("Import Shared Model", (SelectionListener2) e -> {
 
 				// create the wizard that allows to import shared
 				// SourceSectionModels
 				//
 				WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-						new ImportSharedSectionModelWizard(pamtram, editingDomain, sectionModelType));
+						new ImportSharedSectionModelWizard(pamtram, editingDomain, sharedModelType));
 				wizardDialog.create();
 				wizardDialog.open();
 			});

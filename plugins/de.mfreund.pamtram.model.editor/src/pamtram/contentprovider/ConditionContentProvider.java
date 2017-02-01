@@ -1,5 +1,8 @@
 package pamtram.contentprovider;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -25,7 +28,10 @@ public class ConditionContentProvider extends AdapterFactoryContentProvider impl
 	public Object[] getElements(Object object) {
 
 		if (object instanceof PAMTraM) {
-			return ((PAMTraM) object).getConditionModel().toArray();
+			return Stream
+					.concat(((PAMTraM) object).getConditionModel().stream(),
+							((PAMTraM) object).getSharedConditionModel().stream())
+					.collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
 	}

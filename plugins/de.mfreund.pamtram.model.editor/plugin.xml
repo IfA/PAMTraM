@@ -146,12 +146,20 @@ null
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
-            class="pamtram.util.SharedSectionModelResourceFactory"
+            class="pamtram.util.SharedModelResourceFactory"
             type="source">
       </parser>
       <parser
-            class="pamtram.util.SharedSectionModelResourceFactory"
+            class="pamtram.util.SharedModelResourceFactory"
             type="target">
+      </parser>
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="mapping">
+      </parser>
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="condition">
       </parser>
    </extension>
 </plugin>

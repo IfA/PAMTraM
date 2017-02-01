@@ -6,24 +6,26 @@ package pamtram.util;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
-import pamtram.SectionModel;
-
+import pamtram.ConditionModel;
+import pamtram.MappingModel;
+import pamtram.SourceSectionModel;
+import pamtram.TargetSectionModel;
 
 /**
- * A special resource for shared {@link SectionModel SectionModels} that uses {@link #useUUIDs() IDs} instead of URI
- * fragments to address model elements.
+ * A special resource for a shared {@link SourceSectionModel}, {@link TargetSectionModel}, {@link MappingModel}, or
+ * {@link ConditionModel} that uses {@link #useUUIDs() IDs} instead of URI fragments to address model elements.
  * <p />
  * That way, using and editing model contents from multiple PAMTraM models should be less likely to break references.
  *
  * @author mfreund
  */
-public class SharedSectionModelResource extends XMIResourceImpl {
+public class SharedModelResource extends XMIResourceImpl {
 
 	/**
 	 * This creates an instance.
 	 *
 	 */
-	public SharedSectionModelResource() {
+	public SharedModelResource() {
 		super();
 	}
 
@@ -33,7 +35,7 @@ public class SharedSectionModelResource extends XMIResourceImpl {
 	 * @param uri
 	 *            The {@link URI} of the resource to be created.
 	 */
-	public SharedSectionModelResource(URI uri) {
+	public SharedModelResource(URI uri) {
 		super(uri);
 	}
 

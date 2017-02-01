@@ -20,7 +20,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.commands.CreateSharedSectionModelCommand;
+import pamtram.commands.CreateSharedModelCommand;
 
 /**
  * A special {@link CreateSiblingAction} that allows to create shared {@link SectionModel SectionModels}. Before the
@@ -29,11 +29,15 @@ import pamtram.commands.CreateSharedSectionModelCommand;
  *
  * @author mfreund
  */
-public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
+public class CreateSharedModelSiblingAction extends CreateSiblingAction {
 
 	private static final String SOURCE_FILE_ENDING = ".pamtram.source";
 
 	private static final String TARGET_FILE_ENDING = ".pamtram.target";
+
+	private static final String MAPPING_FILE_ENDING = ".pamtram.mapping";
+
+	private static final String CONDITION_FILE_ENDING = ".pamtram.condition";
 
 	/**
 	 * This creates an instance.
@@ -42,7 +46,7 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 	 * @param selection
 	 * @param descriptor
 	 */
-	public CreateSharedSectionModelSiblingAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
+	public CreateSharedModelSiblingAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
 		super(editorPart, selection, descriptor);
 	}
 
@@ -51,7 +55,7 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 
 		if (!(this.descriptor instanceof CommandParameter)
 				|| !(((CommandParameter) this.descriptor).getFeature() instanceof EStructuralFeature)
-				|| !(this.command instanceof CreateSharedSectionModelCommand)) {
+				|| !(this.command instanceof CreateSharedModelCommand)) {
 			this.showError("Internal error while executing the action!");
 			return;
 		}
@@ -59,15 +63,25 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		EStructuralFeature feature = (EStructuralFeature) ((CommandParameter) this.descriptor).getFeature();
 
 		if (!(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL))) {
 			this.showError("Internal error while executing the action!");
 			return;
 		}
 
+		String fileEnding = "";
+		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)) {
+			fileEnding = CreateSharedModelSiblingAction.SOURCE_FILE_ENDING;
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
+			fileEnding = CreateSharedModelSiblingAction.TARGET_FILE_ENDING;
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)) {
+			fileEnding = CreateSharedModelSiblingAction.MAPPING_FILE_ENDING;
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)) {
+			fileEnding = CreateSharedModelSiblingAction.CONDITION_FILE_ENDING;
+		}
 		IPath newPath = ((FileEditorInput) UIHelper.getCurrentEditorInput()).getPath().removeLastSegments(1)
-				.append(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-						? CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING
-								: CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING);
+				.append(fileEnding);
 		IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(newPath);
 
 		// Ask the user for the new location of the exported SectionModel
@@ -78,10 +92,16 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		dialog.setTitle("Export SectionModel");
 		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)) {
 			dialog.setMessage("Specify the location for the shared SourceSectionModel (*"
-					+ CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING + ")");
-		} else {
+					+ CreateSharedModelSiblingAction.SOURCE_FILE_ENDING + ")");
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)) {
 			dialog.setMessage("Specify the location for the shared TargetSectionModel (*"
-					+ CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING + ")");
+					+ CreateSharedModelSiblingAction.TARGET_FILE_ENDING + ")");
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)) {
+			dialog.setMessage("Specify the location for the shared MapingModel (*"
+					+ CreateSharedModelSiblingAction.MAPPING_FILE_ENDING + ")");
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)) {
+			dialog.setMessage("Specify the location for the shared ConditionModel (*"
+					+ CreateSharedModelSiblingAction.CONDITION_FILE_ENDING + ")");
 		}
 		dialog.setBlockOnOpen(true);
 		dialog.open();
@@ -94,20 +114,30 @@ public class CreateSharedSectionModelSiblingAction extends CreateSiblingAction {
 		// Validate the file name
 		//
 		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				&& !newPath.toString().endsWith(CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING)) {
+				&& !newPath.toString().endsWith(CreateSharedModelSiblingAction.SOURCE_FILE_ENDING)) {
 			this.showError("Please specify a valid file name (*"
-					+ CreateSharedSectionModelSiblingAction.SOURCE_FILE_ENDING + ")");
+					+ CreateSharedModelSiblingAction.SOURCE_FILE_ENDING + ")");
 			return;
 		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
-				&& !newPath.toString().endsWith(CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING)) {
+				&& !newPath.toString().endsWith(CreateSharedModelSiblingAction.TARGET_FILE_ENDING)) {
 			this.showError("Please specify a valid file name (*"
-					+ CreateSharedSectionModelSiblingAction.TARGET_FILE_ENDING + ")");
+					+ CreateSharedModelSiblingAction.TARGET_FILE_ENDING + ")");
+			return;
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+				&& !newPath.toString().endsWith(CreateSharedModelSiblingAction.MAPPING_FILE_ENDING)) {
+			this.showError("Please specify a valid file name (*"
+					+ CreateSharedModelSiblingAction.MAPPING_FILE_ENDING + ")");
+			return;
+		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)
+				&& !newPath.toString().endsWith(CreateSharedModelSiblingAction.CONDITION_FILE_ENDING)) {
+			this.showError("Please specify a valid file name (*"
+					+ CreateSharedModelSiblingAction.CONDITION_FILE_ENDING + ")");
 			return;
 		}
 
 		URI sectionModelResourceURI = URI.createPlatformResourceURI(newPath.toString(), true);
 
-		((CreateSharedSectionModelCommand) this.command).setSectionModelURI(sectionModelResourceURI);
+		((CreateSharedModelCommand) this.command).setModelURI(sectionModelResourceURI);
 
 		super.run();
 	}

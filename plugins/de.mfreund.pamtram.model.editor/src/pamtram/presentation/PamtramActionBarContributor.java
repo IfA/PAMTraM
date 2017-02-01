@@ -45,8 +45,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
 import pamtram.PamtramPackage;
-import pamtram.actions.CreateSharedSectionModelChildAction;
-import pamtram.actions.CreateSharedSectionModelSiblingAction;
+import pamtram.actions.CreateSharedModelChildAction;
+import pamtram.actions.CreateSharedModelSiblingAction;
 import pamtram.actions.CutClassAndPasteAsNewSectionAction;
 import pamtram.actions.GenericConversionCommandAction;
 import pamtram.actions.MetaModelElementMergeAction;
@@ -67,7 +67,7 @@ import pamtram.structure.target.TargetSectionReference;
 
 /**
  * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class PamtramActionBarContributor extends EditingDomainActionBarContributor
@@ -75,21 +75,21 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected IEditorPart activeEditorPart;
 
 	/**
 	 * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected ISelectionProvider selectionProvider;
 
 	/**
 	 * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected IAction showPropertiesViewAction = new Action(
@@ -109,7 +109,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This action refreshes the viewer of the current editor if the editor implements
 	 * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected IAction refreshViewerAction = new Action(
@@ -136,7 +136,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
 	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createChildActions;
@@ -152,7 +152,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
 	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createSiblingActions;
@@ -177,7 +177,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public PamtramActionBarContributor() {
@@ -191,7 +191,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -357,9 +357,12 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 							&& (((CommandParameter) descriptor).getFeature()
 									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
-						actions.add(
-								new CreateSharedSectionModelChildAction(this.activeEditorPart, selection, descriptor));
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL))) {
+						actions.add(new CreateSharedModelChildAction(this.activeEditorPart, selection, descriptor));
 					} else {
 						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
 					}
@@ -438,8 +441,12 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 							&& (((CommandParameter) descriptor).getFeature()
 									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL))) {
-						actions.add(new CreateSharedSectionModelSiblingAction(this.activeEditorPart, selection,
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+									|| ((CommandParameter) descriptor).getFeature()
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL))) {
+						actions.add(new CreateSharedModelSiblingAction(this.activeEditorPart, selection,
 								descriptor));
 					} else {
 						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
@@ -488,7 +495,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
 	 * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
 	 * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
@@ -560,7 +567,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 
 	/**
 	 * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -578,7 +585,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	/**
 	 * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

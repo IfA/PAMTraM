@@ -33,8 +33,8 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
-import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard;
-import de.mfreund.pamtram.wizards.ImportSharedSectionModelWizard.SharedModelType;
+import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
+import de.mfreund.pamtram.wizards.ImportSharedModelWizard.SharedModelType;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -1009,7 +1009,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				// SourceSectionModels
 				//
 				WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-						new ImportSharedSectionModelWizard(pamtram, editingDomain, sharedModelType));
+						new ImportSharedModelWizard(pamtram, editingDomain, sharedModelType));
 				wizardDialog.create();
 				wizardDialog.open();
 			});

@@ -188,13 +188,22 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__MAPPING_MODEL = 4;
 
 	/**
+	 * The feature id for the '<em><b>Shared Mapping Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_MAPPING_MODEL = 5;
+
+	/**
 	 * The feature id for the '<em><b>Source Sections</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SOURCE_SECTIONS = 5;
+	int PAM_TRA_M__SOURCE_SECTIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Target Sections</b></em>' reference list.
@@ -203,7 +212,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTIONS = 6;
+	int PAM_TRA_M__TARGET_SECTIONS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -212,7 +221,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPINGS = 7;
+	int PAM_TRA_M__MAPPINGS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
@@ -221,7 +230,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__ACTIVE_MAPPINGS = 8;
+	int PAM_TRA_M__ACTIVE_MAPPINGS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Global Values</b></em>' reference list.
@@ -230,7 +239,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__GLOBAL_VALUES = 9;
+	int PAM_TRA_M__GLOBAL_VALUES = 10;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
@@ -239,7 +248,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 10;
+	int PAM_TRA_M__MODIFIER_SETS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Condition Model</b></em>' containment reference list.
@@ -248,7 +257,16 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__CONDITION_MODEL = 11;
+	int PAM_TRA_M__CONDITION_MODEL = 12;
+
+	/**
+	 * The feature id for the '<em><b>Shared Condition Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_CONDITION_MODEL = 13;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -257,7 +275,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 12;
+	int PAM_TRA_M_FEATURE_COUNT = 14;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -787,6 +805,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_MappingModel();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedMappingModel <em>Shared Mapping Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Mapping Model</em>'.
+	 * @see pamtram.PAMTraM#getSharedMappingModel()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedMappingModel();
+
+	/**
 	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -862,6 +891,17 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPAMTraM_ConditionModel();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedConditionModel <em>Shared Condition Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Condition Model</em>'.
+	 * @see pamtram.PAMTraM#getSharedConditionModel()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedConditionModel();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.PAMTraM#mergeExtends() <em>Merge Extends</em>}' operation.
@@ -1173,6 +1213,14 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__MAPPING_MODEL = eINSTANCE.getPAMTraM_MappingModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Shared Mapping Model</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_MAPPING_MODEL = eINSTANCE.getPAMTraM_SharedMappingModel();
+
+		/**
 		 * The meta object literal for the '<em><b>Source Sections</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1227,6 +1275,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAM_TRA_M__CONDITION_MODEL = eINSTANCE.getPAMTraM_ConditionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Condition Model</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_CONDITION_MODEL = eINSTANCE.getPAMTraM_SharedConditionModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Merge Extends</b></em>' operation.

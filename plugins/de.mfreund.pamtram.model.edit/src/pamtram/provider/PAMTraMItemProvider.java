@@ -82,7 +82,9 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL);
 			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL);
 		}
 		return childrenFeatures;
 	}
@@ -150,7 +152,9 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL:
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
+			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODEL:
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
+			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODEL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -195,7 +199,17 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 
 		newChildDescriptors.add
 			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL,
+				 PamtramFactory.eINSTANCE.createMappingModel()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL,
+				 PamtramFactory.eINSTANCE.createConditionModel()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL,
 				 PamtramFactory.eINSTANCE.createConditionModel()));
 	}
 

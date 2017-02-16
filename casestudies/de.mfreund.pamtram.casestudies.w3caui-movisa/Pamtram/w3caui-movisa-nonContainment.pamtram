@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
-  <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
+  <sourceSectionModels xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui-modified#/0"/>
-    <metaModelSections 
+    <sections 
 xsi:type="source:SourceSection" name="Root">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractUserInterfaceModel"/>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="sequentialComposition">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition"/>
       <references 
-xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModel.0/@metaModelSections.2">
+xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModels.0/@sections.2">
         <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/associatedWith"/>
       </references>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/compositionRole"/>
-        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="sequential"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="sequential"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="Panel" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references 
@@ -29,7 +29,7 @@ xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
 xsi:type="source:SourceSectionClass" name="Composition">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition"/>
           <references 
-xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModel.0/@metaModelSections.3 //@sourceSectionModel.0/@metaModelSections.5">
+xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModels.0/@sections.3 //@sourceSectionModels.0/@sections.5">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/associatedWith"/>
           </references>
         </value>
@@ -37,14 +37,14 @@ xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@so
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="constraint:EqualityConstraint" expression="grouping"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="grouping"/>
       </attributes>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="PanelId">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="CheckBoxArray" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references 
@@ -54,13 +54,13 @@ xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
 xsi:type="source:SourceSectionClass" name="Composition">
           <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition"/>
           <references 
-xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModel.0/@metaModelSections.4">
+xsi:type="source:SourceSectionCrossReference" name="associatedWith" value="//@sourceSectionModels.0/@sections.4">
             <eReference xsi:type="ecore:EReference" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/associatedWith"/>
           </references>
           <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/Composition/compositionRole"/>
-            <valueConstraint xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
           </attributes>
         </value>
       </references>
@@ -79,7 +79,7 @@ xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
               </attributes>
             </value>
           </references>
@@ -92,12 +92,12 @@ xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
               </attributes>
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
               </attributes>
             </value>
           </references>
@@ -110,11 +110,11 @@ xsi:type="source:ActualSourceSectionAttribute" name="ArrayId">
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="CheckBox" cardinality="ONE__INFINITY" container="//@sourceSectionModel.0/@metaModelSections.3">
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="CheckBox" cardinality="ONE__INFINITY" container="//@sourceSectionModels.0/@sections.3">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references 
 xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
@@ -131,7 +131,7 @@ xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
               </attributes>
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
@@ -148,12 +148,12 @@ xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataSelectionSupport/isContinuous"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
               </attributes>
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataSelectionSupport/selectionType"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
               </attributes>
             </value>
           </references>
@@ -163,8 +163,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
 xsi:type="source:ActualSourceSectionAttribute" name="CheckBoxId">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="output" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit"/>
       <references 
@@ -182,7 +182,7 @@ xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
               <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/DataInputOutputSupport/dataType"/>
-                <valueConstraint xsi:type="constraint:EqualityConstraint" expression="out"/>
+                <valueConstraints xsi:type="constraint:EqualityConstraint" expression="out"/>
               </attributes>
             </value>
           </references>
@@ -192,11 +192,11 @@ xsi:type="source:ActualSourceSectionAttribute" name="dataType">
 xsi:type="source:ActualSourceSectionAttribute" name="outputId">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui-modified#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-  </sourceSectionModel>
-  <targetSectionModel xsi:type="pamtram:TargetSectionModel">
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="target:TargetSection" name="VisualizationApplicationModel">
+    <sections xsi:type="target:TargetSection" name="VisualizationApplicationModel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="AlgorithmDomain">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel/AlgorithmDomain"/>
@@ -258,13 +258,13 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
                 <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/LogicalDataPerspective/OwnedDataItem"/>
                 <value xsi:type="target:TargetSectionClass" name="DataItem">
                   <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/DataItem"/>
-                  <references xsi:type="target:TargetSectionCrossReference" name="Description" value="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.0">
+                  <references xsi:type="target:TargetSectionCrossReference" name="Description" value="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Description"/>
                   </references>
-                  <references xsi:type="target:TargetSectionCrossReference" name="Dimension" value="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0">
+                  <references xsi:type="target:TargetSectionCrossReference" name="Dimension" value="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Dimension"/>
                   </references>
-                  <references xsi:type="target:TargetSectionCrossReference" name="Type" value="//@targetSectionModel.0/@metaModelSections.0/@references.0/@value.0/@references.0/@value.2">
+                  <references xsi:type="target:TargetSectionCrossReference" name="Type" value="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.2">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/DataItem/Type"/>
                   </references>
                   <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="dummyDataItem">
@@ -295,7 +295,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer/OwnedXmlDaItem"/>
                     <value xsi:type="target:TargetSectionClass" name="OpcXmlDaItem">
                       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem"/>
-                      <references xsi:type="target:TargetSectionCrossReference" name="IsAccessedVia" value="//@targetSectionModel.0/@metaModelSections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0">
+                      <references xsi:type="target:TargetSectionCrossReference" name="IsAccessedVia" value="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0">
                         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//clientdata/ServerDataItem/IsAccessedVia"/>
                       </references>
                       <attributes xsi:type="target:ActualTargetSectionAttribute" name="ItemPath" value="/dummy">
@@ -355,7 +355,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
                     <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
                     <value xsi:type="target:TargetSectionClass" name="TextItem">
                       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-                      <references xsi:type="target:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.1/@value.0">
+                      <references xsi:type="target:TargetSectionCrossReference" name="Language" value="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.1/@value.0">
                         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
                       </references>
                       <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="dummy">
@@ -408,8 +408,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="Version" value="1.0">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//MovisaModel/Version"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="CheckBoxArray">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="CheckBoxArray">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBoxArray/Representation"/>
@@ -492,8 +492,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="CheckBoxArrayName" value="">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="CheckBox" cardinality="ONE__INFINITY">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="CheckBox" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/CheckBox"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/CheckBox/Representation"/>
@@ -507,20 +507,20 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="CheckBoxNameName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="Panel" cardinality="ONE__INFINITY">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Panel" cardinality="ONE__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="PanelName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="TextDefinition">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="TextDefinition">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="TranslatedTextItem">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
         <value xsi:type="target:TargetSectionClass" name="TextItem">
           <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextItem"/>
-          <references xsi:type="target:TargetSectionCrossReference" name="Language" value="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.1/@value.0/@references.1/@value.0">
+          <references xsi:type="target:TargetSectionCrossReference" name="Language" value="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.1/@value.0">
             <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/TextItem/Language"/>
           </references>
           <attributes xsi:type="target:ActualTargetSectionAttribute" name="Value" value="">
@@ -531,82 +531,84 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="TextBoxName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="NewViewNavigationFlow" container="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="NewViewNavigationFlow" container="//@targetSectionModels.0/@sections.0/@references.2/@value.0">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/NewViewNavigationFlow"/>
-      <references xsi:type="target:TargetSectionCrossReference" name="Source" value="//@targetSectionModel.0/@metaModelSections.0/@references.2/@value.0/@references.0/@value.0">
+      <references xsi:type="target:TargetSectionCrossReference" name="Source" value="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.0/@value.0">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Source"/>
       </references>
-      <references xsi:type="target:TargetSectionCrossReference" name="Target" value="//@targetSectionModel.0/@metaModelSections.3">
+      <references xsi:type="target:TargetSectionCrossReference" name="Target" value="//@targetSectionModels.0/@sections.3">
         <eReference xsi:type="ecore:EReference" href="http://stefan-hennig.de/movisa#//presentation/NavigationFlow/Target"/>
       </references>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="TextLabel">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="TextLabel">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="TextLabelName">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-  </targetSectionModel>
-  <mappingModel xsi:type="pamtram:MappingModel">
-    <mapping xsi:type="mapping:Mapping" name="RootMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
-    </mapping>
-    <mapping xsi:type="mapping:Mapping" name="sequentialCompositionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModel.0/@metaModelSections.3">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModel.0/@metaModelSections.3/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels xsi:type="pamtram:MappingModel">
+    <mappings xsi:type="mapping:Mapping" name="RootMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+    <mappings xsi:type="mapping:Mapping" name="sequentialCompositionMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.3">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModel.0/@metaModelSections.5"/>
-    </mapping>
-    <mapping xsi:type="mapping:Mapping" name="PanelMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxArray" targetSection="//@targetSectionModel.0/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModel.0/@metaModelSections.1/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ArrayId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModels.0/@sections.5"/>
+    </mappings>
+    <mappings xsi:type="mapping:Mapping" name="PanelMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxArray" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ArrayId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModel.0/@metaModelSections.6">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelNameMapping" target="//@targetSectionModel.0/@metaModelSections.6/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="outputId" source="//@sourceSectionModel.0/@metaModelSections.5/@attributes.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModels.0/@sections.6">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelNameMapping" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="outputId" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModel.0/@metaModelSections.3/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.1"/>
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="PanelId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBox" targetSection="//@targetSectionModel.0/@metaModelSections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxNameNameMapping" target="//@targetSectionModel.0/@metaModelSections.2/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBox" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxNameNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModel.0/@metaModelSections.2/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@references.0">
+          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModel.0/@metaModelSections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="ArrayId" source="//@sourceSectionModel.0/@metaModelSections.3/@attributes.0"/>
+          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="ArrayId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </containerSelector>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModel.0/@metaModelSections.4">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModel.0/@metaModelSections.4/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModel.0/@metaModelSections.4/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.0/@sections.4">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.4/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextBoxNameMapping" target="//@targetSectionModel.0/@metaModelSections.4/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModel.0/@metaModelSections.4/@attributes.0"/>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TextBoxNameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-    </mapping>
+    </mappings>
     <modifierSets xsi:type="modifier:ValueModifierSet" name="getParent">
-      <modifier xsi:type="modifier:SubstringReplacer" name="getParent" regex="[_]\d+$" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="getParent" regex="[_]\d+$" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="modifier:ValueModifierSet" name="getLastNumber">
-      <modifier xsi:type="modifier:SubstringReplacer" name="getLastNumber" regex="([a-zA-Z]+[0-9]+[_])([0-9]+[_])*+" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="getLastNumber" regex="([a-zA-Z]+[0-9]+[_])([0-9]+[_])*+" replacement=""/>
     </modifierSets>
-  </mappingModel>
+  </mappingModels>
 </pamtram:PAMTraM>

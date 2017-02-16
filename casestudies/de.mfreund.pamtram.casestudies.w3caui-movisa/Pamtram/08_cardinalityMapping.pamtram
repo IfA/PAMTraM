@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
-  <sourceSectionModel>
+  <sourceSectionModels>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
+    <sections 
 xsi:type="source:SourceSection" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
       <references 
@@ -17,25 +17,25 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
           </attributes>
         </value>
       </references>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="AbstractInteractionUnit">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-  </sourceSectionModel>
-  <targetSectionModel>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="Button">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="Panel">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="OwnedUIComponent">
         <eReference href="http://stefan-hennig.de/movisa#//presentation/Panel/OwnedUIComponent"/>
@@ -46,26 +46,29 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
           </attributes>
         </value>
       </references>
-    </metaModelSections>
-  </targetSectionModel>
-  <mappingModel>
-    <mapping name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel.0/@metaModelSections.0"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.0"/>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetSection="//@targetSectionModel.0/@metaModelSections.1">
-        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModel.0/@metaModelSections.0/@references.0/@value.0" target="//@targetSectionModel.0/@metaModelSections.1/@references.0/@value.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.1/@references.0/@value.0"/>
       </mappingHintGroups>
-    </mapping>
+    </mappings>
     <modifierSets name="getNumber">
-      <modifier xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
     <modifierSets name="prependButton">
-      <modifier xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+      
+<modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
     </modifierSets>
     <modifierSets name="add one">
-      <modifier xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
-  </mappingModel>
+  </mappingModels>
 </pamtram:PAMTraM>

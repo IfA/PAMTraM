@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
-  <sourceSectionModel xsi:type="pamtram:SourceSectionModel">
+  <sourceSectionModels xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections 
-xsi:type="source:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
+    <sections 
+xsi:type="source:SourceSection" name="Confirmation" container="//@sourceSectionModels.0/@sections.1">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="id">
@@ -13,46 +13,49 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
 xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections 
+    </sections>
+    <sections 
 xsi:type="source:SourceSection" name="AbstractInteractionUnit">
       <eClass xsi:type="ecore:EClass" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="role">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
-        <valueConstraint xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
       </attributes>
       <attributes 
 xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute xsi:type="ecore:EAttribute" href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-  </sourceSectionModel>
-  <targetSectionModel xsi:type="pamtram:TargetSectionModel">
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels xsi:type="pamtram:TargetSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass xsi:type="ecore:EClass" href="http://stefan-hennig.de/movisa#//presentation/Button"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
         <attribute xsi:type="ecore:EAttribute" href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-  </targetSectionModel>
-  <mappingModel xsi:type="pamtram:MappingModel">
-    <mapping xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="associatedWith" source="//@sourceSectionModel.0/@metaModelSections.0/@attributes.1"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels xsi:type="pamtram:MappingModel">
+    <mappings xsi:type="mapping:Mapping" name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="associatedWith" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
-    </mapping>
+    </mappings>
     <modifierSets xsi:type="modifier:ValueModifierSet" name="getNumber">
-      <modifier xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
     <modifierSets xsi:type="modifier:ValueModifierSet" name="prependButton">
-      <modifier xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+      
+<modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
     </modifierSets>
     <modifierSets xsi:type="modifier:ValueModifierSet" name="add one">
-      <modifier xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
-  </mappingModel>
+  </mappingModels>
 </pamtram:PAMTraM>

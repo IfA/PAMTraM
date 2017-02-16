@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.ExpressionElement;
 import pamtram.NamedElement;
 
 import pamtram.mapping.modifier.*;
@@ -116,6 +117,10 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseExpressionElement(ExpressionElement object) {
+				return createExpressionElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -302,6 +307,20 @@ public class ModifierAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ExpressionElement
+	 * @generated
+	 */
+	public Adapter createExpressionElementAdapter() {
 		return null;
 	}
 

@@ -341,15 +341,6 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExpressionModifier_Expression() {
-		return (EAttribute)expressionModifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getStringModifier() {
 		return stringModifierEClass;
 	}
@@ -447,7 +438,6 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		numericModifierEClass = createEClass(NUMERIC_MODIFIER);
 
 		expressionModifierEClass = createEClass(EXPRESSION_MODIFIER);
-		createEAttribute(expressionModifierEClass, EXPRESSION_MODIFIER__EXPRESSION);
 
 		stringModifierEClass = createEClass(STRING_MODIFIER);
 
@@ -504,6 +494,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		uniqueNumberAppenderEClass.getESuperTypes().add(this.getValueModifier());
 		numericModifierEClass.getESuperTypes().add(this.getValueModifier());
 		expressionModifierEClass.getESuperTypes().add(this.getNumericModifier());
+		expressionModifierEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		stringModifierEClass.getESuperTypes().add(this.getValueModifier());
 		substringReplacerEClass.getESuperTypes().add(this.getStringModifier());
 		stringAppenderEClass.getESuperTypes().add(this.getStringModifier());
@@ -525,7 +516,6 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 		initEClass(numericModifierEClass, NumericModifier.class, "NumericModifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(expressionModifierEClass, ExpressionModifier.class, "ExpressionModifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExpressionModifier_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionModifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringModifierEClass, StringModifier.class, "StringModifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

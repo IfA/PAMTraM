@@ -754,17 +754,6 @@ public interface ModifierPackage extends EPackage {
 	EClass getExpressionModifier();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.modifier.ExpressionModifier#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see pamtram.mapping.modifier.ExpressionModifier#getExpression()
-	 * @see #getExpressionModifier()
-	 * @generated
-	 */
-	EAttribute getExpressionModifier_Expression();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.modifier.StringModifier <em>String Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -969,14 +958,6 @@ public interface ModifierPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXPRESSION_MODIFIER = eINSTANCE.getExpressionModifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EXPRESSION_MODIFIER__EXPRESSION = eINSTANCE.getExpressionModifier_Expression();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.modifier.impl.StringModifierImpl <em>String Modifier</em>}' class.

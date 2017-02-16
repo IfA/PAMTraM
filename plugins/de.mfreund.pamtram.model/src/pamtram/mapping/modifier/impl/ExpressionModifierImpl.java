@@ -9,6 +9,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.ExpressionElement;
+import pamtram.PamtramPackage;
 import de.mfreund.pamtram.util.ExpressionCalculator;
 import pamtram.mapping.modifier.ExpressionModifier;
 import pamtram.mapping.modifier.ModifierPackage;
@@ -146,6 +148,38 @@ public class ExpressionModifierImpl extends NumericModifierImpl implements Expre
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpressionElement.class) {
+			switch (derivedFeatureID) {
+				case ModifierPackage.EXPRESSION_MODIFIER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpressionElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return ModifierPackage.EXPRESSION_MODIFIER__EXPRESSION;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

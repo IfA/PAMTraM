@@ -20,9 +20,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.library.ResourceParameter;
-import pamtram.structure.target.TargetFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.library.ResourceParameter} object.
@@ -71,7 +70,7 @@ public class ResourceParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ResourceParameter_originalParameter_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ResourceParameter_originalParameter_feature", "_UI_ResourceParameter_type"),
-				 StructurePackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
+				 LibraryPackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
 				 true,
 				 false,
 				 true,
@@ -92,7 +91,7 @@ public class ResourceParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
+			childrenFeatures.add(LibraryPackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -162,7 +161,7 @@ public class ResourceParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ResourceParameter.class)) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -179,16 +178,6 @@ public class ResourceParameterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 TargetFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**

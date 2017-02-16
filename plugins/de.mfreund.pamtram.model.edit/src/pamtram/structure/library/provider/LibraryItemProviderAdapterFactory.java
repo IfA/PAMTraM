@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +8,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -20,7 +21,8 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import pamtram.structure.util.StructureAdapterFactory;
+
+import pamtram.structure.library.util.LibraryAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -31,7 +33,7 @@ import pamtram.structure.util.StructureAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class StructureItemProviderAdapterFactory extends StructureAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -62,7 +64,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructureItemProviderAdapterFactory() {
+	public LibraryItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -72,72 +74,118 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstanceSelector} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.AttributeParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorItemProvider instanceSelectorItemProvider;
+	protected AttributeParameterItemProvider attributeParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstanceSelector}.
+	 * This creates an adapter for a {@link pamtram.structure.library.AttributeParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstanceSelectorAdapter() {
-		if (instanceSelectorItemProvider == null) {
-			instanceSelectorItemProvider = new InstanceSelectorItemProvider(this);
+	public Adapter createAttributeParameterAdapter() {
+		if (attributeParameterItemProvider == null) {
+			attributeParameterItemProvider = new AttributeParameterItemProvider(this);
 		}
 
-		return instanceSelectorItemProvider;
+		return attributeParameterItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstanceSelectorSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ContainerParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorSourceElementItemProvider instanceSelectorSourceElementItemProvider;
+	protected ContainerParameterItemProvider containerParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstanceSelectorSourceElement}.
+	 * This creates an adapter for a {@link pamtram.structure.library.ContainerParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstanceSelectorSourceElementAdapter() {
-		if (instanceSelectorSourceElementItemProvider == null) {
-			instanceSelectorSourceElementItemProvider = new InstanceSelectorSourceElementItemProvider(this);
+	public Adapter createContainerParameterAdapter() {
+		if (containerParameterItemProvider == null) {
+			containerParameterItemProvider = new ContainerParameterItemProvider(this);
 		}
 
-		return instanceSelectorSourceElementItemProvider;
+		return containerParameterItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstanceSelectorExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ExternalReferenceParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorExternalSourceElementItemProvider instanceSelectorExternalSourceElementItemProvider;
+	protected ExternalReferenceParameterItemProvider externalReferenceParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstanceSelectorExternalSourceElement}.
+	 * This creates an adapter for a {@link pamtram.structure.library.ExternalReferenceParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstanceSelectorExternalSourceElementAdapter() {
-		if (instanceSelectorExternalSourceElementItemProvider == null) {
-			instanceSelectorExternalSourceElementItemProvider = new InstanceSelectorExternalSourceElementItemProvider(this);
+	public Adapter createExternalReferenceParameterAdapter() {
+		if (externalReferenceParameterItemProvider == null) {
+			externalReferenceParameterItemProvider = new ExternalReferenceParameterItemProvider(this);
 		}
 
-		return instanceSelectorExternalSourceElementItemProvider;
+		return externalReferenceParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ResourceParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ResourceParameterItemProvider resourceParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.library.ResourceParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createResourceParameterAdapter() {
+		if (resourceParameterItemProvider == null) {
+			resourceParameterItemProvider = new ResourceParameterItemProvider(this);
+		}
+
+		return resourceParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.LibraryEntry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LibraryEntryItemProvider libraryEntryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.library.LibraryEntry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLibraryEntryAdapter() {
+		if (libraryEntryItemProvider == null) {
+			libraryEntryItemProvider = new LibraryEntryItemProvider(this);
+		}
+
+		return libraryEntryItemProvider;
 	}
 
 	/**
@@ -239,9 +287,11 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (instanceSelectorItemProvider != null) instanceSelectorItemProvider.dispose();
-		if (instanceSelectorSourceElementItemProvider != null) instanceSelectorSourceElementItemProvider.dispose();
-		if (instanceSelectorExternalSourceElementItemProvider != null) instanceSelectorExternalSourceElementItemProvider.dispose();
+		if (attributeParameterItemProvider != null) attributeParameterItemProvider.dispose();
+		if (containerParameterItemProvider != null) containerParameterItemProvider.dispose();
+		if (externalReferenceParameterItemProvider != null) externalReferenceParameterItemProvider.dispose();
+		if (resourceParameterItemProvider != null) resourceParameterItemProvider.dispose();
+		if (libraryEntryItemProvider != null) libraryEntryItemProvider.dispose();
 	}
 
 }

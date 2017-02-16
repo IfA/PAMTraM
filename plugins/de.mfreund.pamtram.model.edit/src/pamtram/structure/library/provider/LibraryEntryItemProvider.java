@@ -2,7 +2,6 @@
  */
 package pamtram.structure.library.provider;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,31 +32,29 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.library.LibraryEntry} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.structure.library.LibraryEntry} object. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class LibraryEntryItemProvider 
-extends PamtramItemProviderAdapter
-implements
-IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
+public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 
 	/**
-	 * This keeps track of the children to be displayed.
-	 * For this to work, the 'stateful' instead of the 'singleton' pattern needs to be specified in the GenModel.
+	 * This keeps track of the children to be displayed. For this to work, the 'stateful' instead of the 'singleton'
+	 * pattern needs to be specified in the GenModel.
 	 */
 	protected List<Object> children = null;
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LibraryEntryItemProvider(AdapterFactory adapterFactory) {
@@ -65,18 +62,18 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLibraryFilePropertyDescriptor(object);
+			this.addLibraryFilePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -85,78 +82,89 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			getPropertyDescriptorsGen(object);
 
-			addVersionPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
-			addAuthorPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
-			addDescriptionPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
+		if (this.itemPropertyDescriptors == null) {
+			this.getPropertyDescriptorsGen(object);
+
+			this.addVersionPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
+			this.addAuthorPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
+			this.addDescriptionPropertyDescriptor(((LibraryEntry) object).getOriginalLibraryEntry());
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Library File feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Library File feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLibraryFilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LibraryEntry_libraryFile_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
-				 StructurePackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_LibraryEntry_libraryFile_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature",
+						"_UI_LibraryEntry_type"),
+				LibraryPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>version</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>version</b></em>' feature of the
+	 * {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
 	protected void addVersionPropertyDescriptor(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = 
-				(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory().adapt(object, IItemPropertySource.class);
-		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object, GenLibraryPackage.Literals.LIBRARY_ENTRY__VERSION);
-		itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory) this.adapterFactory)
+				.getRootAdapterFactory().adapt(object, IItemPropertySource.class);
+		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object,
+				GenLibraryPackage.Literals.LIBRARY_ENTRY__VERSION);
+		this.itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+
 			@Override
 			public boolean canSetProperty(Object thisObject) {
+
 				return false;
 			}
 		});
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>author</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>author</b></em>' feature of the
+	 * {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
 	protected void addAuthorPropertyDescriptor(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = 
-				(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory().adapt(object, IItemPropertySource.class);
-		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object, GenLibraryPackage.Literals.LIBRARY_ENTRY__AUTHOR);
-		itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory) this.adapterFactory)
+				.getRootAdapterFactory().adapt(object, IItemPropertySource.class);
+		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object,
+				GenLibraryPackage.Literals.LIBRARY_ENTRY__AUTHOR);
+		this.itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+
 			@Override
 			public boolean canSetProperty(Object thisObject) {
+
 				return false;
 			}
 		});
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>description</b></em>' feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>description</b></em>' feature of the
+	 * {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
-	protected void addDescriptionPropertyDescriptor(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = 
-				(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory().adapt(object, IItemPropertySource.class);
-		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object, GenLibraryPackage.Literals.LIBRARY_ENTRY__DESCRIPTION);
-		itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+	protected void addDescriptionPropertyDescriptor(
+			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
+
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider libraryEntryItemProvider = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.LibraryEntryItemProvider) ((ComposeableAdapterFactory) this.adapterFactory)
+				.getRootAdapterFactory().adapt(object, IItemPropertySource.class);
+		IItemPropertyDescriptor desc = libraryEntryItemProvider.getPropertyDescriptor(object,
+				GenLibraryPackage.Literals.LIBRARY_ENTRY__DESCRIPTION);
+		this.itemPropertyDescriptors.add(new ItemPropertyDescriptorDecorator(object, desc) {
+
 			@Override
 			public boolean canSetProperty(Object thisObject) {
+
 				return false;
 			}
 		});
@@ -165,27 +173,27 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PARAMETERS);
-			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
-			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PATH);
-			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__ID);
-			childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__PATH);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__ID);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,121 +205,127 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	}
 
 	/**
-	 * This returns LibraryEntry.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns LibraryEntry.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LibraryEntry"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/LibraryEntry"));
 	}
 
 	/**
-	 * Do not allow the parameters as direct children but instead allow the virtual '<em><b>ParameterDescription</b></em>'.
+	 * Do not allow the parameters as direct children but instead allow the virtual
+	 * '<em><b>ParameterDescription</b></em>'.
 	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
-		if(children == null) {
+
+		if (this.children == null) {
 			LibraryEntry libraryEntry = (LibraryEntry) object;
-			children = new ArrayList<>();
+			this.children = new ArrayList<>();
 			// add an ItemProvider for the Path
-			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__PATH, libraryEntry.getPath(), CommandParameter.NO_INDEX));
+			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__PATH,
+					libraryEntry.getPath(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the ID
-			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(), CommandParameter.NO_INDEX));
+			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(),
+					CommandParameter.NO_INDEX));
 			// add an ItemProvider for the virtual ParameterDescription
-			children.add(new ParameterDescriptionItemProvider(adapterFactory, libraryEntry));
+			this.children.add(new ParameterDescriptionItemProvider(this.adapterFactory, libraryEntry));
 			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
-			children.add(wrap(libraryEntry, StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
+			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY,
+					libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
 		}
-		return children;
+		return this.children;
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
-
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LibraryEntry)object).getPath().getValue();
+
+		String label = ((LibraryEntry) object).getPath().getValue();
 		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER)
+					.append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		/*
 		 * Do not handle notifications that affect the virtual ParameterDescription.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-		case StructurePackage.LIBRARY_ENTRY__LIBRARY_FILE:
-		case StructurePackage.LIBRARY_ENTRY__PATH:
-		case StructurePackage.LIBRARY_ENTRY__ID:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case StructurePackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case LibraryPackage.LIBRARY_ENTRY__LIBRARY_FILE:
+			case LibraryPackage.LIBRARY_ENTRY__PATH:
+			case LibraryPackage.LIBRARY_ENTRY__ID:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+
 		return PamtramEditPlugin.INSTANCE;
 	}
 
 	/**
-	 * Wrapping is needed because we want to display the target of the non-containment reference 
+	 * Wrapping is needed because we want to display the target of the non-containment reference
 	 * {@link LibraryEntry#getOriginalLibraryEntry()} as child.
 	 */
 	@Override
 	protected boolean isWrappingNeeded(Object object) {
+
 		return true;
 	}
 
@@ -319,16 +333,15 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 * A special wrapper is needed for the {@link LibraryEntry#getOriginalLibraryEntry()} reference.
 	 */
 	@Override
-	protected Object createWrapper(EObject object, EStructuralFeature feature,
-			Object value, int index) {
-		if(feature.equals(StructurePackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY)) {
-			// Instead of displaying the original LibrarEntry itself, we show only the LibraryItem inside the LibraryEntry
+	protected Object createWrapper(EObject object, EStructuralFeature feature, Object value, int index) {
+
+		if (feature.equals(LibraryPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY)) {
+			// Instead of displaying the original LibrarEntry itself, we show only the LibraryItem inside the
+			// LibraryEntry
 			return new DelegatingWrapperItemProvider(
-					((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) value).getLibraryItem(), 
-					object, 
-					GenLibraryPackage.Literals.LIBRARY_ENTRY__LIBRARY_ITEM, 
-					index, 
-					adapterFactory) {};
+					((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) value).getLibraryItem(), object,
+					GenLibraryPackage.Literals.LIBRARY_ENTRY__LIBRARY_ITEM, index, this.adapterFactory) {
+			};
 		} else {
 			return value;
 		}
@@ -336,20 +349,23 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 
 	/**
 	 * This returns the {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
+	 * 
 	 * @return The {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
 	 */
 	public Object getParameters() {
-		return children.get(2);
+
+		return this.children.get(2);
 	}
 
 	@Override
 	public void dispose() {
+
 		super.dispose();
 		/*
 		 * Also dispose the ParameterDescriptionItemProvider
 		 */
-		if(children != null) {
-			((IDisposable) children.get(2)).dispose();
+		if (this.children != null) {
+			((IDisposable) this.children.get(2)).dispose();
 		}
 	}
 
@@ -357,9 +373,9 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
 	 * This returns an {@link UnexecutableCommand} as we do not want to allow any manual adding, removing, etc.
 	 */
 	@Override
-	public Command createCommand(Object object, EditingDomain domain,
-			Class<? extends Command> commandClass,
+	public Command createCommand(Object object, EditingDomain domain, Class<? extends Command> commandClass,
 			CommandParameter commandParameter) {
+
 		return UnexecutableCommand.INSTANCE;
 	}
 

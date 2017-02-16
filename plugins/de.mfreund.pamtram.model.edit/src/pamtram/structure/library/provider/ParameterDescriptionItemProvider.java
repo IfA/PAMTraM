@@ -2,7 +2,6 @@
  */
 package pamtram.structure.library.provider;
 
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
@@ -21,30 +20,24 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryPackage;
 
 /**
- * This is the item provider adapter for the (virtual) ParameterDescription object.
- * The concepts are copied from the EMF book (Section 19.2.2).
+ * This is the item provider adapter for the (virtual) ParameterDescription object. The concepts are copied from the EMF
+ * book (Section 19.2.2).
  */
-public class ParameterDescriptionItemProvider
-extends ItemProviderAdapter
-implements
-IEditingDomainItemProvider,
-IStructuredItemContentProvider,
-ITreeItemContentProvider,
-IItemLabelProvider,
-IItemPropertySource {
+public class ParameterDescriptionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 */
 	public ParameterDescriptionItemProvider(AdapterFactory adapterFactory, LibraryEntry libraryEntry) {
 		/*
-		 * As this item provider is not going to get created via the usual 'adapterFactory.adapt(...)' mechanism
-		 * but instead via a direct call of the constructor, we need to explicitly add the item provider to the
-		 * 'eAdapters' of the library entry.
+		 * As this item provider is not going to get created via the usual 'adapterFactory.adapt(...)' mechanism but
+		 * instead via a direct call of the constructor, we need to explicitly add the item provider to the 'eAdapters'
+		 * of the library entry.
 		 */
 		super(adapterFactory);
 		libraryEntry.eAdapters().add(this);
@@ -57,13 +50,14 @@ IItemPropertySource {
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			/* The 'parameters' feature of the 'LibraryEntry' shall be treated as if it belongs
-			 * to this item provider.
+			/*
+			 * The 'parameters' feature of the 'LibraryEntry' shall be treated as if it belongs to this item provider.
 			 */
-			this.childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__PARAMETERS);
-			this.childrenFeatures.add(StructurePackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
+			this.childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
 		return this.childrenFeatures;
 	}
@@ -73,15 +67,17 @@ IItemPropertySource {
 	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
+
 		return super.getChildren(this.target);
 	}
 
 	/**
-	 * This returns the child descriptors of the real parent object, instead of the children of this virtual parent object.
+	 * This returns the child descriptors of the real parent object, instead of the children of this virtual parent
+	 * object.
 	 */
 	@Override
-	public Collection<?> getNewChildDescriptors(Object object,
-			EditingDomain editingDomain, Object sibling) {
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain, Object sibling) {
+
 		return super.getNewChildDescriptors(this.target, editingDomain, sibling);
 	}
 
@@ -90,6 +86,7 @@ IItemPropertySource {
 	 */
 	@Override
 	public Object getParent(Object object) {
+
 		return this.target;
 	}
 
@@ -98,6 +95,7 @@ IItemPropertySource {
 	 */
 	@Override
 	public Object getImage(Object object) {
+
 		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/LibraryEntry"));
 	}
 
@@ -106,23 +104,26 @@ IItemPropertySource {
 	 */
 	@Override
 	public String getText(Object object) {
+
 		return "ParameterDescription";
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+
 		this.updateChildren(notification);
 
 		/*
 		 * Handle only those notifications for which this object is the virtual parent.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-			case StructurePackage.LIBRARY_ENTRY__PARAMETERS:
-				this.fireNotifyChanged(new NotificationWrapper(this, notification)); return;
+			case LibraryPackage.LIBRARY_ENTRY__PARAMETERS:
+				this.fireNotifyChanged(new NotificationWrapper(this, notification));
+				return;
 		}
 	}
 
@@ -131,6 +132,7 @@ IItemPropertySource {
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+
 		return PamtramEditPlugin.INSTANCE;
 	}
 
@@ -138,20 +140,19 @@ IItemPropertySource {
 	 * We do not want to allow to manually add any children as these are created automatically.
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 	}
 
 	/**
 	 * Treat any command as if it was executed on the real parent and not on this virtual parent.
 	 */
 	@Override
-	public Command createCommand(Object object, EditingDomain domain,
-			Class<? extends Command> commandClass,
+	public Command createCommand(Object object, EditingDomain domain, Class<? extends Command> commandClass,
 			CommandParameter commandParameter) {
+
 		commandParameter.setOwner(this.target);
 		return super.createCommand(this.target, domain, commandClass, commandParameter);
 	}
-
 
 }

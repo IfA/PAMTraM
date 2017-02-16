@@ -17,7 +17,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.library.LibraryParameter;
 
 /**
@@ -68,7 +68,7 @@ public class LibraryParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LibraryParameter_source_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_source_feature", "_UI_LibraryParameter_type"),
-				 StructurePackage.Literals.LIBRARY_PARAMETER__SOURCE,
+				 LibraryPackage.Literals.LIBRARY_PARAMETER__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -90,7 +90,7 @@ public class LibraryParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_LibraryParameter_originalParameter_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_originalParameter_feature", "_UI_LibraryParameter_type"),
-				 StructurePackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
+				 LibraryPackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
 				 true,
 				 false,
 				 true,

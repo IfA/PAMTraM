@@ -27,13 +27,13 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.ExternalReferenceParameter;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryFactory;
 import pamtram.structure.library.LibraryParameter;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetFactory;
@@ -409,7 +409,7 @@ public class LibraryHelper {
 			// storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
 
 			// create the LibraryElement to be returned
-			this.pamtramLibEntry = StructureFactory.eINSTANCE.createLibraryEntry();
+			this.pamtramLibEntry = LibraryFactory.eINSTANCE.createLibraryEntry();
 
 			// set the path, id, etc.
 			// pamtramLibEntry.setPath(libFileEntry.getKey());
@@ -434,7 +434,7 @@ public class LibraryHelper {
 			for (AbstractAttributeParameter<EObject> attParameter : this.libEntry.getParameterDescription()
 					.getAttributeParameters()) {
 
-				AttributeParameter param = StructureFactory.eINSTANCE.createAttributeParameter();
+				AttributeParameter param = LibraryFactory.eINSTANCE.createAttributeParameter();
 				param.setOriginalParameter(attParameter);
 				param.setName(attParameter.eClass().getName());
 				param.setSource(attParameter.getSource());
@@ -455,7 +455,7 @@ public class LibraryHelper {
 			for (AbstractContainerParameter<EObject, EObject> contParameter : this.libEntry.getParameterDescription()
 					.getContainerParameters()) {
 
-				ContainerParameter param = StructureFactory.eINSTANCE.createContainerParameter();
+				ContainerParameter param = LibraryFactory.eINSTANCE.createContainerParameter();
 				param.setOriginalParameter(contParameter);
 				param.setName(contParameter.eClass().getName());
 				param.setSource(contParameter.getSource());
@@ -484,7 +484,7 @@ public class LibraryHelper {
 
 				// create a paramter for every setting
 				for (Setting setting : crossReferences) {
-					ExternalReferenceParameter param = StructureFactory.eINSTANCE.createExternalReferenceParameter();
+					ExternalReferenceParameter param = LibraryFactory.eINSTANCE.createExternalReferenceParameter();
 					param.setOriginalParameter(extRefParameter);
 					param.setName(extRefParameter.eClass().getName());
 					param.setSource(setting.getEObject());
@@ -504,7 +504,7 @@ public class LibraryHelper {
 			 */
 			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
 
-				pamtram.structure.library.ResourceParameter param = StructureFactory.eINSTANCE.createResourceParameter();
+				pamtram.structure.library.ResourceParameter param = LibraryFactory.eINSTANCE.createResourceParameter();
 				param.setOriginalParameter(resParameter);
 				param.setName(resParameter.eClass().getName());
 

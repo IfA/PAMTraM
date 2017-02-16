@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.LibraryPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.library.AttributeParameter} object.
@@ -59,7 +58,7 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE);
+			childrenFeatures.add(LibraryPackage.Literals.ATTRIBUTE_PARAMETER__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +129,7 @@ public class AttributeParameterItemProvider extends LibraryParameterItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeParameter.class)) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

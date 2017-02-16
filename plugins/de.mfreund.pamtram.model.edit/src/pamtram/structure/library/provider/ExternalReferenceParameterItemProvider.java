@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.library.ExternalReferenceParameter} object.
@@ -59,7 +58,7 @@ public class ExternalReferenceParameterItemProvider extends LibraryParameterItem
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE);
+			childrenFeatures.add(LibraryPackage.Literals.EXTERNAL_REFERENCE_PARAMETER__REFERENCE);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +129,7 @@ public class ExternalReferenceParameterItemProvider extends LibraryParameterItem
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExternalReferenceParameter.class)) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

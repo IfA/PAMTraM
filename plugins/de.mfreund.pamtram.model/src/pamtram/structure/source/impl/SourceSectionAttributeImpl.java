@@ -33,10 +33,10 @@ import pamtram.structure.source.SourceSectionReference;
  */
 public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
 	/**
-	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
+	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueConstraint()
+	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
 	 */
@@ -66,9 +66,9 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ValueConstraint> getValueConstraint() {
+	public EList<ValueConstraint> getValueConstraints() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 		}
 		return valueConstraint;
 	}
@@ -81,8 +81,8 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
+				return ((InternalEList<?>)getValueConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +95,8 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				return getValueConstraint();
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
+				return getValueConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +110,9 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
+				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +126,8 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,7 +141,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
 				return valueConstraint != null && !valueConstraint.isEmpty();
 		}
 		return super.eIsSet(featureID);

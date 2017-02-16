@@ -854,7 +854,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS = GenericPackage.ATTRIBUTE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Section Attribute</em>' class.
@@ -936,7 +936,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1088,11 +1088,11 @@ public interface SourcePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
-	 * @see pamtram.structure.source.SourceSectionAttribute#getValueConstraint()
+	 * @see pamtram.structure.source.SourceSectionAttribute#getValueConstraints()
 	 * @see #getSourceSectionAttribute()
 	 * @generated
 	 */
-	EReference getSourceSectionAttribute_ValueConstraint();
+	EReference getSourceSectionAttribute_ValueConstraints();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.ActualSourceSectionAttribute <em>Actual Source Section Attribute</em>}'.
@@ -1209,7 +1209,7 @@ public interface SourcePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = eINSTANCE.getSourceSectionAttribute_ValueConstraint();
+		EReference SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS = eINSTANCE.getSourceSectionAttribute_ValueConstraints();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.source.impl.ActualSourceSectionAttributeImpl <em>Actual Source Section Attribute</em>}' class.

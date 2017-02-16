@@ -35,9 +35,9 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
-	 * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute_ValueConstraint()
+	 * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute_ValueConstraints()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ValueConstraint> getValueConstraint();
+	EList<ValueConstraint> getValueConstraints();
 } // SourceSectionAttribute

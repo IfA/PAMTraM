@@ -1085,7 +1085,7 @@
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" upperBound="-1"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" upperBound="-1"
             eType="#//structure/constraint/ValueConstraint" containment="true"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>

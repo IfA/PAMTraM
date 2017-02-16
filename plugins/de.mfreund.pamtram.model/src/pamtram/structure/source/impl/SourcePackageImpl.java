@@ -287,7 +287,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceSectionAttribute_ValueConstraint() {
+	public EReference getSourceSectionAttribute_ValueConstraints() {
 		return (EReference)sourceSectionAttributeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -341,7 +341,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		sourceSectionCrossReferenceEClass = createEClass(SOURCE_SECTION_CROSS_REFERENCE);
 
 		sourceSectionAttributeEClass = createEClass(SOURCE_SECTION_ATTRIBUTE);
-		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 
 		actualSourceSectionAttributeEClass = createEClass(ACTUAL_SOURCE_SECTION_ATTRIBUTE);
 	}
@@ -480,7 +480,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionAttributeEClass, SourceSectionAttribute.class, "SourceSectionAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceSectionAttribute_ValueConstraint(), theConstraintPackage.getValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceSectionAttribute_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraint", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actualSourceSectionAttributeEClass, ActualSourceSectionAttribute.class, "ActualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

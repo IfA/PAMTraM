@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.provider;
 
 
 import java.util.Collection;
@@ -23,14 +23,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.ExpressionElement;
+import pamtram.ExpressionElement;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.provider.PamtramEditPlugin;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ExpressionElement} object.
+ * This is the item provider adapter for a {@link pamtram.ExpressionElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

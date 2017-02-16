@@ -27,7 +27,7 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.LibraryEntry;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -134,8 +134,8 @@ extends MappingHintItemProvider {
 					LibraryEntry libEntry = (LibraryEntry) target.eContainer().eContainer();
 					choiceOfValues.addAll(
 							libEntry.getParameters().parallelStream()
-									.filter(p -> p instanceof pamtram.structure.AttributeParameter)
-									.map(p -> ((pamtram.structure.AttributeParameter) p).getAttribute())
+									.filter(p -> p instanceof pamtram.structure.library.AttributeParameter)
+									.map(p -> ((pamtram.structure.library.AttributeParameter) p).getAttribute())
 									.collect(Collectors.toList()));
 					choiceOfValues.addAll(libEntry.getResourceParameters().parallelStream().map(p -> p.getAttribute())
 							.collect(Collectors.toList()));

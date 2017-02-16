@@ -21,6 +21,12 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import pamtram.structure.library.provider.AttributeParameterItemProvider;
+import pamtram.structure.library.provider.ContainerParameterItemProvider;
+import pamtram.structure.library.provider.ExternalReferenceParameterItemProvider;
+import pamtram.structure.library.provider.LibraryEntryItemProvider;
+import pamtram.structure.library.provider.ResourceParameterItemProvider;
 import pamtram.structure.util.StructureAdapterFactory;
 
 /**
@@ -81,7 +87,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.AttributeParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.AttributeParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,7 +95,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected AttributeParameterItemProvider attributeParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.AttributeParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.library.AttributeParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,7 +110,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ContainerParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ContainerParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +118,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ContainerParameterItemProvider containerParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ContainerParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.library.ContainerParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,7 +133,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ExternalReferenceParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ExternalReferenceParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,7 +141,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ExternalReferenceParameterItemProvider externalReferenceParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ExternalReferenceParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.library.ExternalReferenceParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +156,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.ResourceParameter} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.ResourceParameter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,7 +164,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	protected ResourceParameterItemProvider resourceParameterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.ResourceParameter}.
+	 * This creates an adapter for a {@link pamtram.structure.library.ResourceParameter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -173,7 +179,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.LibraryEntry}.
+	 * This creates an adapter for a {@link pamtram.structure.library.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

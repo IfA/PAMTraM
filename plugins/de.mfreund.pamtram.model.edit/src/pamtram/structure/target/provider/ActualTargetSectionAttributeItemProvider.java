@@ -13,8 +13,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.AttributeParameter;
 import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 
 /**

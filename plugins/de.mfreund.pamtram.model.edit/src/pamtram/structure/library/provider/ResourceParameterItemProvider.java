@@ -1,34 +1,44 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.ContainerParameter;
+import pamtram.provider.NamedElementItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.library.ResourceParameter;
+import pamtram.structure.target.TargetFactory;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ContainerParameter} object.
+ * This is the item provider adapter for a {@link pamtram.structure.library.ResourceParameter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContainerParameterItemProvider extends LibraryParameterItemProvider {
+public class ResourceParameterItemProvider 
+	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainerParameterItemProvider(AdapterFactory adapterFactory) {
+	public ResourceParameterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -43,8 +53,31 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addOriginalParameterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Original Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOriginalParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ResourceParameter_originalParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ResourceParameter_originalParameter_feature", "_UI_ResourceParameter_type"),
+				 StructurePackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -59,7 +92,7 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.CONTAINER_PARAMETER__CLASS);
+			childrenFeatures.add(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
 		}
 		return childrenFeatures;
 	}
@@ -78,14 +111,14 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	}
 
 	/**
-	 * This returns ContainerParameter.gif.
+	 * This returns ResourceParameter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerParameter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceParameter"));
 	}
 
 	/**
@@ -99,7 +132,6 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -108,15 +140,15 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ContainerParameter)object).getName();
+		String label = ((ResourceParameter)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ContainerParameter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ResourceParameter_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ContainerParameter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ResourceParameter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -129,8 +161,8 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ContainerParameter.class)) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
+		switch (notification.getFeatureID(ResourceParameter.class)) {
+			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -147,6 +179,27 @@ public class ContainerParameterItemProvider extends LibraryParameterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
+				 TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
+				 TargetFactory.eINSTANCE.createFileAttribute()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

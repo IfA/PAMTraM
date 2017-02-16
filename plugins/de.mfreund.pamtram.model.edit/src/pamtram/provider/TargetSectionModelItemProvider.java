@@ -160,12 +160,12 @@ public class TargetSectionModelItemProvider extends SectionModelItemProvider {
 			// we need a compound command in case multiple entries are to be deleted
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (Object object : collection) {
-				if (!(object instanceof pamtram.structure.LibraryEntry)) {
+				if (!(object instanceof pamtram.structure.library.LibraryEntry)) {
 					throw new RuntimeException("Internal Error! This can only delete LibraryEntries...");
 				} else {
 					// create a DeleteLibraryEntryCommand for every entry to be deleted
 					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner,
-							(pamtram.structure.LibraryEntry) object));
+							(pamtram.structure.library.LibraryEntry) object));
 				}
 			}
 			return compoundCommand;

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 
 import java.util.Collection;
@@ -12,11 +12,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.structure.AttributeParameter;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.library.AttributeParameter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.AttributeParameter} object.
+ * This is the item provider adapter for a {@link pamtram.structure.library.AttributeParameter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

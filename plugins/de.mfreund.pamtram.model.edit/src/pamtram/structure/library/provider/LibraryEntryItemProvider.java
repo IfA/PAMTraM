@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 
 import java.util.ArrayList;
@@ -33,12 +33,12 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.LibraryEntry;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.LibraryEntry} object.
+ * This is the item provider adapter for a {@link pamtram.structure.library.LibraryEntry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

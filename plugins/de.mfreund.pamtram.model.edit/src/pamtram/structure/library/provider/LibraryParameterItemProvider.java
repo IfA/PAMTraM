@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 
 import java.util.Collection;
@@ -8,29 +8,25 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import org.eclipse.emf.edit.provider.StyledString;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.target.TargetFactory;
-import pamtram.structure.ResourceParameter;
+import pamtram.structure.library.LibraryParameter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ResourceParameter} object.
+ * This is the item provider adapter for a {@link pamtram.structure.library.LibraryParameter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResourceParameterItemProvider 
+public class LibraryParameterItemProvider 
 	extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -38,7 +34,7 @@ public class ResourceParameterItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceParameterItemProvider(AdapterFactory adapterFactory) {
+	public LibraryParameterItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,9 +49,32 @@ public class ResourceParameterItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addSourcePropertyDescriptor(object);
 			addOriginalParameterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LibraryParameter_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_source_feature", "_UI_LibraryParameter_type"),
+				 StructurePackage.Literals.LIBRARY_PARAMETER__SOURCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -69,56 +88,15 @@ public class ResourceParameterItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ResourceParameter_originalParameter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ResourceParameter_originalParameter_feature", "_UI_ResourceParameter_type"),
-				 StructurePackage.Literals.RESOURCE_PARAMETER__ORIGINAL_PARAMETER,
+				 getString("_UI_LibraryParameter_originalParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryParameter_originalParameter_feature", "_UI_LibraryParameter_type"),
+				 StructurePackage.Literals.LIBRARY_PARAMETER__ORIGINAL_PARAMETER,
 				 true,
 				 false,
 				 true,
 				 null,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ResourceParameter.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceParameter"));
 	}
 
 	/**
@@ -132,6 +110,7 @@ public class ResourceParameterItemProvider
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -140,15 +119,15 @@ public class ResourceParameterItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ResourceParameter)object).getName();
+		String label = ((LibraryParameter<?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ResourceParameter_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_LibraryParameter_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ResourceParameter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_LibraryParameter_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -160,12 +139,6 @@ public class ResourceParameterItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ResourceParameter.class)) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -179,16 +152,6 @@ public class ResourceParameterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.RESOURCE_PARAMETER__ATTRIBUTE,
-				 TargetFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**
@@ -201,5 +164,17 @@ public class ResourceParameterItemProvider
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
+	
+	/**
+	 * Return the virtual {@link ParameterDescriptionItemProvider} instead of the {@link LibraryEntryItemProvider} as parent.
+	 */
+	@Override
+	public Object getParent(Object object) {
+		Object libraryEntry = super.getParent(object);
+		LibraryEntryItemProvider libraryEntryItemProvider = 
+				(LibraryEntryItemProvider) adapterFactory.adapt(libraryEntry, IEditingDomainItemProvider.class);
+		return libraryEntryItemProvider != null ? libraryEntryItemProvider.getParameters() : null;
+	}
+
 
 }

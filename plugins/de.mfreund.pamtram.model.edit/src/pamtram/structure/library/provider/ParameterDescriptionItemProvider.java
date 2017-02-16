@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.structure.library.provider;
 
 
 import java.util.Collection;
@@ -21,8 +21,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.LibraryEntry;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryEntry;
 
 /**
  * This is the item provider adapter for the (virtual) ParameterDescription object.

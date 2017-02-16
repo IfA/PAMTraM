@@ -14,7 +14,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
-import pamtram.structure.LibraryEntry;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.util.LibraryHelper;
 
 /**

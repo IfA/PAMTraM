@@ -27,14 +27,14 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
 import de.tud.et.ifa.agtele.genlibrary.util.interfaces.LibraryFileEntry;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.LibraryParameter;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryParameter;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetSection;
@@ -504,7 +504,7 @@ public class LibraryHelper {
 			 */
 			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
 
-				pamtram.structure.ResourceParameter param = StructureFactory.eINSTANCE.createResourceParameter();
+				pamtram.structure.library.ResourceParameter param = StructureFactory.eINSTANCE.createResourceParameter();
 				param.setOriginalParameter(resParameter);
 				param.setName(resParameter.eClass().getName());
 

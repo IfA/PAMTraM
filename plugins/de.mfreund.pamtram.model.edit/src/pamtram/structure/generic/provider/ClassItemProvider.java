@@ -28,11 +28,11 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
-import pamtram.structure.ContainerParameter;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.source.SourceFactory;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.TargetFactory;

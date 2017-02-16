@@ -14,10 +14,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.GlobalModifiedAttributeElementType} object.
@@ -63,7 +62,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
+			childrenFeatures.add(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -122,7 +121,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -142,7 +141,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR,
+				(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR,
 				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 

@@ -11,10 +11,10 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.StructurePackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.ModifiedAttributeElementType} object.
@@ -63,7 +63,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 				 getResourceLocator(),
 				 getString("_UI_ModifiedAttributeElementType_source_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_source_feature", "_UI_ModifiedAttributeElementType_type"),
-				 MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE,
+				 StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -85,7 +85,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 				 getResourceLocator(),
 				 getString("_UI_ModifiedAttributeElementType_modifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_modifier_feature", "_UI_ModifiedAttributeElementType_type"),
-				 MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER,
+				 StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER,
 				 true,
 				 false,
 				 true,

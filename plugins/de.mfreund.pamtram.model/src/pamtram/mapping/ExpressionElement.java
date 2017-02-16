@@ -13,14 +13,14 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ExpressionHint#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getExpressionHint()
+ * @see pamtram.mapping.MappingPackage#getExpressionElement()
  * @model abstract="true"
  * @generated
  */
-public interface ExpressionHint extends EObject {
+public interface ExpressionElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' attribute.
 	 * The default value is <code>""</code>.
@@ -32,14 +32,14 @@ public interface ExpressionHint extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' attribute.
 	 * @see #setExpression(String)
-	 * @see pamtram.mapping.MappingPackage#getExpressionHint_Expression()
+	 * @see pamtram.mapping.MappingPackage#getExpressionElement_Expression()
 	 * @model default="" required="true"
 	 * @generated
 	 */
 	String getExpression();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ExpressionHint#getExpression <em>Expression</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Expression</em>' attribute.
@@ -48,4 +48,4 @@ public interface ExpressionHint extends EObject {
 	 */
 	void setExpression(String value);
 
-} // ExpressionHint
+} // ExpressionElement

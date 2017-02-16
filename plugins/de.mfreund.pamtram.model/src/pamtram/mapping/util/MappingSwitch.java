@@ -134,8 +134,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.EXPRESSION_HINT: {
-				ExpressionHint expressionHint = (ExpressionHint)theEObject;
+			case MappingPackage.EXPRESSION_ELEMENT: {
+				ExpressionElement expressionHint = (ExpressionElement)theEObject;
 				T result = caseExpressionHint(expressionHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -608,7 +608,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpressionHint(ExpressionHint object) {
+	public T caseExpressionHint(ExpressionElement object) {
 		return null;
 	}
 

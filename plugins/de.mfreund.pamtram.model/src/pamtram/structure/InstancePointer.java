@@ -7,7 +7,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ModifiableHint;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 
@@ -28,7 +28,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  *        constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
-public interface InstancePointer extends ExpressionHint, ModifiableHint {
+public interface InstancePointer extends ExpressionElement, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

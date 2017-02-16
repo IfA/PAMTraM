@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
-import pamtram.mapping.impl.ExpressionHintImpl;
+import pamtram.mapping.impl.ExpressionElementImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;
@@ -45,7 +45,7 @@ import pamtram.structure.util.StructureValidator;
  *
  * @generated
  */
-public class InstancePointerImpl extends ExpressionHintImpl implements InstancePointer {
+public class InstancePointerImpl extends ExpressionElementImpl implements InstancePointer {
 	/**
 	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->

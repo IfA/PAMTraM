@@ -24,7 +24,7 @@ import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ReferenceTargetSelector;
@@ -388,9 +388,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
+				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return MappingPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
@@ -415,9 +415,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
+				case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
 				default: return -1;
 			}
 		}

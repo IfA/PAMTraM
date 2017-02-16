@@ -5,7 +5,7 @@ package pamtram.structure.constraint;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ModifiableHint;
 import pamtram.structure.InstancePointer;
 
@@ -27,7 +27,7 @@ import pamtram.structure.InstancePointer;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
-public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionHint, ModifiableHint {
+public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableHint {
 	/**
 	 * Returns the value of the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.InstancePointer}.

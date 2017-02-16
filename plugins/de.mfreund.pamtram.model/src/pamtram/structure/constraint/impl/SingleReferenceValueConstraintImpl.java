@@ -24,7 +24,7 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
@@ -502,9 +502,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION: return MappingPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
@@ -523,9 +523,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
+				case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION;
 				default: return -1;
 			}
 		}

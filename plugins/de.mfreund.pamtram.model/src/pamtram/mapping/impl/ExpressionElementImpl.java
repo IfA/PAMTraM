@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -20,12 +20,12 @@ import pamtram.mapping.MappingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ExpressionHintImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ExpressionElementImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container implements ExpressionHint {
+public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container implements ExpressionElement {
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpressionHintImpl() {
+	protected ExpressionElementImpl() {
 		super();
 	}
 
@@ -62,7 +62,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXPRESSION_HINT;
+		return MappingPackage.Literals.EXPRESSION_ELEMENT;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.EXPRESSION_HINT__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.EXPRESSION_ELEMENT__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_HINT__EXPRESSION:
+			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_HINT__EXPRESSION:
+			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				setExpression((String)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_HINT__EXPRESSION:
+			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_HINT__EXPRESSION:
+			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 		}
 		return super.eIsSet(featureID);
@@ -160,4 +160,4 @@ public abstract class ExpressionHintImpl extends MinimalEObjectImpl.Container im
 		return result.toString();
 	}
 
-} //ExpressionHintImpl
+} //ExpressionElementImpl

@@ -760,14 +760,14 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionHintImpl <em>Expression Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExpressionHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionHint()
+	 * @see pamtram.mapping.impl.ExpressionElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionElement()
 	 * @generated
 	 */
-	int EXPRESSION_HINT = 7;
+	int EXPRESSION_ELEMENT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -776,7 +776,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_HINT__EXPRESSION = 0;
+	int EXPRESSION_ELEMENT__EXPRESSION = 0;
 
 	/**
 	 * The number of structural features of the '<em>Expression Hint</em>' class.
@@ -785,7 +785,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_HINT_FEATURE_COUNT = 1;
+	int EXPRESSION_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Expression Hint</em>' class.
@@ -794,7 +794,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_HINT_OPERATION_COUNT = 0;
+	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.
@@ -4042,25 +4042,25 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionElement <em>Expression Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Expression Hint</em>'.
-	 * @see pamtram.mapping.ExpressionHint
+	 * @see pamtram.mapping.ExpressionElement
 	 * @generated
 	 */
-	EClass getExpressionHint();
+	EClass getExpressionElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.ExpressionHint#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see pamtram.mapping.ExpressionHint#getExpression()
-	 * @see #getExpressionHint()
+	 * @see pamtram.mapping.ExpressionElement#getExpression()
+	 * @see #getExpressionElement()
 	 * @generated
 	 */
-	EAttribute getExpressionHint_Expression();
+	EAttribute getExpressionElement_Expression();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
@@ -5185,14 +5185,14 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionHintImpl <em>Expression Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExpressionHintImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionHint()
+		 * @see pamtram.mapping.impl.ExpressionElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionElement()
 		 * @generated
 		 */
-		EClass EXPRESSION_HINT = eINSTANCE.getExpressionHint();
+		EClass EXPRESSION_ELEMENT = eINSTANCE.getExpressionElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
@@ -5200,7 +5200,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute EXPRESSION_HINT__EXPRESSION = eINSTANCE.getExpressionHint_Expression();
+		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.

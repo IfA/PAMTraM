@@ -30,7 +30,7 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
@@ -643,7 +643,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpressionHint() {
+	public EClass getExpressionElement() {
 		return expressionHintEClass;
 	}
 
@@ -652,7 +652,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getExpressionHint_Expression() {
+	public EAttribute getExpressionElement_Expression() {
 		return (EAttribute)expressionHintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1584,8 +1584,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		mappingHintEClass = createEClass(MAPPING_HINT);
 
-		expressionHintEClass = createEClass(EXPRESSION_HINT);
-		createEAttribute(expressionHintEClass, EXPRESSION_HINT__EXPRESSION);
+		expressionHintEClass = createEClass(EXPRESSION_ELEMENT);
+		createEAttribute(expressionHintEClass, EXPRESSION_ELEMENT__EXPRESSION);
 
 		modifiableHintEClass = createEClass(MODIFIABLE_HINT);
 		createEReference(modifiableHintEClass, MODIFIABLE_HINT__RESULT_MODIFIER);
@@ -1948,13 +1948,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
-		attributeMappingEClass.getESuperTypes().add(this.getExpressionHint());
+		attributeMappingEClass.getESuperTypes().add(this.getExpressionElement());
 		attributeMappingEClass.getESuperTypes().add(this.getModifiableHint());
 		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
 		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
 		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
-		attributeMatcherEClass.getESuperTypes().add(this.getExpressionHint());
+		attributeMatcherEClass.getESuperTypes().add(this.getExpressionElement());
 		attributeMatcherEClass.getESuperTypes().add(this.getModifiableHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
@@ -2206,8 +2206,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(expressionHintEClass, ExpressionHint.class, "ExpressionHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExpressionHint_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(expressionHintEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modifiableHintEClass, ModifiableHint.class, "ModifiableHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModifiableHint_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableHint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -253,7 +253,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
           eType="#//structure/ResourceParameter" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionHint #//mapping/ModifiableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionElement #//mapping/ModifiableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
@@ -909,7 +909,7 @@
         <eLiterals name="FORBIDDEN" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceValueConstraint"
-          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//mapping/ExpressionHint #//mapping/ModifiableHint">
+          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//mapping/ExpressionElement #//mapping/ModifiableHint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"/>
         </eAnnotations>
@@ -1420,7 +1420,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
         eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType #//ConditionalElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpressionHint" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionElement" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>
@@ -1429,7 +1429,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
           eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionElement #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetAttributeMatchesSection"/>
       </eAnnotations>
@@ -1564,7 +1564,7 @@
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpressionHint #//mapping/ModifiableHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpressionElement #//mapping/ModifiableHint #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetMatchesAffectedReferenceType"/>
       </eAnnotations>

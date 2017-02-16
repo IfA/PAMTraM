@@ -225,8 +225,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
 				return validateMappingHint((MappingHint)value, diagnostics, context);
-			case MappingPackage.EXPRESSION_HINT:
-				return validateExpressionHint((ExpressionHint)value, diagnostics, context);
+			case MappingPackage.EXPRESSION_ELEMENT:
+				return validateExpressionHint((ExpressionElement)value, diagnostics, context);
 			case MappingPackage.MODIFIABLE_HINT:
 				return validateModifiableHint((ModifiableHint)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING:
@@ -514,7 +514,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExpressionHint(ExpressionHint expressionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExpressionHint(ExpressionElement expressionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(expressionHint, diagnostics, context);
 	}
 

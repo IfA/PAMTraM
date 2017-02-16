@@ -24,7 +24,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ModifiableHint;
@@ -391,9 +391,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
+				case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION: return MappingPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
@@ -418,9 +418,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION;
+				case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION;
 				default: return -1;
 			}
 		}

@@ -573,7 +573,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		// Add supertypes to classes
 		valueConstraintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
-		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionHint());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionElement());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());

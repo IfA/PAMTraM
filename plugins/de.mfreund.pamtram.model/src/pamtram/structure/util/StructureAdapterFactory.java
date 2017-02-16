@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -119,7 +119,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseExpressionHint(ExpressionHint object) {
+			public Adapter caseExpressionHint(ExpressionElement object) {
 				return createExpressionHintAdapter();
 			}
 			@Override
@@ -317,13 +317,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionHint <em>Expression Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionElement <em>Expression Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExpressionHint
+	 * @see pamtram.mapping.ExpressionElement
 	 * @generated
 	 */
 	public Adapter createExpressionHintAdapter() {

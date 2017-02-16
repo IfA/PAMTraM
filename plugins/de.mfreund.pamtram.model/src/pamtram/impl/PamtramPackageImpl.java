@@ -261,7 +261,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SourceSectionModel() {
+	public EReference getPAMTraM_SourceSectionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -270,7 +270,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedSourceSectionModel() {
+	public EReference getPAMTraM_SharedSourceSectionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -279,7 +279,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_TargetSectionModel() {
+	public EReference getPAMTraM_TargetSectionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -288,7 +288,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedTargetSectionModel() {
+	public EReference getPAMTraM_SharedTargetSectionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -297,7 +297,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_MappingModel() {
+	public EReference getPAMTraM_MappingModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -306,7 +306,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedMappingModel() {
+	public EReference getPAMTraM_SharedMappingModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -369,7 +369,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ConditionModel() {
+	public EReference getPAMTraM_ConditionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -378,7 +378,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedConditionModel() {
+	public EReference getPAMTraM_SharedConditionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -588,20 +588,20 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEAttribute(deactivatableElementEClass, DEACTIVATABLE_ELEMENT__DEACTIVATED);
 
 		pamTraMEClass = createEClass(PAM_TRA_M);
-		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTION_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTION_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__MAPPING_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_MAPPING_MODEL);
+		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTION_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTION_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_TARGET_SECTION_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__MAPPING_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_MAPPING_MODELS);
 		createEReference(pamTraMEClass, PAM_TRA_M__SOURCE_SECTIONS);
 		createEReference(pamTraMEClass, PAM_TRA_M__TARGET_SECTIONS);
 		createEReference(pamTraMEClass, PAM_TRA_M__MAPPINGS);
 		createEReference(pamTraMEClass, PAM_TRA_M__ACTIVE_MAPPINGS);
 		createEReference(pamTraMEClass, PAM_TRA_M__GLOBAL_VALUES);
 		createEReference(pamTraMEClass, PAM_TRA_M__MODIFIER_SETS);
-		createEReference(pamTraMEClass, PAM_TRA_M__CONDITION_MODEL);
-		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_CONDITION_MODEL);
+		createEReference(pamTraMEClass, PAM_TRA_M__CONDITION_MODELS);
+		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_CONDITION_MODELS);
 		createEOperation(pamTraMEClass, PAM_TRA_M___MERGE_EXTENDS);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
@@ -749,20 +749,20 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEAttribute(getDeactivatableElement_Deactivated(), ecorePackage.getEBoolean(), "deactivated", "false", 1, 1, DeactivatableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pamTraMEClass, PAMTraM.class, "PAMTraM", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPAMTraM_SourceSectionModel(), this.getSourceSectionModel(), null, "sourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SharedSourceSectionModel(), this.getSourceSectionModel(), null, "sharedSourceSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_TargetSectionModel(), this.getTargetSectionModel(), null, "targetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SharedTargetSectionModel(), this.getTargetSectionModel(), null, "sharedTargetSectionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_MappingModel(), this.getMappingModel(), null, "mappingModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SharedMappingModel(), this.getMappingModel(), null, "sharedMappingModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SourceSectionModels(), this.getSourceSectionModel(), null, "sourceSectionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedSourceSectionModels(), this.getSourceSectionModel(), null, "sharedSourceSectionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_TargetSectionModels(), this.getTargetSectionModel(), null, "targetSectionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedTargetSectionModels(), this.getTargetSectionModel(), null, "sharedTargetSectionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_MappingModels(), this.getMappingModel(), null, "mappingModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedMappingModels(), this.getMappingModel(), null, "sharedMappingModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SourceSections(), theSourcePackage.getSourceSection(), null, "sourceSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_TargetSections(), theTargetPackage.getTargetSection(), null, "targetSections", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_Mappings(), theMappingPackage.getMapping(), null, "mappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_GlobalValues(), theMappingPackage.getFixedValue(), null, "globalValues", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ModifierSets(), theModifierPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_ConditionModel(), this.getConditionModel(), null, "conditionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPAMTraM_SharedConditionModel(), this.getConditionModel(), null, "sharedConditionModel", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_ConditionModels(), this.getConditionModel(), null, "conditionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_SharedConditionModels(), this.getConditionModel(), null, "sharedConditionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
 

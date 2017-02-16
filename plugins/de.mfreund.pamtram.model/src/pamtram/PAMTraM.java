@@ -20,20 +20,20 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getSharedSourceSectionModel <em>Shared Source Section Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getSharedTargetSectionModel <em>Shared Target Section Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getSharedMappingModel <em>Shared Mapping Model</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSourceSectionModels <em>Source Section Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedSourceSectionModels <em>Shared Source Section Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getTargetSectionModels <em>Target Section Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedTargetSectionModels <em>Shared Target Section Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getMappingModels <em>Mapping Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedMappingModels <em>Shared Mapping Models</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getTargetSections <em>Target Sections</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getConditionModel <em>Condition Model</em>}</li>
- *   <li>{@link pamtram.PAMTraM#getSharedConditionModel <em>Shared Condition Model</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getConditionModels <em>Condition Models</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getSharedConditionModels <em>Shared Condition Models</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getPAMTraM()
@@ -42,7 +42,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  */
 public interface PAMTraM extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source Section Model</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Source Section Models</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.SourceSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -50,15 +50,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Section Model</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModel()
+	 * @return the value of the '<em>Source Section Models</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModels()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<SourceSectionModel> getSourceSectionModels();
 
 	/**
-	 * Returns the value of the '<em><b>Shared Source Section Model</b></em>' reference list.
+	 * Returns the value of the '<em><b>Shared Source Section Models</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.SourceSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -66,15 +66,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shared Source Section Model</em>' reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_SharedSourceSectionModel()
+	 * @return the value of the '<em>Shared Source Section Models</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedSourceSectionModels()
 	 * @model
 	 * @generated
 	 */
 	EList<SourceSectionModel> getSharedSourceSectionModels();
 
 	/**
-	 * Returns the value of the '<em><b>Target Section Model</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Target Section Models</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.TargetSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -82,15 +82,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Section Model</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModel()
+	 * @return the value of the '<em>Target Section Models</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModels()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<TargetSectionModel> getTargetSectionModels();
 
 	/**
-	 * Returns the value of the '<em><b>Shared Target Section Model</b></em>' reference list.
+	 * Returns the value of the '<em><b>Shared Target Section Models</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.TargetSectionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -98,15 +98,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shared Target Section Model</em>' reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_SharedTargetSectionModel()
+	 * @return the value of the '<em>Shared Target Section Models</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedTargetSectionModels()
 	 * @model
 	 * @generated
 	 */
 	EList<TargetSectionModel> getSharedTargetSectionModels();
 
 	/**
-	 * Returns the value of the '<em><b>Mapping Model</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Mapping Models</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.MappingModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -114,15 +114,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mapping Model</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModel()
+	 * @return the value of the '<em>Mapping Models</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModels()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<MappingModel> getMappingModels();
 
 	/**
-	 * Returns the value of the '<em><b>Shared Mapping Model</b></em>' reference list.
+	 * Returns the value of the '<em><b>Shared Mapping Models</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.MappingModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -130,8 +130,8 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shared Mapping Model</em>' reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_SharedMappingModel()
+	 * @return the value of the '<em>Shared Mapping Models</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedMappingModels()
 	 * @model
 	 * @generated
 	 */
@@ -149,7 +149,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Source Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModel().parallelStream(),\r\n\t\t\t\tthis.getSharedSourceSectionModel().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedSourceSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
 	 * @generated
 	 */
 	EList<SourceSection> getSourceSections();
@@ -166,7 +166,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Target Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModel().parallelStream(),\r\n\t\t\t\tthis.getSharedTargetSectionModel().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedTargetSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
 	 * @generated
 	 */
 	EList<TargetSection> getTargetSections();
@@ -183,7 +183,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Mappings</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_Mappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.Mapping%>> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())\r\n\t\t.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.Mapping%>> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())\r\n\t\t.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
 	 * @generated
 	 */
 	EList<Mapping> getMappings();
@@ -200,7 +200,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Active Mappings</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ActiveMappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<Mapping> mappings = this.getMappingModel().parallelStream().filter(m -> !m.isDeactivated())\r\n\t\t.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<Mapping> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream()).filter(m -> !m.isDeactivated())\r\n\t\t.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();
@@ -217,7 +217,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Global Values</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_GlobalValues()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><FixedValue> globalValues = <%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())\r\n\t\t.flatMap(s -> s.getGlobalValues().parallelStream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,\r\n\t\tglobalValues.size(), globalValues.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><FixedValue> globalValues = <%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())\r\n\t\t.flatMap(s -> s.getGlobalValues().parallelStream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,\r\n\t\tglobalValues.size(), globalValues.toArray());'"
 	 * @generated
 	 */
 	EList<FixedValue> getGlobalValues();
@@ -234,13 +234,13 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Modifier Sets</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ModifierSets()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.modifier.ValueModifierSet%>> modifierSets = <%java.util.stream.Stream%>.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())\r\n\t\t.flatMap(s -> s.getModifierSets().parallelStream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,\r\n\t\tmodifierSets.size(), modifierSets.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.modifier.ValueModifierSet%>> modifierSets = <%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())\r\n\t\t.flatMap(s -> s.getModifierSets().parallelStream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,\r\n\t\tmodifierSets.size(), modifierSets.toArray());'"
 	 * @generated
 	 */
 	EList<ValueModifierSet> getModifierSets();
 
 	/**
-	 * Returns the value of the '<em><b>Condition Model</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Condition Models</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.ConditionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -248,15 +248,15 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Model</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModel()
+	 * @return the value of the '<em>Condition Models</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModels()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ConditionModel> getConditionModels();
 
 	/**
-	 * Returns the value of the '<em><b>Shared Condition Model</b></em>' reference list.
+	 * Returns the value of the '<em><b>Shared Condition Models</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.ConditionModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -264,8 +264,8 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shared Condition Model</em>' reference list.
-	 * @see pamtram.PamtramPackage#getPAMTraM_SharedConditionModel()
+	 * @return the value of the '<em>Shared Condition Models</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_SharedConditionModels()
 	 * @model
 	 * @generated
 	 */

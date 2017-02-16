@@ -87,7 +87,7 @@ public class ConditionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
+			childrenFeatures.add(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -183,7 +183,7 @@ public class ConditionItemProvider
 			case ConditionPackage.CONDITION__COMPARATOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -203,7 +203,7 @@ public class ConditionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION,
+				(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 

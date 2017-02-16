@@ -103,7 +103,7 @@ public class AttributeValueModifierExecutor {
 			final List<ValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (final ValueModifierSet set : modifierSets) {
-			for (final ValueModifier m : set.getModifier()) {
+			for (final ValueModifier m : set.getModifiers()) {
 				if (!this.modifiersWithErrors.contains(m)) {
 					try {
 						retVal = m.modifyValue(retVal);

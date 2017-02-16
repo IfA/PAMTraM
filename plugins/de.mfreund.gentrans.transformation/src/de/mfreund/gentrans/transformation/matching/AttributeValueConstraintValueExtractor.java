@@ -10,11 +10,11 @@ import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import pamtram.mapping.FixedValue;
+import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
@@ -84,14 +84,14 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            The {@link SingleReferenceValueConstraint} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link SingleReferenceValueConstraint#getResultModifier()
+	 * @return The extracted value (after applying a possible {@link SingleReferenceValueConstraint#getModifiers()
 	 *         result modifier} or '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	public String extractRequiredTargetValue(SingleReferenceValueConstraint valueConstraint,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		List<ValueConstraintSourceInterface> sourceElements = valueConstraint.getSourceElements();
-		List<ValueModifierSet> resultModifiers = valueConstraint.getResultModifier();
+		List<ValueModifierSet> resultModifiers = valueConstraint.getModifiers();
 		String expression = valueConstraint.getExpression();
 
 		return this.extractRequiredTargetValue(matchedSectionDescriptor, sourceElements, expression, resultModifiers);

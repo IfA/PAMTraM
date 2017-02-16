@@ -127,7 +127,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 				.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 
 		final String valCopy = attributeValueModifierExecutor
-				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
+				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifiers());
 
 		// Store the found value
 		//

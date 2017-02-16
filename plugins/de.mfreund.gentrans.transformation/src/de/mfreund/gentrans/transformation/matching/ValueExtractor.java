@@ -13,18 +13,18 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
-import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.FixedValue;
+import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalModifiedAttributeElementType;
-import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.structure.InstancePointer;
+import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -200,7 +200,7 @@ public abstract class ValueExtractor extends CancelableElement {
 					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 
 			final String valCopy = this.attributeValueModifierExecutor
-					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifier());
+					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing one
 			if(hintValue == null) {
@@ -246,15 +246,15 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
-		if (!sourceElements.isEmpty() && !mappingHintSourceElement.getInstanceSelector().isEmpty()) {
+		if (!sourceElements.isEmpty() && !mappingHintSourceElement.getInstanceSelectors().isEmpty()) {
 
 			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
-			InstancePointerHandler instancePointerHandler = new InstancePointerHandler(matchedSections, gv,
+			InstanceSelectorHandler instancePointerHandler = new InstanceSelectorHandler(matchedSections, gv,
 					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger);
 
-			for (InstancePointer instancePointer : mappingHintSourceElement.getInstanceSelector()) {
+			for (InstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = instancePointerHandler.getPointedInstanceByInstanceList(instancePointer,
+				sourceElements = instancePointerHandler.getSelectedInstancesByInstanceList(instancePointer,
 						sourceElements, matchedSectionDescriptor);
 			}
 
@@ -296,7 +296,7 @@ public abstract class ValueExtractor extends CancelableElement {
 					.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 
 			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
-					mappingHintSourceElement.getModifier());
+					mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing one
 			if (hintValue == null) {

@@ -22,13 +22,13 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintType;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.LibraryParameter;
-import pamtram.structure.ResourceParameter;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryParameter;
+import pamtram.structure.library.ResourceParameter;
 import pamtram.util.GenLibraryManager;
 
 /**

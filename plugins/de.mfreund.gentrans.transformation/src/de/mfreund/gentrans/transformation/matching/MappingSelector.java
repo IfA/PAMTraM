@@ -26,9 +26,9 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.condition.ApplicationDependency;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.structure.source.SourceSection;
@@ -146,7 +146,7 @@ public class MappingSelector extends CancelableElement {
 
 		Set<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
 				.filter(m -> !this.checkCondition(m)).collect(Collectors.toSet());
-		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMapping().stream())
+		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
 		// TODO also filter if sub-conditions of type ApplicationDependency

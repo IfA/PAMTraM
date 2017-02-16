@@ -33,8 +33,8 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.FixedValue;
 import pamtram.MappingModel;
-import pamtram.mapping.FixedValue;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -1124,7 +1124,7 @@ public class SourceSectionMatcher {
 		boolean inclusionMatched = false;
 		boolean containsInclusions = false;
 
-		List<ValueConstraint> validConstraints = attribute.getValueConstraint().parallelStream()
+		List<ValueConstraint> validConstraints = attribute.getValueConstraints().parallelStream()
 				.filter(c -> !this.constraintsWithErrors.contains(c)).collect(Collectors.toList());
 
 		// Check each constraint

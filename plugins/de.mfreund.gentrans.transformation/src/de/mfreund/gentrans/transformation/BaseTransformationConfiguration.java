@@ -6,7 +6,7 @@ import java.util.logging.Level;
 
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
-import pamtram.structure.LibraryEntry;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.FileAttribute;
 
 /**

@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.pamtram.util.ExpressionCalculator;
+import pamtram.FixedValue;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.ReferenceTargetSelector;
@@ -107,10 +107,10 @@ public class AttributeValueCalculator {
 
 			List<ValueModifierSet> resultModifiers = new ArrayList<>();
 			if (hint instanceof AttributeMapping) {
-				resultModifiers.addAll(((AttributeMapping) hint).getResultModifier());
+				resultModifiers.addAll(((AttributeMapping) hint).getModifiers());
 			} else if (hint instanceof ReferenceTargetSelector) {
 				resultModifiers
-						.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getResultModifier());
+						.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getModifiers());
 			}
 
 			// calculate the value based on the hint values and a possible expression

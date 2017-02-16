@@ -67,13 +67,13 @@ import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import pamtram.FixedValue;
 import pamtram.PAMTraM;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.LibraryEntry;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.util.GenLibraryManager;
@@ -564,7 +564,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		this.writePamtramMessage("Analyzing target metamodel");
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				this.transformationConfig.getLogger(), attrValueRegistry,
-				this.transformationConfig.getPamtramModel().getTargetSectionModel().parallelStream()
+				this.transformationConfig.getPamtramModel().getTargetSectionModels().parallelStream()
 						.map(m -> m.getMetaModelPackage()).collect(Collectors.toSet()));
 		this.objectsToCancel.add(targetSectionRegistry);
 
@@ -816,7 +816,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		transformationModel.setPamtramInstance( // add pamtram model
 				this.transformationConfig.getPamtramModel());
 		transformationModel.getLibraryEntries().addAll( // add library entries
-				this.transformationConfig.getPamtramModel().getTargetSectionModel().parallelStream()
+				this.transformationConfig.getPamtramModel().getTargetSectionModels().parallelStream()
 						.flatMap(t -> t.getLibraryElements().parallelStream()).map(e -> e.getOriginalLibraryEntry())
 						.collect(Collectors.toList()));
 		transformationModel.getSourceModels().addAll( // add source models

@@ -18,11 +18,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.InstancePointerHandler;
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.ConditionalElement;
+import pamtram.FixedValue;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
@@ -34,12 +35,11 @@ import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -108,7 +108,7 @@ public class ConditionHandler {
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
-	private InstancePointerHandler instancePointerHandler;
+	private InstanceSelectorHandler instancePointerHandler;
 
 	/**
 	 * This creates an instance.
@@ -128,7 +128,7 @@ public class ConditionHandler {
 		this.matchedSections = matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.instancePointerHandler = new InstancePointerHandler(matchedSections, globalValues,
+		this.instancePointerHandler = new InstanceSelectorHandler(matchedSections, globalValues,
 				attributeValueCalculator, this.logger);
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(matchedSections, globalValues,
 				this.instancePointerHandler, attributeValueCalculator, this.logger);
@@ -214,7 +214,7 @@ public class ConditionHandler {
 
 		// The Section referenced by the CardinalityCondition was not matched in the source model
 		//
-		if (!this.matchedSections.containsKey(sectionCondition.getConditionSectionRef().getContainingSection())) {
+		if (!this.matchedSections.containsKey(sectionCondition.getTarget().getContainingSection())) {
 
 			// For conditions where the referred Section shouldn't be part of a model
 			if (sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ) {
@@ -259,13 +259,13 @@ public class ConditionHandler {
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(attrCondition, matchedSectionDescriptor);
 
-		if (attrCondition.getConditionAttributeRef() == null) {
+		if (attrCondition.getTarget() == null) {
 			this.logger.warning("No attribute modeled for AttributeCondition '" + attrCondition.getName() + "'."
 					+ "Evaluating to 'TRUE' by default.");
 			return CondResult.TRUE;
 		}
 
-		EAttribute attribute = attrCondition.getConditionAttributeRef().getAttribute();
+		EAttribute attribute = attrCondition.getTarget().getAttribute();
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
@@ -293,7 +293,7 @@ public class ConditionHandler {
 			boolean inclusionMatched = false;
 			boolean containsInclusions = false;
 			boolean exclusionFailed = false;
-			for (final ValueConstraint constraint : attrCondition.getValueConstraint()) {
+			for (final ValueConstraint constraint : attrCondition.getValueConstraints()) {
 
 				if (this.attributeConditionConstraintsWithErrors.contains(constraint)) {
 					continue;
@@ -400,11 +400,11 @@ public class ConditionHandler {
 
 		// The Section referenced by the SectionCondition was not matched in the source model
 		//
-		if (applicationDependency.getConditionalElement() instanceof Mapping) {
+		if (applicationDependency.getTarget() instanceof Mapping) {
 
 			// mapping has not been applied
 			//
-			if (!mappingInstances.containsKey(applicationDependency.getConditionalElement())) {
+			if (!mappingInstances.containsKey(applicationDependency.getTarget())) {
 
 				// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
 				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(), 0,
@@ -428,10 +428,10 @@ public class ConditionHandler {
 			// mapping has been applied
 			//
 			List<MappingInstanceStorage> storageInstances = mappingInstances
-					.get(applicationDependency.getConditionalElement());
+					.get(applicationDependency.getTarget());
 
 			// no instance pointers
-			if (applicationDependency.getAdditionalConditionSpecification().isEmpty()) {
+			if (applicationDependency.getInstanceSelectors().isEmpty()) {
 
 				// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
 				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(),
@@ -492,7 +492,7 @@ public class ConditionHandler {
 	 * of the given {@link Condition} for the given {@link MatchedSectionDescriptor}.
 	 * <p />
 	 * Depending on whether the condition is a {@link Condition#isLocalCondition() local} condition and on the presence
-	 * of {@link InstancePointer InstancePointers}, only the elements represented by the given
+	 * of {@link InstanceSelector InstancePointers}, only the elements represented by the given
 	 * <em>matchedSectionDescriptor</em> or the elements represented by all suitable descriptors stored in the
 	 * {@link #matchedSections} need to be considered.
 	 *
@@ -511,12 +511,12 @@ public class ConditionHandler {
 		SourceSectionClass affectedClass;
 
 		if (condition instanceof CardinalityCondition) {
-			affectedClass = ((CardinalityCondition) condition).getConditionSectionRef();
+			affectedClass = ((CardinalityCondition) condition).getTarget();
 		} else if (condition instanceof AttributeCondition) {
-			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getConditionAttributeRef()
+			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getTarget()
 					.eContainer();
 		} else if (condition instanceof ApplicationDependency) {
-			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getConditionalElement();
+			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getTarget();
 			if (conditionalElement instanceof Mapping) {
 				affectedClass = ((Mapping) conditionalElement).getSourceSection();
 			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
@@ -535,7 +535,7 @@ public class ConditionHandler {
 
 		List<MatchedSectionDescriptor> descriptorsToConsider;
 
-		if (condition.isLocalCondition() && condition.getAdditionalConditionSpecification().isEmpty()) {
+		if (condition.isLocalCondition() && condition.getInstanceSelectors().isEmpty()) {
 
 			// In case of a 'local' condition without any InstancePointers specified,
 			// we only consider the given 'matchedSectionDescriptor'.
@@ -544,7 +544,7 @@ public class ConditionHandler {
 
 		} else {
 
-			// In case of a 'global' condition or if an InstancePointer has been specified, we
+			// In case of a 'global' condition or if an InstanceSelector has been specified, we
 			// have to consider all 'descriptors' for the SourceSection under consideration
 			//
 			descriptorsToConsider = this.matchedSections.get(affectedClass);
@@ -558,11 +558,11 @@ public class ConditionHandler {
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
-		if (!correspondEClassInstances.isEmpty() && !condition.getAdditionalConditionSpecification().isEmpty()) {
+		if (!correspondEClassInstances.isEmpty() && !condition.getInstanceSelectors().isEmpty()) {
 
-			for (InstancePointer instancePointer : condition.getAdditionalConditionSpecification()) {
+			for (InstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instancePointerHandler.getPointedInstanceByInstanceList(
+				correspondEClassInstances = this.instancePointerHandler.getSelectedInstancesByInstanceList(
 						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
 			}
 

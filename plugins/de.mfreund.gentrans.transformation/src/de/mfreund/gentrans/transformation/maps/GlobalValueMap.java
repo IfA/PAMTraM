@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import pamtram.FixedValue;
 import pamtram.NamedElement;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 
 /**

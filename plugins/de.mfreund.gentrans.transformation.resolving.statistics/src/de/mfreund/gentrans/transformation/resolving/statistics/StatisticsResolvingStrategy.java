@@ -86,7 +86,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		IDialogSettings metamodel = DialogSettings.getOrCreateSection(section, "METAMODEL");
 
 		Set<String> nsURIs = Stream
-				.concat(pamtramModel.getSourceSectionModel().stream(), pamtramModel.getTargetSectionModel().stream())
+				.concat(pamtramModel.getSourceSectionModels().stream(), pamtramModel.getTargetSectionModels().stream())
 				.map(sm -> AgteleEcoreUtil.getRootEPackage(sm.getMetaModelPackage()).getNsURI())
 				.collect(Collectors.toSet());
 

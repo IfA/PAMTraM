@@ -2406,7 +2406,7 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4255,10 +4255,10 @@ public interface MappingPackage extends EPackage {
 	EReference getGlobalAttribute_Source();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.GlobalAttribute#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.GlobalAttribute#getModifiers <em>Modifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modifier</em>'.
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
 	 * @see pamtram.mapping.GlobalAttribute#getModifiers()
 	 * @see #getGlobalAttribute()
 	 * @generated
@@ -5124,7 +5124,7 @@ public interface MappingPackage extends EPackage {
 		EReference GLOBAL_ATTRIBUTE__SOURCE = eINSTANCE.getGlobalAttribute_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

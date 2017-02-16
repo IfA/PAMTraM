@@ -30,7 +30,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,15 +46,14 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 */
 	protected ActualSourceSectionAttribute source;
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> modifier;
-
+	protected EList<ValueModifierSet> modifiers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -129,10 +128,10 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (modifier == null) {
-			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS);
 		}
-		return modifier;
+		return modifiers;
 	}
 
 	/**
@@ -226,7 +225,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				return source != null;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
-				return modifier != null && !modifier.isEmpty();
+				return modifiers != null && !modifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

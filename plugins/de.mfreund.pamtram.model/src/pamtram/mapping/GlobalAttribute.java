@@ -21,7 +21,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.GlobalAttribute#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.GlobalAttribute#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.GlobalAttribute#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalAttribute()
@@ -57,7 +57,7 @@ public interface GlobalAttribute extends NamedElement {
 	void setSource(ActualSourceSectionAttribute value);
 
 	/**
-	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
+	 * Returns the value of the '<em><b>Modifiers</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -65,7 +65,7 @@ public interface GlobalAttribute extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifier</em>' reference list.
+	 * @return the value of the '<em>Modifiers</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Modifiers()
 	 * @model
 	 * @generated

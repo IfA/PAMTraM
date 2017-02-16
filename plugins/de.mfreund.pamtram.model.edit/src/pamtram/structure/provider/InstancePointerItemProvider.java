@@ -26,7 +26,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.provider.ExpressionHintItemProvider;
+import pamtram.mapping.provider.ExpressionElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.StructureFactory;
@@ -40,7 +40,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * @generated
  */
 public class InstancePointerItemProvider
-extends ExpressionHintItemProvider {
+extends ExpressionElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

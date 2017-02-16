@@ -1021,7 +1021,7 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1421,10 +1421,10 @@ public interface StructurePackage extends EPackage {
 	EClass getGlobalModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelectors <em>Instance Selectors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Instance Selector</em>'.
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
 	 * @see pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelectors()
 	 * @see #getGlobalModifiedAttributeElementType()
 	 * @generated
@@ -1766,7 +1766,7 @@ public interface StructurePackage extends EPackage {
 		EClass GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getGlobalModifiedAttributeElementType();
 
 		/**
-		 * The meta object literal for the '<em><b>Instance Selector</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

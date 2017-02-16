@@ -25,22 +25,21 @@ import pamtram.structure.generic.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl#getInstanceSelector <em>Instance Selector</em>}</li>
+ *   <li>{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements GlobalModifiedAttributeElementType<S, C, R, A> {
 	/**
-	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selector</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> instanceSelector;
-
+	protected EList<InstanceSelector> instanceSelectors;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,10 +65,10 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 * @generated
 	 */
 	public EList<InstanceSelector> getInstanceSelectors() {
-		if (instanceSelector == null) {
-			instanceSelector = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 		}
-		return instanceSelector;
+		return instanceSelectors;
 	}
 
 	/**
@@ -141,7 +140,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
-				return instanceSelector != null && !instanceSelector.isEmpty();
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

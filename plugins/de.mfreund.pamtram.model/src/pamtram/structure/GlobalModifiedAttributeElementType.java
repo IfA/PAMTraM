@@ -16,7 +16,7 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}</li>
+ *   <li>{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType()
@@ -26,7 +26,7 @@ import pamtram.structure.generic.Section;
 public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
 
 	/**
-	 * Returns the value of the '<em><b>Instance Selector</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,7 +34,7 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Selector</em>' containment reference list.
+	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
 	 * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated

@@ -147,7 +147,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			childrenFeatures.add(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 			childrenFeatures.add(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
@@ -218,7 +218,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -256,7 +256,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			newChildDescriptors.add(this.createChildParameter(
-					ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION,
+					ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS,
 					StructureFactory.eINSTANCE.createInstanceSelector()));
 		}
 
@@ -315,7 +315,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 		if (feature
 				.equals(ConstraintPackage.eINSTANCE
-						.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
+						.getSingleReferenceValueConstraint_InstanceSelectors())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
@@ -328,7 +328,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			EObject parent, EReference ref) {
 
 		if (ref.equals(ConstraintPackage.eINSTANCE
-				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
+				.getSingleReferenceValueConstraint_InstanceSelectors())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;

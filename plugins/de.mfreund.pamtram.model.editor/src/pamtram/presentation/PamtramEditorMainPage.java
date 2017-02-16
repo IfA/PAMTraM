@@ -81,12 +81,12 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ContainerParameter;
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.LibraryEntry;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -587,9 +587,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 							&& ((VariadicCondition) condition).getSharedCondParts() != null) {
 						conditions.addAll(((VariadicCondition) condition).getSharedCondParts());
 					} else if (condition instanceof AttributeCondition) {
-						source = ((AttributeCondition) condition).getConditionAttributeRef();
+						source = ((AttributeCondition) condition).getTarget();
 					} else if (condition instanceof CardinalityCondition) {
-						source = ((CardinalityCondition) condition).getConditionSectionRef();
+						source = ((CardinalityCondition) condition).getTarget();
 					}
 
 					/*
@@ -701,8 +701,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if (!((ContainerSelector) importer.eContainer()).getTargetAttributes().isEmpty()) {
 						target = ((ContainerSelector) importer.eContainer()).getTargetAttributes().get(0).getSource();
 					}
-				} else if (importer.eContainer() instanceof InstancePointer) {
-					target = ((InstancePointer) importer.eContainer()).getTarget();
+				} else if (importer.eContainer() instanceof InstanceSelector) {
+					target = ((InstanceSelector) importer.eContainer()).getTarget();
 				}
 				Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
 

@@ -30,8 +30,10 @@ public class MappingContentProvider extends AdapterFactoryContentProvider implem
 	public Object[] getElements(Object object) {
 
 		if (object instanceof PAMTraM) {
-			return Stream.concat(((PAMTraM) object).getMappingModel().stream(),
-					((PAMTraM) object).getSharedMappingModel().stream()).collect(Collectors.toList()).toArray();
+			return Stream
+					.concat(((PAMTraM) object).getMappingModels().stream(),
+							((PAMTraM) object).getSharedMappingModels().stream())
+					.collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
 	}
@@ -48,7 +50,7 @@ public class MappingContentProvider extends AdapterFactoryContentProvider implem
 			if (((MappingModel) object).getLocalCondition() != null) {
 				children.add(((MappingModel) object).getLocalCondition());
 			}
-			children.addAll(((MappingModel) object).getMapping());
+			children.addAll(((MappingModel) object).getMappings());
 			return children.toArray();
 		}
 		return super.getChildren(object);
@@ -59,12 +61,12 @@ public class MappingContentProvider extends AdapterFactoryContentProvider implem
 
 		if (feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS)
 				|| feature.equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)) {
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)) {
 			return false;
 		}
 

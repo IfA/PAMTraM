@@ -615,7 +615,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 			if (!visitor.getRemovedResources().isEmpty()) {
 				boolean exit = false;
 				EList<pamtram.structure.LibraryEntry> libEntries = new BasicEList<>();
-				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModel()) {
+				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModels()) {
 					libEntries.addAll(targetSectionModel.getLibraryElements());
 				}
 				for (Resource resource : visitor.getRemovedResources()) {
@@ -737,7 +737,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 
 		this.handleActivateGen();
 
-		if (this.pamtram == null || this.pamtram.getTargetSectionModel() == null) {
+		if (this.pamtram == null || this.pamtram.getTargetSectionModels() == null) {
 			return;
 		}
 

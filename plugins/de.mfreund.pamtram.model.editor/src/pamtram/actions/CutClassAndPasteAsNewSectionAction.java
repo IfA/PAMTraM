@@ -58,10 +58,10 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 				ref.eSet(ref.eClass().getEStructuralFeature(TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE),
 						objectsOldContainer);
 
-				objectsNewContainer.addAll(model.getMetaModelSections());
+				objectsNewContainer.addAll(model.getSections());
 				objectsNewContainer.add(this.oldElement);
 				model.eSet(
-						model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS),
+						model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__SECTIONS),
 						objectsNewContainer);
 
 			} else if (this.oldElement.getContainingSection().eContainer() instanceof SourceSectionModel) {
@@ -73,10 +73,10 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 				ref.eSet(ref.eClass().getEStructuralFeature(SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE),
 						objectsOldContainer);
 
-				objectsNewContainer.addAll(model.getMetaModelSections());
+				objectsNewContainer.addAll(model.getSections());
 				objectsNewContainer.add(this.oldElement);
 				model.eSet(
-						model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS),
+						model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__SECTIONS),
 						objectsNewContainer);
 			}
 		}

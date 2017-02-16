@@ -355,13 +355,13 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
 							&& (((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL))) {
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS))) {
 						actions.add(new CreateSharedModelChildAction(this.activeEditorPart, selection, descriptor));
 					} else {
 						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
@@ -439,15 +439,14 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
 							&& (((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
+									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
 									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL))) {
-						actions.add(new CreateSharedModelSiblingAction(this.activeEditorPart, selection,
-								descriptor));
+											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS))) {
+						actions.add(new CreateSharedModelSiblingAction(this.activeEditorPart, selection, descriptor));
 					} else {
 						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
 					}

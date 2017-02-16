@@ -29,8 +29,8 @@ public class ConditionContentProvider extends AdapterFactoryContentProvider impl
 
 		if (object instanceof PAMTraM) {
 			return Stream
-					.concat(((PAMTraM) object).getConditionModel().stream(),
-							((PAMTraM) object).getSharedConditionModel().stream())
+					.concat(((PAMTraM) object).getConditionModels().stream(),
+							((PAMTraM) object).getSharedConditionModels().stream())
 					.collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
@@ -39,12 +39,12 @@ public class ConditionContentProvider extends AdapterFactoryContentProvider impl
 	@Override
 	public boolean isValidFeature(EStructuralFeature feature) {
 
-		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)) {
+		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)) {
 			return false;
 		}
 

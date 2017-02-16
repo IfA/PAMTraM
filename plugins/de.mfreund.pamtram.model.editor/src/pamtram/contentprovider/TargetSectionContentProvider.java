@@ -29,8 +29,8 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 
 		if (object instanceof PAMTraM) {
 			return Stream
-					.concat(((PAMTraM) object).getTargetSectionModel().stream(),
-							((PAMTraM) object).getSharedTargetSectionModel().stream())
+					.concat(((PAMTraM) object).getTargetSectionModels().stream(),
+							((PAMTraM) object).getSharedTargetSectionModels().stream())
 					.collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
@@ -44,7 +44,7 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 	public Object[] getChildren(Object object) {
 
 		if (object instanceof TargetSectionModel) {
-			return ((TargetSectionModel) object).getMetaModelSections().toArray();
+			return ((TargetSectionModel) object).getSections().toArray();
 		}
 		return super.getElements(object);
 	}
@@ -53,12 +53,12 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 	public boolean isValidFeature(EStructuralFeature feature) {
 
 		if (feature.equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODEL)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODEL)) {
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)) {
 			return false;
 		}
 

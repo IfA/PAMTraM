@@ -3,7 +3,6 @@
 package pamtram.structure.library;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.target.TargetSection;
 
 
@@ -19,7 +18,7 @@ import pamtram.structure.target.TargetSection;
  *   <li>{@link pamtram.structure.library.ContainerParameter#getClass_ <em>Class</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getContainerParameter()
+ * @see pamtram.structure.library.LibraryPackage#getContainerParameter()
  * @model
  * @generated
  */
@@ -34,7 +33,7 @@ public interface ContainerParameter extends LibraryParameter<AbstractContainerPa
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' containment reference.
 	 * @see #setClass(TargetSection)
-	 * @see pamtram.structure.StructurePackage#getContainerParameter_Class()
+	 * @see pamtram.structure.library.LibraryPackage#getContainerParameter_Class()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

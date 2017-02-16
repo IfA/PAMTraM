@@ -3,7 +3,6 @@
 package pamtram.structure.library;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 
 
@@ -19,7 +18,7 @@ import pamtram.structure.target.ActualTargetSectionAttribute;
  *   <li>{@link pamtram.structure.library.AttributeParameter#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getAttributeParameter()
+ * @see pamtram.structure.library.LibraryPackage#getAttributeParameter()
  * @model
  * @generated
  */
@@ -34,7 +33,7 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(ActualTargetSectionAttribute)
-	 * @see pamtram.structure.StructurePackage#getAttributeParameter_Attribute()
+	 * @see pamtram.structure.library.LibraryPackage#getAttributeParameter_Attribute()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

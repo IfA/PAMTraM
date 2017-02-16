@@ -16,12 +16,6 @@ import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.library.AttributeParameter;
-import pamtram.structure.library.ContainerParameter;
-import pamtram.structure.library.ExternalReferenceParameter;
-import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.library.LibraryParameter;
-import pamtram.structure.library.ResourceParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,30 +74,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	protected StructureSwitch<Adapter> modelSwitch =
 		new StructureSwitch<Adapter>() {
 			@Override
-			public <ParameterType> Adapter caseLibraryParameter(LibraryParameter<ParameterType> object) {
-				return createLibraryParameterAdapter();
-			}
-			@Override
-			public Adapter caseAttributeParameter(AttributeParameter object) {
-				return createAttributeParameterAdapter();
-			}
-			@Override
-			public Adapter caseContainerParameter(ContainerParameter object) {
-				return createContainerParameterAdapter();
-			}
-			@Override
-			public Adapter caseExternalReferenceParameter(ExternalReferenceParameter object) {
-				return createExternalReferenceParameterAdapter();
-			}
-			@Override
-			public Adapter caseResourceParameter(ResourceParameter object) {
-				return createResourceParameterAdapter();
-			}
-			@Override
-			public Adapter caseLibraryEntry(LibraryEntry object) {
-				return createLibraryEntryAdapter();
-			}
-			@Override
 			public Adapter caseInstanceSelector(InstanceSelector object) {
 				return createInstanceSelectorAdapter();
 			}
@@ -136,16 +106,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
-			}
-			@Override
 			public Adapter caseExpressionElement(ExpressionElement object) {
 				return createExpressionElementAdapter();
 			}
 			@Override
 			public Adapter caseModifiableElement(ModifiableElement object) {
 				return createModifiableElementAdapter();
+			}
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
@@ -174,90 +144,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.LibraryParameter <em>Library Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.LibraryParameter
-	 * @generated
-	 */
-	public Adapter createLibraryParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.AttributeParameter <em>Attribute Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.AttributeParameter
-	 * @generated
-	 */
-	public Adapter createAttributeParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ContainerParameter <em>Container Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.ContainerParameter
-	 * @generated
-	 */
-	public Adapter createContainerParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.ExternalReferenceParameter
-	 * @generated
-	 */
-	public Adapter createExternalReferenceParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ResourceParameter <em>Resource Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.ResourceParameter
-	 * @generated
-	 */
-	public Adapter createResourceParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.LibraryEntry <em>Library Entry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.library.LibraryEntry
-	 * @generated
-	 */
-	public Adapter createLibraryEntryAdapter() {
-		return null;
-	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelector <em>Instance Selector</em>}'.

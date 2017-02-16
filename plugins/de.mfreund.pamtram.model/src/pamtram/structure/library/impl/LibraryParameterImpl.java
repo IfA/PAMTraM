@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.library.LibraryParameter;
 
 /**
@@ -62,7 +62,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.LIBRARY_PARAMETER;
+		return LibraryPackage.Literals.LIBRARY_PARAMETER;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 			source = eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.LIBRARY_PARAMETER__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.LIBRARY_PARAMETER__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -101,7 +101,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 		EObject oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.LIBRARY_PARAMETER__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_PARAMETER__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 			originalParameter = (ParameterType)eResolveProxy(oldOriginalParameter);
 			if (originalParameter != oldOriginalParameter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 			}
 		}
 		return originalParameter;
@@ -140,7 +140,7 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 		ParameterType oldOriginalParameter = originalParameter;
 		originalParameter = newOriginalParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 	}
 
 	/**
@@ -151,10 +151,10 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.LIBRARY_PARAMETER__SOURCE:
+			case LibraryPackage.LIBRARY_PARAMETER__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+			case LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
 				if (resolve) return getOriginalParameter();
 				return basicGetOriginalParameter();
 		}
@@ -170,10 +170,10 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.LIBRARY_PARAMETER__SOURCE:
+			case LibraryPackage.LIBRARY_PARAMETER__SOURCE:
 				setSource((EObject)newValue);
 				return;
-			case StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+			case LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
 				setOriginalParameter((ParameterType)newValue);
 				return;
 		}
@@ -188,10 +188,10 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.LIBRARY_PARAMETER__SOURCE:
+			case LibraryPackage.LIBRARY_PARAMETER__SOURCE:
 				setSource((EObject)null);
 				return;
-			case StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+			case LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
 				setOriginalParameter((ParameterType)null);
 				return;
 		}
@@ -206,9 +206,9 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.LIBRARY_PARAMETER__SOURCE:
+			case LibraryPackage.LIBRARY_PARAMETER__SOURCE:
 				return source != null;
-			case StructurePackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
+			case LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER:
 				return originalParameter != null;
 		}
 		return super.eIsSet(featureID);

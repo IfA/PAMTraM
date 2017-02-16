@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.library.ResourceParameter;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
@@ -30,9 +30,9 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
 public class ResourceParameterImpl extends NamedElementImpl implements ResourceParameter {
 
 	/**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
@@ -51,187 +51,142 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ResourceParameterImpl() {
+	protected ResourceParameterImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.RESOURCE_PARAMETER;
+		return LibraryPackage.Literals.RESOURCE_PARAMETER;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public VirtualTargetSectionAttribute getAttribute() {
-
-		return this.attribute;
+		return attribute;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttribute(VirtualTargetSectionAttribute newAttribute, NotificationChain msgs) {
-
-		VirtualTargetSectionAttribute oldAttribute = this.attribute;
-		this.attribute = newAttribute;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		VirtualTargetSectionAttribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setAttribute(VirtualTargetSectionAttribute newAttribute) {
-
-		if (newAttribute != this.attribute) {
+		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
-			if (this.attribute != null) {
-				msgs = ((InternalEObject) this.attribute).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, null,
-						msgs);
-			}
-			if (newAttribute != null) {
-				msgs = ((InternalEObject) newAttribute).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE, null,
-						msgs);
-			}
-			msgs = this.basicSetAttribute(newAttribute, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE,
-					newAttribute, newAttribute));
+			if (attribute != null)
+				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
+			if (newAttribute != null)
+				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE, null, msgs);
+			msgs = basicSetAttribute(newAttribute, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter getOriginalParameter() {
-
-		if (this.originalParameter != null && this.originalParameter.eIsProxy()) {
-			InternalEObject oldOriginalParameter = (InternalEObject) this.originalParameter;
-			this.originalParameter = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter) this
-					.eResolveProxy(oldOriginalParameter);
-			if (this.originalParameter != oldOriginalParameter) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter,
-							this.originalParameter));
-				}
+		if (originalParameter != null && originalParameter.eIsProxy()) {
+			InternalEObject oldOriginalParameter = (InternalEObject)originalParameter;
+			originalParameter = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)eResolveProxy(oldOriginalParameter);
+			if (originalParameter != oldOriginalParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 			}
 		}
-		return this.originalParameter;
+		return originalParameter;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter basicGetOriginalParameter() {
-
-		return this.originalParameter;
+		return originalParameter;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setOriginalParameter(
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter newOriginalParameter) {
-
-		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter oldOriginalParameter = this.originalParameter;
-		this.originalParameter = newOriginalParameter;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter,
-					this.originalParameter));
-		}
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter oldOriginalParameter = originalParameter;
+		originalParameter = newOriginalParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				return this.basicSetAttribute(null, msgs);
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+				return basicSetAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				return this.getAttribute();
-			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
-				if (resolve) {
-					return this.getOriginalParameter();
-				}
-				return this.basicGetOriginalParameter();
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+				return getAttribute();
+			case LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+				if (resolve) return getOriginalParameter();
+				return basicGetOriginalParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				this.setAttribute((VirtualTargetSectionAttribute) newValue);
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+				setAttribute((VirtualTargetSectionAttribute)newValue);
 				return;
-			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
-				this.setOriginalParameter(
-						(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter) newValue);
+			case LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+				setOriginalParameter((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -239,18 +194,16 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				this.setAttribute((VirtualTargetSectionAttribute) null);
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+				setAttribute((VirtualTargetSectionAttribute)null);
 				return;
-			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
-				this.setOriginalParameter((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter) null);
+			case LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+				setOriginalParameter((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,17 +211,15 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.RESOURCE_PARAMETER__ATTRIBUTE:
-				return this.attribute != null;
-			case StructurePackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
-				return this.originalParameter != null;
+			case LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE:
+				return attribute != null;
+			case LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER:
+				return originalParameter != null;
 		}
 		return super.eIsSet(featureID);
 	}

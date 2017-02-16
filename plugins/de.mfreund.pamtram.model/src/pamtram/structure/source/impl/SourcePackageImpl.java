@@ -41,6 +41,8 @@ import pamtram.structure.generic.impl.GenericPackageImpl;
 
 import pamtram.structure.impl.StructurePackageImpl;
 
+import pamtram.structure.library.LibraryPackage;
+import pamtram.structure.library.impl.LibraryPackageImpl;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceFactory;
 import pamtram.structure.source.SourcePackage;
@@ -166,6 +168,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
 		ConstraintPackageImpl theConstraintPackage = (ConstraintPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) instanceof ConstraintPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) : ConstraintPackage.eINSTANCE);
 		TargetPackageImpl theTargetPackage = (TargetPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) instanceof TargetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) : TargetPackage.eINSTANCE);
+		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) : LibraryPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
@@ -177,6 +180,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		theGenericPackage.createPackageContents();
 		theConstraintPackage.createPackageContents();
 		theTargetPackage.createPackageContents();
+		theLibraryPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
@@ -188,6 +192,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		theGenericPackage.initializePackageContents();
 		theConstraintPackage.initializePackageContents();
 		theTargetPackage.initializePackageContents();
+		theLibraryPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();

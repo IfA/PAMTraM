@@ -15,12 +15,6 @@ import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.library.AttributeParameter;
-import pamtram.structure.library.ContainerParameter;
-import pamtram.structure.library.ExternalReferenceParameter;
-import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.library.LibraryParameter;
-import pamtram.structure.library.ResourceParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,50 +73,6 @@ public class StructureSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case StructurePackage.LIBRARY_PARAMETER: {
-				LibraryParameter<?> libraryParameter = (LibraryParameter<?>)theEObject;
-				T result = caseLibraryParameter(libraryParameter);
-				if (result == null) result = caseNamedElement(libraryParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.ATTRIBUTE_PARAMETER: {
-				AttributeParameter attributeParameter = (AttributeParameter)theEObject;
-				T result = caseAttributeParameter(attributeParameter);
-				if (result == null) result = caseLibraryParameter(attributeParameter);
-				if (result == null) result = caseNamedElement(attributeParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.CONTAINER_PARAMETER: {
-				ContainerParameter containerParameter = (ContainerParameter)theEObject;
-				T result = caseContainerParameter(containerParameter);
-				if (result == null) result = caseLibraryParameter(containerParameter);
-				if (result == null) result = caseNamedElement(containerParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER: {
-				ExternalReferenceParameter externalReferenceParameter = (ExternalReferenceParameter)theEObject;
-				T result = caseExternalReferenceParameter(externalReferenceParameter);
-				if (result == null) result = caseLibraryParameter(externalReferenceParameter);
-				if (result == null) result = caseNamedElement(externalReferenceParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.RESOURCE_PARAMETER: {
-				ResourceParameter resourceParameter = (ResourceParameter)theEObject;
-				T result = caseResourceParameter(resourceParameter);
-				if (result == null) result = caseNamedElement(resourceParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case StructurePackage.LIBRARY_ENTRY: {
-				LibraryEntry libraryEntry = (LibraryEntry)theEObject;
-				T result = caseLibraryEntry(libraryEntry);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case StructurePackage.INSTANCE_SELECTOR: {
 				InstanceSelector instanceSelector = (InstanceSelector)theEObject;
 				T result = caseInstanceSelector(instanceSelector);
@@ -201,96 +151,6 @@ public class StructureSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Library Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Library Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <ParameterType> T caseLibraryParameter(LibraryParameter<ParameterType> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeParameter(AttributeParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerParameter(ContainerParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Reference Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Reference Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExternalReferenceParameter(ExternalReferenceParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Resource Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Resource Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceParameter(ResourceParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Library Entry</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Library Entry</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLibraryEntry(LibraryEntry object) {
-		return null;
 	}
 
 	/**

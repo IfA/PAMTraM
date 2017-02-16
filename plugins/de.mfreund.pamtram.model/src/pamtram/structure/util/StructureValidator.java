@@ -10,12 +10,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.structure.*;
-import pamtram.structure.library.AttributeParameter;
-import pamtram.structure.library.ContainerParameter;
-import pamtram.structure.library.ExternalReferenceParameter;
-import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.library.LibraryParameter;
-import pamtram.structure.library.ResourceParameter;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
@@ -111,18 +105,6 @@ public class StructureValidator extends EObjectValidator {
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		switch (classifierID) {
-			case StructurePackage.LIBRARY_PARAMETER:
-				return validateLibraryParameter((LibraryParameter<?>)value, diagnostics, context);
-			case StructurePackage.ATTRIBUTE_PARAMETER:
-				return validateAttributeParameter((AttributeParameter)value, diagnostics, context);
-			case StructurePackage.CONTAINER_PARAMETER:
-				return validateContainerParameter((ContainerParameter)value, diagnostics, context);
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER:
-				return validateExternalReferenceParameter((ExternalReferenceParameter)value, diagnostics, context);
-			case StructurePackage.RESOURCE_PARAMETER:
-				return validateResourceParameter((ResourceParameter)value, diagnostics, context);
-			case StructurePackage.LIBRARY_ENTRY:
-				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR:
 				return validateInstanceSelector((InstanceSelector)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE:
@@ -142,60 +124,6 @@ public class StructureValidator extends EObjectValidator {
 			default:
 				return true;
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLibraryParameter(LibraryParameter<?> libraryParameter, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(libraryParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeParameter(AttributeParameter attributeParameter, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateContainerParameter(ContainerParameter containerParameter, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(containerParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExternalReferenceParameter(ExternalReferenceParameter externalReferenceParameter,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(externalReferenceParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateResourceParameter(ResourceParameter resourceParameter, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(resourceParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLibraryEntry(LibraryEntry libraryEntry, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(libraryEntry, diagnostics, context);
 	}
 
 	/**

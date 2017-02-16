@@ -385,27 +385,27 @@
               ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryParameter/originalParameter"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/library/AttributeParameter">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/AttributeParameter/attribute"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/AttributeParameter/attribute"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/library/ContainerParameter">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ContainerParameter/class"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ContainerParameter/class"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/library/ExternalReferenceParameter">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ExternalReferenceParameter/reference"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ExternalReferenceParameter/reference"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/library/ResourceParameter">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ResourceParameter/attribute"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ResourceParameter/attribute"/>
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ResourceParameter/originalParameter"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/library/LibraryEntry">
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/parameters"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/parameters"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/library/LibraryEntry/libraryFile"/>
-          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+          <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/originalLibraryEntry"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/path"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/id"/>
-          <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/resourceParameters"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/path"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/id"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/resourceParameters"/>
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>

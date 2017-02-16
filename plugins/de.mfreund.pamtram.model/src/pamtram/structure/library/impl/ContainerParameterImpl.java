@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
@@ -20,7 +20,7 @@ import pamtram.structure.target.TargetSection;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.library.impl.ContainerParameterImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.ContainerParameterImpl#getClass_ <em>Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,9 +29,9 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 		implements ContainerParameter {
 
 	/**
-	 * The cached value of the '{@link #getClass_() <em>Class</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getClass_() <em>Class</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getClass_()
 	 * @generated
 	 * @ordered
@@ -40,22 +40,19 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ContainerParameterImpl() {
+	protected ContainerParameterImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.CONTAINER_PARAMETER;
+		return LibraryPackage.Literals.CONTAINER_PARAMETER;
 	}
 
 	/**
@@ -66,113 +63,86 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 */
 	@Override
 	public void setOriginalParameter(AbstractContainerParameter<?, ?> newOriginalParameter) {
-
 		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public TargetSection getClass_() {
-
-		return this.class_;
+		return class_;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetClass(TargetSection newClass, NotificationChain msgs) {
-
-		TargetSection oldClass = this.class_;
-		this.class_ = newClass;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.CONTAINER_PARAMETER__CLASS, oldClass, newClass);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		TargetSection oldClass = class_;
+		class_ = newClass;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.CONTAINER_PARAMETER__CLASS, oldClass, newClass);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setClass(TargetSection newClass) {
-
-		if (newClass != this.class_) {
+		if (newClass != class_) {
 			NotificationChain msgs = null;
-			if (this.class_ != null) {
-				msgs = ((InternalEObject) this.class_).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.CONTAINER_PARAMETER__CLASS, null,
-						msgs);
-			}
-			if (newClass != null) {
-				msgs = ((InternalEObject) newClass).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.CONTAINER_PARAMETER__CLASS, null,
-						msgs);
-			}
-			msgs = this.basicSetClass(newClass, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.CONTAINER_PARAMETER__CLASS,
-					newClass, newClass));
+			if (class_ != null)
+				msgs = ((InternalEObject)class_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.CONTAINER_PARAMETER__CLASS, null, msgs);
+			if (newClass != null)
+				msgs = ((InternalEObject)newClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.CONTAINER_PARAMETER__CLASS, null, msgs);
+			msgs = basicSetClass(newClass, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.CONTAINER_PARAMETER__CLASS, newClass, newClass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
-				return this.basicSetClass(null, msgs);
+			case LibraryPackage.CONTAINER_PARAMETER__CLASS:
+				return basicSetClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
-				return this.getClass_();
+			case LibraryPackage.CONTAINER_PARAMETER__CLASS:
+				return getClass_();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
-				this.setClass((TargetSection) newValue);
+			case LibraryPackage.CONTAINER_PARAMETER__CLASS:
+				setClass((TargetSection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,15 +150,13 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
-				this.setClass((TargetSection) null);
+			case LibraryPackage.CONTAINER_PARAMETER__CLASS:
+				setClass((TargetSection)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,15 +164,13 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.CONTAINER_PARAMETER__CLASS:
-				return this.class_ != null;
+			case LibraryPackage.CONTAINER_PARAMETER__CLASS:
+				return class_ != null;
 		}
 		return super.eIsSet(featureID);
 	}

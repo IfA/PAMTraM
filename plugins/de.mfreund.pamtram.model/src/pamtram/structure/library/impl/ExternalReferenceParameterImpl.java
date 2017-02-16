@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
@@ -20,7 +20,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.library.impl.ExternalReferenceParameterImpl#getReference <em>Reference</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.ExternalReferenceParameterImpl#getReference <em>Reference</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,9 +29,9 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 		implements ExternalReferenceParameter {
 
 	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getReference()
 	 * @generated
 	 * @ordered
@@ -40,22 +40,19 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ExternalReferenceParameterImpl() {
+	protected ExternalReferenceParameterImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.EXTERNAL_REFERENCE_PARAMETER;
+		return LibraryPackage.Literals.EXTERNAL_REFERENCE_PARAMETER;
 	}
 
 	/**
@@ -66,111 +63,86 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 */
 	@Override
 	public void setOriginalParameter(AbstractExternalReferenceParameter<?, ?> newOriginalParameter) {
-
 		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public TargetSectionCrossReference getReference() {
-
-		return this.reference;
+		return reference;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetReference(TargetSectionCrossReference newReference, NotificationChain msgs) {
-
-		TargetSectionCrossReference oldReference = this.reference;
-		this.reference = newReference;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, oldReference, newReference);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		TargetSectionCrossReference oldReference = reference;
+		reference = newReference;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, oldReference, newReference);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setReference(TargetSectionCrossReference newReference) {
-
-		if (newReference != this.reference) {
+		if (newReference != reference) {
 			NotificationChain msgs = null;
-			if (this.reference != null) {
-				msgs = ((InternalEObject) this.reference).eInverseRemove(this, InternalEObject.EOPPOSITE_FEATURE_BASE
-						- StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
-			}
-			if (newReference != null) {
-				msgs = ((InternalEObject) newReference).eInverseAdd(this, InternalEObject.EOPPOSITE_FEATURE_BASE
-						- StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
-			}
-			msgs = this.basicSetReference(newReference, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET,
-					StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, newReference, newReference));
+			if (reference != null)
+				msgs = ((InternalEObject)reference).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
+			if (newReference != null)
+				msgs = ((InternalEObject)newReference).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, null, msgs);
+			msgs = basicSetReference(newReference, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, newReference, newReference));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				return this.basicSetReference(null, msgs);
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+				return basicSetReference(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				return this.getReference();
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+				return getReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				this.setReference((TargetSectionCrossReference) newValue);
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+				setReference((TargetSectionCrossReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,15 +150,13 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				this.setReference((TargetSectionCrossReference) null);
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+				setReference((TargetSectionCrossReference)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -194,15 +164,13 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
-				return this.reference != null;
+			case LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE:
+				return reference != null;
 		}
 		return super.eIsSet(featureID);
 	}

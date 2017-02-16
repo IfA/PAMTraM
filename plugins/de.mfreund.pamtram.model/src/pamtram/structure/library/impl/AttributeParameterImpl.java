@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
-import pamtram.structure.StructurePackage;
 import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 
 /**
@@ -20,7 +20,7 @@ import pamtram.structure.target.ActualTargetSectionAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.library.impl.AttributeParameterImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.AttributeParameterImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
@@ -29,9 +29,9 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 		implements AttributeParameter {
 
 	/**
-	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
@@ -40,22 +40,19 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public AttributeParameterImpl() {
+	protected AttributeParameterImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
-		return StructurePackage.Literals.ATTRIBUTE_PARAMETER;
+		return LibraryPackage.Literals.ATTRIBUTE_PARAMETER;
 	}
 
 	/**
@@ -66,113 +63,86 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 */
 	@Override
 	public void setOriginalParameter(AbstractAttributeParameter<?> newOriginalParameter) {
-
 		super.setOriginalParameter(newOriginalParameter);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public ActualTargetSectionAttribute getAttribute() {
-
-		return this.attribute;
+		return attribute;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttribute(ActualTargetSectionAttribute newAttribute, NotificationChain msgs) {
-
-		ActualTargetSectionAttribute oldAttribute = this.attribute;
-		this.attribute = newAttribute;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		ActualTargetSectionAttribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, oldAttribute, newAttribute);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void setAttribute(ActualTargetSectionAttribute newAttribute) {
-
-		if (newAttribute != this.attribute) {
+		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
-			if (this.attribute != null) {
-				msgs = ((InternalEObject) this.attribute).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null,
-						msgs);
-			}
-			if (newAttribute != null) {
-				msgs = ((InternalEObject) newAttribute).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null,
-						msgs);
-			}
-			msgs = this.basicSetAttribute(newAttribute, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE,
-					newAttribute, newAttribute));
+			if (attribute != null)
+				msgs = ((InternalEObject)attribute).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
+			if (newAttribute != null)
+				msgs = ((InternalEObject)newAttribute).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, null, msgs);
+			msgs = basicSetAttribute(newAttribute, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				return this.basicSetAttribute(null, msgs);
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+				return basicSetAttribute(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				return this.getAttribute();
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+				return getAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				this.setAttribute((ActualTargetSectionAttribute) newValue);
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+				setAttribute((ActualTargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -180,15 +150,13 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				this.setAttribute((ActualTargetSectionAttribute) null);
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+				setAttribute((ActualTargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -196,15 +164,13 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
-			case StructurePackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
-				return this.attribute != null;
+			case LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE:
+				return attribute != null;
 		}
 		return super.eIsSet(featureID);
 	}

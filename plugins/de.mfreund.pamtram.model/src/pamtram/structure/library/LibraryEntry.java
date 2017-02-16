@@ -4,8 +4,6 @@ package pamtram.structure.library;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
-import pamtram.structure.StructurePackage;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
@@ -25,7 +23,7 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  *   <li>{@link pamtram.structure.library.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getLibraryEntry()
+ * @see pamtram.structure.library.LibraryPackage#getLibraryEntry()
  * @model
  * @generated
  */
@@ -40,7 +38,7 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Parameters()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Parameters()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -56,7 +54,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Library File</em>' attribute.
 	 * @see #setLibraryFile(String)
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_LibraryFile()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_LibraryFile()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -82,7 +80,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference.
 	 * @see #setPath(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Path()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Path()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -108,7 +106,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' containment reference.
 	 * @see #setId(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_Id()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Id()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -134,7 +132,7 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Resource Parameters</em>' containment reference list.
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_ResourceParameters()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_ResourceParameters()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -150,7 +148,7 @@ public interface LibraryEntry extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Original Library Entry</em>' reference.
 	 * @see #setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)
-	 * @see pamtram.structure.StructurePackage#getLibraryEntry_OriginalLibraryEntry()
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_OriginalLibraryEntry()
 	 * @model required="true"
 	 * @generated
 	 */

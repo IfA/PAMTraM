@@ -83,9 +83,9 @@ public class InstanceSelectorSourceElementItemProvider extends LocalModifiedAttr
 		String label = ((InstanceSelectorSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstancePointerSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_InstanceSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_InstancePointerSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_InstanceSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

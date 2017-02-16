@@ -142,7 +142,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR,
-				 StructureFactory.eINSTANCE.createInstancePointer()));
+				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 
 }

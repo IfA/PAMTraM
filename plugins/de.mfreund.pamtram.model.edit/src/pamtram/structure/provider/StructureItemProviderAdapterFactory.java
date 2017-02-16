@@ -189,7 +189,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorItemProvider instancePointerItemProvider;
+	protected InstanceSelectorItemProvider instanceSelectorItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.InstanceSelector}.
@@ -198,12 +198,12 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstancePointerAdapter() {
-		if (instancePointerItemProvider == null) {
-			instancePointerItemProvider = new InstanceSelectorItemProvider(this);
+	public Adapter createInstanceSelectorAdapter() {
+		if (instanceSelectorItemProvider == null) {
+			instanceSelectorItemProvider = new InstanceSelectorItemProvider(this);
 		}
 
-		return instancePointerItemProvider;
+		return instanceSelectorItemProvider;
 	}
 
 	/**
@@ -212,7 +212,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorSourceElementItemProvider instancePointerSourceElementItemProvider;
+	protected InstanceSelectorSourceElementItemProvider instanceSelectorSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.InstanceSelectorSourceElement}.
@@ -221,12 +221,12 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstancePointerSourceElementAdapter() {
-		if (instancePointerSourceElementItemProvider == null) {
-			instancePointerSourceElementItemProvider = new InstanceSelectorSourceElementItemProvider(this);
+	public Adapter createInstanceSelectorSourceElementAdapter() {
+		if (instanceSelectorSourceElementItemProvider == null) {
+			instanceSelectorSourceElementItemProvider = new InstanceSelectorSourceElementItemProvider(this);
 		}
 
-		return instancePointerSourceElementItemProvider;
+		return instanceSelectorSourceElementItemProvider;
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorExternalSourceElementItemProvider instancePointerExternalSourceElementItemProvider;
+	protected InstanceSelectorExternalSourceElementItemProvider instanceSelectorExternalSourceElementItemProvider;
 
 	/**
 	 * This creates an adapter for a {@link pamtram.structure.InstanceSelectorExternalSourceElement}.
@@ -244,12 +244,12 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstancePointerExternalSourceElementAdapter() {
-		if (instancePointerExternalSourceElementItemProvider == null) {
-			instancePointerExternalSourceElementItemProvider = new InstanceSelectorExternalSourceElementItemProvider(this);
+	public Adapter createInstanceSelectorExternalSourceElementAdapter() {
+		if (instanceSelectorExternalSourceElementItemProvider == null) {
+			instanceSelectorExternalSourceElementItemProvider = new InstanceSelectorExternalSourceElementItemProvider(this);
 		}
 
-		return instancePointerExternalSourceElementItemProvider;
+		return instanceSelectorExternalSourceElementItemProvider;
 	}
 
 	/**

@@ -83,9 +83,9 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalM
 		String label = ((InstanceSelectorExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstancePointerExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_InstanceSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_InstancePointerExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_InstanceSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

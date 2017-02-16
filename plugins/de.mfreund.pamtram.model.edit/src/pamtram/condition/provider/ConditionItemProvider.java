@@ -204,7 +204,7 @@ public class ConditionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION,
-				 StructureFactory.eINSTANCE.createInstancePointer()));
+				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 
 }

@@ -330,7 +330,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_MODEL__META_MODEL_SECTIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SECTION_MODEL__SECTIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Section Model</em>' class.
@@ -385,7 +385,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
+	int SOURCE_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Model</em>' class.
@@ -440,7 +440,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
+	int TARGET_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Library Elements</b></em>' containment reference list.
@@ -939,11 +939,11 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
-	 * @see pamtram.SectionModel#getMetaModelSections()
+	 * @see pamtram.SectionModel#getSections()
 	 * @see #getSectionModel()
 	 * @generated
 	 */
-	EReference getSectionModel_MetaModelSections();
+	EReference getSectionModel_Sections();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SourceSectionModel <em>Source Section Model</em>}'.
@@ -1316,7 +1316,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SECTION_MODEL__META_MODEL_SECTIONS = eINSTANCE.getSectionModel_MetaModelSections();
+		EReference SECTION_MODEL__SECTIONS = eINSTANCE.getSectionModel_Sections();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SourceSectionModelImpl <em>Source Section Model</em>}' class.

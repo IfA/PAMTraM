@@ -62,10 +62,10 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.s
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelSections()
+	 * @see pamtram.PamtramPackage#getSectionModel_Sections()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<S> getMetaModelSections();
+	EList<S> getSections();
 
 } // SectionModel

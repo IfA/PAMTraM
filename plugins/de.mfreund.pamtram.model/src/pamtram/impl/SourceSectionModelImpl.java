@@ -46,9 +46,9 @@ public class SourceSectionModelImpl extends SectionModelImpl<SourceSection, Sour
 	 * @generated
 	 */
 	@Override
-	public EList<SourceSection> getMetaModelSections() {
+	public EList<SourceSection> getSections() {
 		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<SourceSection>(SourceSection.class, this, PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS);
+			metaModelSections = new EObjectContainmentEList<SourceSection>(SourceSection.class, this, PamtramPackage.SOURCE_SECTION_MODEL__SECTIONS);
 		}
 		return metaModelSections;
 	}

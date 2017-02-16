@@ -34,14 +34,14 @@
         eType="#//structure/source/SourceSection" changeable="false" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="List&lt;SourceSection> sourceSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getSourceSectionModels().parallelStream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedSourceSectionModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;sourceSections.size(), sourceSections.toArray());"/>
+        <details key="get" value="List&lt;SourceSection> sourceSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getSourceSectionModels().parallelStream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedSourceSectionModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;sourceSections.size(), sourceSections.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSections" upperBound="-1"
         eType="#//structure/target/TargetSection" changeable="false" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="List&lt;TargetSection> targetSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getTargetSectionModels().parallelStream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedTargetSectionModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,&#xD;&#xA;&#x9;&#x9;targetSections.size(), targetSections.toArray());"/>
+        <details key="get" value="List&lt;TargetSection> targetSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getTargetSectionModels().parallelStream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedTargetSectionModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,&#xD;&#xA;&#x9;&#x9;targetSections.size(), targetSections.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
@@ -112,7 +112,7 @@
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelPackage" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelSections" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
         containment="true">
       <eGenericType eTypeParameter="#//SectionModel/S"/>
     </eStructuralFeatures>

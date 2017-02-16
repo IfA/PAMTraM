@@ -264,7 +264,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		List<SourceSection> sourceSections = Stream
 				.concat(this.getSourceSectionModels().parallelStream(),
 						this.getSharedSourceSectionModels().parallelStream())
-				.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());
+				.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,
 				sourceSections.size(), sourceSections.toArray());
 	}
@@ -278,7 +278,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		List<TargetSection> targetSections = Stream
 				.concat(this.getTargetSectionModels().parallelStream(),
 						this.getSharedTargetSectionModels().parallelStream())
-				.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());
+				.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,
 				targetSections.size(), targetSections.toArray());
 	}

@@ -35,21 +35,21 @@ public interface ApplicationDependency extends Condition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conditional Element</em>' reference.
-	 * @see #setConditionalElement(ConditionalElement)
-	 * @see pamtram.condition.ConditionPackage#getApplicationDependency_ConditionalElement()
+	 * @see #setTarget(ConditionalElement)
+	 * @see pamtram.condition.ConditionPackage#getApplicationDependency_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	ConditionalElement getConditionalElement();
+	ConditionalElement getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Conditional Element</em>' reference.
-	 * @see #getConditionalElement()
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setConditionalElement(ConditionalElement value);
+	void setTarget(ConditionalElement value);
 
 } // ApplicationDependency

@@ -995,7 +995,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = CONDITION_FEATURE_COUNT + 0;
+	int APPLICATION_DEPENDENCY__TARGET = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Application Dependency</em>' class.
@@ -1346,11 +1346,11 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Conditional Element</em>'.
-	 * @see pamtram.condition.ApplicationDependency#getConditionalElement()
+	 * @see pamtram.condition.ApplicationDependency#getTarget()
 	 * @see #getApplicationDependency()
 	 * @generated
 	 */
-	EReference getApplicationDependency_ConditionalElement();
+	EReference getApplicationDependency_Target();
 
 	/**
 	 * Returns the meta object for enum '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}'.
@@ -1627,7 +1627,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = eINSTANCE.getApplicationDependency_ConditionalElement();
+		EReference APPLICATION_DEPENDENCY__TARGET = eINSTANCE.getApplicationDependency_Target();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}' enum.

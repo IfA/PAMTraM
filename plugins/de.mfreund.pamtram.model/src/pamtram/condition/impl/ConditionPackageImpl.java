@@ -475,7 +475,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getApplicationDependency_ConditionalElement() {
+	public EReference getApplicationDependency_Target() {
 		return (EReference)applicationDependencyEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -552,7 +552,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(cardinalityConditionEClass, CARDINALITY_CONDITION__TARGET);
 
 		applicationDependencyEClass = createEClass(APPLICATION_DEPENDENCY);
-		createEReference(applicationDependencyEClass, APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT);
+		createEReference(applicationDependencyEClass, APPLICATION_DEPENDENCY__TARGET);
 
 		// Create enums
 		comparatorEnumEEnum = createEEnum(COMPARATOR_ENUM);
@@ -670,7 +670,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEReference(getCardinalityCondition_Target(), theSourcePackage.getSourceSectionClass(), null, "target", null, 1, 1, CardinalityCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(applicationDependencyEClass, ApplicationDependency.class, "ApplicationDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApplicationDependency_ConditionalElement(), thePamtramPackage.getConditionalElement(), null, "conditionalElement", null, 1, 1, ApplicationDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getApplicationDependency_Target(), thePamtramPackage.getConditionalElement(), null, "conditionalElement", null, 1, 1, ApplicationDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(comparatorEnumEEnum, ComparatorEnum.class, "ComparatorEnum");

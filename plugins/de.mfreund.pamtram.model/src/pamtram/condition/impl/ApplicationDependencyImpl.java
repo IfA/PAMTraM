@@ -17,32 +17,32 @@ import pamtram.mapping.MappingHint;
 import pamtram.structure.source.SourceSection;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Application Dependency</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Application Dependency</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.ApplicationDependencyImpl#getConditionalElement <em>Conditional Element</em>}</li>
+ * <li>{@link pamtram.condition.impl.ApplicationDependencyImpl#getConditionalElement <em>Conditional Element</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ApplicationDependencyImpl extends ConditionImpl implements ApplicationDependency {
+
 	/**
-	 * The cached value of the '{@link #getConditionalElement() <em>Conditional Element</em>}' reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Conditional Element</em>}' reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionalElement()
+	 *
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
 	protected ConditionalElement conditionalElement;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected ApplicationDependencyImpl() {
@@ -50,110 +50,125 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return ConditionPackage.Literals.APPLICATION_DEPENDENCY;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
-	public ConditionalElement getConditionalElement() {
-		if (conditionalElement != null && conditionalElement.eIsProxy()) {
-			InternalEObject oldConditionalElement = (InternalEObject)conditionalElement;
-			conditionalElement = (ConditionalElement)eResolveProxy(oldConditionalElement);
-			if (conditionalElement != oldConditionalElement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, conditionalElement));
+	public ConditionalElement getTarget() {
+
+		if (this.conditionalElement != null && this.conditionalElement.eIsProxy()) {
+			InternalEObject oldConditionalElement = (InternalEObject) this.conditionalElement;
+			this.conditionalElement = (ConditionalElement) this.eResolveProxy(oldConditionalElement);
+			if (this.conditionalElement != oldConditionalElement) {
+				if (this.eNotificationRequired()) {
+					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ConditionPackage.APPLICATION_DEPENDENCY__TARGET, oldConditionalElement,
+							this.conditionalElement));
+				}
 			}
 		}
-		return conditionalElement;
+		return this.conditionalElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ConditionalElement basicGetConditionalElement() {
-		return conditionalElement;
+
+		return this.conditionalElement;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
-	public void setConditionalElement(ConditionalElement newConditionalElement) {
-		ConditionalElement oldConditionalElement = conditionalElement;
-		conditionalElement = newConditionalElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT, oldConditionalElement, conditionalElement));
+	public void setTarget(ConditionalElement newConditionalElement) {
+
+		ConditionalElement oldConditionalElement = this.conditionalElement;
+		this.conditionalElement = newConditionalElement;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.APPLICATION_DEPENDENCY__TARGET,
+					oldConditionalElement, this.conditionalElement));
+		}
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+
 		switch (featureID) {
-			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				if (resolve) return getConditionalElement();
-				return basicGetConditionalElement();
+			case ConditionPackage.APPLICATION_DEPENDENCY__TARGET:
+				if (resolve) {
+					return this.getTarget();
+				}
+				return this.basicGetConditionalElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
+
 		switch (featureID) {
-			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				setConditionalElement((ConditionalElement)newValue);
+			case ConditionPackage.APPLICATION_DEPENDENCY__TARGET:
+				this.setTarget((ConditionalElement) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
+
 		switch (featureID) {
-			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				setConditionalElement((ConditionalElement)null);
+			case ConditionPackage.APPLICATION_DEPENDENCY__TARGET:
+				this.setTarget((ConditionalElement) null);
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
+
 		switch (featureID) {
-			case ConditionPackage.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT:
-				return conditionalElement != null;
+			case ConditionPackage.APPLICATION_DEPENDENCY__TARGET:
+				return this.conditionalElement != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,15 +177,15 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 	public boolean isLocalCondition() {
 
 		Mapping mapping = null;
-		if (this.conditionalElement instanceof Mapping) {
-			mapping = (Mapping) this.conditionalElement;
-		} else if (this.conditionalElement instanceof InstantiableMappingHintGroup) {
-			mapping = (Mapping) this.conditionalElement.eContainer();
-		} else if (this.conditionalElement instanceof MappingHint) {
-			mapping = (Mapping) this.conditionalElement.eContainer().eContainer();
+		if (this.getTarget() instanceof Mapping) {
+			mapping = (Mapping) this.getTarget();
+		} else if (this.getTarget() instanceof InstantiableMappingHintGroup) {
+			mapping = (Mapping) this.getTarget().eContainer();
+		} else if (this.getTarget() instanceof MappingHint) {
+			mapping = (Mapping) this.getTarget().eContainer().eContainer();
 		} else {
 			throw new RuntimeException(
-					"Unknown type of ConditionalElement '" + this.conditionalElement.eClass().getName() + "' found!");
+					"Unknown type of ConditionalElement '" + this.getTarget().eClass().getName() + "' found!");
 		}
 
 		SourceSection sourceSection = mapping.getSourceSection();
@@ -209,4 +224,4 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 				.findAny().isPresent();
 	}
 
-} //ApplicationDependencyImpl
+} // ApplicationDependencyImpl

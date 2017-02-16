@@ -16,7 +16,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.AttributeCondition#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.condition.AttributeCondition#getValueConstraints <em>Value Constraints</em>}</li>
  *   <li>{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}</li>
  * </ul>
  *
@@ -26,7 +26,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  */
 public interface AttributeCondition extends Condition {
 	/**
-	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,7 +34,7 @@ public interface AttributeCondition extends Condition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
+	 * @return the value of the '<em>Value Constraints</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ValueConstraints()
 	 * @model containment="true" required="true"
 	 * @generated

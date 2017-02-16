@@ -762,7 +762,7 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1300,10 +1300,10 @@ public interface ConditionPackage extends EPackage {
 	EClass getAttributeCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.AttributeCondition#getValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.AttributeCondition#getValueConstraints <em>Value Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
+	 * @return the meta object for the containment reference list '<em>Value Constraints</em>'.
 	 * @see pamtram.condition.AttributeCondition#getValueConstraints()
 	 * @see #getAttributeCondition()
 	 * @generated
@@ -1597,7 +1597,7 @@ public interface ConditionPackage extends EPackage {
 		EClass ATTRIBUTE_CONDITION = eINSTANCE.getAttributeCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Value Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

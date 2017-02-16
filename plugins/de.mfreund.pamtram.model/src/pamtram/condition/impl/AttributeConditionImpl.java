@@ -31,7 +31,7 @@ import pamtram.structure.source.SourceSection;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
  *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getConditionAttributeRef <em>Condition Attribute Ref</em>}</li>
  * </ul>
  *
@@ -39,14 +39,14 @@ import pamtram.structure.source.SourceSection;
  */
 public class AttributeConditionImpl extends ConditionImpl implements AttributeCondition {
 	/**
-	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraint</em>}' containment reference list.
+	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueConstraint> valueConstraint;
+	protected EList<ValueConstraint> valueConstraints;
 
 	/**
 	 * The cached value of the '{@link #getConditionAttributeRef() <em>Condition Attribute Ref</em>}' reference.
@@ -83,10 +83,10 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 */
 	public EList<ValueConstraint> getValueConstraints() {
-		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
+		if (valueConstraints == null) {
+			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
-		return valueConstraint;
+		return valueConstraints;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				return valueConstraint != null && !valueConstraint.isEmpty();
+				return valueConstraints != null && !valueConstraints.isEmpty();
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				return conditionAttributeRef != null;
 		}

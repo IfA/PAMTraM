@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.PamtramPackage;
 import pamtram.mapping.modifier.ExpressionModifier;
 import pamtram.mapping.modifier.ModifierPackage;
 
@@ -62,9 +63,9 @@ public class ExpressionModifierItemProvider extends NumericModifierItemProvider 
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ExpressionModifier_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionModifier_expression_feature", "_UI_ExpressionModifier_type"),
-				 ModifierPackage.Literals.EXPRESSION_MODIFIER__EXPRESSION,
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,

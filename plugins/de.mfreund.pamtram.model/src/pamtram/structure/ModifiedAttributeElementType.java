@@ -1,10 +1,12 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.structure;
 
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -19,8 +21,8 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.ModifiedAttributeElementType#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType()
@@ -45,7 +47,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	A getSource();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ModifiedAttributeElementType#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.

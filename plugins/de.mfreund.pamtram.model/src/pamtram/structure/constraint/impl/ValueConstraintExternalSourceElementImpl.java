@@ -9,10 +9,10 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;

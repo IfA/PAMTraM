@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.structure.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -10,8 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.mapping.GlobalModifiedAttributeElementType;
+
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -25,7 +26,7 @@ import pamtram.structure.generic.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl#getInstanceSelector <em>Instance Selector</em>}</li>
+ *   <li>{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl#getInstanceSelector <em>Instance Selector</em>}</li>
  * </ul>
  *
  * @generated

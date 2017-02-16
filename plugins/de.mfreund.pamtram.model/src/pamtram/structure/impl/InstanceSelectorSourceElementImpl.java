@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-
-import pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl;
 import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;

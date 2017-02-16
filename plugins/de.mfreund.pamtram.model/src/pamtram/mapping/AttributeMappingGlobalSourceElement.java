@@ -2,6 +2,7 @@
  */
 package pamtram.mapping;
 
+import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;

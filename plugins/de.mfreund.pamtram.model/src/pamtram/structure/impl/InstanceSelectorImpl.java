@@ -165,7 +165,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 */
 	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.mapping.ModifiedAttributeElementType) : true;
+		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType) : true;
 		
 		if (!result && diagnostics != null) {
 		

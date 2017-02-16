@@ -15,6 +15,7 @@ import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.impl.ModifiedAttributeElementTypeImpl;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;

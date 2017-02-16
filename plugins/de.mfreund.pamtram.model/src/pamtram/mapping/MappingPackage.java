@@ -359,10 +359,10 @@ public interface MappingPackage extends EPackage {
 	int CLASS_MATCHER = 14;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModifiedAttributeElementTypeImpl
+	 * @see pamtram.structure.impl.ModifiedAttributeElementTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiedAttributeElementType()
 	 * @generated
 	 */
@@ -1273,10 +1273,10 @@ public interface MappingPackage extends EPackage {
 	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl <em>Local Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl <em>Local Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl
+	 * @see pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalModifiedAttributeElementType()
 	 * @generated
 	 */
@@ -2723,10 +2723,10 @@ public interface MappingPackage extends EPackage {
 	int CONTAINER_SELECTOR_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl
+	 * @see pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
@@ -3433,10 +3433,10 @@ public interface MappingPackage extends EPackage {
 	int EXPANDABLE_HINT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl
+	 * @see pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalModifiedAttributeElementType()
 	 * @generated
 	 */
@@ -4222,73 +4222,73 @@ public interface MappingPackage extends EPackage {
 	EReference getClassMatcher_TargetClass();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Modified Attribute Element Type</em>'.
-	 * @see pamtram.mapping.ModifiedAttributeElementType
+	 * @see pamtram.structure.ModifiedAttributeElementType
 	 * @generated
 	 */
 	EClass getModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.ModifiedAttributeElementType#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see pamtram.mapping.ModifiedAttributeElementType#getSource()
+	 * @see pamtram.structure.ModifiedAttributeElementType#getSource()
 	 * @see #getModifiedAttributeElementType()
 	 * @generated
 	 */
 	EReference getModifiedAttributeElementType_Source();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.ModifiedAttributeElementType#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.ModifiedAttributeElementType#getModifier <em>Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.ModifiedAttributeElementType#getModifier()
+	 * @see pamtram.structure.ModifiedAttributeElementType#getModifier()
 	 * @see #getModifiedAttributeElementType()
 	 * @generated
 	 */
 	EReference getModifiedAttributeElementType_Modifier();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModifiedAttributeElementType#getMappingHintGroup() <em>Get Mapping Hint Group</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.ModifiedAttributeElementType#getMappingHintGroup() <em>Get Mapping Hint Group</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Mapping Hint Group</em>' operation.
-	 * @see pamtram.mapping.ModifiedAttributeElementType#getMappingHintGroup()
+	 * @see pamtram.structure.ModifiedAttributeElementType#getMappingHintGroup()
 	 * @generated
 	 */
 	EOperation getModifiedAttributeElementType__GetMappingHintGroup();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ModifiedAttributeElementType#getMapping() <em>Get Mapping</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.ModifiedAttributeElementType#getMapping() <em>Get Mapping</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Mapping</em>' operation.
-	 * @see pamtram.mapping.ModifiedAttributeElementType#getMapping()
+	 * @see pamtram.structure.ModifiedAttributeElementType#getMapping()
 	 * @generated
 	 */
 	EOperation getModifiedAttributeElementType__GetMapping();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Local Modified Attribute Element Type</em>'.
-	 * @see pamtram.mapping.LocalModifiedAttributeElementType
+	 * @see pamtram.structure.LocalModifiedAttributeElementType
 	 * @generated
 	 */
 	EClass getLocalModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.LocalModifiedAttributeElementType#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Section Or Contained Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.LocalModifiedAttributeElementType#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Section Or Contained Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Source Attribute Matches Section Or Contained Section</em>' operation.
-	 * @see pamtram.mapping.LocalModifiedAttributeElementType#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.LocalModifiedAttributeElementType#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
@@ -4737,21 +4737,21 @@ public interface MappingPackage extends EPackage {
 	EClass getAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>External Modified Attribute Element Type</em>'.
-	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
+	 * @see pamtram.structure.ExternalModifiedAttributeElementType
 	 * @generated
 	 */
 	EClass getExternalModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ExternalModifiedAttributeElementType#validateSourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Container Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.ExternalModifiedAttributeElementType#validateSourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Container Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Source Attribute Matches Container Section</em>' operation.
-	 * @see pamtram.mapping.ExternalModifiedAttributeElementType#validateSourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.ExternalModifiedAttributeElementType#validateSourceAttributeMatchesContainerSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getExternalModifiedAttributeElementType__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map();
@@ -4817,21 +4817,21 @@ public interface MappingPackage extends EPackage {
 	EClass getExpandableHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.GlobalModifiedAttributeElementType <em>Global Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.GlobalModifiedAttributeElementType <em>Global Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Global Modified Attribute Element Type</em>'.
-	 * @see pamtram.mapping.GlobalModifiedAttributeElementType
+	 * @see pamtram.structure.GlobalModifiedAttributeElementType
 	 * @generated
 	 */
 	EClass getGlobalModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Instance Selector</em>'.
-	 * @see pamtram.mapping.GlobalModifiedAttributeElementType#getInstanceSelector()
+	 * @see pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector()
 	 * @see #getGlobalModifiedAttributeElementType()
 	 * @generated
 	 */
@@ -5249,10 +5249,10 @@ public interface MappingPackage extends EPackage {
 		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModifiedAttributeElementTypeImpl
+		 * @see pamtram.structure.impl.ModifiedAttributeElementTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiedAttributeElementType()
 		 * @generated
 		 */
@@ -5291,10 +5291,10 @@ public interface MappingPackage extends EPackage {
 		EOperation MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING = eINSTANCE.getModifiedAttributeElementType__GetMapping();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl <em>Local Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl <em>Local Modified Attribute Element Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl
+		 * @see pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalModifiedAttributeElementType()
 		 * @generated
 		 */
@@ -5697,10 +5697,10 @@ public interface MappingPackage extends EPackage {
 		EClass ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getAttributeMappingExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl <em>External Modified Attribute Element Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl
+		 * @see pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalModifiedAttributeElementType()
 		 * @generated
 		 */
@@ -5775,10 +5775,10 @@ public interface MappingPackage extends EPackage {
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl <em>Global Modified Attribute Element Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.GlobalModifiedAttributeElementTypeImpl
+		 * @see pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalModifiedAttributeElementType()
 		 * @generated
 		 */

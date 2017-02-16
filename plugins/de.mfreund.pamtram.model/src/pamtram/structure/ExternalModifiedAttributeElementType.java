@@ -1,10 +1,11 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.structure;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;

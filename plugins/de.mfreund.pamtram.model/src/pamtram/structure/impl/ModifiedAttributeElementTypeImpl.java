@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.structure.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -23,7 +24,6 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -34,8 +34,8 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ModifiedAttributeElementTypeImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @generated

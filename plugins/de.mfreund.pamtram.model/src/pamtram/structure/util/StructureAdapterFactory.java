@@ -10,10 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -360,13 +357,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModifiedAttributeElementType
+	 * @see pamtram.structure.ModifiedAttributeElementType
 	 * @generated
 	 */
 	public Adapter createModifiedAttributeElementTypeAdapter() {
@@ -374,13 +371,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.LocalModifiedAttributeElementType <em>Local Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.LocalModifiedAttributeElementType
+	 * @see pamtram.structure.LocalModifiedAttributeElementType
 	 * @generated
 	 */
 	public Adapter createLocalModifiedAttributeElementTypeAdapter() {
@@ -388,13 +385,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.ExternalModifiedAttributeElementType <em>External Modified Attribute Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExternalModifiedAttributeElementType
+	 * @see pamtram.structure.ExternalModifiedAttributeElementType
 	 * @generated
 	 */
 	public Adapter createExternalModifiedAttributeElementTypeAdapter() {

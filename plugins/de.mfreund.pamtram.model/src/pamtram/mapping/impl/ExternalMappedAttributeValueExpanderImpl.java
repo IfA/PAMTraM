@@ -18,6 +18,7 @@ import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.structure.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.ExternalModifiedAttributeElementType;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;

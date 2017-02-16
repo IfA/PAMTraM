@@ -1,10 +1,10 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.structure;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.InstanceSelector;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -18,7 +18,7 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}</li>
+ *   <li>{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector <em>Instance Selector</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalModifiedAttributeElementType()

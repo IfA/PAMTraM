@@ -10,11 +10,10 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiedAttributeElementType;
-
+import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.constraint.*;
 
 import pamtram.structure.generic.Attribute;

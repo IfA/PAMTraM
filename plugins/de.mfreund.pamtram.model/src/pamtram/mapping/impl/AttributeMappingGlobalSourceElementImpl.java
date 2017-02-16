@@ -11,6 +11,7 @@ import pamtram.mapping.AttributeMappingGlobalSourceElement;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;

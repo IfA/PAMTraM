@@ -1,8 +1,10 @@
 /**
  */
-package pamtram.mapping;
+package pamtram;
 
 import org.eclipse.emf.ecore.EObject;
+
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getExpressionElement()
@@ -39,7 +41,7 @@ public interface ExpressionElement extends EObject {
 	String getExpression();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Expression</em>' attribute.

@@ -5,12 +5,13 @@ package pamtram.structure.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;

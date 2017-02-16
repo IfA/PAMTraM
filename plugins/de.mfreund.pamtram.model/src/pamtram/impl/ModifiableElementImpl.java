@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.impl;
 
 import java.util.Collection;
 
@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import pamtram.ModifiableElement;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -24,7 +24,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ModifiableElementImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.impl.ModifiableElementImpl#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  *
  * @generated

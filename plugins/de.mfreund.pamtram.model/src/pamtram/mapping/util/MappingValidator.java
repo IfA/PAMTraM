@@ -9,6 +9,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.mapping.*;
 import pamtram.util.PamtramValidator;
 

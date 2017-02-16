@@ -8,6 +8,8 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.structure.InstancePointerSourceInterface;
@@ -351,13 +353,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionElement <em>Expression Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExpressionElement
+	 * @see pamtram.ExpressionElement
 	 * @generated
 	 */
 	public Adapter createExpressionElementAdapter() {
@@ -365,13 +367,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModifiableElement
+	 * @see pamtram.ModifiableElement
 	 * @generated
 	 */
 	public Adapter createModifiableElementAdapter() {

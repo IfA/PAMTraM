@@ -1,11 +1,12 @@
 /**
  */
-package pamtram.mapping;
+package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -17,7 +18,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ModifiableElement#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getModifiableElement()

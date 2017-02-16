@@ -760,10 +760,10 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExpressionElementImpl
+	 * @see pamtram.impl.ExpressionElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionElement()
 	 * @generated
 	 */
@@ -797,10 +797,10 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModifiableElementImpl
+	 * @see pamtram.impl.ModifiableElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableElement()
 	 * @generated
 	 */
@@ -4042,42 +4042,42 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionElement <em>Expression Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Expression Element</em>'.
-	 * @see pamtram.mapping.ExpressionElement
+	 * @see pamtram.ExpressionElement
 	 * @generated
 	 */
 	EClass getExpressionElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.ExpressionElement#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Expression</em>'.
-	 * @see pamtram.mapping.ExpressionElement#getExpression()
+	 * @see pamtram.ExpressionElement#getExpression()
 	 * @see #getExpressionElement()
 	 * @generated
 	 */
 	EAttribute getExpressionElement_Expression();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Modifiable Element</em>'.
-	 * @see pamtram.mapping.ModifiableElement
+	 * @see pamtram.ModifiableElement
 	 * @generated
 	 */
 	EClass getModifiableElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.ModifiableElement#getResultModifier <em>Result Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
-	 * @see pamtram.mapping.ModifiableElement#getResultModifier()
+	 * @see pamtram.ModifiableElement#getResultModifier()
 	 * @see #getModifiableElement()
 	 * @generated
 	 */
@@ -5185,10 +5185,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExpressionElementImpl
+		 * @see pamtram.impl.ExpressionElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpressionElement()
 		 * @generated
 		 */
@@ -5203,10 +5203,10 @@ public interface MappingPackage extends EPackage {
 		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModifiableElementImpl
+		 * @see pamtram.impl.ModifiableElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableElement()
 		 * @generated
 		 */

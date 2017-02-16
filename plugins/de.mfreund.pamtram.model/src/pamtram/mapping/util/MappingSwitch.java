@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.structure.InstancePointerSourceInterface;

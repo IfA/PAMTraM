@@ -6,6 +6,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**

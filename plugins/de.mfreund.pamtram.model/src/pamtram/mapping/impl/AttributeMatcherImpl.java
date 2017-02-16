@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;

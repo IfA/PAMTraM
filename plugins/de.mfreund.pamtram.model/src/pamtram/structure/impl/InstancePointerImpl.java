@@ -19,10 +19,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import pamtram.ModifiableElement;
 import pamtram.condition.ComplexCondition;
+import pamtram.impl.ExpressionElementImpl;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableElement;
-import pamtram.mapping.impl.ExpressionElementImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;

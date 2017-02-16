@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import pamtram.mapping.ExpressionElement;
+import pamtram.ExpressionElement;
 import pamtram.mapping.MappingPackage;
 
 /**
@@ -20,7 +20,7 @@ import pamtram.mapping.MappingPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ExpressionElementImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.impl.ExpressionElementImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated

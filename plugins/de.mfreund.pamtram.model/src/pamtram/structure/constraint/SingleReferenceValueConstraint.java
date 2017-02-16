@@ -5,8 +5,9 @@ package pamtram.structure.constraint;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import pamtram.mapping.ExpressionElement;
-import pamtram.mapping.ModifiableElement;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.structure.InstancePointer;
 
 /**

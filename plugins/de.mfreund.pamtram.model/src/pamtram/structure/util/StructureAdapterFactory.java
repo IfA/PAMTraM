@@ -6,12 +6,13 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
@@ -317,13 +318,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionElement <em>Expression Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExpressionElement
+	 * @see pamtram.ExpressionElement
 	 * @generated
 	 */
 	public Adapter createExpressionElementAdapter() {
@@ -331,13 +332,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModifiableElement
+	 * @see pamtram.ModifiableElement
 	 * @generated
 	 */
 	public Adapter createModifiableElementAdapter() {

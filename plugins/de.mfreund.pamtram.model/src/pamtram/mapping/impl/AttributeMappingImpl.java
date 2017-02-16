@@ -17,6 +17,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.AttributeMappingSourceElement;
@@ -24,10 +27,8 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**

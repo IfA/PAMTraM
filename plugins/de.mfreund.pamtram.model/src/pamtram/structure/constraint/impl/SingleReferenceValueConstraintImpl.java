@@ -21,15 +21,15 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;

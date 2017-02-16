@@ -44,24 +44,24 @@ public class ApplicationDependencyItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConditionalElementPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Conditional Element feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionalElementPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ApplicationDependency_conditionalElement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ApplicationDependency_conditionalElement_feature", "_UI_ApplicationDependency_type"),
+				 getString("_UI_ApplicationDependency_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ApplicationDependency_target_feature", "_UI_ApplicationDependency_type"),
 				 ConditionPackage.Literals.APPLICATION_DEPENDENCY__TARGET,
 				 true,
 				 false,

@@ -777,7 +777,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = CONDITION_FEATURE_COUNT + 1;
+	int ATTRIBUTE_CONDITION__TARGET = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Condition</em>' class.
@@ -1304,11 +1304,11 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Condition Attribute Ref</em>'.
-	 * @see pamtram.condition.AttributeCondition#getConditionAttributeRef()
+	 * @see pamtram.condition.AttributeCondition#getTarget()
 	 * @see #getAttributeCondition()
 	 * @generated
 	 */
-	EReference getAttributeCondition_ConditionAttributeRef();
+	EReference getAttributeCondition_Target();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
@@ -1591,7 +1591,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = eINSTANCE.getAttributeCondition_ConditionAttributeRef();
+		EReference ATTRIBUTE_CONDITION__TARGET = eINSTANCE.getAttributeCondition_Target();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.

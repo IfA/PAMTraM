@@ -50,21 +50,21 @@ public interface AttributeCondition extends Condition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Attribute Ref</em>' reference.
-	 * @see #setConditionAttributeRef(ActualSourceSectionAttribute)
-	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ConditionAttributeRef()
+	 * @see #setTarget(ActualSourceSectionAttribute)
+	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	ActualSourceSectionAttribute getConditionAttributeRef();
+	ActualSourceSectionAttribute getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Attribute Ref</em>' reference.
-	 * @see #getConditionAttributeRef()
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setConditionAttributeRef(ActualSourceSectionAttribute value);
+	void setTarget(ActualSourceSectionAttribute value);
 
 } // AttributeCondition

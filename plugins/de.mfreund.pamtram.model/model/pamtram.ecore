@@ -1544,8 +1544,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition" eSuperTypes="#//condition/Condition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" lowerBound="1"
           upperBound="-1" eType="#//structure/constraint/ValueConstraint" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="conditionAttributeRef"
-          lowerBound="1" eType="#//structure/source/ActualSourceSectionAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+          eType="#//structure/source/ActualSourceSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition" eSuperTypes="#//condition/Condition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionSectionRef"

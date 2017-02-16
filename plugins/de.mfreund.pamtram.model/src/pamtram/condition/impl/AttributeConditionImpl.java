@@ -49,10 +49,10 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	protected EList<ValueConstraint> valueConstraints;
 
 	/**
-	 * The cached value of the '{@link #getConditionAttributeRef() <em>Condition Attribute Ref</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Condition Attribute Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionAttributeRef()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
@@ -94,13 +94,13 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute getConditionAttributeRef() {
+	public ActualSourceSectionAttribute getTarget() {
 		if (conditionAttributeRef != null && conditionAttributeRef.eIsProxy()) {
 			InternalEObject oldConditionAttributeRef = (InternalEObject)conditionAttributeRef;
 			conditionAttributeRef = (ActualSourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
 			if (conditionAttributeRef != oldConditionAttributeRef) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldConditionAttributeRef, conditionAttributeRef));
 			}
 		}
 		return conditionAttributeRef;
@@ -120,11 +120,11 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionAttributeRef(ActualSourceSectionAttribute newConditionAttributeRef) {
+	public void setTarget(ActualSourceSectionAttribute newConditionAttributeRef) {
 		ActualSourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
 		conditionAttributeRef = newConditionAttributeRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF, oldConditionAttributeRef, conditionAttributeRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldConditionAttributeRef, conditionAttributeRef));
 	}
 
 	/**
@@ -151,8 +151,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return getValueConstraints();
-			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				if (resolve) return getConditionAttributeRef();
+			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
+				if (resolve) return getTarget();
 				return basicGetConditionAttributeRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -171,8 +171,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				getValueConstraints().clear();
 				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
-			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((ActualSourceSectionAttribute)newValue);
+			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
+				setTarget((ActualSourceSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,8 +189,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				getValueConstraints().clear();
 				return;
-			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
-				setConditionAttributeRef((ActualSourceSectionAttribute)null);
+			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
+				setTarget((ActualSourceSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -206,7 +206,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return valueConstraints != null && !valueConstraints.isEmpty();
-			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
+			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
 				return conditionAttributeRef != null;
 		}
 		return super.eIsSet(featureID);
@@ -215,13 +215,13 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public boolean isLocalCondition() {
 		
-		if(getConditionAttributeRef() == null) {
+		if(getTarget() == null) {
 			return false;
 		}
 		
 		// The SourceSection that the condition references
 		//
-		SourceSection referencedSection = getConditionAttributeRef().getContainingSection();
+		SourceSection referencedSection = getTarget().getContainingSection();
 		
 		EObject container = this;
 		

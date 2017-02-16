@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
+import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -288,7 +289,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 		newChildDescriptors.add(
 				this.createChildParameter(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createFixedValue()));
+						PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 	/**
@@ -310,7 +311,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				.equals(ConstraintPackage.eINSTANCE
 						.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
-				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(domain, owner, feature, collection, index);
@@ -323,7 +324,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		if (ref.equals(ConstraintPackage.eINSTANCE
 				.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
-				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.mapping.FixedValue)) {
+				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createDragAndDropCommand(domain, collection, parent, ref);

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.provider;
 
 
 import java.util.Collection;
@@ -17,14 +17,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.FixedValue;
+import pamtram.FixedValue;
 import pamtram.mapping.MappingPackage;
 
-import pamtram.provider.NamedElementItemProvider;
-import pamtram.provider.PamtramEditPlugin;
-
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.FixedValue} object.
+ * This is the item provider adapter for a {@link pamtram.FixedValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

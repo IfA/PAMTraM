@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
+import pamtram.provider.FixedValueItemProvider;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -463,7 +464,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.FixedValue} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.FixedValue} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -471,7 +472,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	protected FixedValueItemProvider fixedValueItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.FixedValue}.
+	 * This creates an adapter for a {@link pamtram.FixedValue}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

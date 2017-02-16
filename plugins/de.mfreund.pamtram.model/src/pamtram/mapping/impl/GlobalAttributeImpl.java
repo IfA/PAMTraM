@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import pamtram.ModifiableElement;
+import pamtram.PamtramPackage;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.source.ActualSourceSectionAttribute;
@@ -29,22 +31,13 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.GlobalAttributeImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttribute {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActualSourceSectionAttribute source;
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -54,6 +47,15 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @ordered
 	 */
 	protected EList<ValueModifierSet> modifiers;
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected ActualSourceSectionAttribute source;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,11 +169,11 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
+				return getModifiers();
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
-				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -185,12 +187,12 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
-				setSource((ActualSourceSectionAttribute)newValue);
-				return;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				return;
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
+				setSource((ActualSourceSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -204,11 +206,11 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
-				setSource((ActualSourceSectionAttribute)null);
-				return;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
 				getModifiers().clear();
+				return;
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
+				setSource((ActualSourceSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -222,12 +224,44 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
-				return source != null;
 			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
+			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ModifiableElement.class) {
+			switch (derivedFeatureID) {
+				case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ModifiableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

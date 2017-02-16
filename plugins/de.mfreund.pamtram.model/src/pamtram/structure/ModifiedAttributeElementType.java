@@ -2,11 +2,9 @@
  */
 package pamtram.structure;
 
-import org.eclipse.emf.common.util.EList;
-
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -21,14 +19,13 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType()
  * @model abstract="true"
  * @generated
  */
-public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
+public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -54,22 +51,6 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * @generated
 	 */
 	void setSource(A value);
-
-	/**
-	 * Returns the value of the '<em><b>Modifiers</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifiers</em>' reference list.
-	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Modifiers()
-	 * @model
-	 * @generated
-	 */
-	EList<ValueModifierSet> getModifiers();
 
 	/**
 	 * <!-- begin-user-doc -->

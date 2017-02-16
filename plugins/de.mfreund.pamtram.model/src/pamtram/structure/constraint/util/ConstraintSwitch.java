@@ -151,6 +151,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(valueConstraintSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintSourceElement);
+				if (result == null) result = caseModifiableElement(valueConstraintSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,6 +163,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(valueConstraintExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintExternalSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintExternalSourceElement);
+				if (result == null) result = caseModifiableElement(valueConstraintExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

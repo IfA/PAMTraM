@@ -200,6 +200,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -252,6 +253,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -263,6 +265,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -271,6 +274,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseContainerSelectorTargetAttribute(containerSelectorTargetAttribute);
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorTargetAttribute);
 				if (result == null) result = caseNamedElement(containerSelectorTargetAttribute);
+				if (result == null) result = caseModifiableElement(containerSelectorTargetAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,6 +312,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(localMappedAttributeValueExpander);
 				if (result == null) result = caseModifiedAttributeElementType(localMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(localMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintBaseType(localMappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(localMappedAttributeValueExpander);
@@ -322,6 +327,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
 				if (result == null) result = caseModifiedAttributeElementType(mappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintBaseType(mappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(mappedAttributeValuePrepender);
@@ -336,6 +342,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
 				if (result == null) result = caseModifiedAttributeElementType(mappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintBaseType(mappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(mappedAttributeValueAppender);
@@ -346,6 +353,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
 				T result = caseGlobalAttribute(globalAttribute);
 				if (result == null) result = caseNamedElement(globalAttribute);
+				if (result == null) result = caseModifiableElement(globalAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -393,6 +401,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -404,6 +413,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorExternalSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorExternalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -415,6 +425,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -425,6 +436,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueExpander);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueExpander);
@@ -439,6 +451,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValuePrepender);
@@ -453,6 +466,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueAppender);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueAppender);
@@ -473,6 +487,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -484,6 +499,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -495,6 +511,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

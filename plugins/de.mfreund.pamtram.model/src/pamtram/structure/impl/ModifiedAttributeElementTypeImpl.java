@@ -13,8 +13,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
 import pamtram.impl.NamedElementImpl;
 import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.StructurePackage;
@@ -34,23 +36,13 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements ModifiedAttributeElementType<S, C, R, A> {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected A source;
-
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -60,6 +52,16 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 * @ordered
 	 */
 	protected EList<ValueModifierSet> modifiers;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected A source;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,11 +192,11 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+				return getModifiers();
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
-				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -208,12 +210,12 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
-				setSource((A)newValue);
-				return;
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				return;
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+				setSource((A)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,11 +229,11 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
-				setSource((A)null);
-				return;
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
 				getModifiers().clear();
+				return;
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+				setSource((A)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -245,12 +247,44 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
-				return source != null;
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ModifiableElement.class) {
+			switch (derivedFeatureID) {
+				case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ModifiableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

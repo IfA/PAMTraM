@@ -140,6 +140,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorSourceElement);
+				if (result == null) result = caseModifiableElement(instanceSelectorSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,6 +152,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseModifiableElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -158,6 +160,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
+				if (result == null) result = caseModifiableElement(modifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -166,6 +169,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
+				if (result == null) result = caseModifiableElement(localModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,6 +178,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
+				if (result == null) result = caseModifiableElement(externalModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -182,6 +187,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
+				if (result == null) result = caseModifiableElement(globalModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

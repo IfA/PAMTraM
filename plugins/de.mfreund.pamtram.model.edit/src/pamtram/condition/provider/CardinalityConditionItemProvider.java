@@ -61,7 +61,7 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_CardinalityCondition_conditionSectionRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityCondition_conditionSectionRef_feature", "_UI_CardinalityCondition_type"),
-				 ConditionPackage.Literals.CARDINALITY_CONDITION__CONDITION_SECTION_REF,
+				 ConditionPackage.Literals.CARDINALITY_CONDITION__TARGET,
 				 true,
 				 false,
 				 true,

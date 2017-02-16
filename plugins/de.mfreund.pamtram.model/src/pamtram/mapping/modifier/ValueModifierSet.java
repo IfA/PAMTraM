@@ -33,10 +33,10 @@ public interface ValueModifierSet extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' containment reference list.
-	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifier()
+	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifiers()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ValueModifier> getModifier();
+	EList<ValueModifier> getModifiers();
 
 } // AttributeValueModifierSet

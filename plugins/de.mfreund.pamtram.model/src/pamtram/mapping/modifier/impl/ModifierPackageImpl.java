@@ -242,7 +242,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getValueModifierSet_Modifier() {
+	public EReference getValueModifierSet_Modifiers() {
 		return (EReference)valueModifierSetEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -437,7 +437,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 
 		// Create classes and their features
 		valueModifierSetEClass = createEClass(VALUE_MODIFIER_SET);
-		createEReference(valueModifierSetEClass, VALUE_MODIFIER_SET__MODIFIER);
+		createEReference(valueModifierSetEClass, VALUE_MODIFIER_SET__MODIFIERS);
 
 		valueModifierEClass = createEClass(VALUE_MODIFIER);
 		createEOperation(valueModifierEClass, VALUE_MODIFIER___MODIFY_VALUE__STRING);
@@ -513,7 +513,7 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueModifierSetEClass, ValueModifierSet.class, "ValueModifierSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getValueModifierSet_Modifier(), this.getValueModifier(), null, "modifier", null, 0, -1, ValueModifierSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getValueModifierSet_Modifiers(), this.getValueModifier(), null, "modifier", null, 0, -1, ValueModifierSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueModifierEClass, ValueModifier.class, "ValueModifier", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

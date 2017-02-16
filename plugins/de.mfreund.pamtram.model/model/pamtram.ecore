@@ -2021,7 +2021,7 @@
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
-        <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+        <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
             eType="#//mapping/modifier/ValueModifier" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifier" abstract="true" interface="true"

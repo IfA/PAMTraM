@@ -31,10 +31,10 @@ import pamtram.mapping.modifier.ValueModifierSet;
 public class ValueModifierSetImpl extends NamedElementImpl implements ValueModifierSet {
 
 	/**
-	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' containment reference list. <!--
+	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -62,9 +62,9 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifier> getModifier() {
+	public EList<ValueModifier> getModifiers() {
 		if (modifier == null) {
-			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIER);
+			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS);
 		}
 		return modifier;
 	}
@@ -76,8 +76,8 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
-				return ((InternalEList<?>)getModifier()).basicRemove(otherEnd, msgs);
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
+				return ((InternalEList<?>)getModifiers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -89,8 +89,8 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
-				return getModifier();
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
+				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -104,9 +104,9 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@SuppressWarnings("unchecked")
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
-				getModifier().clear();
-				getModifier().addAll((Collection<? extends ValueModifier>)newValue);
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifier>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -119,8 +119,8 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
-				getModifier().clear();
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
+				getModifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -133,7 +133,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

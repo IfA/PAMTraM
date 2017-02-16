@@ -85,7 +85,7 @@ public interface ModifierPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_MODIFIER_SET__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int VALUE_MODIFIER_SET__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Value Modifier Set</em>' class.
@@ -644,11 +644,11 @@ public interface ModifierPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.modifier.ValueModifierSet#getModifier()
+	 * @see pamtram.mapping.modifier.ValueModifierSet#getModifiers()
 	 * @see #getValueModifierSet()
 	 * @generated
 	 */
-	EReference getValueModifierSet_Modifier();
+	EReference getValueModifierSet_Modifiers();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}'.
@@ -876,7 +876,7 @@ public interface ModifierPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VALUE_MODIFIER_SET__MODIFIER = eINSTANCE.getValueModifierSet_Modifier();
+		EReference VALUE_MODIFIER_SET__MODIFIERS = eINSTANCE.getValueModifierSet_Modifiers();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.modifier.ValueModifier <em>Value Modifier</em>}' class.

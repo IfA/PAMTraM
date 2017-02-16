@@ -137,7 +137,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum fileTypeEnumEEnum = null;
+	private EEnum fileTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -388,7 +388,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 * @generated
 	 */
 	public EEnum getFileType() {
-		return fileTypeEnumEEnum;
+		return fileTypeEEnum;
 	}
 
 	/**
@@ -445,7 +445,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		virtualTargetSectionAttributeEClass = createEClass(VIRTUAL_TARGET_SECTION_ATTRIBUTE);
 
 		// Create enums
-		fileTypeEnumEEnum = createEEnum(FILE_TYPE);
+		fileTypeEEnum = createEEnum(FILE_TYPE);
 	}
 
 	/**
@@ -615,9 +615,9 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		initEClass(virtualTargetSectionAttributeEClass, VirtualTargetSectionAttribute.class, "VirtualTargetSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
-		initEEnum(fileTypeEnumEEnum, FileType.class, "FileType");
-		addEEnumLiteral(fileTypeEnumEEnum, FileType.XMI);
-		addEEnumLiteral(fileTypeEnumEEnum, FileType.XML);
+		initEEnum(fileTypeEEnum, FileType.class, "FileType");
+		addEEnumLiteral(fileTypeEEnum, FileType.XMI);
+		addEEnumLiteral(fileTypeEEnum, FileType.XML);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

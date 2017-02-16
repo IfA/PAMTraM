@@ -69,7 +69,7 @@ public enum FileType implements Enumerator {
 	public static final int XML_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>File Type Enum</b></em>' enumerators.
+	 * An array of all the '<em><b>File Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -81,7 +81,7 @@ public enum FileType implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>File Type Enum</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>File Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,7 +89,7 @@ public enum FileType implements Enumerator {
 	public static final List<FileType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>File Type Enum</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>File Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
@@ -107,7 +107,7 @@ public enum FileType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>File Type Enum</b></em>' literal with the specified name.
+	 * Returns the '<em><b>File Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
@@ -125,7 +125,7 @@ public enum FileType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>File Type Enum</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>File Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.

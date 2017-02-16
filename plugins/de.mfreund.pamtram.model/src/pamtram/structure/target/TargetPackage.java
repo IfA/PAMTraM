@@ -1231,7 +1231,7 @@ public interface TargetPackage extends EPackage {
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}' enum.
+	 * The meta object id for the '{@link pamtram.structure.target.FileType <em>File Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.target.FileType
@@ -1407,10 +1407,10 @@ public interface TargetPackage extends EPackage {
 	EClass getVirtualTargetSectionAttribute();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}'.
+	 * Returns the meta object for enum '{@link pamtram.structure.target.FileType <em>File Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>File Type Enum</em>'.
+	 * @return the meta object for enum '<em>File Type</em>'.
 	 * @see pamtram.structure.target.FileType
 	 * @generated
 	 */
@@ -1586,7 +1586,7 @@ public interface TargetPackage extends EPackage {
 		EClass VIRTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getVirtualTargetSectionAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}' enum.
+		 * The meta object literal for the '{@link pamtram.structure.target.FileType <em>File Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.target.FileType

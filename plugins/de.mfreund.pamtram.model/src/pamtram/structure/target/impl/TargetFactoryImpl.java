@@ -78,7 +78,7 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case TargetPackage.FILE_TYPE:
-				return createFileTypeEnumFromString(eDataType, initialValue);
+				return createFileTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -93,7 +93,7 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case TargetPackage.FILE_TYPE:
-				return convertFileTypeEnumToString(eDataType, instanceValue);
+				return convertFileTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -174,7 +174,7 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FileType createFileTypeEnumFromString(EDataType eDataType, String initialValue) {
+	public FileType createFileTypeFromString(EDataType eDataType, String initialValue) {
 		FileType result = FileType.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
@@ -185,7 +185,7 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertFileTypeEnumToString(EDataType eDataType, Object instanceValue) {
+	public String convertFileTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

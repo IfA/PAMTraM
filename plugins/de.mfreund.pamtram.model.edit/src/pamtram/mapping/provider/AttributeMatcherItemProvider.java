@@ -58,7 +58,7 @@ extends MatcherItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addExpressionPropertyDescriptor(object);
-			addResultModifierPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -87,18 +87,18 @@ extends MatcherItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Result Modifier feature.
+	 * This adds a property descriptor for the Modifiers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultModifierPropertyDescriptor(Object object) {
+	protected void addModifiersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
 				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
 				 true,
 				 false,

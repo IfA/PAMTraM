@@ -60,7 +60,7 @@ public class ModifiableElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Result Modifier feature.
+	 * This adds a property descriptor for the Modifiers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -70,8 +70,8 @@ public class ModifiableElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
 				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
 				 true,
 				 false,

@@ -23,22 +23,21 @@ import pamtram.structure.source.SourceSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.CardinalityConditionImpl#getConditionSectionRef <em>Condition Section Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.CardinalityConditionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class CardinalityConditionImpl extends ConditionImpl implements CardinalityCondition {
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Condition Section Ref</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionClass conditionSectionRef;
-
+	protected SourceSectionClass target;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,15 +63,15 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	 * @generated
 	 */
 	public SourceSectionClass getTarget() {
-		if (conditionSectionRef != null && conditionSectionRef.eIsProxy()) {
-			InternalEObject oldConditionSectionRef = (InternalEObject)conditionSectionRef;
-			conditionSectionRef = (SourceSectionClass)eResolveProxy(oldConditionSectionRef);
-			if (conditionSectionRef != oldConditionSectionRef) {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (SourceSectionClass)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldConditionSectionRef, conditionSectionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldTarget, target));
 			}
 		}
-		return conditionSectionRef;
+		return target;
 	}
 
 	/**
@@ -80,8 +79,8 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClass basicGetConditionSectionRef() {
-		return conditionSectionRef;
+	public SourceSectionClass basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -89,11 +88,11 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(SourceSectionClass newConditionSectionRef) {
-		SourceSectionClass oldConditionSectionRef = conditionSectionRef;
-		conditionSectionRef = newConditionSectionRef;
+	public void setTarget(SourceSectionClass newTarget) {
+		SourceSectionClass oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldConditionSectionRef, conditionSectionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -106,7 +105,7 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 		switch (featureID) {
 			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
 				if (resolve) return getTarget();
-				return basicGetConditionSectionRef();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -150,7 +149,7 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
-				return conditionSectionRef != null;
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -13,7 +13,7 @@ import pamtram.structure.source.SourceSectionClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}</li>
+ *   <li>{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCardinalityCondition()
@@ -22,14 +22,14 @@ import pamtram.structure.source.SourceSectionClass;
  */
 public interface CardinalityCondition extends Condition {
 	/**
-	 * Returns the value of the '<em><b>Condition Section Ref</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition Section Ref</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Section Ref</em>' reference.
+	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(SourceSectionClass)
 	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_Target()
 	 * @model required="true"
@@ -38,10 +38,10 @@ public interface CardinalityCondition extends Condition {
 	SourceSectionClass getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}' reference.
+	 * Sets the value of the '{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition Section Ref</em>' reference.
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */

@@ -880,7 +880,7 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Condition Section Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1321,10 +1321,10 @@ public interface ConditionPackage extends EPackage {
 	EClass getCardinalityCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition Section Ref</em>'.
+	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see pamtram.condition.CardinalityCondition#getTarget()
 	 * @see #getCardinalityCondition()
 	 * @generated
@@ -1604,7 +1604,7 @@ public interface ConditionPackage extends EPackage {
 		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Section Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

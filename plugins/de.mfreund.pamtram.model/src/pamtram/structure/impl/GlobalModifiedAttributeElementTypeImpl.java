@@ -32,10 +32,10 @@ import pamtram.structure.generic.Section;
  */
 public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements GlobalModifiedAttributeElementType<S, C, R, A> {
 	/**
-	 * The cached value of the '{@link #getInstanceSelector() <em>Instance Selector</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selector</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInstanceSelector()
+	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
@@ -65,9 +65,9 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstanceSelector> getInstanceSelector() {
+	public EList<InstanceSelector> getInstanceSelectors() {
 		if (instanceSelector == null) {
-			instanceSelector = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
+			instanceSelector = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 		}
 		return instanceSelector;
 	}
@@ -80,8 +80,8 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
-				return ((InternalEList<?>)getInstanceSelector()).basicRemove(otherEnd, msgs);
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -94,8 +94,8 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
-				return getInstanceSelector();
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,9 +109,9 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
-				getInstanceSelector().clear();
-				getInstanceSelector().addAll((Collection<? extends InstanceSelector>)newValue);
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,8 +125,8 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
-				getInstanceSelector().clear();
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -140,7 +140,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
 				return instanceSelector != null && !instanceSelector.isEmpty();
 		}
 		return super.eIsSet(featureID);

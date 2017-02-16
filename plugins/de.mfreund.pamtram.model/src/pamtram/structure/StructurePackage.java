@@ -1027,7 +1027,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Global Modified Attribute Element Type</em>' class.
@@ -1425,11 +1425,11 @@ public interface StructurePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Instance Selector</em>'.
-	 * @see pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelector()
+	 * @see pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelectors()
 	 * @see #getGlobalModifiedAttributeElementType()
 	 * @generated
 	 */
-	EReference getGlobalModifiedAttributeElementType_InstanceSelector();
+	EReference getGlobalModifiedAttributeElementType_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for the reference '{@link pamtram.structure.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
@@ -1771,7 +1771,7 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR = eINSTANCE.getGlobalModifiedAttributeElementType_InstanceSelector();
+		EReference GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS = eINSTANCE.getGlobalModifiedAttributeElementType_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Original Library Entry</b></em>' reference feature.

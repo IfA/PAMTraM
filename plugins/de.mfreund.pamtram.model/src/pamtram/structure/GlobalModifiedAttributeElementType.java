@@ -35,9 +35,9 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance Selector</em>' containment reference list.
-	 * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType_InstanceSelector()
+	 * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstanceSelector> getInstanceSelector();
+	EList<InstanceSelector> getInstanceSelectors();
 } // GlobalModifiedAttributeElementType

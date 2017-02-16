@@ -501,7 +501,7 @@
           <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/A"/>
         </eBounds>
       </eTypeParameters>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelector" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
           eType="#//structure/InstanceSelector" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/ModifiedAttributeElementType">
         <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/S"/>

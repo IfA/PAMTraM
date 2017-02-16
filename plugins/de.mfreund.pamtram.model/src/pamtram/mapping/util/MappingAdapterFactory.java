@@ -12,7 +12,7 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -283,7 +283,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+			public Adapter caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
 				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
@@ -1039,13 +1039,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.InstancePointerSourceInterface
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
 	 * @generated
 	 */
 	public Adapter createInstancePointerSourceInterfaceAdapter() {

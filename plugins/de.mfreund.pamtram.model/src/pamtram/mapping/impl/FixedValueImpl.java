@@ -14,7 +14,7 @@ import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.mapping.ContainerSelectorSourceInterface;
@@ -199,7 +199,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 				default: return -1;
 			}
 		}
-		if (baseClass == InstancePointerSourceInterface.class) {
+		if (baseClass == InstanceSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

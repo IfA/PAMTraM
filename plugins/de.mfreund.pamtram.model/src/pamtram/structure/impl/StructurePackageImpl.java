@@ -23,10 +23,10 @@ import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.ContainerParameter;
 import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
 import pamtram.structure.StructureFactory;
@@ -643,9 +643,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEReference(getLibraryEntry_Id(), theTargetPackage.getVirtualTargetSectionAttribute(), null, "id", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibraryEntry_ResourceParameters(), this.getResourceParameter(), null, "resourceParameters", null, 0, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(instancePointerEClass, InstancePointer.class, "InstancePointer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstancePointer_Target(), theSourcePackage.getActualSourceSectionAttribute(), null, "target", null, 1, 1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInstancePointer_SourceElements(), this.getInstancePointerSourceInterface(), null, "sourceElements", null, 0, -1, InstancePointer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(instancePointerEClass, InstanceSelector.class, "InstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInstancePointer_Target(), theSourcePackage.getActualSourceSectionAttribute(), null, "target", null, 1, 1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstancePointer_SourceElements(), this.getInstancePointerSourceInterface(), null, "sourceElements", null, 0, -1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getInstancePointer__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNoModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -656,11 +656,11 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(instancePointerSourceInterfaceEClass, InstancePointerSourceInterface.class, "InstancePointerSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(instancePointerSourceInterfaceEClass, InstanceSelectorSourceInterface.class, "InstanceSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(instancePointerSourceElementEClass, InstancePointerSourceElement.class, "InstancePointerSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(instancePointerSourceElementEClass, InstanceSelectorSourceElement.class, "InstanceSelectorSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(instancePointerExternalSourceElementEClass, InstancePointerExternalSourceElement.class, "InstancePointerExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(instancePointerExternalSourceElementEClass, InstanceSelectorExternalSourceElement.class, "InstanceSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import

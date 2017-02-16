@@ -12,8 +12,8 @@ import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.mapping.impl.ExternalModifiedAttributeElementTypeImpl;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -27,13 +27,13 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstancePointerExternalSourceElement {
+public class InstanceSelectorExternalSourceElementImpl extends ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorExternalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstancePointerExternalSourceElementImpl() {
+	protected InstanceSelectorExternalSourceElementImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAt
 				default: return -1;
 			}
 		}
-		if (baseClass == InstancePointerSourceInterface.class) {
+		if (baseClass == InstanceSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -93,4 +93,4 @@ public class InstancePointerExternalSourceElementImpl extends ExternalModifiedAt
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //InstancePointerExternalSourceElementImpl
+} //InstanceSelectorExternalSourceElementImpl

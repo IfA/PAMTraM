@@ -21,8 +21,8 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityConstraint;
@@ -182,13 +182,13 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 			return true;
 		}
 		
-		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		// A constraint is also 'local' if an InstanceSelector with local or external SourceAttributes exist
 		//
 		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
 				.parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof InstancePointerSourceElement
-								|| s instanceof InstancePointerExternalSourceElement))
+						.filter(s -> s instanceof InstanceSelectorSourceElement
+								|| s instanceof InstanceSelectorExternalSourceElement))
 				.findAny().isPresent();
 	}
 

@@ -73,7 +73,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Instance Pointer</em>'.
 	 * @generated
 	 */
-	InstancePointer createInstancePointer();
+	InstanceSelector createInstancePointer();
 
 	/**
 	 * Returns a new object of class '<em>Instance Pointer Source Element</em>'.
@@ -82,7 +82,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Instance Pointer Source Element</em>'.
 	 * @generated
 	 */
-	InstancePointerSourceElement createInstancePointerSourceElement();
+	InstanceSelectorSourceElement createInstancePointerSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Instance Pointer External Source Element</em>'.
@@ -91,7 +91,7 @@ public interface StructureFactory extends EFactory {
 	 * @return a new object of class '<em>Instance Pointer External Source Element</em>'.
 	 * @generated
 	 */
-	InstancePointerExternalSourceElement createInstancePointerExternalSourceElement();
+	InstanceSelectorExternalSourceElement createInstancePointerExternalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

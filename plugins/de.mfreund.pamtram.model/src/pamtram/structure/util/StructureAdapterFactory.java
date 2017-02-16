@@ -100,19 +100,19 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointer(InstancePointer object) {
+			public Adapter caseInstancePointer(InstanceSelector object) {
 				return createInstancePointerAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+			public Adapter caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
 				return createInstancePointerSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceElement(InstancePointerSourceElement object) {
+			public Adapter caseInstancePointerSourceElement(InstanceSelectorSourceElement object) {
 				return createInstancePointerSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerExternalSourceElement(InstancePointerExternalSourceElement object) {
+			public Adapter caseInstancePointerExternalSourceElement(InstanceSelectorExternalSourceElement object) {
 				return createInstancePointerExternalSourceElementAdapter();
 			}
 			@Override
@@ -248,13 +248,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstancePointer <em>Instance Pointer</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelector <em>Instance Pointer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.InstancePointer
+	 * @see pamtram.structure.InstanceSelector
 	 * @generated
 	 */
 	public Adapter createInstancePointerAdapter() {
@@ -262,13 +262,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.InstancePointerSourceInterface
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
 	 * @generated
 	 */
 	public Adapter createInstancePointerSourceInterfaceAdapter() {
@@ -276,13 +276,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstancePointerSourceElement <em>Instance Pointer Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceElement <em>Instance Pointer Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.InstancePointerSourceElement
+	 * @see pamtram.structure.InstanceSelectorSourceElement
 	 * @generated
 	 */
 	public Adapter createInstancePointerSourceElementAdapter() {
@@ -290,13 +290,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstancePointerExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.InstancePointerExternalSourceElement
+	 * @see pamtram.structure.InstanceSelectorExternalSourceElement
 	 * @generated
 	 */
 	public Adapter createInstancePointerExternalSourceElementAdapter() {

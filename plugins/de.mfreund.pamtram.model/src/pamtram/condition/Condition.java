@@ -4,7 +4,7 @@ package pamtram.condition;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import pamtram.structure.InstancePointer;
 public interface Condition extends ComplexCondition {
 	/**
 	 * Returns the value of the '<em><b>Additional Condition Specification</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstancePointer}.
+	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Additional Condition Specification</em>' containment reference list isn't clear,
@@ -39,7 +39,7 @@ public interface Condition extends ComplexCondition {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstancePointer> getAdditionalConditionSpecification();
+	EList<InstanceSelector> getAdditionalConditionSpecification();
 
 	/**
 	 * Returns the value of the '<em><b>Comparator</b></em>' attribute.

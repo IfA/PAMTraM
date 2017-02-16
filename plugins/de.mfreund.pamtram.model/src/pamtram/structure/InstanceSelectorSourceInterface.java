@@ -14,5 +14,5 @@ import pamtram.mapping.MappingHintSourceInterface;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface InstancePointerSourceInterface extends MappingHintSourceInterface {
-} // InstancePointerSourceInterface
+public interface InstanceSelectorSourceInterface extends MappingHintSourceInterface {
+} // InstanceSelectorSourceInterface

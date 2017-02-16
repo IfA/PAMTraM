@@ -261,14 +261,14 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
           eType="#//structure/ResourceParameter" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//ExpressionElement #//ModifiableElement">
+    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelector" eSuperTypes="#//ExpressionElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
       <eOperations name="validateNoModifiedAttributeElementTypesInConditionModelConditions"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.eContainer() instanceof &lt;%pamtram.condition.ComplexCondition%> &amp;&amp; ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.mapping.ModifiedAttributeElementType) : true;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="&#xD;&#xA;boolean result = this.eContainer() instanceof &lt;%pamtram.condition.ComplexCondition%> &amp;&amp; ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.mapping.ModifiedAttributeElementType) : true;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -281,27 +281,27 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//structure/source/ActualSourceSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
-          eType="#//structure/InstancePointerSourceInterface" containment="true"/>
+          eType="#//structure/InstanceSelectorSourceInterface" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceInterface" abstract="true"
+    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerSourceElement">
+    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
       </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//structure/InstancePointerSourceInterface"/>
+      <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointerExternalSourceElement">
+    <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorExternalSourceElement">
       <eGenericSuperTypes eClassifier="#//mapping/ExternalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
       </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//structure/InstancePointerSourceInterface"/>
+      <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
     <eSubpackages name="generic" nsURI="http://mfreund.de/pamtram/structure/generic"
         nsPrefix="generic">
@@ -906,7 +906,7 @@
           interface="true" eSuperTypes="#//NamedElement">
         <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="if (this instanceof &lt;%pamtram.structure.constraint.ChoiceConstraint%>) {&#xD;&#xA;&#x9;return ((ChoiceConstraint) this).getChoices().stream().allMatch(&lt;%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!(this instanceof &lt;%pamtram.structure.constraint.SingleReferenceValueConstraint%>)&#xD;&#xA;&#x9;&#x9;|| !AgteleEcoreUtil.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while (!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if (container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;SourceSection localSection = ((Mapping) container).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;.allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintSourceElement%> &amp;&amp; ((ValueConstraintSourceElement) s).getSource()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.getContainingSection().equals(localSection)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.isContainerFor(localSection))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()&#xD;&#xA;&#x9;&#x9;.parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(s -> s instanceof &lt;%pamtram.structure.InstancePointerSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.InstancePointerExternalSourceElement%>))&#xD;&#xA;&#x9;&#x9;.findAny().isPresent();"/>
+            <details key="body" value="if (this instanceof &lt;%pamtram.structure.constraint.ChoiceConstraint%>) {&#xD;&#xA;&#x9;return ((ChoiceConstraint) this).getChoices().stream().allMatch(&lt;%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!(this instanceof &lt;%pamtram.structure.constraint.SingleReferenceValueConstraint%>)&#xD;&#xA;&#x9;&#x9;|| !AgteleEcoreUtil.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while (!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if (container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;SourceSection localSection = ((Mapping) container).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;.allMatch(s -> s instanceof &lt;%pamtram.mapping.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintSourceElement%> &amp;&amp; ((ValueConstraintSourceElement) s).getSource()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.getContainingSection().equals(localSection)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.isContainerFor(localSection))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()&#xD;&#xA;&#x9;&#x9;.parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(s -> s instanceof &lt;%pamtram.structure.InstanceSelectorSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.InstanceSelectorExternalSourceElement%>))&#xD;&#xA;&#x9;&#x9;.findAny().isPresent();"/>
           </eAnnotations>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
@@ -963,7 +963,7 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="constraintReferenceValueAdditionalSpecification"
-            upperBound="-1" eType="#//structure/InstancePointer" containment="true"/>
+            upperBound="-1" eType="#//structure/InstanceSelector" containment="true"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
             eType="#//structure/constraint/ValueConstraintSourceInterface" containment="true"/>
       </eClassifiers>
@@ -1323,7 +1323,7 @@
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConditionSpecification"
-          upperBound="-1" eType="#//structure/InstancePointer" containment="true"/>
+          upperBound="-1" eType="#//structure/InstanceSelector" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>
@@ -1814,7 +1814,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstancePointerSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -1839,7 +1839,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
           eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstancePointerSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
@@ -1984,7 +1984,7 @@
         </eBounds>
       </eTypeParameters>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelector" upperBound="-1"
-          eType="#//structure/InstancePointer" containment="true"/>
+          eType="#//structure/InstanceSelector" containment="true"/>
       <eGenericSuperTypes eClassifier="#//mapping/ModifiedAttributeElementType">
         <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/S"/>
         <eTypeArguments eTypeParameter="#//mapping/GlobalModifiedAttributeElementType/C"/>

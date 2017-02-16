@@ -3,7 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
 /**
@@ -22,7 +22,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * @model
  * @generated
  */
-public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstancePointerSourceInterface, ValueConstraintSourceInterface {
+public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstanceSelectorSourceInterface, ValueConstraintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

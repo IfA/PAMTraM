@@ -11,7 +11,7 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -1333,7 +1333,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+	public T caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 

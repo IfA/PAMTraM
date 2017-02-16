@@ -121,8 +121,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointer createInstancePointer() {
-		InstancePointerImpl instancePointer = new InstancePointerImpl();
+	public InstanceSelector createInstancePointer() {
+		InstanceSelectorImpl instancePointer = new InstanceSelectorImpl();
 		return instancePointer;
 	}
 
@@ -131,8 +131,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointerSourceElement createInstancePointerSourceElement() {
-		InstancePointerSourceElementImpl instancePointerSourceElement = new InstancePointerSourceElementImpl();
+	public InstanceSelectorSourceElement createInstancePointerSourceElement() {
+		InstanceSelectorSourceElementImpl instancePointerSourceElement = new InstanceSelectorSourceElementImpl();
 		return instancePointerSourceElement;
 	}
 
@@ -141,8 +141,8 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointerExternalSourceElement createInstancePointerExternalSourceElement() {
-		InstancePointerExternalSourceElementImpl instancePointerExternalSourceElement = new InstancePointerExternalSourceElementImpl();
+	public InstanceSelectorExternalSourceElement createInstancePointerExternalSourceElement() {
+		InstanceSelectorExternalSourceElementImpl instancePointerExternalSourceElement = new InstanceSelectorExternalSourceElementImpl();
 		return instancePointerExternalSourceElement;
 	}
 

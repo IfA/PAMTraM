@@ -446,10 +446,10 @@ public interface StructurePackage extends EPackage {
 	int LIBRARY_ENTRY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.InstancePointerImpl <em>Instance Pointer</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorImpl <em>Instance Pointer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.InstancePointerImpl
+	 * @see pamtram.structure.impl.InstanceSelectorImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointer()
 	 * @generated
 	 */
@@ -519,10 +519,10 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_POINTER_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.InstancePointerSourceInterface
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceInterface()
 	 * @generated
 	 */
@@ -565,10 +565,10 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_POINTER_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.InstancePointerSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.InstancePointerSourceElementImpl
+	 * @see pamtram.structure.impl.InstanceSelectorSourceElementImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceElement()
 	 * @generated
 	 */
@@ -656,10 +656,10 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_POINTER_SOURCE_ELEMENT_OPERATION_COUNT = MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.InstancePointerExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.InstancePointerExternalSourceElementImpl
+	 * @see pamtram.structure.impl.InstanceSelectorExternalSourceElementImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerExternalSourceElement()
 	 * @generated
 	 */
@@ -950,73 +950,73 @@ public interface StructurePackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.InstancePointer <em>Instance Pointer</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelector <em>Instance Pointer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Instance Pointer</em>'.
-	 * @see pamtram.structure.InstancePointer
+	 * @see pamtram.structure.InstanceSelector
 	 * @generated
 	 */
 	EClass getInstancePointer();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.InstancePointer#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.InstanceSelector#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.structure.InstancePointer#getTarget()
+	 * @see pamtram.structure.InstanceSelector#getTarget()
 	 * @see #getInstancePointer()
 	 * @generated
 	 */
 	EReference getInstancePointer_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.InstancePointer#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.InstanceSelector#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.structure.InstancePointer#getSourceElements()
+	 * @see pamtram.structure.InstanceSelector#getSourceElements()
 	 * @see #getInstancePointer()
 	 * @generated
 	 */
 	EReference getInstancePointer_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.structure.InstancePointer#validateNoModifiedAttributeElementTypesInConditionModelConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.structure.InstanceSelector#validateNoModifiedAttributeElementTypesInConditionModelConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
-	 * @see pamtram.structure.InstancePointer#validateNoModifiedAttributeElementTypesInConditionModelConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.structure.InstanceSelector#validateNoModifiedAttributeElementTypesInConditionModelConditions(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getInstancePointer__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Instance Pointer Source Interface</em>'.
-	 * @see pamtram.structure.InstancePointerSourceInterface
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
 	 * @generated
 	 */
 	EClass getInstancePointerSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.InstancePointerSourceElement <em>Instance Pointer Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorSourceElement <em>Instance Pointer Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Instance Pointer Source Element</em>'.
-	 * @see pamtram.structure.InstancePointerSourceElement
+	 * @see pamtram.structure.InstanceSelectorSourceElement
 	 * @generated
 	 */
 	EClass getInstancePointerSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.InstancePointerExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Instance Pointer External Source Element</em>'.
-	 * @see pamtram.structure.InstancePointerExternalSourceElement
+	 * @see pamtram.structure.InstanceSelectorExternalSourceElement
 	 * @generated
 	 */
 	EClass getInstancePointerExternalSourceElement();
@@ -1209,10 +1209,10 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.InstancePointerImpl <em>Instance Pointer</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.InstanceSelectorImpl <em>Instance Pointer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.InstancePointerImpl
+		 * @see pamtram.structure.impl.InstanceSelectorImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointer()
 		 * @generated
 		 */
@@ -1243,30 +1243,30 @@ public interface StructurePackage extends EPackage {
 		EOperation INSTANCE_POINTER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getInstancePointer__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.InstancePointerSourceInterface
+		 * @see pamtram.structure.InstanceSelectorSourceInterface
 		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceInterface()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER_SOURCE_INTERFACE = eINSTANCE.getInstancePointerSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.InstancePointerSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.InstanceSelectorSourceElementImpl <em>Instance Pointer Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.InstancePointerSourceElementImpl
+		 * @see pamtram.structure.impl.InstanceSelectorSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerSourceElement()
 		 * @generated
 		 */
 		EClass INSTANCE_POINTER_SOURCE_ELEMENT = eINSTANCE.getInstancePointerSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.InstancePointerExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.InstanceSelectorExternalSourceElementImpl <em>Instance Pointer External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.InstancePointerExternalSourceElementImpl
+		 * @see pamtram.structure.impl.InstanceSelectorExternalSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getInstancePointerExternalSourceElement()
 		 * @generated
 		 */

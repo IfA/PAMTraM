@@ -4,7 +4,7 @@ package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -29,7 +29,7 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 
 	/**
 	 * Returns the value of the '<em><b>Instance Selector</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstancePointer}.
+	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance Selector</em>' containment reference list isn't clear,
@@ -41,5 +41,5 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstancePointer> getInstanceSelector();
+	EList<InstanceSelector> getInstanceSelector();
 } // GlobalModifiedAttributeElementType

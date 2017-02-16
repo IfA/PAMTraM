@@ -31,9 +31,9 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerExternalSourceElement;
-import pamtram.structure.InstancePointerSourceElement;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -122,7 +122,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstancePointer> constraintReferenceValueAdditionalSpecification;
+	protected EList<InstanceSelector> constraintReferenceValueAdditionalSpecification;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
@@ -210,9 +210,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification() {
+	public EList<InstanceSelector> getConstraintReferenceValueAdditionalSpecification() {
 		if (constraintReferenceValueAdditionalSpecification == null) {
-			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
 		}
 		return constraintReferenceValueAdditionalSpecification;
 	}
@@ -373,13 +373,13 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			return true;
 		}
 		
-		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
+		// A constraint is also 'local' if an InstanceSelector with local or external SourceAttributes exist
 		//
 		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
 				.parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof InstancePointerSourceElement
-								|| s instanceof InstancePointerExternalSourceElement))
+						.filter(s -> s instanceof InstanceSelectorSourceElement
+								|| s instanceof InstanceSelectorExternalSourceElement))
 				.findAny().isPresent();
 	}
 
@@ -439,7 +439,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();
-				getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstancePointer>)newValue);
+				getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();

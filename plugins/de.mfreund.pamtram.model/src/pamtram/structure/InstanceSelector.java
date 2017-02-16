@@ -19,8 +19,8 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.InstancePointer#getTarget <em>Attribute Pointer</em>}</li>
- * <li>{@link pamtram.structure.InstancePointer#getSourceAttributes <em>Source Attributes</em>}</li>
+ * <li>{@link pamtram.structure.InstanceSelector#getTarget <em>Attribute Pointer</em>}</li>
+ * <li>{@link pamtram.structure.InstanceSelector#getSourceAttributes <em>Source Attributes</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getInstancePointer()
@@ -28,7 +28,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  *        constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
-public interface InstancePointer extends ExpressionElement, ModifiableElement {
+public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -46,7 +46,7 @@ public interface InstancePointer extends ExpressionElement, ModifiableElement {
 	ActualSourceSectionAttribute getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.InstancePointer#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.InstanceSelector#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
@@ -56,7 +56,7 @@ public interface InstancePointer extends ExpressionElement, ModifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstancePointerSourceInterface}.
+	 * The list contents are of type {@link pamtram.structure.InstanceSelectorSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Attributes</em>' containment reference list isn't clear,
@@ -68,7 +68,7 @@ public interface InstancePointer extends ExpressionElement, ModifiableElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstancePointerSourceInterface> getSourceElements();
+	EList<InstanceSelectorSourceInterface> getSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,4 +78,4 @@ public interface InstancePointer extends ExpressionElement, ModifiableElement {
 	 */
 	boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(DiagnosticChain diagnostics, Map<?, ?> context);
 
-} // InstancePointer
+} // InstanceSelector

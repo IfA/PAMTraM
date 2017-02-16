@@ -120,7 +120,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.INSTANCE_POINTER: {
-				InstancePointer instancePointer = (InstancePointer)theEObject;
+				InstanceSelector instancePointer = (InstanceSelector)theEObject;
 				T result = caseInstancePointer(instancePointer);
 				if (result == null) result = caseExpressionElement(instancePointer);
 				if (result == null) result = caseModifiableElement(instancePointer);
@@ -128,7 +128,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE: {
-				InstancePointerSourceInterface instancePointerSourceInterface = (InstancePointerSourceInterface)theEObject;
+				InstanceSelectorSourceInterface instancePointerSourceInterface = (InstanceSelectorSourceInterface)theEObject;
 				T result = caseInstancePointerSourceInterface(instancePointerSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(instancePointerSourceInterface);
 				if (result == null) result = caseNamedElement(instancePointerSourceInterface);
@@ -136,7 +136,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: {
-				InstancePointerSourceElement instancePointerSourceElement = (InstancePointerSourceElement)theEObject;
+				InstanceSelectorSourceElement instancePointerSourceElement = (InstanceSelectorSourceElement)theEObject;
 				T result = caseInstancePointerSourceElement(instancePointerSourceElement);
 				if (result == null) result = caseLocalModifiedAttributeElementType(instancePointerSourceElement);
 				if (result == null) result = caseInstancePointerSourceInterface(instancePointerSourceElement);
@@ -147,7 +147,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: {
-				InstancePointerExternalSourceElement instancePointerExternalSourceElement = (InstancePointerExternalSourceElement)theEObject;
+				InstanceSelectorExternalSourceElement instancePointerExternalSourceElement = (InstanceSelectorExternalSourceElement)theEObject;
 				T result = caseInstancePointerExternalSourceElement(instancePointerExternalSourceElement);
 				if (result == null) result = caseExternalModifiedAttributeElementType(instancePointerExternalSourceElement);
 				if (result == null) result = caseInstancePointerSourceInterface(instancePointerExternalSourceElement);
@@ -262,7 +262,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointer(InstancePointer object) {
+	public T caseInstancePointer(InstanceSelector object) {
 		return null;
 	}
 
@@ -277,7 +277,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
+	public T caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 
@@ -292,7 +292,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerSourceElement(InstancePointerSourceElement object) {
+	public T caseInstancePointerSourceElement(InstanceSelectorSourceElement object) {
 		return null;
 	}
 
@@ -307,7 +307,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerExternalSourceElement(InstancePointerExternalSourceElement object) {
+	public T caseInstancePointerExternalSourceElement(InstanceSelectorExternalSourceElement object) {
 		return null;
 	}
 

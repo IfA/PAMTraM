@@ -113,13 +113,13 @@ public class StructureValidator extends EObjectValidator {
 			case StructurePackage.LIBRARY_ENTRY:
 				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
 			case StructurePackage.INSTANCE_POINTER:
-				return validateInstancePointer((InstancePointer)value, diagnostics, context);
+				return validateInstancePointer((InstanceSelector)value, diagnostics, context);
 			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE:
-				return validateInstancePointerSourceInterface((InstancePointerSourceInterface)value, diagnostics, context);
+				return validateInstancePointerSourceInterface((InstanceSelectorSourceInterface)value, diagnostics, context);
 			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT:
-				return validateInstancePointerSourceElement((InstancePointerSourceElement)value, diagnostics, context);
+				return validateInstancePointerSourceElement((InstanceSelectorSourceElement)value, diagnostics, context);
 			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT:
-				return validateInstancePointerExternalSourceElement((InstancePointerExternalSourceElement)value, diagnostics, context);
+				return validateInstancePointerExternalSourceElement((InstanceSelectorExternalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -183,7 +183,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer(InstancePointer instancePointer, DiagnosticChain diagnostics,
+	public boolean validateInstancePointer(InstanceSelector instancePointer, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointer, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointer, diagnostics, context);
@@ -206,7 +206,7 @@ public class StructureValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(
-			InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+			InstanceSelector instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -235,7 +235,7 @@ public class StructureValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstancePointer_validateNoModifiedAttributeElementTypesInConditionModelConditions(
-			InstancePointer instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+			InstanceSelector instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return instancePointer.validateNoModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
 	}
 
@@ -243,7 +243,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceInterface(InstancePointerSourceInterface instancePointerSourceInterface,
+	public boolean validateInstancePointerSourceInterface(InstanceSelectorSourceInterface instancePointerSourceInterface,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(instancePointerSourceInterface, diagnostics, context);
 	}
@@ -252,7 +252,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceElement(InstancePointerSourceElement instancePointerSourceElement,
+	public boolean validateInstancePointerSourceElement(InstanceSelectorSourceElement instancePointerSourceElement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointerSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointerSourceElement, diagnostics, context);
@@ -273,7 +273,7 @@ public class StructureValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstancePointerExternalSourceElement(
-			InstancePointerExternalSourceElement instancePointerExternalSourceElement, DiagnosticChain diagnostics,
+			InstanceSelectorExternalSourceElement instancePointerExternalSourceElement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instancePointerExternalSourceElement, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instancePointerExternalSourceElement, diagnostics, context);

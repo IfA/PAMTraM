@@ -12,8 +12,8 @@ import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.mapping.impl.LocalModifiedAttributeElementTypeImpl;
-import pamtram.structure.InstancePointerSourceElement;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -27,13 +27,13 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class InstancePointerSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstancePointerSourceElement {
+public class InstanceSelectorSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstancePointerSourceElementImpl() {
+	protected InstanceSelectorSourceElementImpl() {
 		super();
 	}
 
@@ -71,7 +71,7 @@ public class InstancePointerSourceElementImpl extends LocalModifiedAttributeElem
 				default: return -1;
 			}
 		}
-		if (baseClass == InstancePointerSourceInterface.class) {
+		if (baseClass == InstanceSelectorSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}
@@ -93,4 +93,4 @@ public class InstancePointerSourceElementImpl extends LocalModifiedAttributeElem
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //InstancePointerSourceElementImpl
+} //InstanceSelectorSourceElementImpl

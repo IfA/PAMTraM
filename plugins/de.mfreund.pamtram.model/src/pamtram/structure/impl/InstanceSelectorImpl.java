@@ -25,8 +25,8 @@ import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.impl.ExpressionElementImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstancePointer;
-import pamtram.structure.InstancePointerSourceInterface;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.util.StructureValidator;
@@ -39,14 +39,14 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.InstancePointerImpl#getResultModifier <em>Result Modifier</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstancePointerImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstancePointerImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InstancePointerImpl extends ExpressionElementImpl implements InstancePointer {
+public class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
 	/**
 	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -75,14 +75,14 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstancePointerSourceInterface> sourceElements;
+	protected EList<InstanceSelectorSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstancePointerImpl() {
+	protected InstanceSelectorImpl() {
 		super();
 	}
 
@@ -151,9 +151,9 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstancePointerSourceInterface> getSourceElements() {
+	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstancePointerSourceInterface>(InstancePointerSourceInterface.class, this, StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -234,7 +234,7 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 				return;
 			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends InstancePointerSourceInterface>)newValue);
+				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,4 +326,4 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //InstancePointerImpl
+} //InstanceSelectorImpl

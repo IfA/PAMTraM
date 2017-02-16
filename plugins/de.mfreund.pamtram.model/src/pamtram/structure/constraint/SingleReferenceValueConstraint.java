@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import pamtram.structure.InstancePointer;
 public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstancePointer}.
+	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list isn't clear,
@@ -43,7 +43,7 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstancePointer> getConstraintReferenceValueAdditionalSpecification();
+	EList<InstanceSelector> getConstraintReferenceValueAdditionalSpecification();
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.

@@ -18,5 +18,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface InstancePointerExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, InstancePointerSourceInterface {
-} // InstancePointerExternalSourceElement
+public interface InstanceSelectorExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, InstanceSelectorSourceInterface {
+} // InstanceSelectorExternalSourceElement

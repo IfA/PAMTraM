@@ -671,7 +671,7 @@ public interface PamtramPackage extends EPackage {
 	int CONDITION_MODEL__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1093,10 +1093,10 @@ public interface PamtramPackage extends EPackage {
 	EClass getConditionModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionModel#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionModel#getConditions <em>Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Condition</em>'.
+	 * @return the meta object for the containment reference list '<em>Conditions</em>'.
 	 * @see pamtram.ConditionModel#getConditions()
 	 * @see #getConditionModel()
 	 * @generated
@@ -1441,7 +1441,7 @@ public interface PamtramPackage extends EPackage {
 		EClass CONDITION_MODEL = eINSTANCE.getConditionModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

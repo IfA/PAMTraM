@@ -26,22 +26,21 @@ import pamtram.condition.ComplexCondition;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.impl.ConditionModelImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link pamtram.impl.ConditionModelImpl#getConditions <em>Conditions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConditionModelImpl extends NamedElementImpl implements ConditionModel {
 	/**
-	 * The cached value of the '{@link #getConditions() <em>Condition</em>}' containment reference list.
+	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getConditions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ComplexCondition> condition;
-
+	protected EList<ComplexCondition> conditions;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,10 +66,10 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	 * @generated
 	 */
 	public EList<ComplexCondition> getConditions() {
-		if (condition == null) {
-			condition = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITIONS);
+		if (conditions == null) {
+			conditions = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITIONS);
 		}
-		return condition;
+		return conditions;
 	}
 
 	/**
@@ -142,7 +141,7 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
-				return condition != null && !condition.isEmpty();
+				return conditions != null && !conditions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

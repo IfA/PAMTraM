@@ -31,10 +31,10 @@ import pamtram.mapping.modifier.ValueModifierSet;
  */
 public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container implements ModifiableElement {
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -64,9 +64,9 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS);
 		}
 		return resultModifier;
 	}
@@ -79,8 +79,8 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
-				return getResultModifier();
+			case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
+				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -94,9 +94,9 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
-				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+			case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -110,8 +110,8 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
-				getResultModifier().clear();
+			case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
+				getModifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -125,7 +125,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
+			case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
 				return resultModifier != null && !resultModifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

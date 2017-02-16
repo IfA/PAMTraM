@@ -106,10 +106,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list. <!--
+	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @see #getResultModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -198,7 +198,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
 		}
@@ -314,7 +314,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	@Override
 	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-		boolean result = this.getResultModifier().isEmpty() ||
+		boolean result = this.getModifiers().isEmpty() ||
 				!AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.eINSTANCE.getActualSourceSectionAttribute());
 		
 		if (!result && diagnostics != null) {
@@ -325,7 +325,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
 					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
 					errorMessage, new Object[] { this,
-							PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER }));
+							PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));
 		}
 		
 		return result;
@@ -410,7 +410,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				return getExpression();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				return getResultModifier();
+				return getModifiers();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return getConstraintReferenceValueAdditionalSpecification();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
@@ -434,8 +434,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				setExpression((String)newValue);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();
@@ -463,7 +463,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				getResultModifier().clear();
+				getModifiers().clear();
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				getConstraintReferenceValueAdditionalSpecification().clear();
@@ -510,7 +510,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -531,7 +531,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

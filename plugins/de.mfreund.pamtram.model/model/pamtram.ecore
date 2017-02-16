@@ -191,7 +191,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifiableElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
@@ -1161,7 +1161,7 @@
         </eOperations>
         <eOperations name="validateNoResultModifierInSourceSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="boolean result = this.getResultModifier().isEmpty() ||&#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ValueConstraints that are part of a SourceSection must not&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; specify a ResultModifier!'&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9;errorMessage, new Object[] { this,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%pamtram.PamtramPackage%>.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER }));&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="boolean result = this.getModifiers().isEmpty() ||&#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ValueConstraints that are part of a SourceSection must not&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; specify a Modifier!'&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9;errorMessage, new Object[] { this,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%pamtram.PamtramPackage%>.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">

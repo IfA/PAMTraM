@@ -34,10 +34,10 @@ public interface ModifiableElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Modifier</em>' reference list.
-	 * @see pamtram.PamtramPackage#getModifiableElement_ResultModifier()
+	 * @see pamtram.PamtramPackage#getModifiableElement_Modifiers()
 	 * @model
 	 * @generated
 	 */
-	EList<ValueModifierSet> getResultModifier();
+	EList<ValueModifierSet> getModifiers();
 
 } // ModifiableElement

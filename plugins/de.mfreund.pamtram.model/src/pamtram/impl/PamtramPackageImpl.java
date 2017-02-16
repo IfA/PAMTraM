@@ -609,7 +609,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModifiableElement_ResultModifier() {
+	public EReference getModifiableElement_Modifiers() {
 		return (EReference)modifiableElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -710,7 +710,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEAttribute(expressionElementEClass, EXPRESSION_ELEMENT__EXPRESSION);
 
 		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
-		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__RESULT_MODIFIER);
+		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__MODIFIERS);
 
 		fixedValueEClass = createEClass(FIXED_VALUE);
 		createEAttribute(fixedValueEClass, FIXED_VALUE__VALUE);
@@ -905,7 +905,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModifiableElement_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModifiableElement_Modifiers(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fixedValueEClass, FixedValue.class, "FixedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, FixedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

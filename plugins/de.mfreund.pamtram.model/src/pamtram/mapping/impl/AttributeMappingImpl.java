@@ -68,10 +68,10 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	protected String expression = EXPRESSION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -206,7 +206,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER);
 		}
@@ -305,7 +305,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				return getExpression();
 			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
-				return getResultModifier();
+				return getModifiers();
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -328,8 +328,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				setExpression((String)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
-				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)newValue);
@@ -354,7 +354,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
-				getResultModifier().clear();
+				getModifiers().clear();
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				setTarget((TargetSectionAttribute)null);
@@ -401,7 +401,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -428,7 +428,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

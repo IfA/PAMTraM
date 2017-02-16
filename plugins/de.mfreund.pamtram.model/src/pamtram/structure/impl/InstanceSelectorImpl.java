@@ -48,10 +48,10 @@ import pamtram.structure.util.StructureValidator;
  */
 public class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -101,7 +101,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ValueModifierSet> getResultModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (resultModifier == null) {
 			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER);
 		}
@@ -206,7 +206,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
-				return getResultModifier();
+				return getModifiers();
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -226,8 +226,8 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
-				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				setTarget((ActualSourceSectionAttribute)newValue);
@@ -249,7 +249,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
-				getResultModifier().clear();
+				getModifiers().clear();
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				setTarget((ActualSourceSectionAttribute)null);
@@ -288,7 +288,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -304,7 +304,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

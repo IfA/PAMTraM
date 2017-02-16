@@ -751,7 +751,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIABLE_ELEMENT__RESULT_MODIFIER = 0;
+	int MODIFIABLE_ELEMENT__MODIFIERS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Modifiable Element</em>' class.
@@ -1268,11 +1268,11 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
-	 * @see pamtram.ModifiableElement#getResultModifier()
+	 * @see pamtram.ModifiableElement#getModifiers()
 	 * @see #getModifiableElement()
 	 * @generated
 	 */
-	EReference getModifiableElement_ResultModifier();
+	EReference getModifiableElement_Modifiers();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
@@ -1674,7 +1674,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODIFIABLE_ELEMENT__RESULT_MODIFIER = eINSTANCE.getModifiableElement_ResultModifier();
+		EReference MODIFIABLE_ELEMENT__MODIFIERS = eINSTANCE.getModifiableElement_Modifiers();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.

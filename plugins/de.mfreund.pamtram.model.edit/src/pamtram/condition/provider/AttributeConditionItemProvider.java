@@ -46,7 +46,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConditionAttributeRefPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -57,14 +57,14 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionAttributeRefPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AttributeCondition_conditionAttributeRef_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_conditionAttributeRef_feature", "_UI_AttributeCondition_type"),
-				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF,
+				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__TARGET,
 				 true,
 				 false,
 				 true,

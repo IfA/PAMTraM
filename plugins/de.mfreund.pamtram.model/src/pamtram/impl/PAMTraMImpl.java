@@ -87,76 +87,76 @@ import pamtram.structure.target.TargetSectionAttribute;
 public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM {
 
 	/**
-	 * The cached value of the '{@link #getSourceSectionModel() <em>Source Section Model</em>}' containment reference list.
+	 * The cached value of the '{@link #getSourceSectionModels() <em>Source Section Model</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getSourceSectionModel()
+	 * @see #getSourceSectionModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<SourceSectionModel> sourceSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getSharedSourceSectionModel() <em>Shared Source Section Model</em>}' reference list.
+	 * The cached value of the '{@link #getSharedSourceSectionModels() <em>Shared Source Section Model</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getSharedSourceSectionModel()
+	 * @see #getSharedSourceSectionModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<SourceSectionModel> sharedSourceSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getTargetSectionModel() <em>Target Section Model</em>}' containment reference list.
+	 * The cached value of the '{@link #getTargetSectionModels() <em>Target Section Model</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getTargetSectionModel()
+	 * @see #getTargetSectionModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<TargetSectionModel> targetSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getSharedTargetSectionModel() <em>Shared Target Section Model</em>}' reference list.
+	 * The cached value of the '{@link #getSharedTargetSectionModels() <em>Shared Target Section Model</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getSharedTargetSectionModel()
+	 * @see #getSharedTargetSectionModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<TargetSectionModel> sharedTargetSectionModel;
 
 	/**
-	 * The cached value of the '{@link #getMappingModel() <em>Mapping Model</em>}' containment reference list. <!--
+	 * The cached value of the '{@link #getMappingModels() <em>Mapping Model</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getMappingModel()
+	 * @see #getMappingModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<MappingModel> mappingModel;
 
 	/**
-	 * The cached value of the '{@link #getSharedMappingModel() <em>Shared Mapping Model</em>}' reference list. <!--
+	 * The cached value of the '{@link #getSharedMappingModels() <em>Shared Mapping Model</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getSharedMappingModel()
+	 * @see #getSharedMappingModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<MappingModel> sharedMappingModel;
 
 	/**
-	 * The cached value of the '{@link #getConditionModel() <em>Condition Model</em>}' containment reference list. <!--
+	 * The cached value of the '{@link #getConditionModels() <em>Condition Model</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getConditionModel()
+	 * @see #getConditionModels()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<ConditionModel> conditionModel;
 
 	/**
-	 * The cached value of the '{@link #getSharedConditionModel() <em>Shared Condition Model</em>}' reference list. <!--
+	 * The cached value of the '{@link #getSharedConditionModels() <em>Shared Condition Model</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getSharedConditionModel()
+	 * @see #getSharedConditionModels()
 	 * @generated
 	 * @ordered
 	 */
@@ -184,7 +184,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<SourceSectionModel> getSourceSectionModel() {
+	public EList<SourceSectionModel> getSourceSectionModels() {
 		if (sourceSectionModel == null) {
 			sourceSectionModel = new EObjectContainmentEList<SourceSectionModel>(SourceSectionModel.class, this, PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL);
 		}
@@ -196,7 +196,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<SourceSectionModel> getSharedSourceSectionModel() {
+	public EList<SourceSectionModel> getSharedSourceSectionModels() {
 		if (sharedSourceSectionModel == null) {
 			sharedSourceSectionModel = new EObjectResolvingEList<SourceSectionModel>(SourceSectionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL);
 		}
@@ -208,7 +208,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<TargetSectionModel> getTargetSectionModel() {
+	public EList<TargetSectionModel> getTargetSectionModels() {
 		if (targetSectionModel == null) {
 			targetSectionModel = new EObjectContainmentEList<TargetSectionModel>(TargetSectionModel.class, this, PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL);
 		}
@@ -220,7 +220,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<TargetSectionModel> getSharedTargetSectionModel() {
+	public EList<TargetSectionModel> getSharedTargetSectionModels() {
 		if (sharedTargetSectionModel == null) {
 			sharedTargetSectionModel = new EObjectResolvingEList<TargetSectionModel>(TargetSectionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL);
 		}
@@ -232,7 +232,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<MappingModel> getMappingModel() {
+	public EList<MappingModel> getMappingModels() {
 		if (mappingModel == null) {
 			mappingModel = new EObjectContainmentEList<MappingModel>(MappingModel.class, this, PamtramPackage.PAM_TRA_M__MAPPING_MODEL);
 		}
@@ -244,7 +244,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<MappingModel> getSharedMappingModel() {
+	public EList<MappingModel> getSharedMappingModels() {
 		if (sharedMappingModel == null) {
 			sharedMappingModel = new EObjectResolvingEList<MappingModel>(MappingModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODEL);
 		}
@@ -258,8 +258,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<SourceSection> getSourceSections() {
 		List<SourceSection> sourceSections = Stream
-				.concat(this.getSourceSectionModel().parallelStream(),
-						this.getSharedSourceSectionModel().parallelStream())
+				.concat(this.getSourceSectionModels().parallelStream(),
+						this.getSharedSourceSectionModels().parallelStream())
 				.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,
 				sourceSections.size(), sourceSections.toArray());
@@ -272,8 +272,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<TargetSection> getTargetSections() {
 		List<TargetSection> targetSections = Stream
-				.concat(this.getTargetSectionModel().parallelStream(),
-						this.getSharedTargetSectionModel().parallelStream())
+				.concat(this.getTargetSectionModels().parallelStream(),
+						this.getSharedTargetSectionModels().parallelStream())
 				.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,
 				targetSections.size(), targetSections.toArray());
@@ -285,7 +285,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
-		List<Mapping> mappings = Stream.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())
+		List<Mapping> mappings = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
 				.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,
 				mappings.size(), mappings.toArray());
@@ -298,7 +298,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Mapping> getActiveMappings() {
-		List<Mapping> mappings = this.getMappingModel().parallelStream().filter(m -> !m.isDeactivated())
+		List<Mapping> mappings = this.getMappingModels().parallelStream().filter(m -> !m.isDeactivated())
 				.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
@@ -311,7 +311,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<FixedValue> getGlobalValues() {
-		List<FixedValue> globalValues = Stream.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())
+		List<FixedValue> globalValues = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
 				.flatMap(s -> s.getGlobalValues().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
 				globalValues.size(), globalValues.toArray());
@@ -324,7 +324,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<ValueModifierSet> getModifierSets() {
-		List<ValueModifierSet> modifierSets = Stream.concat(this.getMappingModel().parallelStream(), this.getSharedMappingModel().parallelStream())
+		List<ValueModifierSet> modifierSets = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
 				.flatMap(s -> s.getModifierSets().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS,
 				modifierSets.size(), modifierSets.toArray());
@@ -335,7 +335,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<ConditionModel> getConditionModel() {
+	public EList<ConditionModel> getConditionModels() {
 		if (conditionModel == null) {
 			conditionModel = new EObjectContainmentEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__CONDITION_MODEL);
 		}
@@ -347,7 +347,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	@Override
-	public EList<ConditionModel> getSharedConditionModel() {
+	public EList<ConditionModel> getSharedConditionModels() {
 		if (sharedConditionModel == null) {
 			sharedConditionModel = new EObjectResolvingEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODEL);
 		}
@@ -817,13 +817,13 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				return ((InternalEList<?>)getSourceSectionModel()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getSourceSectionModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				return ((InternalEList<?>)getTargetSectionModel()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getTargetSectionModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				return ((InternalEList<?>)getMappingModel()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getMappingModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
-				return ((InternalEList<?>)getConditionModel()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getConditionModels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -836,17 +836,17 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				return getSourceSectionModel();
+				return getSourceSectionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL:
-				return getSharedSourceSectionModel();
+				return getSharedSourceSectionModels();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				return getTargetSectionModel();
+				return getTargetSectionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL:
-				return getSharedTargetSectionModel();
+				return getSharedTargetSectionModels();
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				return getMappingModel();
+				return getMappingModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODEL:
-				return getSharedMappingModel();
+				return getSharedMappingModels();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
 				return getSourceSections();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
@@ -860,9 +860,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
 				return getModifierSets();
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
-				return getConditionModel();
+				return getConditionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODEL:
-				return getSharedConditionModel();
+				return getSharedConditionModels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -876,36 +876,36 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				getSourceSectionModel().clear();
-				getSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
+				getSourceSectionModels().clear();
+				getSourceSectionModels().addAll((Collection<? extends SourceSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL:
-				getSharedSourceSectionModel().clear();
-				getSharedSourceSectionModel().addAll((Collection<? extends SourceSectionModel>)newValue);
+				getSharedSourceSectionModels().clear();
+				getSharedSourceSectionModels().addAll((Collection<? extends SourceSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				getTargetSectionModel().clear();
-				getTargetSectionModel().addAll((Collection<? extends TargetSectionModel>)newValue);
+				getTargetSectionModels().clear();
+				getTargetSectionModels().addAll((Collection<? extends TargetSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL:
-				getSharedTargetSectionModel().clear();
-				getSharedTargetSectionModel().addAll((Collection<? extends TargetSectionModel>)newValue);
+				getSharedTargetSectionModels().clear();
+				getSharedTargetSectionModels().addAll((Collection<? extends TargetSectionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				getMappingModel().clear();
-				getMappingModel().addAll((Collection<? extends MappingModel>)newValue);
+				getMappingModels().clear();
+				getMappingModels().addAll((Collection<? extends MappingModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODEL:
-				getSharedMappingModel().clear();
-				getSharedMappingModel().addAll((Collection<? extends MappingModel>)newValue);
+				getSharedMappingModels().clear();
+				getSharedMappingModels().addAll((Collection<? extends MappingModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
-				getConditionModel().clear();
-				getConditionModel().addAll((Collection<? extends ConditionModel>)newValue);
+				getConditionModels().clear();
+				getConditionModels().addAll((Collection<? extends ConditionModel>)newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODEL:
-				getSharedConditionModel().clear();
-				getSharedConditionModel().addAll((Collection<? extends ConditionModel>)newValue);
+				getSharedConditionModels().clear();
+				getSharedConditionModels().addAll((Collection<? extends ConditionModel>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -919,28 +919,28 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODEL:
-				getSourceSectionModel().clear();
+				getSourceSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL:
-				getSharedSourceSectionModel().clear();
+				getSharedSourceSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODEL:
-				getTargetSectionModel().clear();
+				getTargetSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODEL:
-				getSharedTargetSectionModel().clear();
+				getSharedTargetSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODEL:
-				getMappingModel().clear();
+				getMappingModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODEL:
-				getSharedMappingModel().clear();
+				getSharedMappingModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODEL:
-				getConditionModel().clear();
+				getConditionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODEL:
-				getSharedConditionModel().clear();
+				getSharedConditionModels().clear();
 				return;
 		}
 		super.eUnset(featureID);

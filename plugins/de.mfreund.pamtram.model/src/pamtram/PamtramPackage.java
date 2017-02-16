@@ -754,7 +754,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSourceSectionModel()
+	 * @see pamtram.PAMTraM#getSourceSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -765,7 +765,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Shared Source Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedSourceSectionModel()
+	 * @see pamtram.PAMTraM#getSharedSourceSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -776,7 +776,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Target Section Model</em>'.
-	 * @see pamtram.PAMTraM#getTargetSectionModel()
+	 * @see pamtram.PAMTraM#getTargetSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -787,7 +787,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Shared Target Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedTargetSectionModel()
+	 * @see pamtram.PAMTraM#getSharedTargetSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -798,7 +798,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Mapping Model</em>'.
-	 * @see pamtram.PAMTraM#getMappingModel()
+	 * @see pamtram.PAMTraM#getMappingModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -809,7 +809,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Shared Mapping Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedMappingModel()
+	 * @see pamtram.PAMTraM#getSharedMappingModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -886,7 +886,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Condition Model</em>'.
-	 * @see pamtram.PAMTraM#getConditionModel()
+	 * @see pamtram.PAMTraM#getConditionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
@@ -897,7 +897,7 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Shared Condition Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedConditionModel()
+	 * @see pamtram.PAMTraM#getSharedConditionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */

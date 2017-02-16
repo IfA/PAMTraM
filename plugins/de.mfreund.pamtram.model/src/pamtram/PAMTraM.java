@@ -55,7 +55,7 @@ public interface PAMTraM extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<SourceSectionModel> getSourceSectionModel();
+	EList<SourceSectionModel> getSourceSectionModels();
 
 	/**
 	 * Returns the value of the '<em><b>Shared Source Section Model</b></em>' reference list.
@@ -71,7 +71,7 @@ public interface PAMTraM extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<SourceSectionModel> getSharedSourceSectionModel();
+	EList<SourceSectionModel> getSharedSourceSectionModels();
 
 	/**
 	 * Returns the value of the '<em><b>Target Section Model</b></em>' containment reference list.
@@ -87,7 +87,7 @@ public interface PAMTraM extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TargetSectionModel> getTargetSectionModel();
+	EList<TargetSectionModel> getTargetSectionModels();
 
 	/**
 	 * Returns the value of the '<em><b>Shared Target Section Model</b></em>' reference list.
@@ -103,7 +103,7 @@ public interface PAMTraM extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<TargetSectionModel> getSharedTargetSectionModel();
+	EList<TargetSectionModel> getSharedTargetSectionModels();
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Model</b></em>' containment reference list.
@@ -119,7 +119,7 @@ public interface PAMTraM extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<MappingModel> getMappingModel();
+	EList<MappingModel> getMappingModels();
 
 	/**
 	 * Returns the value of the '<em><b>Shared Mapping Model</b></em>' reference list.
@@ -135,7 +135,7 @@ public interface PAMTraM extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<MappingModel> getSharedMappingModel();
+	EList<MappingModel> getSharedMappingModels();
 
 	/**
 	 * Returns the value of the '<em><b>Source Sections</b></em>' reference list.
@@ -253,7 +253,7 @@ public interface PAMTraM extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ConditionModel> getConditionModel();
+	EList<ConditionModel> getConditionModels();
 
 	/**
 	 * Returns the value of the '<em><b>Shared Condition Model</b></em>' reference list.
@@ -269,7 +269,7 @@ public interface PAMTraM extends EObject {
 	 * @model
 	 * @generated
 	 */
-	EList<ConditionModel> getSharedConditionModel();
+	EList<ConditionModel> getSharedConditionModels();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -22,13 +22,17 @@ import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 import pamtram.structure.AttributeParameter;
 import pamtram.structure.ContainerParameter;
+import pamtram.structure.ExternalModifiedAttributeElementType;
 import pamtram.structure.ExternalReferenceParameter;
+import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LibraryEntry;
 import pamtram.structure.LibraryParameter;
+import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.ResourceParameter;
@@ -118,6 +122,34 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * @generated
 	 */
 	private EClass instanceSelectorExternalSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modifiedAttributeElementTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass localModifiedAttributeElementTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass externalModifiedAttributeElementTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass globalModifiedAttributeElementTypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -448,6 +480,105 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getModifiedAttributeElementType() {
+		return modifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModifiedAttributeElementType_Source() {
+		return (EReference)modifiedAttributeElementTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModifiedAttributeElementType_Modifier() {
+		return (EReference)modifiedAttributeElementTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModifiedAttributeElementType__GetMappingHintGroup() {
+		return modifiedAttributeElementTypeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getModifiedAttributeElementType__GetMapping() {
+		return modifiedAttributeElementTypeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLocalModifiedAttributeElementType() {
+		return localModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
+		return localModifiedAttributeElementTypeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExternalModifiedAttributeElementType() {
+		return externalModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExternalModifiedAttributeElementType__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map() {
+		return externalModifiedAttributeElementTypeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGlobalModifiedAttributeElementType() {
+		return globalModifiedAttributeElementTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlobalModifiedAttributeElementType_InstanceSelector() {
+		return (EReference)globalModifiedAttributeElementTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getLibraryEntry_OriginalLibraryEntry() {
 		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(2);
 	}
@@ -515,6 +646,21 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorSourceElementEClass = createEClass(INSTANCE_SELECTOR_SOURCE_ELEMENT);
 
 		instanceSelectorExternalSourceElementEClass = createEClass(INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
+
+		modifiedAttributeElementTypeEClass = createEClass(MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE);
+		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
+		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP);
+		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING);
+
+		localModifiedAttributeElementTypeEClass = createEClass(LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEOperation(localModifiedAttributeElementTypeEClass, LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
+
+		externalModifiedAttributeElementTypeEClass = createEClass(EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEOperation(externalModifiedAttributeElementTypeEClass, EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
+
+		globalModifiedAttributeElementTypeEClass = createEClass(GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEReference(globalModifiedAttributeElementTypeEClass, GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
 	}
 
 	/**
@@ -548,6 +694,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		GenLibraryPackage theGenLibraryPackage = (GenLibraryPackage)EPackage.Registry.INSTANCE.getEPackage(GenLibraryPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+		ModifierPackage theModifierPackage = (ModifierPackage)EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theGenericPackage);
@@ -557,13 +704,189 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		// Create type parameters
 		ETypeParameter libraryParameterEClass_ParameterType = addETypeParameter(libraryParameterEClass, "ParameterType");
+		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
+		ETypeParameter modifiedAttributeElementTypeEClass_C = addETypeParameter(modifiedAttributeElementTypeEClass, "C");
+		ETypeParameter modifiedAttributeElementTypeEClass_R = addETypeParameter(modifiedAttributeElementTypeEClass, "R");
+		ETypeParameter modifiedAttributeElementTypeEClass_A = addETypeParameter(modifiedAttributeElementTypeEClass, "A");
+		ETypeParameter localModifiedAttributeElementTypeEClass_S = addETypeParameter(localModifiedAttributeElementTypeEClass, "S");
+		ETypeParameter localModifiedAttributeElementTypeEClass_C = addETypeParameter(localModifiedAttributeElementTypeEClass, "C");
+		ETypeParameter localModifiedAttributeElementTypeEClass_R = addETypeParameter(localModifiedAttributeElementTypeEClass, "R");
+		ETypeParameter localModifiedAttributeElementTypeEClass_A = addETypeParameter(localModifiedAttributeElementTypeEClass, "A");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_S = addETypeParameter(externalModifiedAttributeElementTypeEClass, "S");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_C = addETypeParameter(externalModifiedAttributeElementTypeEClass, "C");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_R = addETypeParameter(externalModifiedAttributeElementTypeEClass, "R");
+		ETypeParameter externalModifiedAttributeElementTypeEClass_A = addETypeParameter(externalModifiedAttributeElementTypeEClass, "A");
+		ETypeParameter globalModifiedAttributeElementTypeEClass_S = addETypeParameter(globalModifiedAttributeElementTypeEClass, "S");
+		ETypeParameter globalModifiedAttributeElementTypeEClass_C = addETypeParameter(globalModifiedAttributeElementTypeEClass, "C");
+		ETypeParameter globalModifiedAttributeElementTypeEClass_R = addETypeParameter(globalModifiedAttributeElementTypeEClass, "R");
+		ETypeParameter globalModifiedAttributeElementTypeEClass_A = addETypeParameter(globalModifiedAttributeElementTypeEClass, "A");
 
 		// Set bounds for type parameters
+		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
+		EGenericType g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		modifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getClass_());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		modifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getReference());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		modifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getAttribute());
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		modifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getSection());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getClass_());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getReference());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getAttribute());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getSection());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getClass_());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getReference());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getAttribute());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getSection());
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getClass_());
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getReference());
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getAttribute());
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		libraryParameterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		EGenericType g1 = createEGenericType(this.getLibraryParameter());
-		EGenericType g2 = createEGenericType(theGenLibraryPackage.getAbstractAttributeParameter());
+		g1 = createEGenericType(this.getLibraryParameter());
+		g2 = createEGenericType(theGenLibraryPackage.getAbstractAttributeParameter());
 		g1.getETypeArguments().add(g2);
 		EGenericType g3 = createEGenericType();
 		g2.getETypeArguments().add(g3);
@@ -588,7 +911,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
-		g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
+		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -600,7 +923,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
 		instanceSelectorSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theMappingPackage.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -612,6 +935,37 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		localModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getModifiedAttributeElementType());
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(libraryParameterEClass, LibraryParameter.class, "LibraryParameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -662,6 +1016,40 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		initEClass(instanceSelectorExternalSourceElementEClass, InstanceSelectorExternalSourceElement.class, "InstanceSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(modifiedAttributeElementTypeEClass, ModifiedAttributeElementType.class, "ModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		initEReference(getModifiedAttributeElementType_Source(), g1, null, "source", null, 1, 1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModifiedAttributeElementType_Modifier(), theModifierPackage.getValueModifierSet(), null, "modifier", null, 0, -1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getModifiedAttributeElementType__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getModifiedAttributeElementType__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
+
+		initEClass(localModifiedAttributeElementTypeEClass, LocalModifiedAttributeElementType.class, "LocalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(externalModifiedAttributeElementTypeEClass, ExternalModifiedAttributeElementType.class, "ExternalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getExternalModifiedAttributeElementType__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesContainerSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(globalModifiedAttributeElementTypeEClass, GlobalModifiedAttributeElementType.class, "GlobalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalModifiedAttributeElementType_InstanceSelector(), this.getInstanceSelector(), null, "instanceSelector", null, 0, -1, GlobalModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
@@ -682,6 +1070,18 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   source, 
 		   new String[] {
 			 "constraints", "noModifiedAttributeElementTypesInConditionModelConditions"
+		   });	
+		addAnnotation
+		  (localModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
+		   });	
+		addAnnotation
+		  (externalModifiedAttributeElementTypeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceAttributeMatchesContainerSection"
 		   });
 	}
 

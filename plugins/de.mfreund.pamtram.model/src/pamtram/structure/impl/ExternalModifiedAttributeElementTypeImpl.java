@@ -10,14 +10,13 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +42,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
 	}
 
 	/**
@@ -53,7 +52,6 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 	 */
 	@Override
 	public boolean validateSourceAttributeMatchesContainerSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getMapping() == null || this.getSource() == null) {
 			return true;
 		}
@@ -68,10 +66,10 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,
 							errorMessage,
-					new Object[] { this, MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					new Object[] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
 		
 		}
 		
@@ -87,7 +85,7 @@ public abstract class ExternalModifiedAttributeElementTypeImpl<S extends Section
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateSourceAttributeMatchesContainerSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

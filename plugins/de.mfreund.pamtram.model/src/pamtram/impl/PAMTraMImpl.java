@@ -56,6 +56,7 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
+import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
@@ -512,7 +513,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 								concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceSection()) || 
 								concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {
 		
-							if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
+							if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
 									setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 								// do nothing as ContainerSelectors are handled below separately
 							} else {
@@ -568,7 +569,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						 * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or
 						 * if we are dealing with a model ContainerSelectorTargetAttribute
 						 */
-						if(setting.getEStructuralFeature().equals(MappingPackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
+						if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getModifiedAttributeElementType_Source()) && 
 								setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 		
 							// in this case, we must not simply redirect but we create a new ContainerSelectorTargetAttribute

@@ -154,6 +154,37 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
+				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
+				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
+				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -410,6 +441,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 

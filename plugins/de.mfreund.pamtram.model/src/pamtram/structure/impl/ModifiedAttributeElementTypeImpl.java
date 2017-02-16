@@ -17,13 +17,13 @@ import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.impl.NamedElementImpl;
 import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -77,7 +77,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
 	}
 
 	/**
@@ -93,7 +93,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			source = (A)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -117,7 +117,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 		A oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -138,7 +138,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public EList<ValueModifierSet> getModifier() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
+			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
 		}
 		return modifier;
 	}
@@ -190,10 +190,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				return getModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -208,10 +208,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				setSource((A)newValue);
 				return;
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();
 				getModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -227,10 +227,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				setSource((A)null);
 				return;
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				getModifier().clear();
 				return;
 		}
@@ -245,9 +245,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				return source != null;
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -261,9 +261,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP:
 				return getMappingHintGroup();
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING:
 				return getMapping();
 		}
 		return super.eInvoke(operationID, arguments);

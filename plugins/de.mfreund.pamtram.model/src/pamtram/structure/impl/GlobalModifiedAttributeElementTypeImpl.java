@@ -10,10 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -58,7 +57,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
 	}
 
 	/**
@@ -68,7 +67,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 */
 	public EList<InstanceSelector> getInstanceSelector() {
 		if (instanceSelector == null) {
-			instanceSelector = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
+			instanceSelector = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
 		}
 		return instanceSelector;
 	}
@@ -81,7 +80,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				return ((InternalEList<?>)getInstanceSelector()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +94,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				return getInstanceSelector();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,7 +109,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				getInstanceSelector().clear();
 				getInstanceSelector().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
@@ -126,7 +125,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				getInstanceSelector().clear();
 				return;
 		}
@@ -141,7 +140,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
 				return instanceSelector != null && !instanceSelector.isEmpty();
 		}
 		return super.eIsSet(featureID);

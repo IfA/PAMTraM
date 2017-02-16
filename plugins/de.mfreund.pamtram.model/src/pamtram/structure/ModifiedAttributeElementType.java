@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -25,7 +24,7 @@ import pamtram.structure.generic.Section;
  *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType()
+ * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType()
  * @model abstract="true"
  * @generated
  */
@@ -40,7 +39,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Attribute)
-	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Source()
+	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Source()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -66,7 +65,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getModifiedAttributeElementType_Modifier()
+	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Modifier()
 	 * @model
 	 * @generated
 	 */

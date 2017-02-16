@@ -15,6 +15,7 @@ import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.ModifiedAttributeElementTypeImpl;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
@@ -87,7 +88,7 @@ public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeEleme
 					MappingValidator.DIAGNOSTIC_SOURCE,
 							MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,
 							errorMessage,
-					new Object[] { this, MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					new Object[] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
 		
 		}
 		

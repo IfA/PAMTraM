@@ -139,14 +139,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createClassMatcherAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
-				return createModifiedAttributeElementTypeAdapter();
-			}
-			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
-				return createLocalModifiedAttributeElementTypeAdapter();
-			}
-			@Override
 			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
 				return createMappingHintGroupImporterAdapter();
 			}
@@ -219,10 +211,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMappingExternalSourceElementAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
-				return createExternalModifiedAttributeElementTypeAdapter();
-			}
-			@Override
 			public Adapter caseContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement object) {
 				return createContainerSelectorExternalSourceElementAdapter();
 			}
@@ -245,10 +233,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExpandableHint(ExpandableHint object) {
 				return createExpandableHintAdapter();
-			}
-			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
-				return createGlobalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
@@ -283,12 +267,28 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+				return createModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+				return createLocalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
 				return createInstanceSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 				return createValueConstraintSourceInterfaceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+				return createExternalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+				return createGlobalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

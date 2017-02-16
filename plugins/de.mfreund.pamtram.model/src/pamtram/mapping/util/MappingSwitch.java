@@ -218,21 +218,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
 				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
 				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
@@ -411,14 +396,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT: {
 				ContainerSelectorExternalSourceElement containerSelectorExternalSourceElement = (ContainerSelectorExternalSourceElement)theEObject;
 				T result = caseContainerSelectorExternalSourceElement(containerSelectorExternalSourceElement);
@@ -485,14 +462,6 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.EXPANDABLE_HINT: {
 				ExpandableHint expandableHint = (ExpandableHint)theEObject;
 				T result = caseExpandableHint(expandableHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -9,14 +9,13 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +41,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
 	}
 
 	/**
@@ -51,7 +50,6 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	 * @generated
 	 */
 	public boolean validateSourceAttributeMatchesSectionOrContainedSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null
 						|| !(this.source.getContainingSection() instanceof SourceSection)) {
 			return true;
@@ -74,10 +72,10 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 			diagnostics.add
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 MappingValidator.DIAGNOSTIC_SOURCE,
-					 MappingValidator.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
+					 StructureValidator.DIAGNOSTIC_SOURCE,
+					 StructureValidator.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
 					 errorMessage,
-					 new Object [] { this, MappingPackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					 new Object [] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
 			}
 		
 		return result;
@@ -92,7 +90,7 @@ public abstract class LocalModifiedAttributeElementTypeImpl<S extends Section<S,
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateSourceAttributeMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

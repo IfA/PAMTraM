@@ -49,7 +49,7 @@ import pamtram.structure.source.impl.SourcePackageImpl;
 
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.FileAttribute;
-import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
@@ -387,7 +387,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getFileTypeEnum() {
+	public EEnum getFileType() {
 		return fileTypeEnumEEnum;
 	}
 
@@ -445,7 +445,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		virtualTargetSectionAttributeEClass = createEClass(VIRTUAL_TARGET_SECTION_ATTRIBUTE);
 
 		// Create enums
-		fileTypeEnumEEnum = createEEnum(FILE_TYPE_ENUM);
+		fileTypeEnumEEnum = createEEnum(FILE_TYPE);
 	}
 
 	/**
@@ -587,7 +587,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(fileAttributeEClass, FileAttribute.class, "FileAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFileAttribute_FileType(), this.getFileTypeEnum(), "fileType", null, 1, 1, FileAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttribute_FileType(), this.getFileType(), "fileType", null, 1, 1, FileAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetSectionClassEClass, TargetSectionClass.class, "TargetSectionClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -615,9 +615,9 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		initEClass(virtualTargetSectionAttributeEClass, VirtualTargetSectionAttribute.class, "VirtualTargetSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
-		initEEnum(fileTypeEnumEEnum, FileTypeEnum.class, "FileTypeEnum");
-		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XMI);
-		addEEnumLiteral(fileTypeEnumEEnum, FileTypeEnum.XML);
+		initEEnum(fileTypeEnumEEnum, FileType.class, "FileType");
+		addEEnumLiteral(fileTypeEnumEEnum, FileType.XMI);
+		addEEnumLiteral(fileTypeEnumEEnum, FileType.XML);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

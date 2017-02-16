@@ -13,11 +13,11 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>File Type Enum</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see pamtram.structure.target.TargetPackage#getFileTypeEnum()
+ * @see pamtram.structure.target.TargetPackage#getFileType()
  * @model
  * @generated
  */
-public enum FileTypeEnum implements Enumerator {
+public enum FileType implements Enumerator {
 	/**
 	 * The '<em><b>XMI</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -74,8 +74,8 @@ public enum FileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final FileTypeEnum[] VALUES_ARRAY =
-		new FileTypeEnum[] {
+	private static final FileType[] VALUES_ARRAY =
+		new FileType[] {
 			XMI,
 			XML,
 		};
@@ -86,7 +86,7 @@ public enum FileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<FileTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<FileType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>File Type Enum</b></em>' literal with the specified literal value.
@@ -96,9 +96,9 @@ public enum FileTypeEnum implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static FileTypeEnum get(String literal) {
+	public static FileType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FileTypeEnum result = VALUES_ARRAY[i];
+			FileType result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -114,9 +114,9 @@ public enum FileTypeEnum implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static FileTypeEnum getByName(String name) {
+	public static FileType getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			FileTypeEnum result = VALUES_ARRAY[i];
+			FileType result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -132,7 +132,7 @@ public enum FileTypeEnum implements Enumerator {
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static FileTypeEnum get(int value) {
+	public static FileType get(int value) {
 		switch (value) {
 			case XMI_VALUE: return XMI;
 			case XML_VALUE: return XML;
@@ -167,7 +167,7 @@ public enum FileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private FileTypeEnum(int value, String name, String literal) {
+	private FileType(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -211,4 +211,4 @@ public enum FileTypeEnum implements Enumerator {
 		return literal;
 	}
 	
-} //FileTypeEnum
+} //FileType

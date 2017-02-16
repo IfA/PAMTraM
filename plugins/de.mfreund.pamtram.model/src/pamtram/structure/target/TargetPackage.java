@@ -1231,14 +1231,14 @@ public interface TargetPackage extends EPackage {
 	int ACTUAL_TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT = TARGET_SECTION_ATTRIBUTE_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}' enum.
+	 * The meta object id for the '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.target.FileTypeEnum
-	 * @see pamtram.structure.target.impl.TargetPackageImpl#getFileTypeEnum()
+	 * @see pamtram.structure.target.FileType
+	 * @see pamtram.structure.target.impl.TargetPackageImpl#getFileType()
 	 * @generated
 	 */
-	int FILE_TYPE_ENUM = 9;
+	int FILE_TYPE = 9;
 
 
 	/**
@@ -1407,14 +1407,14 @@ public interface TargetPackage extends EPackage {
 	EClass getVirtualTargetSectionAttribute();
 
 	/**
-	 * Returns the meta object for enum '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}'.
+	 * Returns the meta object for enum '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>File Type Enum</em>'.
-	 * @see pamtram.structure.target.FileTypeEnum
+	 * @see pamtram.structure.target.FileType
 	 * @generated
 	 */
-	EEnum getFileTypeEnum();
+	EEnum getFileType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1586,14 +1586,14 @@ public interface TargetPackage extends EPackage {
 		EClass VIRTUAL_TARGET_SECTION_ATTRIBUTE = eINSTANCE.getVirtualTargetSectionAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.target.FileTypeEnum <em>File Type Enum</em>}' enum.
+		 * The meta object literal for the '{@link pamtram.structure.target.FileType <em>File Type Enum</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.target.FileTypeEnum
-		 * @see pamtram.structure.target.impl.TargetPackageImpl#getFileTypeEnum()
+		 * @see pamtram.structure.target.FileType
+		 * @see pamtram.structure.target.impl.TargetPackageImpl#getFileType()
 		 * @generated
 		 */
-		EEnum FILE_TYPE_ENUM = eINSTANCE.getFileTypeEnum();
+		EEnum FILE_TYPE = eINSTANCE.getFileType();
 
 	}
 

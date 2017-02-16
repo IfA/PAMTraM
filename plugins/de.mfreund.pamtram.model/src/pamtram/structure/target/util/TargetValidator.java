@@ -131,8 +131,8 @@ public class TargetValidator extends EObjectValidator {
 				return validateActualTargetSectionAttribute((ActualTargetSectionAttribute)value, diagnostics, context);
 			case TargetPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE:
 				return validateVirtualTargetSectionAttribute((VirtualTargetSectionAttribute)value, diagnostics, context);
-			case TargetPackage.FILE_TYPE_ENUM:
-				return validateFileTypeEnum((FileTypeEnum)value, diagnostics, context);
+			case TargetPackage.FILE_TYPE:
+				return validateFileTypeEnum((FileType)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -357,7 +357,7 @@ public class TargetValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFileTypeEnum(FileTypeEnum fileTypeEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateFileTypeEnum(FileType fileTypeEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

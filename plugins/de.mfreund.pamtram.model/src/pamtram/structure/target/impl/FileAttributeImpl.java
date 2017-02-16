@@ -6,7 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.structure.target.FileAttribute;
-import pamtram.structure.target.FileTypeEnum;
+import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetPackage;
 
 /**
@@ -30,7 +30,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected static final FileTypeEnum FILE_TYPE_EDEFAULT = FileTypeEnum.XMI;
+	protected static final FileType FILE_TYPE_EDEFAULT = FileType.XMI;
 
 	/**
 	 * The cached value of the '{@link #getFileType() <em>File Type</em>}' attribute.
@@ -40,7 +40,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 * @generated
 	 * @ordered
 	 */
-	protected FileTypeEnum fileType = FILE_TYPE_EDEFAULT;
+	protected FileType fileType = FILE_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -64,7 +64,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 * @generated
 	 */
 	@Override
-	public FileTypeEnum getFileType() {
+	public FileType getFileType() {
 		return fileType;
 	}
 
@@ -73,8 +73,8 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 * @generated
 	 */
 	@Override
-	public void setFileType(FileTypeEnum newFileType) {
-		FileTypeEnum oldFileType = fileType;
+	public void setFileType(FileType newFileType) {
+		FileType oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.FILE_ATTRIBUTE__FILE_TYPE, oldFileType, fileType));
@@ -101,7 +101,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TargetPackage.FILE_ATTRIBUTE__FILE_TYPE:
-				setFileType((FileTypeEnum)newValue);
+				setFileType((FileType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

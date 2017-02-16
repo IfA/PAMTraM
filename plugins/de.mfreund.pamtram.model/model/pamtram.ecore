@@ -1140,9 +1140,9 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//structure/target/VirtualTargetSectionAttribute">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
-            eType="#//structure/target/FileTypeEnum"/>
+            eType="#//structure/target/FileType"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="FileTypeEnum">
+      <eClassifiers xsi:type="ecore:EEnum" name="FileType">
         <eLiterals name="XMI"/>
         <eLiterals name="XML" value="1"/>
       </eClassifiers>

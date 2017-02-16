@@ -22,7 +22,7 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 
 	/**
 	 * Returns the value of the '<em><b>File Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link pamtram.structure.target.FileTypeEnum}.
+	 * The literals are from the enumeration {@link pamtram.structure.target.FileType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Type</em>' attribute isn't clear,
@@ -30,22 +30,22 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>File Type</em>' attribute.
-	 * @see pamtram.structure.target.FileTypeEnum
-	 * @see #setFileType(FileTypeEnum)
+	 * @see pamtram.structure.target.FileType
+	 * @see #setFileType(FileType)
 	 * @see pamtram.structure.target.TargetPackage#getFileAttribute_FileType()
 	 * @model required="true"
 	 * @generated
 	 */
-	FileTypeEnum getFileType();
+	FileType getFileType();
 
 	/**
 	 * Sets the value of the '{@link pamtram.structure.target.FileAttribute#getFileType <em>File Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>File Type</em>' attribute.
-	 * @see pamtram.structure.target.FileTypeEnum
+	 * @see pamtram.structure.target.FileType
 	 * @see #getFileType()
 	 * @generated
 	 */
-	void setFileType(FileTypeEnum value);
+	void setFileType(FileType value);
 } // FileAttribute

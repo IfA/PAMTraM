@@ -17,7 +17,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.condition.AttributeCondition#getValueConstraints <em>Value Constraints</em>}</li>
- *   <li>{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}</li>
+ *   <li>{@link pamtram.condition.AttributeCondition#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getAttributeCondition()
@@ -42,14 +42,14 @@ public interface AttributeCondition extends Condition {
 	EList<ValueConstraint> getValueConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Condition Attribute Ref</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition Attribute Ref</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition Attribute Ref</em>' reference.
+	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ActualSourceSectionAttribute)
 	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_Target()
 	 * @model required="true"
@@ -58,10 +58,10 @@ public interface AttributeCondition extends Condition {
 	ActualSourceSectionAttribute getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}' reference.
+	 * Sets the value of the '{@link pamtram.condition.AttributeCondition#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition Attribute Ref</em>' reference.
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */

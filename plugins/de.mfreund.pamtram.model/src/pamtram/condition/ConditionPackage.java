@@ -771,7 +771,7 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Condition Attribute Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1300,10 +1300,10 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ValueConstraints();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.AttributeCondition#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition Attribute Ref</em>'.
+	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see pamtram.condition.AttributeCondition#getTarget()
 	 * @see #getAttributeCondition()
 	 * @generated
@@ -1586,7 +1586,7 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = eINSTANCE.getAttributeCondition_ValueConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Attribute Ref</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

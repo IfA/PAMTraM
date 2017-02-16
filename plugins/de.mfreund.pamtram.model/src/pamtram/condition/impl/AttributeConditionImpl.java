@@ -32,7 +32,7 @@ import pamtram.structure.source.SourceSection;
  * </p>
  * <ul>
  *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
- *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getConditionAttributeRef <em>Condition Attribute Ref</em>}</li>
+ *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,14 +49,14 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	protected EList<ValueConstraint> valueConstraints;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Condition Attribute Ref</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected ActualSourceSectionAttribute conditionAttributeRef;
+	protected ActualSourceSectionAttribute target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,15 +95,15 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @generated
 	 */
 	public ActualSourceSectionAttribute getTarget() {
-		if (conditionAttributeRef != null && conditionAttributeRef.eIsProxy()) {
-			InternalEObject oldConditionAttributeRef = (InternalEObject)conditionAttributeRef;
-			conditionAttributeRef = (ActualSourceSectionAttribute)eResolveProxy(oldConditionAttributeRef);
-			if (conditionAttributeRef != oldConditionAttributeRef) {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldConditionAttributeRef, conditionAttributeRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldTarget, target));
 			}
 		}
-		return conditionAttributeRef;
+		return target;
 	}
 
 	/**
@@ -111,8 +111,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute basicGetConditionAttributeRef() {
-		return conditionAttributeRef;
+	public ActualSourceSectionAttribute basicGetTarget() {
+		return target;
 	}
 
 	/**
@@ -120,11 +120,11 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ActualSourceSectionAttribute newConditionAttributeRef) {
-		ActualSourceSectionAttribute oldConditionAttributeRef = conditionAttributeRef;
-		conditionAttributeRef = newConditionAttributeRef;
+	public void setTarget(ActualSourceSectionAttribute newTarget) {
+		ActualSourceSectionAttribute oldTarget = target;
+		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldConditionAttributeRef, conditionAttributeRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				return getValueConstraints();
 			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
 				if (resolve) return getTarget();
-				return basicGetConditionAttributeRef();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -207,7 +207,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return valueConstraints != null && !valueConstraints.isEmpty();
 			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
-				return conditionAttributeRef != null;
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

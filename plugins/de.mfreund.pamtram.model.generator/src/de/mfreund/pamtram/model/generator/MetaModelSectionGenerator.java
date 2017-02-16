@@ -135,11 +135,11 @@ public class MetaModelSectionGenerator {
 		SectionModel<?, ?, ?, ?> sectionModel;
 		if (ret.get(0) instanceof SourceSection) {
 			sectionModel = PamtramFactory.eINSTANCE.createSourceSectionModel();
-			((SourceSectionModel) sectionModel).getMetaModelSections()
+			((SourceSectionModel) sectionModel).getSections()
 					.addAll((Collection<? extends SourceSection>) ret);
 		} else {
 			sectionModel = PamtramFactory.eINSTANCE.createTargetSectionModel();
-			((TargetSectionModel) sectionModel).getMetaModelSections()
+			((TargetSectionModel) sectionModel).getSections()
 					.addAll((Collection<? extends TargetSection>) ret);
 		}
 
@@ -225,7 +225,7 @@ public class MetaModelSectionGenerator {
 					attValConstraint.setName(eAttribute.getName() + "_Constraint");
 					attValConstraint.setType(ValueConstraintType.REQUIRED);
 					attValConstraint.setExpression(attributeValue.toString());
-					((ActualSourceSectionAttribute) attribute).getValueConstraint().add(attValConstraint);
+					((ActualSourceSectionAttribute) attribute).getValueConstraints().add(attValConstraint);
 				} else {
 					((ActualTargetSectionAttribute) attribute).setValue(attributeValue.toString());
 				}

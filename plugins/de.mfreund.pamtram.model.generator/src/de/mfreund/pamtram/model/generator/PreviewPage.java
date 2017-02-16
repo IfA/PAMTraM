@@ -330,7 +330,7 @@ public class PreviewPage extends WizardPage {
 
 		this.wizardData.setGenerator(generator);
 
-		List<Section<?, ?, ?, ?>> created = new ArrayList<>(generator.generate().getMetaModelSections());
+		List<Section<?, ?, ?, ?>> created = new ArrayList<>(generator.generate().getSections());
 
 		this.wizardData.setCreatedSections(created);
 
@@ -412,8 +412,8 @@ public class PreviewPage extends WizardPage {
 		protected boolean canEdit(Object object) {
 
 			return object instanceof SourceSectionAttribute
-					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint
+					&& ((SourceSectionAttribute) object).getValueConstraints().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraints().get(0) instanceof EqualityConstraint
 					|| super.canEdit(object);
 		}
 
@@ -421,12 +421,12 @@ public class PreviewPage extends WizardPage {
 		protected org.eclipse.jface.viewers.CellEditor getCellEditor(Object object) {
 
 			if (object instanceof SourceSectionAttribute
-					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
+					&& ((SourceSectionAttribute) object).getValueConstraints().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraints().get(0) instanceof EqualityConstraint) {
 
 				Optional<IPropertyDescriptor> expressionDescriptor = Arrays
 						.asList(this.propertySourceProvider
-								.getPropertySource(((SourceSectionAttribute) object).getValueConstraint().get(0))
+								.getPropertySource(((SourceSectionAttribute) object).getValueConstraints().get(0))
 								.getPropertyDescriptors())
 						.stream().filter(d -> "expression".equals(d.getId())).findAny();
 
@@ -445,10 +445,10 @@ public class PreviewPage extends WizardPage {
 		protected Object getValue(Object object) {
 
 			if (object instanceof SourceSectionAttribute
-					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
+					&& ((SourceSectionAttribute) object).getValueConstraints().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraints().get(0) instanceof EqualityConstraint) {
 
-				return ((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+				return ((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraints().get(0))
 						.getExpression();
 
 			} else {
@@ -460,10 +460,10 @@ public class PreviewPage extends WizardPage {
 		protected void setValue(Object object, Object value) {
 
 			if (object instanceof SourceSectionAttribute && value instanceof String
-					&& ((SourceSectionAttribute) object).getValueConstraint().size() == 1
-					&& ((SourceSectionAttribute) object).getValueConstraint().get(0) instanceof EqualityConstraint) {
+					&& ((SourceSectionAttribute) object).getValueConstraints().size() == 1
+					&& ((SourceSectionAttribute) object).getValueConstraints().get(0) instanceof EqualityConstraint) {
 
-				((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraint().get(0))
+				((EqualityConstraint) ((SourceSectionAttribute) object).getValueConstraints().get(0))
 						.setExpression((String) value);
 
 				// We need to refresh the viewer manually so that the displayed value will be updated

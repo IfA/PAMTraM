@@ -313,17 +313,17 @@ public class MappingModelSelectorPage extends WizardPage {
 		PAMTraM pamtram = this.wizardData.getPamtram();
 
 		// get the source packages
-		Set<EPackage> sourcePackages = pamtram.getSourceSectionModel().stream()
+		Set<EPackage> sourcePackages = pamtram.getSourceSectionModels().stream()
 				.map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet());
 		sourcePackages
-		.addAll(pamtram.getSharedSourceSectionModel().stream().map(SourceSectionModel::getMetaModelPackage)
+		.addAll(pamtram.getSharedSourceSectionModels().stream().map(SourceSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet()));
 		// get the target packages
-		Set<EPackage> targetPackages = pamtram.getTargetSectionModel().stream()
+		Set<EPackage> targetPackages = pamtram.getTargetSectionModels().stream()
 				.map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet());
-		targetPackages.addAll(pamtram.getSharedTargetSectionModel().stream()
+		targetPackages.addAll(pamtram.getSharedTargetSectionModels().stream()
 				.map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toSet()));
 
@@ -406,10 +406,10 @@ public class MappingModelSelectorPage extends WizardPage {
 		// Collect a SectionModels from the PAMTraM instance
 		//
 		Stream<SectionModel<?, ?, ?, ?>> sectionModelStream = this.wizardData.getSectionType() == SectionType.SOURCE
-				? Stream.concat(this.wizardData.getPamtram().getSourceSectionModel().stream(),
-						this.wizardData.getPamtram().getSharedSourceSectionModel().stream())
-						: Stream.concat(this.wizardData.getPamtram().getTargetSectionModel().stream(),
-								this.wizardData.getPamtram().getSharedTargetSectionModel().stream());
+				? Stream.concat(this.wizardData.getPamtram().getSourceSectionModels().stream(),
+						this.wizardData.getPamtram().getSharedSourceSectionModels().stream())
+						: Stream.concat(this.wizardData.getPamtram().getTargetSectionModels().stream(),
+								this.wizardData.getPamtram().getSharedTargetSectionModels().stream());
 
 				// Filter those packages with the correct MetaModelPackage
 				//

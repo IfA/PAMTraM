@@ -110,7 +110,7 @@ public class GeneratorWizard extends Wizard {
 			// now that we now which of the sections are unique, we can add those to the pamtram model
 			//
 			AddCommand addGeneratedSections = new AddCommand(editingDomain, this.wizardData.getSectionModel(),
-					PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, sectionsToAdd);
+					PamtramPackage.Literals.SECTION_MODEL__SECTIONS, sectionsToAdd);
 
 			editingDomain.getCommandStack().execute(addGeneratedSections);
 
@@ -119,7 +119,7 @@ public class GeneratorWizard extends Wizard {
 		} else {
 
 			// now that we now which of the sections are unique, we can add those to the pamtram model
-			((EList<Class<?, ?, ?, ?>>) this.wizardData.getSectionModel().getMetaModelSections()).addAll(sectionsToAdd);
+			((EList<Class<?, ?, ?, ?>>) this.wizardData.getSectionModel().getSections()).addAll(sectionsToAdd);
 
 			// finally, we save the model
 			try {

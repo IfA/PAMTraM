@@ -80,11 +80,11 @@ public class ResultPageTableViewerLabelProvider implements ITableLabelProvider {
 	protected String getValue(Attribute<?, ?, ?, ?> att) {
 
 		if (att instanceof ActualSourceSectionAttribute) {
-			if (!((ActualSourceSectionAttribute) att).getValueConstraint().isEmpty()
-					&& ((ActualSourceSectionAttribute) att).getValueConstraint()
+			if (!((ActualSourceSectionAttribute) att).getValueConstraints().isEmpty()
+					&& ((ActualSourceSectionAttribute) att).getValueConstraints()
 					.get(0) instanceof SingleReferenceValueConstraint) {
 				return ((SingleReferenceValueConstraint) ((ActualSourceSectionAttribute) att)
-						.getValueConstraint().get(0)).getExpression();
+						.getValueConstraints().get(0)).getExpression();
 			} else {
 				return "";
 			}

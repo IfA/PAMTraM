@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.ConditionModel;
 import pamtram.DeactivatableElement;
+import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -41,7 +42,6 @@ import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;

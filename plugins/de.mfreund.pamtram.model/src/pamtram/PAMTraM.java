@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
 
@@ -207,7 +206,7 @@ public interface PAMTraM extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Global Values</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.FixedValue}.
+	 * The list contents are of type {@link pamtram.FixedValue}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Global Values</em>' reference list isn't clear,

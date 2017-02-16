@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.FixedValue;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.structure.InstanceSelectorExternalSourceElement;

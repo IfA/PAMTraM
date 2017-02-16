@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.util.PamtramValidator;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
 

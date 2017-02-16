@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ExpressionElement;
+import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
+import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;

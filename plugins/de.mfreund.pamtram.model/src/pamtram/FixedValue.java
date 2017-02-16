@@ -1,8 +1,11 @@
 /**
  */
-package pamtram.mapping;
+package pamtram;
 
-import pamtram.NamedElement;
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -15,7 +18,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.FixedValue#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.FixedValue#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getFixedValue()
@@ -40,7 +43,7 @@ public interface FixedValue extends NamedElement, AttributeMappingSourceInterfac
 	String getValue();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.FixedValue#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link pamtram.FixedValue#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.

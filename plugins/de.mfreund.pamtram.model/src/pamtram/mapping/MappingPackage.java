@@ -2542,10 +2542,10 @@ public interface MappingPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.FixedValueImpl
+	 * @see pamtram.impl.FixedValueImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getFixedValue()
 	 * @generated
 	 */
@@ -4679,21 +4679,21 @@ public interface MappingPackage extends EPackage {
 	EClass getMappedAttributeValueAppender();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.FixedValue <em>Fixed Value</em>}'.
+	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Fixed Value</em>'.
-	 * @see pamtram.mapping.FixedValue
+	 * @see pamtram.FixedValue
 	 * @generated
 	 */
 	EClass getFixedValue();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.mapping.FixedValue#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.FixedValue#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see pamtram.mapping.FixedValue#getValue()
+	 * @see pamtram.FixedValue#getValue()
 	 * @see #getFixedValue()
 	 * @generated
 	 */
@@ -5673,10 +5673,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPED_ATTRIBUTE_VALUE_APPENDER = eINSTANCE.getMappedAttributeValueAppender();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.FixedValueImpl
+		 * @see pamtram.impl.FixedValueImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getFixedValue()
 		 * @generated
 		 */

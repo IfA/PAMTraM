@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import pamtram.FixedValue;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
@@ -34,7 +36,6 @@ import pamtram.mapping.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.GlobalModifiedAttributeElementType;

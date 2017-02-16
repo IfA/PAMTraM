@@ -3,8 +3,6 @@
 package pamtram.mapping;
 
 import org.eclipse.emf.common.util.EList;
-
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.source.SourceSectionAttribute;
 
 
@@ -50,14 +48,5 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 * @generated
 	 */
 	SourceSectionAttribute getSourceAttribute();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this instanceof LocalMappedAttributeValueExpander) {\r\n\treturn ((LocalMappedAttributeValueExpander) this).getModifiers();\r\n} else if(this instanceof ExternalMappedAttributeValueExpander) {\r\n\treturn ((ExternalMappedAttributeValueExpander) this).getModifiers();\r\n} else {\r\n\treturn null;\r\n}'"
-	 * @generated
-	 */
-	EList<ValueModifierSet> getModifiers();
 
 } // MappedAttributeValueExpander

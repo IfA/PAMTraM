@@ -17,7 +17,6 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -91,22 +90,6 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<ValueModifierSet> getModifiers() {
-		if(this instanceof LocalMappedAttributeValueExpander) {
-			return ((LocalMappedAttributeValueExpander) this).getModifiers();
-		} else if(this instanceof ExternalMappedAttributeValueExpander) {
-			return ((ExternalMappedAttributeValueExpander) this).getModifiers();
 		} else {
 			return null;
 		}
@@ -259,7 +242,6 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -276,8 +258,6 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalM
 		switch (operationID) {
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
-				return getModifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

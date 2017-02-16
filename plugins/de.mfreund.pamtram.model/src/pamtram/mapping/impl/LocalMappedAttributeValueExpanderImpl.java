@@ -16,7 +16,6 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -90,21 +89,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ValueModifierSet> getModifiers() {
-		if(this instanceof LocalMappedAttributeValueExpander) {
-			return ((LocalMappedAttributeValueExpander) this).getModifiers();
-		} else if(this instanceof ExternalMappedAttributeValueExpander) {
-			return ((ExternalMappedAttributeValueExpander) this).getModifiers();
 		} else {
 			return null;
 		}
@@ -257,7 +241,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -274,8 +257,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 		switch (operationID) {
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
-				return getModifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

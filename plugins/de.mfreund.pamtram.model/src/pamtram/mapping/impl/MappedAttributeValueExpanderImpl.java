@@ -13,7 +13,6 @@ import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.source.SourceSectionAttribute;
 
 /**
@@ -93,21 +92,6 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ValueModifierSet> getModifiers() {
-		if(this instanceof LocalMappedAttributeValueExpander) {
-			return ((LocalMappedAttributeValueExpander) this).getModifiers();
-		} else if(this instanceof ExternalMappedAttributeValueExpander) {
-			return ((ExternalMappedAttributeValueExpander) this).getModifiers();
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -173,8 +157,6 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 		switch (operationID) {
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
-				return getModifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

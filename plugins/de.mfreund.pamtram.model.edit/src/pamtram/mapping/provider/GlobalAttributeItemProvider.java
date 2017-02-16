@@ -137,7 +137,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_GlobalAttribute_modifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
-				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIER,
+				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIERS,
 				 true,
 				 false,
 				 true,

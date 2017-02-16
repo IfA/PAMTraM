@@ -21,7 +21,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType()
@@ -56,7 +56,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	void setSource(A value);
 
 	/**
-	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
+	 * Returns the value of the '<em><b>Modifiers</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -64,7 +64,7 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifier</em>' reference list.
+	 * @return the value of the '<em>Modifiers</em>' reference list.
 	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Modifiers()
 	 * @model
 	 * @generated

@@ -593,7 +593,7 @@ public interface StructurePackage extends EPackage {
 	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -666,7 +666,7 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -748,7 +748,7 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__SOURCE = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -839,7 +839,7 @@ public interface StructurePackage extends EPackage {
 	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -921,7 +921,7 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1012,7 +1012,7 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1351,10 +1351,10 @@ public interface StructurePackage extends EPackage {
 	EReference getModifiedAttributeElementType_Source();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.ModifiedAttributeElementType#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.structure.ModifiedAttributeElementType#getModifiers <em>Modifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Modifier</em>'.
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
 	 * @see pamtram.structure.ModifiedAttributeElementType#getModifiers()
 	 * @see #getModifiedAttributeElementType()
 	 * @generated
@@ -1715,7 +1715,7 @@ public interface StructurePackage extends EPackage {
 		EReference MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = eINSTANCE.getModifiedAttributeElementType_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

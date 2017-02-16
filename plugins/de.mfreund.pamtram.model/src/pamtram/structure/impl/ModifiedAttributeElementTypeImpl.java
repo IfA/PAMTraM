@@ -35,7 +35,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,14 +52,14 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	protected A source;
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> modifier;
+	protected EList<ValueModifierSet> modifiers;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,10 +137,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (modifier == null) {
-			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS);
 		}
-		return modifier;
+		return modifiers;
 	}
 
 	/**
@@ -248,7 +248,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				return source != null;
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
-				return modifier != null && !modifier.isEmpty();
+				return modifiers != null && !modifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

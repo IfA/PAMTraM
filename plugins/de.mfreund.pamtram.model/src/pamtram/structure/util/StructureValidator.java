@@ -10,6 +10,12 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.structure.*;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryParameter;
+import pamtram.structure.library.ResourceParameter;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc

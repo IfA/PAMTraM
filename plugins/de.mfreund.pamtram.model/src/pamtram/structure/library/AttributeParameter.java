@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.library;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 
 
@@ -15,7 +16,7 @@ import pamtram.structure.target.ActualTargetSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.AttributeParameter#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.library.AttributeParameter#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getAttributeParameter()
@@ -40,7 +41,7 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	ActualTargetSectionAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.AttributeParameter#getAttribute <em>Attribute</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.structure.library.AttributeParameter#getAttribute <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' containment reference.

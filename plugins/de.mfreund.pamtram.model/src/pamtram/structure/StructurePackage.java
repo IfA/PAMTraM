@@ -62,50 +62,50 @@ public interface StructurePackage extends EPackage {
 	StructurePackage eINSTANCE = pamtram.structure.impl.StructurePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.LibraryParameterImpl
+	 * @see pamtram.structure.library.impl.LibraryParameterImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryParameter()
 	 * @generated
 	 */
 	int LIBRARY_PARAMETER = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.AttributeParameterImpl
+	 * @see pamtram.structure.library.impl.AttributeParameterImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getAttributeParameter()
 	 * @generated
 	 */
 	int ATTRIBUTE_PARAMETER = 1;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ContainerParameterImpl
+	 * @see pamtram.structure.library.impl.ContainerParameterImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getContainerParameter()
 	 * @generated
 	 */
 	int CONTAINER_PARAMETER = 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ExternalReferenceParameterImpl
+	 * @see pamtram.structure.library.impl.ExternalReferenceParameterImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getExternalReferenceParameter()
 	 * @generated
 	 */
 	int EXTERNAL_REFERENCE_PARAMETER = 3;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.LibraryEntryImpl
+	 * @see pamtram.structure.library.impl.LibraryEntryImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryEntry()
 	 * @generated
 	 */
@@ -319,10 +319,10 @@ public interface StructurePackage extends EPackage {
 	int EXTERNAL_REFERENCE_PARAMETER_OPERATION_COUNT = LIBRARY_PARAMETER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ResourceParameterImpl <em>Resource Parameter</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.library.impl.ResourceParameterImpl <em>Resource Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.structure.impl.ResourceParameterImpl
+	 * @see pamtram.structure.library.impl.ResourceParameterImpl
 	 * @see pamtram.structure.impl.StructurePackageImpl#getResourceParameter()
 	 * @generated
 	 */
@@ -1066,192 +1066,192 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.LibraryParameter <em>Library Parameter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.LibraryParameter <em>Library Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Library Parameter</em>'.
-	 * @see pamtram.structure.LibraryParameter
+	 * @see pamtram.structure.library.LibraryParameter
 	 * @generated
 	 */
 	EClass getLibraryParameter();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.LibraryParameter#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.library.LibraryParameter#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see pamtram.structure.LibraryParameter#getSource()
+	 * @see pamtram.structure.library.LibraryParameter#getSource()
 	 * @see #getLibraryParameter()
 	 * @generated
 	 */
 	EReference getLibraryParameter_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.library.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Original Parameter</em>'.
-	 * @see pamtram.structure.LibraryParameter#getOriginalParameter()
+	 * @see pamtram.structure.library.LibraryParameter#getOriginalParameter()
 	 * @see #getLibraryParameter()
 	 * @generated
 	 */
 	EReference getLibraryParameter_OriginalParameter();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.AttributeParameter <em>Attribute Parameter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.AttributeParameter <em>Attribute Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Parameter</em>'.
-	 * @see pamtram.structure.AttributeParameter
+	 * @see pamtram.structure.library.AttributeParameter
 	 * @generated
 	 */
 	EClass getAttributeParameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.AttributeParameter#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.AttributeParameter#getAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Attribute</em>'.
-	 * @see pamtram.structure.AttributeParameter#getAttribute()
+	 * @see pamtram.structure.library.AttributeParameter#getAttribute()
 	 * @see #getAttributeParameter()
 	 * @generated
 	 */
 	EReference getAttributeParameter_Attribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ContainerParameter <em>Container Parameter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.ContainerParameter <em>Container Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Container Parameter</em>'.
-	 * @see pamtram.structure.ContainerParameter
+	 * @see pamtram.structure.library.ContainerParameter
 	 * @generated
 	 */
 	EClass getContainerParameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.ContainerParameter#getClass_ <em>Class</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.ContainerParameter#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Class</em>'.
-	 * @see pamtram.structure.ContainerParameter#getClass_()
+	 * @see pamtram.structure.library.ContainerParameter#getClass_()
 	 * @see #getContainerParameter()
 	 * @generated
 	 */
 	EReference getContainerParameter_Class();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>External Reference Parameter</em>'.
-	 * @see pamtram.structure.ExternalReferenceParameter
+	 * @see pamtram.structure.library.ExternalReferenceParameter
 	 * @generated
 	 */
 	EClass getExternalReferenceParameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.ExternalReferenceParameter#getReference <em>Reference</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.ExternalReferenceParameter#getReference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Reference</em>'.
-	 * @see pamtram.structure.ExternalReferenceParameter#getReference()
+	 * @see pamtram.structure.library.ExternalReferenceParameter#getReference()
 	 * @see #getExternalReferenceParameter()
 	 * @generated
 	 */
 	EReference getExternalReferenceParameter_Reference();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ResourceParameter <em>Resource Parameter</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.ResourceParameter <em>Resource Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Resource Parameter</em>'.
-	 * @see pamtram.structure.ResourceParameter
+	 * @see pamtram.structure.library.ResourceParameter
 	 * @generated
 	 */
 	EClass getResourceParameter();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.ResourceParameter#getAttribute <em>Attribute</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.ResourceParameter#getAttribute <em>Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Attribute</em>'.
-	 * @see pamtram.structure.ResourceParameter#getAttribute()
+	 * @see pamtram.structure.library.ResourceParameter#getAttribute()
 	 * @see #getResourceParameter()
 	 * @generated
 	 */
 	EReference getResourceParameter_Attribute();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.library.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Original Parameter</em>'.
-	 * @see pamtram.structure.ResourceParameter#getOriginalParameter()
+	 * @see pamtram.structure.library.ResourceParameter#getOriginalParameter()
 	 * @see #getResourceParameter()
 	 * @generated
 	 */
 	EReference getResourceParameter_OriginalParameter();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.LibraryEntry <em>Library Entry</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.library.LibraryEntry <em>Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Library Entry</em>'.
-	 * @see pamtram.structure.LibraryEntry
+	 * @see pamtram.structure.library.LibraryEntry
 	 * @generated
 	 */
 	EClass getLibraryEntry();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.LibraryEntry#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.library.LibraryEntry#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see pamtram.structure.LibraryEntry#getParameters()
+	 * @see pamtram.structure.library.LibraryEntry#getParameters()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
 	EReference getLibraryEntry_Parameters();
 
 	/**
-	 * Returns the meta object for the attribute '{@link pamtram.structure.LibraryEntry#getLibraryFile <em>Library File</em>}'.
+	 * Returns the meta object for the attribute '{@link pamtram.structure.library.LibraryEntry#getLibraryFile <em>Library File</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Library File</em>'.
-	 * @see pamtram.structure.LibraryEntry#getLibraryFile()
+	 * @see pamtram.structure.library.LibraryEntry#getLibraryFile()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
 	EAttribute getLibraryEntry_LibraryFile();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.LibraryEntry#getPath <em>Path</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Path</em>'.
-	 * @see pamtram.structure.LibraryEntry#getPath()
+	 * @see pamtram.structure.library.LibraryEntry#getPath()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
 	EReference getLibraryEntry_Path();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.LibraryEntry#getId <em>Id</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Id</em>'.
-	 * @see pamtram.structure.LibraryEntry#getId()
+	 * @see pamtram.structure.library.LibraryEntry#getId()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
 	EReference getLibraryEntry_Id();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.library.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Resource Parameters</em>'.
-	 * @see pamtram.structure.LibraryEntry#getResourceParameters()
+	 * @see pamtram.structure.library.LibraryEntry#getResourceParameters()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
@@ -1421,11 +1421,11 @@ public interface StructurePackage extends EPackage {
 	EClass getGlobalModifiedAttributeElementType();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.library.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Original Library Entry</em>'.
-	 * @see pamtram.structure.LibraryEntry#getOriginalLibraryEntry()
+	 * @see pamtram.structure.library.LibraryEntry#getOriginalLibraryEntry()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
@@ -1455,10 +1455,10 @@ public interface StructurePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.LibraryParameterImpl <em>Library Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.LibraryParameterImpl
+		 * @see pamtram.structure.library.impl.LibraryParameterImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryParameter()
 		 * @generated
 		 */
@@ -1481,10 +1481,10 @@ public interface StructurePackage extends EPackage {
 		EReference LIBRARY_PARAMETER__ORIGINAL_PARAMETER = eINSTANCE.getLibraryParameter_OriginalParameter();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.AttributeParameterImpl <em>Attribute Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.AttributeParameterImpl
+		 * @see pamtram.structure.library.impl.AttributeParameterImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getAttributeParameter()
 		 * @generated
 		 */
@@ -1499,10 +1499,10 @@ public interface StructurePackage extends EPackage {
 		EReference ATTRIBUTE_PARAMETER__ATTRIBUTE = eINSTANCE.getAttributeParameter_Attribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.ContainerParameterImpl <em>Container Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ContainerParameterImpl
+		 * @see pamtram.structure.library.impl.ContainerParameterImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getContainerParameter()
 		 * @generated
 		 */
@@ -1517,10 +1517,10 @@ public interface StructurePackage extends EPackage {
 		EReference CONTAINER_PARAMETER__CLASS = eINSTANCE.getContainerParameter_Class();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.ExternalReferenceParameterImpl <em>External Reference Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ExternalReferenceParameterImpl
+		 * @see pamtram.structure.library.impl.ExternalReferenceParameterImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getExternalReferenceParameter()
 		 * @generated
 		 */
@@ -1535,10 +1535,10 @@ public interface StructurePackage extends EPackage {
 		EReference EXTERNAL_REFERENCE_PARAMETER__REFERENCE = eINSTANCE.getExternalReferenceParameter_Reference();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ResourceParameterImpl <em>Resource Parameter</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.ResourceParameterImpl <em>Resource Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.ResourceParameterImpl
+		 * @see pamtram.structure.library.impl.ResourceParameterImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getResourceParameter()
 		 * @generated
 		 */
@@ -1561,10 +1561,10 @@ public interface StructurePackage extends EPackage {
 		EReference RESOURCE_PARAMETER__ORIGINAL_PARAMETER = eINSTANCE.getResourceParameter_OriginalParameter();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.library.impl.LibraryEntryImpl <em>Library Entry</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.structure.impl.LibraryEntryImpl
+		 * @see pamtram.structure.library.impl.LibraryEntryImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getLibraryEntry()
 		 * @generated
 		 */

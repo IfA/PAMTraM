@@ -16,6 +16,12 @@ import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryParameter;
+import pamtram.structure.library.ResourceParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -170,13 +176,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.LibraryParameter <em>Library Parameter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.LibraryParameter <em>Library Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.LibraryParameter
+	 * @see pamtram.structure.library.LibraryParameter
 	 * @generated
 	 */
 	public Adapter createLibraryParameterAdapter() {
@@ -184,13 +190,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.AttributeParameter <em>Attribute Parameter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.AttributeParameter <em>Attribute Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.AttributeParameter
+	 * @see pamtram.structure.library.AttributeParameter
 	 * @generated
 	 */
 	public Adapter createAttributeParameterAdapter() {
@@ -198,13 +204,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ContainerParameter <em>Container Parameter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ContainerParameter <em>Container Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ContainerParameter
+	 * @see pamtram.structure.library.ContainerParameter
 	 * @generated
 	 */
 	public Adapter createContainerParameterAdapter() {
@@ -212,13 +218,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ExternalReferenceParameter <em>External Reference Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ExternalReferenceParameter
+	 * @see pamtram.structure.library.ExternalReferenceParameter
 	 * @generated
 	 */
 	public Adapter createExternalReferenceParameterAdapter() {
@@ -226,13 +232,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ResourceParameter <em>Resource Parameter</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.ResourceParameter <em>Resource Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.ResourceParameter
+	 * @see pamtram.structure.library.ResourceParameter
 	 * @generated
 	 */
 	public Adapter createResourceParameterAdapter() {
@@ -240,13 +246,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.LibraryEntry <em>Library Entry</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.library.LibraryEntry <em>Library Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.structure.LibraryEntry
+	 * @see pamtram.structure.library.LibraryEntry
 	 * @generated
 	 */
 	public Adapter createLibraryEntryAdapter() {

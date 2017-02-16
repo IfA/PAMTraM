@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.library;
 
 import pamtram.NamedElement;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
@@ -14,8 +15,8 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.ResourceParameter#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link pamtram.structure.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}</li>
+ *   <li>{@link pamtram.structure.library.ResourceParameter#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.library.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getResourceParameter()
@@ -40,7 +41,7 @@ public interface ResourceParameter extends NamedElement {
 	VirtualTargetSectionAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ResourceParameter#getAttribute <em>Attribute</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.structure.library.ResourceParameter#getAttribute <em>Attribute</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute</em>' containment reference.
@@ -66,7 +67,7 @@ public interface ResourceParameter extends NamedElement {
 	de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter getOriginalParameter();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.library.ResourceParameter#getOriginalParameter <em>Original Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Original Parameter</em>' reference.

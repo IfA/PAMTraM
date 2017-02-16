@@ -127,7 +127,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
-        eType="#//structure/LibraryEntry" containment="true"/>
+        eType="#//structure/library/LibraryEntry" containment="true"/>
     <eGenericSuperTypes eClassifier="#//SectionModel">
       <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
       <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -206,68 +206,6 @@
       <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
-        eSuperTypes="#//NamedElement">
-      <eTypeParameters name="ParameterType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter" lowerBound="1">
-        <eGenericType eTypeParameter="#//structure/LibraryParameter/ParameterType"/>
-      </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="#//structure/target/ActualTargetSectionAttribute" containment="true"/>
-      <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
-        <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
-          <eTypeArguments/>
-        </eTypeArguments>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
-          eType="#//structure/target/TargetSection" containment="true"/>
-      <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
-        <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
-          <eTypeArguments/>
-          <eTypeArguments/>
-        </eTypeArguments>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
-          eType="#//structure/target/TargetSectionCrossReference" containment="true"/>
-      <eGenericSuperTypes eClassifier="#//structure/LibraryParameter">
-        <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
-          <eTypeArguments/>
-          <eTypeArguments/>
-        </eTypeArguments>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-          eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter" lowerBound="1"
-          eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
-          upperBound="-1" containment="true">
-        <eGenericType eClassifier="#//structure/LibraryParameter">
-          <eTypeArguments/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryFile" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
-          lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="path" lowerBound="1"
-          eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1" eType="#//structure/target/VirtualTargetSectionAttribute"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
-          eType="#//structure/ResourceParameter" containment="true"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelector" eSuperTypes="#//ExpressionElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
@@ -1437,6 +1375,72 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
+      </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="library" nsURI="http://mfreund.de/pamtram/structure/library"
+        nsPrefix="library">
+      <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
+          eSuperTypes="#//NamedElement">
+        <eTypeParameters name="ParameterType"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter"
+            lowerBound="1">
+          <eGenericType eTypeParameter="#//structure/library/LibraryParameter/ParameterType"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+            eType="#//structure/target/ActualTargetSectionAttribute" containment="true"/>
+        <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
+            <eTypeArguments/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
+            eType="#//structure/target/TargetSection" containment="true"/>
+        <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
+            eType="#//structure/target/TargetSectionCrossReference" containment="true"/>
+        <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eTypeArguments>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//NamedElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter"
+            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
+            upperBound="-1" containment="true">
+          <eGenericType eClassifier="#//structure/library/LibraryParameter">
+            <eTypeArguments/>
+          </eGenericType>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryFile" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
+            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="path" lowerBound="1"
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1"
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters"
+            upperBound="-1" eType="#//structure/library/ResourceParameter" containment="true"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

@@ -8,6 +8,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import pamtram.structure.*;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.ResourceParameter;
+import pamtram.structure.library.impl.AttributeParameterImpl;
+import pamtram.structure.library.impl.ContainerParameterImpl;
+import pamtram.structure.library.impl.ExternalReferenceParameterImpl;
+import pamtram.structure.library.impl.LibraryEntryImpl;
+import pamtram.structure.library.impl.ResourceParameterImpl;
 
 /**
  * <!-- begin-user-doc -->

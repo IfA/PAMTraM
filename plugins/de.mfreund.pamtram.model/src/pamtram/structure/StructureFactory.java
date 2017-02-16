@@ -4,6 +4,12 @@ package pamtram.structure;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.ResourceParameter;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

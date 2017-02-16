@@ -1,9 +1,10 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.library;
 
 import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
+import pamtram.structure.StructurePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,8 +15,8 @@ import pamtram.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.LibraryParameter#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.structure.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}</li>
+ *   <li>{@link pamtram.structure.library.LibraryParameter#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.library.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getLibraryParameter()
@@ -40,7 +41,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	EObject getSource();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.LibraryParameter#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.library.LibraryParameter#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -66,7 +67,7 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	ParameterType getOriginalParameter();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.library.LibraryParameter#getOriginalParameter <em>Original Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Original Parameter</em>' reference.

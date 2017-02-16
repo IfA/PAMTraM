@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.impl;
+package pamtram.structure.library.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.LibraryParameter;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,8 +19,8 @@ import pamtram.structure.StructurePackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.LibraryParameterImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.structure.impl.LibraryParameterImpl#getOriginalParameter <em>Original Parameter</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.LibraryParameterImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.LibraryParameterImpl#getOriginalParameter <em>Original Parameter</em>}</li>
  * </ul>
  *
  * @generated

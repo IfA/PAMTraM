@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.structure;
+package pamtram.structure.library;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 
@@ -15,7 +16,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.ExternalReferenceParameter#getReference <em>Reference</em>}</li>
+ *   <li>{@link pamtram.structure.library.ExternalReferenceParameter#getReference <em>Reference</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getExternalReferenceParameter()
@@ -40,7 +41,7 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	TargetSectionCrossReference getReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ExternalReferenceParameter#getReference <em>Reference</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.structure.library.ExternalReferenceParameter#getReference <em>Reference</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reference</em>' containment reference.

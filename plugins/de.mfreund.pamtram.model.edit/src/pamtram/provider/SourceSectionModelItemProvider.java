@@ -136,7 +136,7 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 		}
 
 		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
-				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
 				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
 
 	}

@@ -13,7 +13,7 @@ public class CreateTargetSectionCommand extends CreateChildCommand {
 	public CreateTargetSectionCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, pamtram.getTargetSectionModels().get(0), // TODO choose target section model to that the
 																		// target section shall be added
-				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, StructurePackageImpl.eINSTANCE
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS, StructurePackageImpl.eINSTANCE
 						.getEFactoryInstance().create(TargetPackageImpl.Literals.TARGET_SECTION_CLASS),
 				null);
 	}

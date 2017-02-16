@@ -13,7 +13,7 @@ public class CreateSourceSectionCommand extends CreateChildCommand {
 	public CreateSourceSectionCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, pamtram.getSourceSectionModels().get(0), // TODO choose source section model to that the
 																		// source section shall be added
-				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, StructurePackageImpl.eINSTANCE
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS, StructurePackageImpl.eINSTANCE
 						.getEFactoryInstance().create(SourcePackageImpl.Literals.SOURCE_SECTION_CLASS),
 				null);
 	}

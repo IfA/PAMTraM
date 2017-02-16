@@ -167,7 +167,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
+			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -238,7 +238,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionModel.class)) {
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
@@ -271,12 +271,12 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
 				 SourceFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
 				 TargetFactory.eINSTANCE.createTargetSection()));
 	}
 

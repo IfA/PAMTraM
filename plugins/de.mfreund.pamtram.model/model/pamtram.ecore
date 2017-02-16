@@ -307,7 +307,7 @@
       <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ModifiedAttributeElementType" abstract="true"
-        eSuperTypes="#//NamedElement">
+        eSuperTypes="#//NamedElement #//ModifiableElement">
       <eTypeParameters name="S">
         <eBounds eClassifier="#//structure/generic/Section">
           <eTypeArguments eTypeParameter="#//structure/ModifiedAttributeElementType/S"/>
@@ -353,8 +353,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
         <eGenericType eTypeParameter="#//structure/ModifiedAttributeElementType/A"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
-          eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalModifiedAttributeElementType"
         abstract="true">
@@ -1916,7 +1914,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeHasUpperBoundOne"/>
       </eAnnotations>
@@ -1934,8 +1932,6 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/source/ActualSourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
-          eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"

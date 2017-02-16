@@ -56,7 +56,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addSourcePropertyDescriptor(object);
-			addModifierPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -125,18 +125,18 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifier feature.
+	 * This adds a property descriptor for the Modifiers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addModifierPropertyDescriptor(Object object) {
+	protected void addModifiersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_GlobalAttribute_modifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifier_feature", "_UI_GlobalAttribute_type"),
+				 getString("_UI_GlobalAttribute_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_modifiers_feature", "_UI_GlobalAttribute_type"),
 				 MappingPackage.Literals.GLOBAL_ATTRIBUTE__MODIFIERS,
 				 true,
 				 false,

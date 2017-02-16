@@ -100,20 +100,20 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createLibraryEntryAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointer(InstanceSelector object) {
-				return createInstancePointerAdapter();
+			public Adapter caseInstanceSelector(InstanceSelector object) {
+				return createInstanceSelectorAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
-				return createInstancePointerSourceInterfaceAdapter();
+			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
+				return createInstanceSelectorSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceElement(InstanceSelectorSourceElement object) {
-				return createInstancePointerSourceElementAdapter();
+			public Adapter caseInstanceSelectorSourceElement(InstanceSelectorSourceElement object) {
+				return createInstanceSelectorSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerExternalSourceElement(InstanceSelectorExternalSourceElement object) {
-				return createInstancePointerExternalSourceElementAdapter();
+			public Adapter caseInstanceSelectorExternalSourceElement(InstanceSelectorExternalSourceElement object) {
+				return createInstanceSelectorExternalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -248,7 +248,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelector <em>Instance Pointer</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelector <em>Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -257,12 +257,12 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.InstanceSelector
 	 * @generated
 	 */
-	public Adapter createInstancePointerAdapter() {
+	public Adapter createInstanceSelectorAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -271,12 +271,12 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.InstanceSelectorSourceInterface
 	 * @generated
 	 */
-	public Adapter createInstancePointerSourceInterfaceAdapter() {
+	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceElement <em>Instance Pointer Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceElement <em>Instance Selector Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -285,12 +285,12 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.InstanceSelectorSourceElement
 	 * @generated
 	 */
-	public Adapter createInstancePointerSourceElementAdapter() {
+	public Adapter createInstanceSelectorSourceElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorExternalSourceElement <em>Instance Pointer External Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorExternalSourceElement <em>Instance Selector External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -299,7 +299,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.InstanceSelectorExternalSourceElement
 	 * @generated
 	 */
-	public Adapter createInstancePointerExternalSourceElementAdapter() {
+	public Adapter createInstanceSelectorExternalSourceElementAdapter() {
 		return null;
 	}
 

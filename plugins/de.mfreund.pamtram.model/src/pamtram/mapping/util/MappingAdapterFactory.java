@@ -283,8 +283,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
-			public Adapter caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
-				return createInstancePointerSourceInterfaceAdapter();
+			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
+				return createInstanceSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
@@ -377,6 +377,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
+	 * @generated
+	 */
+	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -1035,20 +1049,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionalElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Pointer Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.InstanceSelectorSourceInterface
-	 * @generated
-	 */
-	public Adapter createInstancePointerSourceInterfaceAdapter() {
 		return null;
 	}
 

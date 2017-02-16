@@ -93,7 +93,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.INSTANCE_POINTER;
+		return StructurePackage.Literals.INSTANCE_SELECTOR;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 */
 	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -119,7 +119,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.INSTANCE_POINTER__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -143,7 +143,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 		ActualSourceSectionAttribute oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_POINTER__TARGET, oldTarget, target));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 */
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -174,9 +174,9 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
+							StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.INSTANCE_POINTER__SOURCE_ELEMENTS }));
+					new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
 		
 		}
 		
@@ -191,7 +191,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -205,12 +205,12 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
 				return getResultModifier();
-			case StructurePackage.INSTANCE_POINTER__TARGET:
+			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -225,14 +225,14 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case StructurePackage.INSTANCE_POINTER__TARGET:
+			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				setTarget((ActualSourceSectionAttribute)newValue);
 				return;
-			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
 				return;
@@ -248,13 +248,13 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
-			case StructurePackage.INSTANCE_POINTER__TARGET:
+			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				setTarget((ActualSourceSectionAttribute)null);
 				return;
-			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
 		}
@@ -269,11 +269,11 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
-			case StructurePackage.INSTANCE_POINTER__TARGET:
+			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				return target != null;
-			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
+			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -288,7 +288,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -304,7 +304,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -320,7 +320,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.INSTANCE_POINTER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+			case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

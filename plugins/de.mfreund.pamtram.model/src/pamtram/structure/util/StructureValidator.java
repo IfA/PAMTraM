@@ -38,12 +38,12 @@ public class StructureValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram.structure";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Modified Attribute Element Types In Condition Model Conditions' of 'Instance Pointer'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Modified Attribute Element Types In Condition Model Conditions' of 'Instance Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int INSTANCE_POINTER__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 1;
+	public static final int INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 1;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -112,14 +112,14 @@ public class StructureValidator extends EObjectValidator {
 				return validateResourceParameter((ResourceParameter)value, diagnostics, context);
 			case StructurePackage.LIBRARY_ENTRY:
 				return validateLibraryEntry((LibraryEntry)value, diagnostics, context);
-			case StructurePackage.INSTANCE_POINTER:
-				return validateInstancePointer((InstanceSelector)value, diagnostics, context);
-			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE:
-				return validateInstancePointerSourceInterface((InstanceSelectorSourceInterface)value, diagnostics, context);
-			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT:
-				return validateInstancePointerSourceElement((InstanceSelectorSourceElement)value, diagnostics, context);
-			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT:
-				return validateInstancePointerExternalSourceElement((InstanceSelectorExternalSourceElement)value, diagnostics, context);
+			case StructurePackage.INSTANCE_SELECTOR:
+				return validateInstanceSelector((InstanceSelector)value, diagnostics, context);
+			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE:
+				return validateInstanceSelectorSourceInterface((InstanceSelectorSourceInterface)value, diagnostics, context);
+			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT:
+				return validateInstanceSelectorSourceElement((InstanceSelectorSourceElement)value, diagnostics, context);
+			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
+				return validateInstanceSelectorExternalSourceElement((InstanceSelectorExternalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -180,33 +180,32 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer(InstanceSelector instancePointer, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(instancePointer, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(instancePointer, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstancePointer_validateNoModifiedAttributeElementTypesInConditionModelConditions(instancePointer, diagnostics, context);
+	public boolean validateInstanceSelector(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(instanceSelector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(instanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(instanceSelector, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the noModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Pointer</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Validates the noModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer_noModifiedAttributeElementTypesInConditionModelConditions(
-			InstanceSelector instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -219,8 +218,8 @@ public class StructureValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "noModifiedAttributeElementTypesInConditionModelConditions", getObjectLabel(instancePointer, context) },
-						 new Object[] { instancePointer },
+						 new Object[] { "noModifiedAttributeElementTypesInConditionModelConditions", getObjectLabel(instanceSelector, context) },
+						 new Object[] { instanceSelector },
 						 context));
 			}
 			return false;
@@ -229,63 +228,61 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateNoModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Pointer</em>'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Validates the validateNoModifiedAttributeElementTypesInConditionModelConditions constraint of '<em>Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointer_validateNoModifiedAttributeElementTypesInConditionModelConditions(
-			InstanceSelector instancePointer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return instancePointer.validateNoModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
+	public boolean validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return instanceSelector.validateNoModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceInterface(InstanceSelectorSourceInterface instancePointerSourceInterface,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(instancePointerSourceInterface, diagnostics, context);
+	public boolean validateInstanceSelectorSourceInterface(InstanceSelectorSourceInterface instanceSelectorSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(instanceSelectorSourceInterface, diagnostics, context);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerSourceElement(InstanceSelectorSourceElement instancePointerSourceElement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(instancePointerSourceElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(instancePointerSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(instancePointerSourceElement, diagnostics, context);
+	public boolean validateInstanceSelectorSourceElement(InstanceSelectorSourceElement instanceSelectorSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(instanceSelectorSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstancePointerExternalSourceElement(
-			InstanceSelectorExternalSourceElement instancePointerExternalSourceElement, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(instancePointerExternalSourceElement, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(instancePointerExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(instancePointerExternalSourceElement, diagnostics, context);
+	public boolean validateInstanceSelectorExternalSourceElement(InstanceSelectorExternalSourceElement instanceSelectorExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(instanceSelectorExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= mappingValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 

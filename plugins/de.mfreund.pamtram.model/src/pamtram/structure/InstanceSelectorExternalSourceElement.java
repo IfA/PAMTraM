@@ -14,7 +14,7 @@ import pamtram.structure.source.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getInstancePointerExternalSourceElement()
+ * @see pamtram.structure.StructurePackage#getInstanceSelectorExternalSourceElement()
  * @model
  * @generated
  */

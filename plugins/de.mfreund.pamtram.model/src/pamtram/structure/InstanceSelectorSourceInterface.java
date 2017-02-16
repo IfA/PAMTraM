@@ -10,7 +10,7 @@ import pamtram.mapping.MappingHintSourceInterface;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getInstancePointerSourceInterface()
+ * @see pamtram.structure.StructurePackage#getInstanceSelectorSourceInterface()
  * @model interface="true" abstract="true"
  * @generated
  */

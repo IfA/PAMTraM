@@ -359,7 +359,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceInterface(fixedValue);
 				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
 				if (result == null) result = caseContainerSelectorSourceInterface(fixedValue);
-				if (result == null) result = caseInstancePointerSourceInterface(fixedValue);
+				if (result == null) result = caseInstanceSelectorSourceInterface(fixedValue);
 				if (result == null) result = caseValueConstraintSourceInterface(fixedValue);
 				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
 				if (result == null) result = caseNamedElement(fixedValue);
@@ -379,7 +379,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseContainerSelectorSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseInstancePointerSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseInstanceSelectorSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseNamedElement(globalAttributeImporter);
@@ -614,6 +614,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 
@@ -1319,21 +1334,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionalElement(ConditionalElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 

@@ -58,9 +58,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.EXTERNAL_REFERENCE_PARAMETER: return createExternalReferenceParameter();
 			case StructurePackage.RESOURCE_PARAMETER: return createResourceParameter();
 			case StructurePackage.LIBRARY_ENTRY: return createLibraryEntry();
-			case StructurePackage.INSTANCE_POINTER: return createInstancePointer();
-			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: return createInstancePointerSourceElement();
-			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: return createInstancePointerExternalSourceElement();
+			case StructurePackage.INSTANCE_SELECTOR: return createInstanceSelector();
+			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT: return createInstanceSelectorSourceElement();
+			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT: return createInstanceSelectorExternalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -121,9 +121,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSelector createInstancePointer() {
-		InstanceSelectorImpl instancePointer = new InstanceSelectorImpl();
-		return instancePointer;
+	public InstanceSelector createInstanceSelector() {
+		InstanceSelectorImpl instanceSelector = new InstanceSelectorImpl();
+		return instanceSelector;
 	}
 
 	/**
@@ -131,9 +131,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSelectorSourceElement createInstancePointerSourceElement() {
-		InstanceSelectorSourceElementImpl instancePointerSourceElement = new InstanceSelectorSourceElementImpl();
-		return instancePointerSourceElement;
+	public InstanceSelectorSourceElement createInstanceSelectorSourceElement() {
+		InstanceSelectorSourceElementImpl instanceSelectorSourceElement = new InstanceSelectorSourceElementImpl();
+		return instanceSelectorSourceElement;
 	}
 
 	/**
@@ -141,9 +141,9 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstanceSelectorExternalSourceElement createInstancePointerExternalSourceElement() {
-		InstanceSelectorExternalSourceElementImpl instancePointerExternalSourceElement = new InstanceSelectorExternalSourceElementImpl();
-		return instancePointerExternalSourceElement;
+	public InstanceSelectorExternalSourceElement createInstanceSelectorExternalSourceElement() {
+		InstanceSelectorExternalSourceElementImpl instanceSelectorExternalSourceElement = new InstanceSelectorExternalSourceElementImpl();
+		return instanceSelectorExternalSourceElement;
 	}
 
 	/**

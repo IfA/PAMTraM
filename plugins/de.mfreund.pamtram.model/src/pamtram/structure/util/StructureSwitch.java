@@ -119,41 +119,41 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.INSTANCE_POINTER: {
-				InstanceSelector instancePointer = (InstanceSelector)theEObject;
-				T result = caseInstancePointer(instancePointer);
-				if (result == null) result = caseExpressionElement(instancePointer);
-				if (result == null) result = caseModifiableElement(instancePointer);
+			case StructurePackage.INSTANCE_SELECTOR: {
+				InstanceSelector instanceSelector = (InstanceSelector)theEObject;
+				T result = caseInstanceSelector(instanceSelector);
+				if (result == null) result = caseExpressionElement(instanceSelector);
+				if (result == null) result = caseModifiableElement(instanceSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.INSTANCE_POINTER_SOURCE_INTERFACE: {
-				InstanceSelectorSourceInterface instancePointerSourceInterface = (InstanceSelectorSourceInterface)theEObject;
-				T result = caseInstancePointerSourceInterface(instancePointerSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(instancePointerSourceInterface);
-				if (result == null) result = caseNamedElement(instancePointerSourceInterface);
+			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE: {
+				InstanceSelectorSourceInterface instanceSelectorSourceInterface = (InstanceSelectorSourceInterface)theEObject;
+				T result = caseInstanceSelectorSourceInterface(instanceSelectorSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceInterface);
+				if (result == null) result = caseNamedElement(instanceSelectorSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.INSTANCE_POINTER_SOURCE_ELEMENT: {
-				InstanceSelectorSourceElement instancePointerSourceElement = (InstanceSelectorSourceElement)theEObject;
-				T result = caseInstancePointerSourceElement(instancePointerSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(instancePointerSourceElement);
-				if (result == null) result = caseInstancePointerSourceInterface(instancePointerSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(instancePointerSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(instancePointerSourceElement);
-				if (result == null) result = caseNamedElement(instancePointerSourceElement);
+			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT: {
+				InstanceSelectorSourceElement instanceSelectorSourceElement = (InstanceSelectorSourceElement)theEObject;
+				T result = caseInstanceSelectorSourceElement(instanceSelectorSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(instanceSelectorSourceElement);
+				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceElement);
+				if (result == null) result = caseNamedElement(instanceSelectorSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT: {
-				InstanceSelectorExternalSourceElement instancePointerExternalSourceElement = (InstanceSelectorExternalSourceElement)theEObject;
-				T result = caseInstancePointerExternalSourceElement(instancePointerExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(instancePointerExternalSourceElement);
-				if (result == null) result = caseInstancePointerSourceInterface(instancePointerExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(instancePointerExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(instancePointerExternalSourceElement);
-				if (result == null) result = caseNamedElement(instancePointerExternalSourceElement);
+			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT: {
+				InstanceSelectorExternalSourceElement instanceSelectorExternalSourceElement = (InstanceSelectorExternalSourceElement)theEObject;
+				T result = caseInstanceSelectorExternalSourceElement(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseNamedElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -252,62 +252,62 @@ public class StructureSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointer(InstanceSelector object) {
+	public T caseInstanceSelector(InstanceSelector object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerSourceInterface(InstanceSelectorSourceInterface object) {
+	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerSourceElement(InstanceSelectorSourceElement object) {
+	public T caseInstanceSelectorSourceElement(InstanceSelectorSourceElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer External Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer External Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector External Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstancePointerExternalSourceElement(InstanceSelectorExternalSourceElement object) {
+	public T caseInstanceSelectorExternalSourceElement(InstanceSelectorExternalSourceElement object) {
 		return null;
 	}
 

@@ -67,31 +67,31 @@ public interface StructureFactory extends EFactory {
 	LibraryEntry createLibraryEntry();
 
 	/**
-	 * Returns a new object of class '<em>Instance Pointer</em>'.
+	 * Returns a new object of class '<em>Instance Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Pointer</em>'.
+	 * @return a new object of class '<em>Instance Selector</em>'.
 	 * @generated
 	 */
-	InstanceSelector createInstancePointer();
+	InstanceSelector createInstanceSelector();
 
 	/**
-	 * Returns a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * Returns a new object of class '<em>Instance Selector Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Pointer Source Element</em>'.
+	 * @return a new object of class '<em>Instance Selector Source Element</em>'.
 	 * @generated
 	 */
-	InstanceSelectorSourceElement createInstancePointerSourceElement();
+	InstanceSelectorSourceElement createInstanceSelectorSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * Returns a new object of class '<em>Instance Selector External Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Pointer External Source Element</em>'.
+	 * @return a new object of class '<em>Instance Selector External Source Element</em>'.
 	 * @generated
 	 */
-	InstanceSelectorExternalSourceElement createInstancePointerExternalSourceElement();
+	InstanceSelectorExternalSourceElement createInstanceSelectorExternalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -44,7 +44,7 @@ public class InstanceSelectorExternalSourceElementImpl extends ExternalModifiedA
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT;
+		return StructurePackage.Literals.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class InstanceSelectorExternalSourceElementImpl extends ExternalModifiedA
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -87,7 +87,7 @@ public class InstanceSelectorExternalSourceElementImpl extends ExternalModifiedA
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.INSTANCE_POINTER_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
+			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

@@ -10,7 +10,7 @@ import pamtram.ConditionalElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A condition that allows to check whether another 'ConditionalElement' was applied/executed (at least once; exactly n times; for the concrete section instance specified via the given 'InstanceSelector', ...).
+ * A condition that allows to check whether another 'ConditionalElement' was applied/executed (at least once; exactly n times; for the concrete section instance specified via the given 'InstancePointer', ...).
  * 
  * <!-- end-model-doc -->
  *

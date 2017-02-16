@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
+import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
@@ -33,16 +34,16 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.InstanceSelector} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.structure.InstanceSelector} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InstanceSelectorItemProvider extends ExpressionElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InstanceSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -50,82 +51,73 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addResultModifierPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addResultModifierPropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Result Modifier feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Result Modifier feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addResultModifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
-				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ModifiableElement_resultModifier_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature",
+						"_UI_ModifiableElement_type"),
+				PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_InstanceSelector_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstanceSelector_target_feature", "_UI_InstanceSelector_type"),
-				 StructurePackage.Literals.INSTANCE_SELECTOR__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_InstanceSelector_target_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_InstanceSelector_target_feature",
+						"_UI_InstanceSelector_type"),
+				StructurePackage.Literals.INSTANCE_SELECTOR__TARGET, true, false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,38 +129,42 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This returns InstanceSelector.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns InstanceSelector.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstanceSelector"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/InstanceSelector"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstanceSelector)object).getExpression();
-    	StyledString styledLabel = new StyledString();
+
+		String label = ((InstanceSelector) object).getExpression();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER)
+					.append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -182,11 +178,12 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(InstanceSelector.class)) {
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -229,7 +226,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 		}
 
 		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				MappingFactory.eINSTANCE.createFixedValue()));
+				PamtramFactory.eINSTANCE.createFixedValue()));
 
 		// GlobalAttributeImporters not allowed in MappingModelConditions
 		//
@@ -241,12 +238,13 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+
 		return PamtramEditPlugin.INSTANCE;
 	}
 

@@ -8,9 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -18,7 +15,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.FixedValue;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.FixedValue} object.
@@ -66,7 +63,7 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_FixedValue_value_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_FixedValue_value_feature", "_UI_FixedValue_type"),
-				 MappingPackage.Literals.FIXED_VALUE__VALUE,
+				 PamtramPackage.Literals.FIXED_VALUE__VALUE,
 				 true,
 				 false,
 				 false,
@@ -133,7 +130,7 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FixedValue.class)) {
-			case MappingPackage.FIXED_VALUE__VALUE:
+			case PamtramPackage.FIXED_VALUE__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -150,17 +147,6 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

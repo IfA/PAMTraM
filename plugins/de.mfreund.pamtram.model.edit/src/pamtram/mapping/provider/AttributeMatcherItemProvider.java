@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
@@ -310,11 +311,6 @@ extends MatcherItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
@@ -326,6 +322,11 @@ extends MatcherItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMatcherGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

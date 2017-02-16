@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.MappingModel;
+import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
@@ -254,7 +255,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

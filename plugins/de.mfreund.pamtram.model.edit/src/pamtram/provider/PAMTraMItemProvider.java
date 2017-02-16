@@ -30,8 +30,8 @@ import pamtram.commands.CreateSharedModelCommand;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.PAMTraM} object. <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ * This is the item provider adapter for a {@link pamtram.PAMTraM} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class PAMTraMItemProvider extends PamtramItemProviderAdapter
@@ -39,8 +39,8 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 		IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PAMTraMItemProvider(AdapterFactory adapterFactory) {
@@ -48,54 +48,65 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addSharedSourceSectionModelsPropertyDescriptor(object);
-			this.addSharedTargetSectionModelsPropertyDescriptor(object);
-			this.addSharedMappingModelsPropertyDescriptor(object);
-			this.addSharedConditionModelsPropertyDescriptor(object);
+			addSharedSourceSectionModelsPropertyDescriptor(object);
+			addSharedTargetSectionModelsPropertyDescriptor(object);
+			addSharedMappingModelsPropertyDescriptor(object);
+			addSharedConditionModelsPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Source Section Models feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Shared Source Section Models feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSharedSourceSectionModelsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_PAMTraM_sharedSourceSectionModels_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedSourceSectionModels_feature",
-						"_UI_PAMTraM_type"),
-				PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedSourceSectionModels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedSourceSectionModels_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Target Section Models feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Shared Target Section Models feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSharedTargetSectionModelsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_PAMTraM_sharedTargetSectionModels_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedTargetSectionModels_feature",
-						"_UI_PAMTraM_type"),
-				PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedTargetSectionModels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedTargetSectionModels_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -105,55 +116,65 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 	 * @generated
 	 */
 	protected void addSharedMappingModelsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_PAMTraM_sharedMappingModels_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedMappingModels_feature",
-						"_UI_PAMTraM_type"),
-				PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedMappingModels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedMappingModels_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition Models feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Shared Condition Models feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addSharedConditionModelsPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_PAMTraM_sharedConditionModels_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedConditionModels_feature",
-						"_UI_PAMTraM_type"),
-				PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_sharedConditionModels_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_sharedConditionModels_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS);
-			this.childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS);
+			childrenFeatures.add(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,36 +186,33 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns PAMTraM.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns PAMTraM.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/PAMTraM"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PAMTraM"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		return new StyledString(this.getString("_UI_PAMTraM_type"));
+		return new StyledString(getString("_UI_PAMTraM_type"));
 	}
 
 	/**
@@ -206,42 +224,48 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(PAMTraM.class)) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS,
-				PamtramFactory.eINSTANCE.createSourceSectionModel()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS,
+				 PamtramFactory.eINSTANCE.createSourceSectionModel()));
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS,
-				PamtramFactory.eINSTANCE.createTargetSectionModel()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS,
+				 PamtramFactory.eINSTANCE.createTargetSectionModel()));
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS,
-				PamtramFactory.eINSTANCE.createMappingModel()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS,
+				 PamtramFactory.eINSTANCE.createMappingModel()));
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS,
-				PamtramFactory.eINSTANCE.createConditionModel()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS,
+				 PamtramFactory.eINSTANCE.createConditionModel()));
 	}
 
 	/**
@@ -257,13 +281,12 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-
 		return PamtramEditPlugin.INSTANCE;
 	}
 

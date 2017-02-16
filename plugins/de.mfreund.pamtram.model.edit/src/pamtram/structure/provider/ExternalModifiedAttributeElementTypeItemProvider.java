@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,15 +14,15 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.SourceSectionModel;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ExternalModifiedAttributeElementType} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.ExternalModifiedAttributeElementType} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

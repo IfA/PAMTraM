@@ -14,9 +14,9 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
+import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.constraint.ValueConstraintSourceElement} object.

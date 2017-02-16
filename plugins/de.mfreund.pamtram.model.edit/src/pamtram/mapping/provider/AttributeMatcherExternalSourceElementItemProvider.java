@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
+import pamtram.structure.provider.ExternalModifiedAttributeElementTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcherExternalSourceElement} object.

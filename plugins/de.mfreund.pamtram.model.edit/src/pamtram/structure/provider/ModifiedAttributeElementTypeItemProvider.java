@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.provider;
 
 
 import java.util.Collection;
@@ -12,12 +12,12 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.ModifiedAttributeElementType;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.structure.ModifiedAttributeElementType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

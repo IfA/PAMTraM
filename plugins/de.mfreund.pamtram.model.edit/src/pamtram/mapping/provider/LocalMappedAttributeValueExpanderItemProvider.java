@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.LocalMappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
+import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.LocalMappedAttributeValueExpander} object.

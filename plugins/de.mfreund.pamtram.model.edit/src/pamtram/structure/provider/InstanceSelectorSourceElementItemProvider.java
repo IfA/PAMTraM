@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.InstanceSelectorSourceElement;
 

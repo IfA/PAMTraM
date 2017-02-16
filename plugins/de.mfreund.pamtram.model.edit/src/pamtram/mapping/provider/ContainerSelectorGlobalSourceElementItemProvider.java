@@ -13,6 +13,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.ContainerSelectorGlobalSourceElement;
+import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorGlobalSourceElement} object.

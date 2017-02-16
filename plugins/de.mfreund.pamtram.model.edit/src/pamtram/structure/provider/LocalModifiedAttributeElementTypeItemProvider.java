@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,11 +18,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.ContainerSelectorTargetAttribute;
-import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiedAttributeElementType;
+import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Section;
@@ -30,7 +30,7 @@ import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a
- * {@link pamtram.mapping.LocalModifiedAttributeElementType} object. <!--
+ * {@link pamtram.structure.LocalModifiedAttributeElementType} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated

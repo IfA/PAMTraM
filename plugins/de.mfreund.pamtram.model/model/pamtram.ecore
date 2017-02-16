@@ -1548,8 +1548,8 @@
           eType="#//structure/source/ActualSourceSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition" eSuperTypes="#//condition/Condition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="conditionSectionRef"
-          lowerBound="1" eType="#//structure/source/SourceSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+          eType="#//structure/source/SourceSectionClass"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependency" eSuperTypes="#//condition/Condition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

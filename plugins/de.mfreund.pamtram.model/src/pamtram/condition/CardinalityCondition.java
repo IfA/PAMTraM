@@ -30,21 +30,21 @@ public interface CardinalityCondition extends Condition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition Section Ref</em>' reference.
-	 * @see #setConditionSectionRef(SourceSectionClass)
-	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_ConditionSectionRef()
+	 * @see #setTarget(SourceSectionClass)
+	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	SourceSectionClass getConditionSectionRef();
+	SourceSectionClass getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Condition Section Ref</em>' reference.
-	 * @see #getConditionSectionRef()
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setConditionSectionRef(SourceSectionClass value);
+	void setTarget(SourceSectionClass value);
 
 } // SectionCondition

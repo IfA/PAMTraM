@@ -30,10 +30,10 @@ import pamtram.structure.source.SourceSectionClass;
  */
 public class CardinalityConditionImpl extends ConditionImpl implements CardinalityCondition {
 	/**
-	 * The cached value of the '{@link #getConditionSectionRef() <em>Condition Section Ref</em>}' reference.
+	 * The cached value of the '{@link #getTarget() <em>Condition Section Ref</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditionSectionRef()
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
@@ -63,13 +63,13 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClass getConditionSectionRef() {
+	public SourceSectionClass getTarget() {
 		if (conditionSectionRef != null && conditionSectionRef.eIsProxy()) {
 			InternalEObject oldConditionSectionRef = (InternalEObject)conditionSectionRef;
 			conditionSectionRef = (SourceSectionClass)eResolveProxy(oldConditionSectionRef);
 			if (conditionSectionRef != oldConditionSectionRef) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldConditionSectionRef, conditionSectionRef));
 			}
 		}
 		return conditionSectionRef;
@@ -89,11 +89,11 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setConditionSectionRef(SourceSectionClass newConditionSectionRef) {
+	public void setTarget(SourceSectionClass newConditionSectionRef) {
 		SourceSectionClass oldConditionSectionRef = conditionSectionRef;
 		conditionSectionRef = newConditionSectionRef;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF, oldConditionSectionRef, conditionSectionRef));
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldConditionSectionRef, conditionSectionRef));
 	}
 
 	/**
@@ -104,8 +104,8 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
-				if (resolve) return getConditionSectionRef();
+			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
+				if (resolve) return getTarget();
 				return basicGetConditionSectionRef();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -119,8 +119,8 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
-				setConditionSectionRef((SourceSectionClass)newValue);
+			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
+				setTarget((SourceSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,8 +134,8 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
-				setConditionSectionRef((SourceSectionClass)null);
+			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
+				setTarget((SourceSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -149,7 +149,7 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__CONDITION_SECTION_REF:
+			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
 				return conditionSectionRef != null;
 		}
 		return super.eIsSet(featureID);
@@ -158,13 +158,13 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	@Override
 	public boolean isLocalCondition() {
 		
-		if(getConditionSectionRef() == null) {
+		if(getTarget() == null) {
 			return false;
 		}
 		
 		// The SourceSection that the condition references
 		//
-		SourceSection referencedSection = getConditionSectionRef().getContainingSection();
+		SourceSection referencedSection = getTarget().getContainingSection();
 		
 		EObject container = this;
 		

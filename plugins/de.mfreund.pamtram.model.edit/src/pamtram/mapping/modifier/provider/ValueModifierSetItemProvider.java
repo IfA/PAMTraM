@@ -64,7 +64,7 @@ extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER);
+			childrenFeatures.add(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS);
 		}
 		return childrenFeatures;
 	}
@@ -136,7 +136,7 @@ extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ValueModifierSet.class)) {
-			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIER:
+			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -156,37 +156,37 @@ extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createUniqueNumberAppender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createExpressionModifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createSubstringReplacer()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createStringAppender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createStringPrepender()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createToLowerCaseConverter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIER,
+				(ModifierPackage.Literals.VALUE_MODIFIER_SET__MODIFIERS,
 				 ModifierFactory.eINSTANCE.createToUpperCaseConverter()));
 	}
 

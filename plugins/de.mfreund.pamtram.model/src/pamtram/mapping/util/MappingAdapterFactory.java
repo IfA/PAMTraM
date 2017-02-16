@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
-import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
@@ -190,10 +189,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMappedAttributeValueAppender(MappedAttributeValueAppender object) {
 				return createMappedAttributeValueAppenderAdapter();
-			}
-			@Override
-			public Adapter caseFixedValue(FixedValue object) {
-				return createFixedValueAdapter();
 			}
 			@Override
 			public Adapter caseGlobalAttribute(GlobalAttribute object) {
@@ -756,20 +751,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappedAttributeValueAppenderAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.FixedValue
-	 * @generated
-	 */
-	public Adapter createFixedValueAdapter() {
 		return null;
 	}
 

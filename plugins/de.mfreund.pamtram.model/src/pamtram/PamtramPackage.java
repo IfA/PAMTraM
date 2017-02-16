@@ -772,6 +772,61 @@ public interface PamtramPackage extends EPackage {
 	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.FixedValueImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
+	 * @generated
+	 */
+	int FIXED_VALUE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE___GET_SOURCE_ATTRIBUTE = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1220,6 +1275,27 @@ public interface PamtramPackage extends EPackage {
 	EReference getModifiableElement_ResultModifier();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fixed Value</em>'.
+	 * @see pamtram.FixedValue
+	 * @generated
+	 */
+	EClass getFixedValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.FixedValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.FixedValue#getValue()
+	 * @see #getFixedValue()
+	 * @generated
+	 */
+	EAttribute getFixedValue_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1599,6 +1675,24 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODIFIABLE_ELEMENT__RESULT_MODIFIER = eINSTANCE.getModifiableElement_ResultModifier();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.FixedValueImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
+		 * @generated
+		 */
+		EClass FIXED_VALUE = eINSTANCE.getFixedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_VALUE__VALUE = eINSTANCE.getFixedValue_Value();
 
 	}
 

@@ -6,6 +6,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.*;
+import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -139,6 +145,19 @@ public class PamtramSwitch<T> extends Switch<T> {
 			case PamtramPackage.MODIFIABLE_ELEMENT: {
 				ModifiableElement modifiableElement = (ModifiableElement)theEObject;
 				T result = caseModifiableElement(modifiableElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PamtramPackage.FIXED_VALUE: {
+				FixedValue fixedValue = (FixedValue)theEObject;
+				T result = caseFixedValue(fixedValue);
+				if (result == null) result = caseAttributeMappingSourceInterface(fixedValue);
+				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
+				if (result == null) result = caseContainerSelectorSourceInterface(fixedValue);
+				if (result == null) result = caseInstanceSelectorSourceInterface(fixedValue);
+				if (result == null) result = caseValueConstraintSourceInterface(fixedValue);
+				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
+				if (result == null) result = caseNamedElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -308,6 +327,111 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedValue(FixedValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container Selector Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container Selector Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 		return null;
 	}
 

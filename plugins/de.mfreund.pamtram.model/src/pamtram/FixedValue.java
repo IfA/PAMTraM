@@ -5,7 +5,6 @@ package pamtram;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -21,7 +20,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  *   <li>{@link pamtram.FixedValue#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getFixedValue()
+ * @see pamtram.PamtramPackage#getFixedValue()
  * @model
  * @generated
  */
@@ -36,7 +35,7 @@ public interface FixedValue extends NamedElement, AttributeMappingSourceInterfac
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
-	 * @see pamtram.mapping.MappingPackage#getFixedValue_Value()
+	 * @see pamtram.PamtramPackage#getFixedValue_Value()
 	 * @model required="true"
 	 * @generated
 	 */

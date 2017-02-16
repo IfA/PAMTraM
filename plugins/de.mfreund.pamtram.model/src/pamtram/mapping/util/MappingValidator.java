@@ -9,8 +9,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
-import pamtram.FixedValue;
 import pamtram.mapping.*;
 import pamtram.util.PamtramValidator;
 
@@ -271,8 +269,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
 				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
-			case MappingPackage.FIXED_VALUE:
-				return validateFixedValue((FixedValue)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE:
 				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
@@ -1288,15 +1284,6 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
 	}
 
 	/**

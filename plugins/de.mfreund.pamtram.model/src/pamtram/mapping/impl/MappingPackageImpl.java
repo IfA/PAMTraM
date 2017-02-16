@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import pamtram.FixedValue;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
@@ -289,13 +287,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass mappedAttributeValueAppenderEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fixedValueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1249,24 +1240,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFixedValue() {
-		return fixedValueEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getFixedValue_Value() {
-		return (EAttribute)fixedValueEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getGlobalAttribute() {
 		return globalAttributeEClass;
 	}
@@ -1615,9 +1588,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappedAttributeValuePrependerEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_PREPENDER);
 
 		mappedAttributeValueAppenderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_APPENDER);
-
-		fixedValueEClass = createEClass(FIXED_VALUE);
-		createEAttribute(fixedValueEClass, FIXED_VALUE__VALUE);
 
 		globalAttributeEClass = createEClass(GLOBAL_ATTRIBUTE);
 		createEReference(globalAttributeEClass, GLOBAL_ATTRIBUTE__SOURCE);
@@ -1980,12 +1950,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		localMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
 		mappedAttributeValuePrependerEClass.getESuperTypes().add(this.getLocalMappedAttributeValueExpander());
 		mappedAttributeValueAppenderEClass.getESuperTypes().add(this.getLocalMappedAttributeValueExpander());
-		fixedValueEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		fixedValueEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
-		fixedValueEClass.getESuperTypes().add(this.getAttributeMatcherSourceInterface());
-		fixedValueEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
-		fixedValueEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
-		fixedValueEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
 		globalAttributeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
@@ -2331,9 +2295,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappedAttributeValuePrependerEClass, MappedAttributeValuePrepender.class, "MappedAttributeValuePrepender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappedAttributeValueAppenderEClass, MappedAttributeValueAppender.class, "MappedAttributeValueAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(fixedValueEClass, FixedValue.class, "FixedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFixedValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, FixedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(globalAttributeEClass, GlobalAttribute.class, "GlobalAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlobalAttribute_Source(), theSourcePackage.getActualSourceSectionAttribute(), null, "source", null, 1, 1, GlobalAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

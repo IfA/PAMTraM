@@ -23,11 +23,11 @@ import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.AttributeParameter;
-import pamtram.structure.ContainerParameter;
-import pamtram.structure.ExternalReferenceParameter;
-import pamtram.structure.LibraryEntry;
-import pamtram.structure.LibraryParameter;
+import pamtram.structure.library.AttributeParameter;
+import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.library.ExternalReferenceParameter;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryParameter;
 import pamtram.util.GenLibraryManager;
 import pamtram.util.LibraryHelper;
 
@@ -141,7 +141,7 @@ public class ImportLibraryElementWizard extends Wizard {
 
 					// second, create a command to import it to the pamtram model
 					Command createMappingCommand = new CreateChildCommand(this.editingDomain,
-							this.one.getMappingModel(), PamtramPackage.Literals.MAPPING_MODEL__MAPPING, mapping, null);
+							this.one.getMappingModel(), PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS, mapping, null);
 					compoundCommand.append(createMappingCommand);
 				}
 

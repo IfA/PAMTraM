@@ -120,13 +120,13 @@ public class ImportSharedModelWizard extends Wizard {
 
 		EList<?> list = null;
 		if (this.type.equals(SharedModelType.SOURCE)) {
-			list = this.pamtram.getSharedSourceSectionModel();
+			list = this.pamtram.getSharedSourceSectionModels();
 		} else if (this.type.equals(SharedModelType.TARGET)) {
-			list = this.pamtram.getSharedTargetSectionModel();
+			list = this.pamtram.getSharedTargetSectionModels();
 		} else if (this.type.equals(SharedModelType.MAPPING)) {
-			list = this.pamtram.getSharedMappingModel();
+			list = this.pamtram.getSharedMappingModels();
 		} else if (this.type.equals(SharedModelType.CONDITION)) {
-			list = this.pamtram.getSharedConditionModel();
+			list = this.pamtram.getSharedConditionModels();
 		}
 
 		AddCommand addCommand = new AddCommand(this.editingDomain, list, sharedModel);

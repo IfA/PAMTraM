@@ -263,7 +263,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		// add a source section model for every source ePackage
 		EPackage.Registry sourceRegistry = this.sourceEPackageSpecificationPage.getRegistry();
 		if (sourceRegistry.values().isEmpty()) {
-			pamtram.getSourceSectionModel().add(this.pamtramFactory.createSourceSectionModel());
+			pamtram.getSourceSectionModels().add(this.pamtramFactory.createSourceSectionModel());
 		} else {
 			for (Object ePackage : sourceRegistry.values()) {
 				if (!(ePackage instanceof EPackage)) {
@@ -273,23 +273,23 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 				// set the ePackage of the source section model
 				ssm.setMetaModelPackage((EPackage) ePackage);
 				ssm.setName(((EPackage) ePackage).getName());
-				pamtram.getSourceSectionModel().add(ssm);
+				pamtram.getSourceSectionModels().add(ssm);
 			}
 		}
-		for (SourceSectionModel ssm : pamtram.getSourceSectionModel()) {
+		for (SourceSectionModel ssm : pamtram.getSourceSectionModels()) {
 			// add an empty source section to each source section model
 			SourceSection sourceSection = this.sourceFactory.createSourceSection();
 			sourceSection.setName("source");
-			ssm.getMetaModelSections().add(sourceSection);
+			ssm.getSections().add(sourceSection);
 		}
 
 		// add a condition model
-		pamtram.getConditionModel().add(this.pamtramFactory.createConditionModel());
+		pamtram.getConditionModels().add(this.pamtramFactory.createConditionModel());
 
 		// add a target section model for every target ePackage
 		EPackage.Registry targetRegistry = this.targetEPackageSpecificationPage.getRegistry();
 		if (targetRegistry.values().isEmpty()) {
-			pamtram.getTargetSectionModel().add(this.pamtramFactory.createTargetSectionModel());
+			pamtram.getTargetSectionModels().add(this.pamtramFactory.createTargetSectionModel());
 		} else {
 			for (Object ePackage : targetRegistry.values()) {
 				if (!(ePackage instanceof EPackage)) {
@@ -299,26 +299,26 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 				// set the ePackage of the source section model
 				tsm.setMetaModelPackage((EPackage) ePackage);
 				tsm.setName(((EPackage) ePackage).getName());
-				pamtram.getTargetSectionModel().add(tsm);
+				pamtram.getTargetSectionModels().add(tsm);
 			}
 		}
 		// add an empty target section to each target section model
-		for (TargetSectionModel tsm : pamtram.getTargetSectionModel()) {
+		for (TargetSectionModel tsm : pamtram.getTargetSectionModels()) {
 			MappingHintGroup mappingHintGroup = this.mappingFactory.createMappingHintGroup();
 			TargetSection targetSection = this.targetFactory.createTargetSection();
 			targetSection.setName("target");
-			pamtram.getTargetSectionModel().get(0).getMetaModelSections().add(targetSection);
+			pamtram.getTargetSectionModels().get(0).getSections().add(targetSection);
 		}
 
 		// add a mapping model
-		pamtram.getMappingModel().add(this.pamtramFactory.createMappingModel());
+		pamtram.getMappingModels().add(this.pamtramFactory.createMappingModel());
 		// add a simple mapping to the mapping model
 		Mapping mapping = this.mappingFactory.createMapping();
 		MappingHintGroup mappingHintGroup = this.mappingFactory.createMappingHintGroup();
-		mapping.setSourceSection(pamtram.getSourceSectionModel().get(0).getMetaModelSections().get(0));
+		mapping.setSourceSection(pamtram.getSourceSectionModels().get(0).getSections().get(0));
 		mapping.getMappingHintGroups().add(mappingHintGroup);
-		mappingHintGroup.setTargetSection(pamtram.getTargetSectionModel().get(0).getMetaModelSections().get(0));
-		pamtram.getMappingModel().get(0).getMapping().add(mapping);
+		mappingHintGroup.setTargetSection(pamtram.getTargetSectionModels().get(0).getSections().get(0));
+		pamtram.getMappingModels().get(0).getMappings().add(mapping);
 
 		return pamtram;
 	}

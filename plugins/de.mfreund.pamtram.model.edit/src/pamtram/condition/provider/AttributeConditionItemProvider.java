@@ -65,7 +65,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_AttributeCondition_valueConstraint_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_valueConstraint_feature", "_UI_AttributeCondition_type"),
-				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS,
 				 true,
 				 false,
 				 true,
@@ -108,7 +108,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			childrenFeatures.add(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -178,7 +178,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeCondition.class)) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -198,22 +198,22 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createEqualityConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createChoiceConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT,
+				(ConditionPackage.Literals.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createStringConstraint()));
 	}
 	

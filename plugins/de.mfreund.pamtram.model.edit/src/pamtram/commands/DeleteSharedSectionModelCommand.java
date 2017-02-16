@@ -60,11 +60,11 @@ public class DeleteSharedSectionModelCommand extends CompoundCommand {
 		// methods. We first convert the element to a local SectionModel and than delete it afterwards. Therefore, we
 		// make used of a compound command.
 		RemoveCommand removeSharedSectionModelCommand = new RemoveCommand(domain,
-				sectionModel instanceof SourceSectionModel ? owner.getSharedSourceSectionModel()
-						: owner.getSharedTargetSectionModel(),
+				sectionModel instanceof SourceSectionModel ? owner.getSharedSourceSectionModels()
+						: owner.getSharedTargetSectionModels(),
 						sectionModel);
 		AddCommand addLocalSectionModelCommand = new AddCommand(domain, sectionModel instanceof SourceSectionModel
-				? owner.getSourceSectionModel() : owner.getTargetSectionModel(), sectionModel);
+				? owner.getSourceSectionModels() : owner.getTargetSectionModels(), sectionModel);
 
 		DeleteCommand deleteSectionModelCommand = new DeleteCommand(domain, Arrays.asList(sectionModel)) {
 

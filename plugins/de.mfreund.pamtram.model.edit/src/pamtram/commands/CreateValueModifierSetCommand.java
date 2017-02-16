@@ -11,7 +11,7 @@ import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 public class CreateValueModifierSetCommand extends CreateChildCommand {
 
 	public CreateValueModifierSetCommand(EditingDomain editingDomain, PAMTraM pamtram) {
-		super(editingDomain, pamtram.getMappingModel().get(0), // TODO choose mapping model to that the modifier set
+		super(editingDomain, pamtram.getMappingModels().get(0), // TODO choose mapping model to that the modifier set
 																// shall be added
 				PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
 				MappingPackage.eINSTANCE.getEFactoryInstance().create(ModifierPackageImpl.Literals.VALUE_MODIFIER_SET),

@@ -64,17 +64,17 @@ public class ExportSharedModelCommand extends CompoundCommand {
 		EList<?> list = null;
 		EList<?> sharedList = null;
 		if (sharedModelRoot instanceof SourceSectionModel) {
-			list = owner.getSourceSectionModel();
-			sharedList = owner.getSharedSourceSectionModel();
+			list = owner.getSourceSectionModels();
+			sharedList = owner.getSharedSourceSectionModels();
 		} else if (sharedModelRoot instanceof TargetSectionModel) {
-			list = owner.getTargetSectionModel();
-			sharedList = owner.getSharedTargetSectionModel();
+			list = owner.getTargetSectionModels();
+			sharedList = owner.getSharedTargetSectionModels();
 		} else if (sharedModelRoot instanceof MappingModel) {
-			list = owner.getMappingModel();
-			sharedList = owner.getSharedMappingModel();
+			list = owner.getMappingModels();
+			sharedList = owner.getSharedMappingModels();
 		} else if (sharedModelRoot instanceof ConditionModel) {
-			list = owner.getConditionModel();
-			sharedList = owner.getSharedConditionModel();
+			list = owner.getConditionModels();
+			sharedList = owner.getSharedConditionModels();
 		}
 
 		RemoveCommand removeLocalSectionModelCommand = new RemoveCommand(domain, list, sharedModelRoot);

@@ -11,7 +11,7 @@ public class CreateMappingCommand extends CreateChildCommand {
 
 	public CreateMappingCommand(EditingDomain editingDomain, PAMTraM pamtram) {
 		super(editingDomain, 
-				pamtram.getMappingModel().get(0), //TODO choose mapping model to that the mapping shall be added
+				pamtram.getMappingModels().get(0), //TODO choose mapping model to that the mapping shall be added
 				PamtramPackage.Literals.MAPPING_MODEL__MAPPING, 
 				MappingPackageImpl.eINSTANCE.getEFactoryInstance().create(MappingPackageImpl.Literals.MAPPING), 
 				null);

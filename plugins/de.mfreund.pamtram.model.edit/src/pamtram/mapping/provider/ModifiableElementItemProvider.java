@@ -72,8 +72,8 @@ public class ModifiableElementItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
+				 getString("_UI_ModifiableElement_resultModifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
 				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
@@ -103,7 +103,7 @@ public class ModifiableElementItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		return new StyledString(getString("_UI_ModifiableHint_type"));
+		return new StyledString(getString("_UI_ModifiableElement_type"));
 	}
 
 	/**

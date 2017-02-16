@@ -1235,7 +1235,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher Source Element</em>' class.
@@ -1790,7 +1790,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Mapping Source Element</em>' class.
@@ -1871,7 +1871,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector Source Element</em>' class.
@@ -1952,7 +1952,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__MODIFIER = StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__MODIFIER = StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector Target Attribute</em>' class.
@@ -2115,7 +2115,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2603,7 +2603,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Mapping External Source Element</em>' class.
@@ -2694,7 +2694,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector External Source Element</em>' class.
@@ -2785,7 +2785,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher External Source Element</em>' class.
@@ -2876,7 +2876,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -3231,7 +3231,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
@@ -3322,7 +3322,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
@@ -3413,7 +3413,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.

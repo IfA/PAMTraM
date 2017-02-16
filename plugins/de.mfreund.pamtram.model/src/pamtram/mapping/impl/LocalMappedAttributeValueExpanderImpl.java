@@ -102,9 +102,9 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 	 */
 	public EList<ValueModifierSet> getModifiers() {
 		if(this instanceof LocalMappedAttributeValueExpander) {
-			return ((LocalMappedAttributeValueExpander) this).getModifier();
+			return ((LocalMappedAttributeValueExpander) this).getModifiers();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {
-			return ((ExternalMappedAttributeValueExpander) this).getModifier();
+			return ((ExternalMappedAttributeValueExpander) this).getModifiers();
 		} else {
 			return null;
 		}

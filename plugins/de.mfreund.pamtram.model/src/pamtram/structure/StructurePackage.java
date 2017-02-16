@@ -599,7 +599,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Modified Attribute Element Type</em>' class.
@@ -672,7 +672,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Local Modified Attribute Element Type</em>' class.
@@ -754,7 +754,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT__MODIFIER = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__MODIFIERS = LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Instance Selector Source Element</em>' class.
@@ -845,7 +845,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>External Modified Attribute Element Type</em>' class.
@@ -927,7 +927,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIER = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIERS = EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Instance Selector External Source Element</em>' class.
@@ -1018,7 +1018,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS = MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selector</b></em>' containment reference list.
@@ -1355,11 +1355,11 @@ public interface StructurePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.structure.ModifiedAttributeElementType#getModifier()
+	 * @see pamtram.structure.ModifiedAttributeElementType#getModifiers()
 	 * @see #getModifiedAttributeElementType()
 	 * @generated
 	 */
-	EReference getModifiedAttributeElementType_Modifier();
+	EReference getModifiedAttributeElementType_Modifiers();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.structure.ModifiedAttributeElementType#getMappingHintGroup() <em>Get Mapping Hint Group</em>}' operation.
@@ -1720,7 +1720,7 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER = eINSTANCE.getModifiedAttributeElementType_Modifier();
+		EReference MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS = eINSTANCE.getModifiedAttributeElementType_Modifiers();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Mapping Hint Group</b></em>' operation.

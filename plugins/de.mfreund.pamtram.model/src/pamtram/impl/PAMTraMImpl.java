@@ -578,7 +578,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
 								ContainerSelectorTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createContainerSelectorTargetAttribute();
 								copy.setName(original.getName());
-								copy.getModifier().addAll(original.getModifier());
+								copy.getModifiers().addAll(original.getModifiers());
 								copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);
 		
 								((ContainerSelector) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);								

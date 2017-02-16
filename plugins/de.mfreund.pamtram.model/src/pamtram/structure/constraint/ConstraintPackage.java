@@ -807,7 +807,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CONSTRAINT_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int VALUE_CONSTRAINT_SOURCE_ELEMENT__MODIFIER = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Value Constraint Source Element</em>' class.
@@ -898,7 +898,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER;
+	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT__MODIFIER = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
 
 	/**
 	 * The number of structural features of the '<em>Value Constraint External Source Element</em>' class.

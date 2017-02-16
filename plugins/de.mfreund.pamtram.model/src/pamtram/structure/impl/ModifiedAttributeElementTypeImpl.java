@@ -52,10 +52,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	protected A source;
 
 	/**
-	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -136,9 +136,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifierSet> getModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER);
+			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS);
 		}
 		return modifier;
 	}
@@ -193,8 +193,8 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
-				return getModifier();
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,9 +211,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				setSource((A)newValue);
 				return;
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
-				getModifier().clear();
-				getModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -230,8 +230,8 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				setSource((A)null);
 				return;
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
-				getModifier().clear();
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+				getModifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -247,7 +247,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 		switch (featureID) {
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
 				return source != null;
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER:
+			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

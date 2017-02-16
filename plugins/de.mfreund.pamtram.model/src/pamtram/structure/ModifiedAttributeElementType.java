@@ -65,11 +65,11 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Modifier()
+	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Modifiers()
 	 * @model
 	 * @generated
 	 */
-	EList<ValueModifierSet> getModifier();
+	EList<ValueModifierSet> getModifiers();
 
 	/**
 	 * <!-- begin-user-doc -->

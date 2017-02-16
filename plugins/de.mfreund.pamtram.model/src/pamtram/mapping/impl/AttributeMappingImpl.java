@@ -41,7 +41,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
@@ -68,15 +68,14 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	protected String expression = EXPRESSION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
-
+	protected EList<ValueModifierSet> modifiers;
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -207,10 +206,10 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -304,7 +303,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				return getExpression();
-			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS:
 				return getModifiers();
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				if (resolve) return getTarget();
@@ -327,7 +326,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -353,7 +352,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				return;
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
@@ -376,8 +375,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MAPPING__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER:
-				return resultModifier != null && !resultModifier.isEmpty();
+			case MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS:
+				return modifiers != null && !modifiers.isEmpty();
 			case MappingPackage.ATTRIBUTE_MAPPING__TARGET:
 				return target != null;
 			case MappingPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
@@ -401,7 +400,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -428,7 +427,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MAPPING__MODIFIERS;
 				default: return -1;
 			}
 		}

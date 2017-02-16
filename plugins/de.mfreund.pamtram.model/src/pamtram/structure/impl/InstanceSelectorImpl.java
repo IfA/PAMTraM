@@ -39,7 +39,7 @@ import pamtram.structure.util.StructureValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
@@ -48,14 +48,14 @@ import pamtram.structure.util.StructureValidator;
  */
 public class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> modifiers;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -102,10 +102,10 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * @generated
 	 */
 	public EList<ValueModifierSet> getModifiers() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				return getModifiers();
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				if (resolve) return getTarget();
@@ -225,7 +225,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -248,7 +248,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
+			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				getModifiers().clear();
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
@@ -269,8 +269,8 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER:
-				return resultModifier != null && !resultModifier.isEmpty();
+			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
+				return modifiers != null && !modifiers.isEmpty();
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
 				return target != null;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
@@ -288,7 +288,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case StructurePackage.INSTANCE_SELECTOR__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -304,7 +304,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.INSTANCE_SELECTOR__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.INSTANCE_SELECTOR__MODIFIERS;
 				default: return -1;
 			}
 		}

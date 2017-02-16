@@ -55,7 +55,7 @@ import pamtram.structure.source.SourceSection;
  * <ul>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
@@ -106,14 +106,14 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> modifiers;
 
 	/**
 	 * The cached value of the '{@link #getConstraintReferenceValueAdditionalSpecification() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
@@ -199,10 +199,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -320,7 +320,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		if (!result && diagnostics != null) {
 		
 			String errorMessage = "ValueConstraints that are part of a SourceSection must not"
-					+ " specify a ResultModifier!'";
+					+ " specify a Modifier!'";
 		
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
 					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
@@ -409,7 +409,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return getType();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				return getExpression();
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return getModifiers();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return getConstraintReferenceValueAdditionalSpecification();
@@ -433,7 +433,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -462,7 +462,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				getModifiers().clear();
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
@@ -486,8 +486,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return type != TYPE_EDEFAULT;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER:
-				return resultModifier != null && !resultModifier.isEmpty();
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
+				return modifiers != null && !modifiers.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
 				return constraintReferenceValueAdditionalSpecification != null && !constraintReferenceValueAdditionalSpecification.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
@@ -510,7 +510,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -531,7 +531,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 				default: return -1;
 			}
 		}

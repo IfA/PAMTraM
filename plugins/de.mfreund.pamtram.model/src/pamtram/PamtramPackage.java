@@ -745,7 +745,7 @@ public interface PamtramPackage extends EPackage {
 	int MODIFIABLE_ELEMENT = 10;
 
 	/**
-	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1264,10 +1264,10 @@ public interface PamtramPackage extends EPackage {
 	EClass getModifiableElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.ModifiableElement#getModifiers <em>Modifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
 	 * @see pamtram.ModifiableElement#getModifiers()
 	 * @see #getModifiableElement()
 	 * @generated
@@ -1669,7 +1669,7 @@ public interface PamtramPackage extends EPackage {
 		EClass MODIFIABLE_ELEMENT = eINSTANCE.getModifiableElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

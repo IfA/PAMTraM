@@ -42,7 +42,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
@@ -71,14 +71,14 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> modifiers;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -149,10 +149,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return getExpression();
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return getModifiers();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				if (resolve) return getTarget();
@@ -323,7 +323,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -349,7 +349,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
@@ -372,8 +372,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
-				return resultModifier != null && !resultModifier.isEmpty();
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+				return modifiers != null && !modifiers.isEmpty();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				return target != null;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
@@ -397,7 +397,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -424,7 +424,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS;
 				default: return -1;
 			}
 		}

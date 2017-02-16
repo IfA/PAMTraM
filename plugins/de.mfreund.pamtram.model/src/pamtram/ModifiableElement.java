@@ -16,7 +16,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.ModifiableElement#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getModifiableElement()
@@ -25,7 +25,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  */
 public interface ModifiableElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
+	 * Returns the value of the '<em><b>Modifiers</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,7 +33,7 @@ public interface ModifiableElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Modifier</em>' reference list.
+	 * @return the value of the '<em>Modifiers</em>' reference list.
 	 * @see pamtram.PamtramPackage#getModifiableElement_Modifiers()
 	 * @model
 	 * @generated

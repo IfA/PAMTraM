@@ -24,22 +24,21 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.impl.ModifiableElementImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.impl.ModifiableElementImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container implements ModifiableElement {
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
-
+	protected EList<ValueModifierSet> modifiers;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,10 +64,10 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public EList<ValueModifierSet> getModifiers() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS);
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -126,7 +125,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
-				return resultModifier != null && !resultModifier.isEmpty();
+				return modifiers != null && !modifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

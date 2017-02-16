@@ -18,7 +18,7 @@ import pamtram.ConditionalElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}</li>
+ *   <li>{@link pamtram.condition.ApplicationDependency#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getApplicationDependency()
@@ -27,14 +27,14 @@ import pamtram.ConditionalElement;
  */
 public interface ApplicationDependency extends Condition {
 	/**
-	 * Returns the value of the '<em><b>Conditional Element</b></em>' reference.
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Conditional Element</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conditional Element</em>' reference.
+	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ConditionalElement)
 	 * @see pamtram.condition.ConditionPackage#getApplicationDependency_Target()
 	 * @model required="true"
@@ -43,10 +43,10 @@ public interface ApplicationDependency extends Condition {
 	ConditionalElement getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}' reference.
+	 * Sets the value of the '{@link pamtram.condition.ApplicationDependency#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Conditional Element</em>' reference.
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */

@@ -989,7 +989,7 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Conditional Element</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1342,10 +1342,10 @@ public interface ConditionPackage extends EPackage {
 	EClass getApplicationDependency();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.condition.ApplicationDependency#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Conditional Element</em>'.
+	 * @return the meta object for the reference '<em>Target</em>'.
 	 * @see pamtram.condition.ApplicationDependency#getTarget()
 	 * @see #getApplicationDependency()
 	 * @generated
@@ -1622,7 +1622,7 @@ public interface ConditionPackage extends EPackage {
 		EClass APPLICATION_DEPENDENCY = eINSTANCE.getApplicationDependency();
 
 		/**
-		 * The meta object literal for the '<em><b>Conditional Element</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

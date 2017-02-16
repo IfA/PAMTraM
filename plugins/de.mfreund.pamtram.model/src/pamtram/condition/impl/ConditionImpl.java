@@ -27,7 +27,7 @@ import pamtram.structure.InstanceSelector;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.ConditionImpl#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
  * </ul>
@@ -36,14 +36,14 @@ import pamtram.structure.InstanceSelector;
  */
 public abstract class ConditionImpl extends ComplexConditionImpl implements Condition {
 	/**
-	 * The cached value of the '{@link #getInstanceSelectors() <em>Additional Condition Specification</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> additionalConditionSpecification;
+	protected EList<InstanceSelector> instanceSelectors;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -110,10 +110,10 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * @generated
 	 */
 	public EList<InstanceSelector> getInstanceSelectors() {
-		if (additionalConditionSpecification == null) {
-			additionalConditionSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
-		return additionalConditionSpecification;
+		return instanceSelectors;
 	}
 
 	/**
@@ -254,7 +254,7 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return additionalConditionSpecification != null && !additionalConditionSpecification.isEmpty();
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 			case ConditionPackage.CONDITION__VALUE:
 				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:

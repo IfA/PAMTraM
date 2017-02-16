@@ -15,7 +15,7 @@ import pamtram.structure.InstanceSelector;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
  * </ul>
@@ -26,7 +26,7 @@ import pamtram.structure.InstanceSelector;
  */
 public interface Condition extends ComplexCondition {
 	/**
-	 * Returns the value of the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,7 +34,7 @@ public interface Condition extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Additional Condition Specification</em>' containment reference list.
+	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getCondition_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated

@@ -635,7 +635,7 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -735,7 +735,7 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -853,7 +853,7 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -962,7 +962,7 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1113,10 +1113,10 @@ public interface ConditionPackage extends EPackage {
 	EClass getCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Additional Condition Specification</em>'.
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
 	 * @see pamtram.condition.Condition#getInstanceSelectors()
 	 * @see #getCondition()
 	 * @generated
@@ -1441,7 +1441,7 @@ public interface ConditionPackage extends EPackage {
 		EClass CONDITION = eINSTANCE.getCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Additional Condition Specification</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

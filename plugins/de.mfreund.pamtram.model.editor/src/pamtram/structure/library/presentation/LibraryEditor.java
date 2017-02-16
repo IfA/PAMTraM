@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.modifier.presentation;
+package pamtram.structure.library.presentation;
 
 
 import java.io.IOException;
@@ -144,7 +144,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
+import pamtram.structure.library.provider.LibraryItemProviderAdapterFactory;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 
@@ -160,6 +160,8 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 
+import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
+
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 
 import pamtram.presentation.PamtramEditorPlugin;
@@ -170,19 +172,20 @@ import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactor
 
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 
-import pamtram.structure.library.provider.LibraryItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
+
 import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
+
 import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 
 
 /**
- * This is an example of a Modifier model editor.
+ * This is an example of a Library model editor.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModifierEditor
+public class LibraryEditor
 	extends MultiPageEditorPart
 	implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 	/**
@@ -294,18 +297,18 @@ public class ModifierEditor
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(ModifierEditor.this);
+						getActionBarContributor().setActiveEditor(LibraryEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(ModifierEditor.this);
+						getActionBarContributor().setActiveEditor(LibraryEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == ModifierEditor.this) {
+				else if (p == LibraryEditor.this) {
 					handleActivate();
 				}
 			}
@@ -485,7 +488,7 @@ public class ModifierEditor
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(ModifierEditor.this, false);
+										 getSite().getPage().closeEditor(LibraryEditor.this, false);
 									 }
 								 }
 							 });
@@ -496,7 +499,7 @@ public class ModifierEditor
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == ModifierEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == LibraryEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -528,7 +531,7 @@ public class ModifierEditor
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(ModifierEditor.this, false);
+				getSite().getPage().closeEditor(LibraryEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -658,7 +661,7 @@ public class ModifierEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModifierEditor() {
+	public LibraryEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1199,8 +1202,8 @@ public class ModifierEditor
 			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.LIVE, PamtramEditorPlugin.getPlugin().getDialogSettings()) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					ModifierEditor.this.setSelectionToViewer(selection);
-					ModifierEditor.this.setFocus();
+					LibraryEditor.this.setSelectionToViewer(selection);
+					LibraryEditor.this.setFocus();
 				}
 
 				@Override

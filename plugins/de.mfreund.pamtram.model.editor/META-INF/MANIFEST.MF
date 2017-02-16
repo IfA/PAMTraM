@@ -18,7 +18,8 @@ Export-Package: pamtram.actions,
  pamtram.structure.source.presentation,
  pamtram.structure.target.presentation,
  pamtram.presentation,
- pamtram.structure.constraint.presentation
+ pamtram.structure.constraint.presentation,
+ pamtram.structure.library.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  de.mfreund.pamtram.model.edit;bundle-version="1.7.0";visibility:=reexport,

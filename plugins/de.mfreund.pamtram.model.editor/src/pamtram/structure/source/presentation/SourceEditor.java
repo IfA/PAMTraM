@@ -172,6 +172,7 @@ import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactor
 
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 
+import pamtram.structure.library.provider.LibraryItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
 
@@ -681,6 +682,7 @@ public class SourceEditor
 		adapterFactory.addAdapterFactory(new ConstraintItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new SourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TargetItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new LibraryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ModifierItemProviderAdapterFactory());

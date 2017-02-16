@@ -92,6 +92,18 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.library.presentation.LibraryEditorID"
+            name="%_UI_LibraryEditor_label"
+            icon="icons/full/obj16/LibraryModelFile.gif"
+            extensions="library"
+            class="pamtram.structure.library.presentation.LibraryEditor"
+            contributorClass="pamtram.structure.library.presentation.LibraryActionBarContributor">
+      </editor>
+   </extension>
+
 null
 null
 null

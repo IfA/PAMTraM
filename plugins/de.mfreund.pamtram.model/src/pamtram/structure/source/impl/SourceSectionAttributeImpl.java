@@ -26,22 +26,21 @@ import pamtram.structure.source.SourceSectionReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.source.impl.SourceSectionAttributeImpl#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.structure.source.impl.SourceSectionAttributeImpl#getValueConstraints <em>Value Constraints</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements SourceSectionAttribute {
 	/**
-	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraint</em>}' containment reference list.
+	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueConstraint> valueConstraint;
-
+	protected EList<ValueConstraint> valueConstraints;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,10 +66,10 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 * @generated
 	 */
 	public EList<ValueConstraint> getValueConstraints() {
-		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
+		if (valueConstraints == null) {
+			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 		}
-		return valueConstraint;
+		return valueConstraints;
 	}
 
 	/**
@@ -142,7 +141,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
-				return valueConstraint != null && !valueConstraint.isEmpty();
+				return valueConstraints != null && !valueConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

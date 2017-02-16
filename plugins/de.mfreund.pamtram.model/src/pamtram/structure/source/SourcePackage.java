@@ -848,7 +848,7 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = GenericPackage.ATTRIBUTE__OWNING_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -930,13 +930,13 @@ public interface SourcePackage extends EPackage {
 	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -1084,10 +1084,10 @@ public interface SourcePackage extends EPackage {
 	EClass getSourceSectionAttribute();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraints <em>Value Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
+	 * @return the meta object for the containment reference list '<em>Value Constraints</em>'.
 	 * @see pamtram.structure.source.SourceSectionAttribute#getValueConstraints()
 	 * @see #getSourceSectionAttribute()
 	 * @generated
@@ -1204,7 +1204,7 @@ public interface SourcePackage extends EPackage {
 		EClass SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getSourceSectionAttribute();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Value Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

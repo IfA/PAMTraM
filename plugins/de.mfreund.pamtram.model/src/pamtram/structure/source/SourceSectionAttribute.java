@@ -16,7 +16,7 @@ import pamtram.structure.generic.Attribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraint <em>Value Constraint</em>}</li>
+ *   <li>{@link pamtram.structure.source.SourceSectionAttribute#getValueConstraints <em>Value Constraints</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute()
@@ -26,7 +26,7 @@ import pamtram.structure.generic.Attribute;
 public interface SourceSectionAttribute extends Attribute<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 
 	/**
-	 * Returns the value of the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -34,7 +34,7 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
+	 * @return the value of the '<em>Value Constraints</em>' containment reference list.
 	 * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute_ValueConstraints()
 	 * @model containment="true"
 	 * @generated

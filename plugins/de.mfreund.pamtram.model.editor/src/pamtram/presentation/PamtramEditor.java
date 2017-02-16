@@ -614,7 +614,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 
 			if (!visitor.getRemovedResources().isEmpty()) {
 				boolean exit = false;
-				EList<pamtram.structure.LibraryEntry> libEntries = new BasicEList<>();
+				EList<pamtram.structure.library.LibraryEntry> libEntries = new BasicEList<>();
 				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModels()) {
 					libEntries.addAll(targetSectionModel.getLibraryElements());
 				}
@@ -623,7 +623,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 					//
 					if (resource.getURI().lastSegment().equals("data.xmi")) {
 						String path = resource.getURI().trimSegments(1).lastSegment();
-						for (pamtram.structure.LibraryEntry libraryEntry : libEntries) {
+						for (pamtram.structure.library.LibraryEntry libraryEntry : libEntries) {
 							if (libraryEntry.getPath().equals(path)) {
 								exit = true;
 								break;

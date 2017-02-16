@@ -114,7 +114,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass expressionHintEClass = null;
+	private EClass expressionElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -644,7 +644,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EClass getExpressionElement() {
-		return expressionHintEClass;
+		return expressionElementEClass;
 	}
 
 	/**
@@ -653,7 +653,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EAttribute getExpressionElement_Expression() {
-		return (EAttribute)expressionHintEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)expressionElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1584,8 +1584,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		mappingHintEClass = createEClass(MAPPING_HINT);
 
-		expressionHintEClass = createEClass(EXPRESSION_ELEMENT);
-		createEAttribute(expressionHintEClass, EXPRESSION_ELEMENT__EXPRESSION);
+		expressionElementEClass = createEClass(EXPRESSION_ELEMENT);
+		createEAttribute(expressionElementEClass, EXPRESSION_ELEMENT__EXPRESSION);
 
 		modifiableHintEClass = createEClass(MODIFIABLE_HINT);
 		createEReference(modifiableHintEClass, MODIFIABLE_HINT__RESULT_MODIFIER);
@@ -2206,7 +2206,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(expressionHintEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(expressionElementEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modifiableHintEClass, ModifiableHint.class, "ModifiableHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

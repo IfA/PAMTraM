@@ -90,7 +90,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				SingleReferenceValueConstraint singleReferenceValueConstraint = (SingleReferenceValueConstraint)theEObject;
 				T result = caseSingleReferenceValueConstraint(singleReferenceValueConstraint);
 				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
-				if (result == null) result = caseExpressionHint(singleReferenceValueConstraint);
+				if (result == null) result = caseExpressionElement(singleReferenceValueConstraint);
 				if (result == null) result = caseModifiableHint(singleReferenceValueConstraint);
 				if (result == null) result = caseNamedElement(singleReferenceValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
@@ -101,7 +101,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				T result = caseEqualityConstraint(equalityConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(equalityConstraint);
 				if (result == null) result = caseValueConstraint(equalityConstraint);
-				if (result == null) result = caseExpressionHint(equalityConstraint);
+				if (result == null) result = caseExpressionElement(equalityConstraint);
 				if (result == null) result = caseModifiableHint(equalityConstraint);
 				if (result == null) result = caseNamedElement(equalityConstraint);
 				if (result == null) result = defaultCase(theEObject);
@@ -120,7 +120,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				T result = caseNumericConstraint(numericConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(numericConstraint);
 				if (result == null) result = caseValueConstraint(numericConstraint);
-				if (result == null) result = caseExpressionHint(numericConstraint);
+				if (result == null) result = caseExpressionElement(numericConstraint);
 				if (result == null) result = caseModifiableHint(numericConstraint);
 				if (result == null) result = caseNamedElement(numericConstraint);
 				if (result == null) result = defaultCase(theEObject);
@@ -131,7 +131,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				T result = caseStringConstraint(stringConstraint);
 				if (result == null) result = caseSingleReferenceValueConstraint(stringConstraint);
 				if (result == null) result = caseValueConstraint(stringConstraint);
-				if (result == null) result = caseExpressionHint(stringConstraint);
+				if (result == null) result = caseExpressionElement(stringConstraint);
 				if (result == null) result = caseModifiableHint(stringConstraint);
 				if (result == null) result = caseNamedElement(stringConstraint);
 				if (result == null) result = defaultCase(theEObject);
@@ -322,17 +322,17 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpressionHint(ExpressionElement object) {
+	public T caseExpressionElement(ExpressionElement object) {
 		return null;
 	}
 

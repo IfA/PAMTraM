@@ -760,7 +760,7 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.mapping.impl.ExpressionElementImpl
@@ -779,7 +779,7 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_ELEMENT__EXPRESSION = 0;
 
 	/**
-	 * The number of structural features of the '<em>Expression Hint</em>' class.
+	 * The number of structural features of the '<em>Expression Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -788,7 +788,7 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Expression Hint</em>' class.
+	 * The number of operations of the '<em>Expression Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4042,10 +4042,10 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionElement <em>Expression Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ExpressionElement <em>Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Expression Hint</em>'.
+	 * @return the meta object for class '<em>Expression Element</em>'.
 	 * @see pamtram.mapping.ExpressionElement
 	 * @generated
 	 */
@@ -5185,7 +5185,7 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.mapping.impl.ExpressionElementImpl

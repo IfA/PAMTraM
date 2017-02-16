@@ -135,8 +135,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.EXPRESSION_ELEMENT: {
-				ExpressionElement expressionHint = (ExpressionElement)theEObject;
-				T result = caseExpressionHint(expressionHint);
+				ExpressionElement expressionElement = (ExpressionElement)theEObject;
+				T result = caseExpressionElement(expressionElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,7 +150,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
 				T result = caseAttributeMapping(attributeMapping);
 				if (result == null) result = caseMappingHint(attributeMapping);
-				if (result == null) result = caseExpressionHint(attributeMapping);
+				if (result == null) result = caseExpressionElement(attributeMapping);
 				if (result == null) result = caseModifiableHint(attributeMapping);
 				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
@@ -192,7 +192,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
 				T result = caseAttributeMatcher(attributeMatcher);
 				if (result == null) result = caseMatcher(attributeMatcher);
-				if (result == null) result = caseExpressionHint(attributeMatcher);
+				if (result == null) result = caseExpressionElement(attributeMatcher);
 				if (result == null) result = caseModifiableHint(attributeMatcher);
 				if (result == null) result = caseExpandableHint(attributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
@@ -598,17 +598,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpressionHint(ExpressionElement object) {
+	public T caseExpressionElement(ExpressionElement object) {
 		return null;
 	}
 

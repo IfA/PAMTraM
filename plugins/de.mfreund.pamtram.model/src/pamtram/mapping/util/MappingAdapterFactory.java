@@ -101,8 +101,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintAdapter();
 			}
 			@Override
-			public Adapter caseExpressionHint(ExpressionElement object) {
-				return createExpressionHintAdapter();
+			public Adapter caseExpressionElement(ExpressionElement object) {
+				return createExpressionElementAdapter();
 			}
 			@Override
 			public Adapter caseModifiableHint(ModifiableHint object) {
@@ -351,7 +351,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionElement <em>Expression Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpressionElement <em>Expression Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -360,7 +360,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.mapping.ExpressionElement
 	 * @generated
 	 */
-	public Adapter createExpressionHintAdapter() {
+	public Adapter createExpressionElementAdapter() {
 		return null;
 	}
 

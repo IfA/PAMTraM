@@ -797,7 +797,7 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.mapping.impl.ModifiableElementImpl
@@ -816,7 +816,7 @@ public interface MappingPackage extends EPackage {
 	int MODIFIABLE_ELEMENT__RESULT_MODIFIER = 0;
 
 	/**
-	 * The number of structural features of the '<em>Modifiable Hint</em>' class.
+	 * The number of structural features of the '<em>Modifiable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -825,7 +825,7 @@ public interface MappingPackage extends EPackage {
 	int MODIFIABLE_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of operations of the '<em>Modifiable Hint</em>' class.
+	 * The number of operations of the '<em>Modifiable Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4063,10 +4063,10 @@ public interface MappingPackage extends EPackage {
 	EAttribute getExpressionElement_Expression();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Modifiable Hint</em>'.
+	 * @return the meta object for class '<em>Modifiable Element</em>'.
 	 * @see pamtram.mapping.ModifiableElement
 	 * @generated
 	 */
@@ -5203,7 +5203,7 @@ public interface MappingPackage extends EPackage {
 		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.mapping.impl.ModifiableElementImpl

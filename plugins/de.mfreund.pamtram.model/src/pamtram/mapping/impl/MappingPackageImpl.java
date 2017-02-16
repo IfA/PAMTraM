@@ -121,7 +121,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modifiableHintEClass = null;
+	private EClass modifiableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -662,7 +662,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EClass getModifiableElement() {
-		return modifiableHintEClass;
+		return modifiableElementEClass;
 	}
 
 	/**
@@ -671,7 +671,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	public EReference getModifiableElement_ResultModifier() {
-		return (EReference)modifiableHintEClass.getEStructuralFeatures().get(0);
+		return (EReference)modifiableElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1587,8 +1587,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		expressionElementEClass = createEClass(EXPRESSION_ELEMENT);
 		createEAttribute(expressionElementEClass, EXPRESSION_ELEMENT__EXPRESSION);
 
-		modifiableHintEClass = createEClass(MODIFIABLE_ELEMENT);
-		createEReference(modifiableHintEClass, MODIFIABLE_ELEMENT__RESULT_MODIFIER);
+		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
+		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__RESULT_MODIFIER);
 
 		attributeMappingEClass = createEClass(ATTRIBUTE_MAPPING);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__TARGET);
@@ -2209,7 +2209,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(expressionElementEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(modifiableHintEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModifiableElement_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

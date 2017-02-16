@@ -125,8 +125,8 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionElementAdapter();
 			}
 			@Override
-			public Adapter caseModifiableHint(ModifiableElement object) {
-				return createModifiableHintAdapter();
+			public Adapter caseModifiableElement(ModifiableElement object) {
+				return createModifiableElementAdapter();
 			}
 			@Override
 			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
@@ -319,7 +319,7 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -328,7 +328,7 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.mapping.ModifiableElement
 	 * @generated
 	 */
-	public Adapter createModifiableHintAdapter() {
+	public Adapter createModifiableElementAdapter() {
 		return null;
 	}
 

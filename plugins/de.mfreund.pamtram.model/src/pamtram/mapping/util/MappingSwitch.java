@@ -141,8 +141,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case MappingPackage.MODIFIABLE_ELEMENT: {
-				ModifiableElement modifiableHint = (ModifiableElement)theEObject;
-				T result = caseModifiableHint(modifiableHint);
+				ModifiableElement modifiableElement = (ModifiableElement)theEObject;
+				T result = caseModifiableElement(modifiableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,7 +151,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseAttributeMapping(attributeMapping);
 				if (result == null) result = caseMappingHint(attributeMapping);
 				if (result == null) result = caseExpressionElement(attributeMapping);
-				if (result == null) result = caseModifiableHint(attributeMapping);
+				if (result == null) result = caseModifiableElement(attributeMapping);
 				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
 				if (result == null) result = caseConditionalElement(attributeMapping);
@@ -193,7 +193,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseAttributeMatcher(attributeMatcher);
 				if (result == null) result = caseMatcher(attributeMatcher);
 				if (result == null) result = caseExpressionElement(attributeMatcher);
-				if (result == null) result = caseModifiableHint(attributeMatcher);
+				if (result == null) result = caseModifiableElement(attributeMatcher);
 				if (result == null) result = caseExpandableHint(attributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -613,17 +613,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Hint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Modifiable Hint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModifiableHint(ModifiableElement object) {
+	public T caseModifiableElement(ModifiableElement object) {
 		return null;
 	}
 

@@ -97,7 +97,7 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createNotAdapter();
 			}
 			@Override
-			public Adapter caseCondition(Condition object) {
+			public <TargetType> Adapter caseCondition(Condition<TargetType> object) {
 				return createConditionAdapter();
 			}
 			@Override

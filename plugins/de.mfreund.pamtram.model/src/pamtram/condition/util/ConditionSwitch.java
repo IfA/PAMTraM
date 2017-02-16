@@ -123,7 +123,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case ConditionPackage.CONDITION: {
-				Condition condition = (Condition)theEObject;
+				Condition<?> condition = (Condition<?>)theEObject;
 				T result = caseCondition(condition);
 				if (result == null) result = caseComplexCondition(condition);
 				if (result == null) result = caseInstanceSelectingElement(condition);
@@ -191,7 +191,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCondition(Condition object) {
+	public <TargetType> T caseCondition(Condition<TargetType> object) {
 		return null;
 	}
 

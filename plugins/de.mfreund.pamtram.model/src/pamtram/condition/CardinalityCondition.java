@@ -9,42 +9,11 @@ import pamtram.structure.source.SourceSectionClass;
  * A representation of the model object '<em><b>Section Condition</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}</li>
- * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCardinalityCondition()
  * @model
  * @generated
  */
-public interface CardinalityCondition extends Condition {
-	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Condition Section Ref</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(SourceSectionClass)
-	 * @see pamtram.condition.ConditionPackage#getCardinalityCondition_Target()
-	 * @model required="true"
-	 * @generated
-	 */
-	SourceSectionClass getTarget();
-
-	/**
-	 * Sets the value of the '{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
-	 * @generated
-	 */
-	void setTarget(SourceSectionClass value);
+public interface CardinalityCondition extends Condition<SourceSectionClass> {
 
 } // SectionCondition

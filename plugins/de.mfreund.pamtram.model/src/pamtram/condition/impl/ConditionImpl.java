@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -32,11 +33,12 @@ import pamtram.structure.InstanceSelector;
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ConditionImpl extends ComplexConditionImpl implements Condition {
+public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl implements Condition<TargetType> {
 	/**
 	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -88,6 +90,16 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	protected ComparatorEnum comparator = COMPARATOR_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected TargetType target;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -137,6 +149,45 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 		comparator = newComparator == null ? COMPARATOR_EDEFAULT : newComparator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__COMPARATOR, oldComparator, comparator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public TargetType getTarget() {
+		if (target != null && ((EObject)target).eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (TargetType)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CONDITION__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetType basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(TargetType newTarget) {
+		TargetType oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -199,6 +250,9 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return getComparator();
+			case ConditionPackage.CONDITION__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +276,9 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator((ComparatorEnum)newValue);
 				return;
+			case ConditionPackage.CONDITION__TARGET:
+				setTarget((TargetType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -243,6 +300,9 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator(COMPARATOR_EDEFAULT);
 				return;
+			case ConditionPackage.CONDITION__TARGET:
+				setTarget((TargetType)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,6 +321,8 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return comparator != COMPARATOR_EDEFAULT;
+			case ConditionPackage.CONDITION__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

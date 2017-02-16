@@ -662,13 +662,22 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 3;
+	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -762,6 +771,15 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__TARGET = CONDITION__TARGET;
+
+	/**
 	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -771,22 +789,13 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CONDITION__TARGET = CONDITION_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Attribute Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
+	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -886,7 +895,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION__TARGET = CONDITION_FEATURE_COUNT + 0;
+	int CARDINALITY_CONDITION__TARGET = CONDITION__TARGET;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
@@ -895,7 +904,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -995,7 +1004,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY__TARGET = CONDITION_FEATURE_COUNT + 0;
+	int APPLICATION_DEPENDENCY__TARGET = CONDITION__TARGET;
 
 	/**
 	 * The number of structural features of the '<em>Application Dependency</em>' class.
@@ -1004,7 +1013,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int APPLICATION_DEPENDENCY_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -1122,6 +1131,17 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCondition_Comparator();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.condition.Condition#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see pamtram.condition.Condition#getTarget()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_Target();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Condition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
@@ -1300,17 +1320,6 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ValueConstraints();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.AttributeCondition#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.condition.AttributeCondition#getTarget()
-	 * @see #getAttributeCondition()
-	 * @generated
-	 */
-	EReference getAttributeCondition_Target();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1321,17 +1330,6 @@ public interface ConditionPackage extends EPackage {
 	EClass getCardinalityCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.CardinalityCondition#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.condition.CardinalityCondition#getTarget()
-	 * @see #getCardinalityCondition()
-	 * @generated
-	 */
-	EReference getCardinalityCondition_Target();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1340,17 +1338,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getApplicationDependency();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.ApplicationDependency#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.condition.ApplicationDependency#getTarget()
-	 * @see #getApplicationDependency()
-	 * @generated
-	 */
-	EReference getApplicationDependency_Target();
 
 	/**
 	 * Returns the meta object for enum '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}'.
@@ -1436,6 +1423,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONDITION__COMPARATOR = eINSTANCE.getCondition_Comparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__TARGET = eINSTANCE.getCondition_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.
@@ -1586,14 +1581,6 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = eINSTANCE.getAttributeCondition_ValueConstraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_CONDITION__TARGET = eINSTANCE.getAttributeCondition_Target();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1604,14 +1591,6 @@ public interface ConditionPackage extends EPackage {
 		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CARDINALITY_CONDITION__TARGET = eINSTANCE.getCardinalityCondition_Target();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1620,14 +1599,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass APPLICATION_DEPENDENCY = eINSTANCE.getApplicationDependency();
-
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference APPLICATION_DEPENDENCY__TARGET = eINSTANCE.getApplicationDependency_Target();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}' enum.

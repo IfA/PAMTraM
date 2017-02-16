@@ -2,13 +2,8 @@
  */
 package pamtram.condition.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.mapping.Mapping;
@@ -19,25 +14,10 @@ import pamtram.structure.source.SourceSectionClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Section Condition</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link pamtram.condition.impl.CardinalityConditionImpl#getTarget <em>Target</em>}</li>
- * </ul>
  *
  * @generated
  */
-public class CardinalityConditionImpl extends ConditionImpl implements CardinalityCondition {
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected SourceSectionClass target;
+public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> implements CardinalityCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,100 +40,14 @@ public class CardinalityConditionImpl extends ConditionImpl implements Cardinali
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
-	public SourceSectionClass getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (SourceSectionClass)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourceSectionClass basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public void setTarget(SourceSectionClass newTarget) {
-		SourceSectionClass oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__TARGET, oldTarget, target));
+		super.setTarget(newTarget);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
-				setTarget((SourceSectionClass)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
-				setTarget((SourceSectionClass)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ConditionPackage.CARDINALITY_CONDITION__TARGET:
-				return target != null;
-		}
-		return super.eIsSet(featureID);
-	}
-	
 	@Override
 	public boolean isLocalCondition() {
 		

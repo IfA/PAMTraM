@@ -3,17 +3,12 @@
 package pamtram.condition.impl;
 
 import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
@@ -32,12 +27,11 @@ import pamtram.structure.source.SourceSection;
  * </p>
  * <ul>
  *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
- *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AttributeConditionImpl extends ConditionImpl implements AttributeCondition {
+public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAttribute> implements AttributeCondition {
 	/**
 	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -47,16 +41,6 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * @ordered
 	 */
 	protected EList<ValueConstraint> valueConstraints;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActualSourceSectionAttribute target;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -92,39 +76,12 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualSourceSectionAttribute basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public void setTarget(ActualSourceSectionAttribute newTarget) {
-		ActualSourceSectionAttribute oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__TARGET, oldTarget, target));
+		super.setTarget(newTarget);
 	}
 
 	/**
@@ -151,9 +108,6 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return getValueConstraints();
-			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -171,9 +125,6 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 				getValueConstraints().clear();
 				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
-			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
-				setTarget((ActualSourceSectionAttribute)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -189,9 +140,6 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				getValueConstraints().clear();
 				return;
-			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
-				setTarget((ActualSourceSectionAttribute)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -206,8 +154,6 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return valueConstraints != null && !valueConstraints.isEmpty();
-			case ConditionPackage.ATTRIBUTE_CONDITION__TARGET:
-				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}

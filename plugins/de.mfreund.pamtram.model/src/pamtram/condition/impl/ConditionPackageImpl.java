@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -286,6 +287,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCondition_Target() {
+		return (EReference)conditionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getCondition__CheckCondition__ComplexCondition() {
 		return conditionEClass.getEOperations().get(0);
 	}
@@ -439,15 +449,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttributeCondition_Target() {
-		return (EReference)attributeConditionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCardinalityCondition() {
 		return cardinalityConditionEClass;
 	}
@@ -457,26 +458,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCardinalityCondition_Target() {
-		return (EReference)cardinalityConditionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getApplicationDependency() {
 		return applicationDependencyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getApplicationDependency_Target() {
-		return (EReference)applicationDependencyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -542,17 +525,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		conditionEClass = createEClass(CONDITION);
 		createEAttribute(conditionEClass, CONDITION__VALUE);
 		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
+		createEReference(conditionEClass, CONDITION__TARGET);
 		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
-		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__TARGET);
 
 		cardinalityConditionEClass = createEClass(CARDINALITY_CONDITION);
-		createEReference(cardinalityConditionEClass, CARDINALITY_CONDITION__TARGET);
 
 		applicationDependencyEClass = createEClass(APPLICATION_DEPENDENCY);
-		createEReference(applicationDependencyEClass, APPLICATION_DEPENDENCY__TARGET);
 
 		// Create enums
 		comparatorEnumEEnum = createEEnum(COMPARATOR_ENUM);
@@ -583,10 +564,11 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
+		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter conditionEClass_TargetType = addETypeParameter(conditionEClass, "TargetType");
 
 		// Set bounds for type parameters
 
@@ -599,9 +581,18 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		conditionEClass.getESuperTypes().add(this.getComplexCondition());
 		conditionEClass.getESuperTypes().add(thePamtramPackage.getInstanceSelectingElement());
-		attributeConditionEClass.getESuperTypes().add(this.getCondition());
-		cardinalityConditionEClass.getESuperTypes().add(this.getCondition());
-		applicationDependencyEClass.getESuperTypes().add(this.getCondition());
+		EGenericType g1 = createEGenericType(this.getCondition());
+		EGenericType g2 = createEGenericType(theSourcePackage.getActualSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCondition());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		cardinalityConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCondition());
+		g2 = createEGenericType(thePamtramPackage.getConditionalElement());
+		g1.getETypeArguments().add(g2);
+		applicationDependencyEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(complexConditionEClass, ComplexCondition.class, "ComplexCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -620,8 +611,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		EOperation op = initEOperation(getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateMinimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType();
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -658,19 +649,18 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCondition_Value(), ecorePackage.getEInt(), "value", "1", 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCondition_Comparator(), this.getComparatorEnum(), "comparator", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(conditionEClass_TargetType);
+		initEReference(getCondition_Target(), g1, null, "target", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(attributeConditionEClass, AttributeCondition.class, "AttributeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeCondition_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraints", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttributeCondition_Target(), theSourcePackage.getActualSourceSectionAttribute(), null, "target", null, 1, 1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cardinalityConditionEClass, CardinalityCondition.class, "CardinalityCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCardinalityCondition_Target(), theSourcePackage.getSourceSectionClass(), null, "target", null, 1, 1, CardinalityCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(applicationDependencyEClass, ApplicationDependency.class, "ApplicationDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApplicationDependency_Target(), thePamtramPackage.getConditionalElement(), null, "target", null, 1, 1, ApplicationDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(comparatorEnumEEnum, ComparatorEnum.class, "ComparatorEnum");

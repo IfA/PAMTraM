@@ -7,8 +7,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
-import pamtram.structure.InstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +19,6 @@ import pamtram.structure.InstanceSelector;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
@@ -28,23 +27,7 @@ import pamtram.structure.InstanceSelector;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
-public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableElement {
-	/**
-	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
-	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_InstanceSelectors()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<InstanceSelector> getInstanceSelectors();
-
+public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableElement, InstanceSelectingElement {
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraintSourceInterface}.

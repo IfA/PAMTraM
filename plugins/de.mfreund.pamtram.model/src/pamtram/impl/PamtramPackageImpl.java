@@ -18,6 +18,7 @@ import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
+import pamtram.InstanceSelectingElement;
 import pamtram.MappingModel;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
@@ -128,6 +129,13 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	private EClass modifiableElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instanceSelectingElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -618,6 +626,24 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInstanceSelectingElement() {
+		return instanceSelectingElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInstanceSelectingElement_InstanceSelectors() {
+		return (EReference)instanceSelectingElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFixedValue() {
 		return fixedValueEClass;
 	}
@@ -711,6 +737,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
 		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__MODIFIERS);
+
+		instanceSelectingElementEClass = createEClass(INSTANCE_SELECTING_ELEMENT);
+		createEReference(instanceSelectingElementEClass, INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
 
 		fixedValueEClass = createEClass(FIXED_VALUE);
 		createEAttribute(fixedValueEClass, FIXED_VALUE__VALUE);
@@ -906,6 +935,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModifiableElement_Modifiers(), theModifierPackage.getValueModifierSet(), null, "modifiers", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(instanceSelectingElementEClass, InstanceSelectingElement.class, "InstanceSelectingElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInstanceSelectingElement_InstanceSelectors(), theStructurePackage.getInstanceSelector(), null, "instanceSelectors", null, 0, -1, InstanceSelectingElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fixedValueEClass, FixedValue.class, "FixedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, FixedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

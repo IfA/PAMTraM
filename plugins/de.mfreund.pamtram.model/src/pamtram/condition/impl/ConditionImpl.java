@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import pamtram.InstanceSelectingElement;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
@@ -261,6 +263,38 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 				return comparator != COMPARATOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (derivedFeatureID) {
+				case ConditionPackage.CONDITION__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return ConditionPackage.CONDITION__INSTANCE_SELECTORS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

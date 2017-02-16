@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -186,6 +187,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
+				if (result == null) result = caseInstanceSelectingElement(globalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
 				if (result == null) result = caseModifiableElement(globalModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
@@ -402,6 +404,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
 		return null;
 	}
 

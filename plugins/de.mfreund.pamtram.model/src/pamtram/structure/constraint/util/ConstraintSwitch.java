@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -90,6 +91,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
 				if (result == null) result = caseExpressionElement(singleReferenceValueConstraint);
 				if (result == null) result = caseModifiableElement(singleReferenceValueConstraint);
+				if (result == null) result = caseInstanceSelectingElement(singleReferenceValueConstraint);
 				if (result == null) result = caseNamedElement(singleReferenceValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -101,6 +103,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(equalityConstraint);
 				if (result == null) result = caseExpressionElement(equalityConstraint);
 				if (result == null) result = caseModifiableElement(equalityConstraint);
+				if (result == null) result = caseInstanceSelectingElement(equalityConstraint);
 				if (result == null) result = caseNamedElement(equalityConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -120,6 +123,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(numericConstraint);
 				if (result == null) result = caseExpressionElement(numericConstraint);
 				if (result == null) result = caseModifiableElement(numericConstraint);
+				if (result == null) result = caseInstanceSelectingElement(numericConstraint);
 				if (result == null) result = caseNamedElement(numericConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -131,6 +135,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(stringConstraint);
 				if (result == null) result = caseExpressionElement(stringConstraint);
 				if (result == null) result = caseModifiableElement(stringConstraint);
+				if (result == null) result = caseInstanceSelectingElement(stringConstraint);
 				if (result == null) result = caseNamedElement(stringConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -348,6 +353,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
 		return null;
 	}
 

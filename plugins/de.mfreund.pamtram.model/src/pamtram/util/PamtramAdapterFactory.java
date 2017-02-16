@@ -118,6 +118,10 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
+			public Adapter caseInstanceSelectingElement(InstanceSelectingElement object) {
+				return createInstanceSelectingElementAdapter();
+			}
+			@Override
 			public Adapter caseFixedValue(FixedValue object) {
 				return createFixedValueAdapter();
 			}
@@ -316,6 +320,20 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.InstanceSelectingElement
+	 * @generated
+	 */
+	public Adapter createInstanceSelectingElementAdapter() {
 		return null;
 	}
 

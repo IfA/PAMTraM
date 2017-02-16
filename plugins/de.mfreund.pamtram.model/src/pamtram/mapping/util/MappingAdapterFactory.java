@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
@@ -285,6 +286,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseInstanceSelectingElement(InstanceSelectingElement object) {
+				return createInstanceSelectingElementAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
@@ -853,6 +858,20 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.InstanceSelectingElement
+	 * @generated
+	 */
+	public Adapter createInstanceSelectingElementAdapter() {
 		return null;
 	}
 

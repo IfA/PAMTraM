@@ -1113,17 +1113,6 @@ public interface ConditionPackage extends EPackage {
 	EClass getCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
-	 * @see pamtram.condition.Condition#getInstanceSelectors()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EReference getCondition_InstanceSelectors();
-
-	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1439,14 +1428,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONDITION = eINSTANCE.getCondition();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONDITION__INSTANCE_SELECTORS = eINSTANCE.getCondition_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Comparator</b></em>' attribute feature.

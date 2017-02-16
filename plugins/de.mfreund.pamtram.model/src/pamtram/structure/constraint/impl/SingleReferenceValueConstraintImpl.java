@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
@@ -515,6 +516,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				default: return -1;
 			}
 		}
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (derivedFeatureID) {
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -533,6 +540,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
+				default: return -1;
+			}
+		}
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 				default: return -1;
 			}
 		}

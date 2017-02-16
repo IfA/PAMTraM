@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
@@ -485,6 +486,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
@@ -497,6 +499,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
@@ -509,6 +512,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGlobalModifiedAttributeElementType(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(containerSelectorGlobalSourceElement);
@@ -1101,6 +1105,21 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
 		return null;
 	}
 

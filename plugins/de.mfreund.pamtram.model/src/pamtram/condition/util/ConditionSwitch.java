@@ -5,6 +5,7 @@ package pamtram.condition.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import pamtram.InstanceSelectingElement;
 import pamtram.NamedElement;
 import pamtram.condition.*;
 import pamtram.condition.And;
@@ -125,6 +126,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				Condition condition = (Condition)theEObject;
 				T result = caseCondition(condition);
 				if (result == null) result = caseComplexCondition(condition);
+				if (result == null) result = caseInstanceSelectingElement(condition);
 				if (result == null) result = caseNamedElement(condition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -134,6 +136,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				T result = caseAttributeCondition(attributeCondition);
 				if (result == null) result = caseCondition(attributeCondition);
 				if (result == null) result = caseComplexCondition(attributeCondition);
+				if (result == null) result = caseInstanceSelectingElement(attributeCondition);
 				if (result == null) result = caseNamedElement(attributeCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -143,6 +146,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				T result = caseCardinalityCondition(cardinalityCondition);
 				if (result == null) result = caseCondition(cardinalityCondition);
 				if (result == null) result = caseComplexCondition(cardinalityCondition);
+				if (result == null) result = caseInstanceSelectingElement(cardinalityCondition);
 				if (result == null) result = caseNamedElement(cardinalityCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -152,6 +156,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				T result = caseApplicationDependency(applicationDependency);
 				if (result == null) result = caseCondition(applicationDependency);
 				if (result == null) result = caseComplexCondition(applicationDependency);
+				if (result == null) result = caseInstanceSelectingElement(applicationDependency);
 				if (result == null) result = caseNamedElement(applicationDependency);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -322,6 +327,21 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
 		return null;
 	}
 

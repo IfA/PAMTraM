@@ -772,6 +772,43 @@ public interface PamtramPackage extends EPackage {
 	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.InstanceSelectingElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
+	 * @generated
+	 */
+	int INSTANCE_SELECTING_ELEMENT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Instance Selecting Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Instance Selecting Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -779,7 +816,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
 	 * @generated
 	 */
-	int FIXED_VALUE = 11;
+	int FIXED_VALUE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1275,6 +1312,27 @@ public interface PamtramPackage extends EPackage {
 	EReference getModifiableElement_Modifiers();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Selecting Element</em>'.
+	 * @see pamtram.InstanceSelectingElement
+	 * @generated
+	 */
+	EClass getInstanceSelectingElement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.InstanceSelectingElement#getInstanceSelectors <em>Instance Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
+	 * @see pamtram.InstanceSelectingElement#getInstanceSelectors()
+	 * @see #getInstanceSelectingElement()
+	 * @generated
+	 */
+	EReference getInstanceSelectingElement_InstanceSelectors();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1675,6 +1733,24 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODIFIABLE_ELEMENT__MODIFIERS = eINSTANCE.getModifiableElement_Modifiers();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.InstanceSelectingElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
+		 * @generated
+		 */
+		EClass INSTANCE_SELECTING_ELEMENT = eINSTANCE.getInstanceSelectingElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = eINSTANCE.getInstanceSelectingElement_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.

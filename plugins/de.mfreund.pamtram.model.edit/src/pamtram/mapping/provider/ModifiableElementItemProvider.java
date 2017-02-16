@@ -26,12 +26,12 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ModifiableHint} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ModifiableElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModifiableHintItemProvider 
+public class ModifiableElementItemProvider 
 	extends PamtramItemProviderAdapter
 	implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
@@ -41,7 +41,7 @@ public class ModifiableHintItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModifiableHintItemProvider(AdapterFactory adapterFactory) {
+	public ModifiableElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,7 +74,7 @@ public class ModifiableHintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ModifiableHint_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

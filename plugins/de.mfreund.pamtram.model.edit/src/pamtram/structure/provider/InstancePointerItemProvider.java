@@ -81,7 +81,7 @@ extends ExpressionElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ModifiableHint_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

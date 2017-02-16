@@ -612,7 +612,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEOperation(getValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(singleReferenceValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceValueConstraint_InstanceSelectors(), theStructurePackage.getInstanceSelector(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceValueConstraint_InstanceSelectors(), theStructurePackage.getInstanceSelector(), null, "instanceSelectors", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferenceValueConstraint_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getSingleReferenceValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);

@@ -56,7 +56,7 @@ import pamtram.structure.source.SourceSection;
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
@@ -116,13 +116,14 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getInstanceSelectors() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> constraintReferenceValueAdditionalSpecification;
+	protected EList<InstanceSelector> instanceSelectors;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
@@ -211,10 +212,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<InstanceSelector> getInstanceSelectors() {
-		if (constraintReferenceValueAdditionalSpecification == null) {
-			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
-		return constraintReferenceValueAdditionalSpecification;
+		return instanceSelectors;
 	}
 
 	/**
@@ -377,7 +378,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		//
 		return ((SingleReferenceValueConstraint) this).getInstanceSelectors()
 				.parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
 				.findAny().isPresent();
@@ -489,7 +490,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				return constraintReferenceValueAdditionalSpecification != null && !constraintReferenceValueAdditionalSpecification.isEmpty();
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}

@@ -165,7 +165,7 @@ public interface ConstraintPackage extends EPackage {
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS = VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -292,7 +292,7 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -492,7 +492,7 @@ public interface ConstraintPackage extends EPackage {
 	int NUMERIC_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -628,7 +628,7 @@ public interface ConstraintPackage extends EPackage {
 	int STRING_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1123,10 +1123,10 @@ public interface ConstraintPackage extends EPackage {
 	EClass getSingleReferenceValueConstraint();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification <em>Constraint Reference Value Additional Specification</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors <em>Instance Selectors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
 	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors()
 	 * @see #getSingleReferenceValueConstraint()
 	 * @generated
@@ -1384,7 +1384,7 @@ public interface ConstraintPackage extends EPackage {
 		EClass SINGLE_REFERENCE_VALUE_CONSTRAINT = eINSTANCE.getSingleReferenceValueConstraint();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraint Reference Value Additional Specification</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

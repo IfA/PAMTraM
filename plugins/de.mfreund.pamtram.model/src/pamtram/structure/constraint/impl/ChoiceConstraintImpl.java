@@ -186,7 +186,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 		//
 		return ((SingleReferenceValueConstraint) this).getInstanceSelectors()
 				.parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
 				.findAny().isPresent();

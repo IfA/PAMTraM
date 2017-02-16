@@ -48,7 +48,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
@@ -270,7 +270,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 						 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#
 						 * Changing_the_FeatureFilter).
 						 */
-						return reference.equals(StructurePackage.Literals.LIBRARY_PARAMETER__SOURCE)
+						return reference.equals(LibraryPackage.Literals.LIBRARY_PARAMETER__SOURCE)
 								|| super.isIgnoredReference(match, reference);
 					}
 

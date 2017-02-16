@@ -369,7 +369,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification() {
+	public EReference getSingleReferenceValueConstraint_InstanceSelectors() {
 		return (EReference)singleReferenceValueConstraintEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -505,7 +505,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		createEOperation(valueConstraintEClass, VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT);
 
 		singleReferenceValueConstraintEClass = createEClass(SINGLE_REFERENCE_VALUE_CONSTRAINT);
-		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
@@ -612,7 +612,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEOperation(getValueConstraint__IsLocalConstraint(), ecorePackage.getEBoolean(), "isLocalConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(singleReferenceValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification(), theStructurePackage.getInstanceSelector(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceValueConstraint_InstanceSelectors(), theStructurePackage.getInstanceSelector(), null, "constraintReferenceValueAdditionalSpecification", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSingleReferenceValueConstraint_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getSingleReferenceValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);

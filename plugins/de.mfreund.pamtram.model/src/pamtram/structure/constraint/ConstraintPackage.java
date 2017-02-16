@@ -171,7 +171,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = VALUE_CONSTRAINT_FEATURE_COUNT + 2;
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS = VALUE_CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -298,7 +298,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EQUALITY_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int EQUALITY_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -498,7 +498,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERIC_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int NUMERIC_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -634,7 +634,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION;
+	int STRING_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -1127,11 +1127,11 @@ public interface ConstraintPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Constraint Reference Value Additional Specification</em>'.
-	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getConstraintReferenceValueAdditionalSpecification()
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors()
 	 * @see #getSingleReferenceValueConstraint()
 	 * @generated
 	 */
-	EReference getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification();
+	EReference getSingleReferenceValueConstraint_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}'.
@@ -1389,7 +1389,7 @@ public interface ConstraintPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION = eINSTANCE.getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification();
+		EReference SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS = eINSTANCE.getSingleReferenceValueConstraint_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.

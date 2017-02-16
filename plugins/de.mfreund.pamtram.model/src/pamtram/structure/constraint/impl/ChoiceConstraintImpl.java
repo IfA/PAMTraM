@@ -184,7 +184,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 		
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
+		return ((SingleReferenceValueConstraint) this).getInstanceSelectors()
 				.parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement

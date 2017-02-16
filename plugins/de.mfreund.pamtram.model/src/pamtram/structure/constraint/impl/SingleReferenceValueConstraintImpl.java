@@ -116,9 +116,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getConstraintReferenceValueAdditionalSpecification() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Constraint Reference Value Additional Specification</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getConstraintReferenceValueAdditionalSpecification()
+	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
@@ -210,9 +210,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public EList<InstanceSelector> getConstraintReferenceValueAdditionalSpecification() {
+	public EList<InstanceSelector> getInstanceSelectors() {
 		if (constraintReferenceValueAdditionalSpecification == null) {
-			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION);
+			constraintReferenceValueAdditionalSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
 		return constraintReferenceValueAdditionalSpecification;
 	}
@@ -375,7 +375,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return ((SingleReferenceValueConstraint) this).getConstraintReferenceValueAdditionalSpecification()
+		return ((SingleReferenceValueConstraint) this).getInstanceSelectors()
 				.parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
@@ -390,8 +390,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				return ((InternalEList<?>)getConstraintReferenceValueAdditionalSpecification()).basicRemove(otherEnd, msgs);
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
@@ -411,8 +411,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return getExpression();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return getModifiers();
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				return getConstraintReferenceValueAdditionalSpecification();
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
@@ -437,9 +437,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				getConstraintReferenceValueAdditionalSpecification().clear();
-				getConstraintReferenceValueAdditionalSpecification().addAll((Collection<? extends InstanceSelector>)newValue);
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
@@ -465,8 +465,8 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
-				getConstraintReferenceValueAdditionalSpecification().clear();
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
@@ -488,7 +488,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__CONSTRAINT_REFERENCE_VALUE_ADDITIONAL_SPECIFICATION:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
 				return constraintReferenceValueAdditionalSpecification != null && !constraintReferenceValueAdditionalSpecification.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();

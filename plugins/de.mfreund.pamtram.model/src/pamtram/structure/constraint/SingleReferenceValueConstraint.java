@@ -39,11 +39,11 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constraint Reference Value Additional Specification</em>' containment reference list.
-	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_ConstraintReferenceValueAdditionalSpecification()
+	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstanceSelector> getConstraintReferenceValueAdditionalSpecification();
+	EList<InstanceSelector> getInstanceSelectors();
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.

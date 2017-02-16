@@ -28,18 +28,18 @@ import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingFactory;
 import pamtram.provider.ExpressionElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.InstancePointer;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.InstancePointer} object.
+ * This is the item provider adapter for a {@link pamtram.structure.InstanceSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstancePointerItemProvider
+public class InstanceSelectorItemProvider
 extends ExpressionElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -47,7 +47,7 @@ extends ExpressionElementItemProvider {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointerItemProvider(AdapterFactory adapterFactory) {
+	public InstanceSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -143,14 +143,14 @@ extends ExpressionElementItemProvider {
 	}
 
 	/**
-	 * This returns InstancePointer.gif.
+	 * This returns InstanceSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointer"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstanceSelector"));
 	}
 
 	/**
@@ -172,7 +172,7 @@ extends ExpressionElementItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstancePointer)object).getExpression();
+		String label = ((InstanceSelector)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstancePointer_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -193,7 +193,7 @@ extends ExpressionElementItemProvider {
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InstancePointer.class)) {
+		switch (notification.getFeatureID(InstanceSelector.class)) {
 			case StructurePackage.INSTANCE_POINTER__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

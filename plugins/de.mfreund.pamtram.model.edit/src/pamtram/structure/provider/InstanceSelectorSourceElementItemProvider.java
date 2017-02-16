@@ -16,22 +16,22 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.provider.LocalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.InstancePointerSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.InstancePointerSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.InstanceSelectorSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstancePointerSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectorSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointerSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public InstanceSelectorSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,14 +51,14 @@ public class InstancePointerSourceElementItemProvider extends LocalModifiedAttri
 	}
 
 	/**
-	 * This returns InstancePointerSourceElement.gif.
+	 * This returns InstanceSelectorSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointerSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstanceSelectorSourceElement"));
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class InstancePointerSourceElementItemProvider extends LocalModifiedAttri
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstancePointerSourceElement)object).getName();
+		String label = ((InstanceSelectorSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstancePointerSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 

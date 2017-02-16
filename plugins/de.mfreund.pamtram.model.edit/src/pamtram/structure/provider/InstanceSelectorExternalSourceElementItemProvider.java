@@ -16,22 +16,22 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.provider.ExternalModifiedAttributeElementTypeItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.InstancePointerExternalSourceElement;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.InstancePointerExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.InstanceSelectorExternalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstancePointerExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectorExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InstancePointerExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public InstanceSelectorExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -51,14 +51,14 @@ public class InstancePointerExternalSourceElementItemProvider extends ExternalMo
 	}
 
 	/**
-	 * This returns InstancePointerExternalSourceElement.gif.
+	 * This returns InstanceSelectorExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstancePointerExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/InstanceSelectorExternalSourceElement"));
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class InstancePointerExternalSourceElementItemProvider extends ExternalMo
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstancePointerExternalSourceElement)object).getName();
+		String label = ((InstanceSelectorExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstancePointerExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 

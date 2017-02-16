@@ -43,24 +43,24 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addConditionSectionRefPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Section Ref feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionSectionRefPropertyDescriptor(Object object) {
+	protected void addTargetPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CardinalityCondition_conditionSectionRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityCondition_conditionSectionRef_feature", "_UI_CardinalityCondition_type"),
+				 getString("_UI_CardinalityCondition_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityCondition_target_feature", "_UI_CardinalityCondition_type"),
 				 ConditionPackage.Literals.CARDINALITY_CONDITION__TARGET,
 				 true,
 				 false,

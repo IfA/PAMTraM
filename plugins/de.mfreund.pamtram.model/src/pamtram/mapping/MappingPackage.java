@@ -2412,7 +2412,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE__MODIFIER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int GLOBAL_ATTRIBUTE__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Global Attribute</em>' class.
@@ -4259,11 +4259,11 @@ public interface MappingPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Modifier</em>'.
-	 * @see pamtram.mapping.GlobalAttribute#getModifier()
+	 * @see pamtram.mapping.GlobalAttribute#getModifiers()
 	 * @see #getGlobalAttribute()
 	 * @generated
 	 */
-	EReference getGlobalAttribute_Modifier();
+	EReference getGlobalAttribute_Modifiers();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.GlobalAttribute#validateSourceAttributeHasUpperBoundOne(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Has Upper Bound One</em>}' operation.
@@ -5129,7 +5129,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GLOBAL_ATTRIBUTE__MODIFIER = eINSTANCE.getGlobalAttribute_Modifier();
+		EReference GLOBAL_ATTRIBUTE__MODIFIERS = eINSTANCE.getGlobalAttribute_Modifiers();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Source Attribute Has Upper Bound One</b></em>' operation.

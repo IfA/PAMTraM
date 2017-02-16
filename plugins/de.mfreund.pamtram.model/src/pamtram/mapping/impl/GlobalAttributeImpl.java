@@ -46,10 +46,10 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 */
 	protected ActualSourceSectionAttribute source;
 	/**
-	 * The cached value of the '{@link #getModifier() <em>Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
@@ -128,9 +128,9 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifierSet> getModifier() {
+	public EList<ValueModifierSet> getModifiers() {
 		if (modifier == null) {
-			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER);
+			modifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS);
 		}
 		return modifier;
 	}
@@ -171,8 +171,8 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
-			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
-				return getModifier();
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
+				return getModifiers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -189,9 +189,9 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				setSource((ActualSourceSectionAttribute)newValue);
 				return;
-			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
-				getModifier().clear();
-				getModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,8 +208,8 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				setSource((ActualSourceSectionAttribute)null);
 				return;
-			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
-				getModifier().clear();
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
+				getModifiers().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,7 +225,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 		switch (featureID) {
 			case MappingPackage.GLOBAL_ATTRIBUTE__SOURCE:
 				return source != null;
-			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIER:
+			case MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS:
 				return modifier != null && !modifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

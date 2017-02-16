@@ -1934,7 +1934,7 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/source/ActualSourceSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modifier" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
           eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">

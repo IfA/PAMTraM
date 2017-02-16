@@ -66,11 +66,11 @@ public interface GlobalAttribute extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Modifier()
+	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Modifiers()
 	 * @model
 	 * @generated
 	 */
-	EList<ValueModifierSet> getModifier();
+	EList<ValueModifierSet> getModifiers();
 
 	/**
 	 * <!-- begin-user-doc -->

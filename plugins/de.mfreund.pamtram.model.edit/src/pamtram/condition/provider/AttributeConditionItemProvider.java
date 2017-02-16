@@ -52,7 +52,7 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Condition Attribute Ref feature.
+	 * This adds a property descriptor for the Target feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -62,8 +62,8 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AttributeCondition_conditionAttributeRef_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_conditionAttributeRef_feature", "_UI_AttributeCondition_type"),
+				 getString("_UI_AttributeCondition_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeCondition_target_feature", "_UI_AttributeCondition_type"),
 				 ConditionPackage.Literals.ATTRIBUTE_CONDITION__TARGET,
 				 true,
 				 false,

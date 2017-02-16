@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.provider;
+package pamtram.provider;
 
 
 import java.util.Collection;
@@ -9,30 +9,49 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.StyledString;
+import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.InstanceSelectingElement;
 import pamtram.PamtramPackage;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+
 import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
+
+import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.GlobalModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.InstanceSelectingElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectingElementItemProvider 
+	extends PamtramItemProviderAdapter
+	implements
+		IEditingDomainItemProvider,
+		IStructuredItemContentProvider,
+		ITreeItemContentProvider,
+		IItemLabelProvider,
+		IItemPropertySource,
+		IItemStyledLabelProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public InstanceSelectingElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -100,14 +119,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+		return new StyledString(getString("_UI_InstanceSelectingElement_type"));
 	}	
 
 	/**
@@ -121,8 +133,8 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+		switch (notification.getFeatureID(InstanceSelectingElement.class)) {
+			case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -144,6 +156,17 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 			(createChildParameter
 				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createInstanceSelector()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

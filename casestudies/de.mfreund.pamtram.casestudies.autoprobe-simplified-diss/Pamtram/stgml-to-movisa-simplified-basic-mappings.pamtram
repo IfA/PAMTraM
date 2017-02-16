@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
-  <sourceSectionModel name="stgml-simplified">
+  <sourceSectionModels name="stgml-simplified">
     <metaModelPackage href="http://stgml-simplified#/"/>
-    <metaModelSections xsi:type="source:SourceSection" name="State">
+    <sections xsi:type="source:SourceSection" name="State">
       <eClass href="http://stgml-simplified#//State"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://stgml-simplified#//State/id"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="source:SourceSection" name="Transition" container="//@sourceSectionModel.0/@metaModelSections.0">
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Transition" container="//@sourceSectionModels.0/@sections.0">
       <eClass href="http://stgml-simplified#//Transition"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="target">
         <attribute href="http://stgml-simplified#//Transition/target"/>
@@ -16,22 +16,22 @@
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="event">
         <attribute href="http://stgml-simplified#//Transition/event"/>
       </attributes>
-    </metaModelSections>
-  </sourceSectionModel>
-  <targetSectionModel name="movisa-simplified">
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels name="movisa-simplified">
     <metaModelPackage href="http://stefan-hennig.de/movisa-simplified#/"/>
-    <metaModelSections xsi:type="target:TargetSection" name="Panel">
+    <sections xsi:type="target:TargetSection" name="Panel">
       <eClass href="http://stefan-hennig.de/movisa-simplified#//Panel"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
         <attribute href="http://stefan-hennig.de/movisa-simplified#//NamedElement/name"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="target:TargetSection" name="NavigationFlow">
+    </sections>
+    <sections xsi:type="target:TargetSection" name="NavigationFlow">
       <eClass href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow"/>
-      <references xsi:type="target:TargetSectionCrossReference" name="source" value="//@targetSectionModel.0/@metaModelSections.0">
+      <references xsi:type="target:TargetSectionCrossReference" name="source" value="//@targetSectionModels.0/@sections.0">
         <eReference href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow/source"/>
       </references>
-      <references xsi:type="target:TargetSectionCrossReference" name="target" value="//@targetSectionModel.0/@metaModelSections.0">
+      <references xsi:type="target:TargetSectionCrossReference" name="target" value="//@targetSectionModels.0/@sections.0">
         <eReference href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow/target"/>
       </references>
       <references xsi:type="target:TargetSectionCompositeReference" name="signals">
@@ -46,15 +46,15 @@
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
         <attribute href="http://stefan-hennig.de/movisa-simplified#//NamedElement/name"/>
       </attributes>
-    </metaModelSections>
-  </targetSectionModel>
-  <mappingModel>
-    <mapping name="StateMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModel.0/@metaModelSections.0"/>
-    </mapping>
-    <mapping name="TransitionMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationFlow" targetSection="//@targetSectionModel.0/@metaModelSections.1"/>
-    </mapping>
-  </mappingModel>
-  <conditionModel/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="StateMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+    <mappings name="TransitionMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationFlow" targetSection="//@targetSectionModels.0/@sections.1"/>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
 </pamtram:PAMTraM>

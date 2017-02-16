@@ -62,7 +62,7 @@ public class ApplicationDependencyItemProvider extends ConditionItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ApplicationDependency_conditionalElement_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ApplicationDependency_conditionalElement_feature", "_UI_ApplicationDependency_type"),
-				 ConditionPackage.Literals.APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT,
+				 ConditionPackage.Literals.APPLICATION_DEPENDENCY__TARGET,
 				 true,
 				 false,
 				 true,

@@ -439,7 +439,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttributeCondition_ValueConstraint() {
+	public EReference getAttributeCondition_ValueConstraints() {
 		return (EReference)attributeConditionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -555,7 +555,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
-		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF);
 
 		cardinalityConditionEClass = createEClass(CARDINALITY_CONDITION);
@@ -674,7 +674,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(attributeConditionEClass, AttributeCondition.class, "AttributeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeCondition_ValueConstraint(), theConstraintPackage.getValueConstraint(), null, "valueConstraint", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeCondition_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraint", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttributeCondition_ConditionAttributeRef(), theSourcePackage.getActualSourceSectionAttribute(), null, "conditionAttributeRef", null, 1, 1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cardinalityConditionEClass, CardinalityCondition.class, "CardinalityCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

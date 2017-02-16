@@ -1328,7 +1328,7 @@
       <eLiterals name="LE" value="4" literal="LE"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition" eSuperTypes="#//condition/Condition">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraint" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" lowerBound="1"
           upperBound="-1" eType="#//structure/constraint/ValueConstraint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionAttributeRef"
           lowerBound="1" eType="#//structure/source/ActualSourceSectionAttribute"/>

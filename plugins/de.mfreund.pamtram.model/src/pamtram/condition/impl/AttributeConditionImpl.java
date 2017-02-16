@@ -39,10 +39,10 @@ import pamtram.structure.source.SourceSection;
  */
 public class AttributeConditionImpl extends ConditionImpl implements AttributeCondition {
 	/**
-	 * The cached value of the '{@link #getValueConstraint() <em>Value Constraint</em>}' containment reference list.
+	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueConstraint()
+	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
 	 */
@@ -82,9 +82,9 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ValueConstraint> getValueConstraint() {
+	public EList<ValueConstraint> getValueConstraints() {
 		if (valueConstraint == null) {
-			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
+			valueConstraint = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
 		return valueConstraint;
 	}
@@ -135,8 +135,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
-				return ((InternalEList<?>)getValueConstraint()).basicRemove(otherEnd, msgs);
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				return ((InternalEList<?>)getValueConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,8 +149,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
-				return getValueConstraint();
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				return getValueConstraints();
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				if (resolve) return getConditionAttributeRef();
 				return basicGetConditionAttributeRef();
@@ -167,9 +167,9 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
-				getValueConstraint().addAll((Collection<? extends ValueConstraint>)newValue);
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
+				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				setConditionAttributeRef((ActualSourceSectionAttribute)newValue);
@@ -186,8 +186,8 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
-				getValueConstraint().clear();
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				setConditionAttributeRef((ActualSourceSectionAttribute)null);
@@ -204,7 +204,7 @@ public class AttributeConditionImpl extends ConditionImpl implements AttributeCo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINT:
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return valueConstraint != null && !valueConstraint.isEmpty();
 			case ConditionPackage.ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF:
 				return conditionAttributeRef != null;

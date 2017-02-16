@@ -35,11 +35,11 @@ public interface AttributeCondition extends Condition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Constraint</em>' containment reference list.
-	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ValueConstraint()
+	 * @see pamtram.condition.ConditionPackage#getAttributeCondition_ValueConstraints()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<ValueConstraint> getValueConstraint();
+	EList<ValueConstraint> getValueConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Condition Attribute Ref</b></em>' reference.

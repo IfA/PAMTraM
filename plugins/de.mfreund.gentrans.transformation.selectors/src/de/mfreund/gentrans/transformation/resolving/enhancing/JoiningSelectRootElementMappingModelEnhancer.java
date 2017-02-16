@@ -66,8 +66,8 @@ public class JoiningSelectRootElementMappingModelEnhancer
 
 			// Use the 'classic' way to add the new elements as we can not use any command stack
 			//
-			this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
-			this.pamtramModel.getMappingModel().get(0).getMapping().add(mapping);
+			this.pamtramModel.getTargetSectionModels().get(0).getSections().add(rootSection);
+			this.pamtramModel.getMappingModels().get(0).getMappings().add(mapping);
 
 			// finally, we save the model
 			try {
@@ -81,11 +81,11 @@ public class JoiningSelectRootElementMappingModelEnhancer
 			// Use a command to add the new elements
 			//
 			CompoundCommand addCommand = new CompoundCommand();
-			addCommand.append(new AddCommand(editor.getEditingDomain(), editor.getPamtram().getMappingModel().get(0),
-					PamtramPackage.Literals.MAPPING_MODEL__MAPPING, mapping));
+			addCommand.append(new AddCommand(editor.getEditingDomain(), editor.getPamtram().getMappingModels().get(0),
+					PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS, mapping));
 			addCommand.append(
-					new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),
-							PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
+					new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModels().get(0),
+							PamtramPackage.Literals.SECTION_MODEL__SECTIONS, rootSection));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 		}
 

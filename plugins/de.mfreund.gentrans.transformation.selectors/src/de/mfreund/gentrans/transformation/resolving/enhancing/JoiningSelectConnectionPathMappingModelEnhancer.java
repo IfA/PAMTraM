@@ -107,7 +107,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 				rootSection.getReferences().add(this.firstReference);
 			}
 			if (!rootSectionOptional.isPresent()) {
-				this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
+				this.pamtramModel.getTargetSectionModels().get(0).getSections().add(rootSection);
 			}
 			this.sectionToConnect.setContainer(this.finalClass == null ? rootSection : this.finalClass);
 
@@ -140,8 +140,8 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			}
 			if (!rootSectionOptional.isPresent()) {
 				addCommand.append(
-						new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),
-								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
+						new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModels().get(0),
+								PamtramPackage.Literals.SECTION_MODEL__SECTIONS, rootSection));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
 					GenericPackage.Literals.CLASS__CONTAINER, this.finalClass == null ? rootSection : this.finalClass));

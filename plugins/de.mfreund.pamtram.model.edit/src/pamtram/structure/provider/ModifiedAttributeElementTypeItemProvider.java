@@ -85,7 +85,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 				 getResourceLocator(),
 				 getString("_UI_ModifiedAttributeElementType_modifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_modifier_feature", "_UI_ModifiedAttributeElementType_type"),
-				 StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIER,
+				 StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS,
 				 true,
 				 false,
 				 true,

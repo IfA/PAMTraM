@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
+import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
@@ -390,13 +391,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return MappingPackage.EXPRESSION_ELEMENT__EXPRESSION;
+				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -417,13 +418,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

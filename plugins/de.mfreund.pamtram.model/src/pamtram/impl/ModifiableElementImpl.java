@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.ModifiableElement;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -56,7 +56,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODIFIABLE_ELEMENT;
+		return PamtramPackage.Literals.MODIFIABLE_ELEMENT;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	 */
 	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -79,7 +79,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
+			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				return getResultModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -94,7 +94,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
+			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -110,7 +110,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
+			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
 		}
@@ -125,7 +125,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
+			case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
 		}
 		return super.eIsSet(featureID);

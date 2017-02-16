@@ -5,8 +5,6 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -21,7 +19,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  *   <li>{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getModifiableElement()
+ * @see pamtram.PamtramPackage#getModifiableElement()
  * @model abstract="true"
  * @generated
  */
@@ -36,7 +34,7 @@ public interface ModifiableElement extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getModifiableElement_ResultModifier()
+	 * @see pamtram.PamtramPackage#getModifiableElement_ResultModifier()
 	 * @model
 	 * @generated
 	 */

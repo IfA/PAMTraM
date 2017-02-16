@@ -16,7 +16,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.ExpressionElement;
 import pamtram.MappingModel;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
@@ -111,6 +113,20 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	private EClass conditionModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expressionElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass modifiableElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -558,6 +574,42 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getExpressionElement() {
+		return expressionElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExpressionElement_Expression() {
+		return (EAttribute)expressionElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getModifiableElement() {
+		return modifiableElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getModifiableElement_ResultModifier() {
+		return (EReference)modifiableElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PamtramFactory getPamtramFactory() {
 		return (PamtramFactory)getEFactoryInstance();
 	}
@@ -627,6 +679,12 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		conditionModelEClass = createEClass(CONDITION_MODEL);
 		createEReference(conditionModelEClass, CONDITION_MODEL__CONDITIONS);
+
+		expressionElementEClass = createEClass(EXPRESSION_ELEMENT);
+		createEAttribute(expressionElementEClass, EXPRESSION_ELEMENT__EXPRESSION);
+
+		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
+		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__RESULT_MODIFIER);
 	}
 
 	/**
@@ -806,6 +864,12 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(conditionModelEClass, ConditionModel.class, "ConditionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionModel_Conditions(), theConditionPackage.getComplexCondition(), null, "conditions", null, 0, -1, ConditionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(expressionElementEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModifiableElement_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

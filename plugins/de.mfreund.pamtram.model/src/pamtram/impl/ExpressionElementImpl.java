@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import pamtram.ExpressionElement;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXPRESSION_ELEMENT;
+		return PamtramPackage.Literals.EXPRESSION_ELEMENT;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.EXPRESSION_ELEMENT__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
+			case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
+			case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				setExpression((String)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
+			case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
+			case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 		}
 		return super.eIsSet(featureID);

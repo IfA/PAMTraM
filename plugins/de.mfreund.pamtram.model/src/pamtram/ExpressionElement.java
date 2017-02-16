@@ -4,8 +4,6 @@ package pamtram;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.mapping.MappingPackage;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Expression Hint</b></em>'.
@@ -18,7 +16,7 @@ import pamtram.mapping.MappingPackage;
  *   <li>{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getExpressionElement()
+ * @see pamtram.PamtramPackage#getExpressionElement()
  * @model abstract="true"
  * @generated
  */
@@ -34,7 +32,7 @@ public interface ExpressionElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expression</em>' attribute.
 	 * @see #setExpression(String)
-	 * @see pamtram.mapping.MappingPackage#getExpressionElement_Expression()
+	 * @see pamtram.PamtramPackage#getExpressionElement_Expression()
 	 * @model default="" required="true"
 	 * @generated
 	 */

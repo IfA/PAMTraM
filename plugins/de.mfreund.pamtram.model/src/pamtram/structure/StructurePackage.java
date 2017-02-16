@@ -462,7 +462,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__EXPRESSION = MappingPackage.EXPRESSION_ELEMENT__EXPRESSION;
+	int INSTANCE_POINTER__EXPRESSION = PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -471,7 +471,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__RESULT_MODIFIER = MappingPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
+	int INSTANCE_POINTER__RESULT_MODIFIER = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -480,7 +480,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__TARGET = MappingPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
+	int INSTANCE_POINTER__TARGET = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -489,7 +489,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER__SOURCE_ELEMENTS = MappingPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_POINTER__SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Pointer</em>' class.
@@ -498,7 +498,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_FEATURE_COUNT = MappingPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 3;
+	int INSTANCE_POINTER_FEATURE_COUNT = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -507,7 +507,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MappingPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANCE_POINTER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instance Pointer</em>' class.
@@ -516,7 +516,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_POINTER_OPERATION_COUNT = MappingPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_POINTER_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.InstancePointerSourceInterface <em>Instance Pointer Source Interface</em>}' class.

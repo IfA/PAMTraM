@@ -698,6 +698,80 @@ public interface PamtramPackage extends EPackage {
 	int CONDITION_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.ExpressionElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getExpressionElement()
+	 * @generated
+	 */
+	int EXPRESSION_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT__EXPRESSION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Expression Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Expression Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.ModifiableElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getModifiableElement()
+	 * @generated
+	 */
+	int MODIFIABLE_ELEMENT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT__RESULT_MODIFIER = 0;
+
+	/**
+	 * The number of structural features of the '<em>Modifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Modifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1104,6 +1178,48 @@ public interface PamtramPackage extends EPackage {
 	EReference getConditionModel_Conditions();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression Element</em>'.
+	 * @see pamtram.ExpressionElement
+	 * @generated
+	 */
+	EClass getExpressionElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.ExpressionElement#getExpression()
+	 * @see #getExpressionElement()
+	 * @generated
+	 */
+	EAttribute getExpressionElement_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Modifiable Element</em>'.
+	 * @see pamtram.ModifiableElement
+	 * @generated
+	 */
+	EClass getModifiableElement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.ModifiableElement#getResultModifier <em>Result Modifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
+	 * @see pamtram.ModifiableElement#getResultModifier()
+	 * @see #getModifiableElement()
+	 * @generated
+	 */
+	EReference getModifiableElement_ResultModifier();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1447,6 +1563,42 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONDITION_MODEL__CONDITIONS = eINSTANCE.getConditionModel_Conditions();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.ExpressionElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getExpressionElement()
+		 * @generated
+		 */
+		EClass EXPRESSION_ELEMENT = eINSTANCE.getExpressionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.ModifiableElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getModifiableElement()
+		 * @generated
+		 */
+		EClass MODIFIABLE_ELEMENT = eINSTANCE.getModifiableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODIFIABLE_ELEMENT__RESULT_MODIFIER = eINSTANCE.getModifiableElement_ResultModifier();
 
 	}
 

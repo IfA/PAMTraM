@@ -103,14 +103,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintAdapter();
 			}
 			@Override
-			public Adapter caseExpressionElement(ExpressionElement object) {
-				return createExpressionElementAdapter();
-			}
-			@Override
-			public Adapter caseModifiableElement(ModifiableElement object) {
-				return createModifiableElementAdapter();
-			}
-			@Override
 			public Adapter caseAttributeMapping(AttributeMapping object) {
 				return createAttributeMappingAdapter();
 			}
@@ -281,6 +273,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConditionalElement(ConditionalElement object) {
 				return createConditionalElementAdapter();
+			}
+			@Override
+			public Adapter caseExpressionElement(ExpressionElement object) {
+				return createExpressionElementAdapter();
+			}
+			@Override
+			public Adapter caseModifiableElement(ModifiableElement object) {
+				return createModifiableElementAdapter();
 			}
 			@Override
 			public Adapter caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {

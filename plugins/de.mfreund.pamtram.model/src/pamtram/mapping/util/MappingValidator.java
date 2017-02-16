@@ -9,9 +9,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
-import pamtram.ExpressionElement;
-import pamtram.ModifiableElement;
 import pamtram.mapping.*;
 import pamtram.util.PamtramValidator;
 
@@ -228,10 +225,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
 				return validateMappingHint((MappingHint)value, diagnostics, context);
-			case MappingPackage.EXPRESSION_ELEMENT:
-				return validateExpressionElement((ExpressionElement)value, diagnostics, context);
-			case MappingPackage.MODIFIABLE_ELEMENT:
-				return validateModifiableElement((ModifiableElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING:
 				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
 			case MappingPackage.CARDINALITY_MAPPING:
@@ -510,24 +503,6 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHint, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExpressionElement(ExpressionElement expressionElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(expressionElement, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModifiableElement(ModifiableElement modifiableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modifiableElement, diagnostics, context);
 	}
 
 	/**

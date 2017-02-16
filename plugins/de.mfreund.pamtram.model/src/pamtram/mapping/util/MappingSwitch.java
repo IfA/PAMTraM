@@ -136,18 +136,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.EXPRESSION_ELEMENT: {
-				ExpressionElement expressionElement = (ExpressionElement)theEObject;
-				T result = caseExpressionElement(expressionElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MODIFIABLE_ELEMENT: {
-				ModifiableElement modifiableElement = (ModifiableElement)theEObject;
-				T result = caseModifiableElement(modifiableElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.ATTRIBUTE_MAPPING: {
 				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
 				T result = caseAttributeMapping(attributeMapping);

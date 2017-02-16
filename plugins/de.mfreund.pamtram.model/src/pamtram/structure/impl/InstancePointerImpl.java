@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.ModifiableElement;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.impl.ExpressionElementImpl;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerSourceInterface;
@@ -288,7 +288,7 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
+				case StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER: return PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -304,7 +304,7 @@ public class InstancePointerImpl extends ExpressionElementImpl implements Instan
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return StructurePackage.INSTANCE_POINTER__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

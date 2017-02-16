@@ -12,9 +12,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import pamtram.ExpressionElement;
-import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
@@ -109,20 +106,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * @generated
 	 */
 	private EClass mappingHintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass expressionElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass modifiableElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -637,42 +620,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EClass getMappingHint() {
 		return mappingHintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExpressionElement() {
-		return expressionElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getExpressionElement_Expression() {
-		return (EAttribute)expressionElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getModifiableElement() {
-		return modifiableElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getModifiableElement_ResultModifier() {
-		return (EReference)modifiableElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1585,12 +1532,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		mappingHintEClass = createEClass(MAPPING_HINT);
 
-		expressionElementEClass = createEClass(EXPRESSION_ELEMENT);
-		createEAttribute(expressionElementEClass, EXPRESSION_ELEMENT__EXPRESSION);
-
-		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
-		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__RESULT_MODIFIER);
-
 		attributeMappingEClass = createEClass(ATTRIBUTE_MAPPING);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__TARGET);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
@@ -1949,14 +1890,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
-		attributeMappingEClass.getESuperTypes().add(this.getExpressionElement());
-		attributeMappingEClass.getESuperTypes().add(this.getModifiableElement());
+		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
 		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
 		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
-		attributeMatcherEClass.getESuperTypes().add(this.getExpressionElement());
-		attributeMatcherEClass.getESuperTypes().add(this.getModifiableElement());
+		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -2206,12 +2147,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappingHintBaseTypeEClass, MappingHintBaseType.class, "MappingHintBaseType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(expressionElementEClass, ExpressionElement.class, "ExpressionElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExpressionElement_Expression(), ecorePackage.getEString(), "expression", "", 1, 1, ExpressionElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModifiableElement_ResultModifier(), theModifierPackage.getValueModifierSet(), null, "resultModifier", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMapping_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

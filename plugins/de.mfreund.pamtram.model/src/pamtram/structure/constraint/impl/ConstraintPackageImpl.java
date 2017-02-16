@@ -562,8 +562,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 
 		// Create type parameters
@@ -573,8 +573,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		// Add supertypes to classes
 		valueConstraintEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
-		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getExpressionElement());
-		singleReferenceValueConstraintEClass.getESuperTypes().add(theMappingPackage.getModifiableElement());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		singleReferenceValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());

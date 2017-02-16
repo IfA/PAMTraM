@@ -130,6 +130,18 @@ public class PamtramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PamtramPackage.EXPRESSION_ELEMENT: {
+				ExpressionElement expressionElement = (ExpressionElement)theEObject;
+				T result = caseExpressionElement(expressionElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PamtramPackage.MODIFIABLE_ELEMENT: {
+				ModifiableElement modifiableElement = (ModifiableElement)theEObject;
+				T result = caseModifiableElement(modifiableElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -266,6 +278,36 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionModel(ConditionModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpressionElement(ExpressionElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModifiableElement(ModifiableElement object) {
 		return null;
 	}
 

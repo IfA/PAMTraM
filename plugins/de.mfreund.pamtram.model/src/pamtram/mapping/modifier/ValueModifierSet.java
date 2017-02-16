@@ -15,7 +15,7 @@ import pamtram.NamedElement;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.ValueModifierSet#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet()
@@ -24,7 +24,7 @@ import pamtram.NamedElement;
  */
 public interface ValueModifierSet extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Modifier</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Modifiers</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifier}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -32,7 +32,7 @@ public interface ValueModifierSet extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifier</em>' containment reference list.
+	 * @return the value of the '<em>Modifiers</em>' containment reference list.
 	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifiers()
 	 * @model containment="true"
 	 * @generated

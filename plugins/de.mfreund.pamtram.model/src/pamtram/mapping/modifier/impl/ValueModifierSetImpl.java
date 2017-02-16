@@ -23,7 +23,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl#getModifier <em>Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.modifier.impl.ValueModifierSetImpl#getModifiers <em>Modifiers</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,15 +31,14 @@ import pamtram.mapping.modifier.ValueModifierSet;
 public class ValueModifierSetImpl extends NamedElementImpl implements ValueModifierSet {
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Modifier</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifier> modifier;
-
+	protected EList<ValueModifier> modifiers;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -63,10 +62,10 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	 */
 	@Override
 	public EList<ValueModifier> getModifiers() {
-		if (modifier == null) {
-			modifier = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS);
+		if (modifiers == null) {
+			modifiers = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS);
 		}
-		return modifier;
+		return modifiers;
 	}
 
 	/**
@@ -134,7 +133,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS:
-				return modifier != null && !modifier.isEmpty();
+				return modifiers != null && !modifiers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

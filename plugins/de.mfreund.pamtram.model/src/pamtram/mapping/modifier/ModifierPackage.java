@@ -79,7 +79,7 @@ public interface ModifierPackage extends EPackage {
 	int VALUE_MODIFIER_SET__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Modifier</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Modifiers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -640,10 +640,10 @@ public interface ModifierPackage extends EPackage {
 	EClass getValueModifierSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.modifier.ValueModifierSet#getModifier <em>Modifier</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.modifier.ValueModifierSet#getModifiers <em>Modifiers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Modifier</em>'.
+	 * @return the meta object for the containment reference list '<em>Modifiers</em>'.
 	 * @see pamtram.mapping.modifier.ValueModifierSet#getModifiers()
 	 * @see #getValueModifierSet()
 	 * @generated
@@ -871,7 +871,7 @@ public interface ModifierPackage extends EPackage {
 		EClass VALUE_MODIFIER_SET = eINSTANCE.getValueModifierSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Modifier</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

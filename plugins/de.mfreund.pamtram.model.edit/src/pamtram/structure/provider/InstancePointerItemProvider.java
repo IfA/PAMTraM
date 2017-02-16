@@ -20,12 +20,12 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
+import pamtram.PamtramPackage;
 import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.GlobalModifiedAttributeElementType;
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingPackage;
 import pamtram.provider.ExpressionElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.InstancePointer;
@@ -81,7 +81,7 @@ extends ExpressionElementItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
-				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

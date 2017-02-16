@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
@@ -72,7 +72,7 @@ public class ModifiableElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
-				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

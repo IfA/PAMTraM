@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingFactory;
@@ -169,7 +170,7 @@ extends MappingHintItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ExpressionElement_expression_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
-				 MappingPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -191,7 +192,7 @@ extends MappingHintItemProvider {
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
-				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

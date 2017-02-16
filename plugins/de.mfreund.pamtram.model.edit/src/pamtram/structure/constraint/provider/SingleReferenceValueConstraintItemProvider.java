@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.MappingModel;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingFactory;
@@ -102,7 +103,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				 getResourceLocator(),
 				 getString("_UI_ExpressionElement_expression_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
-				 MappingPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -123,7 +124,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_resultModifier_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_resultModifier_feature", "_UI_ModifiableElement_type"),
-				 MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER,
 				 true,
 				 false,
 				 true,

@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.ExpressionElement;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
@@ -76,7 +76,7 @@ public class ExpressionElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExpressionElement_expression_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
-				 MappingPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -127,7 +127,7 @@ public class ExpressionElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExpressionElement.class)) {
-			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
+			case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

@@ -23,14 +23,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.ExpressionHint;
+import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingPackage;
 
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ExpressionHint} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.ExpressionElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -78,7 +78,7 @@ public class ExpressionHintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExpressionHint_expression_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+				 MappingPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -107,7 +107,7 @@ public class ExpressionHintItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExpressionHint)object).getExpression();
+		String label = ((ExpressionElement)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_ExpressionHint_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -128,8 +128,8 @@ public class ExpressionHintItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ExpressionHint.class)) {
-			case MappingPackage.EXPRESSION_HINT__EXPRESSION:
+		switch (notification.getFeatureID(ExpressionElement.class)) {
+			case MappingPackage.EXPRESSION_ELEMENT__EXPRESSION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

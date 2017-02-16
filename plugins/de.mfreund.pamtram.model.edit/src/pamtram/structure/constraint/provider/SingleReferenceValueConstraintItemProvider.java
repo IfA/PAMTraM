@@ -102,7 +102,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				 getResourceLocator(),
 				 getString("_UI_ExpressionHint_expression_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+				 MappingPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,

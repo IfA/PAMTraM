@@ -50,6 +50,7 @@ public class ConditionItemProvider
 
 			addValuePropertyDescriptor(object);
 			addComparatorPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -72,6 +73,28 @@ public class ConditionItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Condition_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_target_feature", "_UI_Condition_type"),
+				 ConditionPackage.Literals.CONDITION__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -158,7 +181,7 @@ public class ConditionItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((Condition)object).getName();
+		String label = ((Condition<?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_Condition_type"), StyledString.Style.QUALIFIER_STYLER); 

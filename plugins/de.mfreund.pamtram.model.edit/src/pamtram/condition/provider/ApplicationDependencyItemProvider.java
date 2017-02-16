@@ -8,13 +8,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.condition.ApplicationDependency;
-import pamtram.condition.ConditionPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.ApplicationDependency} object.
@@ -44,31 +41,8 @@ public class ApplicationDependencyItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ApplicationDependency_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ApplicationDependency_target_feature", "_UI_ApplicationDependency_type"),
-				 ConditionPackage.Literals.APPLICATION_DEPENDENCY__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

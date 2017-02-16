@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -24,12 +24,12 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ModifiableHintImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.ModifiableElementImpl#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container implements ModifiableHint {
+public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container implements ModifiableElement {
 	/**
 	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModifiableHintImpl() {
+	protected ModifiableElementImpl() {
 		super();
 	}
 
@@ -56,7 +56,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MODIFIABLE_HINT;
+		return MappingPackage.Literals.MODIFIABLE_ELEMENT;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	 */
 	public EList<ValueModifierSet> getResultModifier() {
 		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER);
+			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER);
 		}
 		return resultModifier;
 	}
@@ -79,7 +79,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER:
+			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				return getResultModifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -94,7 +94,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER:
+			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
@@ -110,7 +110,7 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER:
+			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				getResultModifier().clear();
 				return;
 		}
@@ -125,10 +125,10 @@ public abstract class ModifiableHintImpl extends MinimalEObjectImpl.Container im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER:
+			case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER:
 				return resultModifier != null && !resultModifier.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ModifiableHintImpl
+} //ModifiableElementImpl

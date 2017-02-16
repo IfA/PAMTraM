@@ -140,8 +140,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MODIFIABLE_HINT: {
-				ModifiableHint modifiableHint = (ModifiableHint)theEObject;
+			case MappingPackage.MODIFIABLE_ELEMENT: {
+				ModifiableElement modifiableHint = (ModifiableElement)theEObject;
 				T result = caseModifiableHint(modifiableHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -623,7 +623,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModifiableHint(ModifiableHint object) {
+	public T caseModifiableHint(ModifiableElement object) {
 		return null;
 	}
 

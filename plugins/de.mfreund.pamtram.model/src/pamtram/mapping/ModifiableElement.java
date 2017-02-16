@@ -17,14 +17,14 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ModifiableHint#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.ModifiableElement#getResultModifier <em>Result Modifier</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getModifiableHint()
+ * @see pamtram.mapping.MappingPackage#getModifiableElement()
  * @model abstract="true"
  * @generated
  */
-public interface ModifiableHint extends EObject {
+public interface ModifiableElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Result Modifier</b></em>' reference list.
 	 * The list contents are of type {@link pamtram.mapping.modifier.ValueModifierSet}.
@@ -35,10 +35,10 @@ public interface ModifiableHint extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getModifiableHint_ResultModifier()
+	 * @see pamtram.mapping.MappingPackage#getModifiableElement_ResultModifier()
 	 * @model
 	 * @generated
 	 */
 	EList<ValueModifierSet> getResultModifier();
 
-} // ModifiableHint
+} // ModifiableElement

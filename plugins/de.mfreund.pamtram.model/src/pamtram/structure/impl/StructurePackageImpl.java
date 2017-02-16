@@ -586,7 +586,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		externalReferenceParameterEClass.getEGenericSuperTypes().add(g1);
 		resourceParameterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instancePointerEClass.getESuperTypes().add(theMappingPackage.getExpressionElement());
-		instancePointerEClass.getESuperTypes().add(theMappingPackage.getModifiableHint());
+		instancePointerEClass.getESuperTypes().add(theMappingPackage.getModifiableElement());
 		instancePointerSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		g1 = createEGenericType(theMappingPackage.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());

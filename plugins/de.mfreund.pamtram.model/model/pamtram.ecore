@@ -253,7 +253,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters" upperBound="-1"
           eType="#//structure/ResourceParameter" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionElement #//mapping/ModifiableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="InstancePointer" eSuperTypes="#//mapping/ExpressionElement #//mapping/ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
@@ -909,7 +909,7 @@
         <eLiterals name="FORBIDDEN" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceValueConstraint"
-          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//mapping/ExpressionElement #//mapping/ModifiableHint">
+          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//mapping/ExpressionElement #//mapping/ModifiableElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"/>
         </eAnnotations>
@@ -944,7 +944,7 @@
         </eOperations>
         <eOperations name="validateNoResultModifierInSourceSections" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="boolean result = this.getResultModifier().isEmpty() ||&#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ValueConstraints that are part of a SourceSection must not&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; specify a ResultModifier!'&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9;errorMessage, new Object[] { this,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER }));&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="boolean result = this.getResultModifier().isEmpty() ||&#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;ValueConstraints that are part of a SourceSection must not&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; specify a ResultModifier!'&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;&#x9;errorMessage, new Object[] { this,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER }));&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1425,11 +1425,11 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral=""/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModifiableHint" abstract="true">
+    <eClassifiers xsi:type="ecore:EClass" name="ModifiableElement" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="resultModifier" upperBound="-1"
           eType="#//mapping/modifier/ValueModifierSet"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionElement #//mapping/ModifiableHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//mapping/ExpressionElement #//mapping/ModifiableElement #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetAttributeMatchesSection"/>
       </eAnnotations>
@@ -1564,7 +1564,7 @@
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpressionElement #//mapping/ModifiableHint #//mapping/ExpandableHint">
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpressionElement #//mapping/ModifiableElement #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetMatchesAffectedReferenceType"/>
       </eAnnotations>

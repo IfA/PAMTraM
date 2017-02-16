@@ -27,7 +27,7 @@ import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -397,9 +397,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
+				case MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -424,9 +424,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER;
+				case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MAPPING__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

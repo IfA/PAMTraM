@@ -10,7 +10,7 @@ import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
@@ -351,7 +351,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModifiableHint(ModifiableHint object) {
+	public T caseModifiableHint(ModifiableElement object) {
 		return null;
 	}
 

@@ -29,7 +29,7 @@ import pamtram.mapping.FixedValue;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstancePointer;
 import pamtram.structure.InstancePointerExternalSourceElement;
@@ -325,7 +325,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
 					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
 					errorMessage, new Object[] { this,
-							MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER }));
+							MappingPackage.Literals.MODIFIABLE_ELEMENT__RESULT_MODIFIER }));
 		}
 		
 		return result;
@@ -508,9 +508,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
+				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}
@@ -529,9 +529,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
+				case MappingPackage.MODIFIABLE_ELEMENT__RESULT_MODIFIER: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__RESULT_MODIFIER;
 				default: return -1;
 			}
 		}

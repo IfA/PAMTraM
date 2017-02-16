@@ -11,7 +11,7 @@ import pamtram.mapping.ExpressionElement;
 import pamtram.mapping.ExternalModifiedAttributeElementType;
 import pamtram.mapping.LocalModifiedAttributeElementType;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.ModifiableHint;
+import pamtram.mapping.ModifiableElement;
 import pamtram.mapping.ModifiedAttributeElementType;
 import pamtram.structure.*;
 import pamtram.structure.generic.Attribute;
@@ -123,7 +123,7 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionElementAdapter();
 			}
 			@Override
-			public Adapter caseModifiableHint(ModifiableHint object) {
+			public Adapter caseModifiableHint(ModifiableElement object) {
 				return createModifiableHintAdapter();
 			}
 			@Override
@@ -331,13 +331,13 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ModifiableHint
+	 * @see pamtram.mapping.ModifiableElement
 	 * @generated
 	 */
 	public Adapter createModifiableHintAdapter() {

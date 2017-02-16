@@ -797,14 +797,14 @@ public interface MappingPackage extends EPackage {
 	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ModifiableHintImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableHint()
+	 * @see pamtram.mapping.impl.ModifiableElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableElement()
 	 * @generated
 	 */
-	int MODIFIABLE_HINT = 8;
+	int MODIFIABLE_ELEMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Result Modifier</b></em>' reference list.
@@ -813,7 +813,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIABLE_HINT__RESULT_MODIFIER = 0;
+	int MODIFIABLE_ELEMENT__RESULT_MODIFIER = 0;
 
 	/**
 	 * The number of structural features of the '<em>Modifiable Hint</em>' class.
@@ -822,7 +822,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIABLE_HINT_FEATURE_COUNT = 1;
+	int MODIFIABLE_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Modifiable Hint</em>' class.
@@ -831,7 +831,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODIFIABLE_HINT_OPERATION_COUNT = 0;
+	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4063,25 +4063,25 @@ public interface MappingPackage extends EPackage {
 	EAttribute getExpressionElement_Expression();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableHint <em>Modifiable Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.ModifiableElement <em>Modifiable Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Modifiable Hint</em>'.
-	 * @see pamtram.mapping.ModifiableHint
+	 * @see pamtram.mapping.ModifiableElement
 	 * @generated
 	 */
-	EClass getModifiableHint();
+	EClass getModifiableElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.ModifiableHint#getResultModifier <em>Result Modifier</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.ModifiableElement#getResultModifier <em>Result Modifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Result Modifier</em>'.
-	 * @see pamtram.mapping.ModifiableHint#getResultModifier()
-	 * @see #getModifiableHint()
+	 * @see pamtram.mapping.ModifiableElement#getResultModifier()
+	 * @see #getModifiableElement()
 	 * @generated
 	 */
-	EReference getModifiableHint_ResultModifier();
+	EReference getModifiableElement_ResultModifier();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMapping <em>Attribute Mapping</em>}'.
@@ -5203,14 +5203,14 @@ public interface MappingPackage extends EPackage {
 		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableHintImpl <em>Modifiable Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.impl.ModifiableElementImpl <em>Modifiable Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ModifiableHintImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableHint()
+		 * @see pamtram.mapping.impl.ModifiableElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getModifiableElement()
 		 * @generated
 		 */
-		EClass MODIFIABLE_HINT = eINSTANCE.getModifiableHint();
+		EClass MODIFIABLE_ELEMENT = eINSTANCE.getModifiableElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Result Modifier</b></em>' reference list feature.
@@ -5218,7 +5218,7 @@ public interface MappingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODIFIABLE_HINT__RESULT_MODIFIER = eINSTANCE.getModifiableHint_ResultModifier();
+		EReference MODIFIABLE_ELEMENT__RESULT_MODIFIER = eINSTANCE.getModifiableElement_ResultModifier();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.

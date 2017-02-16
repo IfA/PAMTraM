@@ -25,7 +25,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetAttributeMatchesSection'"
  * @generated
  */
-public interface AttributeMapping extends MappingHint, ExpressionElement, ModifiableHint, ExpandableHint {
+public interface AttributeMapping extends MappingHint, ExpressionElement, ModifiableElement, ExpandableHint {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

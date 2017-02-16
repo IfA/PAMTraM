@@ -36,10 +36,10 @@ import pamtram.structure.InstanceSelector;
  */
 public abstract class ConditionImpl extends ComplexConditionImpl implements Condition {
 	/**
-	 * The cached value of the '{@link #getAdditionalConditionSpecification() <em>Additional Condition Specification</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Additional Condition Specification</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAdditionalConditionSpecification()
+	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
@@ -109,9 +109,9 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstanceSelector> getAdditionalConditionSpecification() {
+	public EList<InstanceSelector> getInstanceSelectors() {
 		if (additionalConditionSpecification == null) {
-			additionalConditionSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
+			additionalConditionSpecification = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
 		return additionalConditionSpecification;
 	}
@@ -156,8 +156,8 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				return ((InternalEList<?>)getAdditionalConditionSpecification()).basicRemove(otherEnd, msgs);
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,8 +191,8 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				return getAdditionalConditionSpecification();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 			case ConditionPackage.CONDITION__VALUE:
 				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
@@ -210,9 +210,9 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				getAdditionalConditionSpecification().clear();
-				getAdditionalConditionSpecification().addAll((Collection<? extends InstanceSelector>)newValue);
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue((Integer)newValue);
@@ -232,8 +232,8 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				getAdditionalConditionSpecification().clear();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue(VALUE_EDEFAULT);
@@ -253,7 +253,7 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
 				return additionalConditionSpecification != null && !additionalConditionSpecification.isEmpty();
 			case ConditionPackage.CONDITION__VALUE:
 				return value != VALUE_EDEFAULT;

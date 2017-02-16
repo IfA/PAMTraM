@@ -1529,8 +1529,8 @@
       <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="additionalConditionSpecification"
-          upperBound="-1" eType="#//structure/InstanceSelector" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
+          eType="#//structure/InstanceSelector" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>

@@ -202,7 +202,7 @@ public class ApplicationDependencyImpl extends ConditionImpl implements Applicat
 
 		// A condition is also 'local' if an InstanceSelector with local or external SourceAttributes exist
 		//
-		return this.getAdditionalConditionSpecification().parallelStream()
+		return this.getInstanceSelectors().parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
 						.filter(s -> s instanceof pamtram.structure.InstanceSelectorSourceElement
 								|| s instanceof pamtram.structure.InstanceSelectorExternalSourceElement))

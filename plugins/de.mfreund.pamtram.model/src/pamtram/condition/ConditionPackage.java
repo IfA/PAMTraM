@@ -641,7 +641,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -741,7 +741,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -859,7 +859,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -968,7 +968,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1117,11 +1117,11 @@ public interface ConditionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Additional Condition Specification</em>'.
-	 * @see pamtram.condition.Condition#getAdditionalConditionSpecification()
+	 * @see pamtram.condition.Condition#getInstanceSelectors()
 	 * @see #getCondition()
 	 * @generated
 	 */
-	EReference getCondition_AdditionalConditionSpecification();
+	EReference getCondition_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}'.
@@ -1446,7 +1446,7 @@ public interface ConditionPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = eINSTANCE.getCondition_AdditionalConditionSpecification();
+		EReference CONDITION__INSTANCE_SELECTORS = eINSTANCE.getCondition_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Comparator</b></em>' attribute feature.

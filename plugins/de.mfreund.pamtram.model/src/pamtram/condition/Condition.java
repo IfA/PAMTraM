@@ -35,11 +35,11 @@ public interface Condition extends ComplexCondition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Additional Condition Specification</em>' containment reference list.
-	 * @see pamtram.condition.ConditionPackage#getCondition_AdditionalConditionSpecification()
+	 * @see pamtram.condition.ConditionPackage#getCondition_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstanceSelector> getAdditionalConditionSpecification();
+	EList<InstanceSelector> getInstanceSelectors();
 
 	/**
 	 * Returns the value of the '<em><b>Comparator</b></em>' attribute.

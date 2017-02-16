@@ -108,8 +108,8 @@ public class MergeAttributeIntoClassCommand<S extends Section<S, C, R, A>, C ext
 		if (leftAttribute.get() instanceof SourceSectionAttribute) {
 
 			// TODO find a better algorithm to merge constraints?
-			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get()).getValueConstraint();
-			List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) this.right).getValueConstraint();
+			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get()).getValueConstraints();
+			List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) this.right).getValueConstraints();
 
 			if (leftConstraints.isEmpty() && rightConstraints.isEmpty()) {
 				// nothing to be done

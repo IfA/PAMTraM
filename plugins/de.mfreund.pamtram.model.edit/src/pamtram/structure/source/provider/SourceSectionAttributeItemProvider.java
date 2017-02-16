@@ -64,7 +64,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT);
+			childrenFeatures.add(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -118,7 +118,7 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionAttribute.class)) {
-			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT:
+			case SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -138,22 +138,22 @@ public class SourceSectionAttributeItemProvider extends AttributeItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createEqualityConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createChoiceConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createNumericConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINT,
+				(SourcePackage.Literals.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS,
 				 ConstraintFactory.eINSTANCE.createStringConstraint()));
 	}
 

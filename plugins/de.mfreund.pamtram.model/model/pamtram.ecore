@@ -48,7 +48,7 @@
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.Mapping%>> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+        <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.Mapping%>> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMappings().parallelStream()).collect(Collectors.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
@@ -136,7 +136,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MappingModel" eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" lowerBound="1"
         upperBound="-1" eType="#//mapping/Mapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet" containment="true"/>
@@ -146,7 +146,7 @@
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="&lt;%java.util.List%>&lt;Mapping> mappings = this.getMapping().parallelStream().filter(m -> !m.isDeactivated() &amp;&amp; !m.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+        <details key="get" value="&lt;%java.util.List%>&lt;Mapping> mappings = this.getMappings().parallelStream().filter(m -> !m.isDeactivated() &amp;&amp; !m.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

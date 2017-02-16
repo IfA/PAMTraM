@@ -290,7 +290,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<Mapping> getMappings() {
 		List<Mapping> mappings = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
-				.flatMap(s -> s.getMapping().parallelStream()).collect(Collectors.toList());
+				.flatMap(s -> s.getMappings().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}

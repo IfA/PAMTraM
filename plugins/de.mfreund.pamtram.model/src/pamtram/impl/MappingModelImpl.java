@@ -92,10 +92,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected ComplexCondition sharedCondition;
 
 	/**
-	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' containment reference list.
+	 * The cached value of the '{@link #getMappings() <em>Mapping</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMapping()
+	 * @see #getMappings()
 	 * @generated
 	 * @ordered
 	 */
@@ -248,9 +248,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 */
 	@Override
-	public EList<Mapping> getMapping() {
+	public EList<Mapping> getMappings() {
 		if (mapping == null) {
-			mapping = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPING);
+			mapping = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPINGS);
 		}
 		return mapping;
 	}
@@ -290,7 +290,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getActiveMappings() {
-		List<Mapping> mappings = this.getMapping().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
+		List<Mapping> mappings = this.getMappings().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}
@@ -355,8 +355,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		switch (featureID) {
 			case PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
-				return ((InternalEList<?>)getMapping()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
+				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				return ((InternalEList<?>)getModifierSets()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
@@ -380,8 +380,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
-				return getMapping();
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
+				return getMappings();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				return getModifierSets();
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
@@ -410,9 +410,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
 				return;
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
-				getMapping().clear();
-				getMapping().addAll((Collection<? extends Mapping>)newValue);
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
+				getMappings().clear();
+				getMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				getModifierSets().clear();
@@ -443,8 +443,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
-				getMapping().clear();
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
+				getMappings().clear();
 				return;
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				getModifierSets().clear();
@@ -470,7 +470,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return localCondition != null;
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				return sharedCondition != null;
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
 				return mapping != null && !mapping.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				return modifierSets != null && !modifierSets.isEmpty();

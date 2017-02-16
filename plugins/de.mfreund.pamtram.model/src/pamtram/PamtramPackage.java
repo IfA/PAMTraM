@@ -522,7 +522,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__MAPPING = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_MODEL__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' containment reference list.
@@ -991,11 +991,11 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Mapping</em>'.
-	 * @see pamtram.MappingModel#getMapping()
+	 * @see pamtram.MappingModel#getMappings()
 	 * @see #getMappingModel()
 	 * @generated
 	 */
-	EReference getMappingModel_Mapping();
+	EReference getMappingModel_Mappings();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}'.
@@ -1362,7 +1362,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_MODEL__MAPPING = eINSTANCE.getMappingModel_Mapping();
+		EReference MAPPING_MODEL__MAPPINGS = eINSTANCE.getMappingModel_Mappings();
 
 		/**
 		 * The meta object literal for the '<em><b>Modifier Sets</b></em>' containment reference list feature.

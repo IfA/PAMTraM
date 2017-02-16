@@ -38,11 +38,11 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Mapping</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getMappingModel_Mapping()
+	 * @see pamtram.PamtramPackage#getMappingModel_Mappings()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Mapping> getMapping();
+	EList<Mapping> getMappings();
 
 	/**
 	 * Returns the value of the '<em><b>Modifier Sets</b></em>' containment reference list.

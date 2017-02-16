@@ -459,7 +459,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMappingModel_Mapping() {
+	public EReference getMappingModel_Mappings() {
 		return (EReference)mappingModelEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -614,7 +614,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(targetSectionModelEClass, TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 
 		mappingModelEClass = createEClass(MAPPING_MODEL);
-		createEReference(mappingModelEClass, MAPPING_MODEL__MAPPING);
+		createEReference(mappingModelEClass, MAPPING_MODEL__MAPPINGS);
 		createEReference(mappingModelEClass, MAPPING_MODEL__MODIFIER_SETS);
 		createEReference(mappingModelEClass, MAPPING_MODEL__GLOBAL_VALUES);
 		createEReference(mappingModelEClass, MAPPING_MODEL__ACTIVE_MAPPINGS);
@@ -777,7 +777,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getTargetSectionModel_LibraryElements(), theStructurePackage.getLibraryEntry(), null, "libraryElements", null, 0, -1, TargetSectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mappingModelEClass, MappingModel.class, "MappingModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingModel_Mapping(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingModel_Mappings(), theMappingPackage.getMapping(), null, "mapping", null, 1, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_ModifierSets(), theModifierPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_GlobalValues(), theMappingPackage.getFixedValue(), null, "globalValues", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, MappingModel.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

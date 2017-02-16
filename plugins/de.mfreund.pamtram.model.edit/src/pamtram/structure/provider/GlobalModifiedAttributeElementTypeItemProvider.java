@@ -62,7 +62,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR);
+			childrenFeatures.add(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -121,7 +121,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR:
+			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -141,7 +141,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTOR,
+				(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 

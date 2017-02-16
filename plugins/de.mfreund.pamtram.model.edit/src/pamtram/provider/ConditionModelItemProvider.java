@@ -59,7 +59,7 @@ public class ConditionModelItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITION_MODEL__CONDITION);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS);
 		}
 		return childrenFeatures;
 	}
@@ -125,7 +125,7 @@ public class ConditionModelItemProvider extends NamedElementItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConditionModel.class)) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -144,32 +144,32 @@ public class ConditionModelItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 

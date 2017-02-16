@@ -149,7 +149,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Source Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedSourceSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedSourceSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());'"
 	 * @generated
 	 */
 	EList<SourceSection> getSourceSections();
@@ -166,7 +166,7 @@ public interface PAMTraM extends EObject {
 	 * @return the value of the '<em>Target Sections</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSections()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedTargetSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getMetaModelSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModels().parallelStream(),\r\n\t\t\t\tthis.getSharedTargetSectionModels().parallelStream())\r\n\t\t.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());'"
 	 * @generated
 	 */
 	EList<TargetSection> getTargetSections();

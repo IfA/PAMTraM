@@ -68,10 +68,10 @@ public class TargetSectionModelImpl extends SectionModelImpl<TargetSection, Targ
 	 */
 	@Override
 	public EList<TargetSection> getSections() {
-		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<TargetSection>(TargetSection.class, this, PamtramPackage.TARGET_SECTION_MODEL__SECTIONS);
+		if (sections == null) {
+			sections = new EObjectContainmentEList<TargetSection>(TargetSection.class, this, PamtramPackage.TARGET_SECTION_MODEL__SECTIONS);
 		}
-		return metaModelSections;
+		return sections;
 	}
 
 	/**

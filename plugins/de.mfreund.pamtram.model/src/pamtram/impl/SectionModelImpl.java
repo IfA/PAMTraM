@@ -28,7 +28,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelPackage <em>Meta Model Package</em>}</li>
- *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelSections <em>Meta Model Sections</em>}</li>
+ *   <li>{@link pamtram.impl.SectionModelImpl#getSections <em>Sections</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,14 +45,14 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	protected EPackage metaModelPackage;
 
 	/**
-	 * The cached value of the '{@link #getSections() <em>Meta Model Sections</em>}' containment reference list.
+	 * The cached value of the '{@link #getSections() <em>Sections</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSections()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<S> metaModelSections;
+	protected EList<S> sections;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,10 +121,10 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	 * @generated
 	 */
 	public EList<S> getSections() {
-		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__SECTIONS);
+		if (sections == null) {
+			sections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__SECTIONS);
 		}
-		return metaModelSections;
+		return sections;
 	}
 
 	/**
@@ -207,7 +207,7 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
 				return metaModelPackage != null;
 			case PamtramPackage.SECTION_MODEL__SECTIONS:
-				return metaModelSections != null && !metaModelSections.isEmpty();
+				return sections != null && !sections.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

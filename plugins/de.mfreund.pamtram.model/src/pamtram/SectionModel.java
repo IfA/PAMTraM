@@ -19,7 +19,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.SectionModel#getMetaModelPackage <em>Meta Model Package</em>}</li>
- *   <li>{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}</li>
+ *   <li>{@link pamtram.SectionModel#getSections <em>Sections</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getSectionModel()
@@ -54,14 +54,14 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.s
 	void setMetaModelPackage(EPackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Model Sections</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
+	 * @return the value of the '<em>Sections</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getSectionModel_Sections()
 	 * @model containment="true"
 	 * @generated

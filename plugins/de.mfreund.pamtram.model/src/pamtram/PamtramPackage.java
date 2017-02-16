@@ -324,7 +324,7 @@ public interface PamtramPackage extends EPackage {
 	int SECTION_MODEL__META_MODEL_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -379,7 +379,7 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -434,7 +434,7 @@ public interface PamtramPackage extends EPackage {
 	int TARGET_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -935,10 +935,10 @@ public interface PamtramPackage extends EPackage {
 	EReference getSectionModel_MetaModelPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.SectionModel#getSections <em>Sections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
+	 * @return the meta object for the containment reference list '<em>Sections</em>'.
 	 * @see pamtram.SectionModel#getSections()
 	 * @see #getSectionModel()
 	 * @generated
@@ -1311,7 +1311,7 @@ public interface PamtramPackage extends EPackage {
 		EReference SECTION_MODEL__META_MODEL_PACKAGE = eINSTANCE.getSectionModel_MetaModelPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Model Sections</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sections</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -42,7 +42,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  *   <li>{@link pamtram.impl.MappingModelImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getSharedCondition <em>Shared Condition</em>}</li>
- *   <li>{@link pamtram.impl.MappingModelImpl#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link pamtram.impl.MappingModelImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getActiveMappings <em>Active Mappings</em>}</li>
@@ -92,14 +92,14 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected ComplexCondition sharedCondition;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mapping</em>}' containment reference list.
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMappings()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Mapping> mapping;
+	protected EList<Mapping> mappings;
 
 	/**
 	 * The cached value of the '{@link #getModifierSets() <em>Modifier Sets</em>}' containment reference list.
@@ -249,10 +249,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
-		if (mapping == null) {
-			mapping = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPINGS);
+		if (mappings == null) {
+			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPINGS);
 		}
-		return mapping;
+		return mappings;
 	}
 
 	/**
@@ -471,7 +471,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				return sharedCondition != null;
 			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
-				return mapping != null && !mapping.isEmpty();
+				return mappings != null && !mappings.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 				return modifierSets != null && !modifierSets.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:

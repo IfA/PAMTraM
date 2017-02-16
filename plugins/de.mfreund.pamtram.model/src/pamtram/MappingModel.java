@@ -17,7 +17,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.MappingModel#getMapping <em>Mapping</em>}</li>
+ *   <li>{@link pamtram.MappingModel#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.MappingModel#getActiveMappings <em>Active Mappings</em>}</li>
@@ -29,7 +29,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  */
 public interface MappingModel extends NamedElement, DeactivatableElement, ConditionalElement {
 	/**
-	 * Returns the value of the '<em><b>Mapping</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.mapping.Mapping}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -37,7 +37,7 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mapping</em>' containment reference list.
+	 * @return the value of the '<em>Mappings</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_Mappings()
 	 * @model containment="true" required="true"
 	 * @generated
@@ -84,7 +84,7 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * @return the value of the '<em>Active Mappings</em>' reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_ActiveMappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Mapping> mappings = this.getMapping().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Mapping> mappings = this.getMappings().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());'"
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();

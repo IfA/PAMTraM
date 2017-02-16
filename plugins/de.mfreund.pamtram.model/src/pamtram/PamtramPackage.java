@@ -516,7 +516,7 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__SHARED_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Mapping</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -987,10 +987,10 @@ public interface PamtramPackage extends EPackage {
 	EClass getMappingModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getMapping <em>Mapping</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mapping</em>'.
+	 * @return the meta object for the containment reference list '<em>Mappings</em>'.
 	 * @see pamtram.MappingModel#getMappings()
 	 * @see #getMappingModel()
 	 * @generated
@@ -1357,7 +1357,7 @@ public interface PamtramPackage extends EPackage {
 		EClass MAPPING_MODEL = eINSTANCE.getMappingModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Mapping</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -33,10 +33,10 @@ import pamtram.condition.ComplexCondition;
  */
 public class ConditionModelImpl extends NamedElementImpl implements ConditionModel {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference list.
+	 * The cached value of the '{@link #getConditions() <em>Condition</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getConditions()
 	 * @generated
 	 * @ordered
 	 */
@@ -66,9 +66,9 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ComplexCondition> getCondition() {
+	public EList<ComplexCondition> getConditions() {
 		if (condition == null) {
-			condition = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITION);
+			condition = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITIONS);
 		}
 		return condition;
 	}
@@ -81,8 +81,8 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
-				return ((InternalEList<?>)getCondition()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
+				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +95,8 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
-				return getCondition();
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
+				return getConditions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +110,9 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
-				getCondition().clear();
-				getCondition().addAll((Collection<? extends ComplexCondition>)newValue);
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
+				getConditions().clear();
+				getConditions().addAll((Collection<? extends ComplexCondition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +126,8 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
-				getCondition().clear();
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
+				getConditions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,7 +141,7 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
 				return condition != null && !condition.isEmpty();
 		}
 		return super.eIsSet(featureID);

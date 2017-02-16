@@ -677,7 +677,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_MODEL__CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CONDITION_MODEL__CONDITIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Condition Model</em>' class.
@@ -1097,11 +1097,11 @@ public interface PamtramPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Condition</em>'.
-	 * @see pamtram.ConditionModel#getCondition()
+	 * @see pamtram.ConditionModel#getConditions()
 	 * @see #getConditionModel()
 	 * @generated
 	 */
-	EReference getConditionModel_Condition();
+	EReference getConditionModel_Conditions();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1446,7 +1446,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION_MODEL__CONDITION = eINSTANCE.getConditionModel_Condition();
+		EReference CONDITION_MODEL__CONDITIONS = eINSTANCE.getConditionModel_Conditions();
 
 	}
 

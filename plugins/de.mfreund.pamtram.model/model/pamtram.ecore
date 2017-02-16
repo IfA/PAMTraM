@@ -183,7 +183,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondition" eType="#//condition/ComplexCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionModel" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
         eType="#//condition/ComplexCondition" containment="true"/>
   </eClassifiers>
   <eSubpackages name="structure" nsURI="http://mfreund.de/pamtram/structure" nsPrefix="structure">

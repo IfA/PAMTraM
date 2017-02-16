@@ -32,10 +32,10 @@ public interface ConditionModel extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getConditionModel_Condition()
+	 * @see pamtram.PamtramPackage#getConditionModel_Conditions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ComplexCondition> getCondition();
+	EList<ComplexCondition> getConditions();
 
 } // ConditionModel

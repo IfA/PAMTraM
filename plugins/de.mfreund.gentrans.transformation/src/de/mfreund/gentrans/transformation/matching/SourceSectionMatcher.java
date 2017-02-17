@@ -1090,12 +1090,24 @@ public class SourceSectionMatcher {
 						"SourceSectionAttributes of type '" + at.eClass().getName() + "' are not yet supported!"));
 
 		// Check if all the constraints are satisfied for every attribute value.
+		// constraints
 		//
 		return srcSection.getAttributes().stream().filter(at -> at instanceof ActualSourceSectionAttribute)
-				.map(at -> (ActualSourceSectionAttribute) at)
-				.allMatch(at -> AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute())
-						.parallelStream().allMatch(
-								srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue)));
+				.map(at -> (ActualSourceSectionAttribute) at).allMatch(at -> {
+					List<Object> values = AgteleEcoreUtil.getAttributeValueAsList(srcModelObject, at.getAttribute());
+					if (values.isEmpty()) {
+						/*
+						 * This is not a problem unless an AttributeValueConstraint was modeled.
+						 */
+						return at.getValueConstraints().isEmpty();
+					} else {
+						/*
+						 * Check if all the constraints are satisfied for every attribute value.
+						 */
+						return values.parallelStream()
+								.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
+					}
+				});
 
 	}
 

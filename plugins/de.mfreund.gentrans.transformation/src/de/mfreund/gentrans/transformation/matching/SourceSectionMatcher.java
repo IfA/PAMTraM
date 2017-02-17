@@ -169,13 +169,8 @@ public class SourceSectionMatcher {
 			/*
 			 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
 			 */
-			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor);
-
-			/*
-			 * Before returning the matched sections, we mark the affected elements as 'matched' in the containment tree
-			 * and update the 'matchedSections' map
-			 */
-			this.updateMatchedElements(descriptor);
+			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor, true,
+					false);
 
 		}
 
@@ -183,20 +178,43 @@ public class SourceSectionMatcher {
 	}
 
 	/**
-	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors} map.
+	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors} map and
+	 * {@link #updateMatchedElements(MatchedSectionDescriptor)} or
+	 * {@link #updateMatchedContainers(MatchedSectionDescriptor)} if required.
 	 *
 	 * @param sourceSection
 	 *            The {@link SourceSection} that the given <em>descriptor</em> represents.
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} to add.
+	 * @param updateMatchedElements
+	 *            Whether the given <em>descriptor</em> shall be used to
+	 *            {@link #updateMatchedElements(MatchedSectionDescriptor) update the matched elements}. This should be
+	 *            set to <em>true</em> if the given <em>descriptor</em> represents a {@link SourceSection} (no
+	 *            {@link SourceSectionClass}) and was NOT matched during
+	 *            {@link #checkContainerSection(EObject, SourceSection)}.
+	 * @param updateMatchedContainers
+	 *            Whether the given <em>descriptor</em> shall be used to
+	 *            {@link #updateMatchedElements(MatchedSectionDescriptor) update the matched elements}. This should be
+	 *            set to <em>true</em> if the given <em>descriptor</em> represents a {@link SourceSection} (no
+	 *            {@link SourceSectionClass}) and was matched during
+	 *            {@link #checkContainerSection(EObject, SourceSection)}.
 	 */
-	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor) {
+	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor,
+			boolean updateMatchedElements, boolean updateMatchedContainers) {
 
 		List<MatchedSectionDescriptor> descriptors = this.sections2Descriptors.containsKey(sourceSection)
 				? this.sections2Descriptors.get(sourceSection) : new ArrayList<>();
 
 		descriptors.add(descriptor);
 		this.sections2Descriptors.put(sourceSection, descriptors);
+
+		if (updateMatchedElements) {
+			this.updateMatchedElements(descriptor);
+		}
+
+		if (updateMatchedContainers) {
+			this.updateMatchedContainers(descriptor);
+		}
 	}
 
 	/**
@@ -461,13 +479,7 @@ public class SourceSectionMatcher {
 					// 'sections2Descriptors' map that will be returned
 					// in the end
 					//
-					this.registerDescriptor(container.getKey(), containerDescriptor);
-
-					// Before returning the matched sections, we mark the
-					// affected elements as 'matched' in the
-					// containment tree and update the 'matchedSections' map
-					//
-					this.updateMatchedContainers(containerDescriptor);
+					this.registerDescriptor(container.getKey(), containerDescriptor, false, true);
 
 					return true;
 				});
@@ -821,7 +833,8 @@ public class SourceSectionMatcher {
 		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
 				&& childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
 
-			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor);
+			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor,
+					false, false);
 		}
 
 		return true;
@@ -965,7 +978,7 @@ public class SourceSectionMatcher {
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
 						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
-								srcSectionResult);
+								srcSectionResult, true, false);
 					}
 				}
 
@@ -1024,7 +1037,7 @@ public class SourceSectionMatcher {
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
 						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
-								srcSectionResult);
+								srcSectionResult, true, false);
 					}
 				}
 

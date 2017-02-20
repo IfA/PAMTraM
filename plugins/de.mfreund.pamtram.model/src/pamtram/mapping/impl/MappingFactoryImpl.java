@@ -80,6 +80,9 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: return createAttributeMatcherGlobalSourceElement();
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
 			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createContainerSelectorGlobalSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: return createCardinalityMappingSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createCardinalityMappingExternalSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: return createCardinalityMappingGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -399,6 +402,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement() {
 		ContainerSelectorGlobalSourceElementImpl containerSelectorGlobalSourceElement = new ContainerSelectorGlobalSourceElementImpl();
 		return containerSelectorGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingSourceElement createCardinalityMappingSourceElement() {
+		CardinalityMappingSourceElementImpl cardinalityMappingSourceElement = new CardinalityMappingSourceElementImpl();
+		return cardinalityMappingSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement() {
+		CardinalityMappingExternalSourceElementImpl cardinalityMappingExternalSourceElement = new CardinalityMappingExternalSourceElementImpl();
+		return cardinalityMappingExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement() {
+		CardinalityMappingGlobalSourceElementImpl cardinalityMappingGlobalSourceElement = new CardinalityMappingGlobalSourceElementImpl();
+		return cardinalityMappingGlobalSourceElement;
 	}
 
 	/**

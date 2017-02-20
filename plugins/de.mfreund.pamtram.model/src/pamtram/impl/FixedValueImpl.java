@@ -13,6 +13,7 @@ import pamtram.FixedValue;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcherSourceInterface;
+import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
@@ -198,6 +199,11 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 			}
 		}
 		if (baseClass == ValueConstraintSourceInterface.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == CardinalityMappingSourceInterface.class) {
 			switch (baseOperationID) {
 				default: return -1;
 			}

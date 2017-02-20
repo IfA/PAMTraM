@@ -519,6 +519,51 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: {
+				CardinalityMappingSourceElement cardinalityMappingSourceElement = (CardinalityMappingSourceElement)theEObject;
+				T result = caseCardinalityMappingSourceElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE: {
+				CardinalityMappingSourceInterface cardinalityMappingSourceInterface = (CardinalityMappingSourceInterface)theEObject;
+				T result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
+				CardinalityMappingExternalSourceElement cardinalityMappingExternalSourceElement = (CardinalityMappingExternalSourceElement)theEObject;
+				T result = caseCardinalityMappingExternalSourceElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: {
+				CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement = (CardinalityMappingGlobalSourceElement)theEObject;
+				T result = caseCardinalityMappingGlobalSourceElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1270,6 +1315,66 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping External Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
 		return null;
 	}
 

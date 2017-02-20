@@ -869,6 +869,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		fixedValueEClass.getESuperTypes().add(theMappingPackage.getContainerSelectorSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
+		fixedValueEClass.getESuperTypes().add(theMappingPackage.getCardinalityMappingSourceInterface());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -5,6 +5,7 @@ package pamtram.mapping;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import org.eclipse.emf.common.util.EList;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -24,6 +25,7 @@ import pamtram.structure.target.TargetSectionClass;
  * <ul>
  *   <li>{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.CardinalityMapping#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getCardinalityMapping()
@@ -42,7 +44,7 @@ public interface CardinalityMapping extends MappingHint {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(MetaModelElement)
 	 * @see pamtram.mapping.MappingPackage#getCardinalityMapping_Source()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> getSource();
@@ -84,6 +86,22 @@ public interface CardinalityMapping extends MappingHint {
 	void setTarget(TargetSectionClass value);
 
 	/**
+	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.CardinalityMappingSourceInterface}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Source Elements</em>' containment reference list.
+	 * @see pamtram.mapping.MappingPackage#getCardinalityMapping_SourceElements()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CardinalityMappingSourceInterface> getSourceElements();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getSource() == null || !(this.eContainer().eContainer() instanceof <%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName() + \"\' is not part of the source section referenced by parent mapping \'\" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;'"
@@ -122,5 +140,31 @@ public interface CardinalityMapping extends MappingHint {
 	 * @generated
 	 */
 	boolean validateNoCardinalityMappingForSourceSectionRoot(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.getSource() != null && this.getSourceElements() != null && !this.getSourceElements().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must not specify both a \'source\' and a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateOnlySourceOrSourceElements(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 * @generated
+	 */
+	EList<CardinalityMappingSourceElement> getLocalSourceElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 * @generated
+	 */
+	EList<CardinalityMappingExternalSourceElement> getExternalSourceElements();
 
 } // CardinalityMapping

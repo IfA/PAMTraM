@@ -3,18 +3,27 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.CardinalityMappingExternalSourceElement;
+import pamtram.mapping.CardinalityMappingSourceElement;
+import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
@@ -36,6 +45,7 @@ import pamtram.structure.target.TargetSectionClass;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +71,16 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @ordered
 	 */
 	protected TargetSectionClass target;
+
+	/**
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getSourceElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CardinalityMappingSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -153,6 +173,18 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CARDINALITY_MAPPING__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<CardinalityMappingSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<CardinalityMappingSourceInterface>(CardinalityMappingSourceInterface.class, this, MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS);
+		}
+		return sourceElements;
 	}
 
 	/**
@@ -296,6 +328,61 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 */
 	@Override
+	public boolean validateOnlySourceOrSourceElements(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.getSource() != null && this.getSourceElements() != null && !this.getSourceElements().isEmpty();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "A CardinalityMapping must not specify both a 'source' and a set of 'sourceElements'!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.CARDINALITY_MAPPING }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<CardinalityMappingSourceElement> getLocalSourceElements() {
+		return new BasicEList<>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<CardinalityMappingExternalSourceElement> getExternalSourceElements() {
+		return new BasicEList<>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE:
@@ -304,6 +391,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
+			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -322,6 +411,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				setTarget((TargetSectionClass)newValue);
 				return;
+			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				getSourceElements().addAll((Collection<? extends CardinalityMappingSourceInterface>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -339,6 +432,9 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				setTarget((TargetSectionClass)null);
 				return;
+			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+				getSourceElements().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -354,6 +450,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return source != null;
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				return target != null;
+			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+				return sourceElements != null && !sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -376,6 +474,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return validateTargetClassIsVariableCardinality((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP:
 				return validateNoCardinalityMappingForSourceSectionRoot((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP:
+				return validateOnlySourceOrSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+			case MappingPackage.CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

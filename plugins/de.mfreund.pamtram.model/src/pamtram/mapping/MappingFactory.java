@@ -302,6 +302,33 @@ public interface MappingFactory extends EFactory {
 	ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingSourceElement createCardinalityMappingSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

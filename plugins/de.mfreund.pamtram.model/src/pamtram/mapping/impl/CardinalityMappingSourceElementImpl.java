@@ -29,7 +29,6 @@ public class CardinalityMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CardinalityMappingSourceElementImpl() {
@@ -38,12 +37,10 @@ public class CardinalityMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.CARDINALITY_MAPPING_SOURCE_ELEMENT;
 	}
 
@@ -60,24 +57,19 @@ public class CardinalityMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-
 		if (baseClass == MappingHintSourceInterface.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE:
-					return MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
-				default:
-					return -1;
+				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE;
+				default: return -1;
 			}
 		}
 		if (baseClass == CardinalityMappingSourceInterface.class) {
 			switch (baseOperationID) {
-				default:
-					return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -85,15 +77,13 @@ public class CardinalityMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE:
-				return this.getSourceAttribute();
+				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

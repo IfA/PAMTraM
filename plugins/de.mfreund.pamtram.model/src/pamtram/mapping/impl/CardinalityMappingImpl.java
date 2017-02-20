@@ -329,7 +329,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public boolean validateOnlySourceOrSourceElements(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		boolean result = this.getSource() != null && this.getSourceElements() != null && !this.getSourceElements().isEmpty();
+		
+		boolean result = this.getSource() == null || this.getSourceElements() == null || this.getSourceElements().isEmpty();
 		
 		if (!result && diagnostics != null) {
 		

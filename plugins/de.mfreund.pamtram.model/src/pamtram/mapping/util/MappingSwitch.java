@@ -159,6 +159,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				CardinalityMapping cardinalityMapping = (CardinalityMapping)theEObject;
 				T result = caseCardinalityMapping(cardinalityMapping);
 				if (result == null) result = caseMappingHint(cardinalityMapping);
+				if (result == null) result = caseExpressionElement(cardinalityMapping);
+				if (result == null) result = caseModifiableElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintType(cardinalityMapping);
 				if (result == null) result = caseConditionalElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintBaseType(cardinalityMapping);

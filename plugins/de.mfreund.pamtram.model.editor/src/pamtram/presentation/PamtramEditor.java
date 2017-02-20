@@ -65,7 +65,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -107,6 +106,8 @@ import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -143,7 +144,9 @@ import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
+import de.tud.et.ifa.agtele.ui.AgteleUIPlugin;
 import de.tud.et.ifa.agtele.ui.editors.ClonableEditor;
+import de.tud.et.ifa.agtele.ui.emf.editor.TooltipDisplayingDropAdapter;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
@@ -1305,7 +1308,25 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
 				FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(this.editingDomain, viewer));
+
+		// Use the custom drop adapter that will display a tooltip to the user
+		viewer.addDropSupport(dndOperations, transfers, new TooltipDisplayingDropAdapter(this.editingDomain, viewer));
+
+		// Show the 'PropertiesView' if the user double-clicks on an element
+		viewer.getControl().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseDoubleClick(MouseEvent event) {
+
+				if (event.button == 1) {
+					try {
+						PamtramEditor.this.getEditorSite().getPage().showView("org.eclipse.ui.views.PropertySheet");
+					} catch (PartInitException exception) {
+						AgteleUIPlugin.INSTANCE.log(exception);
+					}
+				}
+			}
+		});
 	}
 
 	/**

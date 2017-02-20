@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramFactory;
+import pamtram.PamtramPackage;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
@@ -58,10 +59,56 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExpressionPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Modifiers feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModifiersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -310,6 +357,9 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CardinalityMapping.class)) {
+			case MappingPackage.CARDINALITY_MAPPING__EXPRESSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

@@ -28,17 +28,16 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMapping} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ *
  * @generated
  */
 public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public CardinalityMappingItemProvider(AdapterFactory adapterFactory) {
@@ -46,47 +45,39 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSourcePropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addSourcePropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_CardinalityMapping_source_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature",
+						"_UI_CardinalityMapping_type"),
+				MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 
@@ -115,7 +106,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 						List<Object> choiceOfValues = new ArrayList<>();
 
-						// iterate over all elements and return the attributes
+						// iterate over all elements and return the classes and attributes
 						// as possible options
 						Set<SourceSectionClass> scanned = new HashSet<>();
 						List<SourceSectionClass> sectionsToScan = new ArrayList<>();
@@ -128,6 +119,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 							if (!classToScan.getCardinality().equals(CardinalityType.ONE)) {
 								choiceOfValues.add(classToScan);
 							}
+							choiceOfValues.addAll(classToScan.getAttributes());
 
 							Iterator<EObject> it = classToScan.eAllContents();
 							while (it.hasNext()) {
@@ -136,6 +128,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 									if (!((SourceSectionClass) next).getCardinality().equals(CardinalityType.ONE)) {
 										choiceOfValues.add(next);
 									}
+									choiceOfValues.addAll(((SourceSectionClass) next).getAttributes());
 								} else if (next instanceof CrossReference) {
 									List<SourceSectionClass> vals = new ArrayList<>();
 									vals.addAll(((CrossReference) next).getValue());
@@ -151,30 +144,22 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
-				 MappingPackage.Literals.CARDINALITY_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_CardinalityMapping_target_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature",
+						"_UI_CardinalityMapping_type"),
+				MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
 
@@ -224,30 +209,29 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns CardinalityMapping.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns CardinalityMapping.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CardinalityMapping"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/CardinalityMapping"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -272,27 +256,28 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

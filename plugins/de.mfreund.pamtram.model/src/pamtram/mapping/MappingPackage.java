@@ -949,13 +949,13 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Source Class Matches Section</em>' operation.
+	 * The operation id for the '<em>Validate Source Element Matches Section</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Target Class Matches Section</em>' operation.
@@ -3626,14 +3626,14 @@ public interface MappingPackage extends EPackage {
 	EReference getCardinalityMapping_Target();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Class Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Source Class Matches Section</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateSourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Source Element Matches Section</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map();
+	EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Section</em>}' operation.
@@ -4554,12 +4554,12 @@ public interface MappingPackage extends EPackage {
 		EReference CARDINALITY_MAPPING__TARGET = eINSTANCE.getCardinalityMapping_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Source Class Matches Section</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Source Element Matches Section</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map();
+		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Target Class Matches Section</b></em>' operation.

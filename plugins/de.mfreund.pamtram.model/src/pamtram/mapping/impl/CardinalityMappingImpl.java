@@ -20,13 +20,16 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Cardinality Mapping</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cardinality Mapping</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -38,20 +41,21 @@ import pamtram.structure.target.TargetSectionClass;
  * @generated
  */
 public class CardinalityMappingImpl extends MappingHintImpl implements CardinalityMapping {
+
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected SourceSectionClass source;
+	protected MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> source;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -59,8 +63,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	protected TargetSectionClass target;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected CardinalityMappingImpl() {
@@ -68,8 +71,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -78,15 +80,15 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public SourceSectionClass getSource() {
+	public MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
-			source = (SourceSectionClass)eResolveProxy(oldSource);
+			source = (MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
@@ -96,30 +98,28 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SourceSectionClass basicGetSource() {
+	public MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> basicGetSource() {
 		return source;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public void setSource(SourceSectionClass newSource) {
-		SourceSectionClass oldSource = source;
+	public void setSource(
+			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newSource) {
+		MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,8 +136,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionClass basicGetTarget() {
@@ -145,8 +144,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -158,12 +156,11 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceClassMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateSourceElementMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		if(this.getSource() == null || !(this.eContainer().eContainer() instanceof Mapping) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {
 			return true;
@@ -173,12 +170,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The source class '" + this.getSource().getName() + "' is not part of the source section referenced by parent mapping '" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + "'!";
+			String errorMessage = "The source element '" + this.getSource().getName() + "' is not part of the source section referenced by parent mapping '" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + "'!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_MATCHES_SECTION,
+							MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,
 							errorMessage,
 					new Object[] { this, MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE }));
 		
@@ -188,8 +185,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -218,14 +214,14 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceClassIsVariableCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateSourceClassIsVariableCardinality(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
-		boolean result = this.getSource() == null ? true : this.getSource().getCardinality() != CardinalityType.ONE;
+		boolean result = this.getSource() == null || !(this.getSource() instanceof SourceSectionClass) ? true : ((SourceSectionClass) this.getSource()).getCardinality() != CardinalityType.ONE;
 		
 		if (!result && diagnostics != null) {
 		
@@ -244,12 +240,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateTargetClassIsVariableCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateTargetClassIsVariableCardinality(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != CardinalityType.ONE;
 		
@@ -270,12 +266,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateNoCardinalityMappingForSourceSectionRoot(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateNoCardinalityMappingForSourceSectionRoot(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getSource() == null ? true : this.getSource() != this.getSource().getContainingSection();
 		
@@ -296,8 +292,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -314,15 +309,15 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE:
-				setSource((SourceSectionClass)newValue);
+				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)newValue);
 				return;
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				setTarget((TargetSectionClass)newValue);
@@ -332,15 +327,14 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.CARDINALITY_MAPPING__SOURCE:
-				setSource((SourceSectionClass)null);
+				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)null);
 				return;
 			case MappingPackage.CARDINALITY_MAPPING__TARGET:
 				setTarget((TargetSectionClass)null);
@@ -350,8 +344,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -366,16 +359,15 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
-				return validateSourceClassMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
+				return validateSourceElementMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateTargetClassMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
@@ -388,4 +380,4 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //CardinalityMappingImpl
+} // CardinalityMappingImpl

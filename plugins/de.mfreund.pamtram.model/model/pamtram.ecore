@@ -198,7 +198,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
         eType="#//structure/InstanceSelector" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/CardinalityMappingSourceInterface">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eSubpackages name="structure" nsURI="http://mfreund.de/pamtram/structure" nsPrefix="structure">
@@ -1677,13 +1677,13 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint">
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint #//ExpressionElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
       </eAnnotations>
-      <eOperations name="validateSourceClassMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eOperations name="validateSourceElementMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The source class '&quot; + this.getSource().getName() + &quot;' is not part of the source section referenced by parent mapping '&quot; + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="&#xD;&#xA;if(this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The source element '&quot; + this.getSource().getName() + &quot;' is not part of the source section referenced by parent mapping '&quot; + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1707,7 +1707,7 @@
       </eOperations>
       <eOperations name="validateSourceClassIsVariableCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null ? true : this.getSource().getCardinality() != &lt;%pamtram.structure.generic.CardinalityType%>.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for source classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || !(this.getSource() instanceof SourceSectionClass) ? true : ((SourceSectionClass) this.getSource()).getCardinality() != CardinalityType.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for source classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -1741,10 +1741,65 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-          eType="#//structure/source/SourceSectionClass"/>
+      <eOperations name="validateOnlySourceOrSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || this.getSourceElements() == null || this.getSourceElements().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must not specify both a 'source' and a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="validateExpressionOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify an 'expression' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="validateModifiersOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify 'modifiers' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/CardinalityMappingSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+          eType="#//mapping/CardinalityMappingExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source">
+        <eGenericType eClassifier="#//structure/generic/MetaModelElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericType>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//structure/target/TargetSectionClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
+          eType="#//mapping/CardinalityMappingSourceInterface" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -2018,6 +2073,35 @@
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
     </eClassifiers>
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">

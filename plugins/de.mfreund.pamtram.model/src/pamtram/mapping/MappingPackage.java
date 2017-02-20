@@ -904,13 +904,31 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SOURCE = MAPPING_HINT_FEATURE_COUNT + 0;
+	int CARDINALITY_MAPPING__SOURCE = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -919,7 +937,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 1;
+	int CARDINALITY_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Mapping</em>' class.
@@ -928,7 +955,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -949,13 +976,13 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Source Class Matches Section</em>' operation.
+	 * The operation id for the '<em>Validate Source Element Matches Section</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Target Class Matches Section</em>' operation.
@@ -994,13 +1021,58 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Validate Only Source Or Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Validate Expression Only For Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 9;
+
+	/**
 	 * The number of operations of the '<em>Cardinality Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 5;
+	int CARDINALITY_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3407,6 +3479,325 @@ public interface MappingPackage extends EPackage {
 	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.CardinalityMappingSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceElement()
+	 * @generated
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT = 42;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__NAME = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__MODIFIERS = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The number of structural features of the '<em>Cardinality Mapping Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Mapping</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+
+	/**
+	 * The operation id for the '<em>Validate Source Attribute Matches Section Or Contained Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cardinality Mapping Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceInterface()
+	 * @generated
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE = 43;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Cardinality Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE = MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE;
+
+	/**
+	 * The number of operations of the '<em>Cardinality Mapping Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingExternalSourceElement()
+	 * @generated
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT = 44;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__NAME = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__MODIFIERS = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The number of structural features of the '<em>Cardinality Mapping External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Mapping</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+
+	/**
+	 * The operation id for the '<em>Validate Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cardinality Mapping External Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl
+	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingGlobalSourceElement()
+	 * @generated
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT = 45;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__NAME = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__MODIFIERS = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS;
+
+	/**
+	 * The number of structural features of the '<em>Cardinality Mapping Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Mapping</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_SOURCE_ATTRIBUTE = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cardinality Mapping Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.Mapping <em>Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3626,14 +4017,25 @@ public interface MappingPackage extends EPackage {
 	EReference getCardinalityMapping_Target();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Class Matches Section</em>}' operation.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.CardinalityMapping#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Source Class Matches Section</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateSourceClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
+	 * @see pamtram.mapping.CardinalityMapping#getSourceElements()
+	 * @see #getCardinalityMapping()
 	 * @generated
 	 */
-	EOperation getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map();
+	EReference getCardinalityMapping_SourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Source Element Matches Section</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Section</em>}' operation.
@@ -3674,6 +4076,56 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateNoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Source Or Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Only Source Or Source Elements</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Expression Only For Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Expression Only For Source Elements</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Modifiers Only For Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#getLocalSourceElements()
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__GetLocalSourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
+	 * @see pamtram.mapping.CardinalityMapping#getExternalSourceElements()
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__GetExternalSourceElements();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ReferenceTargetSelector <em>Reference Target Selector</em>}'.
@@ -4353,6 +4805,46 @@ public interface MappingPackage extends EPackage {
 	EClass getContainerSelectorGlobalSourceElement();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingSourceElement <em>Cardinality Mapping Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cardinality Mapping Source Element</em>'.
+	 * @see pamtram.mapping.CardinalityMappingSourceElement
+	 * @generated
+	 */
+	EClass getCardinalityMappingSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cardinality Mapping Source Interface</em>'.
+	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @generated
+	 */
+	EClass getCardinalityMappingSourceInterface();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingExternalSourceElement <em>Cardinality Mapping External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cardinality Mapping External Source Element</em>'.
+	 * @see pamtram.mapping.CardinalityMappingExternalSourceElement
+	 * @generated
+	 */
+	EClass getCardinalityMappingExternalSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingGlobalSourceElement <em>Cardinality Mapping Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @see pamtram.mapping.CardinalityMappingGlobalSourceElement
+	 * @generated
+	 */
+	EClass getCardinalityMappingGlobalSourceElement();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4554,12 +5046,20 @@ public interface MappingPackage extends EPackage {
 		EReference CARDINALITY_MAPPING__TARGET = eINSTANCE.getCardinalityMapping_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Source Class Matches Section</b></em>' operation.
+		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map();
+		EReference CARDINALITY_MAPPING__SOURCE_ELEMENTS = eINSTANCE.getCardinalityMapping_SourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Source Element Matches Section</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Target Class Matches Section</b></em>' operation.
@@ -4592,6 +5092,46 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateNoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Only Source Or Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Expression Only For Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Modifiers Only For Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getCardinalityMapping__GetLocalSourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getCardinalityMapping__GetExternalSourceElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl <em>Reference Target Selector</em>}' class.
@@ -5194,6 +5734,46 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getContainerSelectorGlobalSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.CardinalityMappingSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceElement()
+		 * @generated
+		 */
+		EClass CARDINALITY_MAPPING_SOURCE_ELEMENT = eINSTANCE.getCardinalityMappingSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.CardinalityMappingSourceInterface
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceInterface()
+		 * @generated
+		 */
+		EClass CARDINALITY_MAPPING_SOURCE_INTERFACE = eINSTANCE.getCardinalityMappingSourceInterface();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingExternalSourceElement()
+		 * @generated
+		 */
+		EClass CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getCardinalityMappingExternalSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl
+		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingGlobalSourceElement()
+		 * @generated
+		 */
+		EClass CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getCardinalityMappingGlobalSourceElement();
 
 	}
 

@@ -248,6 +248,22 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createContainerSelectorGlobalSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
+				return createCardinalityMappingSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
+				return createCardinalityMappingSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
+				return createCardinalityMappingExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
+				return createCardinalityMappingGlobalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -1012,6 +1028,62 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createContainerSelectorGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CardinalityMappingSourceElement <em>Cardinality Mapping Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CardinalityMappingSourceElement
+	 * @generated
+	 */
+	public Adapter createCardinalityMappingSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @generated
+	 */
+	public Adapter createCardinalityMappingSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CardinalityMappingExternalSourceElement <em>Cardinality Mapping External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CardinalityMappingExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createCardinalityMappingExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CardinalityMappingGlobalSourceElement <em>Cardinality Mapping Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.CardinalityMappingGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createCardinalityMappingGlobalSourceElementAdapter() {
 		return null;
 	}
 

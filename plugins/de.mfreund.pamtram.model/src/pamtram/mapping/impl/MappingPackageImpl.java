@@ -26,6 +26,10 @@ import pamtram.mapping.AttributeMatcherGlobalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.CardinalityMappingExternalSourceElement;
+import pamtram.mapping.CardinalityMappingGlobalSourceElement;
+import pamtram.mapping.CardinalityMappingSourceElement;
+import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
@@ -377,6 +381,34 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	private EClass containerSelectorGlobalSourceElementEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cardinalityMappingSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cardinalityMappingSourceInterfaceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cardinalityMappingExternalSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cardinalityMappingGlobalSourceElementEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -672,7 +704,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map() {
+	public EReference getCardinalityMapping_SourceElements() {
+		return (EReference)cardinalityMappingEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map() {
 		return cardinalityMappingEClass.getEOperations().get(0);
 	}
 
@@ -710,6 +751,51 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EOperation getCardinalityMapping__ValidateNoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map() {
 		return cardinalityMappingEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map() {
+		return cardinalityMappingEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map() {
+		return cardinalityMappingEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map() {
+		return cardinalityMappingEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__GetLocalSourceElements() {
+		return cardinalityMappingEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getCardinalityMapping__GetExternalSourceElements() {
+		return cardinalityMappingEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -1311,6 +1397,42 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCardinalityMappingSourceElement() {
+		return cardinalityMappingSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCardinalityMappingSourceInterface() {
+		return cardinalityMappingSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCardinalityMappingExternalSourceElement() {
+		return cardinalityMappingExternalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCardinalityMappingGlobalSourceElement() {
+		return cardinalityMappingGlobalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MappingFactory getMappingFactory() {
 		return (MappingFactory)getEFactoryInstance();
 	}
@@ -1371,11 +1493,17 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		cardinalityMappingEClass = createEClass(CARDINALITY_MAPPING);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__TARGET);
-		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
+		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE_ELEMENTS);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
 
 		referenceTargetSelectorEClass = createEClass(REFERENCE_TARGET_SELECTOR);
 		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE);
@@ -1467,6 +1595,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingGlobalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT);
 
 		containerSelectorGlobalSourceElementEClass = createEClass(CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT);
+
+		cardinalityMappingSourceElementEClass = createEClass(CARDINALITY_MAPPING_SOURCE_ELEMENT);
+
+		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
+
+		cardinalityMappingExternalSourceElementEClass = createEClass(CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT);
+
+		cardinalityMappingGlobalSourceElementEClass = createEClass(CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT);
 	}
 
 	/**
@@ -1497,6 +1633,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
+		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
@@ -1526,6 +1663,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
 		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
+		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
 		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
@@ -1697,6 +1836,43 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
 		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
+		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
+		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1762,10 +1938,20 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(cardinalityMappingEClass, CardinalityMapping.class, "CardinalityMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCardinalityMapping_Source(), theSourcePackage.getSourceSectionClass(), null, "source", null, 1, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(theGenericPackage.getMetaModelElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		initEReference(getCardinalityMapping_Source(), g1, null, "source", null, 0, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCardinalityMapping_Target(), theTargetPackage.getTargetSectionClass(), null, "target", null, 1, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCardinalityMapping_SourceElements(), this.getCardinalityMappingSourceInterface(), null, "sourceElements", null, 0, -1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getCardinalityMapping__ValidateSourceClassMatchesSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceClassMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceElementMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1809,6 +1995,37 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOnlySourceOrSourceElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateExpressionOnlyForSourceElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateModifiersOnlyForSourceElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCardinalityMapping__GetLocalSourceElements(), this.getCardinalityMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(referenceTargetSelectorEClass, ReferenceTargetSelector.class, "ReferenceTargetSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferenceTargetSelector_AffectedReference(), theTargetPackage.getTargetSectionCrossReference(), null, "affectedReference", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1947,6 +2164,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(attributeMappingGlobalSourceElementEClass, AttributeMappingGlobalSourceElement.class, "AttributeMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(containerSelectorGlobalSourceElementEClass, ContainerSelectorGlobalSourceElement.class, "ContainerSelectorGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingSourceElementEClass, CardinalityMappingSourceElement.class, "CardinalityMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingExternalSourceElementEClass, CardinalityMappingExternalSourceElement.class, "CardinalityMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingGlobalSourceElementEClass, CardinalityMappingGlobalSourceElement.class, "CardinalityMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import

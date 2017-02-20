@@ -484,23 +484,19 @@ public class TargetSectionInstantiator extends CancelableElement {
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
 
+		/*
+		 * ignore attribute hints and cardinality hint, if variableCardinality == false
+		 */
+		if (targetSectionClass.getCardinality().equals(CardinalityType.ONE)) {
+			return 1;
+		}
+
 		// This will be returned in the end. We start by assuming a cardinality of '1'.
 		//
 		int cardinality = 1;
 
-		boolean attrMappingExists = false;
 		int cardHintValue = 1;
 		boolean cardMappingExists = false;
-
-		/*
-		 * check for CardinalityHint
-		 */
-
-		// check AttributeMappings
-		//
-		if (mappingHints.parallelStream().anyMatch(h -> h instanceof AttributeMapping)) {
-			attrMappingExists = true;
-		}
 
 		// check CardinalityMappings
 		//
@@ -513,124 +509,145 @@ public class TargetSectionInstantiator extends CancelableElement {
 			if (hintValues.getCardinalityMappingHintValues().containsKey(cardinalityMapping)
 					&& !hintValues.getHintValues(cardinalityMapping).isEmpty()) {
 
-				final Integer val = hintValues.removeHintValue(cardinalityMapping);
-				cardHintValue = val.intValue();
+				Object hintVal = hintValues.removeHintValue(cardinalityMapping);
+
+				if (hintVal instanceof Integer) {
+					cardHintValue = ((Integer) hintVal).intValue();
+				} else if (hintVal instanceof Map<?, ?>) {
+					@SuppressWarnings("unchecked")
+					Map<CardinalityMapping, AttributeValueRepresentation> hintValueParts = (Map<CardinalityMapping, AttributeValueRepresentation>) hintVal;
+					String value = this.calculator.calculateAttributeValue(null, cardinalityMapping, hintValueParts);
+					try {
+						double doubleValue = Double.parseDouble(value);
+						if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
+							cardHintValue = Double.valueOf(value).intValue();
+						} else {
+							this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
+									+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+							continue;
+						}
+					} catch (NumberFormatException e) {
+						this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
+								+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+						continue;
+					}
+				} else {
+					this.logger.severe("Internal Error! Unsupported type of hint value for CardinalityMapping '"
+							+ cardinalityMapping.getName());
+					continue;
+				}
+
 				cardMappingExists = true;
 
 			}
 		}
 
-		/*
-		 * ignore attribute hints and cardinality hint, if variableCardinality == false
-		 */
-		if (!targetSectionClass.getCardinality().equals(CardinalityType.ONE)) {
+		// check for attribute hint
+		boolean hintFound = false;
+		if (mappingGroup instanceof MappingHintGroup) {
 
-			// check for attribute hint
-			boolean hintFound = false;
-			if (mappingGroup instanceof MappingHintGroup) {
+			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-				final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
+			if (mhGrp.getContainerSelector() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
 
-				if (mhGrp.getContainerSelector() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
-
-					hintFound = true;
-					cardinality = hintValues.getHintValues(mhGrp.getContainerSelector()).size();
-				}
+				hintFound = true;
+				cardinality = hintValues.getHintValues(mhGrp.getContainerSelector()).size();
 			}
+		}
 
-			final AttributeMapping hint = TargetSectionInstantiator.searchAttributeMapping(targetSectionClass,
-					mappingHints, hintValues, null);
+		final AttributeMapping hint = TargetSectionInstantiator.searchAttributeMapping(targetSectionClass, mappingHints,
+				hintValues, null);
 
-			if (hint != null) {// there was an AttributeHint....
+		if (hint != null) {// there was an AttributeHint....
 
-				int hintCardinality = hintValues.getHintValues(hint).size();
+			int hintCardinality = hintValues.getHintValues(hint).size();
 
-				/*
-				 * Now, we have to check if there are multi-valued attributes that also try to determine the
-				 * cardinality.
-				 */
-				int multiValuedAttributeCardinality = 1;
+			/*
+			 * Now, we have to check if there are multi-valued attributes that also try to determine the cardinality.
+			 */
+			int multiValuedAttributeCardinality = 1;
 
-				for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues
-						.getHintValues(hint)) {
+			for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues
+					.getHintValues(hint)) {
 
-					for (AttributeValueRepresentation rep : x.values()) {
-						if (rep.isMany()) {
+				for (AttributeValueRepresentation rep : x.values()) {
+					if (rep.isMany()) {
 
-							if (multiValuedAttributeCardinality == 1) {
-								multiValuedAttributeCardinality = rep.getValues().size();
-							} else if (multiValuedAttributeCardinality != rep.getValues().size()) {
-								throw new RuntimeException("There are different multi-valued attributes with"
-										+ " different cardinalities!");
-							}
+						if (multiValuedAttributeCardinality == 1) {
+							multiValuedAttributeCardinality = rep.getValues().size();
+						} else if (multiValuedAttributeCardinality != rep.getValues().size()) {
+							throw new RuntimeException(
+									"There are different multi-valued attributes with" + " different cardinalities!");
 						}
 					}
 				}
+			}
 
-				/*
-				 * Check if there are contradictory cardinalities...
-				 */
-				if (hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
+			/*
+			 * Check if there are contradictory cardinalities...
+			 */
+			if (hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
 
-					throw new RuntimeException(
-							"Failed to determine an unambiguous cardinality for hint " + hint.getName());
+				throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " + hint.getName());
 
-				} else if (multiValuedAttributeCardinality > 1) {
-					hintCardinality = multiValuedAttributeCardinality;
-				}
+			} else if (multiValuedAttributeCardinality > 1) {
+				hintCardinality = multiValuedAttributeCardinality;
+			}
 
-				if (hintCardinality > cardinality) {
+			if (hintCardinality > cardinality) {
 
-					cardinality = hintCardinality;
-				}
+				cardinality = hintCardinality;
+			}
 
-			} else {// no AttributeHint found
+			// Use the hint value of the found CardinalityMapping
+			if (cardHintValue > hintCardinality && cardHintValue % hintCardinality == 0) {
+				cardinality = cardHintValue;
+			}
 
-				// mc hint found....only go on if there were no attrMappings
-				//
-				if (hintFound && attrMappingExists) {
+		} else {// no AttributeHint found
 
-					cardinality = 0;
-				}
+			// mc hint found....only go on if there were no attrMappings
+			//
+			if (hintFound && mappingHints.parallelStream().anyMatch(h -> h instanceof AttributeMapping)) {
 
-				// no modelConnaectionHint or AttributeMapping found
-				// or cardinality is still 1
-				// last chance
-				if (cardinality <= 1) {
+				cardinality = 0;
+			}
 
-					if (cardMappingExists) {
-						cardinality = cardHintValue;
+			// no modelConnaectionHint or AttributeMapping found
+			// or cardinality is still 1
+			// last chance
+			if (cardinality <= 1) {
 
-					} else {
-						/*
-						 * Consult the specified resolving strategy to resolve the ambiguity.
-						 */
-						try {
-							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
-							List<Integer> resolved = this.ambiguityResolvingStrategy.instantiatingSelectCardinality(
-									Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
-							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-										.instantiatingCardinalitySelected(Arrays.asList((Integer) null),
-												resolved.get(0));
-							}
-							this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
-							if (resolved.get(0) != null) {
-								cardinality = resolved.get(0);
-							} else {
-								cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1
-										: 0;
-							}
-						} catch (AmbiguityResolvingException e) {
+				if (cardMappingExists) {
+					cardinality = cardHintValue;
 
-							this.logger.severe(e.getMessage());
-							this.canceled = true;
-							return 0;
+				} else {
+					/*
+					 * Consult the specified resolving strategy to resolve the ambiguity.
+					 */
+					try {
+						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
+						List<Integer> resolved = this.ambiguityResolvingStrategy.instantiatingSelectCardinality(
+								Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
+						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+									.instantiatingCardinalitySelected(Arrays.asList((Integer) null), resolved.get(0));
 						}
+						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
+						if (resolved.get(0) != null) {
+							cardinality = resolved.get(0);
+						} else {
+							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
+						}
+					} catch (AmbiguityResolvingException e) {
+
+						this.logger.severe(e.getMessage());
+						this.canceled = true;
+						return 0;
 					}
 				}
-
 			}
+
 		}
 
 		return cardinality;
@@ -750,7 +767,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			MappingHint hintFound = null;
 			// look for an attribute mapping
-			List<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
+			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
 
 			for (final MappingHint hint : mappingHints) {
 				if (hint instanceof AttributeMapping) {
@@ -766,6 +783,18 @@ public class TargetSectionInstantiator extends CancelableElement {
 							attrHintValues = new LinkedList<>();
 							for (int i = 0; i < cardinality; i++) {
 								attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
+							}
+							break;
+
+						} else if (hintValues.getHintValues((AttributeMapping) hint).size() < cardinality
+								&& cardinality % hintValues.getHintValues((AttributeMapping) hint).size() == 0) {
+
+							// Multiply the hint values to fit the cardinality
+							//
+							attrHintValues = new LinkedList<>();
+							for (int i = 0; i < cardinality
+									/ hintValues.getHintValues((AttributeMapping) hint).size(); i++) {
+								attrHintValues.addAll(hintValues.getHintValues((AttributeMapping) hint));
 							}
 							break;
 

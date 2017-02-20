@@ -11,10 +11,13 @@ import java.util.logging.Logger;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.pamtram.util.ExpressionCalculator;
+import pamtram.ExpressionElement;
 import pamtram.FixedValue;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMatcher;
+import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.ReferenceTargetSelector;
@@ -87,27 +90,53 @@ public class AttributeValueCalculator {
 	 */
 	@SuppressWarnings("unchecked")
 	public String calculateAttributeValue(final TargetSectionAttribute attr, MappingHint hint,
-			Object attrHintValueList) {
+			LinkedList<?> attrHintValueList) {
 
-		String attrValue = null;
-		if (attrHintValueList != null && attrHintValueList instanceof LinkedList<?>) {
+		if (attrHintValueList == null) {
+			return this.calculateAttributeValue(attr, hint, (Map<?, AttributeValueRepresentation>) null);
+		} else {
 
 			// this is the map of hint values that we will use for this calculation
 			Map<?, AttributeValueRepresentation> attrHintValues = ((LinkedList<Map<?, AttributeValueRepresentation>>) attrHintValueList)
 					.removeFirst();
+			return this.calculateAttributeValue(attr, hint, attrHintValues);
+		}
+	}
+
+	/**
+	 * This calculates the value of a {@link TargetSectionAttribute} for a given {@link MappingHint} and one hint
+	 * values.
+	 *
+	 * @param attr
+	 *            The {@link TargetSectionAttribute} for which the target value is calculated or <em>null</em> if the
+	 *            given hint is a {@link ReferenceTargetSelector}.
+	 * @param hint
+	 *            A {@link MappingHint} to be used for the calculation (typically, this should be either an
+	 *            {@link AttributeMapping}, a {@link ReferenceTargetSelector} with {@link AttributeMatcher}, or
+	 *            <em>null</em> if no hint has been found.
+	 * @param attrHintValue
+	 *            The hint value to be used in the calculation.
+	 *
+	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
+	 */
+	public String calculateAttributeValue(final TargetSectionAttribute attr, MappingHint hint,
+			Map<?, AttributeValueRepresentation> attrHintValue) {
+
+		String attrValue = null;
+		if (attrHintValue != null) {
 
 			// determine the value of the 'expression' attribute
 			String expression = "";
-			if (hint instanceof AttributeMapping) {
-				expression = ((AttributeMapping) hint).getExpression();
+			if (hint instanceof ExpressionElement) {
+				expression = ((ExpressionElement) hint).getExpression();
 			} else if (hint instanceof ReferenceTargetSelector
 					&& ((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
 				expression = ((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getExpression();
 			}
 
 			List<ValueModifierSet> resultModifiers = new ArrayList<>();
-			if (hint instanceof AttributeMapping) {
-				resultModifiers.addAll(((AttributeMapping) hint).getModifiers());
+			if (hint instanceof ModifiableElement) {
+				resultModifiers.addAll(((ModifiableElement) hint).getModifiers());
 			} else if (hint instanceof ReferenceTargetSelector) {
 				resultModifiers
 						.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getModifiers());
@@ -115,9 +144,9 @@ public class AttributeValueCalculator {
 
 			// calculate the value based on the hint values and a possible expression
 			if (expression.isEmpty()) {
-				attrValue = this.calculateAttributeValueWithoutExpression(hint, attrHintValues, resultModifiers);
+				attrValue = this.calculateAttributeValueWithoutExpression(hint, attrHintValue, resultModifiers);
 			} else {
-				attrValue = this.calculateAttributeValueWithExpression(hint, attrHintValues, expression,
+				attrValue = this.calculateAttributeValueWithExpression(hint, attrHintValue, expression,
 						resultModifiers);
 			}
 
@@ -128,6 +157,7 @@ public class AttributeValueCalculator {
 			attrValue = attr.getValue();
 		}
 		return attrValue;
+
 	}
 
 	/**
@@ -152,6 +182,8 @@ public class AttributeValueCalculator {
 		List<Object> sourceElements = new ArrayList<>();
 		if (hint instanceof AttributeMapping) {
 			sourceElements.addAll(((AttributeMapping) hint).getSourceElements());
+		} else if (hint instanceof CardinalityMapping) {
+			sourceElements.addAll(((CardinalityMapping) hint).getSourceElements());
 		} else if (hint instanceof ReferenceTargetSelector) {
 			sourceElements
 					.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getSourceElements());

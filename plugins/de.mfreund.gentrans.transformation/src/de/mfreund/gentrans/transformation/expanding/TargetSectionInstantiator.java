@@ -510,9 +510,33 @@ public class TargetSectionInstantiator extends CancelableElement {
 					&& !hintValues.getHintValues(cardinalityMapping).isEmpty()) {
 
 				Object hintVal = hintValues.removeHintValue(cardinalityMapping);
-				// TODO support for new source elements
-				final Integer val = (Integer) hintVal;
-				cardHintValue = val.intValue();
+
+				if (hintVal instanceof Integer) {
+					cardHintValue = ((Integer) hintVal).intValue();
+				} else if (hintVal instanceof Map<?, ?>) {
+					@SuppressWarnings("unchecked")
+					Map<CardinalityMapping, AttributeValueRepresentation> hintValueParts = (Map<CardinalityMapping, AttributeValueRepresentation>) hintVal;
+					String value = this.calculator.calculateAttributeValue(null, cardinalityMapping, hintValueParts);
+					try {
+						double doubleValue = Double.parseDouble(value);
+						if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
+							cardHintValue = Double.valueOf(value).intValue();
+						} else {
+							this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
+									+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+							continue;
+						}
+					} catch (NumberFormatException e) {
+						this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
+								+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+						continue;
+					}
+				} else {
+					this.logger.severe("Internal Error! Unsupported type of hint value for CardinalityMapping '"
+							+ cardinalityMapping.getName());
+					continue;
+				}
+
 				cardMappingExists = true;
 
 			}
@@ -743,7 +767,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			MappingHint hintFound = null;
 			// look for an attribute mapping
-			List<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
+			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
 
 			for (final MappingHint hint : mappingHints) {
 				if (hint instanceof AttributeMapping) {

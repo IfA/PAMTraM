@@ -22,6 +22,7 @@ import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ExpandableHint;
@@ -415,7 +416,8 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
-	private Integer extractHintValue(CardinalityMapping cardinalityMapping,
+	@SuppressWarnings("unchecked")
+	private Object extractHintValue(CardinalityMapping cardinalityMapping,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (cardinalityMapping.getSource() != null) {
@@ -455,8 +457,43 @@ public class HintValueExtractor extends ValueExtractor {
 			}
 
 		} else {
-			this.logger.severe("CardinalityMappings without a specified 'source' element are not yet supported!");
-			return null;
+			// This keeps track of the extracted hint value parts
+			//
+			Map<CardinalityMappingSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+
+			// Extract the hint value part based on its type
+			//
+			for (CardinalityMappingSourceInterface cardinalityMappingSourceInterface : cardinalityMapping
+					.getSourceElements()) {
+
+				AttributeValueRepresentation attributeValueRepresentation = null;
+
+				if (cardinalityMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+					attributeValueRepresentation = this.extractValue(
+							(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
+							this.matchedSections, matchedSectionDescriptor);
+				} else if (cardinalityMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+					attributeValueRepresentation = this.extractValue(
+							(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
+							matchedSectionDescriptor);
+				} else if (cardinalityMappingSourceInterface instanceof FixedValue) {
+					attributeValueRepresentation = this.extractValue((FixedValue) cardinalityMappingSourceInterface,
+							matchedSectionDescriptor);
+				} else if (cardinalityMappingSourceInterface instanceof GlobalAttributeImporter) {
+					attributeValueRepresentation = this.extractValue(
+							(GlobalAttributeImporter) cardinalityMappingSourceInterface, matchedSectionDescriptor);
+				} else {
+					this.logger.severe("Unsupported type of source element for an AttributeMapping found: '"
+							+ cardinalityMappingSourceInterface.eClass().getName() + "'!");
+				}
+
+				if (attributeValueRepresentation != null) {
+					hintValue.put(cardinalityMappingSourceInterface, attributeValueRepresentation);
+				}
+
+			}
+
+			return hintValue.isEmpty() ? null : hintValue;
 		}
 
 	}
@@ -511,6 +548,8 @@ public class HintValueExtractor extends ValueExtractor {
 			}
 		} else if (hint instanceof ContainerSelector) {
 			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint, false);
+		} else if (hint instanceof CardinalityMapping) {
+			mappingInstance.getHintValues().getCardinalityMappingHintValues().init((CardinalityMapping) hint, false);
 		}
 	}
 

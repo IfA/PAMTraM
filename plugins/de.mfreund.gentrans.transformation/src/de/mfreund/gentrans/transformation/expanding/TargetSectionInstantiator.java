@@ -509,7 +509,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 			if (hintValues.getCardinalityMappingHintValues().containsKey(cardinalityMapping)
 					&& !hintValues.getHintValues(cardinalityMapping).isEmpty()) {
 
-				final Integer val = hintValues.removeHintValue(cardinalityMapping);
+				Object hintVal = hintValues.removeHintValue(cardinalityMapping);
+				// TODO support for new source elements
+				final Integer val = (Integer) hintVal;
 				cardHintValue = val.intValue();
 				cardMappingExists = true;
 

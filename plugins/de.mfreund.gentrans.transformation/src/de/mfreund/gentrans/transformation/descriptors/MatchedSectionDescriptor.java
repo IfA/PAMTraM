@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import pamtram.metamodel.MetaModelSectionReference;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.ValueConstraint;
+import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
- * Class for storing matched a part of a source model that has been matched against a {@link SourceSection}.
+ * Class for storing matched a part of a source model that has been matched
+ * against a {@link SourceSection}.
  * <p>
  * Objects of this class can be seen as instances of a source sections.
  *
@@ -45,28 +45,28 @@ public class MatchedSectionDescriptor {
 	 * <em>directly</em> as part of the {@link #associatedSourceSectionClass}.
 	 * This means that this contains neither elements that have been matched as
 	 * part of a <em>container</em> nor elements that have been matched as part
-	 * of the evaluation of a {@link MetaModelSectionReference}.
+	 * of the evaluation of a {@link SectionCrossReference}.
 	 */
 	private LinkedHashMap<SourceSectionClass, Set<EObject>> sourceModelObjetsMapped;
 
 	/**
-	 * This keeps track of the {@link ValueConstraint
-	 * AttributeValueConstraints} that need to be checked for the elements
-	 * represented by this descriptor.
+	 * This keeps track of the {@link ValueConstraint AttributeValueConstraints}
+	 * that need to be checked for the elements represented by this descriptor.
 	 */
 	private List<ValueConstraint> attributeValueConstraints;
 
 	/**
-	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * This keeps track of the {@link MatchedSectionDescriptor} that represents
+	 * the {@link EObject#eContainer()} of the
+	 * {@link #associatedSourceModelElement}.
 	 * <p />
 	 * This can be used to determine 'external hint values'.
 	 */
 	private MatchedSectionDescriptor containerDescriptor;
 
 	/**
-	 * This keeps track of the {@link MappingInstanceStorage} that has been associated with this
-	 * descriptor.
+	 * This keeps track of the {@link MappingInstanceStorage} that has been
+	 * associated with this descriptor.
 	 */
 	private MappingInstanceStorage associatedMappingInstance;
 
@@ -130,16 +130,18 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
+	 * This returns the list of {@link EObject matched elements} represented by
+	 * this descriptor.
 	 * <p />
-	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort the matched elements by
-	 * the {@link SourceSectionClass} they represent.
+	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort
+	 * the matched elements by the {@link SourceSectionClass} they represent.
 	 *
-	 * @return The list of {@link EObject matched elements} represented by this descriptor.
+	 * @return The list of {@link EObject matched elements} represented by this
+	 *         descriptor.
 	 */
 	public Set<EObject> getSourceModelObjectFlat() {
-		return this.sourceModelObjetsMapped.entrySet().parallelStream().map(e -> e.getValue()).
-				flatMap(l -> l.stream()).collect(Collectors.toSet());
+		return this.sourceModelObjetsMapped.entrySet().parallelStream().map(e -> e.getValue()).flatMap(l -> l.stream())
+				.collect(Collectors.toSet());
 	}
 
 	/**
@@ -193,9 +195,8 @@ public class MatchedSectionDescriptor {
 	 * Add to the list of {@link #attributeValueConstraints}.
 	 *
 	 * @param attributeValueConstraints
-	 *            The list of {@link ValueConstraint
-	 *            AttributeValueConstraints} to add to the
-	 *            {@link #attributeValueConstraints}.
+	 *            The list of {@link ValueConstraint AttributeValueConstraints}
+	 *            to add to the {@link #attributeValueConstraints}.
 	 */
 	public void addAttributeValueConstraints(List<ValueConstraint> attributeValueConstraints) {
 		this.attributeValueConstraints.addAll(attributeValueConstraints);
@@ -220,7 +221,8 @@ public class MatchedSectionDescriptor {
 	 * This returns the {@link #containerDescriptor}.
 	 *
 	 * @return The {@link MatchedSectionDescriptor} that represents the
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 *         {@link EObject#eContainer()} of the
+	 *         {@link #associatedSourceModelElement}.
 	 */
 	public MatchedSectionDescriptor getContainerDescriptor() {
 		return this.containerDescriptor;
@@ -228,8 +230,11 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * Set the {@link #containerDescriptor}.
-	 * @param containerDescriptor tThe {@link MatchedSectionDescriptor} that represents the
-	 * {@link EObject#eContainer()} of the {@link #associatedSourceModelElement}.
+	 * 
+	 * @param containerDescriptor
+	 *            tThe {@link MatchedSectionDescriptor} that represents the
+	 *            {@link EObject#eContainer()} of the
+	 *            {@link #associatedSourceModelElement}.
 	 */
 	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
 		this.containerDescriptor = containerDescriptor;
@@ -238,8 +243,8 @@ public class MatchedSectionDescriptor {
 	/**
 	 * This is the getter for the {@link #associatedMappingInstance}.
 	 *
-	 * @return The {@link MappingInstanceStorage} that has been associated with this
-	 * descriptor.
+	 * @return The {@link MappingInstanceStorage} that has been associated with
+	 *         this descriptor.
 	 */
 	public MappingInstanceStorage getAssociatedMappingInstance() {
 		return this.associatedMappingInstance;
@@ -248,30 +253,36 @@ public class MatchedSectionDescriptor {
 	/**
 	 * This is the setter for the {@link #associatedMappingInstance}.
 	 *
-	 * @param associatedMappingInstance The {@link MappingInstanceStorage} to be associated with this
-	 * descriptor.
+	 * @param associatedMappingInstance
+	 *            The {@link MappingInstanceStorage} to be associated with this
+	 *            descriptor.
 	 */
 	public void setAssociatedMappingInstance(MappingInstanceStorage associatedMappingInstance) {
 		this.associatedMappingInstance = associatedMappingInstance;
 	}
 
 	/**
-	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that
-	 * {@link MatchedSectionDescriptor#sourceModelObjetsMapped represents} the given
-	 * {@link EObject}.
+	 * From the given list of {@link MatchedSectionDescriptor descriptors},
+	 * select the one that
+	 * {@link MatchedSectionDescriptor#sourceModelObjetsMapped represents} the
+	 * given {@link EObject}.
 	 *
-	 * @param element The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor}
-	 * shall be returned.
-	 * @param descriptorsToConsider The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
-	 * in that shall be considered.
-	 * @return The {@link MatchedSectionDescriptor} representing the given <em>element</em> (one of the
-	 * list of <em>descriptorsToConsider</em> or '<em>null</em>' if the element is not represented by
-	 * any of the given descriptors.
+	 * @param element
+	 *            The {@link EObject} for that the corresponding
+	 *            {@link MatchedSectionDescriptor} shall be returned.
+	 * @param descriptorsToConsider
+	 *            The list of {@link MatchedSectionDescriptor
+	 *            MatchedSectionDescriptors} in that shall be considered.
+	 * @return The {@link MatchedSectionDescriptor} representing the given
+	 *         <em>element</em> (one of the list of
+	 *         <em>descriptorsToConsider</em> or '<em>null</em>' if the element
+	 *         is not represented by any of the given descriptors.
 	 */
-	public static MatchedSectionDescriptor getDescriptorForElement(EObject element, List<MatchedSectionDescriptor> descriptorsToConsider) {
+	public static MatchedSectionDescriptor getDescriptorForElement(EObject element,
+			List<MatchedSectionDescriptor> descriptorsToConsider) {
 
-		Optional<MatchedSectionDescriptor> descriptor =
-				descriptorsToConsider.parallelStream().filter(d -> d.getSourceModelObjectFlat().contains(element)).findAny();
+		Optional<MatchedSectionDescriptor> descriptor = descriptorsToConsider.parallelStream()
+				.filter(d -> d.getSourceModelObjectFlat().contains(element)).findAny();
 
 		return descriptor.isPresent() ? descriptor.get() : null;
 	}

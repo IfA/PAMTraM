@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
-import pamtram.metamodel.ActualAttribute;
-import pamtram.metamodel.FileAttribute;
-import pamtram.metamodel.FileTypeEnum;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.VirtualAttribute;
+import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.FileType;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * This class provides wrapper functionality for {@link EObject EObjects} that have been created during the transformation and
@@ -302,18 +302,18 @@ public class EObjectWrapper {
 	 * If this represents a {@link TargetSection}, return the {@link FileAttribute#getFileType() fileType} of the
 	 * {@link FileAttribute} associated with this via the {@link TargetSection#getFile() file} reference.
 	 *
-	 * @return The value of the {@link FileAttribute#getFileType()} or the default value {@link FileTypeEnum#XMI}
+	 * @return The value of the {@link FileAttribute#getFileType()} or the default value {@link FileType#XMI}
 	 * if this either does not represent a {@link TargetSection}, if the {@link TargetSection#getFile() file}
 	 * reference has not been set, or if no {@link FileAttribute#getFileType()} fileType has been set.
 	 */
-	public FileTypeEnum getFileType() {
+	public FileType getFileType() {
 
 		for (Entry<VirtualAttribute<?, ?, ?, ?>, String> entry : this.virtualAttributeValues.entrySet()) {
 			if(entry.getKey() instanceof FileAttribute) {
-				return ((FileAttribute) entry.getKey()).getFileType() == null ? FileTypeEnum.XMI : ((FileAttribute) entry.getKey()).getFileType();
+				return ((FileAttribute) entry.getKey()).getFileType() == null ? FileType.XMI : ((FileAttribute) entry.getKey()).getFileType();
 			}
 		}
-		return FileTypeEnum.XMI;
+		return FileType.XMI;
 	}
 
 }

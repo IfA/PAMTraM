@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -31,17 +32,17 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
-import pamtram.metamodel.FileTypeEnum;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.target.FileType;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This class is responsible for joining the unconnected target sections to form one coherent target model.
@@ -55,14 +56,13 @@ public class TargetSectionConnector extends CancelableElement {
 	private static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
-	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected
-	 * by the user for a given {@link ContainerSelector}.
+	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected by the
+	 * user for a given {@link ContainerSelector}.
 	 */
 	private final LinkedHashMap<ContainerSelector, ModelConnectionPath> standardPaths;
 
 	/**
-	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections
-	 * can be connected.
+	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections can be connected.
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
 
@@ -78,27 +78,27 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * The {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary to
-	 * calculate the values of {@link ContainerSelectorTargetAttribute ModelConnectionHintTargetAttributes} that
-	 * are evaluated here.
+	 * calculate the values of {@link ContainerSelectorTargetAttribute ModelConnectionHintTargetAttributes} that are
+	 * evaluated here.
 	 */
 	private final AttributeValueModifierExecutor attributeValuemodifier;
 
 	/**
-	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If 'maxPathLength'
-	 * is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
+	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
+	 * 'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
 	 */
 	private final int maxPathLength;
 
 	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper
-	 * EObjects} for that no ModelConnectionPath could be determined. The key of the Map thereby denotes the {@link EClass} that
-	 * the TargetSectionClasses are associated with.
+	 * EObjects} for that no ModelConnectionPath could be determined. The key of the Map thereby denotes the
+	 * {@link EClass} that the TargetSectionClasses are associated with.
 	 */
 	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableElements;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
-	 * resolve ambiguities that arise during the execution of the transformation.
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
+	 * execution of the transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
@@ -106,33 +106,27 @@ public class TargetSectionConnector extends CancelableElement {
 	 * This creates an instance.
 	 *
 	 * @param targetSectionRegistry
-	 *            A {@link TargetSectionRegistry} that is necessary for finding
-	 *            instances to which sections can be connected.
+	 *            A {@link TargetSectionRegistry} that is necessary for finding instances to which sections can be
+	 *            connected.
 	 * @param attributeValuemodifier
-	 *            An {@link AttributeValueModifierExecutor} that is used to
-	 *            modify attribute values. This is necessary to calculate the
-	 *            values of {@link ContainerSelectorTargetAttribute
+	 *            An {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary
+	 *            to calculate the values of {@link ContainerSelectorTargetAttribute
 	 *            ModelConnectionHintTargetAttributes} that are evaluated here.
 	 * @param targetModelRegistry
-	 *            The {@link TargetModelRegistry} that is used to manage the
-	 *            various target models and their contents.
+	 *            The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 * @param maxPathLength
-	 *            The maximum length for connection paths that shall be
-	 *            considered by this TargetSectionConnector. If 'maxPathLength'
-	 *            is set to '-1' or any other value below '0', connection paths
-	 *            of unbounded length are considered.
+	 *            The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
+	 *            'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are
+	 *            considered.
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
-	 *            resolve ambiguities that arise during the execution of the
-	 *            transformation.
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during
+	 *            the execution of the transformation.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public TargetSectionConnector(
-			final TargetSectionRegistry targetSectionRegistry,
-			final AttributeValueModifierExecutor attributeValuemodifier,
-			final TargetModelRegistry targetModelRegistry, final int maxPathLength,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
+			final AttributeValueModifierExecutor attributeValuemodifier, final TargetModelRegistry targetModelRegistry,
+			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			final Logger logger) {
 
 		this.standardPaths = new LinkedHashMap<>();
@@ -147,22 +141,23 @@ public class TargetSectionConnector extends CancelableElement {
 	}
 
 	/**
-	 * Join the {@link TargetSection} instances created by the hint groups of the given
-	 * {@link MappingHintGroupType}.
+	 * Join the {@link TargetSection} instances created by the hint groups of the given {@link MappingHintGroupType}.
 	 *
-	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
-	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
-	 * the given {@link Mapping}.
-	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 * @param mapping
+	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 * @param targetSectionRegistry
+	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 * '<em><b>false</b></em>' otherwise
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances,
 			final TargetSectionRegistry targetSectionRegistry) {
 
 		// Join 'local' hint groups
 		//
-		if(!mapping.getActiveMappingHintGroups().stream()
+		if (!mapping.getActiveMappingHintGroups().stream()
 				.filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
 				.allMatch(g -> this.joinTargetSection(g, mapping, mappingInstances, targetSectionRegistry))) {
 
@@ -171,7 +166,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// Join 'imported' hint groups
 		//
-		if(!mapping.getActiveImportedMappingHintGroups().stream()
+		if (!mapping.getActiveImportedMappingHintGroups().stream()
 				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetSection() != null)
 				.allMatch(i -> this.joinTargetSection(i, mapping, mappingInstances, targetSectionRegistry))) {
 
@@ -183,16 +178,19 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
-	 * @param hintGroup The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
-	 * TargetSections} to join.
-	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
-	 * to join.
-	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
-	 * the given {@link Mapping}.
-	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 *
+	 * @param hintGroup
+	 *            The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
+	 *            TargetSections} to join.
+	 * @param mapping
+	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections} to join.
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 * @param targetSectionRegistry
+	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 *
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 * '<em><b>false</b></em>' otherwise
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup, final Mapping mapping,
 			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
@@ -201,7 +199,7 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		final TargetSection section = hintGroup.getTargetSection();
 
-		if(section.getFile() != null) {
+		if (section.getFile() != null) {
 
 			// do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 			//
@@ -211,8 +209,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty() ||
-				targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
 
 			// nothing to do
 			//
@@ -223,7 +221,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 			for (final MappingInstanceStorage selMap : mappingInstances) {
 
-				if(hintGroup instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) hintGroup)) {
+				if (hintGroup instanceof ConditionalElement
+						&& selMap.isElementWithNegativeCondition((ConditionalElement) hintGroup)) {
 					continue;
 				}
 
@@ -234,12 +233,10 @@ public class TargetSectionConnector extends CancelableElement {
 					}
 
 					this.linkToTargetModelUsingModelConnectionHint(
-							new LinkedList<>(selMap.getInstances((MappingHintGroup) hintGroup, section)),
-							section,
-							mapping.getName(),
-							hintGroup,
-							((MappingHintGroup) hintGroup).getContainerSelector(),
-							selMap.getHintValues().getHintValues(((MappingHintGroup) hintGroup).getContainerSelector()));
+							new LinkedList<>(selMap.getInstances((MappingHintGroup) hintGroup, section)), section,
+							mapping.getName(), hintGroup, ((MappingHintGroup) hintGroup).getContainerSelector(),
+							selMap.getHintValues()
+									.getHintValues(((MappingHintGroup) hintGroup).getContainerSelector()));
 					if (this.isCanceled()) {
 
 						return false;
@@ -249,27 +246,24 @@ public class TargetSectionConnector extends CancelableElement {
 		} else {// link using container attribute or nothing
 
 			final List<EObjectWrapper> containerInstances = targetSectionRegistry
-					.getFlattenedPamtramClassInstances(section
-							.getContainer());
+					.getFlattenedPamtramClassInstances(section.getContainer());
 
 			/*
 			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 			 * processing time
 			 */
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry
-					.getPamtramClassInstances(section).get(hintGroup);
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
+					.get(hintGroup);
 
 			/*
-			 * do not want the root instances to contain
-			 * themselves
+			 * do not want the root instances to contain themselves
 			 */
 			containerInstances.removeAll(rootInstances);// we
 
-			this.linkToTargetModelNoConnectionHint(
-					rootInstances, section,
-					mapping.getName(), hintGroup,
-					section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
-							containerInstances);
+			this.linkToTargetModelNoConnectionHint(rootInstances, section, mapping.getName(),
+					hintGroup, section.getContainer() != null
+							? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
+					containerInstances);
 			if (this.isCanceled()) {
 				return false;
 			}
@@ -280,16 +274,19 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
-	 * @param hintGroupImporter The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
-	 * TargetSections} to join.
-	 * @param mapping The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
-	 * to join.
-	 * @param mappingInstances The list of {@link MappingInstanceStorage instances} created based on
-	 * the given {@link Mapping}.
-	 * @param targetSectionRegistry The {@link TargetSectionRegistry} that keeps track of instantiated sections.
+	 *
+	 * @param hintGroupImporter
+	 *            The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
+	 *            TargetSections} to join.
+	 * @param mapping
+	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections} to join.
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 * @param targetSectionRegistry
+	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 *
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 * '<em><b>false</b></em>' otherwise
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter, final Mapping mapping,
 			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
@@ -300,18 +297,17 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		final TargetSection section = g.getTargetSection();
 
-		if(section.getFile() != null) {
+		if (section.getFile() != null) {
 
 			// do not join sections for that a 'file' is specified, those are simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(
-					targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty() ||
-				targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
 
 			// nothing to do
 			//
@@ -319,14 +315,13 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
-		 * ImportedMAppingHintGroups with containers specified will
-		 * be linked to a section that was created by the same
+		 * ImportedMAppingHintGroups with containers specified will be linked to a section that was created by the same
 		 * mapping Instance
 		 */
 		if (hintGroupImporter.getContainer() != null) {
 			for (final MappingInstanceStorage selMap : mappingInstances) {
 
-				if(g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
+				if (g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 					continue;
 				}
 
@@ -344,8 +339,7 @@ public class TargetSectionConnector extends CancelableElement {
 						}
 
 						if (group instanceof MappingHintGroup) {
-							final List<EObjectWrapper> insts = selMap.getInstances(
-									(MappingHintGroup) group,
+							final List<EObjectWrapper> insts = selMap.getInstances((MappingHintGroup) group,
 									hintGroupImporter.getContainer());
 							if (insts != null) {
 								containerInstances.addAll(insts);
@@ -354,10 +348,7 @@ public class TargetSectionConnector extends CancelableElement {
 						}
 					}
 					// link
-					this.linkToTargetModelNoConnectionHint(
-							rootInstances,
-							g.getTargetSection(),
-							mapping.getName(), g,
+					this.linkToTargetModelNoConnectionHint(rootInstances, g.getTargetSection(), mapping.getName(), g,
 							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
 							containerInstances);
 
@@ -373,27 +364,19 @@ public class TargetSectionConnector extends CancelableElement {
 		} else {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 			final List<EObjectWrapper> rootInstances = targetSectionRegistry
-					.getPamtramClassInstances(
-							g.getTargetSection()).get(hintGroupImporter);
+					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
 			final Set<EClass> containerClasses = new HashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
-				containerClasses.add(g.getTargetSection()
-						.getContainer().getEClass());
-				containerInstances.addAll(targetSectionRegistry
-						.getFlattenedPamtramClassInstances(g
-								.getTargetSection()
-								.getContainer()));
+				containerClasses.add(g.getTargetSection().getContainer().getEClass());
+				containerInstances.addAll(
+						targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
 
 			}
 
 			if (rootInstances != null && !rootInstances.isEmpty()) {
 				// link
-				this.linkToTargetModelNoConnectionHint(
-						rootInstances,
-						g.getTargetSection(),
-						mapping.getName(), g,
-						containerClasses,
-						containerInstances);
+				this.linkToTargetModelNoConnectionHint(rootInstances, g.getTargetSection(), mapping.getName(), g,
+						containerClasses, containerInstances);
 				if (this.isCanceled()) {
 					return false;
 				}
@@ -404,22 +387,21 @@ public class TargetSectionConnector extends CancelableElement {
 	}
 
 	/**
-	 * This adds the given list of {@link EObjectWrapper elements} as root objects to the
-	 * target model.
+	 * This adds the given list of {@link EObjectWrapper elements} as root objects to the target model.
 	 *
-	 * @param elementsToAdd The list of {@link EObjectWrapper elements} to add.
+	 * @param elementsToAdd
+	 *            The list of {@link EObjectWrapper elements} to add.
 	 */
-	public void addToTargetModelRoot(
-			final Collection<EObjectWrapper> elementsToAdd) {
+	public void addToTargetModelRoot(final Collection<EObjectWrapper> elementsToAdd) {
 
 		elementsToAdd.stream().forEach(this::addToTargetModelRoot);
 	}
 
 	/**
-	 * This adds the given {@link EObjectWrapper element} as root object to the
-	 * target model.
+	 * This adds the given {@link EObjectWrapper element} as root object to the target model.
 	 *
-	 * @param helper The {@link EObjectWrapper element} to add.
+	 * @param helper
+	 *            The {@link EObjectWrapper element} to add.
 	 */
 	private void addToTargetModelRoot(final EObjectWrapper helper) {
 
@@ -430,9 +412,9 @@ public class TargetSectionConnector extends CancelableElement {
 		String path = helper.getFile();
 
 		// the file type of the target model
-		FileTypeEnum fileType = helper.getFileType();
+		FileType fileType = helper.getFileType();
 
-		if(path.isEmpty()) {
+		if (path.isEmpty()) {
 			this.targetModelRegistry.addToTargetModel(element);
 		} else {
 			this.targetModelRegistry.addToTargetModel(element, path, fileType);
@@ -442,10 +424,10 @@ public class TargetSectionConnector extends CancelableElement {
 	/**
 	 * This takes the list of {@link #unlinkeableElements} and adds them to the target model.
 	 * <p />
-	 * In the easiest case, the list of {@link #unlinkeableElements} contains only a single element which will
-	 * then be used as root element. If multiple elements exist, this tries to determine a common root element
-	 * and joins the elements with it. If no common root element can be determined, multiple root elements
-	 * are added to the target model.
+	 * In the easiest case, the list of {@link #unlinkeableElements} contains only a single element which will then be
+	 * used as root element. If multiple elements exist, this tries to determine a common root element and joins the
+	 * elements with it. If no common root element can be determined, multiple root elements are added to the target
+	 * model.
 	 */
 	public void combineUnlinkedSectionsWithTargetModelRoot() {
 
@@ -456,15 +438,14 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
-		 * only one element could not be connected = > we already have our
-		 * container
+		 * only one element could not be connected = > we already have our container
 		 */
-		if (this.unlinkeableElements.keySet().size() == 1 &&
-				this.unlinkeableElements.values().iterator().next().keySet().size() == 1 &&
-				this.unlinkeableElements.values().iterator().next().values().iterator().next().size() == 1) {
+		if (this.unlinkeableElements.keySet().size() == 1
+				&& this.unlinkeableElements.values().iterator().next().keySet().size() == 1
+				&& this.unlinkeableElements.values().iterator().next().values().iterator().next().size() == 1) {
 
-			this.addToTargetModelRoot(this.unlinkeableElements.values()
-					.iterator().next().values().iterator().next().get(0));
+			this.addToTargetModelRoot(
+					this.unlinkeableElements.values().iterator().next().values().iterator().next().get(0));
 			this.logger.info("Root element: The single instance of the target section '"
 					+ this.unlinkeableElements.values().iterator().next().keySet().iterator().next().getName() + "'.");
 			return;
@@ -472,8 +453,7 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
-		 * Now that the "special" case was handled we need to handle all the
-		 * other cases.
+		 * Now that the "special" case was handled we need to handle all the other cases.
 		 */
 		final Set<EClass> common = new HashSet<>();
 		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses()) {
@@ -519,10 +499,11 @@ public class TargetSectionConnector extends CancelableElement {
 				 */
 				try {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-					List<EClass> resolved = this.ambiguityResolvingStrategy.joiningSelectRootElement(new ArrayList<>(common));
+					List<EClass> resolved = this.ambiguityResolvingStrategy
+							.joiningSelectRootElement(new ArrayList<>(common));
 					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-						.joiningRootElementSelected(new ArrayList<>(common), resolved.get(0));
+								.joiningRootElementSelected(new ArrayList<>(common), resolved.get(0));
 					}
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					rootClass = resolved.get(0);
@@ -537,26 +518,28 @@ public class TargetSectionConnector extends CancelableElement {
 
 			final EObject containerInstance = rootClass.getEPackage().getEFactoryInstance().create(rootClass);
 
-			this.addToTargetModelRoot(new EObjectWrapper(containerInstance,this.targetSectionRegistry.getAttrValRegistry()));
+			this.addToTargetModelRoot(
+					new EObjectWrapper(containerInstance, this.targetSectionRegistry.getAttrValRegistry()));
 
 			this.logger.info("Root element: '" + rootClass.getName() + "' (generated)");
 
-			for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : this.unlinkeableElements.entrySet()) {
+			for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : this.unlinkeableElements
+					.entrySet()) {
 
 				for (final TargetSectionClass tSection : unlinkeableEntry.getValue().keySet()) {
 					/*
-					 * It gets a bit tricky here. If there is more than one
-					 * common container, we have to choose one. Then we need to
-					 * find all possible connections for each of the elements
-					 * involved. Now we need to choose a connection for each
-					 * element. This might lead to us asking a lot of questions
-					 * to the user.
+					 * It gets a bit tricky here. If there is more than one common container, we have to choose one.
+					 * Then we need to find all possible connections for each of the elements involved. Now we need to
+					 * choose a connection for each element. This might lead to us asking a lot of questions to the
+					 * user.
 					 */
-					final List<ModelConnectionPath> pathSet = this.targetSectionRegistry.getConnections(unlinkeableEntry.getKey(), rootClass, this.maxPathLength);
+					final List<ModelConnectionPath> pathSet = this.targetSectionRegistry
+							.getConnections(unlinkeableEntry.getKey(), rootClass, this.maxPathLength);
 
 					if (pathSet.isEmpty()) {
 
-						this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));// This should not have happened =>
+						this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));// This should not have
+																								// happened =>
 						// programming error
 						this.logger.severe("Error. Check container instantiation");
 
@@ -582,11 +565,12 @@ public class TargetSectionConnector extends CancelableElement {
 								 */
 								try {
 									this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-									List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
+									List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy
+											.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
 									if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 										((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-										.joiningConnectionPathSelected(new ArrayList<>(fittingPaths),
-												resolved.get(0));
+												.joiningConnectionPathSelected(new ArrayList<>(fittingPaths),
+														resolved.get(0));
 									}
 									this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 									chosenPath = resolved.get(0);
@@ -603,8 +587,8 @@ public class TargetSectionConnector extends CancelableElement {
 							this.logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
 						} else {
 							this.logger.warning("The chosen container '" + rootClass.getName()
-							+ "' cannot fit the elements of the type '"
-							+ unlinkeableEntry.getKey().getName() + "', sorry.");
+									+ "' cannot fit the elements of the type '" + unlinkeableEntry.getKey().getName()
+									+ "', sorry.");
 							this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));
 						}
 
@@ -616,25 +600,30 @@ public class TargetSectionConnector extends CancelableElement {
 	}
 
 	/**
-	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the
-	 * target model) to other objects of the target model.
+	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the target model) to other
+	 * objects of the target model.
 	 * <p>
-	 * This method is used for connecting sections without model connection
-	 * hints.
+	 * This method is used for connecting sections without model connection hints.
 	 *
-	 * @param rootInstances A list of {@link EObjectWrapper elements} to connect.
-	 * @param section The {@link TargetSection} that shall be connected.
-	 * @param mappingName The name of the {@link Mapping} that is used.
-	 * @param mappingGroup The {@link MappingHintGroupType} that is used.
-	 * @param containerClasses A list of {@link EClass EClasses} that are considered as target when searching for connection paths for the given list
-	 * of 'rootInstances'.<br /><em>Note:</em> If this is '<em>null</em>' or if the list is empty, any EClass will be considered a valid target.
-	 * @param containerInstances A list of container elements that may be used as container (this needs to be all instances if '<em>hasContainer</em>' is <em>false</em>.
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to connect.
+	 * @param section
+	 *            The {@link TargetSection} that shall be connected.
+	 * @param mappingName
+	 *            The name of the {@link Mapping} that is used.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @param containerClasses
+	 *            A list of {@link EClass EClasses} that are considered as target when searching for connection paths
+	 *            for the given list of 'rootInstances'.<br />
+	 *            <em>Note:</em> If this is '<em>null</em>' or if the list is empty, any EClass will be considered a
+	 *            valid target.
+	 * @param containerInstances
+	 *            A list of container elements that may be used as container (this needs to be all instances if
+	 *            '<em>hasContainer</em>' is <em>false</em>.
 	 */
-	public void linkToTargetModelNoConnectionHint(
-			final List<EObjectWrapper> rootInstances,
-			final TargetSection section, final String mappingName,
-			final MappingHintGroupType mappingGroup,
-			final Set<EClass> containerClasses,
+	public void linkToTargetModelNoConnectionHint(final List<EObjectWrapper> rootInstances, final TargetSection section,
+			final String mappingName, final MappingHintGroupType mappingGroup, final Set<EClass> containerClasses,
 			final List<EObjectWrapper> containerInstances) {
 
 		// nothing to connect
@@ -643,8 +632,8 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		/*
-		 * A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of
-		 * EClass that are considered when searching for connection paths.
+		 * A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of EClass
+		 * that are considered when searching for connection paths.
 		 */
 		boolean restrictContainer = containerClasses != null && !containerClasses.isEmpty();
 
@@ -661,18 +650,17 @@ public class TargetSectionConnector extends CancelableElement {
 		List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 		if (restrictContainer) {
 			for (final EClass c : containerClasses) {
-				pathsToConsider.addAll(this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength));
+				pathsToConsider
+						.addAll(this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength));
 			}
 		} else {
-			pathsToConsider.addAll(
-					this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
+			pathsToConsider.addAll(this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
 		}
 
 		/*
 		 * Reduce the found paths to those that provide the necessary capacity.
 		 */
-		pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
-				pathsToConsider, null, rootInstances.size());
+		pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(pathsToConsider, null, rootInstances.size());
 
 		/*
 		 * Remove those paths that would lead to cyclic containments
@@ -733,14 +721,13 @@ public class TargetSectionConnector extends CancelableElement {
 			if (containerInstances.isEmpty()) {
 
 				this.logger.warning("Instances of the targetSection '" + section.getName()
-				+ "'specify a container section (either the target section itself or a MappingHintImporter)."
-				+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
+						+ "'specify a container section (either the target section itself or a MappingHintImporter)."
+						+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
 				this.addToTargetModelRoot(rootInstances);
 				return;
 			}
 
-			for (final ModelConnectionPath p : new LinkedList<>(
-					pathsToConsider)) {
+			for (final ModelConnectionPath p : new LinkedList<>(pathsToConsider)) {
 				boolean found = false;
 				for (final EClass c : containerClasses) {
 					if (p.leadsToRootType(c)) {
@@ -756,8 +743,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 			onlyOnePath = pathsToConsider.size() == 1 && containerInstances.size() == 1;
 		} else {
-			onlyOnePath = pathsToConsider.size() == 1
-					&& this.targetSectionRegistry.getTargetClassInstances(pathsToConsider.iterator().next().getPathRootClass()).size() == 1;
+			onlyOnePath = pathsToConsider.size() == 1 && this.targetSectionRegistry
+					.getTargetClassInstances(pathsToConsider.iterator().next().getPathRootClass()).size() == 1;
 		}
 
 		if (onlyOnePath) {// only one path to choose from
@@ -768,11 +755,11 @@ public class TargetSectionConnector extends CancelableElement {
 			if (restrictContainer) {
 				inst = containerInstances.iterator().next();
 
-			} else if (!rootInstances.contains(
-					this.targetSectionRegistry.getTargetClassInstances(modelConnectionPath.getPathRootClass()).iterator().next())) {
+			} else if (!rootInstances.contains(this.targetSectionRegistry
+					.getTargetClassInstances(modelConnectionPath.getPathRootClass()).iterator().next())) {
 
-				inst = this.targetSectionRegistry.getTargetClassInstances(
-						modelConnectionPath.getPathRootClass()).iterator().next();
+				inst = this.targetSectionRegistry.getTargetClassInstances(modelConnectionPath.getPathRootClass())
+						.iterator().next();
 
 			} else {
 				this.logger.warning("Could not find a path that leads to the container specified for targetSection '"
@@ -781,12 +768,11 @@ public class TargetSectionConnector extends CancelableElement {
 				return;
 			}
 
-			this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName() + "): " +
-					modelConnectionPath.toString());
+			this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
+					+ "): " + modelConnectionPath.toString());
 
 			/*
-			 * Try to instantiate Paths and add failed elements to
-			 * target model root
+			 * Try to instantiate Paths and add failed elements to target model root
 			 */
 			this.addToTargetModelRoot(modelConnectionPath.instantiate(inst.getEObject(), rootInstances));
 
@@ -803,7 +789,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 				// prepare user selections
 				final LinkedHashMap<String, EObjectWrapper> instances = new LinkedHashMap<>();
-				for (final EObjectWrapper inst : this.targetSectionRegistry.getTargetClassInstances(p.getPathRootClass())) {
+				for (final EObjectWrapper inst : this.targetSectionRegistry
+						.getTargetClassInstances(p.getPathRootClass())) {
 
 					if (!rootInstances.contains(inst) && (!restrictContainer || containerInstances.contains(inst))) {
 
@@ -849,15 +836,36 @@ public class TargetSectionConnector extends CancelableElement {
 
 			try {
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-				Map<ModelConnectionPath, List<EObjectWrapper>> resolved = this.ambiguityResolvingStrategy
-						.joiningSelectConnectionPathAndContainerInstance(choices, section, rootInstances, mappingGroup);
-				modelConnectionPath = resolved.entrySet().iterator().next().getKey();
-				inst = instancesByPath.get(modelConnectionPath.toString()).get(resolved.entrySet().iterator().next().getValue().get(0).toString());
+
+				Map<ModelConnectionPath, List<EObjectWrapper>> resolved;
+				if (choices.keySet().size() == 1) {
+					modelConnectionPath = choices.keySet().iterator().next();
+					resolved = new HashMap<>();
+					resolved.put(modelConnectionPath, this.ambiguityResolvingStrategy.joiningSelectContainerInstance(
+							choices.get(modelConnectionPath), rootInstances, mappingGroup, null, null));
+				} else if (choices.values().stream().flatMap(v -> v.stream()).collect(Collectors.toSet()).size() == 1) {
+					// If there is only one possible container instance, we only need to let the user choose the
+					// connection path...
+					//
+					List<ModelConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy
+							.joiningSelectConnectionPath(new ArrayList<>(choices.keySet()), section);
+					resolved = resolvedPaths.stream().collect(Collectors.toMap(Function.identity(), choices::get));
+					modelConnectionPath = resolvedPaths.get(0);
+				} else {
+					// ... otherwise, the user also needs to select the container instance.
+					//
+					resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(choices,
+							section, rootInstances, mappingGroup);
+					modelConnectionPath = resolved.entrySet().iterator().next().getKey();
+				}
+
+				inst = instancesByPath.get(modelConnectionPath.toString())
+						.get(resolved.entrySet().iterator().next().getValue().get(0).toString());
 				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-					.joiningConnectionPathSelected(new ArrayList<>(choices.keySet()), modelConnectionPath);
+							.joiningConnectionPathSelected(new ArrayList<>(choices.keySet()), modelConnectionPath);
 					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-					.joiningContainerInstanceSelected(new ArrayList<>(choices.get(modelConnectionPath)), inst);
+							.joiningContainerInstanceSelected(new ArrayList<>(choices.get(modelConnectionPath)), inst);
 				}
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
@@ -871,8 +879,7 @@ public class TargetSectionConnector extends CancelableElement {
 			this.logger.info(section.getName() + "(" + mappingName + "): " + modelConnectionPath.toString());
 
 			/*
-			 * Try to instantiate Paths and add failed elements to
-			 * target model root
+			 * Try to instantiate Paths and add failed elements to target model root
 			 */
 			this.addToTargetModelRoot(modelConnectionPath.instantiate(inst.getEObject(), rootInstances));
 
@@ -882,26 +889,29 @@ public class TargetSectionConnector extends CancelableElement {
 			this.addToTargetModelRoot(rootInstances);
 		}
 
-
 	}
 
 	/**
-	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the
-	 * target model) to other objects of the target model.
+	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the target model) to other
+	 * objects of the target model.
 	 * <p>
 	 * This method is used for connecting sections using a given {@link ContainerSelector}.
 	 *
-	 * @param rootInstances A list of {@link EObjectWrapper elements} to connect.
-	 * @param section The {@link TargetSection} that shall be connected.
-	 * @param mappingName The name of the {@link Mapping} that is used.
-	 * @param mappingGroup The {@link MappingHintGroupType} that is used.
-	 * @param connectionHint The {@link ContainerSelector} to be used to connect the section.
-	 * @param modelConnectionHintValues A list of values that are to be used by the given {@link ContainerSelector}.
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to connect.
+	 * @param section
+	 *            The {@link TargetSection} that shall be connected.
+	 * @param mappingName
+	 *            The name of the {@link Mapping} that is used.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @param connectionHint
+	 *            The {@link ContainerSelector} to be used to connect the section.
+	 * @param modelConnectionHintValues
+	 *            A list of values that are to be used by the given {@link ContainerSelector}.
 	 */
-	public void linkToTargetModelUsingModelConnectionHint(
-			final List<EObjectWrapper> rootInstances,
-			final TargetSection section, final String mappingName,
-			final MappingHintGroupType mappingGroup,
+	public void linkToTargetModelUsingModelConnectionHint(final List<EObjectWrapper> rootInstances,
+			final TargetSection section, final String mappingName, final MappingHintGroupType mappingGroup,
 			final ContainerSelector connectionHint,
 			final LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
 
@@ -915,11 +925,10 @@ public class TargetSectionConnector extends CancelableElement {
 		for (final ContainerSelectorTargetAttribute attr : connectionHint.getTargetAttributes()) {
 
 			size += this.targetSectionRegistry.getConnections(section.getEClass(),
-					attr.getSource().getOwningClass().getEClass(),
-					this.maxPathLength).size();
+					attr.getSource().getOwningClass().getEClass(), this.maxPathLength).size();
 		}
 
-		if(size == 0) {
+		if (size == 0) {
 
 			this.logger.warning("Could not find a path that leads to the modelConnectionTarget Class specified for '"
 					+ mappingName + "' (" + mappingGroup.getName() + ")");
@@ -928,25 +937,21 @@ public class TargetSectionConnector extends CancelableElement {
 			return;
 		}
 
-
 		// now search for target attributes
 
-		final Map<ContainerSelectorTargetAttribute, List<EObjectWrapper>> containerInstancesByTargetAttribute =
-				new LinkedHashMap<>();
+		final Map<ContainerSelectorTargetAttribute, List<EObjectWrapper>> containerInstancesByTargetAttribute = new LinkedHashMap<>();
 
 		for (final ContainerSelectorTargetAttribute targetAttr : connectionHint.getTargetAttributes()) {
 
-			containerInstancesByTargetAttribute.put(targetAttr,
-					this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetAttr.getSource().getOwningClass()));// owningClass
+			containerInstancesByTargetAttribute.put(targetAttr, this.targetSectionRegistry
+					.getFlattenedPamtramClassInstances(targetAttr.getSource().getOwningClass()));// owningClass
 
 		}
 
 		// find container Instance for each element
 
-		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> contInstsByHintVal =
-				new LinkedHashMap<>();
-		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> rootInstancesByHintVal =
-				new LinkedHashMap<>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> contInstsByHintVal = new LinkedHashMap<>();
+		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> rootInstancesByHintVal = new LinkedHashMap<>();
 		LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
 
 		// again, we need to handle the special case, when there is only one
@@ -971,9 +976,9 @@ public class TargetSectionConnector extends CancelableElement {
 					hintValBuilder.append(hintVal.get(srcElement).getValue());
 
 				} else {
-					this.logger.warning(
-							"HintSourceValue not found " + srcElement.getName() + " in ComplexModelConnectionHint "
-									+ connectionHint.getName() + "(Mapping: " + mappingName + ", Group: " + mappingGroup.getName() + ").");
+					this.logger.warning("HintSourceValue not found " + srcElement.getName()
+							+ " in ComplexModelConnectionHint " + connectionHint.getName() + "(Mapping: " + mappingName
+							+ ", Group: " + mappingGroup.getName() + ").");
 				}
 			});
 
@@ -992,10 +997,11 @@ public class TargetSectionConnector extends CancelableElement {
 			// instances have same order as hintValues
 			rootInstancesByHintVal.get(hintValAsString).add(rootInstances.remove(0));
 
-			for (final Entry<ContainerSelectorTargetAttribute, List<EObjectWrapper>> entry : containerInstancesByTargetAttribute.entrySet()) {
+			for (final Entry<ContainerSelectorTargetAttribute, List<EObjectWrapper>> entry : containerInstancesByTargetAttribute
+					.entrySet()) {
 
-				final String modifiedHintVal = this.attributeValuemodifier.
-						applyAttributeValueModifiers(hintValAsString, entry.getKey().getModifier());
+				final String modifiedHintVal = this.attributeValuemodifier.applyAttributeValueModifiers(hintValAsString,
+						entry.getKey().getModifiers());
 
 				/*
 				 * now find a fitting instance get Attribute value
@@ -1043,7 +1049,8 @@ public class TargetSectionConnector extends CancelableElement {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.joiningSelectContainerInstance(
 							new LinkedList<>(contInstsByHintVal.get(hintValEntry.getKey())),
-							new LinkedList<>(hintValEntry.getValue()), mappingGroup, connectionHint, hintValEntry.getKey());
+							new LinkedList<>(hintValEntry.getValue()), mappingGroup, connectionHint,
+							hintValEntry.getKey());
 					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningContainerInstanceSelected(
 								new ArrayList<>(contInstsByHintVal.get(hintValEntry.getKey())), resolved.get(0));
@@ -1059,18 +1066,20 @@ public class TargetSectionConnector extends CancelableElement {
 
 			} else {
 				this.logger.warning("The ModelConnectionHint '" + connectionHint.getName() + " of MappingHintGroup "
-						+ mappingGroup.getName()
-						+ "(Mapping: " + mappingName + ") could not find an instance to connect the targetSections.\n" + contInstsByHintVal.keySet());
+						+ mappingGroup.getName() + "(Mapping: " + mappingName
+						+ ") could not find an instance to connect the targetSections.\n"
+						+ contInstsByHintVal.keySet());
 				this.addToTargetModelRoot(hintValEntry.getValue());
 			}
 		}
 
 		// only go on if any of the instances could be matched
-		if(rootInstancesByContainer.keySet().isEmpty())	 {
+		if (rootInstancesByContainer.keySet().isEmpty()) {
 			return;
 		}
 
-		for (final Entry<EObjectWrapper, LinkedHashSet<EObjectWrapper>> containerEntry : rootInstancesByContainer.entrySet()) {
+		for (final Entry<EObjectWrapper, LinkedHashSet<EObjectWrapper>> containerEntry : rootInstancesByContainer
+				.entrySet()) {
 
 			/*
 			 * Check if there already is a standard path for the given connection hint and the given target eClass that
@@ -1078,13 +1087,14 @@ public class TargetSectionConnector extends CancelableElement {
 			 */
 			boolean otherPathsNeeded = false;
 
-			if (!this.standardPaths.containsKey(connectionHint) ||
-					!this.standardPaths.get(connectionHint).getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
+			if (!this.standardPaths.containsKey(connectionHint) || !this.standardPaths.get(connectionHint)
+					.getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
 
 				otherPathsNeeded = true;
 			} else {
 
-				final int capacity = this.standardPaths.get(connectionHint).getCapacity(containerEntry.getKey().getEObject());
+				final int capacity = this.standardPaths.get(connectionHint)
+						.getCapacity(containerEntry.getKey().getEObject());
 
 				if (!(capacity >= containerEntry.getValue().size() || capacity == -1)) {
 
@@ -1094,7 +1104,8 @@ public class TargetSectionConnector extends CancelableElement {
 			}
 
 			/*
-			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
+			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection
+			 * algorithms.
 			 */
 			List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
 			if (otherPathsNeeded) {
@@ -1103,10 +1114,8 @@ public class TargetSectionConnector extends CancelableElement {
 				 */
 				pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
 						this.targetSectionRegistry.getConnections(section.getEClass(),
-								containerEntry.getKey().getEObject().eClass(),this.maxPathLength),
-						containerEntry.getKey().getEObject(),
-						containerEntry.getValue().size()
-						);
+								containerEntry.getKey().getEObject().eClass(), this.maxPathLength),
+						containerEntry.getKey().getEObject(), containerEntry.getValue().size());
 
 			} else {
 				/*
@@ -1134,10 +1143,11 @@ public class TargetSectionConnector extends CancelableElement {
 				 */
 				try {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-					List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(pathsToConsider, section);
+					List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy
+							.joiningSelectConnectionPath(pathsToConsider, section);
 					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-						.joiningConnectionPathSelected(new ArrayList<>(pathsToConsider), resolved.get(0));
+								.joiningConnectionPathSelected(new ArrayList<>(pathsToConsider), resolved.get(0));
 					}
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					modelConnectionPath = resolved.get(0);
@@ -1155,16 +1165,16 @@ public class TargetSectionConnector extends CancelableElement {
 				this.addToTargetModelRoot(rootInstances);
 				this.addToTargetModelRoot(containerEntry.getValue());
 			}
-			if(modelConnectionPath == null) {
+			if (modelConnectionPath == null) {
 				continue;
 			}
 
-			if (!this.standardPaths.containsKey(connectionHint) ||
-					!this.standardPaths.get(connectionHint).getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
+			if (!this.standardPaths.containsKey(connectionHint) || !this.standardPaths.get(connectionHint)
+					.getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
 
 				this.standardPaths.put(connectionHint, modelConnectionPath);
-				this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" +
-						mappingGroup.getName() + "): " + modelConnectionPath.toString());
+				this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
+						+ "): " + modelConnectionPath.toString());
 			}
 
 			// now instantiate path(s))
@@ -1178,12 +1188,10 @@ public class TargetSectionConnector extends CancelableElement {
 			}
 
 			/*
-			 * Try to instantiate Paths and add failed elements to
-			 * target model root
+			 * Try to instantiate Paths and add failed elements to target model root
 			 */
-			this.addToTargetModelRoot(modelConnectionPath.instantiate(
-					containerEntry.getKey().getEObject(),
-					containerEntry.getValue()));
+			this.addToTargetModelRoot(
+					modelConnectionPath.instantiate(containerEntry.getKey().getEObject(), containerEntry.getValue()));
 
 		}
 	}

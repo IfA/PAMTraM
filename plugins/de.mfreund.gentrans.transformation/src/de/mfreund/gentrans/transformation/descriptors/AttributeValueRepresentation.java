@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EAttribute;
 
-import pamtram.metamodel.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * This represents the (possibly multi-valued) value of an {@link EAttribute}.

@@ -18,7 +18,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.SourceSection;
+import pamtram.structure.source.SourceSection;
 
 /**
  * This class can be used to extract values of {@link GlobalAttribute GlobalAttributes}
@@ -127,7 +127,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 				.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 
 		final String valCopy = attributeValueModifierExecutor
-				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifier());
+				.applyAttributeValueModifiers(srcAttrAsString, globalAttribute.getModifiers());
 
 		// Store the found value
 		//

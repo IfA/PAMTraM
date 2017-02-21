@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import pamtram.mapping.ValueModifier;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifier;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * This is a helper class to apply {@link ValueModifier AttributeValueModifiers}.
@@ -103,7 +103,7 @@ public class AttributeValueModifierExecutor {
 			final List<ValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (final ValueModifierSet set : modifierSets) {
-			for (final ValueModifier m : set.getModifier()) {
+			for (final ValueModifier m : set.getModifiers()) {
 				if (!this.modifiersWithErrors.contains(m)) {
 					try {
 						retVal = m.modifyValue(retVal);

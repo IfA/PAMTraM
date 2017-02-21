@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import pamtram.metamodel.FileAttribute;
-import pamtram.metamodel.FileTypeEnum;
+import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.FileType;
 
 /**
  * This class represents a registry for the various target models to be created during a transformation.
@@ -149,10 +149,10 @@ public class TargetModelRegistry {
 	 *
 	 * @param elementsToAdd The list of {@link EObject elements} to add.
 	 * @param path The path (relative to {@link #basePath} of the target model.
-	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * @param fileType The {@link FileType fileType} of the target model. If this is '<em>null</em>', 
 	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	public void addToTargetModel(final Collection<EObject> elementsToAdd, String path, FileTypeEnum fileType) {
+	public void addToTargetModel(final Collection<EObject> elementsToAdd, String path, FileType fileType) {
 
 		if(!targetModels.containsKey(path)) {
 			targetModels.put(path, new ArrayList<>());
@@ -195,10 +195,10 @@ public class TargetModelRegistry {
 	 *
 	 * @param elementToAdd The {@link EObject element} to add.
 	 * @param path The path (relative to {@link #basePath} of the target model.
-	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * @param fileType The {@link FileType fileType} of the target model. If this is '<em>null</em>', 
 	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	public void addToTargetModel(final EObject elementToAdd, String path, FileTypeEnum fileType) {
+	public void addToTargetModel(final EObject elementToAdd, String path, FileType fileType) {
 
 		addToTargetModel(Arrays.asList(elementToAdd), path, fileType);		
 	}
@@ -210,10 +210,10 @@ public class TargetModelRegistry {
 	 * @param path The path (relative to {@link #basePath} of the target model.
 	 * @return The resource representing the target model for the given '<em>path</em>', '<em><b>null</b></em>' if the resource
 	 * does not exist and could not be created.
-	 * @param fileType The {@link FileTypeEnum fileType} of the target model. If this is '<em>null</em>', 
+	 * @param fileType The {@link FileType fileType} of the target model. If this is '<em>null</em>', 
 	 * the type will be determined by the {@link #resourceSet}.
 	 */
-	private Resource getTargetModelResource(String path, FileTypeEnum fileType) {
+	private Resource getTargetModelResource(String path, FileType fileType) {
 
 		// the URI of the target resource
 		final URI targetFileUri = URI.createPlatformResourceURI(basePath + Path.SEPARATOR + path, true);
@@ -235,9 +235,9 @@ public class TargetModelRegistry {
 		 */
 		try {
 
-			if(fileType == FileTypeEnum.XMI) {
+			if(fileType == FileType.XMI) {
 				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(targetFileUri.fileExtension(), new XMIResourceFactoryImpl());
-			} else if(fileType == FileTypeEnum.XML) {
+			} else if(fileType == FileType.XML) {
 				resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(targetFileUri.fileExtension(), new GenericXMLResourceFactoryImpl());
 			}
 

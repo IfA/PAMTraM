@@ -17,38 +17,37 @@ import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ContainerSelector;
-import pamtram.metamodel.NonContainmentReference;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.generic.CrossReference;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This interface may be implemented to expose a concrete strategy to resolve ambiguities that
- * arise during the execution of a generic transformation. Instead of directly implementing this interface,
- * clients should consider extending {@link AbstractAmbiguityResolvingStrategy}.
+ * This interface may be implemented to expose a concrete strategy to resolve ambiguities that arise during the
+ * execution of a generic transformation. Instead of directly implementing this interface, clients should consider
+ * extending {@link AbstractAmbiguityResolvingStrategy}.
  * <p />
- * Ambiguities may arise in different situations during the generic transformation (e.g. during the selection
- * of a mapping to be applied or during the selection of a concrete model connection path to be used to connect
- * an element). Each of these situations is represented by a single method that should be overriden by a concrete
- * strategy. Thereby, every method has (at least) one parameter that represents the (ambiguous) options and requires
- * to return a sub-set of these options. If the strategy was able to completely resolve the ambiguities (the choices
- * could be narrowed down to a single one), this sub-set will only contain one single element.
+ * Ambiguities may arise in different situations during the generic transformation (e.g. during the selection of a
+ * mapping to be applied or during the selection of a concrete model connection path to be used to connect an element).
+ * Each of these situations is represented by a single method that should be overriden by a concrete strategy. Thereby,
+ * every method has (at least) one parameter that represents the (ambiguous) options and requires to return a sub-set of
+ * these options. If the strategy was able to completely resolve the ambiguities (the choices could be narrowed down to
+ * a single one), this sub-set will only contain one single element.
  * <p />
- * <b>Note:</b> The naming scheme of the methods always indicates in which of the four steps of the transformation
- * the ambiguity that needs to be resolved occurs by starting with the step's name. For example, ambiguities that
- * need to be resolved in the method {@link #searchingSelectMapping(List, EObject)} occur in the '<em>matching</em>'
- * step of the transformation.
- * <br />
+ * <b>Note:</b> The naming scheme of the methods always indicates in which of the four steps of the transformation the
+ * ambiguity that needs to be resolved occurs by starting with the step's name. For example, ambiguities that need to be
+ * resolved in the method {@link #searchingSelectMapping(List, EObject)} occur in the '<em>matching</em>' step of the
+ * transformation. <br />
  * <b>Note:</b> A default implementation exists for every method that does not resolve any ambiguities but simply
- * returns a copy of the possible options. This allows for concrete strategies to only implement a strategy for
- * some situations.
+ * returns a copy of the possible options. This allows for concrete strategies to only implement a strategy for some
+ * situations.
  *
  * @author mfreund
  */
@@ -68,6 +67,7 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
+
 		return;
 	}
 
@@ -110,12 +110,11 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<Mapping> searchingSelectMapping(
-			List<Mapping> choices,
-			EObject element) throws AmbiguityResolvingException {
+	public default List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
+			throws AmbiguityResolvingException {
 
 		List<Mapping> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -134,16 +133,19 @@ public interface IAmbiguityResolvingStrategy {
 	 *            The {@link TargetSectionAttribute} for that the value shall be selected.
 	 * @param element
 	 *            The source {@link EObject element} for that the attribute value shall be determined.
+	 * @param mappingHintGroup
+	 *            The {@link InstantiableMappingHintGroup mapping hint group} based on which the attribute was created.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
 	 *         '<em>choices</em>').
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
-			EObject element) throws AmbiguityResolvingException {
+	public default List<String> instantiatingSelectAttributeValue(List<String> choices,
+			TargetSectionAttribute attribute, EObject element, InstantiableMappingHintGroup mappingHintGroup)
+			throws AmbiguityResolvingException {
 
 		List<String> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -170,10 +172,10 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default List<Integer> instantiatingSelectCardinality(List<Integer> choices,
 			TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup)
-					throws AmbiguityResolvingException {
+			throws AmbiguityResolvingException {
 
 		List<Integer> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -203,15 +205,12 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<EObjectWrapper> joiningSelectContainerInstance(
-			List<EObjectWrapper> choices,
-			List<EObjectWrapper> sectionInstances,
-			MappingHintGroupType hintGroup,
-			ContainerSelector modelConnectionHint,
-			String hintValue) throws AmbiguityResolvingException {
+	public default List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
+			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup,
+			ContainerSelector modelConnectionHint, String hintValue) throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -233,11 +232,11 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<ModelConnectionPath> joiningSelectConnectionPath(
-			List<ModelConnectionPath> choices, TargetSection section) throws AmbiguityResolvingException {
+	public default List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+			TargetSection section) throws AmbiguityResolvingException {
 
 		List<ModelConnectionPath> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -270,7 +269,7 @@ public interface IAmbiguityResolvingStrategy {
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-		if(choices != null) {
+		if (choices != null) {
 			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
@@ -290,11 +289,10 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<EClass> joiningSelectRootElement(
-			List<EClass> choices) throws AmbiguityResolvingException {
+	public default List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
 		List<EClass> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -302,15 +300,15 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
-	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is either
-	 * called if no {@link ReferenceTargetSelector} has been defined for the affected reference or if the evaluation of
-	 * the MappingInstanceSelector's {@link ReferenceTargetSelector#getMatcher() matcher} delivered multiple possible
-	 * target elements.
+	 * {@link CrossReference} during the '<em>linking</em>' step of the transformation. This method is either called if
+	 * no {@link ReferenceTargetSelector} has been defined for the affected reference or if the evaluation of the
+	 * MappingInstanceSelector's {@link ReferenceTargetSelector#getMatcher() matcher} delivered multiple possible target
+	 * elements.
 	 *
 	 * @param choices
 	 *            The list of {@link EObjectWrapper elements} that can be chosen as target.
 	 * @param reference
-	 *            The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 *            The {@link TargetSectionCrossReference} whose target shall be set.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param mappingInstanceSelector
@@ -324,15 +322,13 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<EObjectWrapper> linkingSelectTargetInstance(
-			List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference,
-			MappingHintGroupType hintGroup,
+	public default List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
+			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
 			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
-					throws AmbiguityResolvingException {
+			throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
-		if(choices != null) {
+		if (choices != null) {
 			ret.addAll(choices);
 		}
 		return ret;
@@ -340,15 +336,15 @@ public interface IAmbiguityResolvingStrategy {
 
 	/**
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
-	 * {@link NonContainmentReference} during the '<em>linking</em>' step of the transformation. This method is only
-	 * called if no {@link ReferenceTargetSelector} has been defined and there are multiple possible
-	 * {@link TargetSection TargetSections} and associated {@link EObjectWrapper instances}.
+	 * {@link CrossReference} during the '<em>linking</em>' step of the transformation. This method is only called if no
+	 * {@link ReferenceTargetSelector} has been defined and there are multiple possible {@link TargetSection
+	 * TargetSections} and associated {@link EObjectWrapper instances}.
 	 *
 	 * @param choices
 	 *            A {@link HashMap} that contains the @ {@link TargetSectionClass TargetSections} and associated lists
 	 *            of {@link EObjectWrapper elements} that can be chosen as target.
 	 * @param reference
-	 *            The {@link TargetSectionNonContainmentReference} whose target shall be set.
+	 *            The {@link TargetSectionCrossReference} whose target shall be set.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
@@ -357,12 +353,11 @@ public interface IAmbiguityResolvingStrategy {
 	 *             If an error occurred while applying the resolving strategy.
 	 */
 	public default Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
-			Map<TargetSectionClass, List<EObjectWrapper>> choices,
-			TargetSectionNonContainmentReference reference,
+			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		if(choices != null) {
+		if (choices != null) {
 			for (Entry<TargetSectionClass, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}

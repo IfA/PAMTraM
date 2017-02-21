@@ -2,7 +2,7 @@ package de.mfreund.gentrans.transformation.maps;
 
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This class represents a map that allows to collect hint values for 

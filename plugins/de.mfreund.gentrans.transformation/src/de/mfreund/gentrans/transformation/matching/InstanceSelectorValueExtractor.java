@@ -9,24 +9,24 @@ import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import pamtram.mapping.FixedValue;
+import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.metamodel.InstancePointer;
-import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
- * This class can be used to extract values required by an {@link InstancePointer}
+ * This class can be used to extract values required by an {@link InstanceSelector}
  * from source model elements for a given list of {@link MatchedSectionDescriptor matched sections}.
  * 
  * @author mfreund
  */
-public class InstancePointerValueExtractor extends ValueExtractor {
+public class InstanceSelectorValueExtractor extends ValueExtractor {
 
 	/**
 	 * The {@link AttributeValueCalculator} to be used calculate target values. 
@@ -50,7 +50,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public InstancePointerValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
+	public InstanceSelectorValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
 			AttributeValueCalculator attributeValueCalculator, 
 			AttributeValueModifierExecutor attributeValueModifierExecutor, 
 			Logger logger) {
@@ -73,7 +73,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	public InstancePointerValueExtractor(
+	public InstanceSelectorValueExtractor(
 			AttributeValueCalculator attributeValueCalculator,
 			AttributeValueModifierExecutor attributeValueModifierExecutor, 
 			Logger logger) {
@@ -84,25 +84,25 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the required target value for the given {@link InstancePointer} as specified by its 
-	 * {@link InstancePointer#getSourceElements() source attributes}.
+	 * This extracts and returns the required target value for the given {@link InstanceSelector} as specified by its 
+	 * {@link InstanceSelector#getSourceElements() source attributes}.
 	 * 
-	 * @param instancePointer The {@link InstancePointer} for that the target value shall be extracted.
+	 * @param instancePointer The {@link InstanceSelector} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link InstancePointer#getResultModifier() result modifier} or 
+	 * @return The extracted value (after applying a possible {@link InstanceSelector#getModifiers() result modifier} or 
 	 * '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	public String extractRequiredTargetValue(InstancePointer instancePointer, 
+	public String extractRequiredTargetValue(InstanceSelector instancePointer, 
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Collect the value parts
 		//
-		Map<InstancePointerSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
+		Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
 
 		// Extract the value part based on its type
 		//
-		for (InstancePointerSourceInterface instancePointerSourceInterface : instancePointer.getSourceElements()) {
+		for (InstanceSelectorSourceInterface instancePointerSourceInterface : instancePointer.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -113,7 +113,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 			} else if(instancePointerSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = extractValue((GlobalAttributeImporter) instancePointerSourceInterface, matchedSectionDescriptor); 
 			} else {
-				logger.severe("Unsupported type of source element for an InstancePointer found: '" +
+				logger.severe("Unsupported type of source element for an InstanceSelector found: '" +
 						instancePointerSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -123,7 +123,7 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 					logger.warning("Multiple values found for the source element '"
 							+ instancePointerSourceInterface.getName()
 							+
-							"' of an InstancePointer! This is currently not supported and only the first found value will be used!'");
+							"' of an InstanceSelector! This is currently not supported and only the first found value will be used!'");
 				}
 
 				valueParts.put(instancePointerSourceInterface, attributeValueRepresentation);
@@ -134,9 +134,9 @@ public class InstancePointerValueExtractor extends ValueExtractor {
 		//
 		String expression = instancePointer.getExpression();
 		if(expression == null || expression.isEmpty()) {
-			return attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(instancePointer.getSourceElements()), valueParts, instancePointer.getResultModifier());
+			return attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(instancePointer.getSourceElements()), valueParts, instancePointer.getModifiers());
 		} else {
-			return attributeValueCalculator.calculateValueWithExpression(valueParts, expression, instancePointer.getResultModifier());
+			return attributeValueCalculator.calculateValueWithExpression(valueParts, expression, instancePointer.getModifiers());
 		}
 
 	}

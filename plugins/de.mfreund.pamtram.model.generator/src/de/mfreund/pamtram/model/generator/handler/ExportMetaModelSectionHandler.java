@@ -22,7 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import de.mfreund.pamtram.model.generator.GeneratorWizard;
 import de.mfreund.pamtram.model.generator.WizardData;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.metamodel.Section;
+import pamtram.structure.generic.Section;
 
 /**
  * An {@link AbstractHandler} that uses a {@link GeneratorWizard} to create {@link Section Sections} based on one or
@@ -57,6 +57,15 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 		//
 		EPackage ePackage = (EPackage) EcoreUtil.getRootContainer(selected.get(0).eClass());
 
+		// Whether contained elements shall be regarded in the creation process
+		//
+		boolean includeContainedElements = false;
+		try {
+			includeContainedElements = Integer.parseInt(event.getParameter(
+					"de.mfreund.pamtram.model.generator.exportMetaModelSection.includeContainedElementsParameter")) == 1;
+		} catch (NumberFormatException e) {
+		}
+
 		// Whether cross references shall be regarded in the creation process
 		//
 		boolean includeCrossReferences = false;
@@ -69,13 +78,12 @@ public class ExportMetaModelSectionHandler extends AbstractHandler {
 		// Initialize the data used for the wizard
 		//
 		WizardData wizardData = new WizardData().setSourceElements(selected).setEPackage(ePackage)
+				.setIncludeContainedElements(includeContainedElements)
 				.setIncludeCrossReferences(includeCrossReferences);
 
 		// Create the wizard
 		//
-		WizardDialog wizardDialog = new WizardDialog(
-				new Shell(),
-				new GeneratorWizard(wizardData));
+		WizardDialog wizardDialog = new WizardDialog(new Shell(), new GeneratorWizard(wizardData));
 		wizardDialog.create();
 		wizardDialog.open();
 

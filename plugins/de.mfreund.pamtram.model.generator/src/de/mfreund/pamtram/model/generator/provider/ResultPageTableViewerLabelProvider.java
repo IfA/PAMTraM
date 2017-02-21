@@ -4,10 +4,10 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import pamtram.metamodel.ActualSourceSectionAttribute;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.SingleReferenceValueConstraint;
-import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.structure.constraint.SingleReferenceValueConstraint;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * A simple {@link ITableLabelProvider} that displays names and values of {@link Attribute Attributes}.
@@ -80,11 +80,11 @@ public class ResultPageTableViewerLabelProvider implements ITableLabelProvider {
 	protected String getValue(Attribute<?, ?, ?, ?> att) {
 
 		if (att instanceof ActualSourceSectionAttribute) {
-			if (!((ActualSourceSectionAttribute) att).getValueConstraint().isEmpty()
-					&& ((ActualSourceSectionAttribute) att).getValueConstraint()
+			if (!((ActualSourceSectionAttribute) att).getValueConstraints().isEmpty()
+					&& ((ActualSourceSectionAttribute) att).getValueConstraints()
 					.get(0) instanceof SingleReferenceValueConstraint) {
 				return ((SingleReferenceValueConstraint) ((ActualSourceSectionAttribute) att)
-						.getValueConstraint().get(0)).getExpression();
+						.getValueConstraints().get(0)).getExpression();
 			} else {
 				return "";
 			}

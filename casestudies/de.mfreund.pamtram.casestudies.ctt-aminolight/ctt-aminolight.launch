@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
-<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableHistory" value="true"/>
+<booleanAttribute key="enableStatistics" value="false"/>
 <booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
-<intAttribute key="maxPathLength" value="-1"/>
+<listAttribute key="libraryPaths"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="2"/>
 <stringAttribute key="pamtramFile" value="ctt-aminolight.pamtram"/>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.ctt-aminolight"/>
-<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="false"/>
 <listAttribute key="srcFiles">
 <listEntry value="Smartphone.xmi"/>
 <listEntry value="distanceMeassurement.xml"/>
@@ -18,4 +21,5 @@
 <stringAttribute key="targetLibParser" value=""/>
 <stringAttribute key="targetLibPath" value=""/>
 <stringAttribute key="transformationModel" value=""/>
+<intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

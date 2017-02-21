@@ -2,7 +2,6 @@
  */
 package pamtram.provider;
 
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -24,22 +23,21 @@ import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
 import pamtram.commands.DeleteLibraryEntryCommand;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.TargetSectionModel} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class TargetSectionModelItemProvider
-extends SectionModelItemProvider {
+public class TargetSectionModelItemProvider extends SectionModelItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -64,8 +62,8 @@ extends SectionModelItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -78,8 +76,7 @@ extends SectionModelItemProvider {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +89,7 @@ extends SectionModelItemProvider {
 
 	/**
 	 * This returns TargetSectionModel.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -103,8 +99,7 @@ extends SectionModelItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,21 +108,21 @@ extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+
 		return super.getStyledText(object);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,8 +140,7 @@ extends SectionModelItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,22 +149,23 @@ extends SectionModelItemProvider {
 	}
 
 	/**
-	 * If one or more library entries are to be deleted, this does not use the default command but instead
-	 * the custom {@link DeleteLibraryEntryCommand} that also removes the resource that holds the
-	 * original {@link LibraryEntry}.
+	 * If one or more library entries are to be deleted, this does not use the default command but instead the custom
+	 * {@link DeleteLibraryEntryCommand} that also removes the resource that holds the original {@link LibraryEntry}.
 	 */
 	@Override
-	protected Command createRemoveCommand(EditingDomain domain, EObject owner,
-			EStructuralFeature feature, Collection<?> collection) {
-		if(feature.equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS)) {
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+			Collection<?> collection) {
+
+		if (feature.equals(PamtramPackage.Literals.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS)) {
 			// we need a compound command in case multiple entries are to be deleted
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (Object object : collection) {
-				if(!(object instanceof pamtram.metamodel.LibraryEntry)) {
+				if (!(object instanceof pamtram.structure.library.LibraryEntry)) {
 					throw new RuntimeException("Internal Error! This can only delete LibraryEntries...");
 				} else {
 					// create a DeleteLibraryEntryCommand for every entry to be deleted
-					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner, (pamtram.metamodel.LibraryEntry) object));
+					compoundCommand.append(new DeleteLibraryEntryCommand(domain, (TargetSectionModel) owner,
+							(pamtram.structure.library.LibraryEntry) object));
 				}
 			}
 			return compoundCommand;
@@ -184,10 +179,10 @@ extends SectionModelItemProvider {
 			int operation, Collection<?> collection) {
 
 		/*
-		 *  Allow to drop Classes onto this SectionModel.
+		 * Allow to drop Classes onto this SectionModel.
 		 */
 
-		if(collection.isEmpty()) {
+		if (collection.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
@@ -195,18 +190,20 @@ extends SectionModelItemProvider {
 
 		for (Object object : collection) {
 
-			if(object instanceof TargetSectionClass) {
-				if(object instanceof TargetSection) {
+			if (object instanceof TargetSectionClass) {
+				if (object instanceof TargetSection) {
 					targetSectionClassMap.put((TargetSectionClass) object, (TargetSectionClass) object);
 				} else {
-					targetSectionClassMap.put((TargetSectionClass) object, MetamodelFactory.eINSTANCE.createTargetSection());
+					targetSectionClassMap.put((TargetSectionClass) object,
+							TargetFactory.eINSTANCE.createTargetSection());
 				}
 			} else {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
 
-		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
+		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
 				(Collection<EObject>) targetSectionClassMap.keySet(), targetSectionClassMap.values());
 
 	}

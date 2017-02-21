@@ -47,7 +47,8 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.metamodel.MetamodelFactory;
+import pamtram.structure.source.SourceFactory;
+import pamtram.structure.target.TargetFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.
@@ -166,7 +167,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS);
+			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
 		return childrenFeatures;
 	}
@@ -237,7 +238,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionModel.class)) {
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
@@ -270,13 +271,13 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createSourceSection()));
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				 SourceFactory.eINSTANCE.createSourceSection()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
-				 MetamodelFactory.eINSTANCE.createTargetSection()));
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				 TargetFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**

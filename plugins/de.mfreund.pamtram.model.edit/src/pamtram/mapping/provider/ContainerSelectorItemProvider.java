@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.PamtramFactory;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ContainerSelector;
@@ -196,11 +197,6 @@ extends MappingHintBaseTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
@@ -212,6 +208,11 @@ extends MappingHintBaseTypeItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createContainerSelectorGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

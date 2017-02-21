@@ -2,7 +2,6 @@
  */
 package pamtram.provider;
 
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -18,22 +17,21 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.PamtramPackage;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class SourceSectionModelItemProvider
-extends SectionModelItemProvider {
+public class SourceSectionModelItemProvider extends SectionModelItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SourceSectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -56,8 +54,7 @@ extends SectionModelItemProvider {
 
 	/**
 	 * This returns SourceSectionModel.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,8 +64,7 @@ extends SectionModelItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,21 +73,21 @@ extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
+
 		return super.getStyledText(object);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,8 +99,7 @@ extends SectionModelItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,10 +112,10 @@ extends SectionModelItemProvider {
 			int operation, Collection<?> collection) {
 
 		/*
-		 *  Allow to drop Classes onto this SectionModel.
+		 * Allow to drop Classes onto this SectionModel.
 		 */
 
-		if(collection.isEmpty()) {
+		if (collection.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
@@ -128,18 +123,20 @@ extends SectionModelItemProvider {
 
 		for (Object object : collection) {
 
-			if(object instanceof SourceSectionClass) {
-				if(object instanceof SourceSection) {
+			if (object instanceof SourceSectionClass) {
+				if (object instanceof SourceSection) {
 					sourceSectionClassMap.put((SourceSectionClass) object, (SourceSectionClass) object);
 				} else {
-					sourceSectionClassMap.put((SourceSectionClass) object, MetamodelFactory.eINSTANCE.createSourceSection());
+					sourceSectionClassMap.put((SourceSectionClass) object,
+							SourceFactory.eINSTANCE.createSourceSection());
 				}
 			} else {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
 
-		return  new ReplacingDragAndDropAddCommand(domain, (EObject) owner, PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS,
+		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
 				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
 
 	}

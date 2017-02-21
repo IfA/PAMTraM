@@ -14,9 +14,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.PamtramPackage;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
-import pamtram.metamodel.MetamodelFactory;
+import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.Condition} object.
@@ -49,6 +50,7 @@ public class ConditionItemProvider
 
 			addValuePropertyDescriptor(object);
 			addComparatorPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -76,6 +78,28 @@ public class ConditionItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Condition_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_target_feature", "_UI_Condition_type"),
+				 ConditionPackage.Literals.CONDITION__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -87,7 +111,7 @@ public class ConditionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
+			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -157,7 +181,7 @@ public class ConditionItemProvider
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((Condition)object).getName();
+		String label = ((Condition<?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_Condition_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -183,7 +207,7 @@ public class ConditionItemProvider
 			case ConditionPackage.CONDITION__COMPARATOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -203,8 +227,8 @@ public class ConditionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ConditionPackage.Literals.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION,
-				 MetamodelFactory.eINSTANCE.createInstancePointer()));
+				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createInstanceSelector()));
 	}
 
 }

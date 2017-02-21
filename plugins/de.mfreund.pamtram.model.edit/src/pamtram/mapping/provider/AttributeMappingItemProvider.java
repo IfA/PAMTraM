@@ -19,14 +19,16 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.PamtramFactory;
+import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMapping} object.
@@ -58,7 +60,7 @@ extends MappingHintItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addExpressionPropertyDescriptor(object);
-			addResultModifierPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -132,8 +134,8 @@ extends MappingHintItemProvider {
 					LibraryEntry libEntry = (LibraryEntry) target.eContainer().eContainer();
 					choiceOfValues.addAll(
 							libEntry.getParameters().parallelStream()
-									.filter(p -> p instanceof pamtram.metamodel.AttributeParameter)
-									.map(p -> ((pamtram.metamodel.AttributeParameter) p).getAttribute())
+									.filter(p -> p instanceof pamtram.structure.library.AttributeParameter)
+									.map(p -> ((pamtram.structure.library.AttributeParameter) p).getAttribute())
 									.collect(Collectors.toList()));
 					choiceOfValues.addAll(libEntry.getResourceParameters().parallelStream().map(p -> p.getAttribute())
 							.collect(Collectors.toList()));
@@ -145,7 +147,7 @@ extends MappingHintItemProvider {
 					Iterator<EObject> it = target.eAllContents();
 					while (it.hasNext()) {
 						EObject next = it.next();
-						if (next instanceof pamtram.metamodel.Attribute) {
+						if (next instanceof pamtram.structure.generic.Attribute) {
 							choiceOfValues.add(next);
 						}
 					}
@@ -167,9 +169,9 @@ extends MappingHintItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ExpressionHint_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionHint_expression_feature", "_UI_ExpressionHint_type"),
-				 MappingPackage.Literals.EXPRESSION_HINT__EXPRESSION,
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
@@ -179,19 +181,19 @@ extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Result Modifier feature.
+	 * This adds a property descriptor for the Modifiers feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultModifierPropertyDescriptor(Object object) {
+	protected void addModifiersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModifiableHint_resultModifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableHint_resultModifier_feature", "_UI_ModifiableHint_type"),
-				 MappingPackage.Literals.MODIFIABLE_HINT__RESULT_MODIFIER,
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
 				 true,
 				 false,
 				 true,
@@ -351,11 +353,6 @@ extends MappingHintItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createFixedValue()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
@@ -367,6 +364,11 @@ extends MappingHintItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

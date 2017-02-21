@@ -144,7 +144,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 //							Iterator<EObject> it = classToScan.eAllContents();
 //							while(it.hasNext()) {
 //								EObject next = it.next();
-//								if(next instanceof pamtram.metamodel.Attribute) {
+//								if(next instanceof pamtram.structure.Attribute) {
 //									choiceOfValues.add(next);
 //								} else if(next instanceof MetaModelSectionReference){
 //									List<SourceSectionClass> vals=new ArrayList<SourceSectionClass>();

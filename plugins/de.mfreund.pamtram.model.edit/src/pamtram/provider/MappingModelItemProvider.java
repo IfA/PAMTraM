@@ -2,7 +2,6 @@
  */
 package pamtram.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -16,22 +15,23 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.MappingModel;
+import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.MappingFactory;
+import pamtram.mapping.modifier.ModifierFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.MappingModel} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class MappingModelItemProvider
-	extends NamedElementItemProvider {
+public class MappingModelItemProvider extends NamedElementItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MappingModelItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,7 @@ public class MappingModelItemProvider
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,8 +56,7 @@ public class MappingModelItemProvider
 
 	/**
 	 * This adds a property descriptor for the Deactivated feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -79,8 +77,7 @@ public class MappingModelItemProvider
 
 	/**
 	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -103,8 +100,8 @@ public class MappingModelItemProvider
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -112,7 +109,7 @@ public class MappingModelItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MAPPING);
+			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES);
 		}
@@ -120,8 +117,7 @@ public class MappingModelItemProvider
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -134,8 +130,7 @@ public class MappingModelItemProvider
 
 	/**
 	 * This returns MappingModel.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -145,8 +140,7 @@ public class MappingModelItemProvider
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,23 +149,28 @@ public class MappingModelItemProvider
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MappingModel)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappingModel_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_MappingModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+
+		String label = ((MappingModel) object).getName();
+		StyledString styledLabel = new StyledString();
+		if (((MappingModel) object).eContainer() == null) {
+			styledLabel.append("Shared", StyledString.Style.QUALIFIER_STYLER);
+		}
+		if (label != null && label.length() > 0) {
+			if (!styledLabel.getString().isEmpty()) {
+				styledLabel.append(" ");
+			}
+			styledLabel.append(label);
 		}
 
-		if(((MappingModel) object).isDeactivated()) {
-			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		if (((MappingModel) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(),
+					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
 		} else {
 			return styledLabel;
 
@@ -179,10 +178,10 @@ public class MappingModelItemProvider
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -194,7 +193,7 @@ public class MappingModelItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION:
-			case PamtramPackage.MAPPING_MODEL__MAPPING:
+			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -206,8 +205,7 @@ public class MappingModelItemProvider
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -246,18 +244,18 @@ public class MappingModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.MAPPING_MODEL__MAPPING,
+				(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS,
 				 MappingFactory.eINSTANCE.createMapping()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
-				 MappingFactory.eINSTANCE.createValueModifierSet()));
+				 ModifierFactory.eINSTANCE.createValueModifierSet()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
-				 MappingFactory.eINSTANCE.createFixedValue()));
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
 }

@@ -2,7 +2,6 @@
  */
 package pamtram.mapping.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -18,8 +17,8 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
 import pamtram.PamtramPackage;
-import pamtram.commands.BasicDragAndDropSetCommand;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.ContainerSelector;
@@ -29,16 +28,15 @@ import pamtram.mapping.MappingPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class MappingHintGroupItemProvider
-extends MappingHintGroupTypeItemProvider {
+public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MappingHintGroupItemProvider(AdapterFactory adapterFactory) {
@@ -47,8 +45,7 @@ extends MappingHintGroupTypeItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -64,8 +61,7 @@ extends MappingHintGroupTypeItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Deactivated feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -86,8 +82,7 @@ extends MappingHintGroupTypeItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -110,8 +105,8 @@ extends MappingHintGroupTypeItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -125,8 +120,7 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,8 +133,7 @@ extends MappingHintGroupTypeItemProvider {
 
 	/**
 	 * This returns MappingHintGroup.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,8 +143,7 @@ extends MappingHintGroupTypeItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -160,9 +152,8 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -170,8 +161,9 @@ extends MappingHintGroupTypeItemProvider {
 
 		StyledString styledLabel = (StyledString) super.getStyledText(object);
 
-		if(((MappingHintGroup) object).isDeactivated()) {
-			return new StyledString(styledLabel.getString(), StyledString.Style.newBuilder().setStrikedout(true).toStyle());
+		if (((MappingHintGroup) object).isDeactivated()) {
+			return new StyledString(styledLabel.getString(),
+					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
 		} else {
 			return styledLabel;
 
@@ -179,10 +171,10 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -204,8 +196,7 @@ extends MappingHintGroupTypeItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -249,35 +240,32 @@ extends MappingHintGroupTypeItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 
 		this.collectNewChildDescriptorsGen(newChildDescriptors, object);
 
-		newChildDescriptors.add
-		(this.createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
+		newChildDescriptors
+				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
 						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}
 
 	@Override
-	public String getCreateChildText(Object owner, Object feature,
-			Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
 
 		// provide labels for the custom child descriptors
-		if(child instanceof ContainerSelector) {
+		if (child instanceof ContainerSelector) {
 			ContainerSelector modelConnectionHint = (ContainerSelector) child;
-			if(!modelConnectionHint.getSourceElements().isEmpty() &&
-					!modelConnectionHint.getTargetAttributes().isEmpty()) {
-				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source and Target Attribute)";
+			if (!modelConnectionHint.getSourceElements().isEmpty()
+					&& !modelConnectionHint.getTargetAttributes().isEmpty()) {
+				return super.getCreateChildText(owner, feature, child, selection)
+						+ " (incl. Source and Target Attribute)";
 			}
-		} 
+		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
@@ -285,14 +273,14 @@ extends MappingHintGroupTypeItemProvider {
 	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection) {
 
-		if(collection.size() == 1) {
+		if (collection.size() == 1) {
 			Object object = collection.iterator().next();
-			if(object instanceof ComplexCondition) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner, 
+			if (object instanceof ComplexCondition) {
+				return new BasicDragAndDropSetCommand(domain, (EObject) owner,
 						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, object, 0);
 			}
 		}
-		
+
 		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 }

@@ -23,8 +23,8 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ReferenceTargetSelector} object.
@@ -95,7 +95,7 @@ extends MappingHintItemProvider {
 
 				while(it.hasNext()){
 					EObject next=it.next();
-					if(next instanceof TargetSectionNonContainmentReference){
+					if(next instanceof TargetSectionCrossReference){
 						vals.add(next);
 					}
 				}

@@ -2,7 +2,6 @@
  */
 package pamtram.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -15,21 +14,19 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.ConditionModel;
 import pamtram.PamtramPackage;
-
 import pamtram.condition.ConditionFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.ConditionModel} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class ConditionModelItemProvider 
-	extends NamedElementItemProvider {
+public class ConditionModelItemProvider extends NamedElementItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ConditionModelItemProvider(AdapterFactory adapterFactory) {
@@ -38,8 +35,7 @@ public class ConditionModelItemProvider
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,22 +51,21 @@ public class ConditionModelItemProvider
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITION_MODEL__CONDITION);
+			childrenFeatures.add(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -83,8 +78,7 @@ public class ConditionModelItemProvider
 
 	/**
 	 * This returns ConditionModel.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -94,19 +88,17 @@ public class ConditionModelItemProvider
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -119,13 +111,13 @@ public class ConditionModelItemProvider
 			styledLabel.append(getString("_UI_ConditionModel_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -133,7 +125,7 @@ public class ConditionModelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConditionModel.class)) {
-			case PamtramPackage.CONDITION_MODEL__CONDITION:
+			case PamtramPackage.CONDITION_MODEL__CONDITIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -143,8 +135,7 @@ public class ConditionModelItemProvider
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -153,32 +144,32 @@ public class ConditionModelItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createAnd()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createOr()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createNot()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createAttributeCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.CONDITION_MODEL__CONDITION,
+				(PamtramPackage.Literals.CONDITION_MODEL__CONDITIONS,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 

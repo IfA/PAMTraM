@@ -86,10 +86,10 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 
 		// a list that holds all ePackages that need to be checked
 		ArrayList<EPackage> ePackagesToCheck = new ArrayList<>();
-		for (SourceSectionModel	sourceSectionModel : pamtram.getSourceSectionModel()) {
+		for (SourceSectionModel	sourceSectionModel : pamtram.getSourceSectionModels()) {
 			ePackagesToCheck.add(sourceSectionModel.getMetaModelPackage());
 		}
-		for (TargetSectionModel	targetSectionModel : pamtram.getTargetSectionModel()) {
+		for (TargetSectionModel	targetSectionModel : pamtram.getTargetSectionModels()) {
 			ePackagesToCheck.add(targetSectionModel.getMetaModelPackage());
 		}
 

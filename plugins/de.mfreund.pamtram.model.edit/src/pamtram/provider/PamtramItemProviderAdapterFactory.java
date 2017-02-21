@@ -188,6 +188,29 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.FixedValue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FixedValueItemProvider fixedValueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.FixedValue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFixedValueAdapter() {
+		if (fixedValueItemProvider == null) {
+			fixedValueItemProvider = new FixedValueItemProvider(this);
+		}
+
+		return fixedValueItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,6 +314,7 @@ public class PamtramItemProviderAdapterFactory extends PamtramAdapterFactory imp
 		if (targetSectionModelItemProvider != null) targetSectionModelItemProvider.dispose();
 		if (mappingModelItemProvider != null) mappingModelItemProvider.dispose();
 		if (conditionModelItemProvider != null) conditionModelItemProvider.dispose();
+		if (fixedValueItemProvider != null) fixedValueItemProvider.dispose();
 	}
 
 }

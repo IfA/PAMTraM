@@ -24,10 +24,10 @@ class GentransLaunchContext {
 	private final IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 
 	/**
-	 * Add basic 'Bean' behavior (cf. http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).
+	 * Add basic 'Bean' behavior (cf.
+	 * http://www.vogella.com/tutorials/EclipseDataBinding/article.html#databinding_pojovsbean).
 	 */
-	private final PropertyChangeSupport changeSupport =
-			new PropertyChangeSupport(this);
+	private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
 	/**
 	 * The name of the project that this generic transformation works on.
@@ -116,57 +116,27 @@ class GentransLaunchContext {
 	public static final String PROPERTY_NAME_MODELS_TO_CHOOSE_FROM = "modelsToChooseFrom";
 
 	/**
-	 * The path to the target library to be used in the transformation.
+	 * The list of paths to the libraries to be used in the transformation.
 	 */
-	private String targetLibraryPath;
+	private List<String> libraryPaths;
 
 	/**
-	 * The name of the {@link #targetLibraryPath} property.
+	 * The name of the {@link #libraryPaths} property.
 	 */
-	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH = "targetLibraryPath";
+	public static final String PROPERTY_NAME_LIBRARY_PATHS = "libraryPaths";
 
-	/**
-	 * The path to the target library bundle to be used in the transformation.
-	 */
-	private String targetLibraryBundle;
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
 
-	/**
-	 * The name of the {@link #targetLibraryBundle} property.
-	 */
-	public static final String PROPERTY_NAME_TARGET_LIBRARY_BUNDLE = "targetLibraryBundle";
-
-	/**
-	 * The path to the target library context to be used in the transformation.
-	 */
-	private String targetLibraryContext;
-
-	/**
-	 * The name of the {@link #targetLibraryContext} property.
-	 */
-	public static final String PROPERTY_NAME_TARGET_LIBRARY_CONTEXT = "targetLibraryContext";
-
-	/**
-	 * The path to the target library path parser to be used in the transformation.
-	 */
-	private String targetLibraryPathParser;
-
-	/**
-	 * The name of the {@link #targetLibraryPathParser} property.
-	 */
-	public static final String PROPERTY_NAME_TARGET_LIBRARY_PATH_PARSER = "targetLibraryPathParser";
-
-	public void addPropertyChangeListener(PropertyChangeListener
-			listener) {
 		this.changeSupport.addPropertyChangeListener(listener);
 	}
 
-	public void removePropertyChangeListener(PropertyChangeListener
-			listener) {
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+
 		this.changeSupport.removePropertyChangeListener(listener);
 	}
 
-	protected void firePropertyChange(String propertyName, Object oldValue,
-			Object newValue) {
+	protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+
 		this.changeSupport.firePropertyChange(propertyName, oldValue, newValue);
 	}
 
@@ -174,21 +144,26 @@ class GentransLaunchContext {
 	 * @return the project
 	 */
 	public String getProject() {
+
 		return this.project;
 	}
 
 	/**
-	 * @param project the project to set
+	 * @param project
+	 *            the project to set
 	 */
 	public void setProject(String project) {
+
 		this.firePropertyChange("project", this.project, project);
 
 		// update the list of possible transformation models to choose from based on the changed selection
 		ArrayList<String> transformationModels = new ArrayList<>();
 		try {
-			IResource[] transformationFolders = this.workspaceRoot.getProject(project).getFolder("Pamtram").getFolder("transformation").members();
+			IResource[] transformationFolders = this.workspaceRoot.getProject(project).getFolder("Pamtram")
+					.getFolder("transformation").members();
 			for (IResource iResource : transformationFolders) {
-				if(iResource instanceof IFolder && ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {
+				if (iResource instanceof IFolder
+						&& ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {
 					transformationModels.add(iResource.getName());
 				}
 			}
@@ -203,13 +178,16 @@ class GentransLaunchContext {
 	 * @return the enableHistory
 	 */
 	public boolean isEnableHistory() {
+
 		return this.enableHistory;
 	}
 
 	/**
-	 * @param enableHistory the enableHistory to set
+	 * @param enableHistory
+	 *            the enableHistory to set
 	 */
 	public void setEnableHistory(boolean enableHistory) {
+
 		this.firePropertyChange("enableHistory", this.enableHistory, enableHistory);
 		this.enableHistory = enableHistory;
 	}
@@ -257,13 +235,16 @@ class GentransLaunchContext {
 	 * @return the enableUser
 	 */
 	public boolean isEnableUser() {
+
 		return this.enableUser;
 	}
 
 	/**
-	 * @param enableUser the enableUser to set
+	 * @param enableUser
+	 *            the enableUser to set
 	 */
 	public void setEnableUser(boolean enableUser) {
+
 		this.firePropertyChange("enableUser", this.enableUser, enableUser);
 		this.enableUser = enableUser;
 	}
@@ -272,15 +253,19 @@ class GentransLaunchContext {
 	 * @return the useSpecificTransformationModel
 	 */
 	public boolean isUseSpecificTransformationModel() {
+
 		return this.useSpecificTransformationModel;
 	}
 
 	/**
-	 * @param useSpecificTransformationModel the useSpecificTransformationModel to set
+	 * @param useSpecificTransformationModel
+	 *            the useSpecificTransformationModel to set
 	 */
 	public void setUseSpecificTransformationModel(boolean useSpecificTransformationModel) {
-		this.firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel, useSpecificTransformationModel);
-		if(!useSpecificTransformationModel) {
+
+		this.firePropertyChange("useSpecificTransformationModel", this.useSpecificTransformationModel,
+				useSpecificTransformationModel);
+		if (!useSpecificTransformationModel) {
 			// reset the selection of the transformation model to use
 			this.setTransformationModelToUse("");
 		}
@@ -291,13 +276,16 @@ class GentransLaunchContext {
 	 * @return the transformationModelToUse
 	 */
 	public String getTransformationModelToUse() {
+
 		return this.transformationModelToUse;
 	}
 
 	/**
-	 * @param transformationModelToUse the transformationModelToUse to set
+	 * @param transformationModelToUse
+	 *            the transformationModelToUse to set
 	 */
 	public void setTransformationModelToUse(String transformationModelToUse) {
+
 		this.firePropertyChange("transformationModelToUse", this.transformationModelToUse, transformationModelToUse);
 		this.transformationModelToUse = transformationModelToUse;
 	}
@@ -306,13 +294,16 @@ class GentransLaunchContext {
 	 * @return the modelsToChooseFrom
 	 */
 	public List<String> getModelsToChooseFrom() {
+
 		return this.modelsToChooseFrom;
 	}
 
 	/**
-	 * @param modelsToChooseFrom the modelsToChooseFrom to set
+	 * @param modelsToChooseFrom
+	 *            the modelsToChooseFrom to set
 	 */
 	public void setModelsToChooseFrom(List<String> modelsToChooseFrom) {
+
 		this.firePropertyChange("modelsToChooseFrom", this.modelsToChooseFrom, modelsToChooseFrom);
 		this.modelsToChooseFrom = modelsToChooseFrom;
 	}
@@ -339,87 +330,24 @@ class GentransLaunchContext {
 	}
 
 	/**
-	 * This is the getter for the {@link #targetLibraryPath}.
+	 * This is the getter for the {@link #libraryPaths}.
 	 *
-	 * @return the {@link #targetLibraryPath}.
+	 * @return the {@link #libraryPaths}.
 	 */
-	public String getTargetLibraryPath() {
+	public List<String> getLibraryPaths() {
 
-		return this.targetLibraryPath;
+		return this.libraryPaths;
 	}
 
 	/**
-	 * This is the setter for the {@link #targetLibraryPath}.
+	 * This is the setter for the {@link #libraryPaths}.
 	 *
-	 * @param targetLibraryPath
-	 *            the {@link #targetLibraryPath} to set.
+	 * @param libraryPaths
+	 *            the {@link #libraryPaths} to set.
 	 */
-	public void setTargetLibraryPath(String targetLibraryPath) {
+	public void setLibraryPaths(List<String> libraryPaths) {
 
-		this.targetLibraryPath = targetLibraryPath;
-	}
-
-	/**
-	 * This is the getter for the {@link #targetLibraryBundle}.
-	 *
-	 * @return the {@link #targetLibraryBundle}.
-	 */
-	public String getTargetLibraryBundle() {
-
-		return this.targetLibraryBundle;
-	}
-
-	/**
-	 * This is the setter for the {@link #targetLibraryBundle}.
-	 *
-	 * @param targetLibraryBundle
-	 *            the {@link #targetLibraryBundle} to set.
-	 */
-	public void setTargetLibraryBundle(String targetLibraryBundle) {
-
-		this.targetLibraryBundle = targetLibraryBundle;
-	}
-
-	/**
-	 * This is the getter for the {@link #targetLibraryContext}.
-	 *
-	 * @return the {@link #targetLibraryContext}.
-	 */
-	public String getTargetLibraryContext() {
-
-		return this.targetLibraryContext;
-	}
-
-	/**
-	 * This is the setter for the {@link #targetLibraryContext}.
-	 *
-	 * @param targetLibraryContext
-	 *            the {@link #targetLibraryContext} to set.
-	 */
-	public void setTargetLibraryContext(String targetLibraryContext) {
-
-		this.targetLibraryContext = targetLibraryContext;
-	}
-
-	/**
-	 * This is the getter for the {@link #targetLibraryPathParser}.
-	 *
-	 * @return the {@link #targetLibraryPathParser}.
-	 */
-	public String getTargetLibraryPathParser() {
-
-		return this.targetLibraryPathParser;
-	}
-
-	/**
-	 * This is the setter for the {@link #targetLibraryPathParser}.
-	 *
-	 * @param targetLibraryPathParser
-	 *            the {@link #targetLibraryPathParser} to set.
-	 */
-	public void setTargetLibraryPathParser(String targetLibraryPathParser) {
-
-		this.targetLibraryPathParser = targetLibraryPathParser;
+		this.libraryPaths = libraryPaths;
 	}
 
 }

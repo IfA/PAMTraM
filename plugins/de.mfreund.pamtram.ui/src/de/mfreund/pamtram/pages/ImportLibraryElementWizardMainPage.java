@@ -26,8 +26,8 @@ import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.Mapping;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.target.TargetSection;
 
 /**
  * This page allows to specify (1) a library (represented by a Zip file) and (2) one or multiple items from the library
@@ -298,7 +298,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 		targetModelSelectionList.setLayoutData(gd1);
 
 		if (this.pamtram != null) {
-			this.pamtram.getTargetSectionModel().stream().forEach(model -> targetModelSelectionList
+			this.pamtram.getTargetSectionModels().stream().forEach(model -> targetModelSelectionList
 					.add("TargetSectionModel " + (model.getName() != null ? model.getName() : "")));
 		}
 
@@ -307,7 +307,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 				ImportLibraryElementWizardMainPage.this.targetSectionModel = null;
 			} else {
 				ImportLibraryElementWizardMainPage.this.targetSectionModel = ImportLibraryElementWizardMainPage.this.pamtram
-						.getTargetSectionModel().get(targetModelSelectionList.getSelectionIndex());
+						.getTargetSectionModels().get(targetModelSelectionList.getSelectionIndex());
 
 			}
 			ImportLibraryElementWizardMainPage.this.getContainer().updateButtons();
@@ -324,7 +324,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 		this.mappingModelSelectionList.setLayoutData(gd2);
 
 		if (this.pamtram != null) {
-			this.pamtram.getMappingModel().stream().forEach(model -> this.mappingModelSelectionList
+			this.pamtram.getMappingModels().stream().forEach(model -> this.mappingModelSelectionList
 					.add("MappingModel " + (model.getName() != null ? model.getName() : "")));
 		}
 
@@ -333,7 +333,7 @@ public class ImportLibraryElementWizardMainPage extends WizardPage {
 				ImportLibraryElementWizardMainPage.this.mappingModel = null;
 			} else {
 				ImportLibraryElementWizardMainPage.this.mappingModel = ImportLibraryElementWizardMainPage.this.pamtram
-						.getMappingModel()
+						.getMappingModels()
 						.get(ImportLibraryElementWizardMainPage.this.mappingModelSelectionList.getSelectionIndex());
 
 			}

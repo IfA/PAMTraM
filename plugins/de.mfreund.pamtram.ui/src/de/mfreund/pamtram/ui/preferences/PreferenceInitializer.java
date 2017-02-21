@@ -8,10 +8,12 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.mfreund.pamtram.ui.PamtramUIPlugin;
 
+/**
+ * An {@link AbstractPreferenceInitializer} that initializes the PAMTraM preferences with default values
+ *
+ * @author mfreund
+ */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
-
-	public PreferenceInitializer() {
-	}
 
 	/**
 	 * The default preferences are initialized by contacting the {@link PreferenceSupplier} class
@@ -19,7 +21,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 */
 	@Override
 	public void initializeDefaultPreferences() {
-		
+
 		IPreferenceStore store = PamtramUIPlugin.getPlugin().getPreferenceStore();
 		Map<String, String> initializationEntries = PreferenceSupplier.getInitializationEntries();
 		for (Map.Entry<String, String> entry : initializationEntries.entrySet()) {

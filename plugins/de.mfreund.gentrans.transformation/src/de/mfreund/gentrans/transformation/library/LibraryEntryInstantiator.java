@@ -134,6 +134,10 @@ public class LibraryEntryInstantiator {
 	public boolean instantiate(GenLibraryManager manager, AttributeValueCalculator calculator,
 			TargetSectionRegistry targetSectionRegistry) {
 
+		if (!manager.existsImplementationFor(this.ePackageURI)) {
+			return false;
+		}
+
 		EObject targetModel = EcoreUtil.getRootContainer(this.transformationHelper.getEObject());
 
 		/*

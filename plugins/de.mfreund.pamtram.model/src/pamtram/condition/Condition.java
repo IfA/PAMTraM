@@ -2,8 +2,7 @@
  */
 package pamtram.condition;
 
-import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.InstancePointer;
+import pamtram.InstanceSelectingElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,32 +13,16 @@ import pamtram.metamodel.InstancePointer;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
  * @model abstract="true"
  * @generated
  */
-public interface Condition extends ComplexCondition {
-	/**
-	 * Returns the value of the '<em><b>Additional Condition Specification</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.metamodel.InstancePointer}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Additional Condition Specification</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Additional Condition Specification</em>' containment reference list.
-	 * @see pamtram.condition.ConditionPackage#getCondition_AdditionalConditionSpecification()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<InstancePointer> getAdditionalConditionSpecification();
-
+public interface Condition<TargetType> extends ComplexCondition, InstanceSelectingElement {
 	/**
 	 * Returns the value of the '<em><b>Comparator</b></em>' attribute.
 	 * The literals are from the enumeration {@link pamtram.condition.ComparatorEnum}.
@@ -68,6 +51,32 @@ public interface Condition extends ComplexCondition {
 	 * @generated
 	 */
 	void setComparator(ComparatorEnum value);
+
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target</em>' reference.
+	 * @see #setTarget(Object)
+	 * @see pamtram.condition.ConditionPackage#getCondition_Target()
+	 * @model kind="reference" required="true"
+	 * @generated
+	 */
+	TargetType getTarget();
+
+	/**
+	 * Sets the value of the '{@link pamtram.condition.Condition#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Target</em>' reference.
+	 * @see #getTarget()
+	 * @generated
+	 */
+	void setTarget(TargetType value);
 
 	/**
 	 * <!-- begin-user-doc -->

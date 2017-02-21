@@ -25,7 +25,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.target.TargetSection;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -240,7 +240,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getSharedCondition() == null || this.eContainer() instanceof ConditionModel;
+		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
 		
 		if (!result && diagnostics != null) {
 		

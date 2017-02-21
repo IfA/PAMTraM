@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import pamtram.InstanceSelectingElement;
 import pamtram.NamedElement;
 import pamtram.condition.*;
 import pamtram.condition.And;
@@ -76,10 +77,6 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createComplexConditionAdapter();
 			}
 			@Override
-			public Adapter caseCondition(Condition object) {
-				return createConditionAdapter();
-			}
-			@Override
 			public Adapter caseVariadicCondition(VariadicCondition object) {
 				return createVariadicConditionAdapter();
 			}
@@ -100,6 +97,10 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 				return createNotAdapter();
 			}
 			@Override
+			public <TargetType> Adapter caseCondition(Condition<TargetType> object) {
+				return createConditionAdapter();
+			}
+			@Override
 			public Adapter caseAttributeCondition(AttributeCondition object) {
 				return createAttributeConditionAdapter();
 			}
@@ -114,6 +115,10 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseInstanceSelectingElement(InstanceSelectingElement object) {
+				return createInstanceSelectingElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -286,6 +291,20 @@ public class ConditionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.InstanceSelectingElement
+	 * @generated
+	 */
+	public Adapter createInstanceSelectingElementAdapter() {
 		return null;
 	}
 

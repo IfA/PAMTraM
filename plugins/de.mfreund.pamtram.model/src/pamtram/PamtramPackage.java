@@ -143,49 +143,58 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M = 2;
 
 	/**
-	 * The feature id for the '<em><b>Source Section Model</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Source Section Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SOURCE_SECTION_MODEL = 0;
+	int PAM_TRA_M__SOURCE_SECTION_MODELS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Shared Source Section Model</b></em>' reference list.
+	 * The feature id for the '<em><b>Shared Source Section Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL = 1;
+	int PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Target Section Model</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Target Section Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTION_MODEL = 2;
+	int PAM_TRA_M__TARGET_SECTION_MODELS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Shared Target Section Model</b></em>' reference list.
+	 * The feature id for the '<em><b>Shared Target Section Models</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SHARED_TARGET_SECTION_MODEL = 3;
+	int PAM_TRA_M__SHARED_TARGET_SECTION_MODELS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Mapping Model</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mapping Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPING_MODEL = 4;
+	int PAM_TRA_M__MAPPING_MODELS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Shared Mapping Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_MAPPING_MODELS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Source Sections</b></em>' reference list.
@@ -194,7 +203,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SOURCE_SECTIONS = 5;
+	int PAM_TRA_M__SOURCE_SECTIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Target Sections</b></em>' reference list.
@@ -203,7 +212,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__TARGET_SECTIONS = 6;
+	int PAM_TRA_M__TARGET_SECTIONS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' reference list.
@@ -212,7 +221,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MAPPINGS = 7;
+	int PAM_TRA_M__MAPPINGS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
@@ -221,7 +230,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__ACTIVE_MAPPINGS = 8;
+	int PAM_TRA_M__ACTIVE_MAPPINGS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Global Values</b></em>' reference list.
@@ -230,7 +239,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__GLOBAL_VALUES = 9;
+	int PAM_TRA_M__GLOBAL_VALUES = 10;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
@@ -239,16 +248,25 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 10;
+	int PAM_TRA_M__MODIFIER_SETS = 11;
 
 	/**
-	 * The feature id for the '<em><b>Condition Model</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Condition Models</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__CONDITION_MODEL = 11;
+	int PAM_TRA_M__CONDITION_MODELS = 12;
+
+	/**
+	 * The feature id for the '<em><b>Shared Condition Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__SHARED_CONDITION_MODELS = 13;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -257,7 +275,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 12;
+	int PAM_TRA_M_FEATURE_COUNT = 14;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -306,13 +324,13 @@ public interface PamtramPackage extends EPackage {
 	int SECTION_MODEL__META_MODEL_PACKAGE = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_MODEL__META_MODEL_SECTIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SECTION_MODEL__SECTIONS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Section Model</em>' class.
@@ -361,13 +379,13 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
+	int SOURCE_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Source Section Model</em>' class.
@@ -416,13 +434,13 @@ public interface PamtramPackage extends EPackage {
 	int TARGET_SECTION_MODEL__META_MODEL_PACKAGE = SECTION_MODEL__META_MODEL_PACKAGE;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_MODEL__META_MODEL_SECTIONS = SECTION_MODEL__META_MODEL_SECTIONS;
+	int TARGET_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
 	 * The feature id for the '<em><b>Library Elements</b></em>' containment reference list.
@@ -498,13 +516,13 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__SHARED_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Mapping</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__MAPPING = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_MODEL__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' containment reference list.
@@ -653,13 +671,13 @@ public interface PamtramPackage extends EPackage {
 	int CONDITION_MODEL__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION_MODEL__CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int CONDITION_MODEL__CONDITIONS = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Condition Model</em>' class.
@@ -678,6 +696,172 @@ public interface PamtramPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITION_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.ExpressionElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getExpressionElement()
+	 * @generated
+	 */
+	int EXPRESSION_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT__EXPRESSION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Expression Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Expression Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.ModifiableElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getModifiableElement()
+	 * @generated
+	 */
+	int MODIFIABLE_ELEMENT = 10;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT__MODIFIERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Modifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Modifiable Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.InstanceSelectingElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
+	 * @generated
+	 */
+	int INSTANCE_SELECTING_ELEMENT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Instance Selecting Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Instance Selecting Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTING_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.FixedValueImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
+	 * @generated
+	 */
+	int FIXED_VALUE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE___GET_SOURCE_ATTRIBUTE = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Fixed Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
@@ -732,59 +916,70 @@ public interface PamtramPackage extends EPackage {
 	EClass getPAMTraM();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getSourceSectionModel <em>Source Section Model</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getSourceSectionModels <em>Source Section Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSourceSectionModel()
+	 * @return the meta object for the containment reference list '<em>Source Section Models</em>'.
+	 * @see pamtram.PAMTraM#getSourceSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_SourceSectionModel();
+	EReference getPAMTraM_SourceSectionModels();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedSourceSectionModel <em>Shared Source Section Model</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedSourceSectionModels <em>Shared Source Section Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Shared Source Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedSourceSectionModel()
+	 * @return the meta object for the reference list '<em>Shared Source Section Models</em>'.
+	 * @see pamtram.PAMTraM#getSharedSourceSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_SharedSourceSectionModel();
+	EReference getPAMTraM_SharedSourceSectionModels();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getTargetSectionModel <em>Target Section Model</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getTargetSectionModels <em>Target Section Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Target Section Model</em>'.
-	 * @see pamtram.PAMTraM#getTargetSectionModel()
+	 * @return the meta object for the containment reference list '<em>Target Section Models</em>'.
+	 * @see pamtram.PAMTraM#getTargetSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_TargetSectionModel();
+	EReference getPAMTraM_TargetSectionModels();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedTargetSectionModel <em>Shared Target Section Model</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedTargetSectionModels <em>Shared Target Section Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Shared Target Section Model</em>'.
-	 * @see pamtram.PAMTraM#getSharedTargetSectionModel()
+	 * @return the meta object for the reference list '<em>Shared Target Section Models</em>'.
+	 * @see pamtram.PAMTraM#getSharedTargetSectionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_SharedTargetSectionModel();
+	EReference getPAMTraM_SharedTargetSectionModels();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getMappingModel <em>Mapping Model</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getMappingModels <em>Mapping Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mapping Model</em>'.
-	 * @see pamtram.PAMTraM#getMappingModel()
+	 * @return the meta object for the containment reference list '<em>Mapping Models</em>'.
+	 * @see pamtram.PAMTraM#getMappingModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_MappingModel();
+	EReference getPAMTraM_MappingModels();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedMappingModels <em>Shared Mapping Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Mapping Models</em>'.
+	 * @see pamtram.PAMTraM#getSharedMappingModels()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedMappingModels();
 
 	/**
 	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSourceSections <em>Source Sections</em>}'.
@@ -853,15 +1048,26 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_ModifierSets();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getConditionModel <em>Condition Model</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.PAMTraM#getConditionModels <em>Condition Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Condition Model</em>'.
-	 * @see pamtram.PAMTraM#getConditionModel()
+	 * @return the meta object for the containment reference list '<em>Condition Models</em>'.
+	 * @see pamtram.PAMTraM#getConditionModels()
 	 * @see #getPAMTraM()
 	 * @generated
 	 */
-	EReference getPAMTraM_ConditionModel();
+	EReference getPAMTraM_ConditionModels();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getSharedConditionModels <em>Shared Condition Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Shared Condition Models</em>'.
+	 * @see pamtram.PAMTraM#getSharedConditionModels()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_SharedConditionModels();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.PAMTraM#mergeExtends() <em>Merge Extends</em>}' operation.
@@ -895,15 +1101,15 @@ public interface PamtramPackage extends EPackage {
 	EReference getSectionModel_MetaModelPackage();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.SectionModel#getSections <em>Sections</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Meta Model Sections</em>'.
-	 * @see pamtram.SectionModel#getMetaModelSections()
+	 * @return the meta object for the containment reference list '<em>Sections</em>'.
+	 * @see pamtram.SectionModel#getSections()
 	 * @see #getSectionModel()
 	 * @generated
 	 */
-	EReference getSectionModel_MetaModelSections();
+	EReference getSectionModel_Sections();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SourceSectionModel <em>Source Section Model</em>}'.
@@ -947,15 +1153,15 @@ public interface PamtramPackage extends EPackage {
 	EClass getMappingModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getMapping <em>Mapping</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getMappings <em>Mappings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Mapping</em>'.
-	 * @see pamtram.MappingModel#getMapping()
+	 * @return the meta object for the containment reference list '<em>Mappings</em>'.
+	 * @see pamtram.MappingModel#getMappings()
 	 * @see #getMappingModel()
 	 * @generated
 	 */
-	EReference getMappingModel_Mapping();
+	EReference getMappingModel_Mappings();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}'.
@@ -1053,15 +1259,99 @@ public interface PamtramPackage extends EPackage {
 	EClass getConditionModel();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionModel#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.ConditionModel#getConditions <em>Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Condition</em>'.
-	 * @see pamtram.ConditionModel#getCondition()
+	 * @return the meta object for the containment reference list '<em>Conditions</em>'.
+	 * @see pamtram.ConditionModel#getConditions()
 	 * @see #getConditionModel()
 	 * @generated
 	 */
-	EReference getConditionModel_Condition();
+	EReference getConditionModel_Conditions();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression Element</em>'.
+	 * @see pamtram.ExpressionElement
+	 * @generated
+	 */
+	EClass getExpressionElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.ExpressionElement#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see pamtram.ExpressionElement#getExpression()
+	 * @see #getExpressionElement()
+	 * @generated
+	 */
+	EAttribute getExpressionElement_Expression();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Modifiable Element</em>'.
+	 * @see pamtram.ModifiableElement
+	 * @generated
+	 */
+	EClass getModifiableElement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.ModifiableElement#getModifiers <em>Modifiers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Modifiers</em>'.
+	 * @see pamtram.ModifiableElement#getModifiers()
+	 * @see #getModifiableElement()
+	 * @generated
+	 */
+	EReference getModifiableElement_Modifiers();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Selecting Element</em>'.
+	 * @see pamtram.InstanceSelectingElement
+	 * @generated
+	 */
+	EClass getInstanceSelectingElement();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.InstanceSelectingElement#getInstanceSelectors <em>Instance Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
+	 * @see pamtram.InstanceSelectingElement#getInstanceSelectors()
+	 * @see #getInstanceSelectingElement()
+	 * @generated
+	 */
+	EReference getInstanceSelectingElement_InstanceSelectors();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Fixed Value</em>'.
+	 * @see pamtram.FixedValue
+	 * @generated
+	 */
+	EClass getFixedValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.FixedValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see pamtram.FixedValue#getValue()
+	 * @see #getFixedValue()
+	 * @generated
+	 */
+	EAttribute getFixedValue_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1133,44 +1423,52 @@ public interface PamtramPackage extends EPackage {
 		EClass PAM_TRA_M = eINSTANCE.getPAMTraM();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Section Model</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Source Section Models</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__SOURCE_SECTION_MODEL = eINSTANCE.getPAMTraM_SourceSectionModel();
+		EReference PAM_TRA_M__SOURCE_SECTION_MODELS = eINSTANCE.getPAMTraM_SourceSectionModels();
 
 		/**
-		 * The meta object literal for the '<em><b>Shared Source Section Model</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Shared Source Section Models</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__SHARED_SOURCE_SECTION_MODEL = eINSTANCE.getPAMTraM_SharedSourceSectionModel();
+		EReference PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS = eINSTANCE.getPAMTraM_SharedSourceSectionModels();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Section Model</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Target Section Models</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__TARGET_SECTION_MODEL = eINSTANCE.getPAMTraM_TargetSectionModel();
+		EReference PAM_TRA_M__TARGET_SECTION_MODELS = eINSTANCE.getPAMTraM_TargetSectionModels();
 
 		/**
-		 * The meta object literal for the '<em><b>Shared Target Section Model</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Shared Target Section Models</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__SHARED_TARGET_SECTION_MODEL = eINSTANCE.getPAMTraM_SharedTargetSectionModel();
+		EReference PAM_TRA_M__SHARED_TARGET_SECTION_MODELS = eINSTANCE.getPAMTraM_SharedTargetSectionModels();
 
 		/**
-		 * The meta object literal for the '<em><b>Mapping Model</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Mapping Models</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__MAPPING_MODEL = eINSTANCE.getPAMTraM_MappingModel();
+		EReference PAM_TRA_M__MAPPING_MODELS = eINSTANCE.getPAMTraM_MappingModels();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Mapping Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_MAPPING_MODELS = eINSTANCE.getPAMTraM_SharedMappingModels();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Sections</b></em>' reference list feature.
@@ -1221,12 +1519,20 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__MODIFIER_SETS = eINSTANCE.getPAMTraM_ModifierSets();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Model</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Condition Models</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PAM_TRA_M__CONDITION_MODEL = eINSTANCE.getPAMTraM_ConditionModel();
+		EReference PAM_TRA_M__CONDITION_MODELS = eINSTANCE.getPAMTraM_ConditionModels();
+
+		/**
+		 * The meta object literal for the '<em><b>Shared Condition Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__SHARED_CONDITION_MODELS = eINSTANCE.getPAMTraM_SharedConditionModels();
 
 		/**
 		 * The meta object literal for the '<em><b>Merge Extends</b></em>' operation.
@@ -1255,12 +1561,12 @@ public interface PamtramPackage extends EPackage {
 		EReference SECTION_MODEL__META_MODEL_PACKAGE = eINSTANCE.getSectionModel_MetaModelPackage();
 
 		/**
-		 * The meta object literal for the '<em><b>Meta Model Sections</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sections</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SECTION_MODEL__META_MODEL_SECTIONS = eINSTANCE.getSectionModel_MetaModelSections();
+		EReference SECTION_MODEL__SECTIONS = eINSTANCE.getSectionModel_Sections();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SourceSectionModelImpl <em>Source Section Model</em>}' class.
@@ -1301,12 +1607,12 @@ public interface PamtramPackage extends EPackage {
 		EClass MAPPING_MODEL = eINSTANCE.getMappingModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Mapping</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MAPPING_MODEL__MAPPING = eINSTANCE.getMappingModel_Mapping();
+		EReference MAPPING_MODEL__MAPPINGS = eINSTANCE.getMappingModel_Mappings();
 
 		/**
 		 * The meta object literal for the '<em><b>Modifier Sets</b></em>' containment reference list feature.
@@ -1385,12 +1691,84 @@ public interface PamtramPackage extends EPackage {
 		EClass CONDITION_MODEL = eINSTANCE.getConditionModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Conditions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITION_MODEL__CONDITION = eINSTANCE.getConditionModel_Condition();
+		EReference CONDITION_MODEL__CONDITIONS = eINSTANCE.getConditionModel_Conditions();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.ExpressionElementImpl <em>Expression Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.ExpressionElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getExpressionElement()
+		 * @generated
+		 */
+		EClass EXPRESSION_ELEMENT = eINSTANCE.getExpressionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXPRESSION_ELEMENT__EXPRESSION = eINSTANCE.getExpressionElement_Expression();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.ModifiableElementImpl <em>Modifiable Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.ModifiableElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getModifiableElement()
+		 * @generated
+		 */
+		EClass MODIFIABLE_ELEMENT = eINSTANCE.getModifiableElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Modifiers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODIFIABLE_ELEMENT__MODIFIERS = eINSTANCE.getModifiableElement_Modifiers();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.InstanceSelectingElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
+		 * @generated
+		 */
+		EClass INSTANCE_SELECTING_ELEMENT = eINSTANCE.getInstanceSelectingElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = eINSTANCE.getInstanceSelectingElement_InstanceSelectors();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.FixedValueImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
+		 * @generated
+		 */
+		EClass FIXED_VALUE = eINSTANCE.getFixedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_VALUE__VALUE = eINSTANCE.getFixedValue_Value();
 
 	}
 

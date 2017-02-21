@@ -402,7 +402,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getSharedCondition() == null || this.eContainer() instanceof ConditionModel;
+		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
 		
 		if (!result && diagnostics != null) {
 		

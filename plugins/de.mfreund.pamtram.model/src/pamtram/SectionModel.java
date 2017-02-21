@@ -4,9 +4,10 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,14 +19,14 @@ import pamtram.metamodel.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.SectionModel#getMetaModelPackage <em>Meta Model Package</em>}</li>
- *   <li>{@link pamtram.SectionModel#getMetaModelSections <em>Meta Model Sections</em>}</li>
+ *   <li>{@link pamtram.SectionModel#getSections <em>Sections</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getSectionModel()
  * @model abstract="true"
  * @generated
  */
-public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
+public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Meta Model Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -53,18 +54,18 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.m
 	void setMetaModelPackage(EPackage value);
 
 	/**
-	 * Returns the value of the '<em><b>Meta Model Sections</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Sections</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Model Sections</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model Sections</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelSections()
+	 * @return the value of the '<em>Sections</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getSectionModel_Sections()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<S> getMetaModelSections();
+	EList<S> getSections();
 
 } // SectionModel

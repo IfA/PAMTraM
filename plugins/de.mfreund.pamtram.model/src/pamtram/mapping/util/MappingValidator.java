@@ -10,64 +10,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingExternalSourceElement;
-import pamtram.mapping.AttributeMappingGlobalSourceElement;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
-import pamtram.mapping.AttributeMatcherGlobalSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorExternalSourceElement;
-import pamtram.mapping.ContainerSelectorGlobalSourceElement;
-import pamtram.mapping.ContainerSelectorSourceElement;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExpressionHint;
-import pamtram.mapping.ExternalMappedAttributeValueAppender;
-import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.ExternalMappedAttributeValuePrepender;
-import pamtram.mapping.ExternalModifiedAttributeElementType;
-import pamtram.mapping.FixedValue;
-import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.GlobalModifiedAttributeElementType;
-import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.LocalMappedAttributeValueExpander;
-import pamtram.mapping.LocalModifiedAttributeElementType;
-import pamtram.mapping.MappedAttributeValueAppender;
-import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValuePrepender;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintBaseType;
-import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingPackage;
-import pamtram.mapping.MappingType;
-import pamtram.mapping.MatchToLowerCaseConverter;
-import pamtram.mapping.MatchToUpperCaseConverter;
-import pamtram.mapping.Matcher;
-import pamtram.mapping.ModifiableHint;
-import pamtram.mapping.ModifiedAttributeElementType;
-import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.StringAppender;
-import pamtram.mapping.StringPrepender;
-import pamtram.mapping.SubstringReplacer;
-import pamtram.mapping.UniqueNumberAppender;
-import pamtram.mapping.ValueModifier;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.structure.util.StructureValidator;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -119,12 +62,12 @@ public class MappingValidator extends EObjectValidator {
 	public static final int ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Class Matches Section' of 'Cardinality Mapping'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Element Matches Section' of 'Cardinality Mapping'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_MATCHES_SECTION = 4;
+	public static final int CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class Matches Section' of 'Cardinality Mapping'.
@@ -159,12 +102,36 @@ public class MappingValidator extends EObjectValidator {
 	public static final int CARDINALITY_MAPPING__VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT = 8;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Source Or Source Elements' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS = 9;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Expression Only For Source Elements' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS = 10;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Modifiers Only For Source Elements' of 'Cardinality Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS = 11;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Affected Reference Is Non Containment' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 9;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Affected Reference Matches Section' of 'Reference Target Selector'.
@@ -172,7 +139,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION = 10;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Matches Affected Reference Type' of 'Attribute Matcher'.
@@ -180,15 +147,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 11;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 12;
+	public static final int ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Matches Possible Container Type' of 'Container Selector Target Attribute'.
@@ -196,7 +155,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 13;
+	public static final int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
@@ -204,15 +163,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 14;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 15;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 16;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -220,7 +171,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 16;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -239,6 +190,14 @@ public class MappingValidator extends EObjectValidator {
 	protected PamtramValidator pamtramValidator;
 
 	/**
+	 * The cached base package validator.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StructureValidator structureValidator;
+
+	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +206,7 @@ public class MappingValidator extends EObjectValidator {
 	public MappingValidator() {
 		super();
 		pamtramValidator = PamtramValidator.INSTANCE;
+		structureValidator = StructureValidator.INSTANCE;
 	}
 
 	/**
@@ -283,10 +243,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT:
 				return validateMappingHint((MappingHint)value, diagnostics, context);
-			case MappingPackage.EXPRESSION_HINT:
-				return validateExpressionHint((ExpressionHint)value, diagnostics, context);
-			case MappingPackage.MODIFIABLE_HINT:
-				return validateModifiableHint((ModifiableHint)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING:
 				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
 			case MappingPackage.CARDINALITY_MAPPING:
@@ -303,22 +259,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
 			case MappingPackage.CLASS_MATCHER:
 				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
-			case MappingPackage.VALUE_MODIFIER_SET:
-				return validateValueModifierSet((ValueModifierSet)value, diagnostics, context);
-			case MappingPackage.VALUE_MODIFIER:
-				return validateValueModifier((ValueModifier)value, diagnostics, context);
-			case MappingPackage.SUBSTRING_REPLACER:
-				return validateSubstringReplacer((SubstringReplacer)value, diagnostics, context);
-			case MappingPackage.STRING_APPENDER:
-				return validateStringAppender((StringAppender)value, diagnostics, context);
-			case MappingPackage.UNIQUE_NUMBER_APPENDER:
-				return validateUniqueNumberAppender((UniqueNumberAppender)value, diagnostics, context);
-			case MappingPackage.STRING_PREPENDER:
-				return validateStringPrepender((StringPrepender)value, diagnostics, context);
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
@@ -343,8 +283,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappedAttributeValuePrepender((MappedAttributeValuePrepender)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER:
 				return validateMappedAttributeValueAppender((MappedAttributeValueAppender)value, diagnostics, context);
-			case MappingPackage.FIXED_VALUE:
-				return validateFixedValue((FixedValue)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE:
 				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
@@ -357,8 +295,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateContainerSelectorSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
 				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
 				return validateContainerSelectorExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
@@ -371,18 +307,20 @@ public class MappingValidator extends EObjectValidator {
 				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.EXPANDABLE_HINT:
 				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER:
-				return validateMatchToLowerCaseConverter((MatchToLowerCaseConverter)value, diagnostics, context);
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER:
-				return validateMatchToUpperCaseConverter((MatchToUpperCaseConverter)value, diagnostics, context);
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateGlobalModifiedAttributeElementType((GlobalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT:
 				return validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT:
 				return validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT:
 				return validateContainerSelectorGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT:
+				return validateCardinalityMappingSourceElement((CardinalityMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE:
+				return validateCardinalityMappingSourceInterface((CardinalityMappingSourceInterface)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT:
+				return validateCardinalityMappingExternalSourceElement((CardinalityMappingExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT:
+				return validateCardinalityMappingGlobalSourceElement((CardinalityMappingGlobalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -588,24 +526,6 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExpressionHint(ExpressionHint expressionHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(expressionHint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModifiableHint(ModifiableHint modifiableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modifiableHint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateAttributeMapping(AttributeMapping attributeMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(attributeMapping, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(attributeMapping, diagnostics, context);
@@ -687,11 +607,14 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_targetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_noCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
-		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassMatchesSection(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceElementMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassMatchesSection(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_validateSourceClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_validateTargetClassIsVariableCardinality(cardinalityMapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateOnlySourceOrSourceElements(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateExpressionOnlyForSourceElements(cardinalityMapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityMapping_validateModifiersOnlyForSourceElements(cardinalityMapping, diagnostics, context);
 		return result;
 	}
 
@@ -836,13 +759,13 @@ public class MappingValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateSourceClassMatchesSection constraint of '<em>Cardinality Mapping</em>'.
+	 * Validates the validateSourceElementMatchesSection constraint of '<em>Cardinality Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCardinalityMapping_validateSourceClassMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return cardinalityMapping.validateSourceClassMatchesSection(diagnostics, context);
+	public boolean validateCardinalityMapping_validateSourceElementMatchesSection(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateSourceElementMatchesSection(diagnostics, context);
 	}
 
 	/**
@@ -883,6 +806,36 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateCardinalityMapping_validateNoCardinalityMappingForSourceSectionRoot(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return cardinalityMapping.validateNoCardinalityMappingForSourceSectionRoot(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateOnlySourceOrSourceElements constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateOnlySourceOrSourceElements(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateOnlySourceOrSourceElements(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateExpressionOnlyForSourceElements constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateExpressionOnlyForSourceElements(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateExpressionOnlyForSourceElements(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateModifiersOnlyForSourceElements constraint of '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMapping_validateModifiersOnlyForSourceElements(CardinalityMapping cardinalityMapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityMapping.validateModifiersOnlyForSourceElements(diagnostics, context);
 	}
 
 	/**
@@ -1069,8 +1022,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcherSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMatcherSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1090,127 +1043,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateClassMatcher(ClassMatcher classMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(classMatcher, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateValueModifierSet(ValueModifierSet valueModifierSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueModifierSet, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateValueModifier(ValueModifier valueModifier, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(valueModifier, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSubstringReplacer(SubstringReplacer substringReplacer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(substringReplacer, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStringAppender(StringAppender stringAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringAppender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUniqueNumberAppender(UniqueNumberAppender uniqueNumberAppender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(uniqueNumberAppender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStringPrepender(StringPrepender stringPrepender, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(stringPrepender, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceAttributeMatchesSectionOrContainedSection", getObjectLabel(localModifiedAttributeElementType, context) },
-						 new Object[] { localModifiedAttributeElementType },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the validateSourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return localModifiedAttributeElementType.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
 	/**
@@ -1268,8 +1100,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1288,8 +1120,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(containerSelectorSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1393,8 +1225,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(localMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -1413,8 +1245,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -1433,18 +1265,9 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(mappedAttributeValueAppender, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
 	}
 
 	/**
@@ -1556,67 +1379,9 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the sourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceAttributeMatchesContainerSection", getObjectLabel(externalModifiedAttributeElementType, context) },
-						 new Object[] { externalModifiedAttributeElementType },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the validateSourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return externalModifiedAttributeElementType.validateSourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 
 	/**
@@ -1634,8 +1399,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(containerSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1654,8 +1419,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcherExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcherExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcherExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(attributeMatcherExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -1674,8 +1439,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueExpander, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueExpander, diagnostics, context);
 		return result;
 	}
 
@@ -1694,8 +1459,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValuePrepender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValuePrepender, diagnostics, context);
 		return result;
 	}
 
@@ -1714,8 +1479,8 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(externalMappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalMappedAttributeValueAppender, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalMappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalMappedAttributeValueAppender, diagnostics, context);
 		return result;
 	}
 
@@ -1726,33 +1491,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMatchToLowerCaseConverter(MatchToLowerCaseConverter matchToLowerCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(matchToLowerCaseConverter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMatchToUpperCaseConverter(MatchToUpperCaseConverter matchToUpperCaseConverter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(matchToUpperCaseConverter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(globalModifiedAttributeElementType, diagnostics, context);
 	}
 
 	/**
@@ -1780,6 +1518,64 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement containerSelectorGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(containerSelectorGlobalSourceElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMappingSourceElement(CardinalityMappingSourceElement cardinalityMappingSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(cardinalityMappingSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(cardinalityMappingSourceElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMappingSourceInterface(CardinalityMappingSourceInterface cardinalityMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(cardinalityMappingSourceInterface, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement cardinalityMappingExternalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(cardinalityMappingExternalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(cardinalityMappingExternalSourceElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(cardinalityMappingGlobalSourceElement, diagnostics, context);
 	}
 
 	/**

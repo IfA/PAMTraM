@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import pamtram.mapping.*;
 
 /**
@@ -62,11 +61,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: return createAttributeMatcherSourceElement();
 			case MappingPackage.CLASS_MATCHER: return createClassMatcher();
-			case MappingPackage.VALUE_MODIFIER_SET: return createValueModifierSet();
-			case MappingPackage.SUBSTRING_REPLACER: return createSubstringReplacer();
-			case MappingPackage.STRING_APPENDER: return createStringAppender();
-			case MappingPackage.UNIQUE_NUMBER_APPENDER: return createUniqueNumberAppender();
-			case MappingPackage.STRING_PREPENDER: return createStringPrepender();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: return createMappingHintGroupImporter();
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: return createExportedMappingHintGroup();
 			case MappingPackage.CONTAINER_SELECTOR: return createContainerSelector();
@@ -76,7 +70,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: return createLocalMappedAttributeValueExpander();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
-			case MappingPackage.FIXED_VALUE: return createFixedValue();
 			case MappingPackage.GLOBAL_ATTRIBUTE: return createGlobalAttribute();
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: return createGlobalAttributeImporter();
 			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createAttributeMappingExternalSourceElement();
@@ -84,11 +77,12 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: return createAttributeMatcherExternalSourceElement();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: return createMatchToLowerCaseConverter();
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: return createMatchToUpperCaseConverter();
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: return createAttributeMatcherGlobalSourceElement();
 			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
 			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createContainerSelectorGlobalSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: return createCardinalityMappingSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createCardinalityMappingExternalSourceElement();
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: return createCardinalityMappingGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -197,56 +191,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ClassMatcher createClassMatcher() {
 		ClassMatcherImpl classMatcher = new ClassMatcherImpl();
 		return classMatcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueModifierSet createValueModifierSet() {
-		ValueModifierSetImpl valueModifierSet = new ValueModifierSetImpl();
-		return valueModifierSet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SubstringReplacer createSubstringReplacer() {
-		SubstringReplacerImpl substringReplacer = new SubstringReplacerImpl();
-		return substringReplacer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringAppender createStringAppender() {
-		StringAppenderImpl stringAppender = new StringAppenderImpl();
-		return stringAppender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UniqueNumberAppender createUniqueNumberAppender() {
-		UniqueNumberAppenderImpl uniqueNumberAppender = new UniqueNumberAppenderImpl();
-		return uniqueNumberAppender;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringPrepender createStringPrepender() {
-		StringPrependerImpl stringPrepender = new StringPrependerImpl();
-		return stringPrepender;
 	}
 
 	/**
@@ -365,16 +309,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FixedValue createFixedValue() {
-		FixedValueImpl fixedValue = new FixedValueImpl();
-		return fixedValue;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public GlobalAttribute createGlobalAttribute() {
 		GlobalAttributeImpl globalAttribute = new GlobalAttributeImpl();
 		return globalAttribute;
@@ -445,26 +379,6 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatchToLowerCaseConverter createMatchToLowerCaseConverter() {
-		MatchToLowerCaseConverterImpl matchToLowerCaseConverter = new MatchToLowerCaseConverterImpl();
-		return matchToLowerCaseConverter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MatchToUpperCaseConverter createMatchToUpperCaseConverter() {
-		MatchToUpperCaseConverterImpl matchToUpperCaseConverter = new MatchToUpperCaseConverterImpl();
-		return matchToUpperCaseConverter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement() {
 		AttributeMatcherGlobalSourceElementImpl attributeMatcherGlobalSourceElement = new AttributeMatcherGlobalSourceElementImpl();
 		return attributeMatcherGlobalSourceElement;
@@ -488,6 +402,36 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
 	public ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement() {
 		ContainerSelectorGlobalSourceElementImpl containerSelectorGlobalSourceElement = new ContainerSelectorGlobalSourceElementImpl();
 		return containerSelectorGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingSourceElement createCardinalityMappingSourceElement() {
+		CardinalityMappingSourceElementImpl cardinalityMappingSourceElement = new CardinalityMappingSourceElementImpl();
+		return cardinalityMappingSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement() {
+		CardinalityMappingExternalSourceElementImpl cardinalityMappingExternalSourceElement = new CardinalityMappingExternalSourceElementImpl();
+		return cardinalityMappingExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement() {
+		CardinalityMappingGlobalSourceElementImpl cardinalityMappingGlobalSourceElement = new CardinalityMappingGlobalSourceElementImpl();
+		return cardinalityMappingGlobalSourceElement;
 	}
 
 	/**

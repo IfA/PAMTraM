@@ -4,10 +4,9 @@ package pamtram.mapping;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.metamodel.ActualSourceSectionAttribute;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 
 
 /**
@@ -20,14 +19,13 @@ import pamtram.metamodel.ActualSourceSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.GlobalAttribute#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.GlobalAttribute#getModifier <em>Modifier</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeHasUpperBoundOne'"
  * @generated
  */
-public interface GlobalAttribute extends NamedElement {
+public interface GlobalAttribute extends NamedElement, ModifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
@@ -54,22 +52,6 @@ public interface GlobalAttribute extends NamedElement {
 	 * @generated
 	 */
 	void setSource(ActualSourceSectionAttribute value);
-
-	/**
-	 * Returns the value of the '<em><b>Modifier</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ValueModifierSet}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Modifier</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Modifier</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Modifier()
-	 * @model
-	 * @generated
-	 */
-	EList<ValueModifierSet> getModifier();
 
 	/**
 	 * <!-- begin-user-doc -->

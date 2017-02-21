@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import pamtram.mapping.ValueModifierSet;
+
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.HintImporterMappingHint;
@@ -16,10 +16,11 @@ import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.SourceSection;
-import pamtram.metamodel.SourceSectionAttribute;
-import pamtram.metamodel.SourceSectionClass;
-import pamtram.metamodel.SourceSectionReference;
+import pamtram.structure.impl.LocalModifiedAttributeElementTypeImpl;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,21 +89,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 			return ((LocalMappedAttributeValueExpander) this).getSource();
 		} else if(this instanceof ExternalMappedAttributeValueExpander) {
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ValueModifierSet> getModifiers() {
-		if(this instanceof LocalMappedAttributeValueExpander) {
-			return ((LocalMappedAttributeValueExpander) this).getModifier();
-		} else if(this instanceof ExternalMappedAttributeValueExpander) {
-			return ((ExternalMappedAttributeValueExpander) this).getModifier();
 		} else {
 			return null;
 		}
@@ -255,7 +241,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
 				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -272,8 +257,6 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalModifiedAttribut
 		switch (operationID) {
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_MODIFIERS:
-				return getModifiers();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

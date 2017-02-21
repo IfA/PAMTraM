@@ -21,8 +21,8 @@ import pamtram.mapping.MappingPackage;
 import pamtram.mapping.Matcher;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionNonContainmentReference affectedReference;
+	protected TargetSectionCrossReference affectedReference;
 
 	/**
 	 * The cached value of the '{@link #getMatcher() <em>Matcher</em>}' containment reference.
@@ -84,10 +84,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @generated
 	 */
 	@Override
-	public TargetSectionNonContainmentReference getAffectedReference() {
+	public TargetSectionCrossReference getAffectedReference() {
 		if (affectedReference != null && affectedReference.eIsProxy()) {
 			InternalEObject oldAffectedReference = (InternalEObject)affectedReference;
-			affectedReference = (TargetSectionNonContainmentReference)eResolveProxy(oldAffectedReference);
+			affectedReference = (TargetSectionCrossReference)eResolveProxy(oldAffectedReference);
 			if (affectedReference != oldAffectedReference) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
@@ -101,7 +101,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionNonContainmentReference basicGetAffectedReference() {
+	public TargetSectionCrossReference basicGetAffectedReference() {
 		return affectedReference;
 	}
 
@@ -110,8 +110,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAffectedReferenceGen(TargetSectionNonContainmentReference newAffectedReference) {
-		TargetSectionNonContainmentReference oldAffectedReference = affectedReference;
+	public void setAffectedReferenceGen(TargetSectionCrossReference newAffectedReference) {
+		TargetSectionCrossReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
@@ -121,7 +121,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * Before setting the {@link newAffectedReference}, update the name
 	 */
 	@Override
-	public void setAffectedReference(TargetSectionNonContainmentReference newAffectedReference) {
+	public void setAffectedReference(TargetSectionCrossReference newAffectedReference) {
 		this.setNameDerived(this.affectedReference, newAffectedReference, null, null);
 		this.setAffectedReferenceGen(newAffectedReference);
 	}
@@ -270,7 +270,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
-				setAffectedReference((TargetSectionNonContainmentReference)newValue);
+				setAffectedReference((TargetSectionCrossReference)newValue);
 				return;
 			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				setMatcher((Matcher)newValue);
@@ -288,7 +288,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MappingPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
-				setAffectedReference((TargetSectionNonContainmentReference)null);
+				setAffectedReference((TargetSectionCrossReference)null);
 				return;
 			case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				setMatcher((Matcher)null);

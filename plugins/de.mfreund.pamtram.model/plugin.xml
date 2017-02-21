@@ -17,8 +17,48 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated pamtram -->
       <package
-            uri="http://mfreund.de/pamtram/metamodel"
-            class="pamtram.metamodel.MetamodelPackage"
+            uri="http://mfreund.de/pamtram/structure"
+            class="pamtram.structure.StructurePackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/structure/generic"
+            class="pamtram.structure.generic.GenericPackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/structure/constraint"
+            class="pamtram.structure.constraint.ConstraintPackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/structure/source"
+            class="pamtram.structure.source.SourcePackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/structure/target"
+            class="pamtram.structure.target.TargetPackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/structure/library"
+            class="pamtram.structure.library.LibraryPackage"
             genModel="model/pamtram.genmodel"/>
    </extension>
 
@@ -35,6 +75,14 @@
       <package
             uri="http://mfreund.de/pamtram/mapping"
             class="pamtram.mapping.MappingPackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/mapping/modifier"
+            class="pamtram.mapping.modifier.ModifierPackage"
             genModel="model/pamtram.genmodel"/>
    </extension>
 

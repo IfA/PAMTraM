@@ -132,97 +132,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getCondition()
 	 * @generated
 	 */
-	int CONDITION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__NAME = COMPLEX_CONDITION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = COMPLEX_CONDITION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Is Local Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
-
-	/**
-	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
-
-	/**
-	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
-
-	/**
-	 * The operation id for the '<em>Check Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION___CHECK_CONDITION__COMPLEXCONDITION = COMPLEX_CONDITION_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Condition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int CONDITION = 6;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.VariadicConditionImpl <em>Variadic Condition</em>}' class.
@@ -232,7 +142,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getVariadicCondition()
 	 * @generated
 	 */
-	int VARIADIC_CONDITION = 2;
+	int VARIADIC_CONDITION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -332,7 +242,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getAnd()
 	 * @generated
 	 */
-	int AND = 3;
+	int AND = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -432,7 +342,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getOr()
 	 * @generated
 	 */
-	int OR = 4;
+	int OR = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -532,7 +442,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getUnaryCondition()
 	 * @generated
 	 */
-	int UNARY_CONDITION = 5;
+	int UNARY_CONDITION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -623,7 +533,7 @@ public interface ConditionPackage extends EPackage {
 	 * @see pamtram.condition.impl.ConditionPackageImpl#getNot()
 	 * @generated
 	 */
-	int NOT = 6;
+	int NOT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -716,6 +626,105 @@ public interface ConditionPackage extends EPackage {
 	int NOT_OPERATION_COUNT = UNARY_CONDITION_OPERATION_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__NAME = COMPLEX_CONDITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_FEATURE_COUNT = COMPLEX_CONDITION_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Is Local Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_MAPPING_CONDITION = COMPLEX_CONDITION___IS_MAPPING_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Check Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___CHECK_CONDITION__COMPLEXCONDITION = COMPLEX_CONDITION_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -735,13 +744,13 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -762,22 +771,22 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Value Constraint</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINT = CONDITION_FEATURE_COUNT + 0;
+	int ATTRIBUTE_CONDITION__TARGET = CONDITION__TARGET;
 
 	/**
-	 * The feature id for the '<em><b>Condition Attribute Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = CONDITION_FEATURE_COUNT + 1;
+	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Condition</em>' class.
@@ -786,7 +795,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
+	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -853,13 +862,13 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -880,13 +889,13 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Condition Section Ref</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION__CONDITION_SECTION_REF = CONDITION_FEATURE_COUNT + 0;
+	int CARDINALITY_CONDITION__TARGET = CONDITION__TARGET;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
@@ -895,7 +904,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -962,13 +971,13 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Additional Condition Specification</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY__ADDITIONAL_CONDITION_SPECIFICATION = CONDITION__ADDITIONAL_CONDITION_SPECIFICATION;
+	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -989,13 +998,13 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__COMPARATOR = CONDITION__COMPARATOR;
 
 	/**
-	 * The feature id for the '<em><b>Conditional Element</b></em>' reference.
+	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = CONDITION_FEATURE_COUNT + 0;
+	int APPLICATION_DEPENDENCY__TARGET = CONDITION__TARGET;
 
 	/**
 	 * The number of structural features of the '<em>Application Dependency</em>' class.
@@ -1004,7 +1013,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_DEPENDENCY_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int APPLICATION_DEPENDENCY_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -1113,17 +1122,6 @@ public interface ConditionPackage extends EPackage {
 	EClass getCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Additional Condition Specification</em>'.
-	 * @see pamtram.condition.Condition#getAdditionalConditionSpecification()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EReference getCondition_AdditionalConditionSpecification();
-
-	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1133,6 +1131,17 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCondition_Comparator();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.condition.Condition#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see pamtram.condition.Condition#getTarget()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_Target();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Condition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
@@ -1300,26 +1309,15 @@ public interface ConditionPackage extends EPackage {
 	EClass getAttributeCondition();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.condition.AttributeCondition#getValueConstraint <em>Value Constraint</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.AttributeCondition#getValueConstraints <em>Value Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Value Constraint</em>'.
-	 * @see pamtram.condition.AttributeCondition#getValueConstraint()
+	 * @return the meta object for the containment reference list '<em>Value Constraints</em>'.
+	 * @see pamtram.condition.AttributeCondition#getValueConstraints()
 	 * @see #getAttributeCondition()
 	 * @generated
 	 */
-	EReference getAttributeCondition_ValueConstraint();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.AttributeCondition#getConditionAttributeRef <em>Condition Attribute Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition Attribute Ref</em>'.
-	 * @see pamtram.condition.AttributeCondition#getConditionAttributeRef()
-	 * @see #getAttributeCondition()
-	 * @generated
-	 */
-	EReference getAttributeCondition_ConditionAttributeRef();
+	EReference getAttributeCondition_ValueConstraints();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
@@ -1332,17 +1330,6 @@ public interface ConditionPackage extends EPackage {
 	EClass getCardinalityCondition();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.CardinalityCondition#getConditionSectionRef <em>Condition Section Ref</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition Section Ref</em>'.
-	 * @see pamtram.condition.CardinalityCondition#getConditionSectionRef()
-	 * @see #getCardinalityCondition()
-	 * @generated
-	 */
-	EReference getCardinalityCondition_ConditionSectionRef();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1351,17 +1338,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getApplicationDependency();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.condition.ApplicationDependency#getConditionalElement <em>Conditional Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Conditional Element</em>'.
-	 * @see pamtram.condition.ApplicationDependency#getConditionalElement()
-	 * @see #getApplicationDependency()
-	 * @generated
-	 */
-	EReference getApplicationDependency_ConditionalElement();
 
 	/**
 	 * Returns the meta object for enum '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}'.
@@ -1441,20 +1417,20 @@ public interface ConditionPackage extends EPackage {
 		EClass CONDITION = eINSTANCE.getCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Additional Condition Specification</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONDITION__ADDITIONAL_CONDITION_SPECIFICATION = eINSTANCE.getCondition_AdditionalConditionSpecification();
-
-		/**
 		 * The meta object literal for the '<em><b>Comparator</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute CONDITION__COMPARATOR = eINSTANCE.getCondition_Comparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__TARGET = eINSTANCE.getCondition_Target();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.
@@ -1597,20 +1573,12 @@ public interface ConditionPackage extends EPackage {
 		EClass ATTRIBUTE_CONDITION = eINSTANCE.getAttributeCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Value Constraint</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Value Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINT = eINSTANCE.getAttributeCondition_ValueConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition Attribute Ref</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF = eINSTANCE.getAttributeCondition_ConditionAttributeRef();
+		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = eINSTANCE.getAttributeCondition_ValueConstraints();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
@@ -1623,14 +1591,6 @@ public interface ConditionPackage extends EPackage {
 		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition Section Ref</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CARDINALITY_CONDITION__CONDITION_SECTION_REF = eINSTANCE.getCardinalityCondition_ConditionSectionRef();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1639,14 +1599,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass APPLICATION_DEPENDENCY = eINSTANCE.getApplicationDependency();
-
-		/**
-		 * The meta object literal for the '<em><b>Conditional Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT = eINSTANCE.getApplicationDependency_ConditionalElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.ComparatorEnum <em>Comparator Enum</em>}' enum.

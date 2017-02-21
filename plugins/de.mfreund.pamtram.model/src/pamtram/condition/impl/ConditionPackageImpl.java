@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -31,8 +32,20 @@ import pamtram.condition.util.ConditionValidator;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.impl.MappingPackageImpl;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.impl.MetamodelPackageImpl;
+import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.impl.ModifierPackageImpl;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.constraint.ConstraintPackage;
+import pamtram.structure.constraint.impl.ConstraintPackageImpl;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.generic.impl.GenericPackageImpl;
+import pamtram.structure.impl.StructurePackageImpl;
+import pamtram.structure.library.LibraryPackage;
+import pamtram.structure.library.impl.LibraryPackageImpl;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.impl.SourcePackageImpl;
+import pamtram.structure.target.TargetPackage;
+import pamtram.structure.target.impl.TargetPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -169,20 +182,38 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain or create and register interdependencies
 		PamtramPackageImpl thePamtramPackage = (PamtramPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) instanceof PamtramPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI) : PamtramPackage.eINSTANCE);
-		MetamodelPackageImpl theMetamodelPackage = (MetamodelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) instanceof MetamodelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI) : MetamodelPackage.eINSTANCE);
+		StructurePackageImpl theStructurePackage = (StructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) instanceof StructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI) : StructurePackage.eINSTANCE);
+		GenericPackageImpl theGenericPackage = (GenericPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) instanceof GenericPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI) : GenericPackage.eINSTANCE);
+		ConstraintPackageImpl theConstraintPackage = (ConstraintPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) instanceof ConstraintPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI) : ConstraintPackage.eINSTANCE);
+		SourcePackageImpl theSourcePackage = (SourcePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) instanceof SourcePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI) : SourcePackage.eINSTANCE);
+		TargetPackageImpl theTargetPackage = (TargetPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) instanceof TargetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI) : TargetPackage.eINSTANCE);
+		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) : LibraryPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
+		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConditionPackage.createPackageContents();
 		thePamtramPackage.createPackageContents();
-		theMetamodelPackage.createPackageContents();
+		theStructurePackage.createPackageContents();
+		theGenericPackage.createPackageContents();
+		theConstraintPackage.createPackageContents();
+		theSourcePackage.createPackageContents();
+		theTargetPackage.createPackageContents();
+		theLibraryPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
+		theModifierPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConditionPackage.initializePackageContents();
 		thePamtramPackage.initializePackageContents();
-		theMetamodelPackage.initializePackageContents();
+		theStructurePackage.initializePackageContents();
+		theGenericPackage.initializePackageContents();
+		theConstraintPackage.initializePackageContents();
+		theSourcePackage.initializePackageContents();
+		theTargetPackage.initializePackageContents();
+		theLibraryPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
+		theModifierPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -252,8 +283,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCondition_AdditionalConditionSpecification() {
-		return (EReference)conditionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getCondition_Comparator() {
+		return (EAttribute)conditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -261,8 +292,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCondition_Comparator() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(2);
+	public EReference getCondition_Target() {
+		return (EReference)conditionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -325,7 +356,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * @generated
 	 */
 	public EAttribute getCondition_Value() {
-		return (EAttribute)conditionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -414,17 +445,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttributeCondition_ValueConstraint() {
+	public EReference getAttributeCondition_ValueConstraints() {
 		return (EReference)attributeConditionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAttributeCondition_ConditionAttributeRef() {
-		return (EReference)attributeConditionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -441,26 +463,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCardinalityCondition_ConditionSectionRef() {
-		return (EReference)cardinalityConditionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getApplicationDependency() {
 		return applicationDependencyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getApplicationDependency_ConditionalElement() {
-		return (EReference)applicationDependencyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -505,12 +509,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_MAPPING_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION);
 
-		conditionEClass = createEClass(CONDITION);
-		createEReference(conditionEClass, CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
-		createEAttribute(conditionEClass, CONDITION__VALUE);
-		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
-		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
-
 		variadicConditionEClass = createEClass(VARIADIC_CONDITION);
 		createEReference(variadicConditionEClass, VARIADIC_CONDITION__LOCAL_COND_PARTS);
 		createEReference(variadicConditionEClass, VARIADIC_CONDITION__SHARED_COND_PARTS);
@@ -529,15 +527,18 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		notEClass = createEClass(NOT);
 		createEOperation(notEClass, NOT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
+		conditionEClass = createEClass(CONDITION);
+		createEAttribute(conditionEClass, CONDITION__VALUE);
+		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
+		createEReference(conditionEClass, CONDITION__TARGET);
+		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
+
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
-		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINT);
-		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__CONDITION_ATTRIBUTE_REF);
+		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 
 		cardinalityConditionEClass = createEClass(CARDINALITY_CONDITION);
-		createEReference(cardinalityConditionEClass, CARDINALITY_CONDITION__CONDITION_SECTION_REF);
 
 		applicationDependencyEClass = createEClass(APPLICATION_DEPENDENCY);
-		createEReference(applicationDependencyEClass, APPLICATION_DEPENDENCY__CONDITIONAL_ELEMENT);
 
 		// Create enums
 		comparatorEnumEEnum = createEEnum(COMPARATOR_ENUM);
@@ -568,23 +569,35 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
+		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
+		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
 		// Create type parameters
+		ETypeParameter conditionEClass_TargetType = addETypeParameter(conditionEClass, "TargetType");
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
 		complexConditionEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		conditionEClass.getESuperTypes().add(this.getComplexCondition());
 		variadicConditionEClass.getESuperTypes().add(this.getComplexCondition());
 		andEClass.getESuperTypes().add(this.getVariadicCondition());
 		orEClass.getESuperTypes().add(this.getVariadicCondition());
 		unaryConditionEClass.getESuperTypes().add(this.getComplexCondition());
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
-		attributeConditionEClass.getESuperTypes().add(this.getCondition());
-		cardinalityConditionEClass.getESuperTypes().add(this.getCondition());
-		applicationDependencyEClass.getESuperTypes().add(this.getCondition());
+		conditionEClass.getESuperTypes().add(this.getComplexCondition());
+		conditionEClass.getESuperTypes().add(thePamtramPackage.getInstanceSelectingElement());
+		EGenericType g1 = createEGenericType(this.getCondition());
+		EGenericType g2 = createEGenericType(theSourcePackage.getActualSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCondition());
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		cardinalityConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCondition());
+		g2 = createEGenericType(thePamtramPackage.getConditionalElement());
+		g1.getETypeArguments().add(g2);
+		applicationDependencyEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(complexConditionEClass, ComplexCondition.class, "ComplexCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -595,24 +608,16 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		initEOperation(getComplexCondition__IsConditionModelCondition(), ecorePackage.getEBoolean(), "isConditionModelCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCondition_AdditionalConditionSpecification(), theMetamodelPackage.getInstancePointer(), null, "additionalConditionSpecification", null, 0, -1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCondition_Value(), ecorePackage.getEInt(), "value", "1", 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCondition_Comparator(), this.getComparatorEnum(), "comparator", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(variadicConditionEClass, VariadicCondition.class, "VariadicCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariadicCondition_LocalCondParts(), this.getComplexCondition(), null, "localCondParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVariadicCondition_SharedCondParts(), this.getComplexCondition(), null, "sharedCondParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getVariadicCondition__ReferencesOnlyValidConditions(), ecorePackage.getEBoolean(), "referencesOnlyValidConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateMinimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateMinimalNumberOfArgs", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType();
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -646,15 +651,21 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCondition_Value(), ecorePackage.getEInt(), "value", "1", 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCondition_Comparator(), this.getComparatorEnum(), "comparator", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(conditionEClass_TargetType);
+		initEReference(getCondition_Target(), g1, null, "target", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(attributeConditionEClass, AttributeCondition.class, "AttributeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeCondition_ValueConstraint(), theMetamodelPackage.getValueConstraint(), null, "valueConstraint", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAttributeCondition_ConditionAttributeRef(), theMetamodelPackage.getActualSourceSectionAttribute(), null, "conditionAttributeRef", null, 1, 1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeCondition_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraints", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(cardinalityConditionEClass, CardinalityCondition.class, "CardinalityCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCardinalityCondition_ConditionSectionRef(), theMetamodelPackage.getSourceSectionClass(), null, "conditionSectionRef", null, 1, 1, CardinalityCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(applicationDependencyEClass, ApplicationDependency.class, "ApplicationDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getApplicationDependency_ConditionalElement(), thePamtramPackage.getConditionalElement(), null, "conditionalElement", null, 1, 1, ApplicationDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(comparatorEnumEEnum, ComparatorEnum.class, "ComparatorEnum");

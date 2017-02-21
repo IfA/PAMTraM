@@ -5,7 +5,10 @@ package pamtram.mapping;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import pamtram.metamodel.TargetSectionAttribute;
+
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +27,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetAttributeMatchesSection'"
  * @generated
  */
-public interface AttributeMapping extends MappingHint, ExpressionHint, ModifiableHint, ExpandableHint {
+public interface AttributeMapping extends MappingHint, ExpressionElement, ModifiableElement, ExpandableHint {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->

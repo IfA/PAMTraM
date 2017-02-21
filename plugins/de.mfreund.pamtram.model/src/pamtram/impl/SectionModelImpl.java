@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,12 +28,12 @@ import pamtram.metamodel.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelPackage <em>Meta Model Package</em>}</li>
- *   <li>{@link pamtram.impl.SectionModelImpl#getMetaModelSections <em>Meta Model Sections</em>}</li>
+ *   <li>{@link pamtram.impl.SectionModelImpl#getSections <em>Sections</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements SectionModel<S, C, R, A> {
+public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements SectionModel<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getMetaModelPackage() <em>Meta Model Package</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -45,14 +45,14 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	protected EPackage metaModelPackage;
 
 	/**
-	 * The cached value of the '{@link #getMetaModelSections() <em>Meta Model Sections</em>}' containment reference list.
+	 * The cached value of the '{@link #getSections() <em>Sections</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMetaModelSections()
+	 * @see #getSections()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<S> metaModelSections;
+	protected EList<S> sections;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,11 +120,11 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<S> getMetaModelSections() {
-		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS);
+	public EList<S> getSections() {
+		if (sections == null) {
+			sections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__SECTIONS);
 		}
-		return metaModelSections;
+		return sections;
 	}
 
 	/**
@@ -135,8 +135,8 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				return ((InternalEList<?>)getMetaModelSections()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
+				return ((InternalEList<?>)getSections()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -152,8 +152,8 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
 				if (resolve) return getMetaModelPackage();
 				return basicGetMetaModelPackage();
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				return getMetaModelSections();
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
+				return getSections();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -170,9 +170,9 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
 				setMetaModelPackage((EPackage)newValue);
 				return;
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				getMetaModelSections().clear();
-				getMetaModelSections().addAll((Collection<? extends S>)newValue);
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
+				getSections().clear();
+				getSections().addAll((Collection<? extends S>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,8 +189,8 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
 				setMetaModelPackage((EPackage)null);
 				return;
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				getMetaModelSections().clear();
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
+				getSections().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -206,8 +206,8 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 		switch (featureID) {
 			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
 				return metaModelPackage != null;
-			case PamtramPackage.SECTION_MODEL__META_MODEL_SECTIONS:
-				return metaModelSections != null && !metaModelSections.isEmpty();
+			case PamtramPackage.SECTION_MODEL__SECTIONS:
+				return sections != null && !sections.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

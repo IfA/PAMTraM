@@ -14,7 +14,7 @@ import pamtram.condition.ComplexCondition;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.ConditionModel#getCondition <em>Condition</em>}</li>
+ *   <li>{@link pamtram.ConditionModel#getConditions <em>Conditions</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getConditionModel()
@@ -23,7 +23,7 @@ import pamtram.condition.ComplexCondition;
  */
 public interface ConditionModel extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.condition.ComplexCondition}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -31,11 +31,11 @@ public interface ConditionModel extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference list.
-	 * @see pamtram.PamtramPackage#getConditionModel_Condition()
+	 * @return the value of the '<em>Conditions</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getConditionModel_Conditions()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ComplexCondition> getCondition();
+	EList<ComplexCondition> getConditions();
 
 } // ConditionModel

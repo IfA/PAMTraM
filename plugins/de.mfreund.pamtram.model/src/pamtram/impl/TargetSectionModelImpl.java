@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.PamtramPackage;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.LibraryEntry;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionReference;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,11 +67,11 @@ public class TargetSectionModelImpl extends SectionModelImpl<TargetSection, Targ
 	 * @generated
 	 */
 	@Override
-	public EList<TargetSection> getMetaModelSections() {
-		if (metaModelSections == null) {
-			metaModelSections = new EObjectContainmentEList<TargetSection>(TargetSection.class, this, PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS);
+	public EList<TargetSection> getSections() {
+		if (sections == null) {
+			sections = new EObjectContainmentEList<TargetSection>(TargetSection.class, this, PamtramPackage.TARGET_SECTION_MODEL__SECTIONS);
 		}
-		return metaModelSections;
+		return sections;
 	}
 
 	/**

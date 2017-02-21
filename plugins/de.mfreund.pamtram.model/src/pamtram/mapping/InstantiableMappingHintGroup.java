@@ -5,7 +5,7 @@ package pamtram.mapping;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.target.TargetSection;
 
 /**
  * <!-- begin-user-doc -->

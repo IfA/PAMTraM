@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.metamodel.TargetSectionClass;
+import pamtram.structure.target.TargetSectionClass;
 
 
 /**

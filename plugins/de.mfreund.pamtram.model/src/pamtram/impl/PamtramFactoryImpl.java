@@ -64,6 +64,7 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 			case PamtramPackage.TARGET_SECTION_MODEL: return createTargetSectionModel();
 			case PamtramPackage.MAPPING_MODEL: return createMappingModel();
 			case PamtramPackage.CONDITION_MODEL: return createConditionModel();
+			case PamtramPackage.FIXED_VALUE: return createFixedValue();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -117,6 +118,16 @@ public class PamtramFactoryImpl extends EFactoryImpl implements PamtramFactory {
 	public ConditionModel createConditionModel() {
 		ConditionModelImpl conditionModel = new ConditionModelImpl();
 		return conditionModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FixedValue createFixedValue() {
+		FixedValueImpl fixedValue = new FixedValueImpl();
+		return fixedValue;
 	}
 
 	/**

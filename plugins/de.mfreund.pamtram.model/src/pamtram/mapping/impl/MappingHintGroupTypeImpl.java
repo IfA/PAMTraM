@@ -18,7 +18,7 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.metamodel.TargetSection;
+import pamtram.structure.target.TargetSection;
 
 /**
  * <!-- begin-user-doc -->

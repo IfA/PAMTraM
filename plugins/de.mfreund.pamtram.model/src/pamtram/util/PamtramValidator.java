@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import pamtram.*;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
@@ -124,6 +125,14 @@ public class PamtramValidator extends EObjectValidator {
 				return validateConditionalElement((ConditionalElement)value, diagnostics, context);
 			case PamtramPackage.CONDITION_MODEL:
 				return validateConditionModel((ConditionModel)value, diagnostics, context);
+			case PamtramPackage.EXPRESSION_ELEMENT:
+				return validateExpressionElement((ExpressionElement)value, diagnostics, context);
+			case PamtramPackage.MODIFIABLE_ELEMENT:
+				return validateModifiableElement((ModifiableElement)value, diagnostics, context);
+			case PamtramPackage.INSTANCE_SELECTING_ELEMENT:
+				return validateInstanceSelectingElement((InstanceSelectingElement)value, diagnostics, context);
+			case PamtramPackage.FIXED_VALUE:
+				return validateFixedValue((FixedValue)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -310,6 +319,42 @@ public class PamtramValidator extends EObjectValidator {
 	 */
 	public boolean validateConditionModel(ConditionModel conditionModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(conditionModel, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExpressionElement(ExpressionElement expressionElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(expressionElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateModifiableElement(ModifiableElement modifiableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(modifiableElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstanceSelectingElement(InstanceSelectingElement instanceSelectingElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(instanceSelectingElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
 	}
 
 	/**

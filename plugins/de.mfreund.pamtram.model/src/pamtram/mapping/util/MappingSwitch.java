@@ -7,13 +7,20 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.ExpressionElement;
+import pamtram.InstanceSelectingElement;
+import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.metamodel.Attribute;
-import pamtram.metamodel.ValueConstraintSourceInterface;
-import pamtram.metamodel.InstancePointerSourceInterface;
-import pamtram.metamodel.Reference;
-import pamtram.metamodel.Section;
+import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,24 +141,12 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.EXPRESSION_HINT: {
-				ExpressionHint expressionHint = (ExpressionHint)theEObject;
-				T result = caseExpressionHint(expressionHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MODIFIABLE_HINT: {
-				ModifiableHint modifiableHint = (ModifiableHint)theEObject;
-				T result = caseModifiableHint(modifiableHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.ATTRIBUTE_MAPPING: {
 				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
 				T result = caseAttributeMapping(attributeMapping);
 				if (result == null) result = caseMappingHint(attributeMapping);
-				if (result == null) result = caseExpressionHint(attributeMapping);
-				if (result == null) result = caseModifiableHint(attributeMapping);
+				if (result == null) result = caseExpressionElement(attributeMapping);
+				if (result == null) result = caseModifiableElement(attributeMapping);
 				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
 				if (result == null) result = caseConditionalElement(attributeMapping);
@@ -164,6 +159,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				CardinalityMapping cardinalityMapping = (CardinalityMapping)theEObject;
 				T result = caseCardinalityMapping(cardinalityMapping);
 				if (result == null) result = caseMappingHint(cardinalityMapping);
+				if (result == null) result = caseExpressionElement(cardinalityMapping);
+				if (result == null) result = caseModifiableElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintType(cardinalityMapping);
 				if (result == null) result = caseConditionalElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintBaseType(cardinalityMapping);
@@ -192,8 +189,8 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
 				T result = caseAttributeMatcher(attributeMatcher);
 				if (result == null) result = caseMatcher(attributeMatcher);
-				if (result == null) result = caseExpressionHint(attributeMatcher);
-				if (result == null) result = caseModifiableHint(attributeMatcher);
+				if (result == null) result = caseExpressionElement(attributeMatcher);
+				if (result == null) result = caseModifiableElement(attributeMatcher);
 				if (result == null) result = caseExpandableHint(attributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -206,6 +203,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -221,67 +219,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				ClassMatcher classMatcher = (ClassMatcher)theEObject;
 				T result = caseClassMatcher(classMatcher);
 				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.VALUE_MODIFIER_SET: {
-				ValueModifierSet valueModifierSet = (ValueModifierSet)theEObject;
-				T result = caseValueModifierSet(valueModifierSet);
-				if (result == null) result = caseNamedElement(valueModifierSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.VALUE_MODIFIER: {
-				ValueModifier valueModifier = (ValueModifier)theEObject;
-				T result = caseValueModifier(valueModifier);
-				if (result == null) result = caseNamedElement(valueModifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.SUBSTRING_REPLACER: {
-				SubstringReplacer substringReplacer = (SubstringReplacer)theEObject;
-				T result = caseSubstringReplacer(substringReplacer);
-				if (result == null) result = caseValueModifier(substringReplacer);
-				if (result == null) result = caseNamedElement(substringReplacer);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STRING_APPENDER: {
-				StringAppender stringAppender = (StringAppender)theEObject;
-				T result = caseStringAppender(stringAppender);
-				if (result == null) result = caseValueModifier(stringAppender);
-				if (result == null) result = caseNamedElement(stringAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.UNIQUE_NUMBER_APPENDER: {
-				UniqueNumberAppender uniqueNumberAppender = (UniqueNumberAppender)theEObject;
-				T result = caseUniqueNumberAppender(uniqueNumberAppender);
-				if (result == null) result = caseValueModifier(uniqueNumberAppender);
-				if (result == null) result = caseNamedElement(uniqueNumberAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.STRING_PREPENDER: {
-				StringPrepender stringPrepender = (StringPrepender)theEObject;
-				T result = caseStringPrepender(stringPrepender);
-				if (result == null) result = caseValueModifier(stringPrepender);
-				if (result == null) result = caseNamedElement(stringPrepender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -319,6 +256,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -330,6 +268,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -338,6 +277,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				T result = caseContainerSelectorTargetAttribute(containerSelectorTargetAttribute);
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorTargetAttribute);
 				if (result == null) result = caseNamedElement(containerSelectorTargetAttribute);
+				if (result == null) result = caseModifiableElement(containerSelectorTargetAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -375,6 +315,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(localMappedAttributeValueExpander);
 				if (result == null) result = caseModifiedAttributeElementType(localMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(localMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintBaseType(localMappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(localMappedAttributeValueExpander);
@@ -389,6 +330,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
 				if (result == null) result = caseModifiedAttributeElementType(mappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintBaseType(mappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(mappedAttributeValuePrepender);
@@ -403,22 +345,10 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
 				if (result == null) result = caseModifiedAttributeElementType(mappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintBaseType(mappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(mappedAttributeValueAppender);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.FIXED_VALUE: {
-				FixedValue fixedValue = (FixedValue)theEObject;
-				T result = caseFixedValue(fixedValue);
-				if (result == null) result = caseAttributeMappingSourceInterface(fixedValue);
-				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
-				if (result == null) result = caseContainerSelectorSourceInterface(fixedValue);
-				if (result == null) result = caseInstancePointerSourceInterface(fixedValue);
-				if (result == null) result = caseValueConstraintSourceInterface(fixedValue);
-				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
-				if (result == null) result = caseNamedElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -426,6 +356,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
 				T result = caseGlobalAttribute(globalAttribute);
 				if (result == null) result = caseNamedElement(globalAttribute);
+				if (result == null) result = caseModifiableElement(globalAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -435,7 +366,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAttributeMappingSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseContainerSelectorSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseInstancePointerSourceInterface(globalAttributeImporter);
+				if (result == null) result = caseInstanceSelectorSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseNamedElement(globalAttributeImporter);
@@ -473,14 +404,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
+				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -492,6 +416,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorExternalSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorExternalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -503,6 +428,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherExternalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -513,6 +439,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueExpander);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueExpander);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueExpander);
@@ -527,6 +454,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValuePrepender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValuePrepender);
@@ -541,6 +469,7 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueAppender);
 				if (result == null) result = caseModifiedAttributeElementType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueAppender);
 				if (result == null) result = caseNamedElement(externalMappedAttributeValueAppender);
@@ -553,38 +482,16 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MATCH_TO_LOWER_CASE_CONVERTER: {
-				MatchToLowerCaseConverter matchToLowerCaseConverter = (MatchToLowerCaseConverter)theEObject;
-				T result = caseMatchToLowerCaseConverter(matchToLowerCaseConverter);
-				if (result == null) result = caseValueModifier(matchToLowerCaseConverter);
-				if (result == null) result = caseNamedElement(matchToLowerCaseConverter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MATCH_TO_UPPER_CASE_CONVERTER: {
-				MatchToUpperCaseConverter matchToUpperCaseConverter = (MatchToUpperCaseConverter)theEObject;
-				T result = caseMatchToUpperCaseConverter(matchToUpperCaseConverter);
-				if (result == null) result = caseValueModifier(matchToUpperCaseConverter);
-				if (result == null) result = caseNamedElement(matchToUpperCaseConverter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
-				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: {
 				AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement = (AttributeMatcherGlobalSourceElement)theEObject;
 				T result = caseAttributeMatcherGlobalSourceElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -594,8 +501,10 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -605,8 +514,55 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseGlobalModifiedAttributeElementType(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseModifiedAttributeElementType(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(containerSelectorGlobalSourceElement);
 				if (result == null) result = caseNamedElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: {
+				CardinalityMappingSourceElement cardinalityMappingSourceElement = (CardinalityMappingSourceElement)theEObject;
+				T result = caseCardinalityMappingSourceElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE: {
+				CardinalityMappingSourceInterface cardinalityMappingSourceInterface = (CardinalityMappingSourceInterface)theEObject;
+				T result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
+				CardinalityMappingExternalSourceElement cardinalityMappingExternalSourceElement = (CardinalityMappingExternalSourceElement)theEObject;
+				T result = caseCardinalityMappingExternalSourceElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: {
+				CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement = (CardinalityMappingGlobalSourceElement)theEObject;
+				T result = caseCardinalityMappingGlobalSourceElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -660,32 +616,47 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Hint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpressionHint(ExpressionHint object) {
+	public T caseExpressionElement(ExpressionElement object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Hint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Modifiable Hint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModifiableHint(ModifiableHint object) {
+	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
 		return null;
 	}
 
@@ -810,96 +781,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Modifier Set</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueModifierSet(ValueModifierSet object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Modifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueModifier(ValueModifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Substring Replacer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Substring Replacer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubstringReplacer(SubstringReplacer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Appender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringAppender(StringAppender object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unique Number Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unique Number Appender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniqueNumberAppender(UniqueNumberAppender object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String Prepender</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String Prepender</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStringPrepender(StringPrepender object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -910,7 +791,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -925,7 +806,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1170,21 +1051,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fixed Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fixed Value</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFixedValue(FixedValue object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1285,7 +1151,22 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
 		return null;
 	}
 
@@ -1380,36 +1261,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Lower Case Converter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatchToLowerCaseConverter(MatchToLowerCaseConverter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Match To Upper Case Converter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatchToUpperCaseConverter(MatchToUpperCaseConverter object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1420,7 +1271,7 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.metamodel.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
 		return null;
 	}
 
@@ -1470,6 +1321,66 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Source Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping External Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1511,21 +1422,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionalElement(ConditionalElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Pointer Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstancePointerSourceInterface(InstancePointerSourceInterface object) {
 		return null;
 	}
 

@@ -115,51 +115,6 @@ public interface MappingFactory extends EFactory {
 	ClassMatcher createClassMatcher();
 
 	/**
-	 * Returns a new object of class '<em>Value Modifier Set</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Modifier Set</em>'.
-	 * @generated
-	 */
-	ValueModifierSet createValueModifierSet();
-
-	/**
-	 * Returns a new object of class '<em>Substring Replacer</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Substring Replacer</em>'.
-	 * @generated
-	 */
-	SubstringReplacer createSubstringReplacer();
-
-	/**
-	 * Returns a new object of class '<em>String Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Appender</em>'.
-	 * @generated
-	 */
-	StringAppender createStringAppender();
-
-	/**
-	 * Returns a new object of class '<em>Unique Number Appender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unique Number Appender</em>'.
-	 * @generated
-	 */
-	UniqueNumberAppender createUniqueNumberAppender();
-
-	/**
-	 * Returns a new object of class '<em>String Prepender</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Prepender</em>'.
-	 * @generated
-	 */
-	StringPrepender createStringPrepender();
-
-	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,15 +212,6 @@ public interface MappingFactory extends EFactory {
 	MappedAttributeValueAppender createMappedAttributeValueAppender();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Value</em>'.
-	 * @generated
-	 */
-	FixedValue createFixedValue();
-
-	/**
 	 * Returns a new object of class '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -329,24 +275,6 @@ public interface MappingFactory extends EFactory {
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
 
 	/**
-	 * Returns a new object of class '<em>Match To Lower Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Lower Case Converter</em>'.
-	 * @generated
-	 */
-	MatchToLowerCaseConverter createMatchToLowerCaseConverter();
-
-	/**
-	 * Returns a new object of class '<em>Match To Upper Case Converter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Match To Upper Case Converter</em>'.
-	 * @generated
-	 */
-	MatchToUpperCaseConverter createMatchToUpperCaseConverter();
-
-	/**
 	 * Returns a new object of class '<em>Attribute Matcher Global Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -372,6 +300,33 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingSourceElement createCardinalityMappingSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

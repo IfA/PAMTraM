@@ -8,16 +8,19 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import pamtram.InstanceSelectingElement;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
-import pamtram.metamodel.InstancePointer;
+import pamtram.structure.InstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,23 +30,24 @@ import pamtram.metamodel.InstancePointer;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.ConditionImpl#getAdditionalConditionSpecification <em>Additional Condition Specification</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ConditionImpl extends ComplexConditionImpl implements Condition {
+public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl implements Condition<TargetType> {
 	/**
-	 * The cached value of the '{@link #getAdditionalConditionSpecification() <em>Additional Condition Specification</em>}' containment reference list.
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAdditionalConditionSpecification()
+	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstancePointer> additionalConditionSpecification;
+	protected EList<InstanceSelector> instanceSelectors;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -86,6 +90,16 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	protected ComparatorEnum comparator = COMPARATOR_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
+	protected TargetType target;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,11 +123,11 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstancePointer> getAdditionalConditionSpecification() {
-		if (additionalConditionSpecification == null) {
-			additionalConditionSpecification = new EObjectContainmentEList<InstancePointer>(InstancePointer.class, this, ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION);
+	public EList<InstanceSelector> getInstanceSelectors() {
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
-		return additionalConditionSpecification;
+		return instanceSelectors;
 	}
 
 	/**
@@ -142,6 +156,45 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	public TargetType getTarget() {
+		if (target != null && ((EObject)target).eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (TargetType)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CONDITION__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetType basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTarget(TargetType newTarget) {
+		TargetType oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean checkCondition(ComplexCondition condition) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -156,8 +209,8 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				return ((InternalEList<?>)getAdditionalConditionSpecification()).basicRemove(otherEnd, msgs);
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -191,12 +244,15 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				return getAdditionalConditionSpecification();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 			case ConditionPackage.CONDITION__VALUE:
 				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return getComparator();
+			case ConditionPackage.CONDITION__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,15 +266,18 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				getAdditionalConditionSpecification().clear();
-				getAdditionalConditionSpecification().addAll((Collection<? extends InstancePointer>)newValue);
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
 				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue((Integer)newValue);
 				return;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator((ComparatorEnum)newValue);
+				return;
+			case ConditionPackage.CONDITION__TARGET:
+				setTarget((TargetType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -232,14 +291,17 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				getAdditionalConditionSpecification().clear();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				setComparator(COMPARATOR_EDEFAULT);
+				return;
+			case ConditionPackage.CONDITION__TARGET:
+				setTarget((TargetType)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -253,14 +315,48 @@ public abstract class ConditionImpl extends ComplexConditionImpl implements Cond
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__ADDITIONAL_CONDITION_SPECIFICATION:
-				return additionalConditionSpecification != null && !additionalConditionSpecification.isEmpty();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 			case ConditionPackage.CONDITION__VALUE:
 				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return comparator != COMPARATOR_EDEFAULT;
+			case ConditionPackage.CONDITION__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (derivedFeatureID) {
+				case ConditionPackage.CONDITION__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == InstanceSelectingElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return ConditionPackage.CONDITION__INSTANCE_SELECTORS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

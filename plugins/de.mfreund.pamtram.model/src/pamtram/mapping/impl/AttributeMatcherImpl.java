@@ -19,18 +19,19 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
+import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExpressionHint;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ModifiableHint;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
-import pamtram.metamodel.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +42,7 @@ import pamtram.metamodel.TargetSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getResultModifier <em>Result Modifier</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
@@ -70,14 +71,14 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	protected String expression = EXPRESSION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getResultModifier() <em>Result Modifier</em>}' reference list.
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getResultModifier()
+	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ValueModifierSet> resultModifier;
+	protected EList<ValueModifierSet> modifiers;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -147,11 +148,11 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
-	public EList<ValueModifierSet> getResultModifier() {
-		if (resultModifier == null) {
-			resultModifier = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER);
+	public EList<ValueModifierSet> getModifiers() {
+		if (modifiers == null) {
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS);
 		}
-		return resultModifier;
+		return modifiers;
 	}
 
 	/**
@@ -251,16 +252,16 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public boolean validateTargetMatchesAffectedReferenceType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.metamodel.Class<?, ?, ?, ?>)) {
+		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.metamodel.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());
+		boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());
 		
 		if (!result && diagnostics != null) {
 		
 			String errorMessage = "The type of the class containing the target attribute ('" + 
-					((pamtram.metamodel.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + "') is not allowed by the affected reference of the parent ReferenceTargetSelector that " +
+					((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + "') is not allowed by the affected reference of the parent ReferenceTargetSelector that " +
 					"requires a (sub-)type of '" + ((pamtram.mapping.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + "'!";
 		
 			diagnostics.add(new BasicDiagnostic
@@ -299,8 +300,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return getExpression();
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
-				return getResultModifier();
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+				return getModifiers();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
@@ -322,9 +323,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
-				getResultModifier().clear();
-				getResultModifier().addAll((Collection<? extends ValueModifierSet>)newValue);
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+				getModifiers().clear();
+				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				setTarget((TargetSectionAttribute)newValue);
@@ -348,8 +349,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
-				getResultModifier().clear();
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+				getModifiers().clear();
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				setTarget((TargetSectionAttribute)null);
@@ -371,8 +372,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		switch (featureID) {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER:
-				return resultModifier != null && !resultModifier.isEmpty();
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+				return modifiers != null && !modifiers.isEmpty();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				return target != null;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
@@ -388,15 +389,15 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return MappingPackage.EXPRESSION_HINT__EXPRESSION;
+				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER: return MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER;
+				case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -415,15 +416,15 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ExpressionHint.class) {
+		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.EXPRESSION_HINT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
 				default: return -1;
 			}
 		}
-		if (baseClass == ModifiableHint.class) {
+		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MODIFIABLE_HINT__RESULT_MODIFIER: return MappingPackage.ATTRIBUTE_MATCHER__RESULT_MODIFIER;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS;
 				default: return -1;
 			}
 		}

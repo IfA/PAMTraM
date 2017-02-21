@@ -111,8 +111,6 @@ public class ConditionValidator extends EObjectValidator {
 		switch (classifierID) {
 			case ConditionPackage.COMPLEX_CONDITION:
 				return validateComplexCondition((ComplexCondition)value, diagnostics, context);
-			case ConditionPackage.CONDITION:
-				return validateCondition((Condition)value, diagnostics, context);
 			case ConditionPackage.VARIADIC_CONDITION:
 				return validateVariadicCondition((VariadicCondition)value, diagnostics, context);
 			case ConditionPackage.AND:
@@ -123,6 +121,8 @@ public class ConditionValidator extends EObjectValidator {
 				return validateUnaryCondition((UnaryCondition)value, diagnostics, context);
 			case ConditionPackage.NOT:
 				return validateNot((Not)value, diagnostics, context);
+			case ConditionPackage.CONDITION:
+				return validateCondition((Condition<?>)value, diagnostics, context);
 			case ConditionPackage.ATTRIBUTE_CONDITION:
 				return validateAttributeCondition((AttributeCondition)value, diagnostics, context);
 			case ConditionPackage.CARDINALITY_CONDITION:
@@ -150,7 +150,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateCondition(Condition condition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateCondition(Condition<?> condition, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(condition, diagnostics, context);
 	}
 

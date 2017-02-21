@@ -739,7 +739,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin and register all libraries that are to be
 		 * used in during the transformation.
 		 */
-		GenLibraryManager manager = new GenLibraryManager();
+		GenLibraryManager manager = new GenLibraryManager(this.transformationConfig.getLogger());
 		this.transformationConfig.getLibPaths().stream().forEach(libPath -> {
 			this.transformationConfig.getLogger().info("Registering library location '" + libPath + "'...");
 			manager.addLibPath(libPath);

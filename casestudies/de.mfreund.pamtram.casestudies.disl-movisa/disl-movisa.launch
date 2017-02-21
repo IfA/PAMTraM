@@ -3,6 +3,7 @@
 <booleanAttribute key="enableHistory" value="false"/>
 <booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
+<stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="1"/>
 <stringAttribute key="pamtramFile" value="Disl2Movisa.pamtram"/>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.disl-movisa"/>

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Section Generator
 Bundle-SymbolicName: de.mfreund.pamtram.model.generator;singleton:=true
-Bundle-Version: 1.8.0.qualifier
+Bundle-Version: 1.9.0.qualifier
 Bundle-Activator: de.mfreund.pamtram.model.generator.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -11,11 +11,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions;bundle-version="3.4.500",
  org.eclipse.emf.ecore;bundle-version="2.9.1",
  org.eclipse.ui.ide;bundle-version="3.9.0",
- de.mfreund.pamtram.model;bundle-version="1.8.0",
+ de.mfreund.pamtram.model;bundle-version="1.9.0",
  org.eclipse.emf.edit.ui,
- de.mfreund.pamtram.model.edit;bundle-version="1.8.0",
- de.mfreund.pamtram;bundle-version="1.7.0",
- de.mfreund.pamtram.model.editor;bundle-version="1.7.0",
+ de.mfreund.pamtram.model.edit;bundle-version="1.9.0",
+ de.mfreund.pamtram;bundle-version="1.8.0",
+ de.mfreund.pamtram.model.editor;bundle-version="1.8.0",
  de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
  org.eclipse.emf.compare,

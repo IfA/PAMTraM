@@ -2,8 +2,9 @@
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
 <booleanAttribute key="enableUser" value="true"/>
-<booleanAttribute key="handleExpanding" value="true"/>
-<intAttribute key="maxPathLength" value="-1"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="0"/>
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>

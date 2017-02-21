@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableStatistics" value="false"/>
 <booleanAttribute key="enableUser" value="true"/>
-<booleanAttribute key="handleExpanding" value="true"/>
-<intAttribute key="maxPathLength" value="-1"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<listAttribute key="libraryPaths"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="2"/>
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
 </listAttribute>
@@ -21,4 +24,5 @@
 <stringAttribute key="targetLibParser" value=""/>
 <stringAttribute key="targetLibPath" value=""/>
 <stringAttribute key="transformationModel" value=""/>
+<intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

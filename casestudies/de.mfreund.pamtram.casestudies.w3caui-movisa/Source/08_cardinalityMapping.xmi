@@ -22,9 +22,18 @@
         compositionRationale="test"
         compositionRole="sequential"
         id="aui2comp">
-      <associatedWith>aui2</associatedWith>
-      <associatedWith>aui3</associatedWith>
-      <associatedWith>aui4</associatedWith>
+      <associatedWith>aui5</associatedWith>
+    </aggregatedIn>
+  </abstractInteractionUnit>
+  <abstractInteractionUnit
+      id="aui3"
+      repetitionFactor="4"
+      role="repetition">
+    <aggregatedIn
+        compositionRationale="test"
+        compositionRole="sequential"
+        id="aui2comp">
+      <associatedWith>aui5</associatedWith>
     </aggregatedIn>
   </abstractInteractionUnit>
 </aui:AbstractUserInterfaceModel>

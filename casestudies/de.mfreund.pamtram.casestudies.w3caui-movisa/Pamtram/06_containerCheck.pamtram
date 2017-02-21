@@ -1,42 +1,48 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:metamodel="http://mfreund.de/pamtram/metamodel" xmlns:pamtram="http://mfreund.de/pamtram">
-  <sourceSectionModel>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+  <sourceSectionModels>
     <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractUserInterfaceModel">
+    <sections 
+xsi:type="source:SourceSection" name="AbstractUserInterfaceModel">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="AbstractInteractionUnit" container="//@sourceSectionModel.0/@metaModelSections.0">
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="AbstractInteractionUnit" container="//@sourceSectionModels.0/@sections.0">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
-    </metaModelSections>
-    <metaModelSections xsi:type="metamodel:SourceSection" name="Confirmation" container="//@sourceSectionModel.0/@metaModelSections.1">
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="Confirmation" container="//@sourceSectionModels.0/@sections.1">
       <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
-      <attributes xsi:type="metamodel:ActualSourceSectionAttribute" name="id">
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="id">
         <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
       </attributes>
-    </metaModelSections>
-  </sourceSectionModel>
-  <targetSectionModel>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <metaModelSections xsi:type="metamodel:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
-      <attributes xsi:type="metamodel:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
-    </metaModelSections>
-  </targetSectionModel>
-  <mappingModel>
-    <mapping name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModel.0/@metaModelSections.2">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModel.0/@metaModelSections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModel.0/@metaModelSections.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModel.0/@metaModelSections.2/@attributes.0"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-    </mapping>
+    </mappings>
     <modifierSets name="replaceComp">
-      <modifier xsi:type="mapping:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
     </modifierSets>
-  </mappingModel>
+  </mappingModels>
 </pamtram:PAMTraM>

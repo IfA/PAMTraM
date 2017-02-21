@@ -65,7 +65,6 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
-import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -107,6 +106,8 @@ import org.eclipse.swt.dnd.FileTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -142,16 +143,20 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
+import de.tud.et.ifa.agtele.ui.AgteleUIPlugin;
 import de.tud.et.ifa.agtele.ui.editors.ClonableEditor;
+import de.tud.et.ifa.agtele.ui.emf.editor.TooltipDisplayingDropAdapter;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.commandlistener.PamtramCommandStackListener;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
 import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
-import pamtram.metamodel.provider.MetamodelItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
+import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
@@ -161,7 +166,7 @@ import pamtram.util.PamtramEPackageHelper.EPackageCheck;
  * @generated NOT
  */
 public class PamtramEditor extends ClonableEditor implements IEditingDomainProvider, ISelectionProvider, IMenuListener,
-IViewerProvider, IGotoMarker, IPersistable {
+		IViewerProvider, IGotoMarker, IPersistable {
 
 	/**
 	 * This keeps track of the editing domain that is used to track all changes to the model. <!-- begin-user-doc -->
@@ -455,7 +460,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 
 						if (PamtramEditor.this.updateProblemIndication) {
 							PamtramEditor.this.getSite().getShell().getDisplay()
-							.asyncExec(() -> PamtramEditor.this.updateProblemIndication());
+									.asyncExec(() -> PamtramEditor.this.updateProblemIndication());
 						}
 						break;
 					}
@@ -478,7 +483,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 			PamtramEditor.this.resourceToDiagnosticMap.remove(target);
 			if (PamtramEditor.this.updateProblemIndication) {
 				PamtramEditor.this.getSite().getShell().getDisplay()
-				.asyncExec(() -> PamtramEditor.this.updateProblemIndication());
+						.asyncExec(() -> PamtramEditor.this.updateProblemIndication());
 			}
 		}
 	};
@@ -612,8 +617,8 @@ IViewerProvider, IGotoMarker, IPersistable {
 
 			if (!visitor.getRemovedResources().isEmpty()) {
 				boolean exit = false;
-				EList<pamtram.metamodel.LibraryEntry> libEntries = new BasicEList<>();
-				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModel()) {
+				EList<pamtram.structure.library.LibraryEntry> libEntries = new BasicEList<>();
+				for (TargetSectionModel targetSectionModel : PamtramEditor.this.pamtram.getTargetSectionModels()) {
 					libEntries.addAll(targetSectionModel.getLibraryElements());
 				}
 				for (Resource resource : visitor.getRemovedResources()) {
@@ -621,7 +626,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 					//
 					if (resource.getURI().lastSegment().equals("data.xmi")) {
 						String path = resource.getURI().trimSegments(1).lastSegment();
-						for (pamtram.metamodel.LibraryEntry libraryEntry : libEntries) {
+						for (pamtram.structure.library.LibraryEntry libraryEntry : libEntries) {
 							if (libraryEntry.getPath().equals(path)) {
 								exit = true;
 								break;
@@ -735,7 +740,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 
 		this.handleActivateGen();
 
-		if (this.pamtram == null || this.pamtram.getTargetSectionModel() == null) {
+		if (this.pamtram == null || this.pamtram.getTargetSectionModels() == null) {
 			return;
 		}
 
@@ -893,43 +898,10 @@ IViewerProvider, IGotoMarker, IPersistable {
 		}
 
 		// no editor has been found so we open a new one
-		IFile file = null;
-		try {
-
-			IFile[] files;
-			if (pamtram.eResource().getURI().isFile()) {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(new java.net.URI(pamtram.eResource().getURI().toString()));
-			} else {
-				files = ResourcesPlugin.getWorkspace().getRoot()
-						.findFilesForLocationURI(
-								new java.net.URI(URI
-										.createFileURI(
-												ResourcesPlugin.getWorkspace().getRoot().getLocation().toOSString()
-												+ pamtram.eResource().getURI().toPlatformString(true))
-										.toString()));
-			}
-
-			if (files.length == 0) {
-				return null;
-			}
-
-			file = files[0];
-
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-			return null;
-		}
+		IFile file = ResourceHelper.getFileForResource(pamtram.eResource());
 
 		try {
-			// get the active workbench window
-			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-
-			IEditorPart editorPart = workbenchWindow.getActivePage().openEditor(new FileEditorInput(file),
-					"pamtram.presentation.PamtramEditorID");
-
-			return (PamtramEditor) editorPart;
-
+			return (PamtramEditor) UIHelper.openEditor(file, "pamtram.presentation.PamtramEditorID");
 		} catch (PartInitException e) {
 			e.printStackTrace();
 			return null;
@@ -1085,7 +1057,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 
 		this.adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		this.adapterFactory.addAdapterFactory(new PamtramItemProviderAdapterFactory());
-		this.adapterFactory.addAdapterFactory(new MetamodelItemProviderAdapterFactory());
+		this.adapterFactory.addAdapterFactory(new StructureItemProviderAdapterFactory());
 		this.adapterFactory.addAdapterFactory(new ConditionItemProviderAdapterFactory());
 		this.adapterFactory.addAdapterFactory(new MappingItemProviderAdapterFactory());
 		this.adapterFactory.addAdapterFactory(new GenLibraryItemProviderAdapterFactory());
@@ -1320,7 +1292,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 	 * This creates a context menu for the viewer and adds a listener as well registering the menu for extension. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createContextMenuFor(StructuredViewer viewer) {
 
@@ -1336,7 +1308,25 @@ IViewerProvider, IGotoMarker, IPersistable {
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance(), LocalSelectionTransfer.getTransfer(),
 				FileTransfer.getInstance() };
 		viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(this.editingDomain, viewer));
+
+		// Use the custom drop adapter that will display a tooltip to the user
+		viewer.addDropSupport(dndOperations, transfers, new TooltipDisplayingDropAdapter(this.editingDomain, viewer));
+
+		// Show the 'PropertiesView' if the user double-clicks on an element
+		viewer.getControl().addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseDoubleClick(MouseEvent event) {
+
+				if (event.button == 1) {
+					try {
+						PamtramEditor.this.getEditorSite().getPage().showView("org.eclipse.ui.views.PropertySheet");
+					} catch (PartInitException exception) {
+						AgteleUIPlugin.INSTANCE.log(exception);
+					}
+				}
+			}
+		});
 	}
 
 	/**
@@ -1951,7 +1941,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 					// Set up the tree viewer.
 					//
 					PamtramEditor.this.contentOutlineViewer
-					.setContentProvider(new AdapterFactoryContentProvider(PamtramEditor.this.adapterFactory));
+							.setContentProvider(new AdapterFactoryContentProvider(PamtramEditor.this.adapterFactory));
 					PamtramEditor.this.contentOutlineViewer.setLabelProvider(
 							new DelegatingStyledCellLabelProvider(new DecoratingColumLabelProvider.StyledLabelProvider(
 									new AdapterFactoryLabelProvider.StyledLabelProvider(
@@ -2242,7 +2232,7 @@ IViewerProvider, IGotoMarker, IPersistable {
 		this.setPartName(editorInput.getName());
 		IProgressMonitor progressMonitor = this.getActionBars().getStatusLineManager() != null
 				? this.getActionBars().getStatusLineManager().getProgressMonitor() : new NullProgressMonitor();
-				this.doSave(progressMonitor);
+		this.doSave(progressMonitor);
 	}
 
 	/**

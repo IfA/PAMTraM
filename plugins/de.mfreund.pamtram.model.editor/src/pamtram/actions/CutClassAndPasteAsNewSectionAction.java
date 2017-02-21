@@ -11,11 +11,12 @@ import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.metamodel.Class;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.Section;
-import pamtram.metamodel.SourceSectionContainmentReference;
-import pamtram.metamodel.TargetSectionContainmentReference;
+import pamtram.structure.generic.Class;
+import pamtram.structure.generic.Section;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.target.TargetPackage;
+import pamtram.structure.target.TargetSectionCompositeReference;
 
 /**
  * An {@link Action} that allows to cut a {@link Class} from a modeled {@link Section}, convert it to a {@link Section}
@@ -44,37 +45,42 @@ public class CutClassAndPasteAsNewSectionAction extends Action {
 	@Override
 	public void run() {
 
-		if(!this.oldElement.getContainingSection().equals(this.oldElement)){
-			List<EObject> objectsOldContainer=new LinkedList<>();
-			List<EObject> objectsNewContainer=new LinkedList<>();
+		if (!this.oldElement.getContainingSection().equals(this.oldElement)) {
+			List<EObject> objectsOldContainer = new LinkedList<>();
+			List<EObject> objectsNewContainer = new LinkedList<>();
 
-			if(this.oldElement.getContainingSection().eContainer() instanceof TargetSectionModel){
-				TargetSectionModel model=(TargetSectionModel) this.oldElement.getContainingSection().eContainer();
-				TargetSectionContainmentReference ref=(TargetSectionContainmentReference) this.oldElement.eContainer();
+			if (this.oldElement.getContainingSection().eContainer() instanceof TargetSectionModel) {
+				TargetSectionModel model = (TargetSectionModel) this.oldElement.getContainingSection().eContainer();
+				TargetSectionCompositeReference ref = (TargetSectionCompositeReference) this.oldElement.eContainer();
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(MetamodelPackage.TARGET_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE),
+						objectsOldContainer);
 
-				objectsNewContainer.addAll(model.getMetaModelSections());
+				objectsNewContainer.addAll(model.getSections());
 				objectsNewContainer.add(this.oldElement);
-				model.eSet(model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__META_MODEL_SECTIONS), objectsNewContainer);
+				model.eSet(
+						model.eClass().getEStructuralFeature(PamtramPackage.TARGET_SECTION_MODEL__SECTIONS),
+						objectsNewContainer);
 
-			} else if(this.oldElement.getContainingSection().eContainer() instanceof SourceSectionModel){
-				SourceSectionModel model=(SourceSectionModel) this.oldElement.getContainingSection().eContainer();
-				SourceSectionContainmentReference ref=(SourceSectionContainmentReference) this.oldElement.eContainer();
+			} else if (this.oldElement.getContainingSection().eContainer() instanceof SourceSectionModel) {
+				SourceSectionModel model = (SourceSectionModel) this.oldElement.getContainingSection().eContainer();
+				SourceSectionCompositeReference ref = (SourceSectionCompositeReference) this.oldElement.eContainer();
 				objectsOldContainer.addAll(ref.getValue());
 				objectsOldContainer.remove(this.oldElement);
 
-				ref.eSet(ref.eClass().getEStructuralFeature(MetamodelPackage.SOURCE_SECTION_CONTAINMENT_REFERENCE__VALUE), objectsOldContainer);
+				ref.eSet(ref.eClass().getEStructuralFeature(SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE),
+						objectsOldContainer);
 
-				objectsNewContainer.addAll(model.getMetaModelSections());
+				objectsNewContainer.addAll(model.getSections());
 				objectsNewContainer.add(this.oldElement);
-				model.eSet(model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__META_MODEL_SECTIONS), objectsNewContainer);
+				model.eSet(
+						model.eClass().getEStructuralFeature(PamtramPackage.SOURCE_SECTION_MODEL__SECTIONS),
+						objectsNewContainer);
 			}
 		}
 
 	}
-
 
 }

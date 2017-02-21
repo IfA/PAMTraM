@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.MappingModel;
-import pamtram.mapping.ValueModifierSet;
+import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
  * A listener that will present a dialog to the user when

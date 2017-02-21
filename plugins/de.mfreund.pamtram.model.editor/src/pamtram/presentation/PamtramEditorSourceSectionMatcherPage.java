@@ -47,7 +47,7 @@ import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
 import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.MappingType;
-import pamtram.metamodel.SourceSectionClass;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * The page of the {@link PamtramEditor} that allows to check which source sections are matched for a given source

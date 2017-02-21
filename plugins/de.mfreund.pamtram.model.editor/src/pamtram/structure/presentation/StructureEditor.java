@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.condition.presentation;
+package pamtram.structure.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -102,7 +102,6 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -116,22 +115,23 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
 import pamtram.condition.provider.ConditionItemProviderAdapterFactory;
+import pamtram.mapping.modifier.provider.ModifierItemProviderAdapterFactory;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.presentation.PamtramEditorPlugin;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.constraint.provider.ConstraintItemProviderAdapterFactory;
 import pamtram.structure.generic.provider.GenericItemProviderAdapterFactory;
 import pamtram.structure.library.provider.LibraryItemProviderAdapterFactory;
-import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 import pamtram.structure.source.provider.SourceItemProviderAdapterFactory;
 import pamtram.structure.target.provider.TargetItemProviderAdapterFactory;
+import pamtram.structure.provider.StructureItemProviderAdapterFactory;
 
 /**
- * This is an example of a Condition model editor.
+ * This is an example of a Structure model editor.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class ConditionEditor extends MultiPageEditorPart
+public class StructureEditor extends MultiPageEditorPart
 		implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
 	/**
@@ -231,18 +231,18 @@ public class ConditionEditor extends MultiPageEditorPart
 			public void partActivated(IWorkbenchPart p) {
 				if (p instanceof ContentOutline) {
 					if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-						getActionBarContributor().setActiveEditor(ConditionEditor.this);
+						getActionBarContributor().setActiveEditor(StructureEditor.this);
 
 						setCurrentViewer(contentOutlineViewer);
 					}
 				}
 				else if (p instanceof PropertySheet) {
 					if (propertySheetPages.contains(((PropertySheet)p).getCurrentPage())) {
-						getActionBarContributor().setActiveEditor(ConditionEditor.this);
+						getActionBarContributor().setActiveEditor(StructureEditor.this);
 						handleActivate();
 					}
 				}
-				else if (p == ConditionEditor.this) {
+				else if (p == StructureEditor.this) {
 					handleActivate();
 				}
 			}
@@ -414,7 +414,7 @@ public class ConditionEditor extends MultiPageEditorPart
 								 public void run() {
 									 removedResources.addAll(visitor.getRemovedResources());
 									 if (!isDirty()) {
-										 getSite().getPage().closeEditor(ConditionEditor.this, false);
+										 getSite().getPage().closeEditor(StructureEditor.this, false);
 									 }
 								 }
 							 });
@@ -425,7 +425,7 @@ public class ConditionEditor extends MultiPageEditorPart
 							(new Runnable() {
 								 public void run() {
 									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == ConditionEditor.this) {
+									 if (getSite().getPage().getActiveEditor() == StructureEditor.this) {
 										 handleActivate();
 									 }
 								 }
@@ -456,7 +456,7 @@ public class ConditionEditor extends MultiPageEditorPart
 
 		if (!removedResources.isEmpty()) {
 			if (handleDirtyConflict()) {
-				getSite().getPage().closeEditor(ConditionEditor.this, false);
+				getSite().getPage().closeEditor(StructureEditor.this, false);
 			}
 			else {
 				removedResources.clear();
@@ -584,7 +584,7 @@ public class ConditionEditor extends MultiPageEditorPart
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionEditor() {
+	public StructureEditor() {
 		super();
 		initializeEditingDomain();
 	}
@@ -1109,8 +1109,8 @@ public class ConditionEditor extends MultiPageEditorPart
 			new ExtendedPropertySheetPage(editingDomain, ExtendedPropertySheetPage.Decoration.LIVE, PamtramEditorPlugin.getPlugin().getDialogSettings()) {
 				@Override
 				public void setSelectionToViewer(List<?> selection) {
-					ConditionEditor.this.setSelectionToViewer(selection);
-					ConditionEditor.this.setFocus();
+					StructureEditor.this.setSelectionToViewer(selection);
+					StructureEditor.this.setFocus();
 				}
 
 				@Override

@@ -1,7 +1,10 @@
 package pamtram.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,6 +26,11 @@ import pamtram.structure.library.LibraryEntry;
 public class GenLibraryManager {
 
 	/**
+	 * The {@link Logger} that shall be used to print messages to the user.
+	 */
+	private Logger logger;
+
+	/**
 	 * This holds the instances of {@link LibraryPlugin} that are used for retrieving and instantiating library entries
 	 * sorted by their associated ePackage URIs.
 	 * <p />
@@ -31,10 +39,21 @@ public class GenLibraryManager {
 	private Map<String, LibraryPlugin> libraryPlugins;
 
 	/**
-	 * This creates an instance.
+	 * This holds the list of namespaceURIs for which no {@link LibraryPlugin} could be determined.
 	 */
-	public GenLibraryManager() {
+	private List<String> missingLibraryPlugins;
+
+	/**
+	 * This creates an instance.
+	 *
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages to the user or '<em>null</em>' if no messages
+	 *            shall be printed.
+	 */
+	public GenLibraryManager(Logger logger) {
+		this.logger = logger;
 		this.libraryPlugins = new HashMap<>();
+		this.missingLibraryPlugins = new ArrayList<>();
 	}
 
 	/**
@@ -48,11 +67,39 @@ public class GenLibraryManager {
 	 */
 	private LibraryPlugin getLibraryPlugin(String ePackageURI) {
 
-		if (!this.libraryPlugins.containsKey(ePackageURI)) {
-			this.libraryPlugins.put(ePackageURI,
-					LibraryImplementationRegistry.getInstance().createLibraryPlugin(ePackageURI));
+		if (!this.libraryPlugins.containsKey(ePackageURI) && !this.missingLibraryPlugins.contains(ePackageURI)) {
+
+			LibraryPlugin libraryPlugin = LibraryImplementationRegistry.getInstance().createLibraryPlugin(ePackageURI);
+
+			if (libraryPlugin == null) {
+				if (this.logger != null) {
+					this.logger.severe(
+							"Unable to find GenLibrary implementation for namespace URI '" + ePackageURI + "'!");
+				}
+				this.missingLibraryPlugins.add(ePackageURI);
+			} else {
+				if (this.logger != null) {
+					this.logger.info("Found GenLibrary implementation for namespace URI '" + ePackageURI + "'");
+				}
+				this.libraryPlugins.put(ePackageURI, libraryPlugin);
+			}
 		}
+
 		return this.libraryPlugins.get(ePackageURI);
+	}
+
+	/**
+	 * This can be used to check if a concrete implementation of {@link LibraryPlugin} exists for the given
+	 * <em>ePackageURI</em>.
+	 *
+	 * @param ePackageURI
+	 *            The namespace URI of an {@link EPackage}.
+	 * @return '<em>true</em>' if an implementation of {@link LibraryPlugin} exists for the given URI; <em>false</em>
+	 *         otherwise.
+	 */
+	public boolean existsImplementationFor(String ePackageURI) {
+
+		return this.getLibraryPlugin(ePackageURI) != null;
 	}
 
 	/**

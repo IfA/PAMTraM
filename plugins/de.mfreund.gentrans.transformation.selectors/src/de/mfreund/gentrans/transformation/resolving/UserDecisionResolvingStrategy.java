@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.resolving.enhancing.InstantiatingSelectAttributeValueMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
@@ -26,10 +27,10 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionAttribute;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionNonContainmentReference;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
@@ -93,7 +94,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			throws AmbiguityResolvingException {
 
 		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(
-				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'", 0, false,
+				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'", 0, true,
 				choices, null) {
 
 			@Override
@@ -113,7 +114,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public List<String> instantiatingSelectAttributeValue(List<String> choices, TargetSectionAttribute attribute,
-			EObject element) throws AmbiguityResolvingException {
+			EObject element, InstantiableMappingHintGroup mappingHintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();
@@ -121,10 +122,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			return choices;
 		}
 
-		String dialogMessage = "Please specify a value for the attribute '" + attribute.getName() + "' of the element '"
-				+ element.eClass().getName() + "'...";
+		String dialogMessage = "Please specify a value for the TargetSectionAttribute '"
+				+ attribute.getOwningClass().getName() + "." + attribute.getName() + "':";
 
-		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+		InstantiatingSelectAttributeValueMappingModelEnhancer enhancer = new InstantiatingSelectAttributeValueMappingModelEnhancer(
+				this.pamtramModel, attribute, mappingHintGroup);
+		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage, enhancer);
 
 		Display.getDefault().syncExec(dialog);
 
@@ -303,7 +306,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
-			TargetSectionNonContainmentReference reference, MappingHintGroupType hintGroup,
+			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
 			ReferenceTargetSelector referenceTargetSelector, EObjectWrapper sourceElement)
 			throws AmbiguityResolvingException {
 
@@ -316,11 +319,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ (sourceElement != null ? "following element should point to:\n\n" + sourceElement.toString()
 							: "affected elements should point to.");
 		} else {
-			dialogMessage = "There was more than one target element found for the NonContainmmentReference '"
-					+ reference.getName() + "' of TargetMMSection " + hintGroup.getTargetSection().getName()
-					+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
-					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
-					+ ") . Please select a target element for the following source:\n" + sourceElement.toString();
+			dialogMessage = "There was more than one target element found for the CrossReference '"
+					+ reference.getName() + "' of TargetSection "
+					+ (hintGroup.getTargetSection().getName().isEmpty() ? hintGroup.getTargetSection().getName()
+							: hintGroup.getTargetSection().getEClass().getName())
+					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
+					+ hintGroup.getName() + ") . Please select a target element"
+					+ (sourceElement != null ? " for the following source:\n" + sourceElement.toString() : ".");
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,
@@ -343,7 +348,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 	@Override
 	public Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
-			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionNonContainmentReference reference,
+			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		final PathAndInstanceSelectorRunner<TargetSectionClass> dialog = new PathAndInstanceSelectorRunner<TargetSectionClass>(

@@ -20,9 +20,9 @@ import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.TargetSection;
 import pamtram.presentation.PamtramEditor;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
@@ -30,7 +30,8 @@ import pamtram.presentation.PamtramEditor;
  *
  * @author mfreund
  */
-public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
+public class JoiningSelectRootElementMappingModelEnhancer
+		extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
 
 	/**
 	 * This creates an instance.
@@ -46,7 +47,7 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 
 		// The TargetSection for the root element
 		//
-		TargetSection rootSection = MetamodelFactory.eINSTANCE.createTargetSection();
+		TargetSection rootSection = TargetFactory.eINSTANCE.createTargetSection();
 		rootSection.setEClass(this.dialogRunner.getSingleSelection());
 		rootSection.setName(this.dialogRunner.getSingleSelection().getName() + " (Root)");
 
@@ -65,8 +66,8 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 
 			// Use the 'classic' way to add the new elements as we can not use any command stack
 			//
-			this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
-			this.pamtramModel.getMappingModel().get(0).getMapping().add(mapping);
+			this.pamtramModel.getTargetSectionModels().get(0).getSections().add(rootSection);
+			this.pamtramModel.getMappingModels().get(0).getMappings().add(mapping);
 
 			// finally, we save the model
 			try {
@@ -80,11 +81,11 @@ public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEn
 			// Use a command to add the new elements
 			//
 			CompoundCommand addCommand = new CompoundCommand();
-			addCommand.append(new AddCommand(editor.getEditingDomain(), editor.getPamtram().getMappingModel().get(0),
-					PamtramPackage.Literals.MAPPING_MODEL__MAPPING, mapping));
+			addCommand.append(new AddCommand(editor.getEditingDomain(), editor.getPamtram().getMappingModels().get(0),
+					PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS, mapping));
 			addCommand.append(
-					new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),
-							PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
+					new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModels().get(0),
+							PamtramPackage.Literals.SECTION_MODEL__SECTIONS, rootSection));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 		}
 

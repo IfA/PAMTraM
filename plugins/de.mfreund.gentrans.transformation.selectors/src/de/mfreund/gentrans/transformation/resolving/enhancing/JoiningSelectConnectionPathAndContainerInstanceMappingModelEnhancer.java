@@ -22,16 +22,16 @@ import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDial
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.metamodel.MetamodelFactory;
-import pamtram.metamodel.MetamodelPackage;
-import pamtram.metamodel.TargetSection;
-import pamtram.metamodel.TargetSectionClass;
-import pamtram.metamodel.TargetSectionContainmentReference;
 import pamtram.presentation.PamtramEditor;
+import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCompositeReference;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
- * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.metamodel.TargetSection, List, pamtram.mapping.MappingHintGroupType)
+ * {@link UserDecisionResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.structure.target.TargetSection, List, pamtram.mapping.MappingHintGroupType)
  * joiningSelectConnectionPathAndContainerInstance} ambiguities.
  *
  * @author mfreund
@@ -46,15 +46,15 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 
 	/**
 	 * The first reference create as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be connected to the 'rootSection' in the end). After the execution of this method, this will hold the
-	 * {@link TargetSectionContainmentReference} that represents the first reference of the path.
+	 * {@link TargetSectionCompositeReference} that represents the first reference of the path.
 	 */
-	private TargetSectionContainmentReference firstReference = null;
+	private TargetSectionCompositeReference firstReference = null;
 
 	/**
 	 * The final class created as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionContainmentReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be set as 'container' for the 'sectionToConnect'). After the execution of this method, this will hold the
 	 * {@link TargetSectionClass} that represents the final class of the path (Note that the final class is the second
 	 * but last class because the last class already exists in the mapping model).
@@ -92,7 +92,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 		if (rootSectionOptional.isPresent()) {
 			rootSection = rootSectionOptional.get();
 		} else {
-			rootSection = MetamodelFactory.eINSTANCE.createTargetSection();
+			rootSection = TargetFactory.eINSTANCE.createTargetSection();
 			rootSection.setEClass(selectedPath.getPathRootClass());
 		}
 
@@ -108,7 +108,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 				rootSection.getReferences().add(this.firstReference);
 			}
 			if (!rootSectionOptional.isPresent()) {
-				this.pamtramModel.getTargetSectionModel().get(0).getMetaModelSections().add(rootSection);
+				this.pamtramModel.getTargetSectionModels().get(0).getSections().add(rootSection);
 			}
 			this.sectionToConnect.setContainer(this.finalClass == null ? rootSection : this.finalClass);
 
@@ -136,17 +136,16 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 					rootSection.getReferences().add(this.firstReference);
 				} else {
 					addCommand.append(new AddCommand(editor.getEditingDomain(), rootSection,
-							MetamodelPackage.Literals.CLASS__REFERENCES, this.firstReference));
+							GenericPackage.Literals.CLASS__REFERENCES, this.firstReference));
 				}
 			}
 			if (!rootSectionOptional.isPresent()) {
 				addCommand.append(
-						new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModel().get(0),
-								PamtramPackage.Literals.SECTION_MODEL__META_MODEL_SECTIONS, rootSection));
+						new AddCommand(editor.getEditingDomain(), editor.getPamtram().getTargetSectionModels().get(0),
+								PamtramPackage.Literals.SECTION_MODEL__SECTIONS, rootSection));
 			}
 			addCommand.append(new SetCommand(editor.getEditingDomain(), sectionToConnectMatch,
-					MetamodelPackage.Literals.CLASS__CONTAINER,
-					this.finalClass == null ? rootSection : this.finalClass));
+					GenericPackage.Literals.CLASS__CONTAINER, this.finalClass == null ? rootSection : this.finalClass));
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
 		}
@@ -171,8 +170,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 			EReference eReference = (EReference) path.getPathElements().get(i);
 			EClass eClass = (EClass) path.getPathElements().get(i - 1);
 
-			TargetSectionContainmentReference ref = MetamodelFactory.eINSTANCE
-					.createTargetSectionContainmentReference();
+			TargetSectionCompositeReference ref = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 			ref.setEReference(eReference);
 
 			// we are at the beginning
@@ -183,7 +181,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 				currentClass.getReferences().add(ref);
 			}
 
-			TargetSectionClass clazz = MetamodelFactory.eINSTANCE.createTargetSectionClass();
+			TargetSectionClass clazz = TargetFactory.eINSTANCE.createTargetSectionClass();
 			clazz.setEClass(eClass);
 			ref.getValue().add(clazz);
 			currentClass = clazz;

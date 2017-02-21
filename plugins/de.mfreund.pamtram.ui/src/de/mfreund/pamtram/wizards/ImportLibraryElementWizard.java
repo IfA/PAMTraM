@@ -82,7 +82,7 @@ public class ImportLibraryElementWizard extends Wizard {
 		for (LibraryFileEntry entry : this.one.getLibEntriesToImport()) {
 			try {
 
-				GenLibraryManager manager = new GenLibraryManager();
+				GenLibraryManager manager = new GenLibraryManager(null);
 
 				// We simply use the parent of the chosen library file as library location
 				//

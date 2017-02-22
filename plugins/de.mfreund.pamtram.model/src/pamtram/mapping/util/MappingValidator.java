@@ -239,42 +239,66 @@ public class MappingValidator extends EObjectValidator {
 				return validateInstantiableMappingHintGroup((InstantiableMappingHintGroup)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP:
 				return validateMappingHintGroup((MappingHintGroup)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_BASE_TYPE:
-				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT:
-				return validateMappingHint((MappingHint)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MAPPING:
-				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
-			case MappingPackage.CARDINALITY_MAPPING:
-				return validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
-			case MappingPackage.REFERENCE_TARGET_SELECTOR:
-				return validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
-			case MappingPackage.MATCHER:
-				return validateMatcher((Matcher)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MATCHER:
-				return validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
-				return validateAttributeMatcherSourceElement((AttributeMatcherSourceElement)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE:
-				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
-			case MappingPackage.CLASS_MATCHER:
-				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER:
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
 				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
-			case MappingPackage.CONTAINER_SELECTOR:
-				return validateContainerSelector((ContainerSelector)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_BASE_TYPE:
+				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT_TYPE:
+				return validateMappingHintType((MappingHintType)value, diagnostics, context);
+			case MappingPackage.MAPPING_HINT:
+				return validateMappingHint((MappingHint)value, diagnostics, context);
+			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
+				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING:
+				return validateAttributeMapping((AttributeMapping)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
+				return validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT:
 				return validateAttributeMappingSourceElement((AttributeMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
+				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT:
+				return validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING:
+				return validateCardinalityMapping((CardinalityMapping)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE:
+				return validateCardinalityMappingSourceInterface((CardinalityMappingSourceInterface)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT:
+				return validateCardinalityMappingSourceElement((CardinalityMappingSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT:
+				return validateCardinalityMappingExternalSourceElement((CardinalityMappingExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT:
+				return validateCardinalityMappingGlobalSourceElement((CardinalityMappingGlobalSourceElement)value, diagnostics, context);
+			case MappingPackage.REFERENCE_TARGET_SELECTOR:
+				return validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
+			case MappingPackage.MATCHER:
+				return validateMatcher((Matcher)value, diagnostics, context);
+			case MappingPackage.CLASS_MATCHER:
+				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER:
+				return validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE:
+				return validateAttributeMatcherSourceInterface((AttributeMatcherSourceInterface)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT:
+				return validateAttributeMatcherSourceElement((AttributeMatcherSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
+				return validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT:
+				return validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR:
+				return validateContainerSelector((ContainerSelector)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE:
+				return validateContainerSelectorSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_SOURCE_ELEMENT:
 				return validateContainerSelectorSourceElement((ContainerSelectorSourceElement)value, diagnostics, context);
 			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE:
 				return validateContainerSelectorTargetAttribute((ContainerSelectorTargetAttribute)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_TYPE:
-				return validateMappingHintType((MappingHintType)value, diagnostics, context);
-			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
-				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
+				return validateContainerSelectorExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
+			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT:
+				return validateContainerSelectorGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
 			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER:
 				return validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
@@ -287,18 +311,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
 				return validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE:
-				return validateAttributeMappingSourceInterface((AttributeMappingSourceInterface)value, diagnostics, context);
 			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE:
 				return validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
-			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE:
-				return validateContainerSelectorSourceInterface((ContainerSelectorSourceInterface)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT:
-				return validateAttributeMappingExternalSourceElement((AttributeMappingExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
-				return validateContainerSelectorExternalSourceElement((ContainerSelectorExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT:
-				return validateAttributeMatcherExternalSourceElement((AttributeMatcherExternalSourceElement)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
 				return validateExternalMappedAttributeValueExpander((ExternalMappedAttributeValueExpander)value, diagnostics, context);
 			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER:
@@ -307,20 +321,6 @@ public class MappingValidator extends EObjectValidator {
 				return validateExternalMappedAttributeValueAppender((ExternalMappedAttributeValueAppender)value, diagnostics, context);
 			case MappingPackage.EXPANDABLE_HINT:
 				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT:
-				return validateAttributeMatcherGlobalSourceElement((AttributeMatcherGlobalSourceElement)value, diagnostics, context);
-			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT:
-				return validateAttributeMappingGlobalSourceElement((AttributeMappingGlobalSourceElement)value, diagnostics, context);
-			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT:
-				return validateContainerSelectorGlobalSourceElement((ContainerSelectorGlobalSourceElement)value, diagnostics, context);
-			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT:
-				return validateCardinalityMappingSourceElement((CardinalityMappingSourceElement)value, diagnostics, context);
-			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE:
-				return validateCardinalityMappingSourceInterface((CardinalityMappingSourceInterface)value, diagnostics, context);
-			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT:
-				return validateCardinalityMappingExternalSourceElement((CardinalityMappingExternalSourceElement)value, diagnostics, context);
-			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT:
-				return validateCardinalityMappingGlobalSourceElement((CardinalityMappingGlobalSourceElement)value, diagnostics, context);
 			default:
 				return true;
 		}

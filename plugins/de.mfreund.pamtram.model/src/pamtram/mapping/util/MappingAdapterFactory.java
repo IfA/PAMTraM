@@ -100,20 +100,68 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintGroupAdapter();
 			}
 			@Override
+			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
+				return createMappingHintGroupImporterAdapter();
+			}
+			@Override
+			public Adapter caseExportedMappingHintGroup(ExportedMappingHintGroup object) {
+				return createExportedMappingHintGroupAdapter();
+			}
+			@Override
 			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
 				return createMappingHintBaseTypeAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintType(MappingHintType object) {
+				return createMappingHintTypeAdapter();
 			}
 			@Override
 			public Adapter caseMappingHint(MappingHint object) {
 				return createMappingHintAdapter();
 			}
 			@Override
+			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
+				return createHintImporterMappingHintAdapter();
+			}
+			@Override
 			public Adapter caseAttributeMapping(AttributeMapping object) {
 				return createAttributeMappingAdapter();
 			}
 			@Override
+			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
+				return createAttributeMappingSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
+				return createAttributeMappingSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
+				return createAttributeMappingExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
+				return createAttributeMappingGlobalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseCardinalityMapping(CardinalityMapping object) {
 				return createCardinalityMappingAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
+				return createCardinalityMappingSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
+				return createCardinalityMappingSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
+				return createCardinalityMappingExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
+				return createCardinalityMappingGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseReferenceTargetSelector(ReferenceTargetSelector object) {
@@ -124,36 +172,36 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMatcher(AttributeMatcher object) {
-				return createAttributeMatcherAdapter();
+			public Adapter caseClassMatcher(ClassMatcher object) {
+				return createClassMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMatcherSourceElement(AttributeMatcherSourceElement object) {
-				return createAttributeMatcherSourceElementAdapter();
+			public Adapter caseAttributeMatcher(AttributeMatcher object) {
+				return createAttributeMatcherAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
 				return createAttributeMatcherSourceInterfaceAdapter();
 			}
 			@Override
-			public Adapter caseClassMatcher(ClassMatcher object) {
-				return createClassMatcherAdapter();
+			public Adapter caseAttributeMatcherSourceElement(AttributeMatcherSourceElement object) {
+				return createAttributeMatcherSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseMappingHintGroupImporter(MappingHintGroupImporter object) {
-				return createMappingHintGroupImporterAdapter();
+			public Adapter caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
+				return createAttributeMatcherExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseExportedMappingHintGroup(ExportedMappingHintGroup object) {
-				return createExportedMappingHintGroupAdapter();
+			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
+				return createAttributeMatcherGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseContainerSelector(ContainerSelector object) {
 				return createContainerSelectorAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
-				return createAttributeMappingSourceElementAdapter();
+			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
+				return createContainerSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseContainerSelectorSourceElement(ContainerSelectorSourceElement object) {
@@ -164,12 +212,12 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createContainerSelectorTargetAttributeAdapter();
 			}
 			@Override
-			public Adapter caseMappingHintType(MappingHintType object) {
-				return createMappingHintTypeAdapter();
+			public Adapter caseContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement object) {
+				return createContainerSelectorExternalSourceElementAdapter();
 			}
 			@Override
-			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
-				return createHintImporterMappingHintAdapter();
+			public Adapter caseContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement object) {
+				return createContainerSelectorGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
@@ -196,28 +244,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalAttributeImporterAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
-				return createAttributeMappingSourceInterfaceAdapter();
-			}
-			@Override
 			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
 				return createMappingHintSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
-				return createContainerSelectorSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
-				return createAttributeMappingExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement object) {
-				return createContainerSelectorExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
-				return createAttributeMatcherExternalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseExternalMappedAttributeValueExpander(ExternalMappedAttributeValueExpander object) {
@@ -234,34 +262,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseExpandableHint(ExpandableHint object) {
 				return createExpandableHintAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
-				return createAttributeMatcherGlobalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
-				return createAttributeMappingGlobalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement object) {
-				return createContainerSelectorGlobalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
-				return createCardinalityMappingSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
-				return createCardinalityMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
-				return createCardinalityMappingExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
-				return createCardinalityMappingGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -292,14 +292,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createLocalModifiedAttributeElementTypeAdapter();
 			}
 			@Override
-			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
-				return createInstanceSelectorSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
-				return createValueConstraintSourceInterfaceAdapter();
-			}
-			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
 				return createExternalModifiedAttributeElementTypeAdapter();
 			}
@@ -310,6 +302,14 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
 				return createGlobalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
+				return createInstanceSelectorSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+				return createValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

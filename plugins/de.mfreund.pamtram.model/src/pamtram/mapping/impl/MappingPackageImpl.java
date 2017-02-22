@@ -1479,9 +1479,20 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingHintGroupEClass = createEClass(MAPPING_HINT_GROUP);
 		createEReference(mappingHintGroupEClass, MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 
+		mappingHintGroupImporterEClass = createEClass(MAPPING_HINT_GROUP_IMPORTER);
+		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
+		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__CONTAINER);
+		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+
+		exportedMappingHintGroupEClass = createEClass(EXPORTED_MAPPING_HINT_GROUP);
+
 		mappingHintBaseTypeEClass = createEClass(MAPPING_HINT_BASE_TYPE);
 
+		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
+
 		mappingHintEClass = createEClass(MAPPING_HINT);
+
+		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
 
 		attributeMappingEClass = createEClass(ATTRIBUTE_MAPPING);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__TARGET);
@@ -1489,6 +1500,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMappingEClass, ATTRIBUTE_MAPPING___VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
+
+		attributeMappingSourceInterfaceEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_INTERFACE);
+
+		attributeMappingSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
+
+		attributeMappingExternalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
+
+		attributeMappingGlobalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT);
 
 		cardinalityMappingEClass = createEClass(CARDINALITY_MAPPING);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE);
@@ -1505,6 +1524,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
 
+		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
+
+		cardinalityMappingSourceElementEClass = createEClass(CARDINALITY_MAPPING_SOURCE_ELEMENT);
+
+		cardinalityMappingExternalSourceElementEClass = createEClass(CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT);
+
+		cardinalityMappingGlobalSourceElementEClass = createEClass(CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT);
+
 		referenceTargetSelectorEClass = createEClass(REFERENCE_TARGET_SELECTOR);
 		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE);
 		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__MATCHER);
@@ -1513,6 +1540,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		matcherEClass = createEClass(MATCHER);
 
+		classMatcherEClass = createEClass(CLASS_MATCHER);
+		createEReference(classMatcherEClass, CLASS_MATCHER__TARGET_CLASS);
+
 		attributeMatcherEClass = createEClass(ATTRIBUTE_MATCHER);
 		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__TARGET);
 		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
@@ -1520,19 +1550,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
 
-		attributeMatcherSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_SOURCE_ELEMENT);
-
 		attributeMatcherSourceInterfaceEClass = createEClass(ATTRIBUTE_MATCHER_SOURCE_INTERFACE);
 
-		classMatcherEClass = createEClass(CLASS_MATCHER);
-		createEReference(classMatcherEClass, CLASS_MATCHER__TARGET_CLASS);
+		attributeMatcherSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_SOURCE_ELEMENT);
 
-		mappingHintGroupImporterEClass = createEClass(MAPPING_HINT_GROUP_IMPORTER);
-		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
-		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__CONTAINER);
-		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+		attributeMatcherExternalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT);
 
-		exportedMappingHintGroupEClass = createEClass(EXPORTED_MAPPING_HINT_GROUP);
+		attributeMatcherGlobalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT);
 
 		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
 		createEReference(containerSelectorEClass, CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
@@ -1541,16 +1565,16 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS);
 
-		attributeMappingSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_ELEMENT);
+		containerSelectorSourceInterfaceEClass = createEClass(CONTAINER_SELECTOR_SOURCE_INTERFACE);
 
 		containerSelectorSourceElementEClass = createEClass(CONTAINER_SELECTOR_SOURCE_ELEMENT);
 
 		containerSelectorTargetAttributeEClass = createEClass(CONTAINER_SELECTOR_TARGET_ATTRIBUTE);
 		createEOperation(containerSelectorTargetAttributeEClass, CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
 
-		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
+		containerSelectorExternalSourceElementEClass = createEClass(CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
 
-		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
+		containerSelectorGlobalSourceElementEClass = createEClass(CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
@@ -1569,18 +1593,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass = createEClass(GLOBAL_ATTRIBUTE_IMPORTER);
 		createEReference(globalAttributeImporterEClass, GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE);
 
-		attributeMappingSourceInterfaceEClass = createEClass(ATTRIBUTE_MAPPING_SOURCE_INTERFACE);
-
 		mappingHintSourceInterfaceEClass = createEClass(MAPPING_HINT_SOURCE_INTERFACE);
 		createEOperation(mappingHintSourceInterfaceEClass, MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE);
-
-		containerSelectorSourceInterfaceEClass = createEClass(CONTAINER_SELECTOR_SOURCE_INTERFACE);
-
-		attributeMappingExternalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT);
-
-		containerSelectorExternalSourceElementEClass = createEClass(CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
-
-		attributeMatcherExternalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT);
 
 		externalMappedAttributeValueExpanderEClass = createEClass(EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 
@@ -1589,20 +1603,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		externalMappedAttributeValueAppenderEClass = createEClass(EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER);
 
 		expandableHintEClass = createEClass(EXPANDABLE_HINT);
-
-		attributeMatcherGlobalSourceElementEClass = createEClass(ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT);
-
-		attributeMappingGlobalSourceElementEClass = createEClass(ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT);
-
-		containerSelectorGlobalSourceElementEClass = createEClass(CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT);
-
-		cardinalityMappingSourceElementEClass = createEClass(CARDINALITY_MAPPING_SOURCE_ELEMENT);
-
-		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
-
-		cardinalityMappingExternalSourceElementEClass = createEClass(CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT);
-
-		cardinalityMappingGlobalSourceElementEClass = createEClass(CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT);
 	}
 
 	/**
@@ -1633,8 +1633,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
-		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
 		// Add subpackages
@@ -1655,41 +1655,21 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		instantiableMappingHintGroupEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		mappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		mappingHintGroupEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
+		mappingHintGroupImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintGroupImporterEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
+		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
 		mappingHintBaseTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintTypeEClass.getESuperTypes().add(this.getMappingHintBaseType());
 		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
+		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
-		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
-		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
-		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
-		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
-		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
-		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
+		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
-		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
-		attributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		classMatcherEClass.getESuperTypes().add(this.getMatcher());
-		mappingHintGroupImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		mappingHintGroupImporterEClass.getESuperTypes().add(this.getInstantiableMappingHintGroup());
-		exportedMappingHintGroupEClass.getESuperTypes().add(this.getMappingHintGroupType());
-		containerSelectorEClass.getESuperTypes().add(this.getMappingHintBaseType());
-		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
@@ -1700,6 +1680,115 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
+		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
+		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
+		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
+		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
+		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
+		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
+		classMatcherEClass.getESuperTypes().add(this.getMatcher());
+		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
+		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
+		attributeMatcherEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
+		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
+		attributeMatcherSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
+		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
+		attributeMatcherSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
+		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeMatcherGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
+		attributeMatcherGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		containerSelectorEClass.getESuperTypes().add(this.getMappingHintBaseType());
+		containerSelectorSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1722,8 +1811,30 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theTargetPackage.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		containerSelectorTargetAttributeEClass.getEGenericSuperTypes().add(g1);
-		mappingHintTypeEClass.getESuperTypes().add(this.getMappingHintBaseType());
-		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		containerSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
+		containerSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
+		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -1747,45 +1858,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass.getESuperTypes().add(this.getContainerSelectorSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
-		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		containerSelectorSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
-		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		containerSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
-		containerSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
-		attributeMatcherExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1800,79 +1873,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		externalMappedAttributeValueExpanderEClass.getEGenericSuperTypes().add(g1);
 		externalMappedAttributeValuePrependerEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		attributeMatcherGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeMatcherSourceInterface());
-		attributeMatcherGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
-		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getContainerSelectorSourceInterface());
-		containerSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
-		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
-		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
-		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(mappingTypeEClass, MappingType.class, "MappingType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1916,9 +1916,20 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappingHintGroupEClass, MappingHintGroup.class, "MappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappingHintGroup_ContainerSelector(), this.getContainerSelector(), null, "containerSelector", null, 0, 1, MappingHintGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(mappingHintGroupImporterEClass, MappingHintGroupImporter.class, "MappingHintGroupImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupImporter_Container(), theTargetPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupImporter_MappingHints(), this.getMappingHintType(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(exportedMappingHintGroupEClass, ExportedMappingHintGroup.class, "ExportedMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(mappingHintBaseTypeEClass, MappingHintBaseType.class, "MappingHintBaseType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(mappingHintTypeEClass, MappingHintType.class, "MappingHintType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMapping_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1936,6 +1947,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(attributeMappingSourceInterfaceEClass, AttributeMappingSourceInterface.class, "AttributeMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(attributeMappingSourceElementEClass, AttributeMappingSourceElement.class, "AttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(attributeMappingExternalSourceElementEClass, AttributeMappingExternalSourceElement.class, "AttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(attributeMappingGlobalSourceElementEClass, AttributeMappingGlobalSourceElement.class, "AttributeMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(cardinalityMappingEClass, CardinalityMapping.class, "CardinalityMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(theGenericPackage.getMetaModelElement());
@@ -2027,6 +2046,14 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
+		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingSourceElementEClass, CardinalityMappingSourceElement.class, "CardinalityMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingExternalSourceElementEClass, CardinalityMappingExternalSourceElement.class, "CardinalityMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(cardinalityMappingGlobalSourceElementEClass, CardinalityMappingGlobalSourceElement.class, "CardinalityMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(referenceTargetSelectorEClass, ReferenceTargetSelector.class, "ReferenceTargetSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferenceTargetSelector_AffectedReference(), theTargetPackage.getTargetSectionCrossReference(), null, "affectedReference", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getReferenceTargetSelector_Matcher(), this.getMatcher(), null, "matcher", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2051,6 +2078,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(matcherEClass, Matcher.class, "Matcher", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(classMatcherEClass, ClassMatcher.class, "ClassMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClassMatcher_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, ClassMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(attributeMatcherEClass, AttributeMatcher.class, "AttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMatcher_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttributeMatcher_SourceElements(), this.getAttributeMatcherSourceInterface(), null, "sourceElements", null, 1, -1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2068,19 +2098,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(attributeMatcherSourceElementEClass, AttributeMatcherSourceElement.class, "AttributeMatcherSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(attributeMatcherSourceInterfaceEClass, AttributeMatcherSourceInterface.class, "AttributeMatcherSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(classMatcherEClass, ClassMatcher.class, "ClassMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassMatcher_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, ClassMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeMatcherSourceElementEClass, AttributeMatcherSourceElement.class, "AttributeMatcherSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(mappingHintGroupImporterEClass, MappingHintGroupImporter.class, "MappingHintGroupImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingHintGroupImporter_Container(), theTargetPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMappingHintGroupImporter_MappingHints(), this.getMappingHintType(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeMatcherExternalSourceElementEClass, AttributeMatcherExternalSourceElement.class, "AttributeMatcherExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(exportedMappingHintGroupEClass, ExportedMappingHintGroup.class, "ExportedMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(attributeMatcherGlobalSourceElementEClass, AttributeMatcherGlobalSourceElement.class, "AttributeMatcherGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(containerSelectorEClass, ContainerSelector.class, "ContainerSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContainerSelector_TargetAttributes(), this.getContainerSelectorTargetAttribute(), null, "targetAttributes", null, 1, -1, ContainerSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2092,7 +2116,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEOperation(getContainerSelector__GetExternalSourceElements(), this.getContainerSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		initEClass(attributeMappingSourceElementEClass, AttributeMappingSourceElement.class, "AttributeMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(containerSelectorSourceInterfaceEClass, ContainerSelectorSourceInterface.class, "ContainerSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(containerSelectorSourceElementEClass, ContainerSelectorSourceElement.class, "ContainerSelectorSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2107,9 +2131,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(mappingHintTypeEClass, MappingHintType.class, "MappingHintType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(containerSelectorExternalSourceElementEClass, ContainerSelectorExternalSourceElement.class, "ContainerSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(containerSelectorGlobalSourceElementEClass, ContainerSelectorGlobalSourceElement.class, "ContainerSelectorGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappedAttributeValueExpander_HintsToExpand(), this.getExpandableHint(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2137,19 +2161,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(globalAttributeImporterEClass, GlobalAttributeImporter.class, "GlobalAttributeImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlobalAttributeImporter_GlobalAttribute(), this.getGlobalAttribute(), null, "globalAttribute", null, 1, 1, GlobalAttributeImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeMappingSourceInterfaceEClass, AttributeMappingSourceInterface.class, "AttributeMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(mappingHintSourceInterfaceEClass, MappingHintSourceInterface.class, "MappingHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEOperation(getMappingHintSourceInterface__GetSourceAttribute(), theSourcePackage.getSourceSectionAttribute(), "getSourceAttribute", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(containerSelectorSourceInterfaceEClass, ContainerSelectorSourceInterface.class, "ContainerSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(attributeMappingExternalSourceElementEClass, AttributeMappingExternalSourceElement.class, "AttributeMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(containerSelectorExternalSourceElementEClass, ContainerSelectorExternalSourceElement.class, "ContainerSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(attributeMatcherExternalSourceElementEClass, AttributeMatcherExternalSourceElement.class, "AttributeMatcherExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(externalMappedAttributeValueExpanderEClass, ExternalMappedAttributeValueExpander.class, "ExternalMappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2158,20 +2172,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(externalMappedAttributeValueAppenderEClass, ExternalMappedAttributeValueAppender.class, "ExternalMappedAttributeValueAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(expandableHintEClass, ExpandableHint.class, "ExpandableHint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(attributeMatcherGlobalSourceElementEClass, AttributeMatcherGlobalSourceElement.class, "AttributeMatcherGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(attributeMappingGlobalSourceElementEClass, AttributeMappingGlobalSourceElement.class, "AttributeMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(containerSelectorGlobalSourceElementEClass, ContainerSelectorGlobalSourceElement.class, "ContainerSelectorGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cardinalityMappingSourceElementEClass, CardinalityMappingSourceElement.class, "CardinalityMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cardinalityMappingExternalSourceElementEClass, CardinalityMappingExternalSourceElement.class, "CardinalityMappingExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(cardinalityMappingGlobalSourceElementEClass, CardinalityMappingGlobalSourceElement.class, "CardinalityMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import

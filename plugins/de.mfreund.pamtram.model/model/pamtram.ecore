@@ -1642,9 +1642,21 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="containerSelector" eType="#//mapping/ContainerSelector"
           containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
+          eType="#//mapping/ExportedMappingHintGroup"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//structure/target/TargetSectionClass"
+          unsettable="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
+          eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
         eSuperTypes="#//NamedElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//mapping/MappingHintBaseType"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType #//ConditionalElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
+        eSuperTypes="#//mapping/MappingHintType"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//ExpressionElement #//ModifiableElement #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetAttributeMatchesSection"/>
@@ -1676,6 +1688,35 @@
           eType="#//structure/target/TargetSectionAttribute"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface" abstract="true"
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint #//ExpressionElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1801,6 +1842,35 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
           eType="#//mapping/CardinalityMappingSourceInterface" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/MappingHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="affectedReferenceIsNonContainment affectedReferenceMatchesSection"/>
@@ -1835,6 +1905,10 @@
           eType="#//mapping/Matcher" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
+          eType="#//structure/target/TargetSectionClass"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//ExpressionElement #//ModifiableElement #//mapping/ExpandableHint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetMatchesAffectedReferenceType"/>
@@ -1867,6 +1941,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/AttributeMatcherSourceInterface" containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceInterface" abstract="true"
+        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceElement">
       <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
@@ -1876,21 +1952,24 @@
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
-          eType="#//structure/target/TargetSectionClass"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
-          eType="#//mapping/ExportedMappingHintGroup"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//structure/target/TargetSectionClass"
-          unsettable="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHintBaseType">
       <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//structure/source/ActualSourceSectionAttribute"/>
       <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ContainerSelectorSourceElement">
@@ -1909,15 +1988,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
           upperBound="-1" eType="#//mapping/ContainerSelectorSourceInterface" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorSourceInterface"
+        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorSourceElement">
       <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
@@ -1950,9 +2022,24 @@
         <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//mapping/MappingHintBaseType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
-        eSuperTypes="#//mapping/MappingHintType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorExternalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorGlobalSourceElement">
+      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
         eSuperTypes="#//mapping/HintImporterMappingHint">
       <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
@@ -1997,40 +2084,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//NamedElement">
       <eOperations name="getSourceAttribute" lowerBound="1" eType="#//structure/source/SourceSectionAttribute"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
         abstract="true">
@@ -2047,62 +2103,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
         eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true" interface="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcherGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMatcherSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">

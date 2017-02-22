@@ -124,10 +124,36 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
+				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
+				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
+				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
+				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
+				if (result == null) result = caseDeactivatableElement(mappingHintGroupImporter);
+				if (result == null) result = caseConditionalElement(mappingHintGroupImporter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: {
+				ExportedMappingHintGroup exportedMappingHintGroup = (ExportedMappingHintGroup)theEObject;
+				T result = caseExportedMappingHintGroup(exportedMappingHintGroup);
+				if (result == null) result = caseMappingHintGroupType(exportedMappingHintGroup);
+				if (result == null) result = caseNamedElement(exportedMappingHintGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MappingPackage.MAPPING_HINT_BASE_TYPE: {
 				MappingHintBaseType mappingHintBaseType = (MappingHintBaseType)theEObject;
 				T result = caseMappingHintBaseType(mappingHintBaseType);
 				if (result == null) result = caseNamedElement(mappingHintBaseType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.MAPPING_HINT_TYPE: {
+				MappingHintType mappingHintType = (MappingHintType)theEObject;
+				T result = caseMappingHintType(mappingHintType);
+				if (result == null) result = caseMappingHintBaseType(mappingHintType);
+				if (result == null) result = caseNamedElement(mappingHintType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,6 +164,15 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseConditionalElement(mappingHint);
 				if (result == null) result = caseMappingHintBaseType(mappingHint);
 				if (result == null) result = caseNamedElement(mappingHint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.HINT_IMPORTER_MAPPING_HINT: {
+				HintImporterMappingHint hintImporterMappingHint = (HintImporterMappingHint)theEObject;
+				T result = caseHintImporterMappingHint(hintImporterMappingHint);
+				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
+				if (result == null) result = caseMappingHintBaseType(hintImporterMappingHint);
+				if (result == null) result = caseNamedElement(hintImporterMappingHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -155,6 +190,51 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE: {
+				AttributeMappingSourceInterface attributeMappingSourceInterface = (AttributeMappingSourceInterface)theEObject;
+				T result = caseAttributeMappingSourceInterface(attributeMappingSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceInterface);
+				if (result == null) result = caseNamedElement(attributeMappingSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
+				AttributeMappingSourceElement attributeMappingSourceElement = (AttributeMappingSourceElement)theEObject;
+				T result = caseAttributeMappingSourceElement(attributeMappingSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(attributeMappingSourceElement);
+				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
+				AttributeMappingExternalSourceElement attributeMappingExternalSourceElement = (AttributeMappingExternalSourceElement)theEObject;
+				T result = caseAttributeMappingExternalSourceElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMappingExternalSourceElement);
+				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: {
+				AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement = (AttributeMappingGlobalSourceElement)theEObject;
+				T result = caseAttributeMappingGlobalSourceElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MappingPackage.CARDINALITY_MAPPING: {
 				CardinalityMapping cardinalityMapping = (CardinalityMapping)theEObject;
 				T result = caseCardinalityMapping(cardinalityMapping);
@@ -165,6 +245,51 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseConditionalElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintBaseType(cardinalityMapping);
 				if (result == null) result = caseNamedElement(cardinalityMapping);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE: {
+				CardinalityMappingSourceInterface cardinalityMappingSourceInterface = (CardinalityMappingSourceInterface)theEObject;
+				T result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceInterface);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: {
+				CardinalityMappingSourceElement cardinalityMappingSourceElement = (CardinalityMappingSourceElement)theEObject;
+				T result = caseCardinalityMappingSourceElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseLocalModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
+				CardinalityMappingExternalSourceElement cardinalityMappingExternalSourceElement = (CardinalityMappingExternalSourceElement)theEObject;
+				T result = caseCardinalityMappingExternalSourceElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: {
+				CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement = (CardinalityMappingGlobalSourceElement)theEObject;
+				T result = caseCardinalityMappingGlobalSourceElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseNamedElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -185,6 +310,13 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MappingPackage.CLASS_MATCHER: {
+				ClassMatcher classMatcher = (ClassMatcher)theEObject;
+				T result = caseClassMatcher(classMatcher);
+				if (result == null) result = caseMatcher(classMatcher);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MappingPackage.ATTRIBUTE_MATCHER: {
 				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
 				T result = caseAttributeMatcher(attributeMatcher);
@@ -192,6 +324,14 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExpressionElement(attributeMatcher);
 				if (result == null) result = caseModifiableElement(attributeMatcher);
 				if (result == null) result = caseExpandableHint(attributeMatcher);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE: {
+				AttributeMatcherSourceInterface attributeMatcherSourceInterface = (AttributeMatcherSourceInterface)theEObject;
+				T result = caseAttributeMatcherSourceInterface(attributeMatcherSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceInterface);
+				if (result == null) result = caseNamedElement(attributeMatcherSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -207,36 +347,28 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE: {
-				AttributeMatcherSourceInterface attributeMatcherSourceInterface = (AttributeMatcherSourceInterface)theEObject;
-				T result = caseAttributeMatcherSourceInterface(attributeMatcherSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceInterface);
-				if (result == null) result = caseNamedElement(attributeMatcherSourceInterface);
+			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
+				AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement = (AttributeMatcherExternalSourceElement)theEObject;
+				T result = caseAttributeMatcherExternalSourceElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.CLASS_MATCHER: {
-				ClassMatcher classMatcher = (ClassMatcher)theEObject;
-				T result = caseClassMatcher(classMatcher);
-				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER: {
-				MappingHintGroupImporter mappingHintGroupImporter = (MappingHintGroupImporter)theEObject;
-				T result = caseMappingHintGroupImporter(mappingHintGroupImporter);
-				if (result == null) result = caseInstantiableMappingHintGroup(mappingHintGroupImporter);
-				if (result == null) result = caseNamedElement(mappingHintGroupImporter);
-				if (result == null) result = caseDeactivatableElement(mappingHintGroupImporter);
-				if (result == null) result = caseConditionalElement(mappingHintGroupImporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP: {
-				ExportedMappingHintGroup exportedMappingHintGroup = (ExportedMappingHintGroup)theEObject;
-				T result = caseExportedMappingHintGroup(exportedMappingHintGroup);
-				if (result == null) result = caseMappingHintGroupType(exportedMappingHintGroup);
-				if (result == null) result = caseNamedElement(exportedMappingHintGroup);
+			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: {
+				AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement = (AttributeMatcherGlobalSourceElement)theEObject;
+				T result = caseAttributeMatcherGlobalSourceElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -248,15 +380,11 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
-				AttributeMappingSourceElement attributeMappingSourceElement = (AttributeMappingSourceElement)theEObject;
-				T result = caseAttributeMappingSourceElement(attributeMappingSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(attributeMappingSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMappingSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
+			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE: {
+				ContainerSelectorSourceInterface containerSelectorSourceInterface = (ContainerSelectorSourceInterface)theEObject;
+				T result = caseContainerSelectorSourceInterface(containerSelectorSourceInterface);
+				if (result == null) result = caseMappingHintSourceInterface(containerSelectorSourceInterface);
+				if (result == null) result = caseNamedElement(containerSelectorSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -281,20 +409,28 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MAPPING_HINT_TYPE: {
-				MappingHintType mappingHintType = (MappingHintType)theEObject;
-				T result = caseMappingHintType(mappingHintType);
-				if (result == null) result = caseMappingHintBaseType(mappingHintType);
-				if (result == null) result = caseNamedElement(mappingHintType);
+			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT: {
+				ContainerSelectorExternalSourceElement containerSelectorExternalSourceElement = (ContainerSelectorExternalSourceElement)theEObject;
+				T result = caseContainerSelectorExternalSourceElement(containerSelectorExternalSourceElement);
+				if (result == null) result = caseExternalModifiedAttributeElementType(containerSelectorExternalSourceElement);
+				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorExternalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(containerSelectorExternalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(containerSelectorExternalSourceElement);
+				if (result == null) result = caseNamedElement(containerSelectorExternalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.HINT_IMPORTER_MAPPING_HINT: {
-				HintImporterMappingHint hintImporterMappingHint = (HintImporterMappingHint)theEObject;
-				T result = caseHintImporterMappingHint(hintImporterMappingHint);
-				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
-				if (result == null) result = caseMappingHintBaseType(hintImporterMappingHint);
-				if (result == null) result = caseNamedElement(hintImporterMappingHint);
+			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: {
+				ContainerSelectorGlobalSourceElement containerSelectorGlobalSourceElement = (ContainerSelectorGlobalSourceElement)theEObject;
+				T result = caseContainerSelectorGlobalSourceElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectingElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseNamedElement(containerSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(containerSelectorGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -373,62 +509,10 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE: {
-				AttributeMappingSourceInterface attributeMappingSourceInterface = (AttributeMappingSourceInterface)theEObject;
-				T result = caseAttributeMappingSourceInterface(attributeMappingSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceInterface);
-				if (result == null) result = caseNamedElement(attributeMappingSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE: {
 				MappingHintSourceInterface mappingHintSourceInterface = (MappingHintSourceInterface)theEObject;
 				T result = caseMappingHintSourceInterface(mappingHintSourceInterface);
 				if (result == null) result = caseNamedElement(mappingHintSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CONTAINER_SELECTOR_SOURCE_INTERFACE: {
-				ContainerSelectorSourceInterface containerSelectorSourceInterface = (ContainerSelectorSourceInterface)theEObject;
-				T result = caseContainerSelectorSourceInterface(containerSelectorSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(containerSelectorSourceInterface);
-				if (result == null) result = caseNamedElement(containerSelectorSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
-				AttributeMappingExternalSourceElement attributeMappingExternalSourceElement = (AttributeMappingExternalSourceElement)theEObject;
-				T result = caseAttributeMappingExternalSourceElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMappingExternalSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMappingExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT: {
-				ContainerSelectorExternalSourceElement containerSelectorExternalSourceElement = (ContainerSelectorExternalSourceElement)theEObject;
-				T result = caseContainerSelectorExternalSourceElement(containerSelectorExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(containerSelectorExternalSourceElement);
-				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(containerSelectorExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(containerSelectorExternalSourceElement);
-				if (result == null) result = caseNamedElement(containerSelectorExternalSourceElement);
-				if (result == null) result = caseModifiableElement(containerSelectorExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
-				AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement = (AttributeMatcherExternalSourceElement)theEObject;
-				T result = caseAttributeMatcherExternalSourceElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMatcherExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -479,90 +563,6 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.EXPANDABLE_HINT: {
 				ExpandableHint expandableHint = (ExpandableHint)theEObject;
 				T result = caseExpandableHint(expandableHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: {
-				AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement = (AttributeMatcherGlobalSourceElement)theEObject;
-				T result = caseAttributeMatcherGlobalSourceElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseInstanceSelectingElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: {
-				AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement = (AttributeMappingGlobalSourceElement)theEObject;
-				T result = caseAttributeMappingGlobalSourceElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseInstanceSelectingElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT: {
-				ContainerSelectorGlobalSourceElement containerSelectorGlobalSourceElement = (ContainerSelectorGlobalSourceElement)theEObject;
-				T result = caseContainerSelectorGlobalSourceElement(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseContainerSelectorSourceInterface(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseInstanceSelectingElement(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseNamedElement(containerSelectorGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(containerSelectorGlobalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: {
-				CardinalityMappingSourceElement cardinalityMappingSourceElement = (CardinalityMappingSourceElement)theEObject;
-				T result = caseCardinalityMappingSourceElement(cardinalityMappingSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(cardinalityMappingSourceElement);
-				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
-				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
-				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CARDINALITY_MAPPING_SOURCE_INTERFACE: {
-				CardinalityMappingSourceInterface cardinalityMappingSourceInterface = (CardinalityMappingSourceInterface)theEObject;
-				T result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceInterface);
-				if (result == null) result = caseNamedElement(cardinalityMappingSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
-				CardinalityMappingExternalSourceElement cardinalityMappingExternalSourceElement = (CardinalityMappingExternalSourceElement)theEObject;
-				T result = caseCardinalityMappingExternalSourceElement(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseNamedElement(cardinalityMappingExternalSourceElement);
-				if (result == null) result = caseModifiableElement(cardinalityMappingExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: {
-				CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement = (CardinalityMappingGlobalSourceElement)theEObject;
-				T result = caseCardinalityMappingGlobalSourceElement(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseInstanceSelectingElement(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseNamedElement(cardinalityMappingGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

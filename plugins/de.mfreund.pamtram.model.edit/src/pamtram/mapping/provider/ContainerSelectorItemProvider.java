@@ -197,17 +197,17 @@ extends MappingHintBaseTypeItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createContainerSelectorExternalSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createContainerSelectorGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.CONTAINER_SELECTOR__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter

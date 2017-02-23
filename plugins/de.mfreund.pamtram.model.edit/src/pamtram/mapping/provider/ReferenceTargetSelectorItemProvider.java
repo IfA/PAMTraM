@@ -217,12 +217,12 @@ extends MappingHintItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createAttributeMatcher()));
+				 MappingFactory.eINSTANCE.createClassMatcher()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
-				 MappingFactory.eINSTANCE.createClassMatcher()));
+				 MappingFactory.eINSTANCE.createAttributeMatcher()));
 	}
 
 }

@@ -862,34 +862,34 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	public void dispose() {
 		if (mappingItemProvider != null) mappingItemProvider.dispose();
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
-		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
-		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
-		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
-		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
-		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
-		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
-		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
+		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
+		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
+		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
+		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
+		if (cardinalityMappingSourceElementItemProvider != null) cardinalityMappingSourceElementItemProvider.dispose();
+		if (cardinalityMappingExternalSourceElementItemProvider != null) cardinalityMappingExternalSourceElementItemProvider.dispose();
+		if (cardinalityMappingGlobalSourceElementItemProvider != null) cardinalityMappingGlobalSourceElementItemProvider.dispose();
+		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
+		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
+		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
+		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
+		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
+		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
+		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (containerSelectorSourceElementItemProvider != null) containerSelectorSourceElementItemProvider.dispose();
 		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
+		if (containerSelectorExternalSourceElementItemProvider != null) containerSelectorExternalSourceElementItemProvider.dispose();
+		if (containerSelectorGlobalSourceElementItemProvider != null) containerSelectorGlobalSourceElementItemProvider.dispose();
 		if (localMappedAttributeValueExpanderItemProvider != null) localMappedAttributeValueExpanderItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
 		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
-		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
-		if (containerSelectorExternalSourceElementItemProvider != null) containerSelectorExternalSourceElementItemProvider.dispose();
-		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
 		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
-		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
-		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
-		if (containerSelectorGlobalSourceElementItemProvider != null) containerSelectorGlobalSourceElementItemProvider.dispose();
-		if (cardinalityMappingSourceElementItemProvider != null) cardinalityMappingSourceElementItemProvider.dispose();
-		if (cardinalityMappingExternalSourceElementItemProvider != null) cardinalityMappingExternalSourceElementItemProvider.dispose();
-		if (cardinalityMappingGlobalSourceElementItemProvider != null) cardinalityMappingGlobalSourceElementItemProvider.dispose();
 	}
 
 }

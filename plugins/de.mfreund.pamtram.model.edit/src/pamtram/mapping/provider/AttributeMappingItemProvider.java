@@ -353,17 +353,17 @@ extends MappingHintItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter

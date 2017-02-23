@@ -311,17 +311,17 @@ extends MatcherItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createAttributeMatcherGlobalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter

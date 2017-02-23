@@ -627,7 +627,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 					if (resource.getURI().lastSegment().equals("data.xmi")) {
 						String path = resource.getURI().trimSegments(1).lastSegment();
 						for (pamtram.structure.library.LibraryEntry libraryEntry : libEntries) {
-							if (libraryEntry.getPath().equals(path)) {
+							if (libraryEntry.getClasspath().equals(path)) {
 								exit = true;
 								break;
 							}

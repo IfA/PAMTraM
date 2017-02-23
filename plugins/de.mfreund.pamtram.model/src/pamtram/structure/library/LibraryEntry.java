@@ -18,7 +18,7 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  *   <li>{@link pamtram.structure.library.LibraryEntry#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.structure.library.LibraryEntry#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.structure.library.LibraryEntry#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
- *   <li>{@link pamtram.structure.library.LibraryEntry#getPath <em>Path</em>}</li>
+ *   <li>{@link pamtram.structure.library.LibraryEntry#getClasspath <em>Classpath</em>}</li>
  *   <li>{@link pamtram.structure.library.LibraryEntry#getId <em>Id</em>}</li>
  *   <li>{@link pamtram.structure.library.LibraryEntry#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
@@ -71,14 +71,14 @@ public interface LibraryEntry extends EObject {
 	void setLibraryFile(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Classpath</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Path</em>' containment reference.
+	 * @return the value of the '<em>Classpath</em>' containment reference.
 	 * @see #setClasspath(VirtualTargetSectionAttribute)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Classpath()
 	 * @model containment="true" required="true"
@@ -87,10 +87,10 @@ public interface LibraryEntry extends EObject {
 	VirtualTargetSectionAttribute getClasspath();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.library.LibraryEntry#getPath <em>Path</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.structure.library.LibraryEntry#getClasspath <em>Classpath</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Path</em>' containment reference.
+	 * @param value the new value of the '<em>Classpath</em>' containment reference.
 	 * @see #getClasspath()
 	 * @generated
 	 */

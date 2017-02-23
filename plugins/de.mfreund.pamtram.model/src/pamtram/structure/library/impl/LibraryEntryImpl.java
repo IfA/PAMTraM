@@ -28,7 +28,7 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getLibraryFile <em>Library File</em>}</li>
  *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getOriginalLibraryEntry <em>Original Library Entry</em>}</li>
- *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getPath <em>Path</em>}</li>
+ *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getClasspath <em>Classpath</em>}</li>
  *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getId <em>Id</em>}</li>
  *   <li>{@link pamtram.structure.library.impl.LibraryEntryImpl#getResourceParameters <em>Resource Parameters</em>}</li>
  * </ul>
@@ -78,14 +78,14 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	protected de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry;
 
 	/**
-	 * The cached value of the '{@link #getClasspath() <em>Path</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getClasspath() <em>Classpath</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getClasspath()
 	 * @generated
 	 * @ordered
 	 */
-	protected VirtualTargetSectionAttribute path;
+	protected VirtualTargetSectionAttribute classpath;
 
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' containment reference.
@@ -162,18 +162,19 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public VirtualTargetSectionAttribute getClasspath() {
-		return path;
+		return classpath;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPath(VirtualTargetSectionAttribute newPath, NotificationChain msgs) {
-		VirtualTargetSectionAttribute oldPath = path;
-		path = newPath;
+	public NotificationChain basicSetClasspath(VirtualTargetSectionAttribute newClasspath, NotificationChain msgs) {
+		VirtualTargetSectionAttribute oldClasspath = classpath;
+		classpath = newClasspath;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, oldPath, newPath);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, oldClasspath, newClasspath);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -184,18 +185,18 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public void setClasspath(VirtualTargetSectionAttribute newPath) {
-		if (newPath != path) {
+	public void setClasspath(VirtualTargetSectionAttribute newClasspath) {
+		if (newClasspath != classpath) {
 			NotificationChain msgs = null;
-			if (path != null)
-				msgs = ((InternalEObject)path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
-			if (newPath != null)
-				msgs = ((InternalEObject)newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
-			msgs = basicSetPath(newPath, msgs);
+			if (classpath != null)
+				msgs = ((InternalEObject)classpath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
+			if (newClasspath != null)
+				msgs = ((InternalEObject)newClasspath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
+			msgs = basicSetClasspath(newClasspath, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, newPath, newPath));
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, newClasspath, newClasspath));
 	}
 
 	/**
@@ -300,7 +301,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case LibraryPackage.LIBRARY_ENTRY__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
-				return basicSetPath(null, msgs);
+				return basicSetClasspath(null, msgs);
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				return basicSetId(null, msgs);
 			case LibraryPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
@@ -408,7 +409,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				return originalLibraryEntry != null;
 			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
-				return path != null;
+				return classpath != null;
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				return id != null;
 			case LibraryPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:

@@ -170,13 +170,13 @@ public class LibraryEntryInstantiator {
 
 		// we may import a more specialized library entry
 		//
-		if (!resultingPath.equals(this.libraryEntry.getPath().getValue())) {
+		if (!resultingPath.equals(this.libraryEntry.getClasspath().getValue())) {
 
 			// Check if there is an actual LibraryEntry for the determined classpath or
 			// move upwards in the classpath hierarchy until an entry is found.
 			//
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = this.getMoreSpecificEntry(
-					this.libraryEntry, this.libraryEntry.getPath().getValue(), resultingPath, manager);
+					this.libraryEntry, this.libraryEntry.getClasspath().getValue(), resultingPath, manager);
 
 			if (moreSpecificEntry != null) {
 				libEntryToInsert = moreSpecificEntry;
@@ -185,7 +185,7 @@ public class LibraryEntryInstantiator {
 			// Finally, we can set the final, resulting classpath that we are going to use
 			// (This has been stored in the libraryEntry by #getMoreSpecificEntry).
 			//
-			resultingPath = this.libraryEntry.getPath().getValue();
+			resultingPath = this.libraryEntry.getClasspath().getValue();
 
 		}
 
@@ -261,9 +261,9 @@ public class LibraryEntryInstantiator {
 		// If there is such a mapping, calculate the more specific classpath; otherwise, use the original
 		// classpath as denoted in the library entry imported into the pamtram model
 		//
-		return pathMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getPath(),
+		return pathMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getClasspath(),
 				pathMapping.get(), this.hintValues.getHintValues(pathMapping.get()))
-				: this.libraryEntry.getPath().getValue();
+				: this.libraryEntry.getClasspath().getValue();
 	}
 
 	/**
@@ -368,7 +368,7 @@ public class LibraryEntryInstantiator {
 	 * This retrieves an entry for the given 'newPath' from the library, checks if the parameters match those of the old
 	 * library entry, copies the old parameters to the new entry and returns the new entry. If there is no match for the
 	 * given 'newPath', this algorithm goes up in the classpath and tries to determine a more abstract entry. The
-	 * resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getPath()}
+	 * resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getClasspath()}
 	 * variable of the 'oldEntry' and can be evaulated by clients.
 	 *
 	 * @param oldEntry
@@ -428,7 +428,7 @@ public class LibraryEntryInstantiator {
 		}
 
 		// we update the resulting path
-		oldEntry.getPath().setValue(resultPath);
+		oldEntry.getClasspath().setValue(resultPath);
 		return newEntry;
 
 	}

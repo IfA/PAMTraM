@@ -759,7 +759,7 @@ public class GenericTransformationRunner extends CancelableElement {
 					expandingResult.getTargetSectionRegistry());
 			if (!successful) {
 				this.transformationConfig.getLogger().severe("Failed to instantiate library entry '"
-						+ libraryEntryInstantiator.getLibraryEntry().getPath().getValue() + "'!");
+						+ libraryEntryInstantiator.getLibraryEntry().getClasspath().getValue() + "'!");
 			}
 			return successful;
 		});

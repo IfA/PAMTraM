@@ -184,7 +184,7 @@ public class GenLibraryManager {
 			return null;
 		}
 
-		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, libraryEntry.getPath().getValue());
+		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, libraryEntry.getClasspath().getValue());
 
 		return originalLibraryEntry;
 	}

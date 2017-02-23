@@ -187,7 +187,7 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__PARAMETERS);
-			childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__PATH);
+			childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__CLASSPATH);
 			childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__ID);
 			childrenFeatures.add(LibraryPackage.Literals.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
@@ -227,8 +227,8 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 			LibraryEntry libraryEntry = (LibraryEntry) object;
 			this.children = new ArrayList<>();
 			// add an ItemProvider for the Path
-			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__PATH,
-					libraryEntry.getPath(), CommandParameter.NO_INDEX));
+			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__CLASSPATH,
+					libraryEntry.getClasspath(), CommandParameter.NO_INDEX));
 			// add an ItemProvider for the ID
 			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__ID, libraryEntry.getId(),
 					CommandParameter.NO_INDEX));
@@ -259,7 +259,7 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	@Override
 	public Object getStyledText(Object object) {
 
-		String label = ((LibraryEntry) object).getPath().getValue();
+		String label = ((LibraryEntry) object).getClasspath().getValue();
 		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(this.getString("_UI_LibraryEntry_type"), StyledString.Style.QUALIFIER_STYLER);
@@ -285,7 +285,7 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
 			case LibraryPackage.LIBRARY_ENTRY__LIBRARY_FILE:
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -416,7 +416,7 @@ public class LibraryHelper {
 			VirtualTargetSectionAttribute pathAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(this.path);
-			this.pamtramLibEntry.setPath(pathAttribute);
+			this.pamtramLibEntry.setClasspath(pathAttribute);
 			VirtualTargetSectionAttribute idAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			idAttribute.setName("ID");
 			idAttribute.setValue(this.libEntry.getParameterDescription().getID());

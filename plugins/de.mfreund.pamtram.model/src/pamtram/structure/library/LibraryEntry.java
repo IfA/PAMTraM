@@ -79,22 +79,22 @@ public interface LibraryEntry extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' containment reference.
-	 * @see #setPath(VirtualTargetSectionAttribute)
-	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Path()
+	 * @see #setClasspath(VirtualTargetSectionAttribute)
+	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Classpath()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	VirtualTargetSectionAttribute getPath();
+	VirtualTargetSectionAttribute getClasspath();
 
 	/**
 	 * Sets the value of the '{@link pamtram.structure.library.LibraryEntry#getPath <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Path</em>' containment reference.
-	 * @see #getPath()
+	 * @see #getClasspath()
 	 * @generated
 	 */
-	void setPath(VirtualTargetSectionAttribute value);
+	void setClasspath(VirtualTargetSectionAttribute value);
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' containment reference.

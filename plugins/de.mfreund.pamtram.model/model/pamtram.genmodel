@@ -403,7 +403,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/library/LibraryEntry/libraryFile"/>
           <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/originalLibraryEntry"/>
-          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/path"/>
+          <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/classpath"/>
           <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/id"/>
           <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/resourceParameters"/>
         </genClasses>
@@ -499,8 +499,18 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroup/containerSelector"/>
       </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroupImporter">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
+      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintBaseType"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintType"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHint"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/HintImporterMappingHint"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMapping">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMapping/target"/>
@@ -512,14 +522,19 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMapping/validateTargetAttributeMatchesSection/context"/>
         </genOperations>
       </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/AttributeMappingSourceInterface"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingExternalSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingGlobalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMapping">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/target"/>
-        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection">
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceClassMatchesSection/context"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/CardinalityMapping/sourceElements"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateSourceElementMatchesSection">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceElementMatchesSection/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateSourceElementMatchesSection/context"/>
         </genOperations>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassMatchesSection">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateTargetClassMatchesSection/diagnostics"/>
@@ -537,7 +552,25 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateNoCardinalityMappingForSourceSectionRoot/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateNoCardinalityMappingForSourceSectionRoot/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateOnlySourceOrSourceElements">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateOnlySourceOrSourceElements/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateOnlySourceOrSourceElements/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateExpressionOnlyForSourceElements">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateExpressionOnlyForSourceElements/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateExpressionOnlyForSourceElements/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/validateModifiersOnlyForSourceElements">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateModifiersOnlyForSourceElements/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/CardinalityMapping/validateModifiersOnlyForSourceElements/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/getLocalSourceElements"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/CardinalityMapping/getExternalSourceElements"/>
       </genClasses>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/CardinalityMappingSourceInterface"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMappingSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMappingExternalSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/CardinalityMappingGlobalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ReferenceTargetSelector">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ReferenceTargetSelector/affectedReference"/>
@@ -552,6 +585,9 @@
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/Matcher"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ClassMatcher">
+        <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ClassMatcher/targetClass"/>
+      </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcher">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/AttributeMatcher/target"/>
@@ -563,19 +599,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/AttributeMatcher/validateTargetMatchesAffectedReferenceType/context"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherSourceElement"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/AttributeMatcherSourceInterface"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ClassMatcher">
-        <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ClassMatcher/targetClass"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroupImporter">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherExternalSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherGlobalSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelector">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ContainerSelector/targetAttributes"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/ContainerSelector/sourceElements"/>
@@ -583,7 +610,7 @@
         <genOperations ecoreOperation="pamtram.ecore#//mapping/ContainerSelector/getLocalSourceElements"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/ContainerSelector/getExternalSourceElements"/>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingSourceElement"/>
+      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ContainerSelectorSourceInterface"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorSourceElement"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute">
         <genOperations ecoreOperation="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute/validateSourceMatchesPossibleContainerType">
@@ -591,8 +618,8 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/ContainerSelectorTargetAttribute/validateSourceMatchesPossibleContainerType/context"/>
         </genOperations>
       </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintType"/>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/HintImporterMappingHint"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorExternalSourceElement"/>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorGlobalSourceElement"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappedAttributeValueExpander">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappedAttributeValueExpander/hintsToExpand"/>
@@ -613,21 +640,13 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/GlobalAttributeImporter/globalAttribute"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/AttributeMappingSourceInterface"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintSourceInterface">
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintSourceInterface/getSourceAttribute"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ContainerSelectorSourceInterface"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingExternalSourceElement"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorExternalSourceElement"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherExternalSourceElement"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ExternalMappedAttributeValueExpander"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExternalMappedAttributeValuePrepender"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExternalMappedAttributeValueAppender"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/ExpandableHint"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMatcherGlobalSourceElement"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/AttributeMappingGlobalSourceElement"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/ContainerSelectorGlobalSourceElement"/>
       <nestedGenPackages prefix="Modifier" disposableProviderFactory="true" multipleEditorPages="false"
           generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping/modifier">
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/ValueModifierSet">

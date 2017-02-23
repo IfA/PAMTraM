@@ -404,7 +404,7 @@ public interface LibraryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY__PATH = 3;
+	int LIBRARY_ENTRY__CLASSPATH = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' containment reference.
@@ -618,11 +618,11 @@ public interface LibraryPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Path</em>'.
-	 * @see pamtram.structure.library.LibraryEntry#getPath()
+	 * @see pamtram.structure.library.LibraryEntry#getClasspath()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EReference getLibraryEntry_Path();
+	EReference getLibraryEntry_Classpath();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getId <em>Id</em>}'.
@@ -815,7 +815,7 @@ public interface LibraryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_ENTRY__PATH = eINSTANCE.getLibraryEntry_Path();
+		EReference LIBRARY_ENTRY__CLASSPATH = eINSTANCE.getLibraryEntry_Classpath();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' containment reference feature.

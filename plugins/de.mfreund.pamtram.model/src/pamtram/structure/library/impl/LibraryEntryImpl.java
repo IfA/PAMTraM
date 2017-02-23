@@ -78,10 +78,10 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	protected de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry;
 
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
+	 * The cached value of the '{@link #getClasspath() <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @see #getPath()
+	 * @see #getClasspath()
 	 * @generated
 	 * @ordered
 	 */
@@ -161,7 +161,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public VirtualTargetSectionAttribute getPath() {
+	public VirtualTargetSectionAttribute getClasspath() {
 		return path;
 	}
 
@@ -173,7 +173,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		VirtualTargetSectionAttribute oldPath = path;
 		path = newPath;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__PATH, oldPath, newPath);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, oldPath, newPath);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -184,18 +184,18 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 * @generated
 	 */
 	@Override
-	public void setPath(VirtualTargetSectionAttribute newPath) {
+	public void setClasspath(VirtualTargetSectionAttribute newPath) {
 		if (newPath != path) {
 			NotificationChain msgs = null;
 			if (path != null)
-				msgs = ((InternalEObject)path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__PATH, null, msgs);
+				msgs = ((InternalEObject)path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
 			if (newPath != null)
-				msgs = ((InternalEObject)newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__PATH, null, msgs);
+				msgs = ((InternalEObject)newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - LibraryPackage.LIBRARY_ENTRY__CLASSPATH, null, msgs);
 			msgs = basicSetPath(newPath, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__PATH, newPath, newPath));
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, newPath, newPath));
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		switch (featureID) {
 			case LibraryPackage.LIBRARY_ENTRY__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
 				return basicSetPath(null, msgs);
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				return basicSetId(null, msgs);
@@ -323,8 +323,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				if (resolve) return getOriginalLibraryEntry();
 				return basicGetOriginalLibraryEntry();
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
-				return getPath();
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
+				return getClasspath();
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				return getId();
 			case LibraryPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS:
@@ -351,8 +351,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)newValue);
 				return;
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualTargetSectionAttribute)newValue);
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
+				setClasspath((VirtualTargetSectionAttribute)newValue);
 				return;
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				setId((VirtualTargetSectionAttribute)newValue);
@@ -381,8 +381,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				setOriginalLibraryEntry((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)null);
 				return;
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
-				setPath((VirtualTargetSectionAttribute)null);
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
+				setClasspath((VirtualTargetSectionAttribute)null);
 				return;
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				setId((VirtualTargetSectionAttribute)null);
@@ -407,7 +407,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 				return LIBRARY_FILE_EDEFAULT == null ? libraryFile != null : !LIBRARY_FILE_EDEFAULT.equals(libraryFile);
 			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
 				return originalLibraryEntry != null;
-			case LibraryPackage.LIBRARY_ENTRY__PATH:
+			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
 				return path != null;
 			case LibraryPackage.LIBRARY_ENTRY__ID:
 				return id != null;

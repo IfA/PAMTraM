@@ -3495,7 +3495,7 @@
         </class>
       </parameters>
       <originalLibraryEntry href="lib/target/Station/data.xmi#/"/>
-      <path name="Classpath" value="Station"/>
+      <classpath name="Classpath" value="Station"/>
       <id name="ID" value=""/>
     </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Matflow.zip">
@@ -3535,7 +3535,7 @@
         </class>
       </parameters>
       <originalLibraryEntry href="lib/target/Matflow/data.xmi#/"/>
-      <path name="Classpath" value="Matflow"/>
+      <classpath name="Classpath" value="Matflow"/>
       <id name="ID"/>
     </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Infrastructure.zip">
@@ -3589,7 +3589,7 @@
         </reference>
       </parameters>
       <originalLibraryEntry href="lib/target/Infrastructure.BufferPlace/data.xmi#/"/>
-      <path name="Classpath" value="Infrastructure.BufferPlace"/>
+      <classpath name="Classpath" value="Infrastructure.BufferPlace"/>
       <id name="ID"/>
     </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Component.zip">
@@ -3629,7 +3629,7 @@
         </class>
       </parameters>
       <originalLibraryEntry href="lib/target/Component/data.xmi#/"/>
-      <path name="Classpath" value="Component"/>
+      <classpath name="Classpath" value="Component"/>
       <id name="ID"/>
     </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Misc.zip">
@@ -3697,7 +3697,7 @@
         </attribute>
       </parameters>
       <originalLibraryEntry href="lib/target/Misc.FunctionButton/data.xmi#/"/>
-      <path name="Classpath" value="Misc.FunctionButton"/>
+      <classpath name="Classpath" value="Misc.FunctionButton"/>
       <id name="ID"/>
     </libraryElements>
     <libraryElements libraryFile="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib\Alert.zip">
@@ -3842,7 +3842,7 @@
         </reference>
       </parameters>
       <originalLibraryEntry href="lib/target/Alert/data.xmi#/"/>
-      <path name="Classpath" value="Alert"/>
+      <classpath name="Classpath" value="Alert"/>
       <id name="ID" value=""/>
     </libraryElements>
   </targetSectionModels>
@@ -4057,7 +4057,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="IDMapping" target="//@targetSectionModels.1/@libraryElements.3/@id">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="NameLibElement" source="//@sourceSectionModels.2/@sections.11/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModels.1/@libraryElements.3/@path">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModels.1/@libraryElements.3/@classpath">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.0/@modifierSets.48" source="//@sourceSectionModels.2/@sections.11/@references.0/@value.1/@attributes.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModels.1/@sections.0/@attributes.4"/>
         </mappingHints>
@@ -4860,7 +4860,7 @@
         <mappingHints xsi:type="mapping:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.0/@parameters.1/@attribute">
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.1/@sections.0/@attributes.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModels.1/@libraryElements.0/@path">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModels.1/@libraryElements.0/@classpath">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.0/@modifierSets.48" source="//@sourceSectionModels.2/@sections.7/@references.0/@value.1/@attributes.1"/>
           <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModels.1/@sections.0/@attributes.4"/>
         </mappingHints>

@@ -513,13 +513,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_REFERENCE__OWNING_CLASS = GenericPackage.REFERENCE__OWNING_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Ignore Unmatched Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = GenericPackage.REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE_FEATURE_COUNT = GenericPackage.REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE_FEATURE_COUNT = GenericPackage.REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -631,13 +640,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_COMPOSITE_REFERENCE__VALUE = GenericPackage.COMPOSITE_REFERENCE__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Ignore Unmatched Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_COMPOSITE_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Composite Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -758,13 +776,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Ignore Unmatched Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CROSS_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1084,6 +1111,17 @@ public interface SourcePackage extends EPackage {
 	EClass getSourceSectionReference();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.source.SourceSectionReference#isIgnoreUnmatchedElements <em>Ignore Unmatched Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ignore Unmatched Elements</em>'.
+	 * @see pamtram.structure.source.SourceSectionReference#isIgnoreUnmatchedElements()
+	 * @see #getSourceSectionReference()
+	 * @generated
+	 */
+	EAttribute getSourceSectionReference_IgnoreUnmatchedElements();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionCompositeReference <em>Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1210,6 +1248,14 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_REFERENCE = eINSTANCE.getSourceSectionReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Ignore Unmatched Elements</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = eINSTANCE.getSourceSectionReference_IgnoreUnmatchedElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl <em>Section Composite Reference</em>}' class.

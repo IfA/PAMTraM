@@ -15,7 +15,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.setups"
-      value="=https://eats3.et.tu-dresden.de/eclipse/setups/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
+      value="=https://agtele.eats.et.tu-dresden.de/eclipse/setups/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -76,7 +76,7 @@
     <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
-        url="https://eats3.et.tu-dresden.de/eclipse/updates/"/>
+        url="https://agtele.eats.et.tu-dresden.de/eclipse/updates/"/>
     <repository
         url="http://download.eclipse.org/windowbuilder/WB/release/4.6/"/>
   </setupTask>
@@ -155,7 +155,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.pamtram"
         name="clone.origin.pamtram"
-        defaultValue="ssh://git@eats3.et.tu-dresden.de/staff/mfreund/projects/pamtram"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:projects/pamtram"
         label="Pamtram clone origin">
       <description>The URL where all projects related to the 'pamtram' will be cloned from.</description>
     </setupTask>
@@ -163,7 +163,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.genlibrary"
         name="clone.origin.genlibrary"
-        defaultValue="ssh://git@eats3.et.tu-dresden.de/projects/genlibrary/common"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:projects/genlibrary/common"
         label="Genlibrary clone origin">
       <description>The URL where all projects related to the 'genlibrary' will be cloned from.</description>
     </setupTask>
@@ -171,7 +171,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.commons"
         name="clone.origin.commons"
-        defaultValue="ssh://git@eats3.et.tu-dresden.de/projects/eclipse-commons"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:projects/eclipse-commons"
         label="AGTele Eclipse Commons clone origin">
       <description>The URL where all projects from the 'AGTele Eclipse Commons' feature will be cloned from.</description>
     </setupTask>

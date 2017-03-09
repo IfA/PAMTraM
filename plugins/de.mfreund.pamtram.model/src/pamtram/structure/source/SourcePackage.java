@@ -2,6 +2,7 @@
  */
 package pamtram.structure.source;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -123,13 +124,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES = GenericPackage.CLASS_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CLASS_FEATURE_COUNT = GenericPackage.CLASS_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_CLASS_FEATURE_COUNT = GenericPackage.CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -293,6 +303,15 @@ public interface SourcePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION__ATTRIBUTES = SOURCE_SECTION_CLASS__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__INCLUDE_SUB_TYPES = SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1044,6 +1063,17 @@ public interface SourcePackage extends EPackage {
 	EClass getSourceSectionClass();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.source.SourceSectionClass#isIncludeSubTypes <em>Include Sub Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Include Sub Types</em>'.
+	 * @see pamtram.structure.source.SourceSectionClass#isIncludeSubTypes()
+	 * @see #getSourceSectionClass()
+	 * @generated
+	 */
+	EAttribute getSourceSectionClass_IncludeSubTypes();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionReference <em>Section Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1162,6 +1192,14 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CLASS = eINSTANCE.getSourceSectionClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Include Sub Types</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES = eINSTANCE.getSourceSectionClass_IncludeSubTypes();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionReferenceImpl <em>Section Reference</em>}' class.

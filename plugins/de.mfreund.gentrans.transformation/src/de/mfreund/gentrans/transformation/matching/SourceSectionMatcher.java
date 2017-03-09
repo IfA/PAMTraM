@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -662,14 +663,14 @@ public class SourceSectionMatcher {
 		// (SourceSectionClasses) for the
 		// current 'sourceSectionClass' and store them in to maps
 		//
-		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().parallelStream()
+		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().stream()
 				.collect(Collectors.toConcurrentMap(r -> r.getEReference(), r -> r.getValuesGeneric(), (i, j) -> {
 					i.addAll(j);
 					return i;
 				}));
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
-		sourceSectionClass.getReferences().parallelStream()
-				.forEach(r -> r.getValuesGeneric().parallelStream().forEach(c -> refByClassMap.put(c, r)));
+		sourceSectionClass.getReferences().stream()
+				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
 
 		// now, iterate through all the modeled references (and reference
 		// targets) and check if they can be matched for
@@ -690,12 +691,15 @@ public class SourceSectionMatcher {
 
 				/*
 				 * if no target SourceSectionClass has been specified, this means that there must be NO target element
-				 * in the source model; if this is not the case (meaning that there is a target element for the
-				 * reference), the mapping is not applicable
+				 * in the source model (unless there is a reference with 'ignoreUnmatchedElements' set to 'true'); if
+				 * this is not the case (meaning that there is a target element for the reference), the mapping is not
+				 * applicable
 				 */
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
-					return false;
+					return sourceSectionClass.getReferences().parallelStream()
+							.filter(r -> r.getEReference().equals(reference))
+							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 				} else {
 					continue;
 				}
@@ -774,7 +778,7 @@ public class SourceSectionMatcher {
 		// model ZERO_INFINITY sections, if there is one section with a minimum
 		// cardinality of 1, but it can be handled
 		//
-		List<SourceSectionClass> nonZeroClasses = classes.parallelStream()
+		List<SourceSectionClass> nonZeroClasses = classes.stream()
 				.filter(c -> !c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
 
 		for (final SourceSectionClass c : nonZeroClasses) {
@@ -803,7 +807,7 @@ public class SourceSectionMatcher {
 			// if no non-zero class has been found, try to match classes with a
 			// lower bound of ZERO
 			//
-			List<SourceSectionClass> zeroClasses = classes.parallelStream()
+			List<SourceSectionClass> zeroClasses = classes.stream()
 					.filter(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
 			for (final SourceSectionClass c : zeroClasses) {
 
@@ -818,10 +822,13 @@ public class SourceSectionMatcher {
 			}
 		}
 
-		// none of the given classes could be matched
+		// none of the given classes was a match for the given source model element; this is not allowed unless there is
+		// a reference with 'ignoreUnmatchedElements' set to 'true'
 		//
 		if (childDescriptor == null) {
-			return false;
+			return sourceSectionClass.getReferences().parallelStream()
+					.filter(r -> r.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
+					.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 		}
 
 		// one of the classes could be matched, so we update the given parent
@@ -922,10 +929,9 @@ public class SourceSectionMatcher {
 				}
 			}
 
-			if (!foundMapping) {
-				// we need to find a mapping for every srcModelElement if the
-				// reference Type was modeled in the
-				// srcMMSection
+			if (!foundMapping && !refByClassMap.get(classes.iterator().next()).isIgnoreUnmatchedElements()) {
+				// we need to find a mapping for every srcModelElement if the reference Type was modeled in the
+				// srcMMSection (and if we are not allowed to 'ignoreUnmatchedElements')
 				//
 				return false;
 			}
@@ -955,7 +961,7 @@ public class SourceSectionMatcher {
 					// filter elements that can be used for a vc-section
 					final List<MatchedSectionDescriptor> allVCIncompatible = new ArrayList<>();
 
-					allVCIncompatible.addAll(possibleElements.parallelStream()
+					allVCIncompatible.addAll(possibleElements.stream()
 							.filter(s -> !elementsUsableForVC.contains(s.getAssociatedSourceModelElement()))
 							.collect(Collectors.toList()));
 
@@ -1061,9 +1067,11 @@ public class SourceSectionMatcher {
 			}
 		}
 
-		// check if all refTargets where mapped
+		// check if all refTargets where mapped (and if we are not allowed to 'ignoreUnmatchedElements')
 		referencedElements.removeAll(allElementsMapped);
-		if (!referencedElements.isEmpty()) {
+		if (!referencedElements.isEmpty()
+				&& !refByClassMap.get(classes.iterator().next()).isIgnoreUnmatchedElements()) {
+
 			this.logger.warning("Not everything could be mapped");
 			return false;
 		}
@@ -1280,20 +1288,23 @@ public class SourceSectionMatcher {
 
 		// count how often a sourceModel Element is mapped
 		//
-		final Map<EObject, Integer> usages = possibleElements.parallelStream()
-				.map(e -> e.getAssociatedSourceModelElement())
+		final Map<EObject, Integer> usages = possibleElements.stream()
+				.map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
 				.collect(Collectors.toConcurrentMap(element -> element, element -> 1, (i, j) -> i + j));
 
-		// use one of the mappings for one of the elements with the least
-		// possible mappings
-		//
-		EObject leastUsed = usages.entrySet().parallelStream()
-				.sorted((e1, e2) -> e1.getValue() < e2.getValue() ? -1 : 1).findFirst().get().getKey();
+		Optional<Integer> leastUsage = usages.values().parallelStream().sorted().findFirst();
 
-		// return the descriptor representing the 'leastUsed' element
+		if (!leastUsage.isPresent()) {
+			return null;
+		}
+
+		// return the FIRST of the possible MatchedSectionDescriptors that represents one of the least used elements (we
+		// need to ensure a correct order at this point to match according to the order of the modeled
+		// SourceSectionClasses)
 		//
-		return possibleElements.parallelStream().filter(d -> d.getAssociatedSourceModelElement().equals(leastUsed))
-				.findAny().get();
+		return possibleElements.stream()
+				.filter(e -> usages.get(e.getAssociatedSourceModelElement()).intValue() == leastUsage.get()).findFirst()
+				.orElseGet(null);
 
 	}
 }

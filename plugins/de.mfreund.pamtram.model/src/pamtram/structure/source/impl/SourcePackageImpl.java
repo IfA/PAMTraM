@@ -275,6 +275,15 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSourceSectionReference_IgnoreUnmatchedElements() {
+		return (EAttribute)sourceSectionReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSourceSectionCompositeReference() {
 		return sourceSectionCompositeReferenceEClass;
 	}
@@ -351,6 +360,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		createEAttribute(sourceSectionClassEClass, SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES);
 
 		sourceSectionReferenceEClass = createEClass(SOURCE_SECTION_REFERENCE);
+		createEAttribute(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS);
 
 		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_COMPOSITE_REFERENCE);
 
@@ -491,6 +501,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		initEAttribute(getSourceSectionClass_IncludeSubTypes(), ecorePackage.getEBoolean(), "includeSubTypes", "true", 1, 1, SourceSectionClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionReferenceEClass, SourceSectionReference.class, "SourceSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSourceSectionReference_IgnoreUnmatchedElements(), ecorePackage.getEBoolean(), "ignoreUnmatchedElements", "false", 1, 1, SourceSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionCompositeReference.class, "SourceSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

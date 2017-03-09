@@ -1202,6 +1202,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeSubTypes" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+            defaultValueLiteral="true"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Class">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>

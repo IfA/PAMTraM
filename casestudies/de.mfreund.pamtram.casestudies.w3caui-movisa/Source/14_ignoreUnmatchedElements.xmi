@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<aui:AbstractUserInterfaceModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aui="http://www.w3.org/2013/mbui-aui">
+  <abstractInteractionUnit
+      frequency="1.3"
+      id="aui1"
+      role="confirmation">
+    <aggregatedIn/>
+    <eventSupport>
+      <dataSelectionSupport
+          id="matched-to-fail"/>
+      <dataSelectionSupport
+          id="unmatched1-to-fail"/>
+      <dataSelectionSupport
+          id="unmatched2-to-fail"/>
+      <dataSelectionSupport
+          xsi:type="aui:DataFilterSupport"/>
+    </eventSupport>
+    <presentationSupport>
+      <dataSelectionSupport
+          id="matched-to-ignore"/>
+      <dataSelectionSupport
+          id="unmatched1-to-ignore"/>
+      <dataSelectionSupport
+          id="unmatched2-to-ignore"/>
+      <dataSelectionSupport
+          xsi:type="aui:DataFilterSupport"/>
+    </presentationSupport>
+  </abstractInteractionUnit>
+</aui:AbstractUserInterfaceModel>

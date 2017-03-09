@@ -32,6 +32,7 @@ import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
+import de.mfreund.pamtram.util.NullComparator;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.MappingModel;
@@ -567,7 +568,9 @@ public class SourceSectionMatcher {
 	private MatchedSectionDescriptor checkSection(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
 
-		final boolean classFits = srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass());
+		final boolean classFits = srcSection.isIncludeSubTypes()
+				? srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass())
+				: NullComparator.compare(srcSection.getEClass(), srcModelObject.eClass());
 
 		// first of all: check if usedRefs contains this item and if type fits
 		// (we do not check any of the used elements of other mappings, since

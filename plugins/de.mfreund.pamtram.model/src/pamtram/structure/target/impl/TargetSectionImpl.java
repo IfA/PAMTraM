@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
@@ -214,6 +215,30 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					(Diagnostic.WARNING,
 					TargetValidator.DIAGNOSTIC_SOURCE,
 							TargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,
+							errorMessage,
+					new Object[] { this, TargetPackage.Literals.TARGET_SECTION }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.getCardinality() != CardinalityType.ONE;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The cardinality of this section is currently set to 'ONE'. Consider changing the cardinality if you want to allow that multiple instances of this section are created based on a mapping!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					TargetValidator.DIAGNOSTIC_SOURCE,
+							TargetValidator.TARGET_SECTION__VALIDATE_CARDINALITY,
 							errorMessage,
 					new Object[] { this, TargetPackage.Literals.TARGET_SECTION }));
 		
@@ -420,6 +445,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		switch (operationID) {
 			case TargetPackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return validateIsReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case TargetPackage.TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
+				return validateCardinality((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case TargetPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case TargetPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:

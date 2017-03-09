@@ -459,13 +459,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Section Attribute</em>}' class.
@@ -1284,6 +1293,16 @@ public interface TargetPackage extends EPackage {
 	EOperation getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSection#validateCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Cardinality</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Cardinality</em>' operation.
+	 * @see pamtram.structure.target.TargetSection#validateCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSection__ValidateCardinality__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.target.FileAttribute <em>File Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1472,6 +1491,14 @@ public interface TargetPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Cardinality</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__ValidateCardinality__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.target.impl.FileAttributeImpl <em>File Attribute</em>}' class.

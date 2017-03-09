@@ -1213,6 +1213,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionReference" abstract="true">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoreUnmatchedElements"
+            lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+            defaultValueLiteral="false"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>

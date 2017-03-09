@@ -8,11 +8,16 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.provider.ClassItemProvider;
+import pamtram.structure.source.SourcePackage;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.source.SourceSectionClass} object.
@@ -43,8 +48,31 @@ extends ClassItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIncludeSubTypesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Include Sub Types feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIncludeSubTypesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SourceSectionClass_includeSubTypes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionClass_includeSubTypes_feature", "_UI_SourceSectionClass_type"),
+				 SourcePackage.Literals.SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,6 +117,12 @@ extends ClassItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(SourceSectionClass.class)) {
+			case SourcePackage.SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

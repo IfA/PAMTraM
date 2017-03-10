@@ -13,11 +13,9 @@ import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.pamtram.pages.SharedSectionModelSelectionPage;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.ConditionModel;
-import pamtram.MappingModel;
 import pamtram.PAMTraM;
-import pamtram.SourceSectionModel;
-import pamtram.TargetSectionModel;
+import pamtram.util.SharedModelUtil;
+import pamtram.util.SharedModelUtil.SharedModelType;
 
 /**
  * This wizard allows to import one or multiple library elements from a library (represented by a Zip file) into a
@@ -60,18 +58,8 @@ public class ImportSharedModelWizard extends Wizard {
 		this.pamtram = pamtram;
 		this.editingDomain = editingDomain;
 		this.type = type;
-		String fileEnding = "";
-		if (type.equals(SharedModelType.SOURCE)) {
-			fileEnding = ".pamtram.source";
-		} else if (type.equals(SharedModelType.TARGET)) {
-			fileEnding = ".pamtram.target";
-		} else if (type.equals(SharedModelType.MAPPING)) {
-			fileEnding = ".pamtram.mapping";
-		} else if (type.equals(SharedModelType.CONDITION)) {
-			fileEnding = ".pamtram.condition";
-		}
 		this.one = new SharedSectionModelSelectionPage("Select Shared Model", "Select a shared model to be imported",
-				fileEnding, false);
+				SharedModelUtil.getFileEndingBySharedModelType(type), false);
 	}
 
 	@Override
@@ -95,10 +83,7 @@ public class ImportSharedModelWizard extends Wizard {
 
 			EObject content = sharednModelResource.getContents().get(0);
 
-			if (this.type.equals(SharedModelType.SOURCE) && !(content instanceof SourceSectionModel)
-					|| this.type.equals(SharedModelType.TARGET) && !(content instanceof TargetSectionModel)
-					|| this.type.equals(SharedModelType.MAPPING) && !(content instanceof MappingModel)
-					|| this.type.equals(SharedModelType.CONDITION) && !(content instanceof ConditionModel)) {
+			if (!SharedModelUtil.isValidSubModelContent(this.type, content)) {
 				this.showError("The selected file does not contain a valid shared model!");
 				return false;
 			}
@@ -109,14 +94,6 @@ public class ImportSharedModelWizard extends Wizard {
 			this.showError("Error while loading the resource containing the shared model!");
 			return false;
 		}
-
-		// if (this.type.equals(SharedModelType.SOURCE) &&
-		// this.pamtram.getSharedSourceSectionModel().contains(sharedModel)
-		// || this.type.equals(SharedModelType.TARGET)
-		// && this.pamtram.getSharedTargetSectionModel().contains(sharedModel)) {
-		// this.showError("The PAMTraM model already contains this shared SectionModel!");
-		// return false;
-		// }
 
 		EList<?> list = null;
 		if (this.type.equals(SharedModelType.SOURCE)) {
@@ -150,12 +127,4 @@ public class ImportSharedModelWizard extends Wizard {
 		MessageDialog.openError(shell, "ERROR", errorMessage);
 	}
 
-	/**
-	 * An enum representing the types of shared models that can be imported.
-	 *
-	 * @author mfreund
-	 */
-	public enum SharedModelType {
-		SOURCE, TARGET, MAPPING, CONDITION;
-	}
 }

@@ -105,8 +105,8 @@ public class MergeClassesCommand<S extends Section<S, C, R, A>, C extends pamtra
 			}
 		};
 
-		command.setLabel(MergeMetaModelElementsCommand.LABEL);
-		command.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);
+		command.setLabel(MergeMetaModelElementsCommand.COMMAND_LABEL);
+		command.setDescription(MergeMetaModelElementsCommand.COMMAND_DESCRIPTION);
 
 		// Initialize the various sub-commands
 		//

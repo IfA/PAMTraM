@@ -51,6 +51,16 @@ public class CreateSharedModelCommand extends CreateChildCommand {
 	 */
 	private AddCommand addSharedModelCommand;
 
+	private CreateSharedModelCommand(EditingDomain domain, PAMTraM owner, EStructuralFeature feature,
+			EObject sharedModelRoot, Collection<?> selection, CreateChildCommand.Helper helper) {
+
+		super(domain, owner, feature, sharedModelRoot, selection, helper);
+
+		this.sharedModelRoot = sharedModelRoot;
+
+		this.addSharedModelCommand = new AddCommand(domain, (EList<?>) owner.eGet(feature), sharedModelRoot);
+	}
+
 	/**
 	 * This creates an instance.
 	 *
@@ -86,16 +96,6 @@ public class CreateSharedModelCommand extends CreateChildCommand {
 		}
 
 		return new CreateSharedModelCommand(domain, owner, feature, sharedModelRoot, selection, helper);
-	}
-
-	private CreateSharedModelCommand(EditingDomain domain, PAMTraM owner, EStructuralFeature feature,
-			EObject sharedModelRoot, Collection<?> selection, CreateChildCommand.Helper helper) {
-
-		super(domain, owner, feature, sharedModelRoot, selection, helper);
-
-		this.sharedModelRoot = sharedModelRoot;
-
-		this.addSharedModelCommand = new AddCommand(domain, (EList<?>) owner.eGet(feature), sharedModelRoot);
 	}
 
 	/**

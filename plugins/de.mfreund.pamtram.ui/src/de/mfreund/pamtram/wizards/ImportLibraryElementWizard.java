@@ -91,9 +91,7 @@ public class ImportLibraryElementWizard extends Wizard {
 
 				// first, create the library element
 				LibraryEntry libElement = LibraryHelper.convertToLibraryElement(manager,
-						this.one.getTargetSectionModel().getMetaModelPackage().getNsURI(), entry.getKey(),
-						this.pamtram.eResource().getURI().trimSegments(1).appendSegment("lib"),
-						this.editingDomain.getResourceSet());
+						this.one.getTargetSectionModel().getMetaModelPackage().getNsURI(), entry.getKey());
 				libElement.setLibraryFile(this.one.getLibraryFile());
 
 				// second, create a command to import it to the pamtram model

@@ -89,7 +89,6 @@ import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -704,7 +703,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				} else if (importer.eContainer() instanceof InstanceSelector) {
 					target = ((InstanceSelector) importer.eContainer()).getTarget();
 				}
-				Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
+				Attribute<?, ?, ?, ?> source = importer.getGlobalAttribute() == null ? null
+						: importer.getGlobalAttribute().getSource();
 
 				this.setSourceTargetViewerSelections(source, target);
 
@@ -717,8 +717,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 				for (AttributeMappingSourceInterface c : mapping.getSourceElements()) {
-					if (c.getSourceAttribute() != null) {
-						sources.add(c.getSourceAttribute());
+					if (c instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) c).getSource());
 					}
 				}
 				if (mapping.getSharedCondition() != null) {
@@ -763,11 +763,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				TargetSectionAttribute target = matcher.getTarget();
 
-				List<SourceSectionAttribute> sources = new LinkedList<>();
+				List<Object> sources = new LinkedList<>();
 
 				for (AttributeMatcherSourceInterface srcElement : matcher.getSourceElements()) {
-					if (srcElement.getSourceAttribute() != null) {
-						sources.add(srcElement.getSourceAttribute());
+					if (srcElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) srcElement).getSource());
 					}
 				}
 
@@ -796,7 +796,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
 
 				for (ContainerSelectorSourceInterface sourceElement : hint.getSourceElements()) {
-					sources.add(sourceElement.getSourceAttribute());
+					if (sourceElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) sourceElement).getSource());
+					}
 				}
 
 				for (ContainerSelectorTargetAttribute a : hint.getTargetAttributes()) {

@@ -2,23 +2,15 @@
  */
 package pamtram.mapping.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.source.ActualSourceSectionAttribute;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -183,61 +175,6 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 				return globalAttribute != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == MappingHintSourceInterface.class) {
-			switch (baseOperationID) {
-				case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE___GET_SOURCE_ATTRIBUTE: return MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE;
-				default: return -1;
-			}
-		}
-		if (baseClass == AttributeMappingSourceInterface.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == AttributeMatcherSourceInterface.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ContainerSelectorSourceInterface.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == InstanceSelectorSourceInterface.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ValueConstraintSourceInterface.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER___GET_SOURCE_ATTRIBUTE:
-				return getSourceAttribute();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //GlobalAttributeImporterImpl

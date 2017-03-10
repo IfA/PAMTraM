@@ -846,22 +846,13 @@ public interface PamtramPackage extends EPackage {
 	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Get Source Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_VALUE___GET_SOURCE_ATTRIBUTE = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The number of operations of the '<em>Fixed Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.

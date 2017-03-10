@@ -3,7 +3,6 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
-import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,12 +15,5 @@ import pamtram.structure.source.SourceSectionAttribute;
  * @generated
  */
 public interface MappingHintSourceInterface extends NamedElement {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true"
-	 * @generated
-	 */
-	SourceSectionAttribute getSourceAttribute();
 
 } // MappingHintSourceInterface

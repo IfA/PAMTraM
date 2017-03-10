@@ -2103,9 +2103,7 @@
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//NamedElement">
-      <eOperations name="getSourceAttribute" lowerBound="1" eType="#//structure/source/SourceSectionAttribute"/>
-    </eClassifiers>
+        interface="true" eSuperTypes="#//NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
         abstract="true">
       <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">

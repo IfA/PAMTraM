@@ -34,7 +34,6 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
-import de.mfreund.pamtram.wizards.ImportSharedModelWizard.SharedModelType;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -93,6 +92,7 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.util.SharedModelUtil.SharedModelType;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.

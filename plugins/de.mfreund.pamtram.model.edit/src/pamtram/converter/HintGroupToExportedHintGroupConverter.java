@@ -9,29 +9,34 @@ import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 
-public class HintGroupToExportedHintGroupConverter implements
-		IConverter<MappingHintGroup, ExportedMappingHintGroup> {
+/**
+ * An {@link IConverter} that is able to convert a normal {@link MappingHintGroup} to an
+ * {@link ExportedMappingHintGroup}.
+ *
+ * @author mfreund
+ */
+public class HintGroupToExportedHintGroupConverter implements IConverter<MappingHintGroup, ExportedMappingHintGroup> {
 
 	@Override
 	public ExportedMappingHintGroup convert(MappingHintGroup source) {
-		
+
 		EPackage ePackage = source.eClass().getEPackage();
-		ExportedMappingHintGroup target =
-				(ExportedMappingHintGroup) ePackage.getEFactoryInstance().create((EClass) ePackage.getEClassifier("ExportedMappingHintGroup"));
-		
-		if(source.getName() != null){
+		ExportedMappingHintGroup target = (ExportedMappingHintGroup) ePackage.getEFactoryInstance()
+				.create((EClass) ePackage.getEClassifier("ExportedMappingHintGroup"));
+
+		if (source.getName() != null) {
 			target.setName(source.getName());
 		}
-		
-		if(source.getTargetSection() != null){
+
+		if (source.getTargetSection() != null) {
 			target.setTargetSection(source.getTargetSection());
 		}
-		
-		
-		if(source.getMappingHints() != null){
-			target.eSet(target.eClass().getEStructuralFeature(MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS), EcoreUtil.copyAll(source.getMappingHints()));
+
+		if (source.getMappingHints() != null) {
+			target.eSet(target.eClass().getEStructuralFeature(MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS),
+					EcoreUtil.copyAll(source.getMappingHints()));
 		}
-		
+
 		return target;
 	}
 

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryItem;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import de.tud.et.ifa.agtele.genlibrary.util.impl.FileParserImpl;
@@ -69,9 +69,18 @@ public class LibraryHelper {
 
 	private class MetamodelSectionConverter {
 
-		public TargetSectionClass convert(LibraryEntry libEntry) {
+		/**
+		 * This map keeps track of the metamodel elements that have been created for the library entries.
+		 */
+		private HashMap<EObject, MetaModelElement<?, ?, ?, ?>> libEntries2metaModelElementsMap = new HashMap<>();
 
-			LibraryItem libItem = libEntry.getOriginalLibraryEntry().getLibraryItem();
+		/**
+		 * This map keeps track of the non-containment references for that target values have to be found after
+		 * iterating through the containment tree.
+		 */
+		private HashMap<TargetSectionCrossReference, EObject> nonContainmentTargetMap = new HashMap<>();
+
+		public TargetSectionClass convert(LibraryEntry libEntry) {
 
 			EObject root = libEntry.getOriginalLibraryEntry().getParameterDescription().getContainerParameters().get(0)
 					.getSource();
@@ -84,17 +93,6 @@ public class LibraryHelper {
 
 			return section;
 		}
-
-		/**
-		 * This map keeps track of the metamodel elements that have been created for the library entries.
-		 */
-		private HashMap<EObject, MetaModelElement> libEntries2metaModelElementsMap = new HashMap<>();
-
-		/**
-		 * This map keeps track of the non-containment references for that target values have to be found after
-		 * iterating through the containment tree.
-		 */
-		private HashMap<TargetSectionCrossReference, EObject> nonContainmentTargetMap = new HashMap<>();
 
 		/**
 		 * This function is recursively called to iterate through the LibraryEntry and generate the corresponding
@@ -129,7 +127,7 @@ public class LibraryHelper {
 					tAttribute.setAttribute(att);
 					tAttribute.setName(att.getName());
 					// pimp the name of the surrounding Class
-					if (att.getName().equalsIgnoreCase("name")) {
+					if ("name".equalsIgnoreCase(att.getName())) {
 						tClass.setName(tClass.getName() + " " + currentObject.eGet(att));
 					}
 					tAttribute.setUnique(false);
@@ -188,12 +186,12 @@ public class LibraryHelper {
 		 */
 		private void findNonContainmentReferenceTargets() {
 
-			for (TargetSectionCrossReference ref : this.nonContainmentTargetMap.keySet()) {
-				EObject target = this.libEntries2metaModelElementsMap.get(this.nonContainmentTargetMap.get(ref));
+			for (Entry<TargetSectionCrossReference, EObject> entry : this.nonContainmentTargetMap.entrySet()) {
+				EObject target = this.libEntries2metaModelElementsMap.get(entry.getValue());
 				if (target != null && target instanceof TargetSectionClass) {
-					ref.getValue().add((TargetSectionClass) target);
+					entry.getKey().getValue().add((TargetSectionClass) target);
 				} else {
-					System.out.println("No target found for non-containment reference " + ref.getName());
+					System.out.println("No target found for non-containment reference " + entry.getKey().getName());
 				}
 			}
 		}
@@ -212,22 +210,17 @@ public class LibraryHelper {
 	 *            conversion.
 	 * @param path
 	 *            The path of the library entry inside the library (e.g. 'my.path').
-	 * @param uri
-	 *            The URI where the resource created for the library element shall be stored.
-	 * @param resourceSet
-	 *            The resource set to be used to.
 	 * @return The generated LibraryEntry.
 	 * @throws IOException
 	 *             If something goes wrong during loading the libraryFile or the XMI file inside the library file
 	 *             representing the LibraryEntry.
 	 */
-	public static LibraryEntry convertToLibraryElement(GenLibraryManager manager, String ePackageURI, String path,
-			URI uri, ResourceSet resourceSet) throws IOException {
+	public static LibraryEntry convertToLibraryElement(GenLibraryManager manager, String ePackageURI, String path)
+			throws IOException {
 
-		// TODO maybe use a factory pattern for this?
 		LibraryElementConverter converter;
 		try {
-			converter = new LibraryHelper().new LibraryElementConverter(manager, ePackageURI, path, uri, resourceSet);
+			converter = new LibraryHelper().new LibraryElementConverter(manager, ePackageURI, path);
 		} catch (InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 			return null;
@@ -264,13 +257,13 @@ public class LibraryHelper {
 	}
 
 	/**
-	 * This determines the LibraryEntry identified by a given combination of a library file and a path inside the
-	 * library file.
+	 * This determines and returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} identified
+	 * by a given {@link LibraryFileEntry}.
 	 *
-	 * @param libraryFile
-	 *            The path to a library file (Zip or Jar).
-	 * @param path
-	 *            The path of the library entry inside the library (e.g. 'my.path').
+	 * @param entry
+	 *            The {@link LibraryFileEntry} representing the
+	 *            {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} to be returned. The path to a
+	 *            library file (Zip or Jar).
 	 * @return The LibraryEntry identified by the given combination of libraryFile and path; null if the LibraryEntry
 	 *         could not be determined.
 	 * @throws IOException
@@ -292,7 +285,7 @@ public class LibraryHelper {
 		resource.load(inputStream, null);
 		inputStream.close();
 		// get the library entry from the resource contents and return it
-		if (!(resource.getContents() == null) && !resource.getContents().isEmpty() && resource.getContents()
+		if (resource.getContents() != null && !resource.getContents().isEmpty() && resource.getContents()
 				.get(0) instanceof de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) {
 			libEntry = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) resource.getContents().get(0);
 		}
@@ -300,6 +293,18 @@ public class LibraryHelper {
 		return libEntry;
 	}
 
+	/**
+	 * Store the given {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} in a file identified by the
+	 * given {@link URI}.
+	 *
+	 * @param libEntry
+	 *            The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} to store.
+	 * @param uri
+	 *            The {@link URI} where the entry shall be stored.
+	 * @param resourceSet
+	 *            The {@link ResourceSet} that shall be used to create the resource in which the entry is to be stored.
+	 * @throws IOException
+	 */
 	public static void storeLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry,
 			URI uri, ResourceSet resourceSet) throws IOException {
 
@@ -308,7 +313,6 @@ public class LibraryHelper {
 		}
 
 		// create a resource and add the library entry
-		// Resource resource = new XMIResourceImpl(uri);
 		Resource resource = resourceSet.createResource(uri);
 		resource.getContents().add(libEntry);
 
@@ -333,32 +337,7 @@ public class LibraryHelper {
 		/**
 		 * This is the path inside a library file pointing to a library file element that shall be converted.
 		 */
-		final private String path;
-
-		/**
-		 * This is the LibraryFileEntry that this converter shall convert.
-		 */
-		private LibraryFileEntry libFileEntry;
-
-		/**
-		 * This is the LibraryEntry that the LibraryFileEntry is associated with.
-		 */
-		private de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry;
-
-		/**
-		 * This is the generated LibraryEntry.
-		 */
-		private LibraryEntry pamtramLibEntry;
-
-		/**
-		 * The URI where the resource created for the library element shall be stored.
-		 */
-		private URI uri;
-
-		/**
-		 * The resource set to be used to create the new resource.
-		 */
-		private ResourceSet resourceSet;
+		private final String path;
 
 		/**
 		 * This is the GenLibraryManager that proxies calls to the 'genlibrary' plug-in.
@@ -375,20 +354,14 @@ public class LibraryHelper {
 		 *            conversion.
 		 * @param path
 		 *            The path of the library entry inside the library (e.g. 'my.path').
-		 * @param uri
-		 *            The URI where the resource created for the library element shall be stored.
-		 * @param resourceSet
-		 *            The resource set to be used.
 		 * @throws IllegalAccessException
 		 * @throws InstantiationException
 		 */
-		public LibraryElementConverter(GenLibraryManager manager, String ePackageURI, String path, URI uri,
-				ResourceSet resourceSet) throws InstantiationException, IllegalAccessException {
+		public LibraryElementConverter(GenLibraryManager manager, String ePackageURI, String path)
+				throws InstantiationException, IllegalAccessException {
 
 			this.ePackageURI = ePackageURI;
 			this.path = path;
-			this.uri = uri;
-			this.resourceSet = resourceSet;
 
 			this.manager = manager;
 		}
@@ -402,36 +375,31 @@ public class LibraryHelper {
 		public LibraryEntry convert() throws IOException {
 
 			// first, determine the LibraryFileEntry and LibraryEntry to be converted
-			// libFileEntry = getLibraryFileEntry(libraryFile, path);
-			// libEntry = getLibraryEntry(libFileEntry);
-			this.libEntry = this.manager.getLibraryEntry(this.ePackageURI, this.path, false);
-
-			// storeLibraryEntry(libEntry, uri.appendSegment(path).appendSegment("data.xmi"), resourceSet);
+			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntry = this.manager
+					.getLibraryEntry(this.ePackageURI, this.path, false);
 
 			// create the LibraryElement to be returned
-			this.pamtramLibEntry = LibraryFactory.eINSTANCE.createLibraryEntry();
+			LibraryEntry pamtramLibEntry = LibraryFactory.eINSTANCE.createLibraryEntry();
 
 			// set the path, id, etc.
-			// pamtramLibEntry.setPath(libFileEntry.getKey());
 			VirtualTargetSectionAttribute pathAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			pathAttribute.setName("Classpath");
 			pathAttribute.setValue(this.path);
-			this.pamtramLibEntry.setClasspath(pathAttribute);
+			pamtramLibEntry.setClasspath(pathAttribute);
 			VirtualTargetSectionAttribute idAttribute = TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute();
 			idAttribute.setName("ID");
-			idAttribute.setValue(this.libEntry.getParameterDescription().getID());
-			this.pamtramLibEntry.setId(idAttribute);
-			// pamtramLibEntry.setLibraryFile(libraryFile);
-			this.pamtramLibEntry.setOriginalLibraryEntry(this.libEntry);
+			idAttribute.setValue(libEntry.getParameterDescription().getID());
+			pamtramLibEntry.setId(idAttribute);
+			pamtramLibEntry.setOriginalLibraryEntry(libEntry);
 
-			if (this.libEntry.getParameterDescription() == null) {
-				return this.pamtramLibEntry;
+			if (libEntry.getParameterDescription() == null) {
+				return pamtramLibEntry;
 			}
 
 			/*
 			 * Create and populate a Pamtram AttributeParameter for every Genlib AttributeParameter
 			 */
-			for (AbstractAttributeParameter<EObject> attParameter : this.libEntry.getParameterDescription()
+			for (AbstractAttributeParameter<EObject> attParameter : libEntry.getParameterDescription()
 					.getAttributeParameters()) {
 
 				AttributeParameter param = LibraryFactory.eINSTANCE.createAttributeParameter();
@@ -445,14 +413,14 @@ public class LibraryHelper {
 
 				param.setAttribute(attribute);
 
-				this.pamtramLibEntry.getParameters().add(param);
+				pamtramLibEntry.getParameters().add(param);
 
 			}
 
 			/*
 			 * Create and populate a Pamtram ContainerParameter for every Genlib ContainerParameter
 			 */
-			for (AbstractContainerParameter<EObject, EObject> contParameter : this.libEntry.getParameterDescription()
+			for (AbstractContainerParameter<EObject, EObject> contParameter : libEntry.getParameterDescription()
 					.getContainerParameters()) {
 
 				ContainerParameter param = LibraryFactory.eINSTANCE.createContainerParameter();
@@ -466,21 +434,21 @@ public class LibraryHelper {
 
 				param.setClass(section);
 
-				this.pamtramLibEntry.getParameters().add(param);
+				pamtramLibEntry.getParameters().add(param);
 
 			}
 
 			/*
 			 * Create and populate a Pamtram ExternalReferenceParameter for every Genlib ExternalReferenceParameter
 			 */
-			for (AbstractExternalReferenceParameter<EObject, EObject> extRefParameter : this.libEntry
+			for (AbstractExternalReferenceParameter<EObject, EObject> extRefParameter : libEntry
 					.getParameterDescription().getExternalReferenceParameters()) {
 
 				EObject source = extRefParameter.getSource();
 
 				// search for cross references to the old source object from
 				// the library item
-				Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(source, this.libEntry);
+				Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(source, libEntry);
 
 				// create a paramter for every setting
 				for (Setting setting : crossReferences) {
@@ -495,14 +463,14 @@ public class LibraryHelper {
 
 					param.setReference(ref);
 
-					this.pamtramLibEntry.getParameters().add(param);
+					pamtramLibEntry.getParameters().add(param);
 				}
 			}
 
 			/*
 			 * Create and populate a Pamtram ResourceParameter for every Genlib ResourceParameter
 			 */
-			for (ResourceParameter resParameter : this.libEntry.getParameterDescription().getResourceParameters()) {
+			for (ResourceParameter resParameter : libEntry.getParameterDescription().getResourceParameters()) {
 
 				pamtram.structure.library.ResourceParameter param = LibraryFactory.eINSTANCE.createResourceParameter();
 				param.setOriginalParameter(resParameter);
@@ -514,11 +482,11 @@ public class LibraryHelper {
 
 				param.setAttribute(attribute);
 
-				this.pamtramLibEntry.getResourceParameters().add(param);
+				pamtramLibEntry.getResourceParameters().add(param);
 
 			}
 
-			return this.pamtramLibEntry;
+			return pamtramLibEntry;
 		}
 	}
 

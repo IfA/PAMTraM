@@ -8,6 +8,12 @@ import pamtram.mapping.AttributeMatcherExternalSourceElement;
 import pamtram.mapping.AttributeMatcherSourceElement;
 import pamtram.mapping.MappingPackage;
 
+/**
+ * An {@link IConverter} that is able to convert a normal {@link AttributeMatcherSourceElement} to an
+ * {@link AttributeMatcherExternalSourceElement}.
+ *
+ * @author mfreund
+ */
 public class InternalToExternalSourceAttrMatcherElementConverter
 		implements IConverter<AttributeMatcherSourceElement, AttributeMatcherExternalSourceElement> {
 

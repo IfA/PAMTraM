@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:structure="http://mfreund.de/pamtram/structure">
   <sourceSectionModels name="stgml-simplified">
     <metaModelPackage href="http://stgml-simplified#/"/>
     <sections xsi:type="source:SourceSection" name="State">
@@ -65,12 +65,12 @@
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="source" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+            <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="target" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="target" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="target" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="Signal.nameMapping" target="//@targetSectionModels.0/@sections.1/@references.2/@value.0/@attributes.0">

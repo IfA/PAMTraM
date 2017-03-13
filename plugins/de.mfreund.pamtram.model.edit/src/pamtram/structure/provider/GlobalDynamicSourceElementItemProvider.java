@@ -62,7 +62,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
+			childrenFeatures.add(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -102,9 +102,9 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -141,7 +141,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 
 		newChildDescriptors.add
 			(createChildParameter
-				(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS,
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 

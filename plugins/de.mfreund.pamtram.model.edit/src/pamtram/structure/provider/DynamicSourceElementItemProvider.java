@@ -84,9 +84,9 @@ public class DynamicSourceElementItemProvider extends NamedElementItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ModifiedAttributeElementType_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_source_feature", "_UI_ModifiedAttributeElementType_type"),
-				 StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE,
+				 getString("_UI_DynamicSourceElement_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DynamicSourceElement_source_feature", "_UI_DynamicSourceElement_type"),
+				 StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE,
 				 true,
 				 false,
 				 true,
@@ -118,9 +118,9 @@ public class DynamicSourceElementItemProvider extends NamedElementItemProvider {
 		String label = ((DynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_DynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_DynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

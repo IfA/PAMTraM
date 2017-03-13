@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -37,8 +37,8 @@ import pamtram.structure.source.SourceSectionClass;
 public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -46,42 +46,48 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
+
+		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LocalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_LocalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_LocalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel
+					.append(this.getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER)
+					.append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -90,23 +96,25 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -121,8 +129,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 				this.getString("_UI_ModifiedAttributeElementType_source_feature"),
 				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_source_feature",
 						"_UI_ModifiedAttributeElementType_type"),
-				StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, true, false, true, null, null,
-				null) {
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null, null, null) {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {

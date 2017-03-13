@@ -207,38 +207,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
-      <eTypeParameters name="S">
-        <eBounds eClassifier="#//structure/generic/Section">
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/S"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/C"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/R"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/A"/>
-        </eBounds>
-      </eTypeParameters>
-      <eTypeParameters name="C">
-        <eBounds eClassifier="#//structure/generic/Class">
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/S"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/C"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/R"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/A"/>
-        </eBounds>
-      </eTypeParameters>
-      <eTypeParameters name="R">
-        <eBounds eClassifier="#//structure/generic/Reference">
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/S"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/C"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/R"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/A"/>
-        </eBounds>
-      </eTypeParameters>
-      <eTypeParameters name="A">
-        <eBounds eClassifier="#//structure/generic/Attribute">
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/S"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/C"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/R"/>
-          <eTypeArguments eTypeParameter="#//structure/InstanceSelector/A"/>
-        </eBounds>
-      </eTypeParameters>
       <eOperations name="validateNoModifiedAttributeElementTypesInConditionModelConditions"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -252,27 +220,12 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1">
-        <eGenericType eTypeParameter="#//structure/InstanceSelector/A"/>
-      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
           eType="#//structure/InstanceSelectorSourceInterface" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SourceInstanceSelector">
-      <eGenericSuperTypes eClassifier="#//structure/InstanceSelector">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TargetInstanceSelector">
-      <eGenericSuperTypes eClassifier="#//structure/InstanceSelector">
-        <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
+    <eClassifiers xsi:type="ecore:EClass" name="SourceInstanceSelector" eSuperTypes="#//structure/InstanceSelector">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+          eType="#//structure/source/SourceSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>

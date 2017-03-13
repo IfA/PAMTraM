@@ -24,7 +24,6 @@ public class ContainerSelectorGlobalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainerSelectorGlobalSourceElementImpl() {
@@ -33,12 +32,10 @@ public class ContainerSelectorGlobalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT;
 	}
 

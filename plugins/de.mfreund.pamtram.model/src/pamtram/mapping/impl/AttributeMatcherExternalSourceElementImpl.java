@@ -24,7 +24,6 @@ public class AttributeMatcherExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeMatcherExternalSourceElementImpl() {
@@ -33,12 +32,10 @@ public class AttributeMatcherExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT;
 	}
 

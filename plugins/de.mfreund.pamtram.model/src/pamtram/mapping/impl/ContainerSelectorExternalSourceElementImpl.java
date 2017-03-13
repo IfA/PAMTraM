@@ -24,7 +24,6 @@ public class ContainerSelectorExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainerSelectorExternalSourceElementImpl() {
@@ -33,12 +32,10 @@ public class ContainerSelectorExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT;
 	}
 

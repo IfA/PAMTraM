@@ -24,7 +24,6 @@ public class CardinalityMappingGlobalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CardinalityMappingGlobalSourceElementImpl() {
@@ -33,12 +32,10 @@ public class CardinalityMappingGlobalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT;
 	}
 

@@ -74,10 +74,28 @@ public class StructureSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case StructurePackage.INSTANCE_SELECTOR: {
-				InstanceSelector instanceSelector = (InstanceSelector)theEObject;
+				InstanceSelector<?, ?, ?, ?> instanceSelector = (InstanceSelector<?, ?, ?, ?>)theEObject;
 				T result = caseInstanceSelector(instanceSelector);
 				if (result == null) result = caseExpressionElement(instanceSelector);
 				if (result == null) result = caseModifiableElement(instanceSelector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StructurePackage.SOURCE_INSTANCE_SELECTOR: {
+				SourceInstanceSelector sourceInstanceSelector = (SourceInstanceSelector)theEObject;
+				T result = caseSourceInstanceSelector(sourceInstanceSelector);
+				if (result == null) result = caseInstanceSelector(sourceInstanceSelector);
+				if (result == null) result = caseExpressionElement(sourceInstanceSelector);
+				if (result == null) result = caseModifiableElement(sourceInstanceSelector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StructurePackage.TARGET_INSTANCE_SELECTOR: {
+				TargetInstanceSelector targetInstanceSelector = (TargetInstanceSelector)theEObject;
+				T result = caseTargetInstanceSelector(targetInstanceSelector);
+				if (result == null) result = caseInstanceSelector(targetInstanceSelector);
+				if (result == null) result = caseExpressionElement(targetInstanceSelector);
+				if (result == null) result = caseModifiableElement(targetInstanceSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,7 +182,37 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInstanceSelector(InstanceSelector object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseInstanceSelector(InstanceSelector<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Instance Selector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceInstanceSelector(SourceInstanceSelector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetInstanceSelector(TargetInstanceSelector object) {
 		return null;
 	}
 

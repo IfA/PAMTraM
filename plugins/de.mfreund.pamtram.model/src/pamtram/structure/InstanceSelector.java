@@ -9,7 +9,9 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
-import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc
@@ -28,7 +30,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  *        constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
-public interface InstanceSelector extends ExpressionElement, ModifiableElement {
+public interface InstanceSelector<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ExpressionElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -38,21 +40,22 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(ActualSourceSectionAttribute)
+	 * @see #setTarget(Attribute)
 	 * @see pamtram.structure.StructurePackage#getInstanceSelector_Target()
 	 * @model required="true"
 	 * @generated
 	 */
-	ActualSourceSectionAttribute getTarget();
+	A getTarget();
 
 	/**
 	 * Sets the value of the '{@link pamtram.structure.InstanceSelector#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(ActualSourceSectionAttribute value);
+	void setTarget(A value);
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.

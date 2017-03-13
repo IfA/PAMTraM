@@ -32,9 +32,9 @@ import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -124,7 +124,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> instanceSelectors;
+	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
@@ -212,9 +212,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public EList<InstanceSelector> getInstanceSelectors() {
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -441,7 +441,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();

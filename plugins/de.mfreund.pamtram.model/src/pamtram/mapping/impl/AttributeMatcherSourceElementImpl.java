@@ -24,7 +24,6 @@ public class AttributeMatcherSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeMatcherSourceElementImpl() {
@@ -33,12 +32,10 @@ public class AttributeMatcherSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.ATTRIBUTE_MATCHER_SOURCE_ELEMENT;
 	}
 

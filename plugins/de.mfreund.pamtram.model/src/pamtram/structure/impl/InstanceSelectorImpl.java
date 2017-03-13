@@ -28,7 +28,9 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -46,7 +48,7 @@ import pamtram.structure.util.StructureValidator;
  *
  * @generated
  */
-public class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
+public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ExpressionElementImpl implements InstanceSelector<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -65,7 +67,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * @generated
 	 * @ordered
 	 */
-	protected ActualSourceSectionAttribute target;
+	protected A target;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
@@ -113,10 +115,11 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute getTarget() {
+	@SuppressWarnings("unchecked")
+	public A getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
-			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
+			target = (A)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
@@ -130,7 +133,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute basicGetTarget() {
+	public A basicGetTarget() {
 		return target;
 	}
 
@@ -139,8 +142,8 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ActualSourceSectionAttribute newTarget) {
-		ActualSourceSectionAttribute oldTarget = target;
+	public void setTarget(A newTarget) {
+		A oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
@@ -230,7 +233,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((ActualSourceSectionAttribute)newValue);
+				setTarget((A)newValue);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
@@ -252,7 +255,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 				getModifiers().clear();
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((ActualSourceSectionAttribute)null);
+				setTarget((A)null);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();

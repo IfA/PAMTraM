@@ -74,8 +74,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	protected StructureSwitch<Adapter> modelSwitch =
 		new StructureSwitch<Adapter>() {
 			@Override
-			public Adapter caseInstanceSelector(InstanceSelector object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseInstanceSelector(InstanceSelector<S, C, R, A> object) {
 				return createInstanceSelectorAdapter();
+			}
+			@Override
+			public Adapter caseSourceInstanceSelector(SourceInstanceSelector object) {
+				return createSourceInstanceSelectorAdapter();
+			}
+			@Override
+			public Adapter caseTargetInstanceSelector(TargetInstanceSelector object) {
+				return createTargetInstanceSelectorAdapter();
 			}
 			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
@@ -156,6 +164,34 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.SourceInstanceSelector <em>Source Instance Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.SourceInstanceSelector
+	 * @generated
+	 */
+	public Adapter createSourceInstanceSelectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetInstanceSelector <em>Target Instance Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.TargetInstanceSelector
+	 * @generated
+	 */
+	public Adapter createTargetInstanceSelectorAdapter() {
 		return null;
 	}
 

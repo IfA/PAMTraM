@@ -18,8 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.InstanceSelectingElement;
 import pamtram.PamtramPackage;
-
-import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +42,7 @@ public abstract class InstanceSelectingElementImpl extends MinimalEObjectImpl.Co
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> instanceSelectors;
+	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,9 +68,9 @@ public abstract class InstanceSelectingElementImpl extends MinimalEObjectImpl.Co
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstanceSelector> getInstanceSelectors() {
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -115,7 +114,7 @@ public abstract class InstanceSelectingElementImpl extends MinimalEObjectImpl.Co
 		switch (featureID) {
 			case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

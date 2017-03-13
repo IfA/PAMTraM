@@ -5,8 +5,7 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
-
-import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,7 @@ import pamtram.structure.InstanceSelector;
 public interface InstanceSelectingElement extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.InstanceSelector}.
+	 * The list contents are of type {@link pamtram.structure.SourceInstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance Selectors</em>' containment reference list isn't clear,
@@ -39,6 +38,6 @@ public interface InstanceSelectingElement extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<InstanceSelector> getInstanceSelectors();
+	EList<SourceInstanceSelector> getInstanceSelectors();
 
 } // InstanceSelectingElement

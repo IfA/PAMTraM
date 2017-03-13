@@ -24,7 +24,6 @@ public class AttributeMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeMappingSourceElementImpl() {
@@ -33,12 +32,10 @@ public class AttributeMappingSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.ATTRIBUTE_MAPPING_SOURCE_ELEMENT;
 	}
 

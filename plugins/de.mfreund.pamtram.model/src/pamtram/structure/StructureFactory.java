@@ -22,13 +22,22 @@ public interface StructureFactory extends EFactory {
 	StructureFactory eINSTANCE = pamtram.structure.impl.StructureFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Instance Selector</em>'.
+	 * Returns a new object of class '<em>Source Instance Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Selector</em>'.
+	 * @return a new object of class '<em>Source Instance Selector</em>'.
 	 * @generated
 	 */
-	InstanceSelector createInstanceSelector();
+	SourceInstanceSelector createSourceInstanceSelector();
+
+	/**
+	 * Returns a new object of class '<em>Target Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target Instance Selector</em>'.
+	 * @generated
+	 */
+	TargetInstanceSelector createTargetInstanceSelector();
 
 	/**
 	 * Returns a new object of class '<em>Instance Selector Source Element</em>'.

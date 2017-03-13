@@ -24,7 +24,6 @@ public class ContainerSelectorSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainerSelectorSourceElementImpl() {
@@ -33,12 +32,10 @@ public class ContainerSelectorSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.CONTAINER_SELECTOR_SOURCE_ELEMENT;
 	}
 

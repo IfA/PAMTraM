@@ -20,7 +20,7 @@ import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
-import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> instanceSelectors;
+	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -123,9 +123,9 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstanceSelector> getInstanceSelectors() {
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -268,7 +268,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 		switch (featureID) {
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue((Integer)newValue);

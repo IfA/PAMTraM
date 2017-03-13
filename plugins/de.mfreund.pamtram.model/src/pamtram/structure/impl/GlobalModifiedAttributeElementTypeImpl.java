@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.InstanceSelectingElement;
 import pamtram.PamtramPackage;
 import pamtram.structure.GlobalModifiedAttributeElementType;
-import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -41,7 +41,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InstanceSelector> instanceSelectors;
+	protected EList<SourceInstanceSelector> instanceSelectors;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +66,9 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InstanceSelector> getInstanceSelectors() {
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -112,7 +112,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 		switch (featureID) {
 			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

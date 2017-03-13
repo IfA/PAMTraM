@@ -9,15 +9,14 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.maps.AttributeMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
+import de.mfreund.gentrans.transformation.maps.ContainerSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
-import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
@@ -49,7 +48,7 @@ public class HintValueStorage {
 	/**
 	 * This keeps track of hint values for {@link ContainerSelector ModelConnectionHints}.
 	 */
-	private final ModelConnectionHintValueMap modelConnectionHintValues;
+	private final ContainerSelectorHintValueMap containerSelectorHintValues;
 
 	/**
 	 * This constructs an instance and initializes the various maps to store hint values.
@@ -59,7 +58,7 @@ public class HintValueStorage {
 		this.attributeMappingHintValues = new AttributeMappingHintValueMap();
 		this.cardinalityMappingHintValues = new CardinalityMappingHintValueMap();
 		this.mappingInstanceSelectorHintValues = new MappingInstanceSelectorHintValueMap();
-		this.modelConnectionHintValues = new ModelConnectionHintValueMap();
+		this.containerSelectorHintValues = new ContainerSelectorHintValueMap();
 	}
 
 	/**
@@ -249,11 +248,11 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * @return the {@link #modelConnectionHintValues}
+	 * @return the {@link #containerSelectorHintValues}
 	 */
-	public ModelConnectionHintValueMap getModelConnectionHintValues() {
+	public ContainerSelectorHintValueMap getModelConnectionHintValues() {
 
-		return this.modelConnectionHintValues;
+		return this.containerSelectorHintValues;
 	}
 
 	/**
@@ -263,10 +262,10 @@ public class HintValueStorage {
 	 *            The hint for which the stored values shall be returned.
 	 * @return The stored values for the given hint.
 	 */
-	public LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> getHintValues(
+	public LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> getHintValues(
 			ContainerSelector hint) {
 
-		return this.modelConnectionHintValues.getHintValues(hint);
+		return this.containerSelectorHintValues.getHintValues(hint);
 	}
 
 	/**
@@ -276,13 +275,13 @@ public class HintValueStorage {
 	 *            The hint for which the stored values shall be returned.
 	 * @return A cloned copy of the list of stored values for the given hint.
 	 */
-	public LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(
+	public LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(
 			ContainerSelector hint) {
 
 		return new LinkedList<>(
-				this.modelConnectionHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-					Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-					for (ContainerSelectorSourceInterface key : oldHintValue.keySet()) {
+				this.containerSelectorHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
+					Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+					for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
 						newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
 					}
 					return newHintValue;
@@ -306,18 +305,18 @@ public class HintValueStorage {
 	public void addHintValue(EObject hint, Object value) throws ClassCastException {
 
 		if (hint instanceof AttributeMapping) {
-			this.addHintValue((AttributeMapping) hint,
+			this.addAttributeMappingHintValue((AttributeMapping) hint,
 					(Map<AttributeMappingSourceInterface, AttributeValueRepresentation>) value);
 		} else if (hint instanceof CardinalityMapping) {
-			this.addHintValue((CardinalityMapping) hint, value);
+			this.addCardinalityMappingHintValue((CardinalityMapping) hint, value);
 		} else if (hint instanceof MappedAttributeValueExpander) {
 			this.addHintValue(hint, value);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			this.addHintValue((ReferenceTargetSelector) hint,
+			this.addReferenceTargetSelectorHintValue((ReferenceTargetSelector) hint,
 					(Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>) value);
 		} else if (hint instanceof ContainerSelector) {
-			this.addHintValue((ContainerSelector) hint,
-					(Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>) value);
+			this.addContainerSelectorHintValue((ContainerSelector) hint,
+					(Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>) value);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -331,7 +330,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(AttributeMapping hint,
+	public void addAttributeMappingHintValue(AttributeMapping hint,
 			Map<AttributeMappingSourceInterface, AttributeValueRepresentation> value) {
 
 		this.attributeMappingHintValues.addHintValue(hint, value);
@@ -345,7 +344,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(CardinalityMapping hint, Object value) {
+	public void addCardinalityMappingHintValue(CardinalityMapping hint, Object value) {
 
 		this.cardinalityMappingHintValues.addHintValue(hint, value);
 	}
@@ -358,7 +357,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(ReferenceTargetSelector hint,
+	public void addReferenceTargetSelectorHintValue(ReferenceTargetSelector hint,
 			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
 		this.mappingInstanceSelectorHintValues.addHintValue(hint, value);
@@ -372,10 +371,10 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(ContainerSelector hint,
-			Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> value) {
+	public void addContainerSelectorHintValue(ContainerSelector hint,
+			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
-		this.modelConnectionHintValues.addHintValue(hint, value);
+		this.containerSelectorHintValues.addHintValue(hint, value);
 	}
 
 	/**
@@ -388,7 +387,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(AttributeMapping hint, SourceSectionClass clazz,
+	public void addAttributeMappingHintValue(AttributeMapping hint, SourceSectionClass clazz,
 			Map<AttributeMappingSourceInterface, AttributeValueRepresentation> value) {
 
 		this.attributeMappingHintValues.addHintValue(hint, clazz, value);
@@ -404,7 +403,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(CardinalityMapping hint, SourceSectionClass clazz, Object value) {
+	public void addCardinalityMappingHintValue(CardinalityMapping hint, SourceSectionClass clazz, Object value) {
 
 		this.cardinalityMappingHintValues.addHintValue(hint, clazz, value);
 	}
@@ -419,7 +418,7 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(ReferenceTargetSelector hint, SourceSectionClass clazz,
+	public void addReferenceTargetSelectorHintValue(ReferenceTargetSelector hint, SourceSectionClass clazz,
 			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
 		this.mappingInstanceSelectorHintValues.addHintValue(hint, clazz, value);
@@ -435,10 +434,10 @@ public class HintValueStorage {
 	 * @param value
 	 *            The value to be added.
 	 */
-	public void addHintValue(ContainerSelector hint, SourceSectionClass clazz,
-			Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> value) {
+	public void addContainerSelectorHintValue(ContainerSelector hint, SourceSectionClass clazz,
+			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
-		this.modelConnectionHintValues.addHintValue(hint, clazz, value);
+		this.containerSelectorHintValues.addHintValue(hint, clazz, value);
 	}
 
 	/**
@@ -474,18 +473,18 @@ public class HintValueStorage {
 	public void addHintValues(EObject hint, Object values) throws ClassCastException {
 
 		if (hint instanceof AttributeMapping) {
-			this.addHintValues((AttributeMapping) hint,
+			this.addAttributeMappingHintValues((AttributeMapping) hint,
 					(LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof CardinalityMapping) {
-			this.addHintValues((CardinalityMapping) hint, (LinkedList<Object>) values);
+			this.addCardinalityMappingHintValues((CardinalityMapping) hint, (LinkedList<Object>) values);
 		} else if (hint instanceof MappedAttributeValueExpander) {
 			this.addHintValues(hint, values);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			this.addHintValues((ReferenceTargetSelector) hint,
+			this.addReferenceTargetSelectorHintValues((ReferenceTargetSelector) hint,
 					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof ContainerSelector) {
-			this.addHintValues((ContainerSelector) hint,
-					(LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
+			this.addContainerSelectorHintValues((ContainerSelector) hint,
+					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -499,7 +498,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be added.
 	 */
-	public void addHintValues(AttributeMapping hint,
+	public void addAttributeMappingHintValues(AttributeMapping hint,
 			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.attributeMappingHintValues.addHintValues(hint, values);
@@ -513,7 +512,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be added.
 	 */
-	public void addHintValues(CardinalityMapping hint, LinkedList<Object> values) {
+	public void addCardinalityMappingHintValues(CardinalityMapping hint, LinkedList<Object> values) {
 
 		this.cardinalityMappingHintValues.addHintValues(hint, values);
 	}
@@ -526,7 +525,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be added.
 	 */
-	public void addHintValues(ReferenceTargetSelector hint,
+	public void addReferenceTargetSelectorHintValues(ReferenceTargetSelector hint,
 			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.addHintValues(hint, values);
@@ -540,10 +539,10 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be added.
 	 */
-	public void addHintValues(ContainerSelector hint,
-			LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
+	public void addContainerSelectorHintValues(ContainerSelector hint,
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
-		this.modelConnectionHintValues.addHintValues(hint, values);
+		this.containerSelectorHintValues.addHintValues(hint, values);
 	}
 
 	/**
@@ -563,18 +562,18 @@ public class HintValueStorage {
 	public void setHintValues(EObject hint, Object values) throws ClassCastException {
 
 		if (hint instanceof AttributeMapping) {
-			this.setHintValues((AttributeMapping) hint,
+			this.setAttributeMappingHintValues((AttributeMapping) hint,
 					(LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof CardinalityMapping) {
-			this.setHintValues(hint, values);
+			this.setCardinalityMappingHintValues((CardinalityMapping) hint, (LinkedList<Object>) values);
 		} else if (hint instanceof MappedAttributeValueExpander) {
 			this.setHintValues(hint, values);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			this.setHintValues((ReferenceTargetSelector) hint,
+			this.setReferenceTargetSelectorHintValues((ReferenceTargetSelector) hint,
 					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof ContainerSelector) {
-			this.setHintValues((ContainerSelector) hint,
-					(LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
+			this.setContainerSelectorHintValues((ContainerSelector) hint,
+					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else {
 			throw new RuntimeException("Unsupported MappingHint type: '" + hint.eClass().getName() + "'!");
 		}
@@ -588,7 +587,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(AttributeMapping hint,
+	public void setAttributeMappingHintValues(AttributeMapping hint,
 			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.attributeMappingHintValues.setHintValues(hint, values);
@@ -602,7 +601,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(CardinalityMapping hint, LinkedList<Object> values) {
+	public void setCardinalityMappingHintValues(CardinalityMapping hint, LinkedList<Object> values) {
 
 		this.cardinalityMappingHintValues.setHintValues(hint, values);
 	}
@@ -615,7 +614,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(ReferenceTargetSelector hint,
+	public void setReferenceTargetSelectorHintValues(ReferenceTargetSelector hint,
 			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.setHintValues(hint, values);
@@ -629,10 +628,10 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(ContainerSelector hint,
-			LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
+	public void setContainerSelectorHintValues(ContainerSelector hint,
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
-		this.modelConnectionHintValues.setHintValues(hint, values);
+		this.containerSelectorHintValues.setHintValues(hint, values);
 	}
 
 	/**
@@ -645,7 +644,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(AttributeMapping hint, SourceSectionClass clazz,
+	public void setAttributeMappingHintValues(AttributeMapping hint, SourceSectionClass clazz,
 			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.attributeMappingHintValues.setHintValues(hint, clazz, values);
@@ -661,7 +660,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(CardinalityMapping hint, SourceSectionClass clazz, LinkedList<Object> values) {
+	public void setCardinalityMappingHintValues(CardinalityMapping hint, SourceSectionClass clazz, LinkedList<Object> values) {
 
 		this.cardinalityMappingHintValues.setHintValues(hint, clazz, values);
 	}
@@ -676,7 +675,7 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(ReferenceTargetSelector hint, SourceSectionClass clazz,
+	public void setReferenceTargetSelectorHintValues(ReferenceTargetSelector hint, SourceSectionClass clazz,
 			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.setHintValues(hint, clazz, values);
@@ -692,10 +691,10 @@ public class HintValueStorage {
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setHintValues(ContainerSelector hint, SourceSectionClass clazz,
-			LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> values) {
+	public void setContainerSelectorHintValues(ContainerSelector hint, SourceSectionClass clazz,
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
-		this.modelConnectionHintValues.setHintValues(hint, clazz, values);
+		this.containerSelectorHintValues.setHintValues(hint, clazz, values);
 	}
 
 	/**
@@ -794,9 +793,9 @@ public class HintValueStorage {
 	 *            The hint for which the first hint value shall be retrieved and removed.
 	 * @return The removed hint value.
 	 */
-	public Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(ContainerSelector hint) {
+	public Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(ContainerSelector hint) {
 
-		return this.modelConnectionHintValues.removeHintValue(hint);
+		return this.containerSelectorHintValues.removeHintValue(hint);
 	}
 
 	/**

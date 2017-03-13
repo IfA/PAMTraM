@@ -33,13 +33,13 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -913,7 +913,7 @@ public class TargetSectionConnector extends CancelableElement {
 	public void linkToTargetModelUsingModelConnectionHint(final List<EObjectWrapper> rootInstances,
 			final TargetSection section, final String mappingName, final MappingHintGroupType mappingGroup,
 			final ContainerSelector connectionHint,
-			final LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
+			final LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
 
 		// nothing to connect
 		if (rootInstances == null || rootInstances.isEmpty()) {
@@ -952,7 +952,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> contInstsByHintVal = new LinkedHashMap<>();
 		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> rootInstancesByHintVal = new LinkedHashMap<>();
-		LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
+		LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> connectionHintValuesCopy;
 
 		// again, we need to handle the special case, when there is only one
 		// hintValue
@@ -965,7 +965,7 @@ public class TargetSectionConnector extends CancelableElement {
 			connectionHintValuesCopy = modelConnectionHintValues;
 		}
 
-		for (final Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> hintVal : connectionHintValuesCopy) {
+		for (final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal : connectionHintValuesCopy) {
 
 			StringBuilder hintValBuilder = new StringBuilder();
 

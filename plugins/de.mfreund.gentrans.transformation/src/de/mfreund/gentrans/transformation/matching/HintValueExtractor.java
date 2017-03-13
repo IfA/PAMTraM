@@ -23,7 +23,6 @@ import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.ExternalMappedAttributeValuePrepender;
@@ -366,16 +365,16 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
+	private Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
 			ContainerSelector modelConnectionHint, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// This keeps track of the extracted hint value parts
 		//
-		Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+		Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
 
 		// Extract the hint value part based on its type
 		//
-		for (ContainerSelectorSourceInterface modelConnectionHintSourceInterface : modelConnectionHint
+		for (InstanceSelectorSourceInterface modelConnectionHintSourceInterface : modelConnectionHint
 				.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;

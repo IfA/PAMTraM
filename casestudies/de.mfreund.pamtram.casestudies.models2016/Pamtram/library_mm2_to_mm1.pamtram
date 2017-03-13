@@ -81,12 +81,12 @@ xsi:type="source:ActualSourceSectionAttribute" name="name">
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="bookLoans" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.2/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="filmLoans" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.3/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>

@@ -521,7 +521,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.0"/>
         </containerSelector>
       </mappingHintGroups>
     </mappings>
@@ -532,12 +532,12 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModels.0/@sections.3/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
           </matcher>
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorExternalSourceElement" name="DropDownId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="DropDownId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </containerSelector>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.0/@sections.4">

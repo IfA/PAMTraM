@@ -42,7 +42,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         </mappingHints>
         <containerSelector xsi:type="mapping:ContainerSelector" name="connectToSimpleContainer">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.0"/>
         </containerSelector>
       </mappingHintGroups>
     </mappings>

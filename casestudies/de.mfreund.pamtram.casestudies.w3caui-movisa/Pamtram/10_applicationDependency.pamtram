@@ -425,7 +425,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.4"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.4"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0/@attributes.0">
@@ -451,7 +451,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="mapping:AttributeMatcherSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2"/>
+            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
@@ -459,7 +459,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         </mappingHints>
         <containerSelector>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.0/@sections.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10"/>
         </containerSelector>
       </mappingHintGroups>
     </mappings>
@@ -475,7 +475,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         </mappingHints>
         <containerSelector>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:ContainerSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6"/>
         </containerSelector>
       </mappingHintGroups>
     </mappings>

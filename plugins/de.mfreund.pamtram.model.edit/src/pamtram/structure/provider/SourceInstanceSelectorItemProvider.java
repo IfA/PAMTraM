@@ -9,30 +9,25 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.PamtramPackage;
-import pamtram.structure.GlobalModifiedAttributeElementType;
-import pamtram.structure.StructureFactory;
-import pamtram.structure.StructurePackage;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.GlobalModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.structure.SourceInstanceSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class SourceInstanceSelectorItemProvider extends InstanceSelectorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public SourceInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -52,33 +47,14 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This returns SourceInstanceSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceInstanceSelector"));
 	}
 
 	/**
@@ -100,12 +76,12 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((SourceInstanceSelector)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_SourceInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_SourceInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -120,12 +96,6 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -139,11 +109,6 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 
 }

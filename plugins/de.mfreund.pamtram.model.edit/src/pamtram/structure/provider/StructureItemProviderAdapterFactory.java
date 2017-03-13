@@ -72,26 +72,49 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstanceSelector} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.SourceInstanceSelector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InstanceSelectorItemProvider instanceSelectorItemProvider;
+	protected SourceInstanceSelectorItemProvider sourceInstanceSelectorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.structure.InstanceSelector}.
+	 * This creates an adapter for a {@link pamtram.structure.SourceInstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createInstanceSelectorAdapter() {
-		if (instanceSelectorItemProvider == null) {
-			instanceSelectorItemProvider = new InstanceSelectorItemProvider(this);
+	public Adapter createSourceInstanceSelectorAdapter() {
+		if (sourceInstanceSelectorItemProvider == null) {
+			sourceInstanceSelectorItemProvider = new SourceInstanceSelectorItemProvider(this);
 		}
 
-		return instanceSelectorItemProvider;
+		return sourceInstanceSelectorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.TargetInstanceSelector} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TargetInstanceSelectorItemProvider targetInstanceSelectorItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.TargetInstanceSelector}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTargetInstanceSelectorAdapter() {
+		if (targetInstanceSelectorItemProvider == null) {
+			targetInstanceSelectorItemProvider = new TargetInstanceSelectorItemProvider(this);
+		}
+
+		return targetInstanceSelectorItemProvider;
 	}
 
 	/**
@@ -239,7 +262,8 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (instanceSelectorItemProvider != null) instanceSelectorItemProvider.dispose();
+		if (sourceInstanceSelectorItemProvider != null) sourceInstanceSelectorItemProvider.dispose();
+		if (targetInstanceSelectorItemProvider != null) targetInstanceSelectorItemProvider.dispose();
 		if (instanceSelectorSourceElementItemProvider != null) instanceSelectorSourceElementItemProvider.dispose();
 		if (instanceSelectorExternalSourceElementItemProvider != null) instanceSelectorExternalSourceElementItemProvider.dispose();
 	}

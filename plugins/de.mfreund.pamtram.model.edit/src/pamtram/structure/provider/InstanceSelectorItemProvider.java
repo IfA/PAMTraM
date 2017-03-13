@@ -5,20 +5,17 @@ package pamtram.structure.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
 import pamtram.MappingModel;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
@@ -31,7 +28,6 @@ import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.source.ActualSourceSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.InstanceSelector} object.
@@ -164,7 +160,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstanceSelector)object).getExpression();
+		String label = ((InstanceSelector<?, ?, ?, ?>)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -249,18 +245,6 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
-	}
-
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
-			int operation, Collection<?> collection) {
-
-		if (collection.size() == 1 && collection.iterator().next() instanceof ActualSourceSectionAttribute) {
-			return new BasicDragAndDropSetCommand(domain, (EObject) owner,
-					StructurePackage.Literals.INSTANCE_SELECTOR__TARGET, collection.iterator().next(), 0);
-		}
-
-		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

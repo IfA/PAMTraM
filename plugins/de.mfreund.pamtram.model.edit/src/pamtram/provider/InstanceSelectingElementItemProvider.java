@@ -155,7 +155,7 @@ public class InstanceSelectingElementItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-				 StructureFactory.eINSTANCE.createInstanceSelector()));
+				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 
 	/**

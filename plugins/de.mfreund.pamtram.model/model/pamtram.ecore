@@ -1196,6 +1196,15 @@
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/constraint/ValueConstraintSourceInterface"/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintGlobalSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/constraint/ValueConstraintSourceInterface"/>
+      </eClassifiers>
     </eSubpackages>
     <eSubpackages name="source" nsURI="http://mfreund.de/pamtram/structure/source"
         nsPrefix="source">

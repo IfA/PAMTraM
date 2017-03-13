@@ -137,6 +137,8 @@ public class ConstraintValidator extends EObjectValidator {
 				return validateValueConstraintSourceElement((ValueConstraintSourceElement)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT:
 				return validateValueConstraintExternalSourceElement((ValueConstraintExternalSourceElement)value, diagnostics, context);
+			case ConstraintPackage.VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT:
+				return validateValueConstraintGlobalSourceElement((ValueConstraintGlobalSourceElement)value, diagnostics, context);
 			case ConstraintPackage.VALUE_CONSTRAINT_TYPE:
 				return validateValueConstraintType((ValueConstraintType)value, diagnostics, context);
 			case ConstraintPackage.NUMERIC_CONSTRAINT_OPERATOR_TYPE:
@@ -390,6 +392,26 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(valueConstraintExternalSourceElement, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateValueConstraintGlobalSourceElement(ValueConstraintGlobalSourceElement valueConstraintGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(valueConstraintGlobalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(valueConstraintGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(valueConstraintGlobalSourceElement, diagnostics, context);
 		return result;
 	}
 

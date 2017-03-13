@@ -167,6 +167,18 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ConstraintPackage.VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT: {
+				ValueConstraintGlobalSourceElement valueConstraintGlobalSourceElement = (ValueConstraintGlobalSourceElement)theEObject;
+				T result = caseValueConstraintGlobalSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseExternalDynamicSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseValueConstraintSourceInterface(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseDynamicSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseNamedElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -303,6 +315,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseValueConstraintExternalSourceElement(ValueConstraintExternalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Constraint Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueConstraintGlobalSourceElement(ValueConstraintGlobalSourceElement object) {
 		return null;
 	}
 

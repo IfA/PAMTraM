@@ -928,6 +928,88 @@ public interface ConstraintPackage extends EPackage {
 	int VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.constraint.impl.ValueConstraintGlobalSourceElementImpl <em>Value Constraint Global Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.constraint.impl.ValueConstraintGlobalSourceElementImpl
+	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintGlobalSourceElement()
+	 * @generated
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT__NAME = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT__MODIFIERS = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The number of structural features of the '<em>Value Constraint Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Mapping</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
+
+	/**
+	 * The operation id for the '<em>Validate Source Attribute Matches Container Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>Value Constraint Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -935,7 +1017,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintType()
 	 * @generated
 	 */
-	int VALUE_CONSTRAINT_TYPE = 9;
+	int VALUE_CONSTRAINT_TYPE = 10;
 
 
 	/**
@@ -946,7 +1028,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getNumericConstraintOperatorType()
 	 * @generated
 	 */
-	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 10;
+	int NUMERIC_CONSTRAINT_OPERATOR_TYPE = 11;
 
 
 	/**
@@ -957,7 +1039,7 @@ public interface ConstraintPackage extends EPackage {
 	 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getStringConstraintOperatorType()
 	 * @generated
 	 */
-	int STRING_CONSTRAINT_OPERATOR_TYPE = 11;
+	int STRING_CONSTRAINT_OPERATOR_TYPE = 12;
 
 
 	/**
@@ -1186,6 +1268,16 @@ public interface ConstraintPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getValueConstraintExternalSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.constraint.ValueConstraintGlobalSourceElement <em>Value Constraint Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Value Constraint Global Source Element</em>'.
+	 * @see pamtram.structure.constraint.ValueConstraintGlobalSourceElement
+	 * @generated
+	 */
+	EClass getValueConstraintGlobalSourceElement();
 
 	/**
 	 * Returns the meta object for enum '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}'.
@@ -1433,6 +1525,16 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EClass VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getValueConstraintExternalSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.constraint.impl.ValueConstraintGlobalSourceElementImpl <em>Value Constraint Global Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.constraint.impl.ValueConstraintGlobalSourceElementImpl
+		 * @see pamtram.structure.constraint.impl.ConstraintPackageImpl#getValueConstraintGlobalSourceElement()
+		 * @generated
+		 */
+		EClass VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getValueConstraintGlobalSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.constraint.ValueConstraintType <em>Value Constraint Type</em>}' enum.

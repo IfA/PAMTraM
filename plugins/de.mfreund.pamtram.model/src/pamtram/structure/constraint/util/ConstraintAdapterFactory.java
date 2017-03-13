@@ -115,6 +115,10 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createValueConstraintExternalSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseValueConstraintGlobalSourceElement(ValueConstraintGlobalSourceElement object) {
+				return createValueConstraintGlobalSourceElementAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -285,6 +289,20 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createValueConstraintExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintGlobalSourceElement <em>Value Constraint Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraintGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createValueConstraintGlobalSourceElementAdapter() {
 		return null;
 	}
 

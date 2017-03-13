@@ -76,6 +76,15 @@ public interface ConstraintFactory extends EFactory {
 	ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Value Constraint Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Value Constraint Global Source Element</em>'.
+	 * @generated
+	 */
+	ValueConstraintGlobalSourceElement createValueConstraintGlobalSourceElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

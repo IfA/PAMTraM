@@ -41,6 +41,7 @@ import pamtram.structure.constraint.StringConstraint;
 import pamtram.structure.constraint.StringConstraintOperatorType;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
+import pamtram.structure.constraint.ValueConstraintGlobalSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceElement;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.constraint.ValueConstraintType;
@@ -128,6 +129,13 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * @generated
 	 */
 	private EClass valueConstraintExternalSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass valueConstraintGlobalSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -455,6 +463,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getValueConstraintGlobalSourceElement() {
+		return valueConstraintGlobalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getValueConstraintType() {
 		return valueConstraintTypeEEnum;
 	}
@@ -536,6 +553,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		valueConstraintExternalSourceElementEClass = createEClass(VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT);
 
+		valueConstraintGlobalSourceElementEClass = createEClass(VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT);
+
 		// Create enums
 		valueConstraintTypeEEnum = createEEnum(VALUE_CONSTRAINT_TYPE);
 		numericConstraintOperatorTypeEEnum = createEEnum(NUMERIC_CONSTRAINT_OPERATOR_TYPE);
@@ -609,6 +628,18 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getValueConstraintSourceInterface());
 		valueConstraintExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theStructurePackage.getExternalDynamicSourceElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		valueConstraintGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getValueConstraintSourceInterface());
+		valueConstraintGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueConstraintEClass, ValueConstraint.class, "ValueConstraint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -672,6 +703,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		initEClass(valueConstraintSourceElementEClass, ValueConstraintSourceElement.class, "ValueConstraintSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(valueConstraintExternalSourceElementEClass, ValueConstraintExternalSourceElement.class, "ValueConstraintExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(valueConstraintGlobalSourceElementEClass, ValueConstraintGlobalSourceElement.class, "ValueConstraintGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(valueConstraintTypeEEnum, ValueConstraintType.class, "ValueConstraintType");

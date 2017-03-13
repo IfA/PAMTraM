@@ -56,6 +56,7 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 			case ConstraintPackage.STRING_CONSTRAINT: return createStringConstraint();
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: return createValueConstraintSourceElement();
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: return createValueConstraintExternalSourceElement();
+			case ConstraintPackage.VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT: return createValueConstraintGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -155,6 +156,16 @@ public class ConstraintFactoryImpl extends EFactoryImpl implements ConstraintFac
 	public ValueConstraintExternalSourceElement createValueConstraintExternalSourceElement() {
 		ValueConstraintExternalSourceElementImpl valueConstraintExternalSourceElement = new ValueConstraintExternalSourceElementImpl();
 		return valueConstraintExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueConstraintGlobalSourceElement createValueConstraintGlobalSourceElement() {
+		ValueConstraintGlobalSourceElementImpl valueConstraintGlobalSourceElement = new ValueConstraintGlobalSourceElementImpl();
+		return valueConstraintGlobalSourceElement;
 	}
 
 	/**

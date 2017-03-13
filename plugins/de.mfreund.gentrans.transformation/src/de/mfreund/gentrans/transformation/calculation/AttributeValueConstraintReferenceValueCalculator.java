@@ -18,6 +18,7 @@ import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintExternalSourceElement;
@@ -127,7 +128,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 		String refValue;
 
-		List<InstanceSelector> instPointersAsList;
+		List<SourceInstanceSelector> instPointersAsList;
 		List<ValueConstraintSourceInterface> sourceElements;
 
 		// The MatchedSectionDescriptor that shall be used to retrieve the values for the various source elements
@@ -137,8 +138,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 		// Fill variables and lists
 		if (rootObj instanceof SingleReferenceValueConstraint) {
 			sourceElements = ((SingleReferenceValueConstraint) rootObj).getSourceElements();
-			instPointersAsList = ((SingleReferenceValueConstraint) rootObj)
-					.getInstanceSelectors();
+			instPointersAsList = ((SingleReferenceValueConstraint) rootObj).getInstanceSelectors();
 			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((SingleReferenceValueConstraint) rootObj).isLocalConstraint(), matchedSectionDescriptor);
 		} else {
@@ -170,7 +170,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 		String refValue;
 
-		List<InstanceSelector> instPointersAsList;
+		List<SourceInstanceSelector> instPointersAsList;
 		List<ValueConstraintSourceInterface> sourceElements;
 
 		// The MatchedSectionDescriptor that shall be used to retrieve the values for the various source elements
@@ -180,8 +180,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 		// Fill variables and lists
 		if (rootObj instanceof SingleReferenceValueConstraint) {
 			sourceElements = ((SingleReferenceValueConstraint) rootObj).getSourceElements();
-			instPointersAsList = ((SingleReferenceValueConstraint) rootObj)
-					.getInstanceSelectors();
+			instPointersAsList = ((SingleReferenceValueConstraint) rootObj).getInstanceSelectors();
 			descriptorToEvaluate = this.getInstancesToConsider(sourceElements, instPointersAsList,
 					((SingleReferenceValueConstraint) rootObj).isLocalConstraint(), null);
 			// } else if (rootObj instanceof RangeBound) {
@@ -210,8 +209,8 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 * This collects and returns the list of {@link EObject EObjects} that need to be considered during the evaluation
 	 * of the given {@link EObject attributeValueConstraint} for the given {@link MatchedSectionDescriptor}.
 	 * <p />
-	 * Depending on the presence of {@link InstanceSelector InstancePointers}, only the elements represented by the given
-	 * <em>matchedSectionDescriptor</em> or the elements represented by all suitable descriptors stored in the
+	 * Depending on the presence of {@link InstanceSelector InstancePointers}, only the elements represented by the
+	 * given <em>matchedSectionDescriptor</em> or the elements represented by all suitable descriptors stored in the
 	 * {@link #matchedSections} need to be considered.
 	 *
 	 * @param EObject
@@ -223,7 +222,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 */
 	@SuppressWarnings("unchecked")
 	private MatchedSectionDescriptor getInstancesToConsider(List<ValueConstraintSourceInterface> sourceElements,
-			List<InstanceSelector> instancePointers, boolean isLocalConstraint,
+			List<SourceInstanceSelector> instancePointers, boolean isLocalConstraint,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		List<MatchedSectionDescriptor> descriptorsToConsider;
@@ -264,7 +263,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 		//
 		if (!correspondEClassInstances.isEmpty() && !instancePointers.isEmpty()) {
 
-			for (InstanceSelector instancePointer : instancePointers) {
+			for (SourceInstanceSelector instancePointer : instancePointers) {
 
 				correspondEClassInstances = this.instancePointerHandler.getSelectedInstancesByInstanceList(
 						instancePointer, correspondEClassInstances, matchedSectionDescriptor);

@@ -16,6 +16,8 @@ import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
@@ -82,7 +84,7 @@ public class InstanceSelectorHandler {
 	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy
 	 *         the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getSelectedInstancesBySourceSectionClass(InstanceSelector instanceSelector,
+	public List<EObject> getSelectedInstancesBySourceSectionClass(SourceInstanceSelector instanceSelector,
 			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
@@ -110,8 +112,8 @@ public class InstanceSelectorHandler {
 	 *            the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
 	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getSelectedInstancesByInstanceList(InstanceSelector instanceSelector, List<EObject> instanceList,
-			MatchedSectionDescriptor matchedSectionDescriptor) {
+	public List<EObject> getSelectedInstancesByInstanceList(SourceInstanceSelector instanceSelector,
+			List<EObject> instanceList, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		EObject container = instanceSelector.eContainer();
 
@@ -122,11 +124,16 @@ public class InstanceSelectorHandler {
 		String instancePointerRefValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
 				matchedSectionDescriptor);
 
-		ActualSourceSectionAttribute sourceAttr = instanceSelector.getTarget();
+		if (instanceSelector.getTarget() instanceof VirtualAttribute) {
+			throw new RuntimeException(
+					"Internal Error! InstanceSelectors based on VirtualAttributes are not yet supported!");
+		}
+
+		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector.getTarget();
 
 		return instanceList.parallelStream().filter(element -> {
 
-			Object sourceRefAttr = element.eGet(instanceSelector.getTarget().getAttribute());
+			Object sourceRefAttr = element.eGet(sourceAttr.getAttribute());
 
 			try {
 				// convert Attribute value to String

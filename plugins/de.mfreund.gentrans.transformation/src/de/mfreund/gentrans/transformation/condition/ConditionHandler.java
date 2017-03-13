@@ -40,6 +40,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -427,8 +428,7 @@ public class ConditionHandler {
 
 			// mapping has been applied
 			//
-			List<MappingInstanceStorage> storageInstances = mappingInstances
-					.get(applicationDependency.getTarget());
+			List<MappingInstanceStorage> storageInstances = mappingInstances.get(applicationDependency.getTarget());
 
 			// no instance pointers
 			if (applicationDependency.getInstanceSelectors().isEmpty()) {
@@ -503,7 +503,7 @@ public class ConditionHandler {
 	 * @return The list of {@link EObject elements of the source model} that need to be considered when checking the
 	 *         condition.
 	 */
-	private List<EObject> getInstancesToConsider(Condition condition,
+	private List<EObject> getInstancesToConsider(Condition<?> condition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// The SourceSectionClass holding the attribute that the AttributeCondition is based on
@@ -513,8 +513,7 @@ public class ConditionHandler {
 		if (condition instanceof CardinalityCondition) {
 			affectedClass = ((CardinalityCondition) condition).getTarget();
 		} else if (condition instanceof AttributeCondition) {
-			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getTarget()
-					.eContainer();
+			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getTarget().eContainer();
 		} else if (condition instanceof ApplicationDependency) {
 			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getTarget();
 			if (conditionalElement instanceof Mapping) {
@@ -560,7 +559,7 @@ public class ConditionHandler {
 		//
 		if (!correspondEClassInstances.isEmpty() && !condition.getInstanceSelectors().isEmpty()) {
 
-			for (InstanceSelector instancePointer : condition.getInstanceSelectors()) {
+			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
 				correspondEClassInstances = this.instancePointerHandler.getSelectedInstancesByInstanceList(
 						instancePointer, correspondEClassInstances, matchedSectionDescriptor);

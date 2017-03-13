@@ -14,7 +14,7 @@ import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
@@ -128,9 +128,9 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (sourceElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
 						matchedSectionDescriptor);
 			} else if (sourceElement instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) sourceElement, matchedSectionDescriptor);

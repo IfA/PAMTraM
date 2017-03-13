@@ -17,7 +17,7 @@ import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValue
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.InstanceSelector;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
@@ -242,7 +242,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			//
 			affectedSection = sourceElements.parallelStream().filter(
 					s -> s instanceof ValueConstraintSourceElement || s instanceof ValueConstraintExternalSourceElement)
-					.map(s -> ((ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) s)
+					.map(s -> ((DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) s)
 							.getSource().getContainingSection())
 					.findAny();
 

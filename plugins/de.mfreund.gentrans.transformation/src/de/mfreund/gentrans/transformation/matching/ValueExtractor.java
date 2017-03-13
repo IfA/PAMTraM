@@ -21,9 +21,9 @@ import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.structure.ExternalModifiedAttributeElementType;
-import pamtram.structure.GlobalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -138,21 +138,21 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link ModifiedAttributeElementType} from the source
+	 * This extracts and returns the hint value for the given {@link DynamicSourceElement} from the source
 	 * elements represented by the given <em>mappingInstance</em>.
 	 * <p />
-	 * Note: This method must not be used for {@link GlobalModifiedAttributeElementType
-	 * GlobalModifiedAttributeElementTypes}. Use {@link #extractValue(GlobalModifiedAttributeElementType, Map)} instead.
+	 * Note: This method must not be used for {@link GlobalDynamicSourceElement
+	 * GlobalModifiedAttributeElementTypes}. Use {@link #extractValue(GlobalDynamicSourceElement, Map)} instead.
 	 *
 	 * @param mappingHintSourceElement
-	 *            The {@link ModifiedAttributeElementType} for that the hint values shall be extracted.
+	 *            The {@link DynamicSourceElement} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
 	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
-			ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
+			DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		AttributeValueRepresentation hintValue = null;
@@ -162,7 +162,7 @@ public abstract class ValueExtractor extends CancelableElement {
 		// In case we are dealing with an external source element, we first need to determine the correct
 		// 'container descriptor' that represents the source element
 		//
-		if (mappingHintSourceElement instanceof ExternalModifiedAttributeElementType<?, ?, ?, ?>) {
+		if (mappingHintSourceElement instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
 			while (!sourceDescriptor.getSourceModelObjectsMapped()
 					.containsKey(mappingHintSourceElement.getSource().eContainer())) {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
@@ -226,11 +226,11 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link GlobalModifiedAttributeElementType} from the source
+	 * This extracts and returns the hint value for the given {@link GlobalDynamicSourceElement} from the source
 	 * elements represented by the given <em>mappingInstance</em>.
 	 *
 	 * @param mappingHintSourceElement
-	 *            The {@link GlobalModifiedAttributeElementType} for that the hint values shall be extracted.
+	 *            The {@link GlobalDynamicSourceElement} for that the hint values shall be extracted.
 	 * @param matchedSections
 	 *            Registry for <em>source model objects</em> that have already been matched. The matched objects are
 	 *            stored in a map where the key is the corresponding {@link SourceSectionClass} that they have been
@@ -241,7 +241,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
-			GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
+			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 

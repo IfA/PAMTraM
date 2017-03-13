@@ -36,9 +36,9 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -277,13 +277,13 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (attributeMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (attributeMappingSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
+						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
 						this.matchedSections, matchedSectionDescriptor);
-			} else if (attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			} else if (attributeMappingSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
 						matchedSectionDescriptor);
 			} else if (attributeMappingSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) attributeMappingSourceInterface,
@@ -327,13 +327,13 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (attributeMatcherSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (attributeMatcherSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
+						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
 						this.matchedSections, matchedSectionDescriptor);
-			} else if (attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			} else if (attributeMatcherSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
 						matchedSectionDescriptor);
 			} else if (attributeMatcherSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) attributeMatcherSourceInterface,
@@ -379,13 +379,13 @@ public class HintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (modelConnectionHintSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (modelConnectionHintSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
+						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
 						this.matchedSections, matchedSectionDescriptor);
-			} else if (modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			} else if (modelConnectionHintSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
 						matchedSectionDescriptor);
 			} else if (modelConnectionHintSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) modelConnectionHintSourceInterface,
@@ -467,13 +467,13 @@ public class HintValueExtractor extends ValueExtractor {
 
 				AttributeValueRepresentation attributeValueRepresentation = null;
 
-				if (cardinalityMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+				if (cardinalityMappingSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?>) {
 					attributeValueRepresentation = this.extractValue(
-							(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
+							(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
 							this.matchedSections, matchedSectionDescriptor);
-				} else if (cardinalityMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+				} else if (cardinalityMappingSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 					attributeValueRepresentation = this.extractValue(
-							(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
+							(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
 							matchedSectionDescriptor);
 				} else if (cardinalityMappingSourceInterface instanceof FixedValue) {
 					attributeValueRepresentation = this.extractValue((FixedValue) cardinalityMappingSourceInterface,
@@ -521,7 +521,7 @@ public class HintValueExtractor extends ValueExtractor {
 		// Extract the hint value
 		//
 		AttributeValueRepresentation attributeValueRepresentation = this.extractValue(
-				(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) mappedAttributeValueExpander,
+				(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) mappedAttributeValueExpander,
 				matchedSectionDescriptor);
 
 		return attributeValueRepresentation == null ? null : attributeValueRepresentation.getNextValue();

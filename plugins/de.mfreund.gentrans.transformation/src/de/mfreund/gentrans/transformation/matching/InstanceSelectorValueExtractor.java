@@ -14,7 +14,7 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -99,9 +99,9 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (instancePointerSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (instancePointerSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instancePointerSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instancePointerSourceInterface,
 						matchedSectionDescriptor);
 			} else if (instancePointerSourceInterface instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) instancePointerSourceInterface,

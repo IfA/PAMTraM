@@ -238,6 +238,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//structure/source/SourceSectionAttribute"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TargetInstanceSelector" eSuperTypes="#//structure/InstanceSelector">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+          eType="#//structure/target/TargetSectionAttribute"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceElement">
@@ -264,6 +268,7 @@
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
@@ -459,8 +464,13 @@
           <eTypeArguments eTypeParameter="#//structure/GlobalDynamicSourceElement/A"/>
         </eBounds>
       </eTypeParameters>
+      <eTypeParameters name="InstanceSelectorType">
+        <eBounds eClassifier="#//structure/InstanceSelector"/>
+      </eTypeParameters>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
-          eType="#//structure/SourceInstanceSelector" containment="true"/>
+          containment="true">
+        <eGenericType eTypeParameter="#//structure/GlobalDynamicSourceElement/InstanceSelectorType"/>
+      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
         <eTypeArguments eTypeParameter="#//structure/GlobalDynamicSourceElement/S"/>
         <eTypeArguments eTypeParameter="#//structure/GlobalDynamicSourceElement/C"/>
@@ -1754,6 +1764,7 @@
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
     </eClassifiers>
@@ -1907,6 +1918,7 @@
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
       </eGenericSuperTypes>
       <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
     </eClassifiers>

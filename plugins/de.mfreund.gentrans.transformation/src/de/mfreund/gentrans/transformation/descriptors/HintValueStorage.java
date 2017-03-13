@@ -14,13 +14,13 @@ import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueM
 import de.mfreund.gentrans.transformation.maps.ModelConnectionHintValueMap;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
@@ -222,7 +222,7 @@ public class HintValueStorage {
 	 *            The hint for which the stored values shall be returned.
 	 * @return The stored values for the given hint.
 	 */
-	public LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> getHintValues(
+	public LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> getHintValues(
 			ReferenceTargetSelector hint) {
 
 		return this.mappingInstanceSelectorHintValues.getHintValues(hint);
@@ -235,13 +235,13 @@ public class HintValueStorage {
 	 *            The hint for which the stored values shall be returned.
 	 * @return A cloned copy of the list of stored values for the given hint.
 	 */
-	public LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(
+	public LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> getHintValuesCloned(
 			ReferenceTargetSelector hint) {
 
 		return new LinkedList<>(
 				this.mappingInstanceSelectorHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-					Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-					for (AttributeMatcherSourceInterface key : oldHintValue.keySet()) {
+					Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+					for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
 						newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
 					}
 					return newHintValue;
@@ -314,7 +314,7 @@ public class HintValueStorage {
 			this.addHintValue(hint, value);
 		} else if (hint instanceof ReferenceTargetSelector) {
 			this.addHintValue((ReferenceTargetSelector) hint,
-					(Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>) value);
+					(Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>) value);
 		} else if (hint instanceof ContainerSelector) {
 			this.addHintValue((ContainerSelector) hint,
 					(Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>) value);
@@ -359,7 +359,7 @@ public class HintValueStorage {
 	 *            The value to be added.
 	 */
 	public void addHintValue(ReferenceTargetSelector hint,
-			Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> value) {
+			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
 		this.mappingInstanceSelectorHintValues.addHintValue(hint, value);
 	}
@@ -420,7 +420,7 @@ public class HintValueStorage {
 	 *            The value to be added.
 	 */
 	public void addHintValue(ReferenceTargetSelector hint, SourceSectionClass clazz,
-			Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> value) {
+			Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> value) {
 
 		this.mappingInstanceSelectorHintValues.addHintValue(hint, clazz, value);
 	}
@@ -477,12 +477,12 @@ public class HintValueStorage {
 			this.addHintValues((AttributeMapping) hint,
 					(LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof CardinalityMapping) {
-			this.addHintValues(hint, values);
+			this.addHintValues((CardinalityMapping) hint, (LinkedList<Object>) values);
 		} else if (hint instanceof MappedAttributeValueExpander) {
 			this.addHintValues(hint, values);
 		} else if (hint instanceof ReferenceTargetSelector) {
 			this.addHintValues((ReferenceTargetSelector) hint,
-					(LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
+					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof ContainerSelector) {
 			this.addHintValues((ContainerSelector) hint,
 					(LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
@@ -527,7 +527,7 @@ public class HintValueStorage {
 	 *            The values to be added.
 	 */
 	public void addHintValues(ReferenceTargetSelector hint,
-			LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.addHintValues(hint, values);
 	}
@@ -571,7 +571,7 @@ public class HintValueStorage {
 			this.setHintValues(hint, values);
 		} else if (hint instanceof ReferenceTargetSelector) {
 			this.setHintValues((ReferenceTargetSelector) hint,
-					(LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>>) values);
+					(LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>>) values);
 		} else if (hint instanceof ContainerSelector) {
 			this.setHintValues((ContainerSelector) hint,
 					(LinkedList<Map<ContainerSelectorSourceInterface, AttributeValueRepresentation>>) values);
@@ -616,7 +616,7 @@ public class HintValueStorage {
 	 *            The values to be set.
 	 */
 	public void setHintValues(ReferenceTargetSelector hint,
-			LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.setHintValues(hint, values);
 	}
@@ -677,7 +677,7 @@ public class HintValueStorage {
 	 *            The values to be set.
 	 */
 	public void setHintValues(ReferenceTargetSelector hint, SourceSectionClass clazz,
-			LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> values) {
+			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> values) {
 
 		this.mappingInstanceSelectorHintValues.setHintValues(hint, clazz, values);
 	}
@@ -781,7 +781,7 @@ public class HintValueStorage {
 	 *            The hint for which the first hint value shall be retrieved and removed.
 	 * @return The removed hint value.
 	 */
-	public Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> removeHintValue(
+	public Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(
 			ReferenceTargetSelector hint) {
 
 		return this.mappingInstanceSelectorHintValues.removeHintValue(hint);

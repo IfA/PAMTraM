@@ -34,7 +34,6 @@ import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.FixedValue;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.GlobalAttribute;
@@ -46,6 +45,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.library.ExternalReferenceParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.library.LibraryParameter;
@@ -321,14 +321,14 @@ public class TargetSectionLinker extends CancelableElement {
 					 * Sizes of instances and attributeHints must either match, or, in case there was a cardinality
 					 * mapping, the size of the hintValues must be 1
 					 */
-					LinkedList<Map<AttributeMatcherSourceInterface, AttributeValueRepresentation>> newHintValues = new LinkedList<>();
+					LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> newHintValues = new LinkedList<>();
 					int numberOfInstancesToCreate = 0;
 					if (hintValues.getHintValues(h).size() == 1) {
 
 						// one hint value but multiple instances
 						// -> clone the single hint value for
 						// each instance
-						final Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintVal = hintValues
+						final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal = hintValues
 								.getHintValues(h).getFirst();
 						for (int i = 0; i < instancesToConsider.size(); i++) {
 							newHintValues.add(hintVal);

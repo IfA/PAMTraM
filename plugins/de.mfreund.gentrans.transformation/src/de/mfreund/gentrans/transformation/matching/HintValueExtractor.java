@@ -20,7 +20,6 @@ import pamtram.FixedValue;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
@@ -39,6 +38,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
@@ -315,16 +315,16 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> extractHintValue(
+	private Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
 			AttributeMatcher attributeMatcher, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// This keeps track of the extracted hint value parts
 		//
-		Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+		Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
 
 		// Extract the hint value part based on its type
 		//
-		for (AttributeMatcherSourceInterface attributeMatcherSourceInterface : attributeMatcher.getSourceElements()) {
+		for (InstanceSelectorSourceInterface attributeMatcherSourceInterface : attributeMatcher.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
@@ -716,7 +716,7 @@ public class HintValueExtractor extends ValueExtractor {
 	private void expandAttributeMatcher(AttributeMatcher attributeMatcher, String hintValue,
 			MappingInstanceStorage mappingInstance, boolean prepend) {
 
-		AttributeMatcherSourceInterface element;
+		InstanceSelectorSourceInterface element;
 
 		if (prepend) {
 			element = attributeMatcher.getSourceElements().get(0);

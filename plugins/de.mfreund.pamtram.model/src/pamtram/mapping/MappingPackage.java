@@ -3775,26 +3775,6 @@ public interface MappingPackage extends EPackage {
 	EReference getAttributeMatcher_Target();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.AttributeMatcher#getLocalSourceElements()
-	 * @generated
-	 */
-	EOperation getAttributeMatcher__GetLocalSourceElements();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
-	 * @see pamtram.mapping.AttributeMatcher#getExternalSourceElements()
-	 * @generated
-	 */
-	EOperation getAttributeMatcher__GetExternalSourceElements();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Matches Affected Reference Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4705,22 +4685,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ATTRIBUTE_MATCHER__TARGET = eINSTANCE.getAttributeMatcher_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetLocalSourceElements();
-
-		/**
-		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher__GetExternalSourceElements();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Target Matches Affected Reference Type</b></em>' operation.

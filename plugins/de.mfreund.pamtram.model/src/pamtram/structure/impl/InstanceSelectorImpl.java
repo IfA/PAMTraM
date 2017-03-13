@@ -5,8 +5,11 @@ package pamtram.structure.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -22,29 +25,31 @@ import pamtram.condition.ComplexCondition;
 import pamtram.impl.ExpressionElementImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Instance Pointer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
+
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -52,9 +57,9 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -62,8 +67,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	protected EList<InstanceSelectorSourceInterface> sourceElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected InstanceSelectorImpl() {
@@ -71,8 +75,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,10 +84,10 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
@@ -93,10 +96,10 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
@@ -105,11 +108,12 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType) : true;
 		
@@ -130,8 +134,29 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,8 +169,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -160,8 +184,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -181,8 +204,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -199,8 +221,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -215,8 +236,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -231,8 +251,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -247,8 +266,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -257,8 +275,12 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 		switch (operationID) {
 			case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+			case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //InstanceSelectorImpl
+} // InstanceSelectorImpl

@@ -52,4 +52,22 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	 */
 	boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 * @generated
+	 */
+	EList<InstanceSelectorSourceElement> getLocalSourceElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" unique="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorExternalSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 * @generated
+	 */
+	EList<InstanceSelectorExternalSourceElement> getExternalSourceElements();
+
 } // InstanceSelector

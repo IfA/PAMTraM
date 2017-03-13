@@ -116,13 +116,31 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Instance Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceInstanceSelectorImpl <em>Source Instance Selector</em>}' class.
@@ -187,6 +205,24 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS;
 
 	/**
 	 * The number of operations of the '<em>Source Instance Selector</em>' class.
@@ -831,6 +867,26 @@ public interface StructurePackage extends EPackage {
 	EOperation getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.InstanceSelector#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
+	 * @see pamtram.structure.InstanceSelector#getLocalSourceElements()
+	 * @generated
+	 */
+	EOperation getInstanceSelector__GetLocalSourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.InstanceSelector#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
+	 * @see pamtram.structure.InstanceSelector#getExternalSourceElements()
+	 * @generated
+	 */
+	EOperation getInstanceSelector__GetExternalSourceElements();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.SourceInstanceSelector <em>Source Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1041,6 +1097,22 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = eINSTANCE.getInstanceSelector__GetLocalSourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Get External Source Elements</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getInstanceSelector__GetExternalSourceElements();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.SourceInstanceSelectorImpl <em>Source Instance Selector</em>}' class.

@@ -4,10 +4,7 @@ package pamtram.mapping;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
 import pamtram.structure.InstanceSelector;
-import pamtram.structure.InstanceSelectorExternalSourceElement;
-import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
@@ -52,24 +49,6 @@ public interface AttributeMatcher extends Matcher, ExpandableHint, InstanceSelec
 	 * @generated
 	 */
 	void setTarget(TargetSectionAttribute value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<InstanceSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<InstanceSelectorSourceElement>();\r\n\t\t\t\t\r\n\t\t\t\tfor(InstanceSelectorSourceInterface i : this.getSourceElements()){\r\n\t\t\t\t\tif(i instanceof InstanceSelectorSourceElement){\r\n\t\t\t\t\t\telements.add((InstanceSelectorSourceElement) i);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\treturn elements;'"
-	 * @generated
-	 */
-	EList<InstanceSelectorSourceElement> getLocalSourceElements();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<InstanceSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(InstanceSelectorSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof InstanceSelectorExternalSourceElement){\r\n\t\telements.add((InstanceSelectorExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
-	 * @generated
-	 */
-	EList<InstanceSelectorExternalSourceElement> getExternalSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

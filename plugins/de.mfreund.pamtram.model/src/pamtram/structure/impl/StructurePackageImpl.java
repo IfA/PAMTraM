@@ -254,6 +254,24 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getInstanceSelector__GetLocalSourceElements() {
+		return instanceSelectorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getInstanceSelector__GetExternalSourceElements() {
+		return instanceSelectorEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSourceInstanceSelector() {
 		return sourceInstanceSelectorEClass;
 	}
@@ -424,6 +442,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorEClass = createEClass(INSTANCE_SELECTOR);
 		createEReference(instanceSelectorEClass, INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS);
+		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS);
 
 		sourceInstanceSelectorEClass = createEClass(SOURCE_INSTANCE_SELECTOR);
 		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET);
@@ -756,6 +776,10 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getInstanceSelector__GetLocalSourceElements(), this.getInstanceSelectorSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getInstanceSelector__GetExternalSourceElements(), this.getInstanceSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceInstanceSelectorEClass, SourceInstanceSelector.class, "SourceInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceInstanceSelector_Target(), theSourcePackage.getSourceSectionAttribute(), null, "target", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

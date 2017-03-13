@@ -220,6 +220,17 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//structure/InstanceSelectorSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(&#xD;&#xA;&#x9;&#x9;this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.map(i -> (InstanceSelectorSourceElement) i).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+          eType="#//structure/InstanceSelectorExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(&#xD;&#xA;&#x9;&#x9;this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.map(i -> (InstanceSelectorExternalSourceElement) i).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+        </eAnnotations>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
           eType="#//structure/InstanceSelectorSourceInterface" containment="true"/>
     </eClassifiers>
@@ -1944,17 +1955,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="targetMatchesAffectedReferenceType"/>
       </eAnnotations>
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//structure/InstanceSelectorSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;InstanceSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;InstanceSelectorSourceElement>();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for(InstanceSelectorSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(i instanceof InstanceSelectorSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;elements.add((InstanceSelectorSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
-          eType="#//structure/InstanceSelectorExternalSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;InstanceSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;for(InstanceSelectorSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof InstanceSelectorExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((InstanceSelectorExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
-        </eAnnotations>
-      </eOperations>
       <eOperations name="validateTargetMatchesAffectedReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="&#xD;&#xA;if(!(this.eContainer() instanceof &lt;%pamtram.mapping.ReferenceTargetSelector%>) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + &quot;') is not allowed by the affected reference of the parent ReferenceTargetSelector that &quot; +&#xD;&#xA;&#x9;&#x9;&#x9;&quot;requires a (sub-)type of '&quot; + ((pamtram.mapping.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.ATTRIBUTE_MATCHER__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>

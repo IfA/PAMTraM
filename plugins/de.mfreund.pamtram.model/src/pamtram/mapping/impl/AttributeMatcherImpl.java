@@ -5,10 +5,12 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -38,26 +40,26 @@ import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute Matcher</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attribute Matcher</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
+ * <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatcher {
+
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -66,8 +68,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -76,8 +78,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -85,9 +87,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -96,8 +98,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -105,8 +107,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	protected TargetSectionAttribute target;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected AttributeMatcherImpl() {
@@ -114,8 +115,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,8 +124,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -134,8 +133,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -147,8 +145,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -160,8 +157,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -178,8 +174,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionAttribute basicGetTarget() {
@@ -187,8 +182,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -200,8 +194,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -213,48 +206,34 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
-		EList<InstanceSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<InstanceSelectorSourceElement>();
-						
-						for(InstanceSelectorSourceInterface i : this.getSourceElements()){
-							if(i instanceof InstanceSelectorSourceElement){
-								elements.add((InstanceSelectorSourceElement) i);
-							}
-						}
-						
-						return elements;
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
-		EList<InstanceSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
-		
-		for(InstanceSelectorSourceInterface i : this.getSourceElements()){
-			if(i instanceof InstanceSelectorExternalSourceElement){
-				elements.add((InstanceSelectorExternalSourceElement) i);
-			}
-		}
-		
-		return elements;
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateTargetMatchesAffectedReferenceType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateTargetMatchesAffectedReferenceType(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
 			return true;
@@ -281,11 +260,12 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType) : true;
 		
@@ -306,8 +286,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -320,8 +299,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -341,8 +319,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -368,8 +345,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -392,8 +368,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -412,8 +387,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -445,8 +419,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -478,8 +451,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -502,6 +474,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		if (baseClass == InstanceSelector.class) {
 			switch (baseOperationID) {
 				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -509,29 +483,27 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
-				return getLocalSourceElements();
-			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
-				return getExternalSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTargetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -545,4 +517,4 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		return result.toString();
 	}
 
-} //AttributeMatcherImpl
+} // AttributeMatcherImpl

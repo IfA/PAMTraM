@@ -843,26 +843,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getAttributeMatcher__GetLocalSourceElements() {
-		return attributeMatcherEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getAttributeMatcher__GetExternalSourceElements() {
-		return attributeMatcherEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map() {
-		return attributeMatcherEClass.getEOperations().get(2);
+		return attributeMatcherEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1459,8 +1441,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		attributeMatcherEClass = createEClass(ATTRIBUTE_MATCHER);
 		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__TARGET);
-		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS);
-		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS);
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
@@ -1948,10 +1928,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		initEClass(attributeMatcherEClass, AttributeMatcher.class, "AttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMatcher_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getAttributeMatcher__GetLocalSourceElements(), theStructurePackage.getInstanceSelectorSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getAttributeMatcher__GetExternalSourceElements(), theStructurePackage.getInstanceSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetMatchesAffectedReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

@@ -37,8 +37,8 @@ import pamtram.structure.source.SourceSectionClass;
 public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -46,48 +46,42 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>) object).getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_LocalDynamicSourceElement_type"),
-					StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel
-					.append(this.getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER)
-					.append(" " + label);
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -101,20 +95,18 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

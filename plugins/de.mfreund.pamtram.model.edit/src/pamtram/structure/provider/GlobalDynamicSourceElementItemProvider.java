@@ -14,6 +14,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.mapping.MappingFactory;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
@@ -99,7 +100,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?>)object).getName();
+		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -143,6 +144,21 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 			(createChildParameter
 				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createTargetInstanceSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 MappingFactory.eINSTANCE.createAttributeMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 }

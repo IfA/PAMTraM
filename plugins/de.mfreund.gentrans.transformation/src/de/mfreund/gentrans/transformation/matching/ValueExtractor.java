@@ -21,9 +21,9 @@ import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
-import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -138,11 +138,11 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link DynamicSourceElement} from the source
-	 * elements represented by the given <em>mappingInstance</em>.
+	 * This extracts and returns the hint value for the given {@link DynamicSourceElement} from the source elements
+	 * represented by the given <em>mappingInstance</em>.
 	 * <p />
-	 * Note: This method must not be used for {@link GlobalDynamicSourceElement
-	 * GlobalModifiedAttributeElementTypes}. Use {@link #extractValue(GlobalDynamicSourceElement, Map)} instead.
+	 * Note: This method must not be used for {@link GlobalDynamicSourceElement GlobalModifiedAttributeElementTypes}.
+	 * Use {@link #extractValue(GlobalDynamicSourceElement, Map)} instead.
 	 *
 	 * @param mappingHintSourceElement
 	 *            The {@link DynamicSourceElement} for that the hint values shall be extracted.
@@ -241,7 +241,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
-			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
+			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> mappingHintSourceElement,
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 

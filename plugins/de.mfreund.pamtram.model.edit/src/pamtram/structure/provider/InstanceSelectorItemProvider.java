@@ -57,7 +57,6 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 			super.getPropertyDescriptors(object);
 
 			addModifiersPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -75,27 +74,6 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 				 getString("_UI_ModifiableElement_modifiers_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
 				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_InstanceSelector_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_InstanceSelector_target_feature", "_UI_InstanceSelector_type"),
-				 StructurePackage.Literals.INSTANCE_SELECTOR__TARGET,
 				 true,
 				 false,
 				 true,
@@ -160,7 +138,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstanceSelector<?, ?, ?, ?>)object).getExpression();
+		String label = ((InstanceSelector)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 

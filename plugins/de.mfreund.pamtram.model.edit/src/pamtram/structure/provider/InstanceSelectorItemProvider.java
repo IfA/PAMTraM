@@ -24,7 +24,7 @@ import pamtram.condition.ConditionPackage;
 import pamtram.mapping.MappingFactory;
 import pamtram.provider.ExpressionElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
@@ -192,7 +192,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 		//
 		if (parentCondition != null && !parentCondition.isConditionModelCondition()
 				&& !(parentCondition.eContainer() instanceof MappingModel)
-				|| ((EObject) object).eContainer() instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
+				|| ((EObject) object).eContainer() instanceof GlobalDynamicSourceElement<?, ?, ?, ?>) {
 
 			newChildDescriptors
 					.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,

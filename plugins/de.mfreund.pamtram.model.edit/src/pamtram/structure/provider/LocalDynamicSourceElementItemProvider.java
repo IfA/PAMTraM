@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.structure.LocalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -29,19 +29,19 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.LocalModifiedAttributeElementType} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.LocalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -76,7 +76,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_LocalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -129,11 +129,11 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 
 				// the parent MappingHintGroup
 				//
-				EObject parent = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMappingHintGroup();
+				EObject parent = ((DynamicSourceElement<?, ?, ?, ?>) object).getMappingHintGroup();
 
 				// the parent Mapping
 				//
-				Mapping mapping = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMapping();
+				Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
 				Class<?, ?, ?, ?> relevantClass = null;
 

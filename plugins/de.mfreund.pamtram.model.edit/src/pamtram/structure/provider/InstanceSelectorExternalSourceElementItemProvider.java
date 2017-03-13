@@ -18,7 +18,7 @@ import pamtram.structure.InstanceSelectorExternalSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstanceSelectorExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectorExternalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

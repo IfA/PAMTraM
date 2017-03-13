@@ -18,7 +18,7 @@ import pamtram.mapping.CardinalityMappingGlobalSourceElement;
 
 import pamtram.provider.PamtramEditPlugin;
 
-import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.provider.GlobalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMappingGlobalSourceElement} object.
@@ -26,7 +26,7 @@ import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider
  * <!-- end-user-doc -->
  * @generated
  */
-public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
+public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

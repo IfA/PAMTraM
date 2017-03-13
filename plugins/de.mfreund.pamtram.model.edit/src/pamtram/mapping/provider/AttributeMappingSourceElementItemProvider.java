@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingSourceElement} object.
@@ -23,7 +23,7 @@ import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class AttributeMappingSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

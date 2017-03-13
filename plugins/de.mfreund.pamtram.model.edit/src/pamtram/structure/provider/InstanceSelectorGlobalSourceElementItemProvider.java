@@ -20,7 +20,7 @@ import pamtram.structure.InstanceSelectorGlobalSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstanceSelectorGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectorGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

@@ -18,7 +18,7 @@ import pamtram.structure.InstanceSelectorSourceElement;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstanceSelectorSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class InstanceSelectorSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

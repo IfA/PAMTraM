@@ -14,24 +14,24 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.GlobalModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.structure.GlobalDynamicSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public GlobalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -99,7 +99,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -120,8 +120,8 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+		switch (notification.getFeatureID(GlobalDynamicSourceElement.class)) {
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

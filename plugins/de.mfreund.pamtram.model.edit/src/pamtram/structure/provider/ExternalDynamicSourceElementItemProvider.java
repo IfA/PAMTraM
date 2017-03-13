@@ -15,26 +15,26 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.SourceSectionModel;
 import pamtram.mapping.Mapping;
-import pamtram.structure.ExternalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ExternalModifiedAttributeElementType} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.ExternalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class ExternalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public ExternalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,7 +69,7 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_ExternalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -119,7 +119,7 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 
 				// the parent Mapping
 				//
-				Mapping mapping = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMapping();
+				Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
 				if (mapping == null || mapping.getSourceSection() == null) {
 					return new ArrayList<>();

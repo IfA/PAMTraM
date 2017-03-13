@@ -18,7 +18,7 @@ import pamtram.mapping.CardinalityMappingSourceElement;
 
 import pamtram.provider.PamtramEditPlugin;
 
-import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMappingSourceElement} object.
@@ -26,7 +26,7 @@ import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CardinalityMappingSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class CardinalityMappingSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

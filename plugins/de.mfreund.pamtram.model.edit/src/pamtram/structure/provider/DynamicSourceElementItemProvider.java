@@ -14,23 +14,23 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.PamtramPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.structure.DynamicSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemProvider {
+public class DynamicSourceElementItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public DynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -115,7 +115,7 @@ public class ModifiedAttributeElementTypeItemProvider extends NamedElementItemPr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((DynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_ModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 

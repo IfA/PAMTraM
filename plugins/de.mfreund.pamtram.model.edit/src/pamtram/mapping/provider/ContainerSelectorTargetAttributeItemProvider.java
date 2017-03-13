@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.ModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.provider.DynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute} object.
@@ -23,7 +23,7 @@ import pamtram.structure.provider.ModifiedAttributeElementTypeItemProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContainerSelectorTargetAttributeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

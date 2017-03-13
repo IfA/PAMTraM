@@ -194,10 +194,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectingElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
-        eType="#//structure/SourceInstanceSelector" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/AttributeMatcherSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/CardinalityMappingSourceInterface">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -493,13 +489,14 @@
           <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/A"/>
         </eBounds>
       </eTypeParameters>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
+          eType="#//structure/SourceInstanceSelector" containment="true"/>
       <eGenericSuperTypes eClassifier="#//structure/ModifiedAttributeElementType">
         <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/S"/>
         <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/C"/>
         <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/R"/>
         <eTypeArguments eTypeParameter="#//structure/GlobalModifiedAttributeElementType/A"/>
       </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//InstanceSelectingElement"/>
     </eClassifiers>
     <eSubpackages name="generic" nsURI="http://mfreund.de/pamtram/structure/generic"
         nsPrefix="generic">
@@ -1115,7 +1112,7 @@
         <eLiterals name="FORBIDDEN" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceValueConstraint"
-          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//ExpressionElement #//ModifiableElement #//InstanceSelectingElement">
+          abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//ExpressionElement #//ModifiableElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"/>
         </eAnnotations>
@@ -1162,6 +1159,8 @@
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
             eType="#//structure/constraint/ValueConstraintSourceInterface" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors"
+            upperBound="-1" eType="#//structure/SourceInstanceSelector" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="EqualityConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint"/>
       <eClassifiers xsi:type="ecore:EClass" name="ChoiceConstraint" eSuperTypes="#//structure/constraint/ValueConstraint">
@@ -1598,7 +1597,7 @@
         </eParameters>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition #//InstanceSelectingElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eTypeParameters name="TargetType"/>
       <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>
@@ -1609,6 +1608,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1">
         <eGenericType eTypeParameter="#//condition/Condition/TargetType"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
+          eType="#//structure/SourceInstanceSelector" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ComparatorEnum">
       <eLiterals name="EQ" literal="EQ"/>

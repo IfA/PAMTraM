@@ -54,6 +54,7 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StructurePackage.SOURCE_INSTANCE_SELECTOR: return createSourceInstanceSelector();
+			case StructurePackage.TARGET_INSTANCE_SELECTOR: return createTargetInstanceSelector();
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT: return createInstanceSelectorSourceElement();
 			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT: return createInstanceSelectorExternalSourceElement();
 			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createInstanceSelectorGlobalSourceElement();
@@ -70,6 +71,16 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	public SourceInstanceSelector createSourceInstanceSelector() {
 		SourceInstanceSelectorImpl sourceInstanceSelector = new SourceInstanceSelectorImpl();
 		return sourceInstanceSelector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetInstanceSelector createTargetInstanceSelector() {
+		TargetInstanceSelectorImpl targetInstanceSelector = new TargetInstanceSelectorImpl();
+		return targetInstanceSelector;
 	}
 
 	/**

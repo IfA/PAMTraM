@@ -234,6 +234,97 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.impl.TargetInstanceSelectorImpl <em>Target Instance Selector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.impl.TargetInstanceSelectorImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getTargetInstanceSelector()
+	 * @generated
+	 */
+	int TARGET_INSTANCE_SELECTOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__EXPRESSION = INSTANCE_SELECTOR__EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__MODIFIERS = INSTANCE_SELECTOR__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__SOURCE_ELEMENTS = INSTANCE_SELECTOR__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__TARGET = INSTANCE_SELECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Target Instance Selector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR_FEATURE_COUNT = INSTANCE_SELECTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS;
+
+	/**
+	 * The number of operations of the '<em>Target Instance Selector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -241,7 +332,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorSourceInterface()
 	 * @generated
 	 */
-	int INSTANCE_SELECTOR_SOURCE_INTERFACE = 2;
+	int INSTANCE_SELECTOR_SOURCE_INTERFACE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -278,7 +369,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getDynamicSourceElement()
 	 * @generated
 	 */
-	int DYNAMIC_SOURCE_ELEMENT = 6;
+	int DYNAMIC_SOURCE_ELEMENT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -351,7 +442,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLocalDynamicSourceElement()
 	 * @generated
 	 */
-	int LOCAL_DYNAMIC_SOURCE_ELEMENT = 7;
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -433,7 +524,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorSourceElement()
 	 * @generated
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT = 3;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -515,7 +606,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getExternalDynamicSourceElement()
 	 * @generated
 	 */
-	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT = 8;
+	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -597,7 +688,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorExternalSourceElement()
 	 * @generated
 	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 4;
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -679,7 +770,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getGlobalDynamicSourceElement()
 	 * @generated
 	 */
-	int GLOBAL_DYNAMIC_SOURCE_ELEMENT = 9;
+	int GLOBAL_DYNAMIC_SOURCE_ELEMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -761,7 +852,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorGlobalSourceElement()
 	 * @generated
 	 */
-	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT = 5;
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -906,6 +997,27 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSourceInstanceSelector_Target();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.TargetInstanceSelector <em>Target Instance Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Target Instance Selector</em>'.
+	 * @see pamtram.structure.TargetInstanceSelector
+	 * @generated
+	 */
+	EClass getTargetInstanceSelector();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.structure.TargetInstanceSelector#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see pamtram.structure.TargetInstanceSelector#getTarget()
+	 * @see #getTargetInstanceSelector()
+	 * @generated
+	 */
+	EReference getTargetInstanceSelector_Target();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
@@ -1131,6 +1243,24 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SOURCE_INSTANCE_SELECTOR__TARGET = eINSTANCE.getSourceInstanceSelector_Target();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.impl.TargetInstanceSelectorImpl <em>Target Instance Selector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.impl.TargetInstanceSelectorImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getTargetInstanceSelector()
+		 * @generated
+		 */
+		EClass TARGET_INSTANCE_SELECTOR = eINSTANCE.getTargetInstanceSelector();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_INSTANCE_SELECTOR__TARGET = eINSTANCE.getTargetInstanceSelector_Target();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.

@@ -89,6 +89,15 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StructurePackage.TARGET_INSTANCE_SELECTOR: {
+				TargetInstanceSelector targetInstanceSelector = (TargetInstanceSelector)theEObject;
+				T result = caseTargetInstanceSelector(targetInstanceSelector);
+				if (result == null) result = caseInstanceSelector(targetInstanceSelector);
+				if (result == null) result = caseExpressionElement(targetInstanceSelector);
+				if (result == null) result = caseModifiableElement(targetInstanceSelector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE: {
 				InstanceSelectorSourceInterface instanceSelectorSourceInterface = (InstanceSelectorSourceInterface)theEObject;
 				T result = caseInstanceSelectorSourceInterface(instanceSelectorSourceInterface);
@@ -160,7 +169,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT: {
-				GlobalDynamicSourceElement<?, ?, ?, ?> globalDynamicSourceElement = (GlobalDynamicSourceElement<?, ?, ?, ?>)theEObject;
+				GlobalDynamicSourceElement<?, ?, ?, ?, ?> globalDynamicSourceElement = (GlobalDynamicSourceElement<?, ?, ?, ?, ?>)theEObject;
 				T result = caseGlobalDynamicSourceElement(globalDynamicSourceElement);
 				if (result == null) result = caseDynamicSourceElement(globalDynamicSourceElement);
 				if (result == null) result = caseNamedElement(globalDynamicSourceElement);
@@ -199,6 +208,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSourceInstanceSelector(SourceInstanceSelector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetInstanceSelector(TargetInstanceSelector object) {
 		return null;
 	}
 
@@ -318,7 +342,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> T caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A, InstanceSelectorType> object) {
 		return null;
 	}
 

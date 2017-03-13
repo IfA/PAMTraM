@@ -1469,6 +1469,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theStructurePackage.getSourceInstanceSelector());
+		g1.getETypeArguments().add(g2);
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
@@ -1508,6 +1510,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theStructurePackage.getSourceInstanceSelector());
 		g1.getETypeArguments().add(g2);
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());

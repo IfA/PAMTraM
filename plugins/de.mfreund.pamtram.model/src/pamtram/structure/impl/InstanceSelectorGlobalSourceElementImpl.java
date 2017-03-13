@@ -2,9 +2,12 @@
  */
 package pamtram.structure.impl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.structure.InstanceSelectorGlobalSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructurePackage;
 
 import pamtram.structure.source.SourceSection;
@@ -19,7 +22,7 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorGlobalSourceElement {
+public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> implements InstanceSelectorGlobalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -37,6 +40,20 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	@Override
 	protected EClass eStaticClass() {
 		return StructurePackage.Literals.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
+	 * @generated
+	 */
+	@Override
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS);
+		}
+		return instanceSelectors;
 	}
 
 } //InstanceSelectorGlobalSourceElementImpl

@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -18,5 +19,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface AttributeMappingGlobalSourceElement extends GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, AttributeMappingSourceInterface {
+public interface AttributeMappingGlobalSourceElement extends GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>, AttributeMappingSourceInterface {
 } // AttributeMappingGlobalSourceElement

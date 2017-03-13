@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.structure.GlobalDynamicSourceElement;
-import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -30,7 +30,7 @@ import pamtram.structure.generic.Section;
  *
  * @generated
  */
-public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElementImpl<S, C, R, A> implements GlobalDynamicSourceElement<S, C, R, A> {
+public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> extends DynamicSourceElementImpl<S, C, R, A> implements GlobalDynamicSourceElement<S, C, R, A, InstanceSelectorType> {
 	/**
 	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SourceInstanceSelector> instanceSelectors;
+	protected EList<InstanceSelectorType> instanceSelectors;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,9 +64,9 @@ public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SourceInstanceSelector> getInstanceSelectors() {
+	public EList<InstanceSelectorType> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<InstanceSelectorType>(InstanceSelector.class, this, StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -110,7 +110,7 @@ public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, 
 		switch (featureID) {
 			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
+				getInstanceSelectors().addAll((Collection<? extends InstanceSelectorType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

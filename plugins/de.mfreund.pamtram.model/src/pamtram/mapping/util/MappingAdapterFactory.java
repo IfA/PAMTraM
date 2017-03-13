@@ -264,7 +264,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExternalDynamicSourceElementAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A> object) {
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> Adapter caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A, InstanceSelectorType> object) {
 				return createGlobalDynamicSourceElementAdapter();
 			}
 			@Override

@@ -23,11 +23,10 @@ import pamtram.structure.generic.Section;
  * @model abstract="true"
  * @generated
  */
-public interface GlobalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
+public interface GlobalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> extends DynamicSourceElement<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.SourceInstanceSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Instance Selectors</em>' containment reference list isn't clear,
@@ -39,5 +38,5 @@ public interface GlobalDynamicSourceElement<S extends Section<S, C, R, A>, C ext
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<SourceInstanceSelector> getInstanceSelectors();
+	EList<InstanceSelectorType> getInstanceSelectors();
 } // GlobalDynamicSourceElement

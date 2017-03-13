@@ -109,6 +109,8 @@ public class StructureValidator extends EObjectValidator {
 				return validateInstanceSelector((InstanceSelector)value, diagnostics, context);
 			case StructurePackage.SOURCE_INSTANCE_SELECTOR:
 				return validateSourceInstanceSelector((SourceInstanceSelector)value, diagnostics, context);
+			case StructurePackage.TARGET_INSTANCE_SELECTOR:
+				return validateTargetInstanceSelector((TargetInstanceSelector)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE:
 				return validateInstanceSelectorSourceInterface((InstanceSelectorSourceInterface)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT:
@@ -124,7 +126,7 @@ public class StructureValidator extends EObjectValidator {
 			case StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT:
 				return validateExternalDynamicSourceElement((ExternalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT:
-				return validateGlobalDynamicSourceElement((GlobalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+				return validateGlobalDynamicSourceElement((GlobalDynamicSourceElement<?, ?, ?, ?, ?>)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -205,6 +207,26 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(sourceInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(sourceInstanceSelector, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetInstanceSelector(TargetInstanceSelector targetInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetInstanceSelector, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
 		return result;
 	}
 
@@ -396,7 +418,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGlobalDynamicSourceElement(GlobalDynamicSourceElement<?, ?, ?, ?> globalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateGlobalDynamicSourceElement(GlobalDynamicSourceElement<?, ?, ?, ?, ?> globalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(globalDynamicSourceElement, diagnostics, context);
 	}
 

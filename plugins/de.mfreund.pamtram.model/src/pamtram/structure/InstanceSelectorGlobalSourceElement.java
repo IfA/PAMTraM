@@ -17,5 +17,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface InstanceSelectorGlobalSourceElement extends GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, InstanceSelectorSourceInterface {
+public interface InstanceSelectorGlobalSourceElement extends GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>, InstanceSelectorSourceInterface {
 } // InstanceSelectorGlobalSourceElement

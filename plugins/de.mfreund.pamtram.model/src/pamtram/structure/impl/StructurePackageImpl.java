@@ -31,6 +31,7 @@ import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.impl.ConstraintPackageImpl;
 import pamtram.structure.generic.GenericPackage;
@@ -63,6 +64,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * @generated
 	 */
 	private EClass sourceInstanceSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetInstanceSelectorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -290,6 +298,24 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTargetInstanceSelector() {
+		return targetInstanceSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetInstanceSelector_Target() {
+		return (EReference)targetInstanceSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstanceSelectorSourceInterface() {
 		return instanceSelectorSourceInterfaceEClass;
 	}
@@ -448,6 +474,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		sourceInstanceSelectorEClass = createEClass(SOURCE_INSTANCE_SELECTOR);
 		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET);
 
+		targetInstanceSelectorEClass = createEClass(TARGET_INSTANCE_SELECTOR);
+		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__TARGET);
+
 		instanceSelectorSourceInterfaceEClass = createEClass(INSTANCE_SELECTOR_SOURCE_INTERFACE);
 
 		instanceSelectorSourceElementEClass = createEClass(INSTANCE_SELECTOR_SOURCE_ELEMENT);
@@ -527,6 +556,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		ETypeParameter globalDynamicSourceElementEClass_C = addETypeParameter(globalDynamicSourceElementEClass, "C");
 		ETypeParameter globalDynamicSourceElementEClass_R = addETypeParameter(globalDynamicSourceElementEClass, "R");
 		ETypeParameter globalDynamicSourceElementEClass_A = addETypeParameter(globalDynamicSourceElementEClass, "A");
+		ETypeParameter globalDynamicSourceElementEClass_InstanceSelectorType = addETypeParameter(globalDynamicSourceElementEClass, "InstanceSelectorType");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
@@ -689,11 +719,14 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
 		globalDynamicSourceElementEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(this.getInstanceSelector());
+		globalDynamicSourceElementEClass_InstanceSelectorType.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
+		targetInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
 		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		g1 = createEGenericType(this.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -727,6 +760,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceInstanceSelector());
 		g1.getETypeArguments().add(g2);
 		instanceSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
@@ -784,6 +819,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEClass(sourceInstanceSelectorEClass, SourceInstanceSelector.class, "SourceInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceInstanceSelector_Target(), theSourcePackage.getSourceSectionAttribute(), null, "target", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(targetInstanceSelectorEClass, TargetInstanceSelector.class, "TargetInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetInstanceSelector_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(instanceSelectorSourceInterfaceEClass, InstanceSelectorSourceInterface.class, "InstanceSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instanceSelectorSourceElementEClass, InstanceSelectorSourceElement.class, "InstanceSelectorSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -823,7 +861,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(globalDynamicSourceElementEClass, GlobalDynamicSourceElement.class, "GlobalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGlobalDynamicSourceElement_InstanceSelectors(), this.getSourceInstanceSelector(), null, "instanceSelectors", null, 0, -1, GlobalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(globalDynamicSourceElementEClass_InstanceSelectorType);
+		initEReference(getGlobalDynamicSourceElement_InstanceSelectors(), g1, null, "instanceSelectors", null, 0, -1, GlobalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import

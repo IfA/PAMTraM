@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.*;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.CardinalityMappingSourceInterface;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
@@ -128,10 +127,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
 				return createAttributeMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
-				return createContainerSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
@@ -358,20 +353,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMappingSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Container Selector Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorSourceInterface
-	 * @generated
-	 */
-	public Adapter createContainerSelectorSourceInterfaceAdapter() {
 		return null;
 	}
 

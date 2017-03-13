@@ -184,24 +184,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createContainerSelectorAdapter();
 			}
 			@Override
-			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
-				return createContainerSelectorSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorSourceElement(ContainerSelectorSourceElement object) {
-				return createContainerSelectorSourceElementAdapter();
-			}
-			@Override
 			public Adapter caseContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute object) {
 				return createContainerSelectorTargetAttributeAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorExternalSourceElement(ContainerSelectorExternalSourceElement object) {
-				return createContainerSelectorExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorGlobalSourceElement(ContainerSelectorGlobalSourceElement object) {
-				return createContainerSelectorGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
@@ -624,20 +608,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceElement <em>Container Selector Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorSourceElement
-	 * @generated
-	 */
-	public Adapter createContainerSelectorSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -792,20 +762,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Container Selector Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorSourceInterface
-	 * @generated
-	 */
-	public Adapter createContainerSelectorSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -830,20 +786,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorExternalSourceElement <em>Container Selector External Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorExternalSourceElement
-	 * @generated
-	 */
-	public Adapter createContainerSelectorExternalSourceElementAdapter() {
 		return null;
 	}
 
@@ -942,20 +884,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorGlobalSourceElement <em>Container Selector Global Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorGlobalSourceElement
-	 * @generated
-	 */
-	public Adapter createContainerSelectorGlobalSourceElementAdapter() {
 		return null;
 	}
 

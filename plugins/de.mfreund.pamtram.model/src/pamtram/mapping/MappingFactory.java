@@ -158,15 +158,6 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingSourceElement createAttributeMappingSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Container Selector Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Selector Source Element</em>'.
-	 * @generated
-	 */
-	ContainerSelectorSourceElement createContainerSelectorSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,15 +221,6 @@ public interface MappingFactory extends EFactory {
 	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Container Selector External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Selector External Source Element</em>'.
-	 * @generated
-	 */
-	ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -264,15 +246,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>Container Selector Global Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Selector Global Source Element</em>'.
-	 * @generated
-	 */
-	ContainerSelectorGlobalSourceElement createContainerSelectorGlobalSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.

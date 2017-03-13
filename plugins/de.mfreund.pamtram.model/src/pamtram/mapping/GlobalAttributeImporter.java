@@ -22,7 +22,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * @model
  * @generated
  */
-public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, ContainerSelectorSourceInterface, InstanceSelectorSourceInterface, ValueConstraintSourceInterface {
+public interface GlobalAttributeImporter extends NamedElement, AttributeMappingSourceInterface, InstanceSelectorSourceInterface, ValueConstraintSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -194,7 +194,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/CardinalityMappingSourceInterface">
+  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/CardinalityMappingSourceInterface">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eSubpackages name="structure" nsURI="http://mfreund.de/pamtram/structure" nsPrefix="structure">
@@ -1970,34 +1970,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//structure/target/TargetSectionAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHintBaseType">
-      <eOperations name="getSourceAttributes" unique="false" upperBound="-1" eType="#//structure/source/ActualSourceSectionAttribute"/>
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/ContainerSelectorSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;EList&lt;ContainerSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;ContainerSelectorSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(ContainerSelectorSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof ContainerSelectorSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((ContainerSelectorSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
-          eType="#//mapping/ContainerSelectorExternalSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;ContainerSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;for(ContainerSelectorSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof ContainerSelectorExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((ContainerSelectorExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
-        </eAnnotations>
-      </eOperations>
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHintBaseType #//structure/InstanceSelector">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ContainerSelectorTargetAttribute" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
-          upperBound="-1" eType="#//mapping/ContainerSelectorSourceInterface" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/LocalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorTargetAttribute">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -2021,24 +1996,6 @@
         <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
         <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
       </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalModifiedAttributeElementType">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/ContainerSelectorSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
         eSuperTypes="#//mapping/HintImporterMappingHint">
@@ -2080,7 +2037,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/source/ActualSourceSectionAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//mapping/ContainerSelectorSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
       <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
           eType="#//mapping/GlobalAttribute"/>
     </eClassifiers>

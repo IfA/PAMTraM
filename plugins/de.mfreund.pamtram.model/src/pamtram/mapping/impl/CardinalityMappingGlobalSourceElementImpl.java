@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.CardinalityMappingGlobalSourceElement;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl;
+import pamtram.structure.impl.GlobalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -19,7 +19,7 @@ import pamtram.structure.source.SourceSectionReference;
  * @generated
  */
 public class CardinalityMappingGlobalSourceElementImpl extends
-		GlobalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
+		GlobalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
 		implements CardinalityMappingGlobalSourceElement {
 
 	/**

@@ -17,7 +17,7 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class InstanceSelectorSourceElementImpl extends LocalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorSourceElement {
+public class InstanceSelectorSourceElementImpl extends LocalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

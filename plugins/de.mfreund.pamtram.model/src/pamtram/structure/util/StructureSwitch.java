@@ -133,16 +133,16 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT: {
+				DynamicSourceElement<?, ?, ?, ?> modifiedAttributeElementType = (DynamicSourceElement<?, ?, ?, ?>)theEObject;
 				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
 				if (result == null) result = caseModifiableElement(modifiedAttributeElementType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType = (LocalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT: {
+				LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType = (LocalDynamicSourceElement<?, ?, ?, ?>)theEObject;
 				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
@@ -150,8 +150,8 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+			case StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT: {
+				ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalDynamicSourceElement<?, ?, ?, ?>)theEObject;
 				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
@@ -159,8 +159,8 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
-				GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT: {
+				GlobalDynamicSourceElement<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalDynamicSourceElement<?, ?, ?, ?>)theEObject;
 				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
 				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
 				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
@@ -333,7 +333,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(DynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 
@@ -348,7 +348,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 
@@ -363,7 +363,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 
@@ -378,7 +378,7 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 

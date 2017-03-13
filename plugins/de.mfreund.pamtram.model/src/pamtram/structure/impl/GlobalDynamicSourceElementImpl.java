@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
@@ -25,12 +25,12 @@ import pamtram.structure.generic.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.GlobalModifiedAttributeElementTypeImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
+ *   <li>{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementTypeImpl<S, C, R, A> implements GlobalModifiedAttributeElementType<S, C, R, A> {
+public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElementImpl<S, C, R, A> implements GlobalDynamicSourceElement<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GlobalModifiedAttributeElementTypeImpl() {
+	protected GlobalDynamicSourceElementImpl() {
 		super();
 	}
 
@@ -66,7 +66,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	 */
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -79,7 +79,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -93,7 +93,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				return getInstanceSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
 				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
@@ -124,7 +124,7 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				getInstanceSelectors().clear();
 				return;
 		}
@@ -139,10 +139,10 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //GlobalModifiedAttributeElementTypeImpl
+} //GlobalDynamicSourceElementImpl

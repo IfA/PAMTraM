@@ -117,14 +117,14 @@ public class StructureValidator extends EObjectValidator {
 				return validateInstanceSelectorExternalSourceElement((InstanceSelectorExternalSourceElement)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT:
 				return validateInstanceSelectorGlobalSourceElement((InstanceSelectorGlobalSourceElement)value, diagnostics, context);
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
-			case StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateLocalModifiedAttributeElementType((LocalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
-			case StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateExternalModifiedAttributeElementType((ExternalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
-				return validateGlobalModifiedAttributeElementType((GlobalModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT:
+				return validateModifiedAttributeElementType((DynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT:
+				return validateLocalModifiedAttributeElementType((LocalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+			case StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT:
+				return validateExternalModifiedAttributeElementType((ExternalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT:
+				return validateGlobalModifiedAttributeElementType((GlobalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -271,7 +271,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModifiedAttributeElementType(ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateModifiedAttributeElementType(DynamicSourceElement<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
 	}
 
@@ -280,7 +280,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
@@ -301,7 +301,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -329,7 +329,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(LocalModifiedAttributeElementType<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return localModifiedAttributeElementType.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
@@ -338,7 +338,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
@@ -359,7 +359,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -387,7 +387,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(ExternalModifiedAttributeElementType<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return externalModifiedAttributeElementType.validateSourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 
@@ -396,7 +396,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<?, ?, ?, ?> globalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateGlobalModifiedAttributeElementType(GlobalDynamicSourceElement<?, ?, ?, ?> globalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(globalModifiedAttributeElementType, diagnostics, context);
 	}
 

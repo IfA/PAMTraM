@@ -5,7 +5,7 @@ package pamtram.mapping;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -22,7 +22,7 @@ import pamtram.structure.target.TargetSectionReference;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceMatchesPossibleContainerType'"
  * @generated
  */
-public interface ContainerSelectorTargetAttribute extends ModifiedAttributeElementType<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
+public interface ContainerSelectorTargetAttribute extends DynamicSourceElement<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * <!-- begin-user-doc -->

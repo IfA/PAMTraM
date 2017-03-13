@@ -1436,7 +1436,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
 		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		EGenericType g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		EGenericType g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1448,7 +1448,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getExternalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1460,7 +1460,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getGlobalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1476,7 +1476,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
-		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1488,7 +1488,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
 		cardinalityMappingSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getExternalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1500,7 +1500,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
 		cardinalityMappingExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getGlobalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getGlobalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1519,7 +1519,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		attributeMatcherEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
 		containerSelectorEClass.getESuperTypes().add(this.getMappingHintBaseType());
 		containerSelectorEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
-		g1 = createEGenericType(theStructurePackage.getModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getDynamicSourceElement());
 		g2 = createEGenericType(theTargetPackage.getTargetSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theTargetPackage.getTargetSectionClass());
@@ -1530,7 +1530,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		containerSelectorTargetAttributeEClass.getEGenericSuperTypes().add(g1);
 		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
-		g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -1551,7 +1551,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
 		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getExternalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());

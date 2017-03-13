@@ -192,7 +192,7 @@ public class ContainerSelectorImpl extends MappingHintBaseTypeImpl implements Co
 		boolean result = this.eContainer() instanceof ComplexCondition
 				&& ((ComplexCondition) this.eContainer()).isConditionModelCondition()
 						? this.getSourceElements().parallelStream()
-								.noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType)
+								.noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement)
 						: true;
 
 		if (!result && diagnostics != null) {

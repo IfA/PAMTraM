@@ -14,12 +14,12 @@ import pamtram.structure.generic.Section;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getLocalModifiedAttributeElementType()
+ * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSectionOrContainedSection'"
  * @generated
  */
-public interface LocalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
+public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,4 +28,4 @@ public interface LocalModifiedAttributeElementType<S extends Section<S, C, R, A>
 	 * @generated
 	 */
 	boolean validateSourceAttributeMatchesSectionOrContainedSection(DiagnosticChain diagnostics, Map<?, ?> context);
-} // LocalModifiedAttributeElementType
+} // LocalDynamicSourceElement

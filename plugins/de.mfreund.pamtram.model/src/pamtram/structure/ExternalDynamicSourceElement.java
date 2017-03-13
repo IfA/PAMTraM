@@ -14,12 +14,12 @@ import pamtram.structure.generic.Section;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.structure.StructurePackage#getExternalModifiedAttributeElementType()
+ * @see pamtram.structure.StructurePackage#getExternalDynamicSourceElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesContainerSection'"
  * @generated
  */
-public interface ExternalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
+public interface ExternalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -28,4 +28,4 @@ public interface ExternalModifiedAttributeElementType<S extends Section<S, C, R,
 	 * @generated
 	 */
 	boolean validateSourceAttributeMatchesContainerSection(DiagnosticChain diagnostics, Map<?, ?> context);
-} // ExternalModifiedAttributeElementType
+} // ExternalDynamicSourceElement

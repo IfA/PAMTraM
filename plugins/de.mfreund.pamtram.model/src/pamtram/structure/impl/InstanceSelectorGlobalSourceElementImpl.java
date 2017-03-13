@@ -19,7 +19,7 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class InstanceSelectorGlobalSourceElementImpl extends GlobalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorGlobalSourceElement {
+public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements InstanceSelectorGlobalSourceElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -16,14 +16,14 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.GlobalModifiedAttributeElementType#getInstanceSelectors <em>Instance Selectors</em>}</li>
+ *   <li>{@link pamtram.structure.GlobalDynamicSourceElement#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType()
+ * @see pamtram.structure.StructurePackage#getGlobalDynamicSourceElement()
  * @model abstract="true"
  * @generated
  */
-public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ModifiedAttributeElementType<S, C, R, A> {
+public interface GlobalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
 
 	/**
 	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
@@ -35,9 +35,9 @@ public interface GlobalModifiedAttributeElementType<S extends Section<S, C, R, A
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
-	 * @see pamtram.structure.StructurePackage#getGlobalModifiedAttributeElementType_InstanceSelectors()
+	 * @see pamtram.structure.StructurePackage#getGlobalDynamicSourceElement_InstanceSelectors()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<SourceInstanceSelector> getInstanceSelectors();
-} // GlobalModifiedAttributeElementType
+} // GlobalDynamicSourceElement

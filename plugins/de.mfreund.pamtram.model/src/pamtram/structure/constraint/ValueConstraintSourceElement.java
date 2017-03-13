@@ -2,7 +2,7 @@
  */
 package pamtram.structure.constraint;
 
-import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -17,5 +17,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface ValueConstraintSourceElement extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ValueConstraintSourceInterface {
+public interface ValueConstraintSourceElement extends LocalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, ValueConstraintSourceInterface {
 } // AttributeValueConstraintSourceElement

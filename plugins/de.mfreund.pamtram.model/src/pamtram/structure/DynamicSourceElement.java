@@ -18,14 +18,14 @@ import pamtram.structure.generic.Section;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.DynamicSourceElement#getSource <em>Source</em>}</li>
  * </ul>
  *
- * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType()
+ * @see pamtram.structure.StructurePackage#getDynamicSourceElement()
  * @model abstract="true"
  * @generated
  */
-public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement, ModifiableElement {
+public interface DynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Attribute)
-	 * @see pamtram.structure.StructurePackage#getModifiedAttributeElementType_Source()
+	 * @see pamtram.structure.StructurePackage#getDynamicSourceElement_Source()
 	 * @model required="true"
 	 * @generated
 	 */
 	A getSource();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.ModifiedAttributeElementType#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.DynamicSourceElement#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -70,4 +70,4 @@ public interface ModifiedAttributeElementType<S extends Section<S, C, R, A>, C e
 	 */
 	Mapping getMapping();
 
-} // ModifiedAttributeElementType
+} // DynamicSourceElement

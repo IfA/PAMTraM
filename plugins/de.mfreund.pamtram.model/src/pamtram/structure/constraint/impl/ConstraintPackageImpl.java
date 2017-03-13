@@ -585,7 +585,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		stringConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
-		EGenericType g1 = createEGenericType(theStructurePackage.getLocalModifiedAttributeElementType());
+		EGenericType g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -597,7 +597,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getValueConstraintSourceInterface());
 		valueConstraintSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theStructurePackage.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(theStructurePackage.getExternalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());

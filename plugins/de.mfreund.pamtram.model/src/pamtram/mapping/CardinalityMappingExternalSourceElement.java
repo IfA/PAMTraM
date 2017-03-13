@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.structure.ExternalModifiedAttributeElementType;
+import pamtram.structure.ExternalDynamicSourceElement;
 
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -19,5 +19,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface CardinalityMappingExternalSourceElement extends ExternalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, CardinalityMappingSourceInterface {
+public interface CardinalityMappingExternalSourceElement extends ExternalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, CardinalityMappingSourceInterface {
 } // CardinalityMappingExternalSourceElement

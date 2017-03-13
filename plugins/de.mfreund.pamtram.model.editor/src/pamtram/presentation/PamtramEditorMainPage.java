@@ -64,11 +64,9 @@ import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExternalMappedAttributeValueExpander;
@@ -82,8 +80,9 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstanceSelector;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ContainerParameter;
@@ -669,11 +668,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.currentMapping = mapping;
 
 				/*
-				 * If a ModifiedAttributeElementType is selected, select the source attribute that it represents and the
+				 * If a DynamicSourceElement is selected, select the source attribute that it represents and the
 				 * target attribute of a possible parent AttributeMapping.
 				 */
-			} else if (item.getData() instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttribute = (ModifiedAttributeElementType<?, ?, ?, ?>) item
+			} else if (item.getData() instanceof DynamicSourceElement<?, ?, ?, ?>) {
+				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) item
 						.getData();
 
 				Attribute<?, ?, ?, ?> target = null;
@@ -700,8 +699,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if (!((ContainerSelector) importer.eContainer()).getTargetAttributes().isEmpty()) {
 						target = ((ContainerSelector) importer.eContainer()).getTargetAttributes().get(0).getSource();
 					}
-				} else if (importer.eContainer() instanceof InstanceSelector) {
-					target = ((InstanceSelector) importer.eContainer()).getTarget();
+				} else if (importer.eContainer() instanceof SourceInstanceSelector) {
+					target = ((SourceInstanceSelector) importer.eContainer()).getTarget();
 				}
 				Attribute<?, ?, ?, ?> source = importer.getGlobalAttribute() == null ? null
 						: importer.getGlobalAttribute().getSource();
@@ -717,8 +716,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 				for (AttributeMappingSourceInterface c : mapping.getSourceElements()) {
-					if (c instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) c).getSource());
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
 					}
 				}
 				if (mapping.getSharedCondition() != null) {
@@ -765,9 +764,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 
-				for (AttributeMatcherSourceInterface srcElement : matcher.getSourceElements()) {
-					if (srcElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) srcElement).getSource());
+				for (InstanceSelectorSourceInterface srcElement : matcher.getSourceElements()) {
+					if (srcElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) srcElement).getSource());
 					}
 				}
 
@@ -795,9 +794,9 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				ArrayList<Attribute<?, ?, ?, ?>> sources = new ArrayList<>();
 				ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
 
-				for (ContainerSelectorSourceInterface sourceElement : hint.getSourceElements()) {
-					if (sourceElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-						sources.add(((ModifiedAttributeElementType<?, ?, ?, ?>) sourceElement).getSource());
+				for (InstanceSelectorSourceInterface sourceElement : hint.getSourceElements()) {
+					if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) sourceElement).getSource());
 					}
 				}
 

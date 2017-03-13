@@ -31,15 +31,6 @@ public interface StructureFactory extends EFactory {
 	SourceInstanceSelector createSourceInstanceSelector();
 
 	/**
-	 * Returns a new object of class '<em>Target Instance Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Target Instance Selector</em>'.
-	 * @generated
-	 */
-	TargetInstanceSelector createTargetInstanceSelector();
-
-	/**
 	 * Returns a new object of class '<em>Instance Selector Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

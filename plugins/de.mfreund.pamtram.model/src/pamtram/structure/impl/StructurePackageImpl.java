@@ -30,7 +30,6 @@ import pamtram.structure.ModifiedAttributeElementType;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.impl.ConstraintPackageImpl;
 import pamtram.structure.generic.GenericPackage;
@@ -63,13 +62,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * @generated
 	 */
 	private EClass sourceInstanceSelectorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass targetInstanceSelectorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -236,17 +228,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSelector_Target() {
-		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getInstanceSelector_SourceElements() {
-		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(1);
+		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -272,8 +255,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTargetInstanceSelector() {
-		return targetInstanceSelectorEClass;
+	public EReference getSourceInstanceSelector_Target() {
+		return (EReference)sourceInstanceSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -422,13 +405,11 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		// Create classes and their features
 		instanceSelectorEClass = createEClass(INSTANCE_SELECTOR);
-		createEReference(instanceSelectorEClass, INSTANCE_SELECTOR__TARGET);
 		createEReference(instanceSelectorEClass, INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
 
 		sourceInstanceSelectorEClass = createEClass(SOURCE_INSTANCE_SELECTOR);
-
-		targetInstanceSelectorEClass = createEClass(TARGET_INSTANCE_SELECTOR);
+		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET);
 
 		instanceSelectorSourceInterfaceEClass = createEClass(INSTANCE_SELECTOR_SOURCE_INTERFACE);
 
@@ -491,10 +472,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		getESubpackages().add(theLibraryPackage);
 
 		// Create type parameters
-		ETypeParameter instanceSelectorEClass_S = addETypeParameter(instanceSelectorEClass, "S");
-		ETypeParameter instanceSelectorEClass_C = addETypeParameter(instanceSelectorEClass, "C");
-		ETypeParameter instanceSelectorEClass_R = addETypeParameter(instanceSelectorEClass, "R");
-		ETypeParameter instanceSelectorEClass_A = addETypeParameter(instanceSelectorEClass, "A");
 		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
 		ETypeParameter modifiedAttributeElementTypeEClass_C = addETypeParameter(modifiedAttributeElementTypeEClass, "C");
 		ETypeParameter modifiedAttributeElementTypeEClass_R = addETypeParameter(modifiedAttributeElementTypeEClass, "R");
@@ -514,47 +491,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
-		EGenericType g2 = createEGenericType(instanceSelectorEClass_S);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_R);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_A);
-		g1.getETypeArguments().add(g2);
-		instanceSelectorEClass_S.getEBounds().add(g1);
-		g1 = createEGenericType(theGenericPackage.getClass_());
-		g2 = createEGenericType(instanceSelectorEClass_S);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_R);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_A);
-		g1.getETypeArguments().add(g2);
-		instanceSelectorEClass_C.getEBounds().add(g1);
-		g1 = createEGenericType(theGenericPackage.getReference());
-		g2 = createEGenericType(instanceSelectorEClass_S);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_R);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_A);
-		g1.getETypeArguments().add(g2);
-		instanceSelectorEClass_R.getEBounds().add(g1);
-		g1 = createEGenericType(theGenericPackage.getAttribute());
-		g2 = createEGenericType(instanceSelectorEClass_S);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_C);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_R);
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(instanceSelectorEClass_A);
-		g1.getETypeArguments().add(g2);
-		instanceSelectorEClass_A.getEBounds().add(g1);
-		g1 = createEGenericType(theGenericPackage.getSection());
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		EGenericType g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
 		g1.getETypeArguments().add(g2);
@@ -717,26 +654,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		// Add supertypes to classes
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		g1 = createEGenericType(this.getInstanceSelector());
-		g2 = createEGenericType(theSourcePackage.getSourceSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		sourceInstanceSelectorEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getInstanceSelector());
-		g2 = createEGenericType(theTargetPackage.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		targetInstanceSelectorEClass.getEGenericSuperTypes().add(g1);
+		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
 		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
 		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -797,8 +715,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(instanceSelectorEClass, InstanceSelector.class, "InstanceSelector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(instanceSelectorEClass_A);
-		initEReference(getInstanceSelector_Target(), g1, null, "target", null, 1, 1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInstanceSelector_SourceElements(), this.getInstanceSelectorSourceInterface(), null, "sourceElements", null, 0, -1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNoModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -811,8 +727,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceInstanceSelectorEClass, SourceInstanceSelector.class, "SourceInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(targetInstanceSelectorEClass, TargetInstanceSelector.class, "TargetInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSourceInstanceSelector_Target(), theSourcePackage.getSourceSectionAttribute(), null, "target", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceSelectorSourceInterfaceEClass, InstanceSelectorSourceInterface.class, "InstanceSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

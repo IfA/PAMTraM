@@ -5,8 +5,6 @@ package pamtram.structure.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -14,8 +12,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -28,9 +24,6 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.Reference;
-import pamtram.structure.generic.Section;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -42,13 +35,12 @@ import pamtram.structure.util.StructureValidator;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ExpressionElementImpl implements InstanceSelector<S, C, R, A> {
+public abstract class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -58,16 +50,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 	 * @ordered
 	 */
 	protected EList<ValueModifierSet> modifiers;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected A target;
 
 	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
@@ -108,45 +90,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
 		}
 		return modifiers;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public A getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (A)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public A basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(A newTarget) {
-		A oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -210,9 +153,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				return getModifiers();
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
@@ -231,9 +171,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
-				return;
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((A)newValue);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
@@ -254,9 +191,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((A)null);
-				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
@@ -274,8 +208,6 @@ public abstract class InstanceSelectorImpl<S extends Section<S, C, R, A>, C exte
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				return target != null;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}

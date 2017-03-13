@@ -106,11 +106,9 @@ public class StructureValidator extends EObjectValidator {
 			Map<Object, Object> context) {
 		switch (classifierID) {
 			case StructurePackage.INSTANCE_SELECTOR:
-				return validateInstanceSelector((InstanceSelector<?, ?, ?, ?>)value, diagnostics, context);
+				return validateInstanceSelector((InstanceSelector)value, diagnostics, context);
 			case StructurePackage.SOURCE_INSTANCE_SELECTOR:
 				return validateSourceInstanceSelector((SourceInstanceSelector)value, diagnostics, context);
-			case StructurePackage.TARGET_INSTANCE_SELECTOR:
-				return validateTargetInstanceSelector((TargetInstanceSelector)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_INTERFACE:
 				return validateInstanceSelectorSourceInterface((InstanceSelectorSourceInterface)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT:
@@ -135,7 +133,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstanceSelector(InstanceSelector<?, ?, ?, ?> instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstanceSelector(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(instanceSelector, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(instanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelector, diagnostics, context);
@@ -156,7 +154,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector<?, ?, ?, ?> instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -184,7 +182,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector<?, ?, ?, ?> instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(InstanceSelector instanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return instanceSelector.validateNoModifiedAttributeElementTypesInConditionModelConditions(diagnostics, context);
 	}
 
@@ -205,26 +203,6 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(sourceInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(sourceInstanceSelector, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateTargetInstanceSelector(TargetInstanceSelector targetInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(targetInstanceSelector, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
 		return result;
 	}
 

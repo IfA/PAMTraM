@@ -14,7 +14,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.PamtramPackage;
 import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
@@ -63,7 +62,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
+			childrenFeatures.add(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -142,7 +141,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
+				(StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS,
 				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 

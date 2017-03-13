@@ -41,14 +41,14 @@ import pamtram.structure.source.SourcePackage;
 /**
  * This is the item provider adapter for a {@link pamtram.structure.constraint.SingleReferenceValueConstraint} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class SingleReferenceValueConstraintItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public SingleReferenceValueConstraintItemProvider(AdapterFactory adapterFactory) {
@@ -57,7 +57,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -75,7 +75,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -91,7 +91,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -107,7 +107,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -125,7 +125,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -133,15 +133,15 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
 			this.childrenFeatures.add(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
 		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -165,7 +165,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -176,7 +176,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -210,8 +210,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -247,9 +247,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
 				SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
-			newChildDescriptors.add(
-					this.createChildParameter(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-							StructureFactory.eINSTANCE.createSourceInstanceSelector()));
+			newChildDescriptors.add(this.createChildParameter(
+					ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS,
+					StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 		}
 
 		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
@@ -293,7 +293,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -306,7 +306,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
 			Collection<?> collection, int index) {
 
-		if (feature.equals(PamtramPackage.eINSTANCE.getInstanceSelectingElement_InstanceSelectors())
+		if (feature.equals(ConstraintPackage.eINSTANCE.getSingleReferenceValueConstraint_InstanceSelectors())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(owner, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;
@@ -318,7 +318,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	public AbstractCommand createDragAndDropCommand(EditingDomain domain, Collection<EObject> collection,
 			EObject parent, EReference ref) {
 
-		if (ref.equals(PamtramPackage.eINSTANCE.getInstanceSelectingElement_InstanceSelectors())
+		if (ref.equals(ConstraintPackage.eINSTANCE.getSingleReferenceValueConstraint_InstanceSelectors())
 				&& !AgteleEcoreUtil.hasAncestorOfKind(parent, MappingPackage.eINSTANCE.getMapping())
 				&& !collection.parallelStream().allMatch(s -> s instanceof pamtram.FixedValue)) {
 			return UnexecutableCommand.INSTANCE;

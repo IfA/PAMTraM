@@ -141,6 +141,29 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.InstanceSelectorGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InstanceSelectorGlobalSourceElementItemProvider instanceSelectorGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.InstanceSelectorGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInstanceSelectorGlobalSourceElementAdapter() {
+		if (instanceSelectorGlobalSourceElementItemProvider == null) {
+			instanceSelectorGlobalSourceElementItemProvider = new InstanceSelectorGlobalSourceElementItemProvider(this);
+		}
+
+		return instanceSelectorGlobalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +265,7 @@ public class StructureItemProviderAdapterFactory extends StructureAdapterFactory
 		if (sourceInstanceSelectorItemProvider != null) sourceInstanceSelectorItemProvider.dispose();
 		if (instanceSelectorSourceElementItemProvider != null) instanceSelectorSourceElementItemProvider.dispose();
 		if (instanceSelectorExternalSourceElementItemProvider != null) instanceSelectorExternalSourceElementItemProvider.dispose();
+		if (instanceSelectorGlobalSourceElementItemProvider != null) instanceSelectorGlobalSourceElementItemProvider.dispose();
 	}
 
 }

@@ -4,9 +4,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 import pamtram.commands.GenericConvertCommand.IConverter;
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
-import pamtram.mapping.MappingPackage;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.StructurePackage;
 
 /**
  * An {@link IConverter} that is able to convert a normal {@link AttributeMatcherSourceElement} to an
@@ -15,13 +15,13 @@ import pamtram.mapping.MappingPackage;
  * @author mfreund
  */
 public class InternalToExternalSourceAttrMatcherElementConverter
-		implements IConverter<AttributeMatcherSourceElement, AttributeMatcherExternalSourceElement> {
+		implements IConverter<InstanceSelectorSourceElement, InstanceSelectorExternalSourceElement> {
 
 	@Override
-	public AttributeMatcherExternalSourceElement convert(AttributeMatcherSourceElement source) {
+	public InstanceSelectorExternalSourceElement convert(InstanceSelectorSourceElement source) {
 
 		EPackage ePackage = source.eClass().getEPackage();
-		AttributeMatcherExternalSourceElement target = (AttributeMatcherExternalSourceElement) ePackage
+		InstanceSelectorExternalSourceElement target = (InstanceSelectorExternalSourceElement) ePackage
 				.getEFactoryInstance()
 				.create((EClass) ePackage.getEClassifier("ComplexAttributeMatcherExternalSourceElement"));
 
@@ -35,8 +35,8 @@ public class InternalToExternalSourceAttrMatcherElementConverter
 
 		if (source.getModifiers() != null) {
 			target.eSet(
-					target.eClass()
-							.getEStructuralFeature(MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIERS),
+					target.eClass().getEStructuralFeature(
+							StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__MODIFIERS),
 					source.getModifiers());
 		}
 

@@ -187,29 +187,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeMatcherSourceElementItemProvider attributeMatcherSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeMatcherSourceElementAdapter() {
-		if (attributeMatcherSourceElementItemProvider == null) {
-			attributeMatcherSourceElementItemProvider = new AttributeMatcherSourceElementItemProvider(this);
-		}
-
-		return attributeMatcherSourceElementItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ClassMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -555,29 +532,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherExternalSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeMatcherExternalSourceElementItemProvider attributeMatcherExternalSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherExternalSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeMatcherExternalSourceElementAdapter() {
-		if (attributeMatcherExternalSourceElementItemProvider == null) {
-			attributeMatcherExternalSourceElementItemProvider = new AttributeMatcherExternalSourceElementItemProvider(this);
-		}
-
-		return attributeMatcherExternalSourceElementItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalMappedAttributeValuePrepender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -621,29 +575,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		}
 
 		return externalMappedAttributeValueAppenderItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcherGlobalSourceElement} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeMatcherGlobalSourceElementItemProvider attributeMatcherGlobalSourceElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcherGlobalSourceElement}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeMatcherGlobalSourceElementAdapter() {
-		if (attributeMatcherGlobalSourceElementItemProvider == null) {
-			attributeMatcherGlobalSourceElementItemProvider = new AttributeMatcherGlobalSourceElementItemProvider(this);
-		}
-
-		return attributeMatcherGlobalSourceElementItemProvider;
 	}
 
 	/**
@@ -875,9 +806,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
 		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
-		if (attributeMatcherSourceElementItemProvider != null) attributeMatcherSourceElementItemProvider.dispose();
-		if (attributeMatcherExternalSourceElementItemProvider != null) attributeMatcherExternalSourceElementItemProvider.dispose();
-		if (attributeMatcherGlobalSourceElementItemProvider != null) attributeMatcherGlobalSourceElementItemProvider.dispose();
 		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (containerSelectorSourceElementItemProvider != null) containerSelectorSourceElementItemProvider.dispose();
 		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();

@@ -100,9 +100,9 @@ public class StructureSwitch<T> extends Switch<T> {
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT: {
 				InstanceSelectorSourceElement instanceSelectorSourceElement = (InstanceSelectorSourceElement)theEObject;
 				T result = caseInstanceSelectorSourceElement(instanceSelectorSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(instanceSelectorSourceElement);
+				if (result == null) result = caseLocalDynamicSourceElement(instanceSelectorSourceElement);
 				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorSourceElement);
+				if (result == null) result = caseDynamicSourceElement(instanceSelectorSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorSourceElement);
@@ -112,9 +112,9 @@ public class StructureSwitch<T> extends Switch<T> {
 			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT: {
 				InstanceSelectorExternalSourceElement instanceSelectorExternalSourceElement = (InstanceSelectorExternalSourceElement)theEObject;
 				T result = caseInstanceSelectorExternalSourceElement(instanceSelectorExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseExternalDynamicSourceElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseDynamicSourceElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorExternalSourceElement);
@@ -124,9 +124,9 @@ public class StructureSwitch<T> extends Switch<T> {
 			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT: {
 				InstanceSelectorGlobalSourceElement instanceSelectorGlobalSourceElement = (InstanceSelectorGlobalSourceElement)theEObject;
 				T result = caseInstanceSelectorGlobalSourceElement(instanceSelectorGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseGlobalDynamicSourceElement(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseDynamicSourceElement(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorGlobalSourceElement);
@@ -134,37 +134,37 @@ public class StructureSwitch<T> extends Switch<T> {
 				return result;
 			}
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT: {
-				DynamicSourceElement<?, ?, ?, ?> modifiedAttributeElementType = (DynamicSourceElement<?, ?, ?, ?>)theEObject;
-				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(modifiedAttributeElementType);
-				if (result == null) result = caseModifiableElement(modifiedAttributeElementType);
+				DynamicSourceElement<?, ?, ?, ?> dynamicSourceElement = (DynamicSourceElement<?, ?, ?, ?>)theEObject;
+				T result = caseDynamicSourceElement(dynamicSourceElement);
+				if (result == null) result = caseNamedElement(dynamicSourceElement);
+				if (result == null) result = caseModifiableElement(dynamicSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT: {
-				LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType = (LocalDynamicSourceElement<?, ?, ?, ?>)theEObject;
-				T result = caseLocalModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(localModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(localModifiedAttributeElementType);
-				if (result == null) result = caseModifiableElement(localModifiedAttributeElementType);
+				LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement = (LocalDynamicSourceElement<?, ?, ?, ?>)theEObject;
+				T result = caseLocalDynamicSourceElement(localDynamicSourceElement);
+				if (result == null) result = caseDynamicSourceElement(localDynamicSourceElement);
+				if (result == null) result = caseNamedElement(localDynamicSourceElement);
+				if (result == null) result = caseModifiableElement(localDynamicSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT: {
-				ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType = (ExternalDynamicSourceElement<?, ?, ?, ?>)theEObject;
-				T result = caseExternalModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(externalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(externalModifiedAttributeElementType);
-				if (result == null) result = caseModifiableElement(externalModifiedAttributeElementType);
+				ExternalDynamicSourceElement<?, ?, ?, ?> externalDynamicSourceElement = (ExternalDynamicSourceElement<?, ?, ?, ?>)theEObject;
+				T result = caseExternalDynamicSourceElement(externalDynamicSourceElement);
+				if (result == null) result = caseDynamicSourceElement(externalDynamicSourceElement);
+				if (result == null) result = caseNamedElement(externalDynamicSourceElement);
+				if (result == null) result = caseModifiableElement(externalDynamicSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT: {
-				GlobalDynamicSourceElement<?, ?, ?, ?> globalModifiedAttributeElementType = (GlobalDynamicSourceElement<?, ?, ?, ?>)theEObject;
-				T result = caseGlobalModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseModifiedAttributeElementType(globalModifiedAttributeElementType);
-				if (result == null) result = caseNamedElement(globalModifiedAttributeElementType);
-				if (result == null) result = caseModifiableElement(globalModifiedAttributeElementType);
+				GlobalDynamicSourceElement<?, ?, ?, ?> globalDynamicSourceElement = (GlobalDynamicSourceElement<?, ?, ?, ?>)theEObject;
+				T result = caseGlobalDynamicSourceElement(globalDynamicSourceElement);
+				if (result == null) result = caseDynamicSourceElement(globalDynamicSourceElement);
+				if (result == null) result = caseNamedElement(globalDynamicSourceElement);
+				if (result == null) result = caseModifiableElement(globalDynamicSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -263,6 +263,66 @@ public class StructureSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Local Dynamic Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Local Dynamic Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Dynamic Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Dynamic Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Global Dynamic Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Global Dynamic Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -319,66 +379,6 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingHintSourceInterface(MappingHintSourceInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Modified Attribute Element Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(DynamicSourceElement<S, C, R, A> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalDynamicSourceElement<S, C, R, A> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalDynamicSourceElement<S, C, R, A> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Global Modified Attribute Element Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseGlobalModifiedAttributeElementType(GlobalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 

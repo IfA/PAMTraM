@@ -42,7 +42,7 @@ public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.EXTERNAL_DYNAMIC_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -67,9 +67,9 @@ public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,
+							StructureValidator.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 		
 		}
 		

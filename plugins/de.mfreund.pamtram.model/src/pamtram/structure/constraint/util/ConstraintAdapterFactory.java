@@ -131,16 +131,16 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 				return createMappingHintSourceInterfaceAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseModifiedAttributeElementType(DynamicSourceElement<S, C, R, A> object) {
-				return createModifiedAttributeElementTypeAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
+				return createDynamicSourceElementAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalModifiedAttributeElementType(LocalDynamicSourceElement<S, C, R, A> object) {
-				return createLocalModifiedAttributeElementTypeAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
+				return createLocalDynamicSourceElementAdapter();
 			}
 			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalModifiedAttributeElementType(ExternalDynamicSourceElement<S, C, R, A> object) {
-				return createExternalModifiedAttributeElementTypeAdapter();
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
+				return createExternalDynamicSourceElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -345,7 +345,7 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.DynamicSourceElement <em>Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.DynamicSourceElement <em>Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -354,12 +354,12 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.DynamicSourceElement
 	 * @generated
 	 */
-	public Adapter createModifiedAttributeElementTypeAdapter() {
+	public Adapter createDynamicSourceElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.LocalDynamicSourceElement <em>Local Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.LocalDynamicSourceElement <em>Local Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -368,12 +368,12 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.LocalDynamicSourceElement
 	 * @generated
 	 */
-	public Adapter createLocalModifiedAttributeElementTypeAdapter() {
+	public Adapter createLocalDynamicSourceElementAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Modified Attribute Element Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -382,7 +382,7 @@ public class ConstraintAdapterFactory extends AdapterFactoryImpl {
 	 * @see pamtram.structure.ExternalDynamicSourceElement
 	 * @generated
 	 */
-	public Adapter createExternalModifiedAttributeElementTypeAdapter() {
+	public Adapter createExternalDynamicSourceElementAdapter() {
 		return null;
 	}
 

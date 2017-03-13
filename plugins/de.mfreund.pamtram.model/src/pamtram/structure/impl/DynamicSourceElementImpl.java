@@ -79,7 +79,7 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT;
 	}
 
 	/**

@@ -88,7 +88,7 @@ public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementIm
 					MappingValidator.DIAGNOSTIC_SOURCE,
 							MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 		
 		}
 		

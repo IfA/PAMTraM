@@ -271,7 +271,7 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.DynamicSourceElementImpl <em>Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.DynamicSourceElementImpl <em>Dynamic Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.DynamicSourceElementImpl
@@ -308,7 +308,7 @@ public interface StructurePackage extends EPackage {
 	int DYNAMIC_SOURCE_ELEMENT__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Modified Attribute Element Type</em>' class.
+	 * The number of structural features of the '<em>Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -335,7 +335,7 @@ public interface StructurePackage extends EPackage {
 	int DYNAMIC_SOURCE_ELEMENT___GET_MAPPING = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Modified Attribute Element Type</em>' class.
+	 * The number of operations of the '<em>Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -344,7 +344,7 @@ public interface StructurePackage extends EPackage {
 	int DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.LocalDynamicSourceElementImpl <em>Local Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.LocalDynamicSourceElementImpl <em>Local Dynamic Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.LocalDynamicSourceElementImpl
@@ -381,7 +381,7 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
-	 * The number of structural features of the '<em>Local Modified Attribute Element Type</em>' class.
+	 * The number of structural features of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -417,7 +417,7 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Local Modified Attribute Element Type</em>' class.
+	 * The number of operations of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -508,7 +508,7 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT_OPERATION_COUNT = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Dynamic Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.ExternalDynamicSourceElementImpl
@@ -545,7 +545,7 @@ public interface StructurePackage extends EPackage {
 	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
-	 * The number of structural features of the '<em>External Modified Attribute Element Type</em>' class.
+	 * The number of structural features of the '<em>External Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -581,7 +581,7 @@ public interface StructurePackage extends EPackage {
 	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>External Modified Attribute Element Type</em>' class.
+	 * The number of operations of the '<em>External Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -672,7 +672,7 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl <em>Global Modified Attribute Element Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl <em>Global Dynamic Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see pamtram.structure.impl.GlobalDynamicSourceElementImpl
@@ -718,7 +718,7 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Global Modified Attribute Element Type</em>' class.
+	 * The number of structural features of the '<em>Global Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -745,7 +745,7 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING = DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
 
 	/**
-	 * The number of operations of the '<em>Global Modified Attribute Element Type</em>' class.
+	 * The number of operations of the '<em>Global Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -948,10 +948,10 @@ public interface StructurePackage extends EPackage {
 	EClass getInstanceSelectorGlobalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.DynamicSourceElement <em>Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.DynamicSourceElement <em>Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Modified Attribute Element Type</em>'.
+	 * @return the meta object for class '<em>Dynamic Source Element</em>'.
 	 * @see pamtram.structure.DynamicSourceElement
 	 * @generated
 	 */
@@ -989,10 +989,10 @@ public interface StructurePackage extends EPackage {
 	EOperation getDynamicSourceElement__GetMapping();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.LocalDynamicSourceElement <em>Local Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.LocalDynamicSourceElement <em>Local Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Local Modified Attribute Element Type</em>'.
+	 * @return the meta object for class '<em>Local Dynamic Source Element</em>'.
 	 * @see pamtram.structure.LocalDynamicSourceElement
 	 * @generated
 	 */
@@ -1009,10 +1009,10 @@ public interface StructurePackage extends EPackage {
 	EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>External Modified Attribute Element Type</em>'.
+	 * @return the meta object for class '<em>External Dynamic Source Element</em>'.
 	 * @see pamtram.structure.ExternalDynamicSourceElement
 	 * @generated
 	 */
@@ -1029,10 +1029,10 @@ public interface StructurePackage extends EPackage {
 	EOperation getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.structure.GlobalDynamicSourceElement <em>Global Modified Attribute Element Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.structure.GlobalDynamicSourceElement <em>Global Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Global Modified Attribute Element Type</em>'.
+	 * @return the meta object for class '<em>Global Dynamic Source Element</em>'.
 	 * @see pamtram.structure.GlobalDynamicSourceElement
 	 * @generated
 	 */
@@ -1173,14 +1173,14 @@ public interface StructurePackage extends EPackage {
 		EClass INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getInstanceSelectorGlobalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.DynamicSourceElementImpl <em>Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.DynamicSourceElementImpl <em>Dynamic Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.DynamicSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getDynamicSourceElement()
 		 * @generated
 		 */
-		EClass MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getDynamicSourceElement();
+		EClass DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getDynamicSourceElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
@@ -1188,7 +1188,7 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE = eINSTANCE.getDynamicSourceElement_Source();
+		EReference DYNAMIC_SOURCE_ELEMENT__SOURCE = eINSTANCE.getDynamicSourceElement_Source();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Mapping Hint Group</b></em>' operation.
@@ -1196,7 +1196,7 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP = eINSTANCE.getDynamicSourceElement__GetMappingHintGroup();
+		EOperation DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = eINSTANCE.getDynamicSourceElement__GetMappingHintGroup();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Mapping</b></em>' operation.
@@ -1204,17 +1204,17 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING = eINSTANCE.getDynamicSourceElement__GetMapping();
+		EOperation DYNAMIC_SOURCE_ELEMENT___GET_MAPPING = eINSTANCE.getDynamicSourceElement__GetMapping();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.LocalDynamicSourceElementImpl <em>Local Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.LocalDynamicSourceElementImpl <em>Local Dynamic Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.LocalDynamicSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getLocalDynamicSourceElement()
 		 * @generated
 		 */
-		EClass LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getLocalDynamicSourceElement();
+		EClass LOCAL_DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getLocalDynamicSourceElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Source Attribute Matches Section Or Contained Section</b></em>' operation.
@@ -1222,17 +1222,17 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
+		EOperation LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Dynamic Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.ExternalDynamicSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getExternalDynamicSourceElement()
 		 * @generated
 		 */
-		EClass EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getExternalDynamicSourceElement();
+		EClass EXTERNAL_DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getExternalDynamicSourceElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Source Attribute Matches Container Section</b></em>' operation.
@@ -1240,17 +1240,17 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map();
+		EOperation EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl <em>Global Modified Attribute Element Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl <em>Global Dynamic Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see pamtram.structure.impl.GlobalDynamicSourceElementImpl
 		 * @see pamtram.structure.impl.StructurePackageImpl#getGlobalDynamicSourceElement()
 		 * @generated
 		 */
-		EClass GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = eINSTANCE.getGlobalDynamicSourceElement();
+		EClass GLOBAL_DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getGlobalDynamicSourceElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
@@ -1258,7 +1258,7 @@ public interface StructurePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS = eINSTANCE.getGlobalDynamicSourceElement_InstanceSelectors();
+		EReference GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS = eINSTANCE.getGlobalDynamicSourceElement_InstanceSelectors();
 
 	}
 

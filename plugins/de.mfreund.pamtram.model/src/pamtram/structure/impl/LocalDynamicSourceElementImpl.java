@@ -41,7 +41,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -73,9 +73,9 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 				(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					 StructureValidator.DIAGNOSTIC_SOURCE,
-					 StructureValidator.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
+					 StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
 					 errorMessage,
-					 new Object [] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					 new Object [] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 			}
 		
 		return result;

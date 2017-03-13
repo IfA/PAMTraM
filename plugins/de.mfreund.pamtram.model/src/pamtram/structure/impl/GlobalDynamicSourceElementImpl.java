@@ -56,7 +56,7 @@ public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT;
 	}
 
 	/**

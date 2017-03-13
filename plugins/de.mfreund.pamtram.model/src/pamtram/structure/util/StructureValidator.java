@@ -44,20 +44,20 @@ public class StructureValidator extends EObjectValidator {
 	public static final int INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Modified Attribute Element Type'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Dynamic Source Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 2;
+	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Modified Attribute Element Type'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Dynamic Source Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 3;
+	public static final int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -118,13 +118,13 @@ public class StructureValidator extends EObjectValidator {
 			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT:
 				return validateInstanceSelectorGlobalSourceElement((InstanceSelectorGlobalSourceElement)value, diagnostics, context);
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT:
-				return validateModifiedAttributeElementType((DynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+				return validateDynamicSourceElement((DynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT:
-				return validateLocalModifiedAttributeElementType((LocalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+				return validateLocalDynamicSourceElement((LocalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT:
-				return validateExternalModifiedAttributeElementType((ExternalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+				return validateExternalDynamicSourceElement((ExternalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT:
-				return validateGlobalModifiedAttributeElementType((GlobalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
+				return validateGlobalDynamicSourceElement((GlobalDynamicSourceElement<?, ?, ?, ?>)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -232,8 +232,8 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -252,8 +252,8 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -271,8 +271,8 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateModifiedAttributeElementType(DynamicSourceElement<?, ?, ?, ?> modifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(modifiedAttributeElementType, diagnostics, context);
+	public boolean validateDynamicSourceElement(DynamicSourceElement<?, ?, ?, ?> dynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(dynamicSourceElement, diagnostics, context);
 	}
 
 	/**
@@ -280,28 +280,28 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(localModifiedAttributeElementType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(localModifiedAttributeElementType, diagnostics, context);
+	public boolean validateLocalDynamicSourceElement(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(localDynamicSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
+	 * Validates the sourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_sourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -314,8 +314,8 @@ public class StructureValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceAttributeMatchesSectionOrContainedSection", getObjectLabel(localModifiedAttributeElementType, context) },
-						 new Object[] { localModifiedAttributeElementType },
+						 new Object[] { "sourceAttributeMatchesSectionOrContainedSection", getObjectLabel(localDynamicSourceElement, context) },
+						 new Object[] { localDynamicSourceElement },
 						 context));
 			}
 			return false;
@@ -324,13 +324,13 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateSourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Modified Attribute Element Type</em>'.
+	 * Validates the validateSourceAttributeMatchesSectionOrContainedSection constraint of '<em>Local Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalModifiedAttributeElementType_validateSourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return localModifiedAttributeElementType.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
+	public boolean validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return localDynamicSourceElement.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
 	}
 
 	/**
@@ -338,28 +338,28 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(externalModifiedAttributeElementType, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
-		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(externalModifiedAttributeElementType, diagnostics, context);
+	public boolean validateExternalDynamicSourceElement(ExternalDynamicSourceElement<?, ?, ?, ?> externalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(externalDynamicSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(externalDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(externalDynamicSourceElement, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the sourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
+	 * Validates the sourceAttributeMatchesContainerSection constraint of '<em>External Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -372,8 +372,8 @@ public class StructureValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceAttributeMatchesContainerSection", getObjectLabel(externalModifiedAttributeElementType, context) },
-						 new Object[] { externalModifiedAttributeElementType },
+						 new Object[] { "sourceAttributeMatchesContainerSection", getObjectLabel(externalDynamicSourceElement, context) },
+						 new Object[] { externalDynamicSourceElement },
 						 context));
 			}
 			return false;
@@ -382,13 +382,13 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateSourceAttributeMatchesContainerSection constraint of '<em>External Modified Attribute Element Type</em>'.
+	 * Validates the validateSourceAttributeMatchesContainerSection constraint of '<em>External Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return externalModifiedAttributeElementType.validateSourceAttributeMatchesContainerSection(diagnostics, context);
+	public boolean validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(ExternalDynamicSourceElement<?, ?, ?, ?> externalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return externalDynamicSourceElement.validateSourceAttributeMatchesContainerSection(diagnostics, context);
 	}
 
 	/**
@@ -396,8 +396,8 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGlobalModifiedAttributeElementType(GlobalDynamicSourceElement<?, ?, ?, ?> globalModifiedAttributeElementType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(globalModifiedAttributeElementType, diagnostics, context);
+	public boolean validateGlobalDynamicSourceElement(GlobalDynamicSourceElement<?, ?, ?, ?> globalDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(globalDynamicSourceElement, diagnostics, context);
 	}
 
 	/**

@@ -13,6 +13,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.structure.ExternalModifiedAttributeElementType;
 import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalModifiedAttributeElementType;
 import pamtram.structure.ModifiedAttributeElementType;
@@ -318,53 +319,10 @@ public class MappingSwitch<T> extends Switch<T> {
 				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
 				T result = caseAttributeMatcher(attributeMatcher);
 				if (result == null) result = caseMatcher(attributeMatcher);
+				if (result == null) result = caseExpandableHint(attributeMatcher);
+				if (result == null) result = caseInstanceSelector(attributeMatcher);
 				if (result == null) result = caseExpressionElement(attributeMatcher);
 				if (result == null) result = caseModifiableElement(attributeMatcher);
-				if (result == null) result = caseExpandableHint(attributeMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_INTERFACE: {
-				AttributeMatcherSourceInterface attributeMatcherSourceInterface = (AttributeMatcherSourceInterface)theEObject;
-				T result = caseAttributeMatcherSourceInterface(attributeMatcherSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceInterface);
-				if (result == null) result = caseNamedElement(attributeMatcherSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_SOURCE_ELEMENT: {
-				AttributeMatcherSourceElement attributeMatcherSourceElement = (AttributeMatcherSourceElement)theEObject;
-				T result = caseAttributeMatcherSourceElement(attributeMatcherSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(attributeMatcherSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMatcherSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT: {
-				AttributeMatcherExternalSourceElement attributeMatcherExternalSourceElement = (AttributeMatcherExternalSourceElement)theEObject;
-				T result = caseAttributeMatcherExternalSourceElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMatcherExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT: {
-				AttributeMatcherGlobalSourceElement attributeMatcherGlobalSourceElement = (AttributeMatcherGlobalSourceElement)theEObject;
-				T result = caseAttributeMatcherGlobalSourceElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseGlobalModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseAttributeMatcherSourceInterface(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMatcherGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMatcherGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -495,7 +453,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				GlobalAttributeImporter globalAttributeImporter = (GlobalAttributeImporter)theEObject;
 				T result = caseGlobalAttributeImporter(globalAttributeImporter);
 				if (result == null) result = caseAttributeMappingSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseAttributeMatcherSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseContainerSelectorSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseInstanceSelectorSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
@@ -727,36 +684,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeMatcher(AttributeMatcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Source Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcherSourceElement(AttributeMatcherSourceElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
 		return null;
 	}
 
@@ -1166,21 +1093,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher External Source Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Expander</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1256,17 +1168,17 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Global Source Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Global Source Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
+	public T caseInstanceSelector(InstanceSelector object) {
 		return null;
 	}
 

@@ -49,6 +49,15 @@ public interface StructureFactory extends EFactory {
 	InstanceSelectorExternalSourceElement createInstanceSelectorExternalSourceElement();
 
 	/**
+	 * Returns a new object of class '<em>Instance Selector Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Selector Global Source Element</em>'.
+	 * @generated
+	 */
+	InstanceSelectorGlobalSourceElement createInstanceSelectorGlobalSourceElement();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

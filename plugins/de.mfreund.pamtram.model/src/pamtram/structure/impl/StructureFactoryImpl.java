@@ -56,6 +56,7 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 			case StructurePackage.SOURCE_INSTANCE_SELECTOR: return createSourceInstanceSelector();
 			case StructurePackage.INSTANCE_SELECTOR_SOURCE_ELEMENT: return createInstanceSelectorSourceElement();
 			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT: return createInstanceSelectorExternalSourceElement();
+			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT: return createInstanceSelectorGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -89,6 +90,16 @@ public class StructureFactoryImpl extends EFactoryImpl implements StructureFacto
 	public InstanceSelectorExternalSourceElement createInstanceSelectorExternalSourceElement() {
 		InstanceSelectorExternalSourceElementImpl instanceSelectorExternalSourceElement = new InstanceSelectorExternalSourceElementImpl();
 		return instanceSelectorExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstanceSelectorGlobalSourceElement createInstanceSelectorGlobalSourceElement() {
+		InstanceSelectorGlobalSourceElementImpl instanceSelectorGlobalSourceElement = new InstanceSelectorGlobalSourceElementImpl();
+		return instanceSelectorGlobalSourceElement;
 	}
 
 	/**

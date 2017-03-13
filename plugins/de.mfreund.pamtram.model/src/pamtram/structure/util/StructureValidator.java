@@ -115,6 +115,8 @@ public class StructureValidator extends EObjectValidator {
 				return validateInstanceSelectorSourceElement((InstanceSelectorSourceElement)value, diagnostics, context);
 			case StructurePackage.INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT:
 				return validateInstanceSelectorExternalSourceElement((InstanceSelectorExternalSourceElement)value, diagnostics, context);
+			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT:
+				return validateInstanceSelectorGlobalSourceElement((InstanceSelectorGlobalSourceElement)value, diagnostics, context);
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
 				return validateModifiedAttributeElementType((ModifiedAttributeElementType<?, ?, ?, ?>)value, diagnostics, context);
 			case StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE:
@@ -253,6 +255,15 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_sourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalModifiedAttributeElementType_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInstanceSelectorGlobalSourceElement(InstanceSelectorGlobalSourceElement instanceSelectorGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(instanceSelectorGlobalSourceElement, diagnostics, context);
 	}
 
 	/**

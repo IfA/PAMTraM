@@ -22,16 +22,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
+import pamtram.condition.ComplexCondition;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
-import pamtram.mapping.AttributeMatcherSourceElement;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.util.StructureValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,8 +47,8 @@ import pamtram.structure.target.TargetSectionAttribute;
  * <ul>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,6 +85,16 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSourceElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InstanceSelectorSourceInterface> sourceElements;
+
+	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,16 +103,6 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @ordered
 	 */
 	protected TargetSectionAttribute target;
-
-	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourceElements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AttributeMatcherSourceInterface> sourceElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,9 +205,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeMatcherSourceInterface> getSourceElements() {
+	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<AttributeMatcherSourceInterface>(AttributeMatcherSourceInterface.class, this, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -214,12 +218,12 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeMatcherSourceElement> getLocalSourceElements() {
-		EList<AttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMatcherSourceElement>();
+	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
+		EList<InstanceSelectorSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<InstanceSelectorSourceElement>();
 						
-						for(AttributeMatcherSourceInterface i : this.getSourceElements()){
-							if(i instanceof AttributeMatcherSourceElement){
-								elements.add((AttributeMatcherSourceElement) i);
+						for(InstanceSelectorSourceInterface i : this.getSourceElements()){
+							if(i instanceof InstanceSelectorSourceElement){
+								elements.add((InstanceSelectorSourceElement) i);
 							}
 						}
 						
@@ -232,12 +236,12 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * @generated
 	 */
 	@Override
-	public EList<AttributeMatcherExternalSourceElement> getExternalSourceElements() {
-		EList<AttributeMatcherExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
+	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
+		EList<InstanceSelectorExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();
 		
-		for(AttributeMatcherSourceInterface i : this.getSourceElements()){
-			if(i instanceof AttributeMatcherExternalSourceElement){
-				elements.add((AttributeMatcherExternalSourceElement) i);
+		for(InstanceSelectorSourceInterface i : this.getSourceElements()){
+			if(i instanceof InstanceSelectorExternalSourceElement){
+				elements.add((InstanceSelectorExternalSourceElement) i);
 			}
 		}
 		
@@ -281,6 +285,31 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType) : true;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
+							errorMessage,
+					new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -302,11 +331,11 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return getExpression();
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return getModifiers();
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+				return getSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
-				return getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -327,12 +356,12 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
-				setTarget((TargetSectionAttribute)newValue);
-				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends AttributeMatcherSourceInterface>)newValue);
+				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
+				return;
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				setTarget((TargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -352,11 +381,11 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
-				setTarget((TargetSectionAttribute)null);
-				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
+				return;
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				setTarget((TargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -374,10 +403,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
-				return target != null;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -389,6 +418,11 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
 				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
@@ -401,8 +435,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				default: return -1;
 			}
 		}
-		if (baseClass == ExpandableHint.class) {
+		if (baseClass == InstanceSelector.class) {
 			switch (derivedFeatureID) {
+				case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS: return StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -416,6 +451,11 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
@@ -428,12 +468,44 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				default: return -1;
 			}
 		}
-		if (baseClass == ExpandableHint.class) {
+		if (baseClass == InstanceSelector.class) {
 			switch (baseFeatureID) {
+				case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ExpressionElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == ModifiableElement.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == InstanceSelector.class) {
+			switch (baseOperationID) {
+				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
 	}
 
 	/**
@@ -451,6 +523,8 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 				return getExternalSourceElements();
 			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTargetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

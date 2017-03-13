@@ -14,6 +14,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.structure.ExternalModifiedAttributeElementType;
 import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalModifiedAttributeElementType;
 import pamtram.structure.ModifiedAttributeElementType;
@@ -179,22 +180,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createAttributeMatcherAdapter();
 			}
 			@Override
-			public Adapter caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
-				return createAttributeMatcherSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherSourceElement(AttributeMatcherSourceElement object) {
-				return createAttributeMatcherSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherExternalSourceElement(AttributeMatcherExternalSourceElement object) {
-				return createAttributeMatcherExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherGlobalSourceElement(AttributeMatcherGlobalSourceElement object) {
-				return createAttributeMatcherGlobalSourceElementAdapter();
-			}
-			@Override
 			public Adapter caseContainerSelector(ContainerSelector object) {
 				return createContainerSelectorAdapter();
 			}
@@ -297,6 +282,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseGlobalModifiedAttributeElementType(GlobalModifiedAttributeElementType<S, C, R, A> object) {
 				return createGlobalModifiedAttributeElementTypeAdapter();
+			}
+			@Override
+			public Adapter caseInstanceSelector(InstanceSelector object) {
+				return createInstanceSelectorAdapter();
 			}
 			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
@@ -477,34 +466,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttributeMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMatcherSourceElement
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMatcherSourceInterface
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -887,20 +848,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherExternalSourceElement <em>Attribute Matcher External Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMatcherExternalSourceElement
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherExternalSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -971,16 +918,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherGlobalSourceElement <em>Attribute Matcher Global Source Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelector <em>Instance Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMatcherGlobalSourceElement
+	 * @see pamtram.structure.InstanceSelector
 	 * @generated
 	 */
-	public Adapter createAttributeMatcherGlobalSourceElementAdapter() {
+	public Adapter createInstanceSelectorAdapter() {
 		return null;
 	}
 

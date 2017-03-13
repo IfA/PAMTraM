@@ -242,7 +242,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getModifiedAttributeElementType()
 	 * @generated
 	 */
-	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 5;
+	int MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -315,7 +315,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getLocalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 6;
+	int LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -479,7 +479,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getExternalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 7;
+	int EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -643,7 +643,7 @@ public interface StructurePackage extends EPackage {
 	 * @see pamtram.structure.impl.StructurePackageImpl#getGlobalModifiedAttributeElementType()
 	 * @generated
 	 */
-	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 8;
+	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -716,6 +716,88 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT = MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorGlobalSourceElementImpl <em>Instance Selector Global Source Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.impl.InstanceSelectorGlobalSourceElementImpl
+	 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorGlobalSourceElement()
+	 * @generated
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__NAME = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__MODIFIERS = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__SOURCE = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS;
+
+	/**
+	 * The number of structural features of the '<em>Instance Selector Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
+
+	/**
+	 * The operation id for the '<em>Get Mapping</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
+
+	/**
+	 * The number of operations of the '<em>Instance Selector Global Source Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelector <em>Instance Selector</em>}'.
@@ -798,6 +880,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInstanceSelectorExternalSourceElement();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorGlobalSourceElement <em>Instance Selector Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Selector Global Source Element</em>'.
+	 * @see pamtram.structure.InstanceSelectorGlobalSourceElement
+	 * @generated
+	 */
+	EClass getInstanceSelectorGlobalSourceElement();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.ModifiedAttributeElementType <em>Modified Attribute Element Type</em>}'.
@@ -997,6 +1089,16 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getInstanceSelectorExternalSourceElement();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.impl.InstanceSelectorGlobalSourceElementImpl <em>Instance Selector Global Source Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.impl.InstanceSelectorGlobalSourceElementImpl
+		 * @see pamtram.structure.impl.StructurePackageImpl#getInstanceSelectorGlobalSourceElement()
+		 * @generated
+		 */
+		EClass INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getInstanceSelectorGlobalSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl <em>Modified Attribute Element Type</em>}' class.

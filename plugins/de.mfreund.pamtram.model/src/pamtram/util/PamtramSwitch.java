@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.*;
 import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelectorSourceInterface;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -153,7 +152,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 				FixedValue fixedValue = (FixedValue)theEObject;
 				T result = caseFixedValue(fixedValue);
 				if (result == null) result = caseAttributeMappingSourceInterface(fixedValue);
-				if (result == null) result = caseAttributeMatcherSourceInterface(fixedValue);
 				if (result == null) result = caseContainerSelectorSourceInterface(fixedValue);
 				if (result == null) result = caseInstanceSelectorSourceInterface(fixedValue);
 				if (result == null) result = caseValueConstraintSourceInterface(fixedValue);
@@ -374,21 +372,6 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
 		return null;
 	}
 

@@ -97,15 +97,6 @@ public interface MappingFactory extends EFactory {
 	AttributeMatcher createAttributeMatcherWithSource();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Matcher Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMatcherSourceElement createAttributeMatcherSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>Class Matcher</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,15 +239,6 @@ public interface MappingFactory extends EFactory {
 	ContainerSelectorExternalSourceElement createContainerSelectorExternalSourceElement();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Matcher External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher External Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMatcherExternalSourceElement createAttributeMatcherExternalSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -273,15 +255,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Matcher Global Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher Global Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMatcherGlobalSourceElement createAttributeMatcherGlobalSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Attribute Mapping Global Source Element</em>'.

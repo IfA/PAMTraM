@@ -121,6 +121,18 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT: {
+				InstanceSelectorGlobalSourceElement instanceSelectorGlobalSourceElement = (InstanceSelectorGlobalSourceElement)theEObject;
+				T result = caseInstanceSelectorGlobalSourceElement(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseGlobalModifiedAttributeElementType(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiedAttributeElementType(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseNamedElement(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(instanceSelectorGlobalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE: {
 				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttributeElementType = (ModifiedAttributeElementType<?, ?, ?, ?>)theEObject;
 				T result = caseModifiedAttributeElementType(modifiedAttributeElementType);
@@ -232,6 +244,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceSelectorExternalSourceElement(InstanceSelectorExternalSourceElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceSelectorGlobalSourceElement(InstanceSelectorGlobalSourceElement object) {
 		return null;
 	}
 

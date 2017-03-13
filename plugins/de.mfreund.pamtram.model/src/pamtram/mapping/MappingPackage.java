@@ -634,16 +634,6 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_BASE_TYPE = 7;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMatcherSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceElement()
-	 * @generated
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT = 26;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,7 +641,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 	 * @generated
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE = 41;
+	int MAPPING_HINT_SOURCE_INTERFACE = 37;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
@@ -681,7 +671,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR = 29;
+	int CONTAINER_SELECTOR = 25;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -711,7 +701,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 35;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 31;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
@@ -721,7 +711,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 37;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 33;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
@@ -731,7 +721,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 38;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 34;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImpl <em>Global Attribute</em>}' class.
@@ -741,7 +731,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttribute()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE = 39;
+	int GLOBAL_ATTRIBUTE = 35;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -751,7 +741,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER = 40;
+	int GLOBAL_ATTRIBUTE_IMPORTER = 36;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -771,7 +761,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_SOURCE_ELEMENT = 31;
+	int CONTAINER_SELECTOR_SOURCE_ELEMENT = 27;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
@@ -781,17 +771,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 32;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.AttributeMatcherSourceInterface
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceInterface()
-	 * @generated
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE = 25;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1251,7 +1231,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 36;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 32;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1360,7 +1340,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorSourceInterface()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_SOURCE_INTERFACE = 30;
+	int CONTAINER_SELECTOR_SOURCE_INTERFACE = 26;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
@@ -1452,17 +1432,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorExternalSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 33;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl <em>Attribute Matcher External Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherExternalSourceElement()
-	 * @generated
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = 27;
+	int CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = 29;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
@@ -1472,7 +1442,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 42;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 38;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
@@ -1482,7 +1452,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 43;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 39;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueAppenderImpl <em>External Mapped Attribute Value Appender</em>}' class.
@@ -1492,7 +1462,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 44;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 40;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}' class.
@@ -1502,17 +1472,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
-	int EXPANDABLE_HINT = 45;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherGlobalSourceElementImpl <em>Attribute Matcher Global Source Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMatcherGlobalSourceElementImpl
-	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherGlobalSourceElement()
-	 * @generated
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT = 28;
+	int EXPANDABLE_HINT = 41;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
@@ -1802,7 +1762,7 @@ public interface MappingPackage extends EPackage {
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorGlobalSourceElement()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = 34;
+	int CONTAINER_SELECTOR_GLOBAL_SOURCE_ELEMENT = 30;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
@@ -2250,22 +2210,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER__MODIFIERS = MATCHER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__TARGET = MATCHER_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = MATCHER_FEATURE_COUNT + 3;
+	int ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = MATCHER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER__TARGET = MATCHER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
@@ -2277,13 +2237,22 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MATCHER_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -2292,7 +2261,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Target Matches Affected Reference Type</em>' operation.
@@ -2301,7 +2270,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = MATCHER_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = MATCHER_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Attribute Matcher</em>' class.
@@ -2310,250 +2279,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Matcher Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Attribute Matcher Source Interface</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__NAME = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__MODIFIERS = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Matcher Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
-
-	/**
-	 * The operation id for the '<em>Get Mapping</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
-
-	/**
-	 * The operation id for the '<em>Validate Source Attribute Matches Section Or Contained Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Attribute Matcher Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__NAME = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__MODIFIERS = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Matcher External Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
-
-	/**
-	 * The operation id for the '<em>Get Mapping</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
-
-	/**
-	 * The operation id for the '<em>Validate Source Attribute Matches Container Section</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Attribute Matcher External Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__NAME = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__MODIFIERS = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Matcher Global Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP;
-
-	/**
-	 * The operation id for the '<em>Get Mapping</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING;
-
-	/**
-	 * The number of operations of the '<em>Attribute Matcher Global Source Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -4049,17 +3775,6 @@ public interface MappingPackage extends EPackage {
 	EReference getAttributeMatcher_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.AttributeMatcher#getSourceElements <em>Source Elements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.mapping.AttributeMatcher#getSourceElements()
-	 * @see #getAttributeMatcher()
-	 * @generated
-	 */
-	EReference getAttributeMatcher_SourceElements();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4088,26 +3803,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceElement <em>Attribute Matcher Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Matcher Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMatcherSourceElement
-	 * @generated
-	 */
-	EClass getAttributeMatcherSourceElement();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Matcher Source Interface</em>'.
-	 * @see pamtram.mapping.AttributeMatcherSourceInterface
-	 * @generated
-	 */
-	EClass getAttributeMatcherSourceInterface();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ClassMatcher <em>Class Matcher</em>}'.
@@ -4553,16 +4248,6 @@ public interface MappingPackage extends EPackage {
 	EClass getContainerSelectorExternalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherExternalSourceElement <em>Attribute Matcher External Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Matcher External Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMatcherExternalSourceElement
-	 * @generated
-	 */
-	EClass getAttributeMatcherExternalSourceElement();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4601,16 +4286,6 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExpandableHint();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcherGlobalSourceElement <em>Attribute Matcher Global Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Matcher Global Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMatcherGlobalSourceElement
-	 * @generated
-	 */
-	EClass getAttributeMatcherGlobalSourceElement();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
@@ -5032,14 +4707,6 @@ public interface MappingPackage extends EPackage {
 		EReference ATTRIBUTE_MATCHER__TARGET = eINSTANCE.getAttributeMatcher_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Source Elements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = eINSTANCE.getAttributeMatcher_SourceElements();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5062,26 +4729,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherSourceElementImpl <em>Attribute Matcher Source Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMatcherSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceElement()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_MATCHER_SOURCE_ELEMENT = eINSTANCE.getAttributeMatcherSourceElement();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.AttributeMatcherSourceInterface
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherSourceInterface()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_MATCHER_SOURCE_INTERFACE = eINSTANCE.getAttributeMatcherSourceInterface();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
@@ -5476,16 +5123,6 @@ public interface MappingPackage extends EPackage {
 		EClass CONTAINER_SELECTOR_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getContainerSelectorExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl <em>Attribute Matcher External Source Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMatcherExternalSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherExternalSourceElement()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_MATCHER_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getAttributeMatcherExternalSourceElement();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5524,16 +5161,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherGlobalSourceElementImpl <em>Attribute Matcher Global Source Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMatcherGlobalSourceElementImpl
-		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcherGlobalSourceElement()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_MATCHER_GLOBAL_SOURCE_ELEMENT = eINSTANCE.getAttributeMatcherGlobalSourceElement();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.

@@ -23,6 +23,7 @@ import pamtram.structure.ExternalModifiedAttributeElementType;
 import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorGlobalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalModifiedAttributeElementType;
@@ -83,6 +84,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * @generated
 	 */
 	private EClass instanceSelectorExternalSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass instanceSelectorGlobalSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,6 +299,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInstanceSelectorGlobalSourceElement() {
+		return instanceSelectorGlobalSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getModifiedAttributeElementType() {
 		return modifiedAttributeElementTypeEClass;
 	}
@@ -416,6 +433,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorSourceElementEClass = createEClass(INSTANCE_SELECTOR_SOURCE_ELEMENT);
 
 		instanceSelectorExternalSourceElementEClass = createEClass(INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
+
+		instanceSelectorGlobalSourceElementEClass = createEClass(INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT);
 
 		modifiedAttributeElementTypeEClass = createEClass(MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
 		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE);
@@ -680,6 +699,18 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getGlobalModifiedAttributeElementType());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		instanceSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
+		instanceSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		g1 = createEGenericType(this.getModifiedAttributeElementType());
@@ -734,6 +765,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEClass(instanceSelectorSourceElementEClass, InstanceSelectorSourceElement.class, "InstanceSelectorSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instanceSelectorExternalSourceElementEClass, InstanceSelectorExternalSourceElement.class, "InstanceSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(instanceSelectorGlobalSourceElementEClass, InstanceSelectorGlobalSourceElement.class, "InstanceSelectorGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(modifiedAttributeElementTypeEClass, ModifiedAttributeElementType.class, "ModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(modifiedAttributeElementTypeEClass_A);

@@ -32,16 +32,16 @@ import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- *
  * @generated
  */
 public class AttributeMatcherItemProvider extends MatcherItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttributeMatcherItemProvider(AdapterFactory adapterFactory) {
@@ -49,67 +49,83 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addExpressionPropertyDescriptor(object);
-			this.addModifiersPropertyDescriptor(object);
-			this.addTargetPropertyDescriptor(object);
+			addExpressionPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
+			addTargetPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Expression feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ExpressionElement_expression_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature",
-						"_UI_ExpressionElement_type"),
-				PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Modifiers feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ModifiableElement_modifiers_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature",
-						"_UI_ModifiableElement_type"),
-				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_AttributeMatcher_target_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_target_feature",
-						"_UI_AttributeMatcher_type"),
-				MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AttributeMatcher_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_target_feature", "_UI_AttributeMatcher_type"),
+				 MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -148,19 +164,18 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
+			childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	@Override
@@ -176,7 +191,6 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -188,25 +202,23 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 	}
 
 	/**
-	 * This returns AttributeMatcher.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns AttributeMatcher.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/AttributeMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMatcher"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -249,15 +261,14 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMatcher.class)) {
 			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -271,30 +282,39 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				PamtramFactory.eINSTANCE.createFixedValue()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 PamtramFactory.eINSTANCE.createFixedValue()));
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
 	}
 
 }

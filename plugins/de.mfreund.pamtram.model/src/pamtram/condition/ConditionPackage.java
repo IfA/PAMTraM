@@ -635,22 +635,13 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
@@ -659,7 +650,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -668,7 +659,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 3;
+	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
@@ -744,15 +744,6 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -778,6 +769,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CONDITION__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
@@ -862,15 +862,6 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -896,6 +887,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_CONDITION__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
@@ -971,15 +971,6 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1005,6 +996,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int APPLICATION_DEPENDENCY__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Application Dependency</em>' class.
@@ -1142,6 +1142,17 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCondition_Target();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
+	 * @see pamtram.condition.Condition#getInstanceSelectors()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Condition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
@@ -1431,6 +1442,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONDITION__TARGET = eINSTANCE.getCondition_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__INSTANCE_SELECTORS = eINSTANCE.getCondition_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.

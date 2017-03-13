@@ -383,6 +383,15 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSingleReferenceValueConstraint_InstanceSelectors() {
+		return (EReference)singleReferenceValueConstraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getSingleReferenceValueConstraint__CheckConstraint__String_String() {
 		return singleReferenceValueConstraintEClass.getEOperations().get(0);
 	}
@@ -502,6 +511,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		singleReferenceValueConstraintEClass = createEClass(SINGLE_REFERENCE_VALUE_CONSTRAINT);
 		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
+		createEReference(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
@@ -557,8 +567,8 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 
 		// Create type parameters
@@ -570,7 +580,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		singleReferenceValueConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		singleReferenceValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		singleReferenceValueConstraintEClass.getESuperTypes().add(thePamtramPackage.getInstanceSelectingElement());
 		equalityConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
@@ -609,6 +618,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 
 		initEClass(singleReferenceValueConstraintEClass, SingleReferenceValueConstraint.class, "SingleReferenceValueConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSingleReferenceValueConstraint_SourceElements(), this.getValueConstraintSourceInterface(), null, "sourceElements", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceValueConstraint_InstanceSelectors(), theStructurePackage.getSourceInstanceSelector(), null, "instanceSelectors", null, 0, -1, SingleReferenceValueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getSingleReferenceValueConstraint__CheckConstraint__String_String(), ecorePackage.getEBoolean(), "checkConstraint", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "attrValue", 1, 1, IS_UNIQUE, IS_ORDERED);

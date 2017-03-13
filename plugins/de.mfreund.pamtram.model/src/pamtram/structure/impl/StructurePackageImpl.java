@@ -389,6 +389,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGlobalModifiedAttributeElementType_InstanceSelectors() {
+		return (EReference)globalModifiedAttributeElementTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StructureFactory getStructureFactory() {
 		return (StructureFactory)getEFactoryInstance();
 	}
@@ -439,6 +448,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		createEOperation(externalModifiedAttributeElementTypeEClass, EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
 
 		globalModifiedAttributeElementTypeEClass = createEClass(GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		createEReference(globalModifiedAttributeElementTypeEClass, GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS);
 	}
 
 	/**
@@ -784,8 +794,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
 		g1.getETypeArguments().add(g2);
 		globalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(thePamtramPackage.getInstanceSelectingElement());
-		globalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(instanceSelectorEClass, InstanceSelector.class, "InstanceSelector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -843,6 +851,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(globalModifiedAttributeElementTypeEClass, GlobalModifiedAttributeElementType.class, "GlobalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalModifiedAttributeElementType_InstanceSelectors(), this.getSourceInstanceSelector(), null, "instanceSelectors", null, 0, -1, GlobalModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import

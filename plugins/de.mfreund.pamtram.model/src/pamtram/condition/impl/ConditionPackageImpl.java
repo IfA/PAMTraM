@@ -301,6 +301,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCondition_InstanceSelectors() {
+		return (EReference)conditionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getCondition__CheckCondition__ComplexCondition() {
 		return conditionEClass.getEOperations().get(0);
 	}
@@ -531,6 +540,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEAttribute(conditionEClass, CONDITION__VALUE);
 		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
 		createEReference(conditionEClass, CONDITION__TARGET);
+		createEReference(conditionEClass, CONDITION__INSTANCE_SELECTORS);
 		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
@@ -569,6 +579,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
+		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
@@ -585,7 +596,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		unaryConditionEClass.getESuperTypes().add(this.getComplexCondition());
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		conditionEClass.getESuperTypes().add(this.getComplexCondition());
-		conditionEClass.getESuperTypes().add(thePamtramPackage.getInstanceSelectingElement());
 		EGenericType g1 = createEGenericType(this.getCondition());
 		EGenericType g2 = createEGenericType(theSourcePackage.getActualSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
@@ -656,6 +666,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEAttribute(getCondition_Comparator(), this.getComparatorEnum(), "comparator", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(conditionEClass_TargetType);
 		initEReference(getCondition_Target(), g1, null, "target", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCondition_InstanceSelectors(), theStructurePackage.getSourceInstanceSelector(), null, "instanceSelectors", null, 0, -1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);

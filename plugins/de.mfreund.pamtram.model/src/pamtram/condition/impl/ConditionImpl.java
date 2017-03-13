@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.InstanceSelectingElement;
-import pamtram.PamtramPackage;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
@@ -30,25 +28,15 @@ import pamtram.structure.SourceInstanceSelector;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
  *   <li>{@link pamtram.condition.impl.ConditionImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl implements Condition<TargetType> {
-	/**
-	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceSelectors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SourceInstanceSelector> instanceSelectors;
-
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,6 +86,16 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 * @ordered
 	 */
 	protected TargetType target;
+
+	/**
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceSelectors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,8 +242,6 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return getInstanceSelectors();
 			case ConditionPackage.CONDITION__VALUE:
 				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
@@ -253,6 +249,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 			case ConditionPackage.CONDITION__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,10 +264,6 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
-				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue((Integer)newValue);
 				return;
@@ -278,6 +272,10 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 				return;
 			case ConditionPackage.CONDITION__TARGET:
 				setTarget((TargetType)newValue);
+				return;
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -291,9 +289,6 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				getInstanceSelectors().clear();
-				return;
 			case ConditionPackage.CONDITION__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
@@ -302,6 +297,9 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 				return;
 			case ConditionPackage.CONDITION__TARGET:
 				setTarget((TargetType)null);
+				return;
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,48 +313,16 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return instanceSelectors != null && !instanceSelectors.isEmpty();
 			case ConditionPackage.CONDITION__VALUE:
 				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:
 				return comparator != COMPARATOR_EDEFAULT;
 			case ConditionPackage.CONDITION__TARGET:
 				return target != null;
+			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (derivedFeatureID) {
-				case ConditionPackage.CONDITION__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (baseFeatureID) {
-				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return ConditionPackage.CONDITION__INSTANCE_SELECTORS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

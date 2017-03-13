@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.ExpressionElement;
-import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -128,10 +127,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
 				return createMappingHintSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseInstanceSelectingElement(InstanceSelectingElement object) {
-				return createInstanceSelectingElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -290,20 +285,6 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.InstanceSelectingElement
-	 * @generated
-	 */
-	public Adapter createInstanceSelectingElementAdapter() {
 		return null;
 	}
 

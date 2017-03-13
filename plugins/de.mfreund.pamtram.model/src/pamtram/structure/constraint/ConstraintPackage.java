@@ -165,22 +165,22 @@ public interface ConstraintPackage extends EPackage {
 	int SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS = VALUE_CONSTRAINT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS = VALUE_CONSTRAINT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS = VALUE_CONSTRAINT_FEATURE_COUNT + 3;
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS = VALUE_CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS = VALUE_CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Single Reference Value Constraint</em>' class.
@@ -292,15 +292,6 @@ public interface ConstraintPackage extends EPackage {
 	int EQUALITY_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EQUALITY_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -308,6 +299,15 @@ public interface ConstraintPackage extends EPackage {
 	 * @ordered
 	 */
 	int EQUALITY_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Equality Constraint</em>' class.
@@ -492,15 +492,6 @@ public interface ConstraintPackage extends EPackage {
 	int NUMERIC_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERIC_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -508,6 +499,15 @@ public interface ConstraintPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERIC_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Operator Type</b></em>' attribute.
@@ -628,15 +628,6 @@ public interface ConstraintPackage extends EPackage {
 	int STRING_CONSTRAINT__MODIFIERS = SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -644,6 +635,15 @@ public interface ConstraintPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_CONSTRAINT__SOURCE_ELEMENTS = SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_CONSTRAINT__INSTANCE_SELECTORS = SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Operator Type</b></em>' attribute.
@@ -1107,6 +1107,17 @@ public interface ConstraintPackage extends EPackage {
 	EReference getSingleReferenceValueConstraint_SourceElements();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors <em>Instance Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
+	 * @see pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors()
+	 * @see #getSingleReferenceValueConstraint()
+	 * @generated
+	 */
+	EReference getSingleReferenceValueConstraint_InstanceSelectors();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.constraint.SingleReferenceValueConstraint#checkConstraint(java.lang.String, java.lang.String) <em>Check Constraint</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1352,6 +1363,14 @@ public interface ConstraintPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS = eINSTANCE.getSingleReferenceValueConstraint_SourceElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS = eINSTANCE.getSingleReferenceValueConstraint_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Constraint</b></em>' operation.

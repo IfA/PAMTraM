@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import pamtram.InstanceSelectingElement;
-import pamtram.PamtramPackage;
 import pamtram.structure.GlobalModifiedAttributeElementType;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructurePackage;
@@ -145,38 +143,6 @@ public abstract class GlobalModifiedAttributeElementTypeImpl<S extends Section<S
 				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (derivedFeatureID) {
-				case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (baseFeatureID) {
-				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //GlobalModifiedAttributeElementTypeImpl

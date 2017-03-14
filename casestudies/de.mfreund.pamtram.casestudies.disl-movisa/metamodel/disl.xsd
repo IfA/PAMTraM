@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- W3C Schema erstellt mit XMLSpy v2009 (http://www.altova.com) -->
+<!-- Please add namespace attributes, a targetNamespace attribute and import elements according to your requirements -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+	<xs:complexType name="disl">
+		<xs:sequence>
+			<xs:element minOccurs="0" ref="head"/>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="template"/>
+				<xs:element ref="interface"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="disl" type="disl"/>
+	<xs:complexType name="head">
+		<xs:sequence maxOccurs="unbounded" minOccurs="0">
+			<xs:element ref="meta"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="head" type="head"/>
+	<xs:complexType name="meta">
+		<xs:attribute name="name" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="content" type="xs:anySimpleType" use="required"/>
+	</xs:complexType>
+	<xs:element name="meta" type="meta"/>
+	<xs:complexType name="interface">
+		<xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="structure"/>
+				<xs:element ref="style"/>
+				<xs:element ref="behavior"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+		<xs:attribute default="other" name="state">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="other"/>
+					<xs:enumeration value="start"/>
+					<xs:enumeration value="end"/>
+					<xs:enumeration value="parent"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="interface" type="interface"/>
+	<xs:complexType name="structure">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="widget"/>
+		</xs:sequence>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+	</xs:complexType>
+	<xs:element name="structure" type="structure"/>
+	<xs:complexType name="widget">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="widget"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute default="variablefield" name="generic-widget">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="textbox"/>
+					<xs:enumeration value="genericfield"/>
+					<xs:enumeration value="variablebox"/>
+					<xs:enumeration value="widgetlist"/>
+					<xs:enumeration value="textfield"/>
+					<xs:enumeration value="confirmation"/>
+					<xs:enumeration value="choicegroup"/>
+					<xs:enumeration value="command"/>
+					<xs:enumeration value="genericcommand"/>
+					<xs:enumeration value="variablefield"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="after" name="where">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="after"/>
+					<xs:enumeration value="first"/>
+					<xs:enumeration value="before"/>
+					<xs:enumeration value="last"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="widget" type="widget"/>
+	<xs:complexType name="style">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="part"/>
+		</xs:sequence>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+	</xs:complexType>
+	<xs:element name="style" type="style"/>
+	<xs:complexType name="part">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="property"/>
+		</xs:sequence>
+		<xs:attribute name="generic-widget" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:element name="part" type="part"/>
+<!-- removed mixed="true" -->
+	<xs:complexType name="property">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+				<xs:attribute name="generic-widget" type="xs:NMTOKEN"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	
+	<xs:element name="property" type="property"/>
+	<xs:complexType name="behavior">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="variable"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="struct"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="rule"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="transition"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+	</xs:complexType>
+	<xs:element name="behavior" type="behavior"/>
+<!--  Modified by Henning there is need for a mixed type! -->
+	<xs:complexType mixed="true" name="variable">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+				<xs:attribute default="yes" name="internal">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="yes"/>
+							<xs:enumeration value="no"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="interface" type="xs:NMTOKEN"/>
+				<xs:attribute default="no" name="constant">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="yes"/>
+							<xs:enumeration value="no"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute default="none" name="widgetpointer">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="next"/>
+							<xs:enumeration value="first"/>
+							<xs:enumeration value="none"/>
+							<xs:enumeration value="root"/>
+							<xs:enumeration value="previous"/>
+							<xs:enumeration value="child"/>
+							<xs:enumeration value="last"/>
+							<xs:enumeration value="parent"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute default="integer" name="type">
+					<xs:simpleType>
+						<xs:restriction base="xs:NMTOKEN">
+							<xs:enumeration value="string"/>
+							<xs:enumeration value="boolean"/>
+							<xs:enumeration value="integer"/>
+							<xs:enumeration value="widget"/>
+						</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="variable" type="variable"/>
+	<xs:complexType name="struct">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="variable"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="length" type="xs:anySimpleType" use="required"/>
+	</xs:complexType>
+	<xs:element name="struct" type="struct"/>
+	<xs:complexType name="rule">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="condition"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN"/>
+		<xs:attribute name="interface" type="xs:NMTOKEN"/>
+		<xs:attribute default="false" name="set">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="true"/>
+					<xs:enumeration value="false"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="rule" type="rule"/>
+	<xs:complexType name="transition">
+		<xs:sequence>
+			<xs:element ref="if-true"/>
+			<xs:element ref="action"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="transition" type="transition"/>
+	<xs:complexType name="if-true">
+		<xs:sequence minOccurs="0">
+			<xs:element ref="if-true"/>
+		</xs:sequence>
+		<xs:attribute name="rule-id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute default="and" name="expression">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="and"/>
+					<xs:enumeration value="or"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="no" name="negation">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="if-true" type="if-true"/>
+	<xs:complexType name="condition">
+		<xs:choice>
+			<xs:element ref="equal"/>
+			<xs:element ref="op"/>
+			<xs:element ref="call"/>
+			<xs:element ref="event"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="condition" type="condition"/>
+<!-- Modified by Henning -->				
+	<xs:complexType name="equal">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="variable-content"/>
+				<xs:element ref="property-content"/>
+			</xs:choice>
+				<xs:element ref="constant"/>
+				<!-- 
+			<xs:choice minOccurs="0">
+				<xs:element ref="property"/>
+				<xs:element ref="variable"/>
+				<xs:element ref="struct"/>
+				<xs:element ref="property-content"/>
+				<xs:element ref="variable-content"/>
+				<xs:element ref="constant"/>
+			</xs:choice>  -->
+		</xs:sequence>
+	</xs:complexType>
+<!-- Modified by Henning -->	
+	<xs:element name="equal" type="equal"/>
+	<xs:element name="constant" type="xs:NMTOKEN"/>
+<!-- Modified by Henning -->
+	<xs:complexType name="property-content">
+		<xs:attribute name="widget-id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="property-id" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:element name="property-content" type="property-content"/>
+<!-- Modified by Henning -->
+	<xs:complexType name="op">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="equal" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="op-expression" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="op" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		<!--	<xs:choice minOccurs="0">
+				<xs:element ref="equal"/>
+				<xs:element ref="op-expression"/>
+				<xs:element ref="op"/>
+			</xs:choice> -->
+		</xs:sequence>
+		<xs:attribute default="and" name="operator">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="and"/>
+					<xs:enumeration value="or"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="op" type="op"/>
+	<xs:complexType name="op-expression">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="property"/>
+				<xs:element ref="variable"/>
+				<xs:element ref="struct"/>
+<!-- Modified by Henning -->
+				<xs:element ref="variable-content"/>	
+				<xs:element ref="constant"/>	
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element ref="property"/>
+				<xs:element ref="variable"/>
+				<xs:element ref="struct"/>
+<!-- Modified by Henning -->
+				<xs:element ref="variable-content"/>
+				<xs:element ref="constant"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute default="equal" name="expression">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="equal"/>
+					<xs:enumeration value="noteequal"/>
+					<xs:enumeration value="lessthanorequal"/>
+					<xs:enumeration value="greaterthan"/>
+					<xs:enumeration value="lessthan"/>
+					<xs:enumeration value="greaterthanorequal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="no" name="negation">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="op-expression" type="op-expression"/>
+	
+	<xs:complexType name="variable-content">
+		<xs:attribute name="variable-id" type="xs:NMTOKEN"/>
+	</xs:complexType>
+	<xs:element name="variable-content" type="variable-content"/>
+	
+<!-- Modified by Henning -->
+	<xs:complexType name="action">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="restructure"/>
+				<xs:element ref="statement"/>
+				<xs:element ref="iterator"/>
+				<xs:element ref="call"/>
+				<xs:element ref="while-do"/>
+				<xs:element ref="do-while"/>
+<!-- Modified by Henning -->
+				<xs:element ref="interface-change"/>
+				<xs:element ref="if"/>								
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element ref="interface"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="action" type="action"/>
+<!-- Modified by Henning -->
+	<xs:complexType name="interface-change">
+		<xs:attribute name="interface-id" type="xs:NMTOKEN"/>
+	</xs:complexType>
+	<xs:element name="interface-change" type="interface-change"/>
+	<xs:complexType name="restructure">
+		<xs:attribute name="at-part" type="xs:NMTOKEN"/>
+		<xs:attribute default="replace" name="how">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="union"/>
+					<xs:enumeration value="delete"/>
+					<xs:enumeration value="cascade"/>
+					<xs:enumeration value="replace"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="last" name="where">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="after"/>
+					<xs:enumeration value="first"/>
+					<xs:enumeration value="before"/>
+					<xs:enumeration value="last"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="where-part" type="xs:NMTOKEN"/>
+		<xs:attribute default="end" name="where-stop">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="widget"/>
+					<xs:enumeration value="end"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="template" type="xs:NMTOKEN"/>
+	</xs:complexType>
+	<xs:element name="restructure" type="restructure"/>
+<!-- Modified by Henning -->	
+	<xs:complexType name="statement">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="rule"/>
+				<xs:element ref="variable"/>
+				<xs:element ref="property"/>
+				<xs:element ref="struct"/>
+				<xs:element ref="property-content"/>
+				<xs:element ref="variable-content"/>
+				<xs:element ref="constant"/>
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element ref="rule"/>
+				<xs:element ref="variable"/>
+				<xs:element ref="property"/>
+				<xs:element ref="struct"/>
+				<xs:element ref="expression"/>
+				<xs:element ref="property-content"/>
+				<xs:element ref="variable-content"/>
+				<xs:element ref="constant"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute default="set" name="assignment">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="and"/>
+					<xs:enumeration value="mod"/>
+					<xs:enumeration value="add"/>
+					<xs:enumeration value="set"/>
+					<xs:enumeration value="sub"/>
+					<xs:enumeration value="or"/>
+					<xs:enumeration value="mul"/>
+					<xs:enumeration value="div"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="statement" type="statement"/>
+	<xs:complexType name="expression">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="variable"/>
+				<xs:element ref="property"/>
+				<xs:element ref="struct"/>
+				<xs:element ref="expression"/>
+				<xs:element ref="value-of"/>
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element ref="variable"/>
+				<xs:element ref="property"/>
+				<xs:element ref="struct"/>
+				<xs:element ref="expression"/>
+				<xs:element ref="value-of"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute default="add" name="operator">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="and"/>
+					<xs:enumeration value="mod"/>
+					<xs:enumeration value="add"/>
+					<xs:enumeration value="sub"/>
+					<xs:enumeration value="or"/>
+					<xs:enumeration value="mul"/>
+					<xs:enumeration value="div"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="expression" type="expression"/>
+	<xs:complexType name="while-do">
+		<xs:sequence>
+			<xs:element ref="condition"/>
+			<xs:element ref="action"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="while-do" type="while-do"/>
+	<xs:complexType name="do-while">
+		<xs:sequence>
+			<xs:element ref="action"/>
+			<xs:element ref="condition"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="do-while" type="do-while"/>
+	<xs:complexType name="iterator">
+		<xs:sequence>
+			<xs:element ref="statement"/>
+			<xs:element ref="op-expression"/>
+			<xs:element ref="action"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="iterator" type="iterator"/>
+	<xs:complexType name="if">
+		<xs:sequence>
+			<xs:element ref="condition"/>
+			<xs:element ref="action"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="if" type="if"/>
+	<xs:complexType name="call">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" ref="parameter"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute default="no" name="synchronized">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="timeout" type="xs:NMTOKEN"/>
+		<xs:attribute default="no" name="timedout">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="no" name="failed">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+		<xs:attribute name="template" type="xs:NMTOKEN"/>
+	</xs:complexType>
+	<xs:element name="call" type="call"/>
+	<xs:complexType name="parameter">
+		<xs:choice minOccurs="0">
+			<xs:element ref="variable"/>
+			<xs:element ref="struct"/>
+			<xs:element ref="property"/>
+			<xs:element ref="value-of"/>
+		</xs:choice>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:element name="parameter" type="parameter"/>
+	<xs:complexType mixed="true" name="value-of">
+		<xs:attribute name="select" type="xs:NMTOKEN"/>
+	</xs:complexType>
+	<xs:element name="value-of" type="value-of"/>
+	<xs:complexType name="template">
+		<xs:sequence>
+			<xs:element ref="structure"/>
+			<xs:element ref="style"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="interface" type="xs:NMTOKEN"/>
+		<xs:attribute name="source" type="xs:anySimpleType"/>
+	</xs:complexType>
+	<xs:element name="template" type="template"/>
+	<xs:complexType name="event">
+		<xs:sequence>
+			<xs:element ref="action"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute default="yes" name="activated">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="timer" type="xs:NMTOKEN"/>
+		<xs:attribute default="no" name="repeat">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="yes" name="synchronized">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="yes"/>
+					<xs:enumeration value="no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="event" type="event"/>
+</xs:schema>

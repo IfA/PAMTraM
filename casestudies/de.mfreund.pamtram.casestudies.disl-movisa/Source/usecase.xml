@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<disl
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../metamodel/disl.xsd">
+  <head>
+    <meta content="Prozessvisualisierung_20110303_202702" name="modell-ID"/>
+    <meta content="2.0" name="useML_schema_version"/>
+    <meta content="hierarchie" name="struktur"/>
+    <meta content="Prozessvisualisierung" name="bezeichnung"/>
+    <meta content="" name="autoren"/>
+    <meta content="2010-09-29" name="erstellungsdatum"/>
+  </head>
+  <interface id="Dialog_1" state="start">
+    <structure>
+      <widget generic-widget="choicegroup" id="eBO_1">
+        <widget generic-widget="variablefield" id="eBO_1_0"/>
+        <widget generic-widget="variablefield" id="eBO_1_1"/>
+        <widget generic-widget="variablefield" id="eBO_1_2"/>
+      </widget>
+      <widget generic-widget="choicegroup" id="eBO_3">
+        <widget generic-widget="variablefield" id="eBO_3_0"/>
+        <widget generic-widget="variablefield" id="eBO_3_1"/>
+        <widget generic-widget="variablefield" id="eBO_3_2"/>
+      </widget>
+      <widget generic-widget="textfield" id="eBO_5"/>
+      <widget generic-widget="command" id="eBO_5_OK"/>
+      <widget generic-widget="textfield" id="eBO_6"/>
+      <widget generic-widget="command" id="eBO_6_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_1">
+        <property generic-widget="choicegroup" id="title">Behaelterauswahl</property>
+        <property generic-widget="choicegroup" id="description"></property>
+        <property generic-widget="choicegroup" id="help"></property>
+        <property generic-widget="choicegroup" id="visible">yes</property>
+        <property generic-widget="choicegroup" id="activated">yes</property>
+        <property generic-widget="choicegroup" id="type">exclusive</property>
+        <property generic-widget="choicegroup" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_1_0">
+        <property generic-widget="variablefield" id="title">Vorgabewert 0</property>
+        <property generic-widget="variablefield" id="value">Behaelter_1 </property>
+      </part>
+      <part generic-widget="eBO_1_1">
+        <property generic-widget="variablefield" id="title">Vorgabewert 1</property>
+        <property generic-widget="variablefield" id="value">Behaelter_2 </property>
+      </part>
+      <part generic-widget="eBO_1_2">
+        <property generic-widget="variablefield" id="title">Vorgabewert 2</property>
+        <property generic-widget="variablefield" id="value">Behaelter_3 </property>
+      </part>
+      <part generic-widget="eBO_3">
+        <property generic-widget="choicegroup" id="title">Pumpenauswahl</property>
+        <property generic-widget="choicegroup" id="description"></property>
+        <property generic-widget="choicegroup" id="help"></property>
+        <property generic-widget="choicegroup" id="visible">yes</property>
+        <property generic-widget="choicegroup" id="activated">yes</property>
+        <property generic-widget="choicegroup" id="type">exclusive</property>
+        <property generic-widget="choicegroup" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_3_0">
+        <property generic-widget="variablefield" id="title">Vorgabewert 0</property>
+        <property generic-widget="variablefield" id="value">Pumpe_1 </property>
+      </part>
+      <part generic-widget="eBO_3_1">
+        <property generic-widget="variablefield" id="title">Vorgabewert 1</property>
+        <property generic-widget="variablefield" id="value">Pumpe_2 </property>
+      </part>
+      <part generic-widget="eBO_3_2">
+        <property generic-widget="variablefield" id="title">Vorgabewert 2</property>
+        <property generic-widget="variablefield" id="value">Pumpe_3 </property>
+      </part>
+      <part generic-widget="eBO_5">
+        <property generic-widget="textfield" id="title">Ist-Drehzahl</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_5_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_6">
+        <property generic-widget="textfield" id="title">Ist-Fuellstand</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_6_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <variable id="Dialog_1_eBO_5_ConfirmationChanged" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_1_eBO_5_ConfirmationResult" internal="no" type="boolean">false</variable>
+      <variable id="callerID" interface="ConfirmationDialog" internal="no" type="string"></variable>
+      <rule id="eBO_1_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_1"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_3_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_3"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_5_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_5_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationYes">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_1_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_1_eBO_5_ConfirmationResult"/>
+              <constant>true</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationNo">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_1_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_1_eBO_5_ConfirmationResult"/>
+              <constant>false</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_6_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_6_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_1_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_2"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_3_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_3"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_Changed"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="callerID"/>
+            <constant>Dialog_1_eBO_5</constant>
+          </statement>
+          <interface-change interface-id="ConfirmationDialog"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationYes"/>
+        <action>
+          <interface-change interface-id="Dialog_1"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationNo"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="Dialog_1_eBO_5_ConfirmationChanged"/>
+            <constant>false</constant>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_6_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_1"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_2" state="other">
+    <structure>
+      <widget generic-widget="variablebox" id="eBO_2"/>
+      <widget generic-widget="textfield" id="eBO_5"/>
+      <widget generic-widget="command" id="eBO_5_OK"/>
+      <widget generic-widget="textfield" id="eBO_6"/>
+      <widget generic-widget="command" id="eBO_6_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_2">
+        <property generic-widget="variablebox" id="title">Soll Fuellstand anpassen</property>
+        <property generic-widget="variablebox" id="description"></property>
+        <property generic-widget="variablebox" id="help"></property>
+        <property generic-widget="variablebox" id="visible">yes</property>
+        <property generic-widget="variablebox" id="activated">yes</property>
+        <property generic-widget="variablebox" id="incremental">yes</property>
+        <property generic-widget="variablebox" id="value"></property>
+        <property generic-widget="variablebox" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_5">
+        <property generic-widget="textfield" id="title">Ist-Drehzahl</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_5_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_6">
+        <property generic-widget="textfield" id="title">Ist-Fuellstand</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_6_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <variable id="Dialog_2_eBO_2_ConfirmationChanged" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_2_eBO_2_ConfirmationResult" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_2_eBO_5_ConfirmationChanged" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_2_eBO_5_ConfirmationResult" internal="no" type="boolean">false</variable>
+      <variable id="callerID" interface="ConfirmationDialog" internal="no" type="string"></variable>
+      <rule id="eBO_2_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_2"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_2_ConfirmationYes">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_2_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_2_ConfirmationResult"/>
+              <constant>true</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_2_ConfirmationNo">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_2_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_2_ConfirmationResult"/>
+              <constant>false</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_5_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_5_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationYes">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_5_ConfirmationResult"/>
+              <constant>true</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationNo">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_2_eBO_5_ConfirmationResult"/>
+              <constant>false</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_6_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_6_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_2_Changed"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="callerID"/>
+            <constant>Dialog_2_eBO_2</constant>
+          </statement>
+          <interface-change interface-id="ConfirmationDialog"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ConfirmationYes"/>
+        <action>
+          <interface-change interface-id="Dialog_1"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_2_ConfirmationNo"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="Dialog_2_eBO_2_ConfirmationChanged"/>
+            <constant>false</constant>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationYes"/>
+        <action>
+          <interface-change interface-id="Dialog_2"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationNo"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="Dialog_2_eBO_5_ConfirmationChanged"/>
+            <constant>false</constant>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_6_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_2"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Dialog_3" state="other">
+    <structure>
+      <widget generic-widget="variablebox" id="eBO_4"/>
+      <widget generic-widget="textfield" id="eBO_5"/>
+      <widget generic-widget="command" id="eBO_5_OK"/>
+      <widget generic-widget="textfield" id="eBO_6"/>
+      <widget generic-widget="command" id="eBO_6_OK"/>
+    </structure>
+    <style>
+      <part generic-widget="eBO_4">
+        <property generic-widget="variablebox" id="title">Soll-Drehzahl anpassen</property>
+        <property generic-widget="variablebox" id="description"></property>
+        <property generic-widget="variablebox" id="help"></property>
+        <property generic-widget="variablebox" id="visible">yes</property>
+        <property generic-widget="variablebox" id="activated">yes</property>
+        <property generic-widget="variablebox" id="incremental">yes</property>
+        <property generic-widget="variablebox" id="value"></property>
+        <property generic-widget="variablebox" id="modified">no</property>
+      </part>
+      <part generic-widget="eBO_5">
+        <property generic-widget="textfield" id="title">Ist-Drehzahl</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_5_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="eBO_6">
+        <property generic-widget="textfield" id="title">Ist-Fuellstand</property>
+        <property generic-widget="textfield" id="description"></property>
+        <property generic-widget="textfield" id="help"></property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="activated">yes</property>
+        <property generic-widget="textfield" id="value"></property>
+      </part>
+      <part generic-widget="eBO_6_OK">
+        <property generic-widget="command" id="title">OK</property>
+        <property generic-widget="command" id="description">Bestaetigung, dass die Information wahrgenommen wurde</property>
+        <property generic-widget="command" id="help">Betaetigen Sie dieses Kommando, wenn Sie die Information wahrgenommen haben</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <variable id="Dialog_3_eBO_4_ConfirmationChanged" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_3_eBO_4_ConfirmationResult" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_3_eBO_5_ConfirmationChanged" internal="no" type="boolean">false</variable>
+      <variable id="Dialog_3_eBO_5_ConfirmationResult" internal="no" type="boolean">false</variable>
+      <variable id="callerID" interface="ConfirmationDialog" internal="no" type="string"></variable>
+      <rule id="eBO_4_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="modified" widget-id="eBO_4"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_4_ConfirmationYes">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_4_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_4_ConfirmationResult"/>
+              <constant>true</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_4_ConfirmationNo">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_4_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_4_ConfirmationResult"/>
+              <constant>false</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_5_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_5_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationYes">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_5_ConfirmationResult"/>
+              <constant>true</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_5_ConfirmationNo">
+        <condition>
+          <op operator="and">
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_5_ConfirmationChanged"/>
+              <constant>true</constant>
+            </op-expression>
+            <op-expression expression="equal">
+              <variable-content variable-id="Dialog_3_eBO_5_ConfirmationResult"/>
+              <constant>false</constant>
+            </op-expression>
+          </op>
+        </condition>
+      </rule>
+      <rule id="eBO_6_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="eBO_6_OK"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="eBO_4_Changed"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="callerID"/>
+            <constant>Dialog_3_eBO_4</constant>
+          </statement>
+          <interface-change interface-id="ConfirmationDialog"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_4_ConfirmationYes"/>
+        <action>
+          <interface-change interface-id="Dialog_1"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_4_ConfirmationNo"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="Dialog_3_eBO_4_ConfirmationChanged"/>
+            <constant>false</constant>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_Changed"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="callerID"/>
+            <constant>Dialog_3_eBO_5</constant>
+          </statement>
+          <interface-change interface-id="ConfirmationDialog"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationYes"/>
+        <action>
+          <interface-change interface-id="Dialog_3"/>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_5_ConfirmationNo"/>
+        <action>
+          <statement assignment="set">
+            <variable-content variable-id="Dialog_3_eBO_5_ConfirmationChanged"/>
+            <constant>false</constant>
+          </statement>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="eBO_6_Changed"/>
+        <action>
+          <interface-change interface-id="Dialog_3"/>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="ConfirmationDialog" state="other">
+    <structure>
+      <widget generic-widget="textfield" id="Information"/>
+      <widget generic-widget="command" id="Yes"/>
+      <widget generic-widget="command" id="No"/>
+    </structure>
+    <style>
+      <part generic-widget="Information">
+        <property generic-widget="textfield" id="title">Information</property>
+        <property generic-widget="textfield" id="description">This textfield notifies the user about informations</property>
+        <property generic-widget="textfield" id="help">This textfield contains a information string for the user</property>
+        <property generic-widget="textfield" id="visible">yes</property>
+        <property generic-widget="textfield" id="value">Do you really want to execute the action?</property>
+      </part>
+      <part generic-widget="Yes">
+        <property generic-widget="command" id="title">Yes</property>
+        <property generic-widget="command" id="description">This command represents the answer 'Yes'</property>
+        <property generic-widget="command" id="help">Select this command to execute the action</property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+      <part generic-widget="No">
+        <property generic-widget="command" id="title">No</property>
+        <property generic-widget="command" id="description">This command represents the answer 'No'</property>
+        <property generic-widget="command" id="help">Select this command to not execute the action</property>
+        <property generic-widget="command" id="visible">yes</property>
+        <property generic-widget="command" id="activated">yes</property>
+        <property generic-widget="command" id="selected">no</property>
+      </part>
+    </style>
+    <behavior>
+      <variable id="callerID" type="string"></variable>
+      <variable id="Dialog_1_eBO_5_ConfirmationResult" interface="Dialog_1"></variable>
+      <variable id="Dialog_1_eBO_5_ConfirmationChanged" interface="Dialog_1"></variable>
+      <variable id="Dialog_2_eBO_2_ConfirmationResult" interface="Dialog_2"></variable>
+      <variable id="Dialog_2_eBO_2_ConfirmationChanged" interface="Dialog_2"></variable>
+      <variable id="Dialog_2_eBO_5_ConfirmationResult" interface="Dialog_2"></variable>
+      <variable id="Dialog_2_eBO_5_ConfirmationChanged" interface="Dialog_2"></variable>
+      <variable id="Dialog_3_eBO_4_ConfirmationResult" interface="Dialog_3"></variable>
+      <variable id="Dialog_3_eBO_4_ConfirmationChanged" interface="Dialog_3"></variable>
+      <variable id="Dialog_3_eBO_5_ConfirmationResult" interface="Dialog_3"></variable>
+      <variable id="Dialog_3_eBO_5_ConfirmationChanged" interface="Dialog_3"></variable>
+      <rule id="Yes_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="Yes"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <rule id="No_Changed">
+        <condition>
+          <equal>
+            <property-content property-id="selected" widget-id="No"/>
+            <constant>yes</constant>
+          </equal>
+        </condition>
+      </rule>
+      <transition>
+        <if-true rule-id="Yes_Changed"/>
+        <action>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_1_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_1_eBO_5_ConfirmationResult"/>
+                <constant>true</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_1_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_1"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_2_eBO_2</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_2_ConfirmationResult"/>
+                <constant>true</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_2_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_2"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_2_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_5_ConfirmationResult"/>
+                <constant>true</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_2"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_3_eBO_4</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_4_ConfirmationResult"/>
+                <constant>true</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_4_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_3"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_3_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_5_ConfirmationResult"/>
+                <constant>true</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_3"/>
+            </action>
+          </if>
+        </action>
+      </transition>
+      <transition>
+        <if-true rule-id="No_Changed"/>
+        <action>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_1_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_1_eBO_5_ConfirmationResult"/>
+                <constant>false</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_1_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_1"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_2_eBO_2</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_2_ConfirmationResult"/>
+                <constant>false</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_2_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_2"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_2_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_5_ConfirmationResult"/>
+                <constant>false</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_2_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_2"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_3_eBO_4</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_4_ConfirmationResult"/>
+                <constant>false</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_4_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_3"/>
+            </action>
+          </if>
+          <if>
+            <condition>
+              <equal>
+                <variable-content variable-id="callerID"/>
+                <constant>Dialog_3_eBO_5</constant>
+              </equal>
+            </condition>
+            <action>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_5_ConfirmationResult"/>
+                <constant>false</constant>
+              </statement>
+              <statement>
+                <variable-content variable-id="Dialog_3_eBO_5_ConfirmationChanged"/>
+                <constant>true</constant>
+              </statement>
+              <interface-change interface-id="Dialog_3"/>
+            </action>
+          </if>
+        </action>
+      </transition>
+    </behavior>
+  </interface>
+  <interface id="Ende" state="end">
+    <structure/>
+    <style/>
+    <behavior/>
+  </interface>
+</disl>

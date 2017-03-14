@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mm1:Library
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mm1="http://mm1"
+    xsi:schemaLocation="http://mm1 /library_example/mm1.ecore"
+    name="lib1">
+  <members name="member1"
+      loans="//@books.0 //@books.1"/>
+  <members name="member2"
+      loans="//@books.2"/>
+  <books name="book1"/>
+  <books name="book2"/>
+  <books name="book3"/>
+</mm1:Library>

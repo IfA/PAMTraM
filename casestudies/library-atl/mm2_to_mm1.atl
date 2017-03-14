@@ -1,0 +1,38 @@
+-- @path MM1=/library_example/mm1.ecore
+-- @path MM2=/library_example/mm2.ecore
+
+module mm2tomm1;
+create OUT : MM1 from IN : MM2;
+
+rule lib_to_lib {
+	from
+		source : MM2!Library
+	to 
+		target : MM1!Library (
+			name <- source.name
+		)
+}
+
+rule book_to_book {
+	from
+		source : MM2!Book
+	to 
+		target : MM1!Book (
+			name <- source.name
+		)
+}
+
+rule member_to_member {
+	
+	from
+		source : MM2!Member
+	to 
+		target : MM1!Member (
+			name <- source.name,
+			loans <- MM2!Loan.allInstances()->select(l | l.member = source)->collect(l | l.book)
+		)
+}
+
+
+
+

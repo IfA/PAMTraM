@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+  <sourceSectionModels name="Variablen">
+    <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
+    <sections 
+xsi:type="source:SourceSection" name="Variablen">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//Variablen"/>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="MBTCP">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP"/>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="AbstractMBTCPItem" abstract="true">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Variablenname">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Variablenname"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Datentyp">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Datentyp"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Kommentar">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Kommentar"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Min">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Min"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Max">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Max"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Fractiondigits">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Fractiondigits"/>
+      </attributes>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
+        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="r"/>
+      </attributes>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
+        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="rw"/>
+      </attributes>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
+        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="r"/>
+      </attributes>
+    </sections>
+    <sections 
+xsi:type="source:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+      <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
+        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
+      </attributes>
+      <attributes 
+xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="rw"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels name="TDP">
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="TDP">
+      <eClass href="http://stefan-hennig.de/movisa#//clientdata/TechnicalDataPerspective"/>
+    </sections>
+  </targetSectionModels>
+  <targetSectionModels name="Modbus TCP">
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="ModbusTcpServer">
+      <eClass href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpServer"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ModbusTcpItem" cardinality="ZERO__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="BaseType" value="">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/BaseType"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="ReferenceAddress">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/ReferenceAddress"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Type">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/modbustcp/ModbusTcpItem/Type"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <targetSectionModels name="OPC XML DA">
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="OpcXmlDaServer">
+      <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="LocaleId" value="de-DE">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaServer/LocaleId"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="OpcXmlDaItem">
+      <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="ItemName" value="">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemName"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="ItemPath" value="">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemPath"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="ItemType" value="">
+        <attribute href="http://stefan-hennig.de/movisa#//clientdata/opcxmlda/OpcXmlDaItem/ItemType"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels name="TDP">
+    <mappings name="VariablenMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TDP" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+  </mappingModels>
+  <mappingModels name="Modbus TCP">
+    <mappings name="MBTCP Server Mapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpServer" targetSection="//@targetSectionModels.1/@sections.0"/>
+    </mappings>
+    <mappings name="AbstractMBTCPItemMapping" sourceSection="//@sourceSectionModels.0/@sections.2" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpItem" targetSection="//@targetSectionModels.1/@sections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.1/@sections.1/@attributes.2">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="TypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.3">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="CoilsMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="Coils" value="Coils"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="DiscreteInputMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="DiscreteInput" value="DiscreteInput"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="HoldingRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="HoldingRegister" value="HoldingRegister"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="InputRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="InputRegister" value="InputRegister"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.6/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+  </mappingModels>
+  <mappingModels name="OPC XML DA">
+    <mappings name="OPC XML DA ServerMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaServer" targetSection="//@targetSectionModels.2/@sections.0"/>
+    </mappings>
+    <mappings name="AbstractXMLDAItemMapping" sourceSection="//@sourceSectionModels.0/@sections.2" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaItem" targetSection="//@targetSectionModels.2/@sections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemTypeMapping" target="//@targetSectionModels.2/@sections.1/@attributes.3">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.2/@modifierSets.1"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemNameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.1">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemPathMapping" target="//@targetSectionModels.2/@sections.1/@attributes.2">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0" modifiers="//@mappingModels.2/@modifierSets.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="CoilsMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="DiscreteInputMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.4">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="HoldingRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="InputRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
+    </mappings>
+    <modifierSets name="preprend &quot;Schneider/&quot;">
+      
+<modifiers xsi:type="modifier:StringPrepender" name="Schneider/" string="Schneider/"/>
+    </modifierSets>
+    <modifierSets name="Convert Modbus to XML DA Data Types">
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="BOOL2boolean" regex="BOOL" replacement="boolean"/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="INT2int" regex="INT" replacement="int"/>
+      
+<modifiers xsi:type="modifier:SubstringReplacer" name="REAL2float" regex="REAL" replacement="float"/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

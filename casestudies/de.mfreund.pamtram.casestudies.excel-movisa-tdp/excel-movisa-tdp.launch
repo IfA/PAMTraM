@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<intAttribute key="maxPathLength" value="-1"/>
+<stringAttribute key="pamtramFile" value="excel-movisa-tdp.pamtram"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.excel-movisa-tdp"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<listAttribute key="srcFiles">
+<listEntry value="Variablen.xmi"/>
+</listAttribute>
+<booleanAttribute key="storeTransformation" value="false"/>
+<stringAttribute key="targetFile" value="out.xmi"/>
+<stringAttribute key="targetLibBundle" value=""/>
+<stringAttribute key="targetLibContext" value=""/>
+<stringAttribute key="targetLibParser" value=""/>
+<stringAttribute key="targetLibPath" value=""/>
+<stringAttribute key="transformationModel" value=""/>
+</launchConfiguration>

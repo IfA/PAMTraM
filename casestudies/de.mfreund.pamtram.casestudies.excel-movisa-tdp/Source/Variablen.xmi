@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecoreModel:Variablen xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecoreModel="http://www.et.tu-dresden.de/ifa/excel" Autor="Matthias Freund" Anzahl_der_Arbeitsblaetter="1">
+  <MBTCP>
+    <MBTCP_Tabelle0 Variablenname="Auto_Durchfl_FL" Datentyp="BOOL" Adresse="001008" Kommentar="Automatikbetrieb_Durchflussregelung_EinAus_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Auto_Fuellst_FL" Datentyp="BOOL" Adresse="001009" Kommentar="Automatikbetrieb_Fuellstandsregelung_EinAus_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Auto_Temp_FL" Datentyp="BOOL" Adresse="001010" Kommentar="Automatikbetrieb_Temperaturregelung_EinAus_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="BehaelterDurch_FL" Datentyp="INT" Adresse="401692" Kommentar="Behaelter_fuer_Durchflussregelung_Vorgabe_ueber_FactoryLink" Min="1.0" Max="2.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="BehaelterFuell_FL" Datentyp="INT" Adresse="401708" Kommentar="Behaelter_fuer_Fuellstandsregelung_Vorgabe_ueber_FactoryLink" Min="1.0" Max="3.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Behaelter_A_FL" Datentyp="INT" Adresse="401112" Kommentar="Behaelter_aus_dem_abgepumpt_werden_soll_Vorgabe_ueber_FactoryLink" Min="1.0" Max="3.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Behaelter_B_FL" Datentyp="INT" Adresse="401128" Kommentar="Behaelter_in_den_gepumpt_werden_soll_Vorgabe_ueber_FactoryLink" Min="1.0" Max="3.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Durchfluss1_Ist" Datentyp="REAL" Adresse="400276" Kommentar="Istwert_Durchfluss_1" AccessMode="r" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Durchfluss2_Ist" Datentyp="REAL" Adresse="400308" Kommentar="Istwert_Durchfluss_2" AccessMode="r" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Durchfluss_Soll_FL" Datentyp="REAL" Adresse="401464" Kommentar="Sollwert_Durchfluss_Vorgabe_ueber_FactoryLink" Min="0.5" Max="1.8" AccessMode="rw" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Fuellstand1_Ist" Datentyp="REAL" Adresse="400244" Kommentar="Istwert_Fuellstand_in_B1" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Fuellstand2_Ist" Datentyp="REAL" Adresse="400180" Kommentar="Istwert_Fuellstand_in_B2" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Fuellstand3_Ist" Datentyp="REAL" Adresse="400212" Kommentar="Istwert_Fuellstand_in_B3" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Fuellstand_Soll_FL" Datentyp="INT" Adresse="401500" Kommentar="Sollwert_Fuellstand_Vorgabe_ueber_FactoryLink" Min="35.0" Max="279.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="LH1" Datentyp="BOOL" Adresse="000152" Kommentar="kapazitiver_Melder_B1_oben_LH11__B1_voll" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="LH2" Datentyp="BOOL" Adresse="000154" Kommentar="kapazitiver_Melder_B2_oben_LH21__B2_voll" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="LH3" Datentyp="BOOL" Adresse="000156" Kommentar="kapazitiver_Melder_B3_oben_LH31__B3_voll" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="LL1" Datentyp="BOOL" Adresse="000151" Kommentar="kapazitiver_Melder_B1_unten_LL10__B1_leer" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="LL2" Datentyp="BOOL" Adresse="000153" Kommentar="kapazitiver_Melder_B2_unten_LL20__B2_leer" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="LL3" Datentyp="BOOL" Adresse="000155" Kommentar="kapazitiver_Melder_B3_unten_LL30__B3_leer" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="M" Datentyp="BOOL" Adresse="000017" Kommentar="Ruehrer_einschalten" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="P1" Datentyp="BOOL" Adresse="000015" Kommentar="Pumpe_P1" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="P2" Datentyp="BOOL" Adresse="000016" Kommentar="Pumpe_P2" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="P3" Datentyp="INT" Adresse="400100" Kommentar="Pumpendrehzahl_100_Pumpe_3" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="P3_FL" Datentyp="INT" Adresse="401032" Kommentar="Handstellwert_P3_0..100_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt1" Datentyp="BOOL" Adresse="000100" Kommentar="Merker__Umpumpen_von_B1_nach_B2_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt2" Datentyp="BOOL" Adresse="000101" Kommentar="Merker__Umpumpen_von_B3_nach_B2_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt3" Datentyp="BOOL" Adresse="000102" Kommentar="Merker__Fuellstand_auf_200mm_einstellen_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt4" Datentyp="BOOL" Adresse="000103" Kommentar="Merker__Umpumpen_von_B2_nach_B3_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt5" Datentyp="BOOL" Adresse="000104" Kommentar="Merker__Durchfluss_auf_1.5_lmin_einstellen_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Schritt6" Datentyp="BOOL" Adresse="000105" Kommentar="Merker__Ruehrer_einschalten_DemoBetrieb" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Ablassen_FL" Datentyp="BOOL" Adresse="001002" Kommentar="Wasser_aus_Anlage_ablassen_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Demo_FL" Datentyp="BOOL" Adresse="001001" Kommentar="Demoprogramm_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Dosieren_FL" Datentyp="BOOL" Adresse="001004" Kommentar="Dosieren_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Durchfluss_FL" Datentyp="BOOL" Adresse="001007" Kommentar="Durchflussregelung_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Fuellstand_FL" Datentyp="BOOL" Adresse="001006" Kommentar="Fuellstandsregelung_EinAus_Vorgabe_in_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Temperatur_FL" Datentyp="BOOL" Adresse="001005" Kommentar="Temperaturregelung_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Start_Umpumpen_FL" Datentyp="BOOL" Adresse="001003" Kommentar="Umpumpen_EinAus_Vorgabe_ueber_FactoryLink" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Temperatur_Ist" Datentyp="REAL" Adresse="400340" Kommentar="Istwert_Temperatur" AccessMode="r" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Temperatur_Soll_FL" Datentyp="INT" Adresse="401628" Kommentar="Sollwert_Temperatur_Vorgabe_ueber_FactoryLink" Min="20.0" Max="55.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Tn_FL" Datentyp="REAL" Adresse="401332" Kommentar="Nachstellzeit_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw" Fractiondigits="2.0"/>
+    <MBTCP_Tabelle0 Variablenname="Tv_FL" Datentyp="REAL" Adresse="401364" Kommentar="Vorhaltezeit_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw" Fractiondigits="2.0"/>
+    <MBTCP_Tabelle0 Variablenname="V1" Datentyp="REAL" Adresse="400116" Kommentar="Ventiloeffnung_0...100_Proportionalventil_V1" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="V1_FL" Datentyp="INT" Adresse="401160" Kommentar="Handstellwert_V1_0..100_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="V2" Datentyp="REAL" Adresse="400148" Kommentar="Ventiloeffnung_0...100_Proportionalventil_V2" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="V2_FL" Datentyp="INT" Adresse="401192" Kommentar="Handstellwert_V2_0..100_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw"/>
+    <MBTCP_Tabelle0 Variablenname="Volumen1" Datentyp="REAL" Adresse="400372" Kommentar="Volumen_aus_B1_Dosieren" AccessMode="r" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Volumen2" Datentyp="REAL" Adresse="400404" Kommentar="Volumen_aus_B2_Dosieren" AccessMode="r" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="VolumenB1_FL" Datentyp="REAL" Adresse="401724" Kommentar="eingegebener_Wert_fuer_Volumen_aus_B1_Vorgabe_ueber_FactoryLink" Max="4.0" AccessMode="rw" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="VolumenB2_FL" Datentyp="REAL" Adresse="401756" Kommentar="eingegebener_Wert_fuer_Volumen_aus_B2_Vorgabe_ueber_FactoryLink" Max="4.0" AccessMode="rw" Fractiondigits="1.0"/>
+    <MBTCP_Tabelle0 Variablenname="Vr_FL" Datentyp="REAL" Adresse="401300" Kommentar="Verstaerkungsfaktor_Vorgabe_ueber_FactoryLink" Max="100.0" AccessMode="rw" Fractiondigits="2.0"/>
+    <MBTCP_Tabelle0 Variablenname="W" Datentyp="BOOL" Adresse="000018" Kommentar="Einschalten_der_Heizung" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y1" Datentyp="BOOL" Adresse="000001" Kommentar="Magnetventil_Y1" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y2" Datentyp="BOOL" Adresse="000002" Kommentar="Magnetventil_Y2" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y3" Datentyp="BOOL" Adresse="000005" Kommentar="Magnetventil_Y3" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y4" Datentyp="BOOL" Adresse="000006" Kommentar="Magnetventil_Y4" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y5" Datentyp="BOOL" Adresse="000009" Kommentar="Magnetventil_Y5" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y6" Datentyp="BOOL" Adresse="000010" Kommentar="Magnetventil_Y6" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y7" Datentyp="BOOL" Adresse="000013" Kommentar="Magnetventil_Y7" AccessMode="r"/>
+    <MBTCP_Tabelle0 Variablenname="Y_MAN_FL" Datentyp="BOOL" Adresse="001011" Kommentar="Handstellwert_fuer_Y_Temperaturregelung_Vorgabe_ueber_Factorylink" AccessMode="rw"/>
+  </MBTCP>
+</ecoreModel:Variablen>

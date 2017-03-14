@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PAMTraM Transformation Model
+Bundle-SymbolicName: de.mfreund.pamtram.transformation.model;singleton:=true
+Bundle-Version: 1.0.2.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: de.mfreund.pamtram.transformation,
+ de.mfreund.pamtram.transformation.impl,
+ de.mfreund.pamtram.transformation.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;bundle-version="1.3.0";visibility:=reexport,
+ de.mfreund.pamtram.model;bundle-version="1.6.0";visibility:=reexport
+Bundle-ActivationPolicy: lazy

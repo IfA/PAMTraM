@@ -1,0 +1,380 @@
+<?xmp version="1.0" encoding="UTF-8" standalone="yes"?>
+<TaskModel xmlns="http://giove.isti.cnr.it/ctt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://giove.isti.cnr.it/ctt ctt.xsd" NameTaskModelID="FAS">
+    <Task Identifier="FAS" Category="abstraction" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
+        <Name>FAS</Name>
+        <Type>None</Type>
+        <Object name="distance" class="Numerical"/>
+        <Object name="velocity" class="Numerical"/>
+        <SubTask>
+            <Task Identifier="distanceMeassurement" Category="application" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
+                <Name>distanceMeassurement</Name>
+                <Type>Feedback</Type>
+                <TemporalOperator name="Choice"/>
+                <Parent name="FAS"/>
+                <SubTask>
+                    <Task Identifier="giveFeedback" Category="application" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
+                        <Name>giveFeedback</Name>
+                        <Type>Feedback</Type>
+                        <TemporalOperator name="Synchronization"/>
+                        <Parent name="distanceMeassurement"/>
+                        <SiblingRight name="meassureDistance"/>
+                        <SubTask>
+                            <Task Identifier="parkMode" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+<Name>parkMode</Name>
+<Type>Alarm_Element</Type>
+<Precondition operator="and">
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="15"/>
+    </ConditionGroup>
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="0"/>
+    </ConditionGroup>
+</Precondition>
+<Postcondition operator="and">
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="15"/>
+    </ConditionGroup> 
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="0"/>
+    </ConditionGroup>   
+</Postcondition>
+<TemporalOperator name="OrderIndependence"/>
+<Parent name="giveFeedback"/>
+<SiblingRight name="ACCMode"/>
+<Object name="velocity" class="Numerical"/>
+<SubTask>
+    <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>noDanger</Name>
+        <Type>Alarm0</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="12"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="12"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="parkMode"/>
+        <SiblingRight name="lowDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="lowDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>lowDanger</Name>
+        <Type>Alarm1</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="8"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="12"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="8"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="12"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="parkMode"/>
+        <SiblingLeft name="noDanger"/>
+        <SiblingRight name="mediumDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="mediumDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>mediumDanger</Name>
+        <Type>Alarm2</Type>        
+        <Precondition operator="and">
+        	<ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="3"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="8"/>
+            </ConditionGroup>
+         </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="8"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="3"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="parkMode"/>
+        <SiblingLeft name="lowDanger"/>
+        <SiblingRight name="highDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="highDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>highDanger</Name>
+        <Type>Alarm3</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="3"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="3"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="parkMode"/>
+        <SiblingLeft name="mediumDanger"/>
+        <SiblingRight name="collision"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="collision" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>collision</Name>
+        <Type>Alarm4</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
+        </Postcondition>
+        <Parent name="parkMode"/>
+        <SiblingLeft name="highDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+</SubTask>
+                            </Task>
+                            <Task Identifier="ACCMode" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+<Name>ACCMode</Name>
+<Type>Alarm_Element</Type>
+<Precondition operator="and">
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="15"/>
+    </ConditionGroup>
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="200"/>
+    </ConditionGroup>
+</Precondition>
+<Postcondition operator="and">
+    <ConditionGroup operator="lteq">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="15"/>
+    </ConditionGroup>
+    <ConditionGroup operator="gt">
+        <ConditionLiteral object="velocity"/>
+        <ConditionLiteral value="200"/>
+    </ConditionGroup>
+</Postcondition>
+<Parent name="giveFeedback"/>
+<SiblingLeft name="parkMode"/>
+<Object name="velocity" class="Numerical"/>
+<SubTask>
+    <Task Identifier="noDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>noDanger</Name>
+        <Type>Alarm0</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="120"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="120"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="201"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="ACCMode"/>
+        <SiblingRight name="lowDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="lowDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>lowDanger</Name>
+        <Type>Alarm1</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="120"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="80"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="120"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="30"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="ACCMode"/>
+        <SiblingLeft name="noDanger"/>
+        <SiblingRight name="mediumDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="mediumDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>mediumDanger</Name>
+        <Type>Alarm2</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="80"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="30"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="80"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="30"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="ACCMode"/>
+        <SiblingLeft name="lowDanger"/>
+        <SiblingRight name="highDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="highDanger" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>highDanger</Name>
+        <Type>Alarm3</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="30"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="or">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="30"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+        </Postcondition>
+        <TemporalOperator name="OrderIndependence"/>
+        <Parent name="ACCMode"/>
+        <SiblingLeft name="mediumDanger"/>
+        <SiblingRight name="collision"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+    <Task Identifier="collision" Category="application" Iterative="true" Optional="true" PartOfCooperation="false" Frequency=" ">
+        <Name>collision</Name>
+        <Type>Alarm4</Type>
+        <Precondition operator="and">
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
+        </Precondition>
+        <Postcondition operator="and">
+            <ConditionGroup operator="gt">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0.2"/>
+            </ConditionGroup>
+            <ConditionGroup operator="lteq">
+                <ConditionLiteral object="distance"/>
+                <ConditionLiteral value="0"/>
+            </ConditionGroup>
+        </Postcondition>
+        <Parent name="ACCMode"/>
+        <SiblingLeft name="highDanger"/>
+        <Object name="distance" class="Numerical"/>
+    </Task>
+</SubTask>
+                            </Task>
+                        </SubTask>
+                    </Task>
+                    <Task Identifier="meassureDistance" Category="application" Iterative="false" Optional="false" PartOfCooperation="false" Frequency=" ">
+                        <Name>meassureDistance</Name>
+                        <Type>Meassurement</Type>
+                        <Parent name="distanceMeassurement"/>
+                        <SiblingLeft name="giveFeedback"/>
+                        <Object name="relative velocity" class="Numerical" type="Perceivable"/>
+                        <Object name="ego velocity" class="Numerical" type="Perceivable"/>
+                        <Object name="target velocity" class="Numerical" type="Perceivable"/>
+                    </Task>
+                </SubTask>
+            </Task>
+        </SubTask>
+    </Task>
+</TaskModel>

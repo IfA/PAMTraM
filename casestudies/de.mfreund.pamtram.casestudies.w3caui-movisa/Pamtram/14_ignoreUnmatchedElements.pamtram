@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <sections xsi:type="source:SourceSection" name="EventSupport">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport-prohibiting-unmachted-elements">
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport" includeSubTypes="false">
+          <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+            <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/id"/>
+          </attributes>
+        </value>
+      </references>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="PresentationSupport">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/PresentationSupport"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport-allowing-unmachted-elements" ignoreUnmatchedElements="true">
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/PresentationSupport/dataSelectionSupport"/>
+        <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport-prohibiting-unmatched-elements" includeSubTypes="false">
+          <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+            <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/id"/>
+          </attributes>
+        </value>
+      </references>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit">
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn" ignoreUnmatchedElements="true">
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+      </references>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="TextLabel" cardinality="ZERO__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="IncludeSubTypeMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ExcludeSubTypeMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="getNumber">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

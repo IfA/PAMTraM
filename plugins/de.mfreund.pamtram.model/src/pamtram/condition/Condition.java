@@ -2,7 +2,8 @@
  */
 package pamtram.condition;
 
-import pamtram.InstanceSelectingElement;
+import org.eclipse.emf.common.util.EList;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,13 +17,14 @@ import pamtram.InstanceSelectingElement;
  *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
  *   <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
  * @model abstract="true"
  * @generated
  */
-public interface Condition<TargetType> extends ComplexCondition, InstanceSelectingElement {
+public interface Condition<TargetType> extends ComplexCondition {
 	/**
 	 * Returns the value of the '<em><b>Comparator</b></em>' attribute.
 	 * The literals are from the enumeration {@link pamtram.condition.ComparatorEnum}.
@@ -77,6 +79,22 @@ public interface Condition<TargetType> extends ComplexCondition, InstanceSelecti
 	 * @generated
 	 */
 	void setTarget(TargetType value);
+
+	/**
+	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.structure.SourceInstanceSelector}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Selectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
+	 * @see pamtram.condition.ConditionPackage#getCondition_InstanceSelectors()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SourceInstanceSelector> getInstanceSelectors();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -8,13 +8,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.ExpressionElement;
-import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.MappingHintSourceInterface;
-import pamtram.structure.ExternalModifiedAttributeElementType;
-import pamtram.structure.LocalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.constraint.*;
 
 import pamtram.structure.generic.Attribute;
@@ -91,7 +90,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(singleReferenceValueConstraint);
 				if (result == null) result = caseExpressionElement(singleReferenceValueConstraint);
 				if (result == null) result = caseModifiableElement(singleReferenceValueConstraint);
-				if (result == null) result = caseInstanceSelectingElement(singleReferenceValueConstraint);
 				if (result == null) result = caseNamedElement(singleReferenceValueConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -103,7 +101,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(equalityConstraint);
 				if (result == null) result = caseExpressionElement(equalityConstraint);
 				if (result == null) result = caseModifiableElement(equalityConstraint);
-				if (result == null) result = caseInstanceSelectingElement(equalityConstraint);
 				if (result == null) result = caseNamedElement(equalityConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -123,7 +120,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(numericConstraint);
 				if (result == null) result = caseExpressionElement(numericConstraint);
 				if (result == null) result = caseModifiableElement(numericConstraint);
-				if (result == null) result = caseInstanceSelectingElement(numericConstraint);
 				if (result == null) result = caseNamedElement(numericConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -135,7 +131,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraint(stringConstraint);
 				if (result == null) result = caseExpressionElement(stringConstraint);
 				if (result == null) result = caseModifiableElement(stringConstraint);
-				if (result == null) result = caseInstanceSelectingElement(stringConstraint);
 				if (result == null) result = caseNamedElement(stringConstraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -151,9 +146,9 @@ public class ConstraintSwitch<T> extends Switch<T> {
 			case ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT: {
 				ValueConstraintSourceElement valueConstraintSourceElement = (ValueConstraintSourceElement)theEObject;
 				T result = caseValueConstraintSourceElement(valueConstraintSourceElement);
-				if (result == null) result = caseLocalModifiedAttributeElementType(valueConstraintSourceElement);
+				if (result == null) result = caseLocalDynamicSourceElement(valueConstraintSourceElement);
 				if (result == null) result = caseValueConstraintSourceInterface(valueConstraintSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(valueConstraintSourceElement);
+				if (result == null) result = caseDynamicSourceElement(valueConstraintSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintSourceElement);
 				if (result == null) result = caseModifiableElement(valueConstraintSourceElement);
@@ -163,12 +158,24 @@ public class ConstraintSwitch<T> extends Switch<T> {
 			case ConstraintPackage.VALUE_CONSTRAINT_EXTERNAL_SOURCE_ELEMENT: {
 				ValueConstraintExternalSourceElement valueConstraintExternalSourceElement = (ValueConstraintExternalSourceElement)theEObject;
 				T result = caseValueConstraintExternalSourceElement(valueConstraintExternalSourceElement);
-				if (result == null) result = caseExternalModifiedAttributeElementType(valueConstraintExternalSourceElement);
+				if (result == null) result = caseExternalDynamicSourceElement(valueConstraintExternalSourceElement);
 				if (result == null) result = caseValueConstraintSourceInterface(valueConstraintExternalSourceElement);
-				if (result == null) result = caseModifiedAttributeElementType(valueConstraintExternalSourceElement);
+				if (result == null) result = caseDynamicSourceElement(valueConstraintExternalSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintExternalSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintExternalSourceElement);
 				if (result == null) result = caseModifiableElement(valueConstraintExternalSourceElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConstraintPackage.VALUE_CONSTRAINT_GLOBAL_SOURCE_ELEMENT: {
+				ValueConstraintGlobalSourceElement valueConstraintGlobalSourceElement = (ValueConstraintGlobalSourceElement)theEObject;
+				T result = caseValueConstraintGlobalSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseExternalDynamicSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseValueConstraintSourceInterface(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseDynamicSourceElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseMappingHintSourceInterface(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseNamedElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseModifiableElement(valueConstraintGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -312,6 +319,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Value Constraint Global Source Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseValueConstraintGlobalSourceElement(ValueConstraintGlobalSourceElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -357,21 +379,6 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Selecting Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstanceSelectingElement(InstanceSelectingElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -387,47 +394,47 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Modified Attribute Element Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Modified Attribute Element Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Dynamic Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseModifiedAttributeElementType(ModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Local Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Local Modified Attribute Element Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Local Dynamic Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalModifiedAttributeElementType(LocalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>External Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>External Modified Attribute Element Type</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>External Dynamic Source Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalModifiedAttributeElementType(ExternalModifiedAttributeElementType<S, C, R, A> object) {
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
 		return null;
 	}
 

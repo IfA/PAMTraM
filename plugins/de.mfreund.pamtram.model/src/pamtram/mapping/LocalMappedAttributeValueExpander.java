@@ -2,7 +2,7 @@
  */
 package pamtram.mapping;
 
-import pamtram.structure.LocalModifiedAttributeElementType;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -18,5 +18,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface LocalMappedAttributeValueExpander extends LocalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, MappedAttributeValueExpander {
+public interface LocalMappedAttributeValueExpander extends LocalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, MappedAttributeValueExpander {
 } // LocalMappedAttributeValueExpander

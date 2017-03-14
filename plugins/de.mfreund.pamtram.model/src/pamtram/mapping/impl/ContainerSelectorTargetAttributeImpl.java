@@ -16,7 +16,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.impl.ModifiedAttributeElementTypeImpl;
+import pamtram.structure.impl.DynamicSourceElementImpl;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -29,7 +29,7 @@ import pamtram.structure.target.TargetSectionReference;
  *
  * @generated
  */
-public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeElementTypeImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ContainerSelectorTargetAttribute {
+public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ContainerSelectorTargetAttribute {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,7 +88,7 @@ public class ContainerSelectorTargetAttributeImpl extends ModifiedAttributeEleme
 					MappingValidator.DIAGNOSTIC_SOURCE,
 							MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE }));
+					new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 		
 		}
 		

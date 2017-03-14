@@ -7,8 +7,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
-import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
+import pamtram.structure.SourceInstanceSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,6 +20,7 @@ import pamtram.ModifiableElement;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.SingleReferenceValueConstraint#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint()
@@ -27,7 +28,7 @@ import pamtram.ModifiableElement;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel'"
  * @generated
  */
-public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableElement, InstanceSelectingElement {
+public interface SingleReferenceValueConstraint extends ValueConstraint, ExpressionElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraintSourceInterface}.
@@ -43,6 +44,22 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * @generated
 	 */
 	EList<ValueConstraintSourceInterface> getSourceElements();
+
+	/**
+	 * Returns the value of the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.structure.SourceInstanceSelector}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Instance Selectors</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
+	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_InstanceSelectors()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SourceInstanceSelector> getInstanceSelectors();
 
 	/**
 	 * <!-- begin-user-doc -->

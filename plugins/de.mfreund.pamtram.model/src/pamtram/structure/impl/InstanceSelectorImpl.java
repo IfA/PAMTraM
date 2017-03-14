@@ -5,17 +5,16 @@ package pamtram.structure.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-import org.eclipse.emf.common.notify.Notification;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -26,31 +25,31 @@ import pamtram.condition.ComplexCondition;
 import pamtram.impl.ExpressionElementImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
-import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Instance Pointer</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.structure.impl.InstanceSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
+public abstract class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
+
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -58,19 +57,9 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActualSourceSectionAttribute target;
-
-	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -78,8 +67,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	protected EList<InstanceSelectorSourceInterface> sourceElements;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected InstanceSelectorImpl() {
@@ -87,8 +75,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,10 +84,10 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
@@ -109,48 +96,10 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActualSourceSectionAttribute getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (ActualSourceSectionAttribute)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualSourceSectionAttribute basicGetTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(ActualSourceSectionAttribute newTarget) {
-		ActualSourceSectionAttribute oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR__TARGET, oldTarget, target));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
@@ -159,13 +108,14 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
-		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.ModifiedAttributeElementType) : true;
+		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;
 		
 		if (!result && diagnostics != null) {
 		
@@ -184,8 +134,29 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -198,8 +169,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -207,9 +177,6 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				return getModifiers();
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return getSourceElements();
 		}
@@ -217,8 +184,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -229,9 +195,6 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((ActualSourceSectionAttribute)newValue);
-				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
@@ -241,8 +204,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -250,9 +212,6 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				getModifiers().clear();
-				return;
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				setTarget((ActualSourceSectionAttribute)null);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				getSourceElements().clear();
@@ -262,8 +221,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,8 +229,6 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case StructurePackage.INSTANCE_SELECTOR__TARGET:
-				return target != null;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
 		}
@@ -280,8 +236,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -296,8 +251,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -312,8 +266,7 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -322,8 +275,12 @@ public class InstanceSelectorImpl extends ExpressionElementImpl implements Insta
 		switch (operationID) {
 			case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
+				return getLocalSourceElements();
+			case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
+				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //InstanceSelectorImpl
+} // InstanceSelectorImpl

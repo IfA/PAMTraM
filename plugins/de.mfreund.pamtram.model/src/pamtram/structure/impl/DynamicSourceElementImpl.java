@@ -18,7 +18,7 @@ import pamtram.NamedElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -36,13 +36,13 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.impl.ModifiedAttributeElementTypeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.impl.DynamicSourceElementImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.structure.impl.DynamicSourceElementImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements ModifiedAttributeElementType<S, C, R, A> {
+public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends NamedElementImpl implements DynamicSourceElement<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -68,7 +68,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModifiedAttributeElementTypeImpl() {
+	protected DynamicSourceElementImpl() {
 		super();
 	}
 
@@ -79,7 +79,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE;
+		return StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -95,7 +95,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 			source = (A)eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -119,7 +119,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 		A oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, oldSource, source));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE, oldSource, source));
 	}
 
 	/**
@@ -140,7 +140,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS);
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS);
 		}
 		return modifiers;
 	}
@@ -185,16 +185,16 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * TODO update the name of the ModifiedAttributeElementType based on the modifiers it contains
+	 * TODO update the name of the DynamicSourceElement based on the modifiers it contains
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS:
 				return getModifiers();
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
 		}
@@ -210,11 +210,11 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				setSource((A)newValue);
 				return;
 		}
@@ -229,10 +229,10 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				setSource((A)null);
 				return;
 		}
@@ -247,9 +247,9 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				return source != null;
 		}
 		return super.eIsSet(featureID);
@@ -264,7 +264,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -280,7 +280,7 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__MODIFIERS;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
@@ -295,12 +295,12 @@ public abstract class ModifiedAttributeElementTypeImpl<S extends Section<S, C, R
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP:
 				return getMappingHintGroup();
-			case StructurePackage.MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING:
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT___GET_MAPPING:
 				return getMapping();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ModifiedAttributeElementTypeImpl
+} //DynamicSourceElementImpl

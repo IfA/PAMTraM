@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.AttributeMappingExternalSourceElement;
 import pamtram.mapping.MappingPackage;
-import pamtram.structure.impl.ExternalModifiedAttributeElementTypeImpl;
+import pamtram.structure.impl.ExternalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -19,12 +19,11 @@ import pamtram.structure.source.SourceSectionReference;
  * @generated
  */
 public class AttributeMappingExternalSourceElementImpl extends
-		ExternalModifiedAttributeElementTypeImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
+		ExternalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>
 		implements AttributeMappingExternalSourceElement {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeMappingExternalSourceElementImpl() {
@@ -33,12 +32,10 @@ public class AttributeMappingExternalSourceElementImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return MappingPackage.Literals.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT;
 	}
 

@@ -4,10 +4,7 @@ package pamtram.mapping;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-
-import pamtram.ExpressionElement;
-import pamtram.ModifiableElement;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
@@ -20,14 +17,13 @@ import pamtram.structure.target.TargetSectionAttribute;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.AttributeMatcher#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMatcher#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMatcher()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetMatchesAffectedReferenceType'"
  * @generated
  */
-public interface AttributeMatcher extends Matcher, ExpressionElement, ModifiableElement, ExpandableHint {
+public interface AttributeMatcher extends Matcher, ExpandableHint, InstanceSelector {
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -53,40 +49,6 @@ public interface AttributeMatcher extends Matcher, ExpressionElement, Modifiable
 	 * @generated
 	 */
 	void setTarget(TargetSectionAttribute value);
-
-	/**
-	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeMatcherSourceInterface}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source Attributes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Elements</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMatcher_SourceElements()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	EList<AttributeMatcherSourceInterface> getSourceElements();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMatcherSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMatcherSourceElement>();\r\n\t\t\t\t\r\n\t\t\t\tfor(AttributeMatcherSourceInterface i : this.getSourceElements()){\r\n\t\t\t\t\tif(i instanceof AttributeMatcherSourceElement){\r\n\t\t\t\t\t\telements.add((AttributeMatcherSourceElement) i);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\treturn elements;'"
-	 * @generated
-	 */
-	EList<AttributeMatcherSourceElement> getLocalSourceElements();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<AttributeMatcherExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<>();\r\n\r\nfor(AttributeMatcherSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof AttributeMatcherExternalSourceElement){\r\n\t\telements.add((AttributeMatcherExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;'"
-	 * @generated
-	 */
-	EList<AttributeMatcherExternalSourceElement> getExternalSourceElements();
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -15,7 +15,7 @@ import pamtram.PamtramPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.impl.FixedValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.impl.FixedValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -23,9 +23,9 @@ import pamtram.PamtramPackage;
 public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -40,11 +40,10 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 * @ordered
 	 */
-	protected String value = FixedValueImpl.VALUE_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FixedValueImpl() {
@@ -53,39 +52,31 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return PamtramPackage.Literals.FIXED_VALUE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getValue() {
-
-		return this.value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValueGen(String newValue) {
-
-		String oldValue = this.value;
-		this.value = newValue;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__VALUE, oldValue,
-					this.value));
-		}
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__VALUE, oldValue, value));
 	}
 
 	/**
@@ -100,30 +91,26 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case PamtramPackage.FIXED_VALUE__VALUE:
-				return this.getValue();
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case PamtramPackage.FIXED_VALUE__VALUE:
-				this.setValue((String) newValue);
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -131,15 +118,13 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case PamtramPackage.FIXED_VALUE__VALUE:
-				this.setValue(FixedValueImpl.VALUE_EDEFAULT);
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -147,35 +132,28 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case PamtramPackage.FIXED_VALUE__VALUE:
-				return FixedValueImpl.VALUE_EDEFAULT == null ? this.value != null
-						: !FixedValueImpl.VALUE_EDEFAULT.equals(this.value);
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");
-		result.append(this.value);
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

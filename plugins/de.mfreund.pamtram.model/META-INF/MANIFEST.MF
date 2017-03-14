@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PAMTraM Model
+Bundle-SymbolicName: de.mfreund.pamtram.model;singleton:=true
+Bundle-Version: 1.9.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: Matthias Freund,
+ Institute of Automation,
+ TU Dresden
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: pamtram,
+ pamtram.condition,
+ pamtram.condition.impl,
+ pamtram.condition.util,
+ pamtram.impl,
+ pamtram.mapping,
+ pamtram.mapping.impl,
+ pamtram.mapping.modifier,
+ pamtram.mapping.modifier.impl,
+ pamtram.mapping.modifier.util,
+ pamtram.mapping.util,
+ pamtram.structure,
+ pamtram.structure.constraint,
+ pamtram.structure.constraint.impl,
+ pamtram.structure.constraint.util,
+ pamtram.structure.generic,
+ pamtram.structure.generic.impl,
+ pamtram.structure.generic.util,
+ pamtram.structure.impl,
+ pamtram.structure.library,
+ pamtram.structure.library.impl,
+ pamtram.structure.library.util,
+ pamtram.structure.source,
+ pamtram.structure.source.impl,
+ pamtram.structure.source.util,
+ pamtram.structure.target,
+ pamtram.structure.target.impl,
+ pamtram.structure.target.util,
+ pamtram.structure.util,
+ pamtram.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.tud.et.ifa.agtele.genlibrary;bundle-version="1.3.0";visibility:=reexport,
+ de.mfreund.pamtram;bundle-version="1.8.0",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy

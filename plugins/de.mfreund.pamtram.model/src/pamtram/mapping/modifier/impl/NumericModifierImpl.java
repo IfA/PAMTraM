@@ -1,0 +1,68 @@
+/**
+ */
+package pamtram.mapping.modifier.impl;
+
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+
+import pamtram.impl.NamedElementImpl;
+
+import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.mapping.modifier.NumericModifier;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Numeric Modifier</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * @generated
+ */
+public abstract class NumericModifierImpl extends NamedElementImpl implements NumericModifier {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NumericModifierImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ModifierPackage.Literals.NUMERIC_MODIFIER;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String modifyValue(String value) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ModifierPackage.NUMERIC_MODIFIER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+} //NumericModifierImpl

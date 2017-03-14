@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.autoprobe"
+            name="AutoProBe"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.ctt-aminolight"
+            name="CTT -&gt; Aminolight"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.disl-movisa"
+            name="Disl -&gt; Movisa"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.excel-movisa-tdp"
+            name="Excel -&gt; Movisa TDP"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.visu-plus"
+            name="STGML -&gt; Visu+"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.w3caui-movisa"
+            name="W3CAUI -&gt; Movisa"
+            project="true">
+      </wizard>
+      <category
+            id="de.mfreund.pamtram.examples.category"
+            name="PAMTraM"
+            parentCategory="org.eclipse.ui.Examples">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.emf.common.ui.examples">
+      <example
+            wizardID="de.mfreund.pamtram.examples.autoprobe">
+         <projectDescriptor
+               contentURI="zips/autoprobe.zip"
+               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project."
+               name="de.mfreund.pamtram.casestudies.autoprobe">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.autoprobe/Pamtram/STGML2Movisa_enhanced.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.ctt-aminolight">
+         <projectDescriptor
+               contentURI="zips/ctt-aminolight.zip"
+               description="This casestudy demonstrates a transformation from &apos;CTT&apos; to a simplified version of &apos;AMINO&apos;."
+               name="de.mfreund.pamtram.casestudies.ctt-aminolight">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.ctt-aminolight/Pamtram/ctt-aminolight.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.disl-movisa">
+         <projectDescriptor
+               contentURI="zips/disl-movisa.zip"
+               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;."
+               name="de.mfreund.pamtram.casestudies.disl-movisa">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.disl-movisa/Pamtram/Disl2Movisa.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.excel-movisa-tdp">
+         <projectDescriptor
+               contentURI="zips/excel-movisa-tdp.zip"
+               description="This casestudy demonstrates a simple transformation from an Excel-based meta-model to &apos;Movisa TDP&apos;."
+               name="de.mfreund.pamtram.casestudies.excel-movisa-tdp">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.excel-movisa-tdp/Pamtram/excel-movisa-tdp.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.visu-plus">
+         <projectDescriptor
+               contentURI="zips/visu-plus.zip"
+               description="This casestudy demonstrates a transformation from &apos;STGML&apos; to &apos;Visu+&apos;."
+               name="de.mfreund.pamtram.casestudies.visu-plus">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.visu-plus/Pamtram/visu-plus.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.w3caui-movisa">
+         <projectDescriptor
+               contentURI="zips/w3caui-movisa.zip"
+               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;."
+               name="de.mfreund.pamtram.casestudies.w3caui-movisa">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/w3caui-movisa.pamtram">
+         </fileToOpen>
+      </example>
+   </extension>
+
+</plugin>

@@ -1,0 +1,38 @@
+<project name="MyProject" default="publish" basedir=".">
+    <description>
+		This updates the setup on the web server.
+    </description>
+	
+	<!-- the URl of the server -->
+	<property name="server-url" value="sftp://root@eats3.et.tu-dresden.de/"/>
+	
+	<!-- the folder (on the server) that shall contain the update site -->
+	<property name="remote-path" value="/srv/eclipse/setups/"/>
+
+	<!-- ================================= 
+	          target: publish              
+	         ================================= -->
+	<target name="publish">
+
+			<echo>Publishing to update site...</echo>
+			
+			<!-- copy the 'features' and 'plugins' folder as well as 'artifacts.jar' and 'content.jar'
+				to the specified directory representing the update site -->
+			
+			<exec executable="WinSCP.com"> <!-- WinSCP.com is expected to be on the Windows path! -->
+				<arg value="/command" />
+				<!-- open a connection to the server -->
+				<arg value="open ${server-url}" />
+				
+				<!-- force overwrite -->
+				<arg value="option confirm off" />
+				
+				<!-- copy the file -->
+				<arg value="put ${basedir}\PAMTraM.setup ${remote-path}" />
+				
+				<!-- close the connection -->
+				<arg value="close" />
+				<arg value="exit" />
+			</exec>
+		</target>
+</project>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MovResource>
+  <General SizeX="3200" SizeY="1800"/>
+  <BackGround/>
+  <Style/>
+  <Execution/>
+  <ListSynopticDraw>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="1185" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>NAVTOP</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="1700" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>ALERT</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
+      <Shadow/>
+      <Rotation/>
+      <Visible>false</Visible>
+      <Transparency>false</Transparency>
+      <BG Var="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">true</BG>
+      <BGList>
+        <dci>
+          <DynColor BlinkColor="2147483663" BlinkTime="0" Color="2147483663"/>
+        </dci>
+        <dci>
+          <DynColor BlinkColor="2147483663" Color="255" Type="3" Value="1"/>
+        </dci>
+      </BGList>
+      <BList>false</BList>
+      <LT>false</LT>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="156" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Turn55Robot&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>Turn55Robot</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Turn55Robot</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="671" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Turn55CNC&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>Turn55CNC</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Turn55CNC</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="1185" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;TurnRobotGripper&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>TurnRobotGripper</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">TurnRobotGripper</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="1700" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_4&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>PalletHolder_4</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_4</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="2215" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_5&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>PalletHolder_5</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_5</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="2729" y="1680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;PalletHolder_6&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>PalletHolder_6</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PalletHolder_6</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="2865" y="980"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType variable=&quot;AS_Variables__Stat_Turn55_Vis_Functions_StopStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
+      <Name>StopStation</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">StopStation</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="315" x="2865" y="680"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType variable=&quot;AS_Variables__Stat_Turn55_Vis_Functions_StartStation_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
+      <Name>StartStation</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">StartStation</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="191" stroke-width="0" width="195" x="487" y="378">rect</type>
+      <ExtFill ImageID="Assembly/Buffer/PalletHolder/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>PalletHolder_4</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="195" stroke-width="0" width="170" x="752" y="191">rect</type>
+      <ExtFill ImageID="Assembly/Buffer/PalletHolder/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>PalletHolder_5</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="169" stroke-width="0" width="167" x="1060" y="140">rect</type>
+      <ExtFill ImageID="Assembly/Buffer/PalletHolder/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>PalletHolder_6</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="615" stroke-width="0" width="308" x="964" y="789">rect</type>
+      <ExtFill ImageID="Component/Robot/Mitsubishi/Turn55Robot/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>Turn55Robot</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="1149" stroke-width="0" width="956" x="1653" y="511">rect</type>
+      <ExtFill ImageID="Component/CNC/EMCO/Turn/Turn55CNC/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>Turn55CNC</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type height="235" stroke-width="0" width="77" x="1106" y="431">rect</type>
+      <ExtFill ImageID="Component/Actor/TurnRobotGripper/main.png" Style="6"/>
+      <CommandsOnDown/>
+      <Name>TurnRobotGripper</Name>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="100" stroke-width="0" width="105" x="20" y="850"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="AS_Variables__Stat_Turn55_Vis_Task"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="100" stroke-width="0" width="105" x="125" y="850"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+  </ListSynopticDraw>
+  <VariableList>
+    <Variable>
+      <Name/>
+      <EnableTrace/>
+    </Variable>
+  </VariableList>
+</MovResource>

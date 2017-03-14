@@ -1,0 +1,310 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ProjectSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:short" name="Build"/>
+        <xs:element type="xs:byte" name="ProjectBuild"/>
+        <xs:element type="xs:byte" name="SaveBackup"/>
+        <xs:element type="xs:byte" name="SaveBackupIncreaseBuild"/>
+        <xs:element type="xs:byte" name="ProjectLift"/>
+        <xs:element type="xs:byte" name="CryptProject"/>
+        <xs:element type="xs:byte" name="CryptProjectResources"/>
+        <xs:element type="xs:byte" name="UnicodeProject"/>
+        <xs:element type="xs:byte" name="ZippedProject"/>
+        <xs:element type="xs:byte" name="CryptStrings"/>
+        <xs:element name="Platforms">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="TargetWin32"/>
+                <xs:attribute type="xs:byte" name="TargetWinCE"/>
+                <xs:attribute type="xs:byte" name="TargetWin32Client"/>
+                <xs:attribute type="xs:byte" name="TargetWinCEClient"/>
+                <xs:attribute type="xs:byte" name="TargetJ2SEClient"/>
+                <xs:attribute type="xs:byte" name="TargetJMSEClient"/>
+                <xs:attribute type="xs:short" name="DefScreenSizeX"/>
+                <xs:attribute type="xs:short" name="DefScreenSizeY"/>
+                <xs:attribute type="xs:int" name="DefScreenColor"/>
+                <xs:attribute type="xs:byte" name="DefScreenNumColor"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectPaths">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Alarms"/>
+                <xs:attribute type="xs:string" name="Data"/>
+                <xs:attribute type="xs:string" name="Images"/>
+                <xs:attribute type="xs:string" name="Resources"/>
+                <xs:attribute type="xs:string" name="Logs"/>
+                <xs:attribute type="xs:string" name="DataLoggers"/>
+                <xs:attribute type="xs:string" name="NetworkUserPath"/>
+                <xs:attribute type="xs:string" name="HelpFilePath"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UserAndGroupsSettings">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="EnableAutoLoggoff"/>
+                <xs:attribute type="xs:byte" name="EnableRuntimeUsers"/>
+                <xs:attribute type="xs:string" name="RuntimeUserFileName"/>
+                <xs:attribute type="xs:byte" name="AllowRuntimeLevel"/>
+                <xs:attribute type="xs:short" name="AllowResizingLevel"/>
+                <xs:attribute type="xs:byte" name="EnableNTUserLogin"/>
+                <xs:attribute type="xs:short" name="DefaultPrivAdminLevel"/>
+                <xs:attribute type="xs:long" name="DefaultPrivAdminAccessLevel"/>
+                <xs:attribute type="xs:byte" name="DefaultPrivUserLevel"/>
+                <xs:attribute type="xs:int" name="DefaultPrivUserAccessLevel"/>
+                <xs:attribute type="xs:byte" name="DefaultPrivGuestLevel"/>
+                <xs:attribute type="xs:byte" name="DefaultPrivGuestAccessLevel"/>
+                <xs:attribute type="xs:byte" name="IncludeChildProjectUsers"/>
+                <xs:attribute type="xs:byte" name="MaximumChildProjectLevels"/>
+                <xs:attribute type="xs:byte" name="EnablePasswordProtectedProject"/>
+                <xs:attribute type="xs:byte" name="EnablePasswordMng"/>
+                <xs:attribute type="xs:byte" name="SecsAutoLoggoffTimeout"/>
+                <xs:attribute type="xs:byte" name="MinimumUserLength"/>
+                <xs:attribute type="xs:byte" name="MinimumPasswordLength"/>
+                <xs:attribute type="xs:byte" name="SecsWebClientAutoLoggoff"/>
+                <xs:attribute type="xs:byte" name="EnableCRF21Settings"/>
+                <xs:attribute type="xs:byte" name="ExecCmdOnLogin"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="ChildProjectsList"/>
+        <xs:element name="ProjectExecution">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="TrackProjectStatistic"/>
+                <xs:attribute type="xs:string" name="StartupSynoptic"/>
+                <xs:attribute type="xs:string" name="StartupScript"/>
+                <xs:attribute type="xs:string" name="ShutdownScript"/>
+                <xs:attribute type="xs:byte" name="StartFullScreen"/>
+                <xs:attribute type="xs:byte" name="ShowStatusBar"/>
+                <xs:attribute type="xs:byte" name="ShowTraceBar"/>
+                <xs:attribute type="xs:byte" name="HideDesktop"/>
+                <xs:attribute type="xs:byte" name="HideStartButton"/>
+                <xs:attribute type="xs:byte" name="HideTaskBar"/>
+                <xs:attribute type="xs:byte" name="HideSystemClock"/>
+                <xs:attribute type="xs:byte" name="DisableTaskSwitching"/>
+                <xs:attribute type="xs:byte" name="DisableTaskManager"/>
+                <xs:attribute type="xs:byte" name="DisableCtrlAltDel"/>
+                <xs:attribute type="xs:byte" name="ROT"/>
+                <xs:attribute type="xs:byte" name="ROTAnyClient"/>
+                <xs:attribute type="xs:byte" name="ServiceSysTray"/>
+                <xs:attribute type="xs:byte" name="ServiceShowLogon"/>
+                <xs:attribute type="xs:string" name="DefaultODBCPlugin"/>
+                <xs:attribute type="xs:byte" name="StatObjBack"/>
+                <xs:attribute type="xs:string" name="AlphaNumericScreen"/>
+                <xs:attribute type="xs:string" name="NumericScreen"/>
+                <xs:attribute type="xs:string" name="GetPasswordScreen"/>
+                <xs:attribute type="xs:string" name="PasswordExpiredScreen"/>
+                <xs:attribute type="xs:string" name="TraceCommentScreen"/>
+                <xs:attribute type="xs:string" name="AckCommentScreen"/>
+                <xs:attribute type="xs:byte" name="ExtCaption"/>
+                <xs:attribute type="xs:byte" name="ExtBorder"/>
+                <xs:attribute type="xs:byte" name="ExtResizeable"/>
+                <xs:attribute type="xs:byte" name="ExtSysMenu"/>
+                <xs:attribute type="xs:byte" name="EnMouseBuzzer"/>
+                <xs:attribute type="xs:byte" name="MouseBuzzerDuration"/>
+                <xs:attribute type="xs:byte" name="ScanAndLoadNotDestroyableScreens"/>
+                <xs:attribute type="xs:byte" name="EnableRenamingMng"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="StartupCommands"/>
+        <xs:element type="xs:string" name="ShuttingCommands"/>
+        <xs:element name="EnableAdminAlert">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:string" name="ServerNameAdminAlert"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MouseGestures">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="MouseGestureSpeed"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="HeapManager">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:byte" name="SetHeapValues"/>
+                <xs:attribute type="xs:byte" name="DrawRecthHeap"/>
+                <xs:attribute type="xs:byte" name="DrawAlarmWndhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawAlarmBannerhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawHisLogWndhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawDLWndhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawTraceDBWndhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawButtonhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawCharthHeap"/>
+                <xs:attribute type="xs:byte" name="DrawPolyhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawOleObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawOcxObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawGrouphHeap"/>
+                <xs:attribute type="xs:byte" name="DrawWholeSynObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawTrendObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawGaugeObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawEditBoxObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawTabObjhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawHourSelectorhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawListBoxhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawGridBoxhHeap"/>
+                <xs:attribute type="xs:byte" name="DrawDynamicHeap"/>
+                <xs:attribute type="xs:byte" name="VariableHeap"/>
+                <xs:attribute type="xs:byte" name="AlarmHeap"/>
+                <xs:attribute type="xs:byte" name="OPCItemObjectsHeap"/>
+                <xs:attribute type="xs:byte" name="OPCGroupObjectsHeap"/>
+                <xs:attribute type="xs:byte" name="OPCObjectsHeap"/>
+                <xs:attribute type="xs:byte" name="DrawScriptHeap"/>
+                <xs:attribute type="xs:byte" name="AlarmScriptHeap"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="HisLogSett">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:byte">
+                <xs:attribute type="xs:byte" name="RecycleDBConnection"/>
+                <xs:attribute type="xs:byte" name="SendAdministrativeAlert"/>
+                <xs:attribute type="xs:byte" name="MaxError"/>
+                <xs:attribute type="xs:byte" name="MaxNumberTrans"/>
+                <xs:attribute type="xs:short" name="MaxCacheBeforeFlush"/>
+                <xs:attribute type="xs:string" name="Dsn"/>
+                <xs:attribute type="xs:string" name="User"/>
+                <xs:attribute type="xs:short" name="DefVarCharPrecision"/>
+                <xs:attribute type="xs:string" name="TimeCol"/>
+                <xs:attribute type="xs:string" name="LocTimeCol"/>
+                <xs:attribute type="xs:string" name="MSecCol"/>
+                <xs:attribute type="xs:string" name="UserCol"/>
+                <xs:attribute type="xs:string" name="EventTypeCol"/>
+                <xs:attribute type="xs:string" name="EventTypeNumCol"/>
+                <xs:attribute type="xs:string" name="DescriptionCol"/>
+                <xs:attribute type="xs:string" name="SubEventTypeCol"/>
+                <xs:attribute type="xs:string" name="CommentCol"/>
+                <xs:attribute type="xs:string" name="DurationCol"/>
+                <xs:attribute type="xs:string" name="UniqueIDCol"/>
+                <xs:attribute type="xs:string" name="TransactionIDCol"/>
+                <xs:attribute type="xs:string" name="AlarmTable"/>
+                <xs:attribute type="xs:string" name="DriverTable"/>
+                <xs:attribute type="xs:string" name="SysTable"/>
+                <xs:attribute type="xs:short" name="AlarmsDurationDays"/>
+                <xs:attribute type="xs:byte" name="AlarmsDurationHours"/>
+                <xs:attribute type="xs:byte" name="AlarmsDurationMinutes"/>
+                <xs:attribute type="xs:short" name="DriversDurationDays"/>
+                <xs:attribute type="xs:byte" name="DriversDurationHours"/>
+                <xs:attribute type="xs:byte" name="DriversDurationMinutes"/>
+                <xs:attribute type="xs:short" name="SystemsDurationDays"/>
+                <xs:attribute type="xs:byte" name="SystemsDurationHours"/>
+                <xs:attribute type="xs:byte" name="SystemsDurationMinutes"/>
+                <xs:attribute type="xs:byte" name="UseInMemoryDB"/>
+                <xs:attribute type="xs:byte" name="IMDBSharedTable"/>
+                <xs:attribute type="xs:byte" name="IMDBSaveColumnName"/>
+                <xs:attribute type="xs:byte" name="IMDBExportXMLTable"/>
+                <xs:attribute type="xs:byte" name="IMDBExportCSVTable"/>
+                <xs:attribute type="xs:byte" name="IMDBCryptFile"/>
+                <xs:attribute type="xs:byte" name="SecWriteBehindDelay"/>
+                <xs:attribute type="xs:byte" name="MaxRecordsNumber"/>
+                <xs:attribute type="xs:string" name="cIMDBDelimiter"/>
+                <xs:attribute type="xs:string" name="cIMDBEndOfLine"/>
+                <xs:attribute type="xs:string" name="DefaultSoftLogicOPCServerName"/>
+                <xs:attribute type="xs:string" name="DefaultSoftLogicOPCServerResourceName"/>
+                <xs:attribute type="xs:string" name="DefaultSoftLogicVariableGroupName"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="SoftLogicListTagRemoved"/>
+        <xs:element type="xs:string" name="SoftLogicListTagChanged"/>
+        <xs:element type="xs:string" name="RenamedScreens"/>
+        <xs:element type="xs:string" name="RenamedScripts"/>
+        <xs:element type="xs:string" name="RenamedAccelerators"/>
+        <xs:element type="xs:string" name="RenamedMenus"/>
+        <xs:element type="xs:string" name="RenamedEmbReports"/>
+        <xs:element name="Spooling">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Port">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:long" name="ReadIntervalTimeout"/>
+                      <xs:attribute type="xs:short" name="ReadTimeout"/>
+                      <xs:attribute type="xs:short" name="WriteTimeout"/>
+                      <xs:attribute type="xs:byte" name="LinesPerPage"/>
+                      <xs:attribute type="xs:byte" name="MaxBufferLog"/>
+                      <xs:attribute type="xs:dateTime" name="FromTimet"/>
+                      <xs:attribute type="xs:dateTime" name="ToTime"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnableAlarmON">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:byte">
+                      <xs:attribute type="xs:byte" name="Escape"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnableAlarmACK">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:byte">
+                      <xs:attribute type="xs:byte" name="Escape"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnableAlarmOFF">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:byte">
+                      <xs:attribute type="xs:byte" name="Escape"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnableDrivers">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:byte">
+                      <xs:attribute type="xs:short" name="Escape"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EnableSystem">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:byte">
+                      <xs:attribute type="xs:byte" name="Escape"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="CLSID"/>
+        <xs:element type="xs:string" name="UserGroupsList"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MovResource>
+  <General SizeX="3200" SizeY="1800"/>
+  <BackGround/>
+  <Style/>
+  <Execution/>
+  <ListSynopticDraw>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>NAVTOP</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1450" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>ALERT</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
+      <Shadow/>
+      <Rotation/>
+      <Visible>false</Visible>
+      <Transparency>false</Transparency>
+      <BG Var="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">true</BG>
+      <BGList>
+        <dci>
+          <DynColor BlinkColor="2147483663" BlinkTime="0" Color="2147483663"/>
+        </dci>
+        <dci>
+          <DynColor BlinkColor="2147483663" Color="255" Type="3" Value="1"/>
+        </dci>
+      </BGList>
+      <BList>false</BList>
+      <LT>false</LT>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Turn55&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>Turn55</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Turn55</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="2880" y="890"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType variable=&quot;AS_Variables__Dev_Turn55CNC_Vis_Functions_GetStateString_activate_activate_Bool&quot; SecondVariable=&quot;&quot; action=&quot;0&quot; strobe=&quot;0&quot; value=&quot;1&quot; max=&quot;100.0&quot; min=&quot;0.0&quot; chars=&quot;0&quot; alias=&quot;&quot; pwd=&quot;0&quot;>Variable&lt;/CommandType>"/>
+      <Name>GetStateString</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">GetStateString</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="100" stroke-width="0" width="105" x="20" y="910"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="AS_Variables__Dev_Turn55CNC_Vis_Task"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="100" stroke-width="0" width="105" x="125" y="910"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+  </ListSynopticDraw>
+  <VariableList>
+    <Variable>
+      <Name/>
+      <EnableTrace/>
+    </Variable>
+  </VariableList>
+</MovResource>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movisa:VisualizationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:movisa="http://stefan-hennig.de/movisa-simplified">
+  <panels name="Fehlerbetrieb"/>
+  <panels name="Normalbetrieb"/>
+  <navigationFlows name="Normalbetrieb_to_Fehlerbetrieb" source="//@panels.1" target="//@panels.0">
+    <signals name="Fehler"/>
+  </navigationFlows>
+</movisa:VisualizationModel>

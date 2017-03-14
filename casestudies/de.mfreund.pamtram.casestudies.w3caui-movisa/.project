@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>de.mfreund.pamtram.casestudies.w3caui-movisa</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>de.shennig.movisa.resource.ap.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>de.shennig.movisa.resource.lp.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>de.shennig.movisa.resource.cd.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>de.shennig.movisa.resource.wprops.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.sonarlint.eclipse.core.sonarlintBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>de.mfreund.pamtram.pamtramNature</nature>
+		<nature>de.shennig.movisa.resource.ap.nature</nature>
+		<nature>de.shennig.movisa.resource.lp.nature</nature>
+		<nature>de.shennig.movisa.resource.cd.nature</nature>
+		<nature>de.shennig.movisa.resource.wprops.nature</nature>
+	</natures>
+</projectDescription>

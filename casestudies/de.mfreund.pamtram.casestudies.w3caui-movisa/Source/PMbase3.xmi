@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
+    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform_metamodel.ecore">
+  <platformCollection
+      platformName="Head Mounted Device"
+      platformId="1"
+      platformType="HeadMountedDevice"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:GenericComplexRessource"
+      ressourceName="Head Mounted Display">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Display">
+      <genericProperty
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:StringProperty"
+          propertyName="HMD Type"
+          stringValue="VR"/>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:PointingDevice"
+        ressourceName="Eye-Tracking">
+      <genericProperty
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:InteractionProperty"
+          propertyName="Visual Input"
+          interactionModality="visualInput"/>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:PointingDevice"
+        ressourceName="HMD">
+      <genericProperty
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:InteractionProperty"
+          propertyName="Proprioceptive Input"
+          propertyUnit=""/>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Speaker"
+        ressourceName=" HMD"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:GenericComplexRessource"
+      ressourceName="Remote Control">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:GenericComplexRessource"
+        ressourceName="Joystick">
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:Hardkey"/>
+      <subRessources
+          xsi:type="ifa.et.tu.dresden.platform.metamodel:PointingDevice">
+        <genericProperty
+            xsi:type="ifa.et.tu.dresden.platform.metamodel:InteractionProperty"
+            propertyName="Tactile Input"/>
+      </subRessources>
+    </subRessources>
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Keyboard"
+        ressourceName="Keypad"
+        keyboardType="keypad"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:GenericComplexRessource"
+      ressourceName="Camera"/>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

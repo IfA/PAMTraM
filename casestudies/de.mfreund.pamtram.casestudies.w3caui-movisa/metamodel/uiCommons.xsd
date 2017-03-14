@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.w3.org/2013/mbui-uiCommons"
+  xmlns="http://www.w3.org/2013/mbui-uiCommons">
+    <!-- Constraint -->
+    <xs:complexType name="Constraint">
+        <xs:attribute name="id" type="xs:ID"/>
+        <xs:attribute name="type" type="xs:string"/>
+        <xs:attribute name="expression" type="xs:string"/>
+        <xs:attribute name="criteria" type="xs:string"/>
+        <xs:attribute name="message" type="xs:string"/>
+    </xs:complexType>
+</xs:schema>

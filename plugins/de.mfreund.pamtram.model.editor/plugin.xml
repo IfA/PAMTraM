@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+  
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.mapping.presentation.MappingEditorID"
+            name="%_UI_MappingEditor_label"
+            icon="icons/full/obj16/MappingModelFile.gif"
+            extensions="mapping"
+            class="pamtram.mapping.presentation.MappingEditor"
+            contributorClass="pamtram.mapping.presentation.MappingActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.mapping.modifier.presentation.ModifierEditorID"
+            name="%_UI_ModifierEditor_label"
+            icon="icons/full/obj16/ModifierModelFile.gif"
+            extensions="modifier"
+            class="pamtram.mapping.modifier.presentation.ModifierEditor"
+            contributorClass="pamtram.mapping.modifier.presentation.ModifierActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.presentation.PamtramEditorID"
+            name="%_UI_PamtramEditor_label"
+            icon="icons/full/obj16/PamtramModelFile.gif"
+            extensions="pamtram"
+            class="pamtram.presentation.PamtramEditor"
+            contributorClass="pamtram.presentation.PamtramActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.presentation.StructureEditorID"
+            name="%_UI_StructureEditor_label"
+            icon="icons/full/obj16/StructureModelFile.gif"
+            extensions="structure"
+            class="pamtram.structure.presentation.StructureEditor"
+            contributorClass="pamtram.structure.presentation.StructureActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.constraint.presentation.ConstraintEditorID"
+            name="%_UI_ConstraintEditor_label"
+            icon="icons/full/obj16/ConstraintModelFile.gif"
+            extensions="constraint"
+            class="pamtram.structure.constraint.presentation.ConstraintEditor"
+            contributorClass="pamtram.structure.constraint.presentation.ConstraintActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.source.presentation.SourceEditorID"
+            name="%_UI_SourceEditor_label"
+            icon="icons/full/obj16/SourceModelFile.gif"
+            extensions="source"
+            class="pamtram.structure.source.presentation.SourceEditor"
+            contributorClass="pamtram.structure.source.presentation.SourceActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.target.presentation.TargetEditorID"
+            name="%_UI_TargetEditor_label"
+            icon="icons/full/obj16/TargetModelFile.gif"
+            extensions="target"
+            class="pamtram.structure.target.presentation.TargetEditor"
+            contributorClass="pamtram.structure.target.presentation.TargetActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.structure.library.presentation.LibraryEditorID"
+            name="%_UI_LibraryEditor_label"
+            icon="icons/full/obj16/LibraryModelFile.gif"
+            extensions="library"
+            class="pamtram.structure.library.presentation.LibraryEditor"
+            contributorClass="pamtram.structure.library.presentation.LibraryActionBarContributor">
+      </editor>
+   </extension>
+
+null
+null
+null
+null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated pamtram -->
+      <editor
+            id="pamtram.condition.presentation.ConditionEditorID"
+            name="%_UI_ConditionEditor_label"
+            icon="icons/full/obj16/ConditionModelFile.gif"
+            extensions="condition"
+            class="pamtram.condition.presentation.ConditionEditor"
+            contributorClass="pamtram.condition.presentation.ConditionActionBarContributor">
+      </editor>
+   </extension>
+
+null
+null
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="pamtram.handlers.DeactivationCommandHandler"
+            id="de.mfreund.pamtram.commands.DeactivationCommand"
+            name="Deactivate">
+      </command>
+      <command
+            defaultHandler="pamtram.handlers.ExportSharedModelHandler"
+            id="pamtram.commands.ExportSharedModelHandler"
+            name="ExportSharedModel">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            class="pamtram.contributions.DeactivateMenuContribution"
+            locationURI="popup:pamtram.presentation.PamtramEditorID">
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:pamtram.presentation.PamtramEditorID">
+         <command
+               commandId="pamtram.commands.ExportSharedModelHandler"
+               label="PAMTraM: Export Model"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="source">
+      </parser>
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="target">
+      </parser>
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="mapping">
+      </parser>
+      <parser
+            class="pamtram.util.SharedModelResourceFactory"
+            type="condition">
+      </parser>
+   </extension>
+</plugin>

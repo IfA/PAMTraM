@@ -14,25 +14,25 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.PamtramPackage;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.mapping.MappingFactory;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.GlobalModifiedAttributeElementType} object.
+ * This is the item provider adapter for a {@link pamtram.structure.GlobalDynamicSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GlobalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public GlobalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -63,7 +63,7 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
+			childrenFeatures.add(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -100,12 +100,12 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_GlobalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -121,8 +121,8 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GlobalModifiedAttributeElementType.class)) {
-			case StructurePackage.GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE__INSTANCE_SELECTORS:
+		switch (notification.getFeatureID(GlobalDynamicSourceElement.class)) {
+			case StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -142,8 +142,23 @@ public class GlobalModifiedAttributeElementTypeItemProvider extends ModifiedAttr
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-				 StructureFactory.eINSTANCE.createInstanceSelector()));
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createTargetInstanceSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 MappingFactory.eINSTANCE.createAttributeMatcher()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
+				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 }

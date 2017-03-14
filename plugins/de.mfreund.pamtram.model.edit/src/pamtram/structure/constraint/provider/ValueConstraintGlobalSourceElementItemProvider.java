@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.constraint.provider;
 
 
 import java.util.Collection;
@@ -10,27 +10,30 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.AttributeMatcherExternalSourceElement;
+
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.ExternalModifiedAttributeElementTypeItemProvider;
+
+import pamtram.structure.constraint.ValueConstraintGlobalSourceElement;
+
+import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcherExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.constraint.ValueConstraintGlobalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMatcherExternalSourceElementItemProvider extends ExternalModifiedAttributeElementTypeItemProvider {
+public class ValueConstraintGlobalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMatcherExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public ValueConstraintGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,14 +53,14 @@ public class AttributeMatcherExternalSourceElementItemProvider extends ExternalM
 	}
 
 	/**
-	 * This returns AttributeMatcherExternalSourceElement.gif.
+	 * This returns ValueConstraintGlobalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMatcherExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueConstraintGlobalSourceElement"));
 	}
 
 	/**
@@ -71,7 +74,6 @@ public class AttributeMatcherExternalSourceElementItemProvider extends ExternalM
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -80,15 +82,15 @@ public class AttributeMatcherExternalSourceElementItemProvider extends ExternalM
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMatcherExternalSourceElement)object).getName();
+		String label = ((ValueConstraintGlobalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMatcherExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ValueConstraintGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeMatcherExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ValueConstraintGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

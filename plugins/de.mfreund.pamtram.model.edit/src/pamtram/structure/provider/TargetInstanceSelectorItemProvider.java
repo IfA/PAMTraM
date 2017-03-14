@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.provider;
 
 
 import java.util.Collection;
@@ -9,28 +9,27 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.AttributeMatcherGlobalSourceElement;
-import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetInstanceSelector;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcherGlobalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.TargetInstanceSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMatcherGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
+public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMatcherGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public TargetInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,19 +44,42 @@ public class AttributeMatcherGlobalSourceElementItemProvider extends GlobalModif
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns AttributeMatcherGlobalSourceElement.gif.
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TargetInstanceSelector_target_feature", "_UI_TargetInstanceSelector_type"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns TargetInstanceSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMatcherGlobalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetInstanceSelector"));
 	}
 
 	/**
@@ -79,12 +101,12 @@ public class AttributeMatcherGlobalSourceElementItemProvider extends GlobalModif
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMatcherGlobalSourceElement)object).getName();
+		String label = ((TargetInstanceSelector)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMatcherGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_TargetInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeMatcherGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_TargetInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	
@@ -112,17 +134,6 @@ public class AttributeMatcherGlobalSourceElementItemProvider extends GlobalModif
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

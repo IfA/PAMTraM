@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.structure.provider;
 
 
 import java.util.Collection;
@@ -9,28 +9,27 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ContainerSelectorSourceElement;
-import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.LocalModifiedAttributeElementTypeItemProvider;
+
+import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.structure.SourceInstanceSelector} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAttributeElementTypeItemProvider {
+public class SourceInstanceSelectorItemProvider extends InstanceSelectorItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainerSelectorSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public SourceInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -45,19 +44,42 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns ContainerSelectorSourceElement.gif.
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SourceInstanceSelector_target_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceInstanceSelector_target_feature", "_UI_SourceInstanceSelector_type"),
+				 StructurePackage.Literals.SOURCE_INSTANCE_SELECTOR__TARGET,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This returns SourceInstanceSelector.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelectorSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceInstanceSelector"));
 	}
 
 	/**
@@ -71,7 +93,6 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -80,15 +101,15 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ContainerSelectorSourceElement)object).getName();
+		String label = ((SourceInstanceSelector)object).getExpression();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_SourceInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ContainerSelectorSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_SourceInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -113,17 +134,6 @@ public class ContainerSelectorSourceElementItemProvider extends LocalModifiedAtt
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

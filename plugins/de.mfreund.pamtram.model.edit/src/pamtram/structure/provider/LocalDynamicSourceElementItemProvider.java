@@ -20,8 +20,8 @@ import org.eclipse.emf.edit.provider.StyledString;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.structure.LocalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -29,19 +29,19 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.LocalModifiedAttributeElementType} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.LocalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -76,12 +76,12 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LocalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_LocalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -90,7 +90,7 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -121,19 +121,18 @@ public class LocalModifiedAttributeElementTypeItemProvider extends ModifiedAttri
 				this.getString("_UI_ModifiedAttributeElementType_source_feature"),
 				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_source_feature",
 						"_UI_ModifiedAttributeElementType_type"),
-				StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, true, false, true, null, null,
-				null) {
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null, null, null) {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
 				// the parent MappingHintGroup
 				//
-				EObject parent = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMappingHintGroup();
+				EObject parent = ((DynamicSourceElement<?, ?, ?, ?>) object).getMappingHintGroup();
 
 				// the parent Mapping
 				//
-				Mapping mapping = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMapping();
+				Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
 				Class<?, ?, ?, ?> relevantClass = null;
 

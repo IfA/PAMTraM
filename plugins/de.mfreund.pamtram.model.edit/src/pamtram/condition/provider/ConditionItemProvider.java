@@ -14,7 +14,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.PamtramPackage;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
 import pamtram.structure.StructureFactory;
@@ -111,7 +110,7 @@ public class ConditionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
+			childrenFeatures.add(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
@@ -227,8 +226,8 @@ public class ConditionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-				 StructureFactory.eINSTANCE.createInstanceSelector()));
+				(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 
 }

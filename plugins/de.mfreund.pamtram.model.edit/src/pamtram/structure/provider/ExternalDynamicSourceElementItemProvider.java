@@ -15,26 +15,26 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.SourceSectionModel;
 import pamtram.mapping.Mapping;
-import pamtram.structure.ExternalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.ExternalModifiedAttributeElementType} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.ExternalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
-public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAttributeElementTypeItemProvider {
+public class ExternalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalModifiedAttributeElementTypeItemProvider(AdapterFactory adapterFactory) {
+	public ExternalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,12 +69,12 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalModifiedAttributeElementType<?, ?, ?, ?>)object).getName();
+		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ExternalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ExternalModifiedAttributeElementType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -111,15 +111,14 @@ public class ExternalModifiedAttributeElementTypeItemProvider extends ModifiedAt
 				this.getString("_UI_ModifiedAttributeElementType_source_feature"),
 				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiedAttributeElementType_source_feature",
 						"_UI_ModifiedAttributeElementType_type"),
-				StructurePackage.Literals.MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE, true, false, true, null, null,
-				null) {
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null, null, null) {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
 
 				// the parent Mapping
 				//
-				Mapping mapping = ((ModifiedAttributeElementType<?, ?, ?, ?>) object).getMapping();
+				Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
 				if (mapping == null || mapping.getSourceSection() == null) {
 					return new ArrayList<>();

@@ -15,7 +15,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.AttributeMappingGlobalSourceElement;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider;
+import pamtram.structure.provider.GlobalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingGlobalSourceElement} object.
@@ -23,7 +23,7 @@ import pamtram.structure.provider.GlobalModifiedAttributeElementTypeItemProvider
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingGlobalSourceElementItemProvider extends GlobalModifiedAttributeElementTypeItemProvider {
+public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->

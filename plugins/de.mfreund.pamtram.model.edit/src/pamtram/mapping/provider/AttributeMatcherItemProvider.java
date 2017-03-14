@@ -2,11 +2,11 @@
  */
 package pamtram.mapping.provider;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -20,26 +20,28 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.impl.MappingPackageImpl;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
+import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class AttributeMatcherItemProvider
-extends MatcherItemProvider {
+public class AttributeMatcherItemProvider extends MatcherItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public AttributeMatcherItemProvider(AdapterFactory adapterFactory) {
@@ -48,8 +50,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,8 +67,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Expression feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -88,8 +88,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Modifiers feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -110,8 +109,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
@@ -131,75 +129,68 @@ extends MatcherItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Attribute feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addTargetAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AttributeMatcher_targetAttribute_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
-						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null){
 
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-				//the parent MappingInstanceSelector
-				Collection<TargetSectionAttribute> choices=new LinkedList<TargetSectionAttribute>();
-				Collection<TargetSectionClass>refClasses=((ReferenceTargetSelector) ((EObject) object).eContainer()).getAffectedReference().getValue();
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_AttributeMatcher_targetAttribute_feature"),
+						this.getString("_UI_PropertyDescriptor_description",
+								"_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
+						MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET, true, false, true, null, null, null) {
 
-				/*
-				 * Only show attributes that belong to an Class that was modeled as the reference's value
-				 */
-				for(TargetSectionClass val : refClasses){
-					choices.addAll(val.getAttributes());
-				}
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
 
-				return choices;
-			}
+						// the parent MappingInstanceSelector
+						Collection<TargetSectionAttribute> choices = new LinkedList<>();
+						Collection<TargetSectionClass> refClasses = ((ReferenceTargetSelector) ((EObject) object)
+								.eContainer()).getAffectedReference().getValue();
 
+						/*
+						 * Only show attributes that belong to an Class that was modeled as the reference's value
+						 */
+						for (TargetSectionClass val : refClasses) {
+							choices.addAll(val.getAttributes());
+						}
 
-		});
+						return choices;
+					}
+
+				});
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
+			childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}
 		return childrenFeatures;
 	}
 
 	@Override
 	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
-		if(labelRelatedChildrenFeatures == null) {
-			labelRelatedChildrenFeatures = new ArrayList<>();
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_SourceElements());
-			labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_Target());
+
+		if (this.labelRelatedChildrenFeatures == null) {
+			this.labelRelatedChildrenFeatures = new ArrayList<>();
+			this.labelRelatedChildrenFeatures.add(StructurePackageImpl.eINSTANCE.getInstanceSelector_SourceElements());
+			this.labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getAttributeMatcher_Target());
 		}
-		return labelRelatedChildrenFeatures;
+		return this.labelRelatedChildrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -212,8 +203,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This returns AttributeMatcher.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -223,8 +213,7 @@ extends MatcherItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -233,32 +222,31 @@ extends MatcherItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 
-		initializeLabelRelatedChildrenFeatureNotifications(object);
+		this.initializeLabelRelatedChildrenFeatureNotifications(object);
 
-		AttributeMatcher am = ((AttributeMatcher)object);
+		AttributeMatcher am = (AttributeMatcher) object;
 		StyledString styledLabel = new StyledString();
 
-		String label = (am.getTarget() != null ? am.getTarget().getName() : null);
+		String label = am.getTarget() != null ? am.getTarget().getName() : null;
 
-		if(label != null) {
+		if (label != null) {
 			styledLabel.append(label);
 		}
 
-		if(am.getExpression() != null && !am.getExpression().isEmpty()) {
+		if (am.getExpression() != null && !am.getExpression().isEmpty()) {
 			styledLabel.append(" == " + am.getExpression(), StyledString.Style.COUNTER_STYLER);
 		} else {
 			ArrayList<String> sources = new ArrayList<>();
-			for (AttributeMatcherSourceInterface source : am.getSourceElements()) {
+			for (InstanceSelectorSourceInterface source : am.getSourceElements()) {
 				sources.add(source.getName());
-			} 
+			}
 			styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
@@ -266,10 +254,10 @@ extends MatcherItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -288,15 +276,15 @@ extends MatcherItemProvider {
 
 	@Override
 	public void notifyChanged(Notification notification) {
-		handleLabelRelatedChildrenFeatureChangeNotification(notification);
-		notifyChangedGen(notification);
+
+		this.handleLabelRelatedChildrenFeatureChangeNotification(notification);
+		this.notifyChangedGen(notification);
 	}
 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -305,28 +293,28 @@ extends MatcherItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMatcherSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMatcherExternalSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
-				 MappingFactory.eINSTANCE.createAttributeMatcherGlobalSourceElement()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
 				 MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MappingPackage.Literals.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS,
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
 				 PamtramFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
 	}
 
 }

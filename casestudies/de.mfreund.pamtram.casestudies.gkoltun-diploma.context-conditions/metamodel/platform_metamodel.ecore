@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="platform" nsURI="http://ifa/et/tu/dresden/platform/metamodel"
+    nsPrefix="ifa.et.tu.dresden.platform.metamodel">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="PMbase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="platformCollection" upperBound="-1"
+        eType="#//Platform" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ressourceCollection" upperBound="-1"
+        eType="#//Ressource" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Platform">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="test"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="platformName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="platformId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="platformType" eType="#//PlatformType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ressources" upperBound="-1"
+        eType="#//Ressource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericProperty" upperBound="-1"
+        eType="#//GenericProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PlatformType">
+    <eLiterals name="other"/>
+    <eLiterals name="ClassicPC" value="1"/>
+    <eLiterals name="IndustrialPc" value="2"/>
+    <eLiterals name="Laptop" value="3"/>
+    <eLiterals name="Smartphone" value="4"/>
+    <eLiterals name="Tablet" value="5"/>
+    <eLiterals name="HeadMountedDevice" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ressource" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ressourceName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genericProperty" upperBound="-1"
+        eType="#//GenericProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexRessource" abstract="true" eSuperTypes="#//Ressource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subRessources" upperBound="-1"
+        eType="#//Ressource" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyUnit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerProperty" eSuperTypes="#//GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringProperty" eSuperTypes="#//GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanProperty" eSuperTypes="#//GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatProperty" eSuperTypes="#//GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="floatValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionProperty" eSuperTypes="#//GenericProperty">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interactionModality" eType="#//InteractionModality"
+        defaultValueLiteral="none"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="InteractionModality">
+    <eLiterals name="visualInput"/>
+    <eLiterals name="auditiveInput" value="1"/>
+    <eLiterals name="tactileInput" value="2"/>
+    <eLiterals name="proprioceptiveInput" value="3"/>
+    <eLiterals name="visualOutput" value="4"/>
+    <eLiterals name="auditiveOutput" value="5"/>
+    <eLiterals name="tactileOutput" value="6"/>
+    <eLiterals name="proprioceptiveOutput" value="7"/>
+    <eLiterals name="other" value="8"/>
+    <eLiterals name="none" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericComplexRessource" eSuperTypes="#//ComplexRessource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mouse" eSuperTypes="#//ComplexRessource">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+      <details key="leftUnequalRight" value="self.leftMousebutton &lt;> self.rightMousebutton&#xD;&#xA;&#xD;&#xA;/* context Mouse&#xD;&#xA;inv excludeLeftRightButtonIsThe Same: &#xD;&#xA;(self.leftMousebutton->notEmpty() implies self.rightMousebutton->isEmpty()) or (self.rightMousebutton->notEmpty() implies self.leftMousebutton->isEmpty())&#xD;&#xA;*/"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="leftUnequalRight"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mouseSensibility" eType="#//Sensibility"
+        defaultValueLiteral="other"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usableForTranspartentSurface"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usableForSmoothSurface"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainPointingDevice" lowerBound="1"
+        eType="#//PointingDevice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftMousebutton" lowerBound="1"
+        eType="#//Hardkey"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightMousebutton" lowerBound="1"
+        eType="#//Hardkey"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Sensibility">
+    <eLiterals name="other"/>
+    <eLiterals name="nonsensitive" value="1"/>
+    <eLiterals name="lowSensitive" value="2"/>
+    <eLiterals name="normal" value="3"/>
+    <eLiterals name="sensitive" value="4"/>
+    <eLiterals name="highSensitive" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Keyboard" eSuperTypes="#//ComplexRessource">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keyboardType" eType="#//KeyboardType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keyboardTypeExtraInfo"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fastTextInput" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="easyTextInput" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hardkeys" upperBound="-1"
+        eType="#//Hardkey"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="KeyboardType">
+    <eLiterals name="other" value="4"/>
+    <eLiterals name="alphanumerical" value="3"/>
+    <eLiterals name="numerical" value="2"/>
+    <eLiterals name="keypad" value="1"/>
+    <eLiterals name="phonepad"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementaryRessource" abstract="true"
+      eSuperTypes="#//Ressource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractionRessource" abstract="true"
+      eSuperTypes="#//ElementaryRessource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InputDevice" abstract="true" eSuperTypes="#//InteractionRessource #//ElementaryTasksForInputDevices">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="safeForUnwantedActions"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usableWithGloves" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usableWithOneHand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ElementaryTaskEvaluation">
+    <eLiterals name="other" value="5"/>
+    <eLiterals name="none" value="4"/>
+    <eLiterals name="insufficient" value="3"/>
+    <eLiterals name="sufficient" value="2" literal="sufficient"/>
+    <eLiterals name="good" value="1"/>
+    <eLiterals name="veryGood"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementaryTasksForInputDevices" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fastPointingCapable" eType="#//ElementaryTaskEvaluation"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accuratePointingCapable"
+        eType="#//ElementaryTaskEvaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectingCapable" eType="#//ElementaryTaskEvaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="drawingCapable" eType="#//ElementaryTaskEvaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fastDrawingCapable" eType="#//ElementaryTaskEvaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alphanumericCapable" eType="#//ElementaryTaskEvaluation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VisualInputDevice" eSuperTypes="#//InputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LightingDevice" eSuperTypes="#//VisualOutputDevice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lightningType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lightSize" eType="#//SizeEvaluation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiColorConfigurable"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Camera" eSuperTypes="#//VisualInputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TactileInputDevice" eSuperTypes="#//InputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Hardkey" eSuperTypes="#//TactileInputDevice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonSymbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonColor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="buttonSize" eType="#//SizeEvaluation"
+        defaultValueLiteral="middle"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hardkeyType" eType="#//HardkeyType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="configurable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="HardkeyType">
+    <eLiterals name="MachineSpecific" literal="MachineSpecific"/>
+    <eLiterals name="DialogueSpecific"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Touchscreen" eSuperTypes="#//TactileInputDevice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xPixel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yPixel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forceForActuating" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="usableWithPen" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiTouchCapable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tactileFeedbackCapable"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="touchGestureRecognition"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="closenessRecognition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="correspondDisplay" lowerBound="1"
+        eType="#//Display"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AuditiveInputDevice" eSuperTypes="#//InputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Microphone" eSuperTypes="#//AuditiveInputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProprioceptiveInputDevice" eSuperTypes="#//InputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PointingDevice" eSuperTypes="#//InputDevice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasHighPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="True"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="degreesOfFreedom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputDevice" abstract="true" eSuperTypes="#//InteractionRessource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VisualOutputDevice" eSuperTypes="#//OutputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Display" eSuperTypes="#//VisualOutputDevice">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xPixel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yPixel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isColorCapable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isImagesCapable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVideosCapable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TactileOutputDevice" eSuperTypes="#//OutputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VibrationMotor" eSuperTypes="#//TactileOutputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AuditiveOutputDevice" eSuperTypes="#//OutputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Speaker" eSuperTypes="#//AuditiveOutputDevice"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProprioceptiveOutputDevice" eSuperTypes="#//OutputDevice"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="SizeEvaluation">
+    <eLiterals name="verySmall" value="3"/>
+    <eLiterals name="small" value="4"/>
+    <eLiterals name="middle" value="5"/>
+    <eLiterals name="big" value="2"/>
+    <eLiterals name="veryBig" value="1"/>
+    <eLiterals name="jumbo"/>
+  </eClassifiers>
+</ecore:EPackage>

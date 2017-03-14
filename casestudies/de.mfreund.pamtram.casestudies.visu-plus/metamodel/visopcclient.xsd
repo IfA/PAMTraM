@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+  <xs:element name="OPCClientEditor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="OPCDAClientData">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="RefreshRateDynamicOPC" type="xs:short"/>
+                <xs:attribute name="TimeoutDynamicOperation" type="xs:short"/>
+                <xs:attribute name="StartupWaitTimeout" type="xs:short"/>
+                <xs:attribute name="PoolOPCClientTest" type="xs:byte"/>
+                <xs:attribute name="TimeoutOPCClientTest" type="xs:short"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OPCDAList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DAServer">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Node">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="Server" type="xs:string"/>
+                            <xs:attribute name="ClassID" type="xs:string"/>
+                            <xs:attribute name="ReconnectTime" type="xs:short"/>
+                            <xs:attribute name="ReReadDynamicItems" type="xs:byte"/>
+                            <xs:attribute name="SyncOPCDynamicItemsAtStartup" type="xs:byte"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="GroupList">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="Group">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Name">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute name="UpdateRate" type="xs:short"/>
+                                        <xs:attribute name="Active" type="xs:byte"/>
+                                        <xs:attribute name="DeadBand" type="xs:byte"/>
+                                        <xs:attribute name="TimeBias" type="xs:byte"/>
+                                        <xs:attribute name="LocalID" type="xs:byte"/>
+                                        <xs:attribute name="NotInUseRefreshRate" type="xs:short"/>
+                                        <xs:attribute name="NotInUseDisableGroup" type="xs:byte"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ItemList">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element maxOccurs="unbounded" minOccurs="0" name="Item">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="ItemID">
+                                              <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                    <xs:attribute name="AccessPath" type="xs:string" use="optional"/>
+                                                    <xs:attribute name="VTType" type="xs:byte" use="optional"/>
+                                                    <xs:attribute name="Variable" type="xs:string" use="optional"/>
+                                                    <xs:attribute name="EnableWrite" type="xs:byte" use="optional"/>
+                                                    <xs:attribute name="EnableRead" type="xs:byte" use="optional"/>
+                                                    <xs:attribute name="SyncDataStartup" type="xs:byte" use="optional"/>
+                                                    <xs:attribute name="SyncWrite" type="xs:byte" use="optional"/>
+                                                    <xs:attribute name="ReRead" type="xs:byte" use="optional"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                              </xs:complexType>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OPCAEList" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

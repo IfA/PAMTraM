@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MovResource>
+  <General SizeX="3200" SizeY="1800"/>
+  <BackGround/>
+  <Style/>
+  <Execution/>
+  <ListSynopticDraw>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>NAVTOP</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1450" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>ALERT</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
+      <Shadow/>
+      <Rotation/>
+      <Visible>false</Visible>
+      <Transparency>false</Transparency>
+      <BG Var="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">true</BG>
+      <BGList>
+        <dci>
+          <DynColor BlinkColor="2147483663" BlinkTime="0" Color="2147483663"/>
+        </dci>
+        <dci>
+          <DynColor BlinkColor="2147483663" Color="255" Type="3" Value="1"/>
+        </dci>
+      </BGList>
+      <BList>false</BList>
+      <LT>false</LT>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;Quality&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>Quality</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Quality</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1729"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_ReturnAck"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1678"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_SpsID"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1626"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_CommandID"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1575"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_Param3"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1524"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_Param2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1473"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_Param1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1421"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Handler_CommandDispatch_Command"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1370"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_Diameter"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1319"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_PANEL_S4"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1268"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_PANEL_S3"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1216"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_PANEL_S2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1165"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_PANEL_S1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1114"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B16"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1063"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B15"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="1011"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B14"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="960"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_PANEL_EStop"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="909"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B13"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="858"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B12"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="806"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B11"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="755"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_B10"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="704"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_7B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="653"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_6B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="601"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_5B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="550"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_4B2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="499"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_4B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="448"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_3B2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="396"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_3B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="345"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_2B2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="294"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_2B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="243"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_1B2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="191"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Inputs_STATION_1B1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="20" y="140"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="AS_Variables__Dev_QualityPLC_Vis_Task"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1498"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_Handler_CommandDispatch_ReturnCode"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1447"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_Handler_CommandDispatch_ReturnValue"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1396"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_Handler_CommandDispatch_ReturnID"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1344"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_Handler_CommandDispatch_CommandAck"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1293"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_Y11"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1242"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_S13"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1191"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_S11"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1139"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_S9"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1088"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_PANEL_H4"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="1037"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_PANEL_H3"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="986"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_PANEL_H2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="934"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_PANEL_H1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="883"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y51"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="832"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y41"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="781"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_K2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="729"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_K1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="678"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y71"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="627"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y61"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="576"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y31"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="524"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y22"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="473"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y21"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="422"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y12"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="400" x="2380" y="371"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_QualityPLC_Outputs_STATION_Y11"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1729"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_ReturnAck.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1678"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_SpsID.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1626"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_CommandID.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1575"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_Param3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1524"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_Param2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1473"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_Param1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1421"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_Command.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1370"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Diameter.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1319"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_S4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1268"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_S3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1216"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_S2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1165"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_S1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1114"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B16.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1063"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B15.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="1011"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B14.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="960"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_EStop.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="909"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B13.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="858"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B12.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="806"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B11.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="755"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_B10.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="704"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_7B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="653"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_6B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="601"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_5B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="550"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_4B2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="499"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_4B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="448"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_3B2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="396"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_3B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="345"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_2B2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="294"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_2B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="243"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_1B2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="191"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_1B1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="420" y="140"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1498"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_ReturnCode.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1447"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_ReturnValue.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1396"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_ReturnID.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1344"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Handler_CommandDispatch_CommandAck.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1293"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Y11.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1242"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">S13.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1191"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">S11.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1139"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">S9.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1088"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_H4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="1037"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_H3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="986"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_H2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="934"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">PANEL_H1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="883"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y51.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="832"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y41.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="781"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_K2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="729"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_K1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="678"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y71.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="627"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y61.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="576"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y31.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="524"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y22.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="473"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y21.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="422"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y12.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="400" x="2780" y="371"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STATION_Y11.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+  </ListSynopticDraw>
+  <VariableList>
+    <Variable>
+      <Name/>
+      <EnableTrace/>
+    </Variable>
+  </VariableList>
+</MovResource>

@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MovResource>
+  <General SizeX="3200" SizeY="1800"/>
+  <BackGround/>
+  <Style/>
+  <Execution/>
+  <ListSynopticDraw>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;NAVTOP&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>NAVTOP</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">NAVTOP</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1450" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;ALERT&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>ALERT</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALERT</text>
+      <Shadow/>
+      <Rotation/>
+      <Visible>false</Visible>
+      <Transparency>false</Transparency>
+      <BG Var="AS_Variables__Proj_Vis_Visualization_Mailbox_Log_MsgId">true</BG>
+      <BGList>
+        <dci>
+          <DynColor BlinkColor="2147483663" BlinkTime="0" Color="2147483663"/>
+        </dci>
+        <dci>
+          <DynColor BlinkColor="2147483663" Color="255" Type="3" Value="1"/>
+        </dci>
+      </BGList>
+      <BList>false</BList>
+      <LT>false</LT>
+    </child>
+    <child>
+      <object>Button</object>
+      <type height="100" stroke-width="0" width="300" x="1950" y="20"></type>
+      <ExtFill Style="2"/>
+      <Mechanic clickable="true"/>
+      <CommandsOnDown n0="&lt;CommandType synoptic=&quot;MillAndTurn105&quot; action=&quot;0&quot; monitor=&quot;0&quot; parameter=&quot;&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;0&quot; height=&quot;0&quot; Caption=&quot;1&quot; Border=&quot;1&quot; Resizeable=&quot;0&quot; SysMenu=&quot;0&quot; MinimizeBox=&quot;0&quot; MaximizeBox=&quot;0&quot; KeepPrintProportions=&quot;0&quot; PageW=&quot;-1&quot; PageH=&quot;-1&quot; LMargin=&quot;-1&quot; RMargin=&quot;-1&quot; TMargin=&quot;-1&quot; BMargin=&quot;-1&quot;>Synoptic&lt;/CommandType>"/>
+      <Name>MillAndTurn105</Name>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">MillAndTurn105</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1729"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_GRCLOSE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1678"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_GROPEN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1626"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_ATREF"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1575"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_READY"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1524"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_STATUS"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1473"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_RMODE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1421"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_VCLOSED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1370"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_VOPENED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1319"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_DCLOSED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1268"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_T_DOPENED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1216"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_ATREF"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1165"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_READY"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1114"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_STATUS"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1063"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_RMODE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="1011"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_VCLOSED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="960"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_VOPENED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="909"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_DCLOSED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="858"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_M_DOPENED"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="806"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_BPAV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="755"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_SEPDOWN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="704"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_SEPUP"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="653"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_ALUAV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="601"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_BRASSAV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="550"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_P4AV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="499"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_P3AV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="448"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_P2AV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="396"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_P1AV"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="345"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_RRESET"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="294"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_AUTOMAN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="243"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_ASTOP"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="191"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Inputs_ASTART"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="196" x="20" y="140"/>
+      <style edit="false" fmtscale="x.xx" spin="false"/>
+      <execution var="AS_Variables__Dev_MillAndTurn105Robot_Vis_Task"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1498"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_HCLOSE1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1447"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_HOPEN1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1396"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_VCLOSE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1344"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_VOPEN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1293"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_DCLOSE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1242"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_DOPEN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1191"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_AUXON"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1139"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_REF"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1088"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_CMODE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="1037"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_T_RUNPR"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="986"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_VCLOSE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="934"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_VOPEN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="883"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_DCLOSE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="832"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_DOPEN"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="781"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_AUXON"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="729"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_REF"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="678"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_CMODE"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="627"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_M_RUNPR"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="576"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_SEP"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="524"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_LEDQ2"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="473"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_LEDQ1"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="422"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_HRESET"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>Edit</object>
+      <editbox height="51" stroke-width="0" width="181" x="2818" y="371"/>
+      <style edit="false" fmtscale="x" spin="false"/>
+      <execution var="PARSIFAL_Devices_CIROS_Model_Objects_MillAndTurn105Robot_Outputs_HSTART"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1729"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">GRCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1678"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">GROPEN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1626"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_ATREF.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1575"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_READY.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1524"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_STATUS.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1473"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_RMODE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1421"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_VCLOSED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1370"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_VOPENED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1319"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_DCLOSED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1268"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_DOPENED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1216"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_ATREF.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1165"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_READY.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1114"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_STATUS.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1063"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_RMODE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="1011"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_VCLOSED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="960"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_VOPENED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="909"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_DCLOSED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="858"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_DOPENED.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="806"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">BPAV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="755"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">SEPDOWN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="704"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">SEPUP.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="653"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ALUAV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="601"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">BRASSAV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="550"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P4AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="499"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P3AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="448"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P2AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="396"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P1AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="345"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">RRESET.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="294"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">AUTOMAN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="243"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTOP.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="191"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTART.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="196" x="216" y="140"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">Task</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1498"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1447"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1396"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_VCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1344"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_VOPEN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1293"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_DCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1242"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_DOPEN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1191"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_AUXON.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1139"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_REF.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1088"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_CMODE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="1037"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">T_RUNPR.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="986"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_VCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="934"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_VOPEN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="883"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_DCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="832"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_DOPEN.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="781"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_AUXON.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="729"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_REF.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="678"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_CMODE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="627"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">M_RUNPR.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="576"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">SEP.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="524"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="473"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="422"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HRESET.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="51" stroke-width="0" width="181" x="2999" y="371"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HSTART.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+  </ListSynopticDraw>
+  <VariableList>
+    <Variable>
+      <Name/>
+      <EnableTrace/>
+    </Variable>
+  </VariableList>
+</MovResource>

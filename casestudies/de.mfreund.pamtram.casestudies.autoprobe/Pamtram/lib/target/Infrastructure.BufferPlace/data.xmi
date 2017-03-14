@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genlib:LibraryEntry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:genlib="http://www.et.tu-dresden.de/ifa/agtele/genlib" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Version="1">
+  <LibraryItem xsi:type="movisalib:MovisaLibraryItem">
+    <PresentationModelMinimized>
+      <OwnedUIComponent xsi:type="presentation:SimpleContainer" Name="0_SimpleContainer">
+        <AggregatedComponent xsi:type="presentation:Image" Name="1_Image" Comment="Background">
+          <Animation>
+            <ImageAnimation Trigger="//@LibraryItem/@AlgorithmModel/@OwnedElement.1/@Signal.0" ImageResource="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.0 //@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.1">
+              <OwnedComparator xsi:type="presentation:NumberComparison" Name="1_Comparison" CompareType="GREATER_THAN" FalseEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.0" TrueEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.1"/>
+            </ImageAnimation>
+          </Animation>
+          <Representation ImageResource="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.0">
+            <Position Name="1_Position">
+              <X Name="1_X" Unit="PIXEL"/>
+              <Y Name="1_Y" Unit="PIXEL"/>
+              <Z Name="1_Z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="1_Size">
+              <Height Name="1_Height" Unit="PIXEL" Value="12.0"/>
+              <Width Name="1_Width" Unit="PIXEL" Value="12.0"/>
+            </Size>
+          </Representation>
+        </AggregatedComponent>
+        <AggregatedComponent xsi:type="presentation:Image" Name="2_Image" Comment="Background">
+          <Animation>
+            <ImageAnimation Trigger="//@LibraryItem/@AlgorithmModel/@OwnedElement.1/@Signal.1" ImageResource="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.2 //@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.3">
+              <OwnedComparator xsi:type="presentation:NumberComparison" Name="2_Comparison" CompareType="GREATER_THAN" FalseEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.3" TrueEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.2"/>
+            </ImageAnimation>
+          </Animation>
+          <Representation ImageResource="//@LibraryItem/@PresentationModelMinimized/@OwnedImageBundle/@OwnedImageResource.0">
+            <Position Name="2_Position">
+              <X Name="2_X" Unit="PIXEL"/>
+              <Y Name="2_Y" Unit="PIXEL"/>
+              <Z Name="2_Z" Unit="PIXEL" Value="1.0"/>
+            </Position>
+            <Size Name="2_Size">
+              <Height Name="2_Height" Unit="PIXEL" Value="12.0"/>
+              <Width Name="2_Width" Unit="PIXEL" Value="12.0"/>
+            </Size>
+          </Representation>
+        </AggregatedComponent>
+        <Representation>
+          <Position Name="0_Position">
+            <X Name="0_X" Unit="PIXEL"/>
+            <Y Name="0_Y" Unit="PIXEL"/>
+            <Z Name="0_Z" Unit="PIXEL" Value="15.0"/>
+          </Position>
+          <Size Name="0_Size">
+            <Height Name="0_Height" Unit="PIXEL" Value="12.0"/>
+            <Width Name="0_Width" Unit="PIXEL" Value="12.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedImageBundle>
+        <OwnedImageResource xsi:type="presentation:FixedImage" Name="buffer_empty" Url="buffer_empty.png"/>
+        <OwnedImageResource xsi:type="presentation:FixedImage" Name="buffer_full" Url="buffer_full.png"/>
+        <OwnedImageResource xsi:type="presentation:FixedImage" Name="buffer_product" Url="buffer_product.png"/>
+        <OwnedImageResource xsi:type="presentation:FixedImage" Name="buffer_no_product" Url="buffer_no_product.png"/>
+      </OwnedImageBundle>
+      <OwnedMultiLingualTextDefinition>
+        <OwnedLanguageDefinition Name="german" LocaleId="de_DE"/>
+        <OwnedTextDefinition Name="LP_CarrierID_DataItem_Description">
+          <TranslatedTextItem Value="DataItem f&#xfc;r die CarrierID" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="LP_ProductID_DataItem_Description">
+          <TranslatedTextItem Value="DataItem f&#xfc;r die ProductID" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+      </OwnedMultiLingualTextDefinition>
+      <OwnedColorDefinition>
+        <OwnedColorValue xsi:type="presentation:RGBColor" Name="2_Background" Transparency="100"/>
+        <OwnedColorValue xsi:type="presentation:ConstantColor" Name="2_Foreground" Color="BLACK"/>
+      </OwnedColorDefinition>
+    </PresentationModelMinimized>
+    <ClientDataModelMinimized>
+      <OwnedDataItem Name="LP_CarrierID_DataItem" Description="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Dimension="//@LibraryItem/@ClientDataModelMinimized/@OwnedDimension.0" MaxAge="1000" PointsTo="//@parameterDescription/@ServerDataItems.0/@source" SignalOnChange="//@LibraryItem/@AlgorithmModel/@OwnedElement.1/@Signal.0" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.0"/>
+      <OwnedDataItem Name="LP_ProductID_DataItem" Dimension="//@LibraryItem/@ClientDataModelMinimized/@OwnedDimension.0" MaxAge="1000" PointsTo="//@parameterDescription/@ServerDataItems.1/@source" SignalOnChange="//@LibraryItem/@AlgorithmModel/@OwnedElement.1/@Signal.1" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.0"/>
+      <OwnedDimension Name="standardInteger" Unit="Integer"/>
+      <OwnedSubscription Name="BufferPlace_Subscription" PublishingInterval="200">
+        <OwnedMonitoredItem Name="MI_CarrierID" SamplingRate="800" DataItemToMonitor="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0"/>
+        <OwnedMonitoredItem Name="MI_ProductID" SamplingRate="800" DataItemToMonitor="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.1"/>
+      </OwnedSubscription>
+    </ClientDataModelMinimized>
+    <AlgorithmModel>
+      <OwnedElement xsi:type="algorithm:IntegerType" Comment="Standard Integer" Name="Integer"/>
+      <OwnedElement xsi:type="algorithm:SignalCollection" Comment="BufferPlace SignalCollection" Name="BufferPlace_SignalCollection">
+        <Signal Comment="CarrierID" Name="OnChange_CarrierID"/>
+        <Signal Comment="ProductID" Name="OnChange_ProductID"/>
+      </OwnedElement>
+    </AlgorithmModel>
+  </LibraryItem>
+  <parameterDescription xsi:type="movisalib:MovisaParameterDescription" ID="">
+    <resourceParameters Name="buffer_empty.png" newPath="img\Infrastructure_BufferPlace_buffer_empty.png"/>
+    <resourceParameters Name="buffer_full.png" newPath="img\Infrastructure_BufferPlace_buffer_full.png"/>
+    <resourceParameters Name="buffer_no_product.png" newPath="img\Infrastructure_BufferPlace_buffer_no_product.png"/>
+    <resourceParameters Name="buffer_product.png" newPath="img\Infrastructure_BufferPlace_buffer_product.png"/>
+    <ServerDataItems>
+      <source xsi:type="generic:GenericItem" Name="CarrierID" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0">
+        <OwnedParameter Name="Type" Value="Int"/>
+      </source>
+    </ServerDataItems>
+    <ServerDataItems>
+      <source xsi:type="generic:GenericItem" Name="ProductID" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.1">
+        <OwnedParameter Name="Type" Value="Int"/>
+      </source>
+    </ServerDataItems>
+    <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
+    <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
+    <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
+    <xParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
+    <yParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+  </parameterDescription>
+</genlib:LibraryEntry>

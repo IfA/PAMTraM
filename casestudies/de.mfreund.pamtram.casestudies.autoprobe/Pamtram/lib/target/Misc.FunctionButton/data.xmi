@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genlib:LibraryEntry xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:genlib="http://www.et.tu-dresden.de/ifa/agtele/genlib" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Version="1.0">
+  <LibraryItem xsi:type="movisalib:MovisaLibraryItem">
+    <PresentationModelMinimized>
+      <OwnedUIComponent xsi:type="presentation:Button" Name="FunctionButton">
+        <Animation>
+          <RepresentationAnimation Trigger="//@LibraryItem/@AlgorithmModel/@OwnedElement.1">
+            <OwnedComparator xsi:type="presentation:BooleanComparison" Name="isTrue" FalseEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.1" TrueEvaluation="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Animation/@RepresentationAnimation.0/@PropertyToAnimate.0" ReferenceValue="true"/>
+            <PropertyToAnimate xsi:type="presentation:State" Name="deactivated" Accessible="false" Valid="true"/>
+            <PropertyToAnimate xsi:type="presentation:State" Name="activated" Valid="true"/>
+          </RepresentationAnimation>
+        </Animation>
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Name="FunctionButtonClick" Effect="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:WriteFixedBooleanDataEffect" Name="WriteTrueEffect" DataItem="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0" FixedBooleanValue="true"/>
+        </Interaction>
+        <Representation Text="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0">
+          <Position Name="default_Position">
+            <X Name="default_X" Unit="PIXEL" Value="10.0"/>
+            <Y Name="default_Y" Unit="PIXEL" Value="10.0"/>
+            <Z Name="default_Z" Unit="NONE" Value="1.0"/>
+          </Position>
+          <Size Name="default_Size">
+            <Height Name="default_Height" Unit="PIXEL" Value="25.0"/>
+            <Width Name="default_Width" Unit="PIXEL" Value="75.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedMultiLingualTextDefinition>
+        <OwnedLanguageDefinition Name="german" LocaleId="de-DE"/>
+        <OwnedTextDefinition Name="functionButtonLabel">
+          <TranslatedTextItem Value="FunctionName" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="ActivateDescription">
+          <TranslatedTextItem Value="Activate" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="LockedDescription">
+          <TranslatedTextItem Value="Locked" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="ReturnDescription">
+          <TranslatedTextItem Value="Return" Language="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+      </OwnedMultiLingualTextDefinition>
+    </PresentationModelMinimized>
+    <ClientDataModelMinimized>
+      <OwnedDataItem Name="Activate_LP" Description="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" Dimension="//@LibraryItem/@ClientDataModelMinimized/@OwnedDimension.0" MaxAge="1000" PointsTo="//@parameterDescription/@ServerDataItems.0/@source" SignalOnChange="//@LibraryItem/@AlgorithmModel/@OwnedElement.0" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.4"/>
+      <OwnedDataItem Name="Locked_LP" Description="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.2" Dimension="//@LibraryItem/@ClientDataModelMinimized/@OwnedDimension.0" MaxAge="1000" PointsTo="//@parameterDescription/@ServerDataItems.1/@source" SignalOnChange="//@LibraryItem/@AlgorithmModel/@OwnedElement.1" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.4"/>
+      <OwnedDataItem Name="Return_LP" Description="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.3" Dimension="//@LibraryItem/@ClientDataModelMinimized/@OwnedDimension.0" MaxAge="1000" PointsTo="//@parameterDescription/@ServerDataItems.2/@source" SignalOnChange="//@LibraryItem/@AlgorithmModel/@OwnedElement.2" Type="//@LibraryItem/@AlgorithmModel/@OwnedElement.5"/>
+      <OwnedDimension Name="standardInteger" Unit="Integer"/>
+    </ClientDataModelMinimized>
+    <AlgorithmModel>
+      <OwnedElement xsi:type="algorithm:Signal" Name="Activate_changed"/>
+      <OwnedElement xsi:type="algorithm:Signal" Name="Locked_changed"/>
+      <OwnedElement xsi:type="algorithm:Signal" Name="Return_changed"/>
+      <OwnedElement xsi:type="algorithm:Boundary" Comment="{&quot;srcFiles&quot;:{&quot;libPath&quot;:&quot;Misc_FunctionButton&quot;,&quot;default&quot;:[],&quot;html.login&quot;:{&quot;boundarySrcFile&quot;:&quot;FunctionButtonClickedBoundary.js&quot;,&quot;copy&quot;:[]}}}" Name="FunctionButtonClickedBoundary">
+        <ProvidedInterface Name="ProvidedInterface"/>
+        <RequiredInterface Name="RequiredInterface"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:BooleanType" Comment="Standard Boolean" Name="Boolean"/>
+      <OwnedElement xsi:type="algorithm:StringType" Comment="Standard String" Name="String"/>
+    </AlgorithmModel>
+  </LibraryItem>
+  <parameterDescription xsi:type="movisalib:MovisaParameterDescription">
+    <resourceParameters Name="_files/html.login/FunctionButtonClickedBoundary.js" newPath="img\Misc_FunctionButton__files/html.login/FunctionButtonClickedBoundary.js"/>
+    <ServerDataItems>
+      <source xsi:type="generic:GenericItem" Name="activate" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.0">
+        <OwnedParameter Name="Type" Value="Bool"/>
+      </source>
+    </ServerDataItems>
+    <ServerDataItems>
+      <source xsi:type="generic:GenericItem" Name="locked" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.1">
+        <OwnedParameter Name="Type" Value="Bool"/>
+      </source>
+    </ServerDataItems>
+    <ServerDataItems>
+      <source xsi:type="generic:GenericItem" Name="return" IsAccessedVia="//@LibraryItem/@ClientDataModelMinimized/@OwnedDataItem.2">
+        <OwnedParameter Name="Type" Value="String"/>
+      </source>
+    </ServerDataItems>
+    <Containers source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent"/>
+    <widthParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Width"/>
+    <heightParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Size/@Height"/>
+    <xParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@X"/>
+    <yParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedUIComponent/@Representation/@Position/@Y"/>
+    <labelParameter source="//@LibraryItem/@PresentationModelMinimized/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0/@TranslatedTextItem.0"/>
+  </parameterDescription>
+</genlib:LibraryEntry>

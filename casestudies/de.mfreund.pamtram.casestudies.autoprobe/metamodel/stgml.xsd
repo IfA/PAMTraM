@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="stgml"
+    targetNamespace="http://gfai.de/stgml.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://gfai.de/stgml.xsd"
+    xmlns:mstns="http://gfai.de/stgml.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:complexType name="dataelement">
+    <xs:sequence>
+      <xs:element  minOccurs="0" maxOccurs="unbounded" name="data" type="dataelement"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required" />
+    <xs:attribute name="expr" type="xs:string" use="optional" />
+    <xs:attribute name="type" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:simpleType name="iodirection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in"/>
+      <xs:enumeration value="in"/>
+      <xs:enumeration value="inout"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="porttype">
+    <xs:attribute name="address" type="xs:string" use="required" />
+    <xs:attribute name="ident" type="xs:string" use="required" />
+    <xs:attribute name="iotype" type="iodirection" use="required" />
+    <xs:attribute name="type" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="eventtype">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="optional" default="" />
+  </xs:complexType>
+  <xs:simpleType name="watchcondtype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="on"/>
+      <xs:enumeration value="off"/>
+      <xs:enumeration value="change"/>
+      <xs:enumeration value="value"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="watchtype">
+    <xs:attribute name="cond" type="xs:string" use="required" />
+    <xs:attribute name="condtype" type="watchcondtype" use="required" />
+    <xs:attribute name="eventdata" type="xs:string" use="optional" />
+    <xs:attribute name="ident" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="timertype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="in"/>
+      <xs:enumeration value="entry"/>
+      <xs:enumeration value="exit"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="timer">
+    <xs:attribute name="interval" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="type" type="timertype" use="optional" default="in" />
+  </xs:complexType>
+  <xs:complexType name="globaltimer">
+    <xs:complexContent>
+      <xs:extension base="timer">
+        <xs:attribute name="oneshot" type="xs:boolean" use="optional" default="false" />
+        <xs:attribute name="ident" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="scriptcontent">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="src" type="xs:string" use="optional" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="codesection" mixed="true">
+      <xs:sequence  minOccurs="0" maxOccurs="unbounded">
+        <xs:any processContents="skip"/>
+      </xs:sequence>
+    <xs:attribute name="ident" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="actiontype" mixed="true">
+    <xs:sequence  minOccurs="0" maxOccurs="unbounded">
+      <xs:any processContents="skip" namespace="##any"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="actionlist" mixed="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="action" type="actiontype"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="transition">
+    <xs:complexContent>
+      <xs:extension base="actionlist">
+        <xs:attribute name="event" type="xs:string" use="optional" />
+        <xs:attribute name="cond" type="xs:string" use="optional" />
+        <xs:attribute name="target" type="xs:string" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="initial">
+    <xs:sequence>
+      <xs:element name="transition" type="transition"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="donedata">
+    <xs:choice minOccurs="0">
+      <xs:element name="content">
+        <xs:complexType>
+          <xs:attribute name="expr" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="param" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="name" type="xs:string"/>
+          <xs:attribute name="expr" type="xs:string" use="optional"/>
+          <xs:attribute name="location" type="xs:string" use="optional"/>
+          <xs:attribute name="type" type="xs:string" use="optional"/>   
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:simpleType name="historytype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="deep"/>
+      <xs:enumeration value="shallow"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="history">
+    <xs:sequence>
+      <xs:element name="transition" type="transition"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="type" type="historytype" use="optional" default="shallow"/>
+  </xs:complexType>
+  <xs:complexType name="final">
+    <xs:all>
+      <xs:element name="onentry" minOccurs="0" type="actionlist"/>
+      <xs:element name="onexit"  minOccurs="0" type="actionlist"/>
+      <xs:element name="donedata" minOccurs="0">
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="parallel">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="transition" type="transition"/>
+      <xs:element name="parallel" type="parallel"/>
+      <xs:element name="state" type="state"/>
+      <xs:element name="onentry" type="actionlist"/>
+      <xs:element name="onexit" type="actionlist"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="state">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="transition" type="transition"/>
+      <xs:element name="onentry" type="actionlist"/>
+      <xs:element name="onexit" type="actionlist"/>
+      <xs:element name="parallel" type="parallel"/>
+      <xs:element name="state" type="state"/>
+      <xs:element name="initial" type="initial"/>
+      <xs:element name="final" type="final"/>
+      <xs:element name="timer" type="timer"/>
+      <xs:element name="history" type="history"/>
+    </xs:choice>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="initial" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="bindtype">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="src" type="xs:string" use="optional" />
+    <xs:attribute name="srcDesc" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="attrtype">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="externaldataelement">
+    <xs:sequence>
+      <xs:element  minOccurs="0" maxOccurs="unbounded" name="extdata" type="externaldataelement"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="optional" />
+    <xs:attribute name="type" type="xs:string" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="externaldatatype">
+    <xs:sequence minOccurs="0">
+      <xs:element maxOccurs="unbounded" name="extdata"  type="externaldataelement"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="anyelementtype" mixed="true">
+    <xs:sequence  minOccurs="0" maxOccurs="unbounded">
+      <xs:any processContents="skip"/>
+    </xs:sequence>   
+  </xs:complexType>
+  <xs:complexType name="viobject" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="bind" type="bindtype"/>
+      <xs:element name="graphic" type="anyelementtype"/>
+      <xs:element name="behavior" type="anyelementtype"/>
+      <xs:element name="vievents" type="anyelementtype"/>
+      <xs:element name="externaldata" type="externaldatatype" maxOccurs="1"/>
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="optional"/>
+    <xs:attribute name="label" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="ctrltype" type="xs:string" use="optional"/>
+    <xs:attribute name="grtype" type="xs:string" use="optional"/>
+    <xs:attribute name="grtext" type="xs:string" use="optional"/>
+    <xs:attribute name="send" type="xs:string" use="optional"/>
+    <xs:attribute name="bind" type="xs:string" use="optional"/>
+    <xs:attribute name="bindsrc" type="xs:string" use="optional"/>
+    <xs:attribute name="x" type="xs:double" use="required"/>
+    <xs:attribute name="y" type="xs:double" use="required"/>
+    <xs:attribute name="width" type="xs:double" use="required"/>
+    <xs:attribute name="height" type="xs:double" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="layer">
+    <xs:choice  minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="viobject" type="viobject"/>
+    </xs:choice>
+    <xs:attribute name="name" type="xs:string" use="optional"/>
+    <xs:attribute name="id" type="xs:string" use="optional"/>
+    <xs:attribute name="visible" type="xs:boolean" use="optional" default="false"/>
+  </xs:complexType>
+  
+  <xs:complexType name="visualization">
+    <xs:sequence>
+      <xs:element name="externaldata" type="externaldatatype" minOccurs="0" maxOccurs="1"/>
+      <xs:choice  minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="layer" type="layer"/>
+      </xs:choice>
+      </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="optional"/>
+    <xs:attribute name="xmin" type="xs:double" use="optional" default="0"/>
+    <xs:attribute name="ymin" type="xs:double" use="optional" default="0"/>
+    <xs:attribute name="xmax" type="xs:double" use="required"/>
+    <xs:attribute name="ymax" type="xs:double" use="required"/>
+    <xs:attribute name="unitspermeter" type="xs:double" use="required"/>
+  </xs:complexType>
+  
+  <xs:element name="scxml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="datamodel" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence minOccurs="0">
+              <xs:element maxOccurs="unbounded" name="data"  type="dataelement"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="configuration">
+          <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="port" type="porttype"/>
+              <xs:element name="event" type="eventtype"/>
+              <xs:element name="watch" type="watchtype"/>
+              <xs:element name="timer" type="globaltimer"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:choice>
+          <xs:element name="code">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="section" type="codesection"/>
+              </xs:sequence>
+              <xs:attribute name="language" type="xs:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="script" minOccurs="0" type="scriptcontent"/>
+        </xs:choice>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="initial" type="initial"/>
+          <xs:element name="state" type="state"/>
+          <xs:element name="parallel" type="state"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="visualization" type="visualization"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="optional" default="_root"/>
+      <xs:attribute name="initial" type="xs:string" use="optional"/>
+      <xs:attribute name="version" type="xs:decimal" use ="optional" default="1.0"/>
+      <xs:attribute name="datamodel" type="xs:NMTOKEN" use="optional"/>
+      <xs:anyAttribute processContents="lax"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<scxml name="Navigation" xmlns="http://gfai.de/stgml.xsd">
+
+	<datamodel />
+
+	<configuration>
+		<event name="NAVTOP" value="NAVTOP" />
+	</configuration>
+
+	<code language="" />
+
+	<initial>
+		<transition target="root5257B2052684E11C" />
+	</initial>
+
+	<state id="root5257B2052684E11C">
+		<transition event="NAVTOP" target="NAVTOP" />
+		<initial>
+			<transition target="NAVTOP" />
+		</initial>
+		<state id="NAVTOP">
+		</state>
+	</state>
+
+	<visualization name="Navigation" unitspermeter="100000"
+		xmax="29700" xmin="0" ymax="21000" ymin="0">
+		<externaldata>
+			<extdata name="Roles">
+				<extdata name="RoleDefinition">
+					<extdata name="Id" value="0" />
+					<extdata name="Name" value="Admin" />
+				</extdata>
+				<extdata name="RoleDefinition">
+					<extdata name="Id" value="1" />
+					<extdata name="Name" value="Tool Setter" />
+				</extdata>
+				<extdata name="RoleDefinition">
+					<extdata name="Id" value="2" />
+					<extdata name="Name" value="User" />
+				</extdata>
+			</extdata>
+		</externaldata>
+		<layer name="NAVTOP" visible="true"> 
+ 	   <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="1800.0" label="Alarm" send="Alarm" width="3700.0" x="300.0" y="15000.0">
+        <externaldata>
+          <extdata name="ClassPath" value="Evaluation"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Alarm"/>
+        </externaldata>
+      </viobject>
+    </layer>
+	</visualization>
+
+</scxml>

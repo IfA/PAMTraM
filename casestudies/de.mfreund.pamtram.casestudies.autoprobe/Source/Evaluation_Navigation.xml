@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://gfai.de/stgml.xsd" name="Navigation">
+  <datamodel/>
+  <configuration>
+    <event name="NAVTOP" value="NAVTOP"/>
+  </configuration>
+  <code language=""/>
+  <initial>
+    <transition target="root5257B2052684E11C"/>
+  </initial>
+  <state id="root5257B2052684E11C">
+    <transition event="NAVTOP" target="NAVTOP"/>
+    <initial>
+      <transition target="NAVTOP"/>
+    </initial>
+    <state id="NAVTOP">
+      <transition event="testPanel" target="testPanel"/>
+    </state>
+    <state id="testPanel">
+      <transition event="NAVTOP" target="NAVTOP"/>
+    </state>
+  </state>
+  <visualization name="Navigation" unitspermeter="100000.0" xmax="29700.0" xmin="0.0"
+      ymax="21000.0" ymin="0.0">
+    <externaldata>
+      <extdata name="Roles">
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="0"/>
+          <extdata name="Name" value="Admin"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="1"/>
+          <extdata name="Name" value="Tool Setter"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="2"/>
+          <extdata name="Name" value="User"/>
+        </extdata>
+      </extdata>
+    </externaldata>
+    <layer name="NAVTOP" visible="true">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83"
+          label="Navigation" send="Navigation" width="3698.33" x="18239.8" y="16043.8">
+        <externaldata>
+          <extdata name="ClassPath" value="Evaluation"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Navigation"/>
+        </externaldata>
+      </viobject>
+    </layer>
+    <layer name="testPanel" visible="true">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="2978.83"
+          label="Navigation" send="Navigation" width="3698.33" x="0.0" y="0.0">
+        <externaldata>
+          <extdata name="ClassPath" value="Evaluation"/>
+          <extdata name="PositionId" value="008"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Navigation"/>
+        </externaldata>
+      </viobject>
+    </layer>
+  </visualization>
+</scxml>

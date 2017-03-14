@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://gfai.de/stgml.xsd" name="Navigation">
+  <datamodel/>
+  <configuration>
+    <event name="NAVTOP" value="NAVTOP"/>
+  </configuration>
+  <code language=""/>
+  <initial>
+    <transition target="root5257B2052684E11C"/>
+  </initial>
+  <state id="root5257B2052684E11C">
+    <transition event="NAVTOP" target="NAVTOP"/>
+    <initial>
+      <transition target="NAVTOP"/>
+    </initial>
+    <state id="NAVTOP"/>
+  </state>
+  <visualization name="Navigation" unitspermeter="100000.0" xmax="29700.0" xmin="0.0"
+      ymax="21000.0" ymin="0.0">
+    <externaldata>
+      <extdata name="Roles">
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="0"/>
+          <extdata name="Name" value="Admin"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="1"/>
+          <extdata name="Name" value="Tool Setter"/>
+        </extdata>
+        <extdata name="RoleDefinition">
+          <extdata name="Id" value="2"/>
+          <extdata name="Name" value="User"/>
+        </extdata>
+      </extdata>
+    </externaldata>
+    <layer name="NAVTOP" visible="true">
+      <viobject ctrltype="StructureComponentControl" grtype="Rectangle" height="8946.92"
+          label="Log" send="Log" width="19123.72" x="23980.3" y="4196.16">
+        <externaldata>
+          <extdata name="ClassPath" value=""/>
+          <extdata name="PositionId" value="006"/>
+          <extdata name="typeID" value="Station"/>
+          <extdata name="name" value="Log"/>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="LogMsgId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogMsgId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.MsgId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogAckId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogAckId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.AckId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogMsg">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogMsg"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Msg"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogOption1">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption1"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option1"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogOption2">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption2"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option2"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogOption3">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption3"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option3"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="LogOption4">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="LogOption4"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.Log.Option4"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="ReactMsgId">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Integer"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="ReactMsgId"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.MsgId"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+              <extdata name="ReactMsg">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="String"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="ReactMsg"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$AS.Variables.#Proj.Vis.Visualization.Mailbox.React.Msg"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+            </extdata>
+          </extdata>
+        </externaldata>
+      </viobject>
+    </layer>
+  </visualization>
+</scxml>

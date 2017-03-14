@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel">
+  <platformCollection
+      platformName="SmartphoneWithoutVibration"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Touchscreen"
+      ressourceName="SmartphoneTouchscreen"
+      correspondDisplay="//@ressourceCollection.1"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"
+      ressourceName="SmartphoneDisplay"/>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

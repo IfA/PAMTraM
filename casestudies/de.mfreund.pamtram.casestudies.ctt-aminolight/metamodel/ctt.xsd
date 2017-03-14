@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<xs:schema xmlns="http://giove.isti.cnr.it/ctt"
+   elementFormDefault="qualified" targetNamespace="http://giove.isti.cnr.it/ctt"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="TaskModel">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="Task" type="Task" />
+         </xs:sequence>
+         <xs:attribute name="NameTaskModelID" type="xs:string"
+            use="required" />
+      </xs:complexType>
+   </xs:element>
+
+   <xs:complexType name="Task">
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string" />
+         <xs:element name="Type" type="xs:string" />
+         <xs:element minOccurs="0" name="Description" type="xs:string" />
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="Platform"
+            type="xs:string" />
+         <xs:element minOccurs="0" name="Precondition" type="ConditionGroup" />
+         <xs:element minOccurs="0" name="Postcondition" type="ConditionGroup"/>
+         <xs:element minOccurs="0" maxOccurs="1" name="TemporalOperator"
+            type="TemporalOperator" />
+         <xs:element minOccurs="0" name="TimePerformance" type="TimePerformance" />
+         <xs:element minOccurs="0" maxOccurs="1" name="Parent"
+            type="Parent" />
+         <xs:element minOccurs="0" maxOccurs="1" name="SiblingLeft"
+            type="SiblingLeft" />
+         <xs:element minOccurs="0" maxOccurs="1" name="SiblingRight"
+            type="SiblingRight" />
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="Object"
+            type="Object" />
+         <xs:element minOccurs="0" maxOccurs="1" name="SubTask"
+            type="SubTask" />
+      </xs:sequence>
+      <xs:attribute name="Identifier" type="xs:string" use="required" />
+      <xs:attribute name="Category" use="required" type="Category" />
+      <xs:attribute name="Iterative" use="required" type="xs:boolean" />
+      <xs:attribute name="Optional" use="required" type="xs:boolean" />
+      <xs:attribute name="PartOfCooperation" use="required"
+         type="xs:boolean" />
+      <xs:attribute name="Frequency" type="xs:string" use="required" />
+   </xs:complexType>
+
+
+
+   <xs:complexType name="TemporalOperator">
+      <xs:attribute name="name" type="TemporalOperatorName" />
+   </xs:complexType>
+
+   <xs:complexType name="TimePerformance">
+      <xs:sequence>
+         <xs:element name="Max" type="xs:string" />
+         <xs:element name="Min" type="xs:string" />
+         <xs:element name="Average" type="xs:string" />
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Parent">
+      <xs:attribute name="name" type="xs:string" use="required" />
+   </xs:complexType>
+
+   <xs:complexType name="SiblingLeft">
+      <xs:attribute name="name" type="xs:string" use="required" />
+   </xs:complexType>
+
+   <xs:complexType name="SiblingRight">
+      <xs:attribute name="name" type="xs:string" use="required" />
+   </xs:complexType>
+
+   <xs:complexType name="Object">
+      <xs:sequence>
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="Platform"
+            type="xs:string" />
+         <xs:element minOccurs="0" name="InputAction" type="InputAction" />
+         <xs:element minOccurs="0" name="OutputAction" type="OutputAction" />
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="class" use="required" type="ObjectClass" />
+      <xs:attribute name="type"  type="ObjectType" />
+      <xs:attribute name="access_mode"  type="ObjectAccess" />
+      <xs:attribute name="cardinality"  type="ObjectCardinality" />
+   </xs:complexType>
+
+   <xs:complexType name="InputAction">
+      <xs:attribute name="Description" type="xs:string" use="required" />
+      <xs:attribute name="From" type="xs:string" use="required" />
+   </xs:complexType>
+
+   <xs:complexType name="OutputAction">
+      <xs:attribute name="Description" type="xs:string" use="required" />
+      <xs:attribute name="To" type="xs:string" use="required" />
+   </xs:complexType>
+
+   <xs:complexType name="SubTask">
+      <xs:sequence>
+         <xs:element minOccurs="1" maxOccurs="unbounded" name="Task" type="Task" />
+      </xs:sequence>
+   </xs:complexType>
+
+
+   <!-- structured precondition modeling -->
+
+   <xs:complexType name="ConditionGroup">
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+         <xs:element name="ConditionGroup" type="ConditionGroup" />
+         <xs:element name="ConditionLiteral" type="ConditionLiteral" />
+      </xs:choice>
+      <xs:attribute name="operator" type="BinaryOperator" />
+   </xs:complexType>
+
+   <xs:complexType name="ConditionLiteral">
+      <xs:attribute name="object" type="xs:string" />
+      <xs:attribute name="value" type="xs:string" />
+   </xs:complexType>
+
+   <!-- Simple types -->
+   <xs:simpleType name="Category">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="abstraction" />
+         <xs:enumeration value="user" />
+         <xs:enumeration value="interaction" />
+         <xs:enumeration value="application" />
+         <xs:enumeration value="cooperation" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="TemporalOperatorName">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="SequentialEnabling" />
+         <xs:enumeration value="Disabling" />
+         <xs:enumeration value="Choice" />
+         <xs:enumeration value="Interleaving" />
+         <xs:enumeration value="InterleavingInfo" />
+         <xs:enumeration value="Synchronization" />
+         <xs:enumeration value="SuspendResume" />
+         <xs:enumeration value="SequentialEnablingInfo" />
+         <xs:enumeration value="OrderIndependence"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ObjectClass">
+      <xs:restriction base="xs:NMTOKEN">
+      	<xs:enumeration value="Boolean" />
+      	<xs:enumeration value="Date" />
+      	<xs:enumeration value="Decimal" />
+      	<xs:enumeration value="Integer" />
+      	<xs:enumeration value="String" />
+      	<xs:enumeration value="Time" />
+         <xs:enumeration value="Text" />
+         <xs:enumeration value="Numerical" />
+         <xs:enumeration value="Object" />
+         <xs:enumeration value="Description" />
+         <xs:enumeration value="Position" />
+         <xs:enumeration value="null" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ObjectType">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="Perceivable" />
+         <xs:enumeration value="Application" />
+         <xs:enumeration value="null" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ObjectAccess">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="Access" />
+         <xs:enumeration value="Modification" />
+         <xs:enumeration value="null" />
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="ObjectCardinality">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="Low" />
+         <xs:enumeration value="Medium" />
+         <xs:enumeration value="High" />
+         <xs:enumeration value="null" />
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <xs:simpleType name="BinaryOperator">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="and" id="and" />
+         <xs:enumeration value="or" id="or" />
+         <xs:enumeration value="xor" id="xor" />
+         <xs:enumeration value="contains" id="contains" />
+         <xs:enumeration value="starts" id="starts" />
+         <xs:enumeration value="ends" id="ends" />
+         <xs:enumeration value="gt" id="gt" />
+         <xs:enumeration value="gteq" id="gteq" />
+         <xs:enumeration value="lteq" id="lteq" />
+         <xs:enumeration value="lt" id="lt" />
+         <xs:enumeration value="eq" id="eq" />
+         <xs:enumeration value="neq" id="neq" />
+      </xs:restriction>
+   </xs:simpleType>
+
+</xs:schema>

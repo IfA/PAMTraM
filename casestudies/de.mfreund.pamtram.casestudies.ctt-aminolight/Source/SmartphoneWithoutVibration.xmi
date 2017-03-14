@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifa.et.tu.dresden.platform.metamodel:PMbase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ifa.et.tu.dresden.platform.metamodel="http://ifa/et/tu/dresden/platform/metamodel"
+    xsi:schemaLocation="http://ifa/et/tu/dresden/platform/metamodel platform.ecore">
+  <platformCollection
+      platformName="SmartphoneWithoutVibration"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Touchscreen"
+      ressourceName="SmartphoneTouchscreen"
+      correspondDisplay="//@ressourceCollection.2"/>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:MonoSpeakerSystem"
+      mono="//@ressourceCollection.1/@subRessources.0">
+    <subRessources
+        xsi:type="ifa.et.tu.dresden.platform.metamodel:Speaker"
+        ressourceName="MonoSpeaker"/>
+  </ressourceCollection>
+  <ressourceCollection
+      xsi:type="ifa.et.tu.dresden.platform.metamodel:Display"
+      ressourceName="SmartphoneDisplay"/>
+</ifa.et.tu.dresden.platform.metamodel:PMbase>

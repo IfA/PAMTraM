@@ -15,7 +15,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.setups"
-      value="=https://agtele.eats.et.tu-dresden.de/eclipse/setups/PAMTraM.setup->${clone.location.pamtram.setup|uri}/de.mfreund.pamtram.setup/PAMTraM.setup"
+      value="=https://agtele.eats.et.tu-dresden.de/eclipse/setups/PAMTraM.setup->${clone.location.pamtram.main|uri}/plugins/de.mfreund.pamtram.setup/PAMTraM.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -576,51 +576,53 @@
         xsi:type="projects:ProjectsImportTask"
         id="import.gentrans">
       <sourceLocator
-          rootFolder="${clone.location.gentrans.main}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans"/>
       <sourceLocator
-          rootFolder="${clone.location.gentrans.transformation}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans.transformation"/>
       <sourceLocator
-          rootFolder="${clone.location.gentrans.transformation.selectors}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans.transformation.selectors"/>
       <sourceLocator
-          rootFolder="${clone.location.gentrans.transformation.history}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans.resolving.history"/>
       <sourceLocator
-          rootFolder="${clone.location.gentrans.transformation.statistics}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans.resolving.statistics"/>
       <sourceLocator
-          rootFolder="${clone.location.gentrans.ui}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.gentrans.ui"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.autoprobe}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.autoprobe"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.disl-movisa}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.disl-movisa"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.w3caui-movisa}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.w3caui-movisa"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.visu-plus}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.visu-plus"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.ctt-aminolight}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.ctt-aminolight"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.casestudies.excel-movisa-tdp}"/>
+          rootFolder="${clone.location.pamtram.main}\casestudies\de.mfrend.pamtram.casestudies.excel-movisa-tdp"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.examples}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.examples"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.feature}"/>
+          rootFolder="${clone.location.pamtram.main}\features\de.mfrend.pamtram.feature"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.main}"/>
+          rootFolder="${clone.location.pamtram.main}\features\de.mfrend.pamtram.examples.feature"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.model.edit}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.model.editor}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.model.edit"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.model.generator}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.model.editor"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.model}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.model.generator"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.transformation.model}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.model"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.setup}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.transformation.model"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.ui}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.setup"/>
       <sourceLocator
-          rootFolder="${clone.location.pamtram.update-site}"/>
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.ui"/>
+      <sourceLocator
+          rootFolder="${clone.location.pamtram.main}\plugins\de.mfrend.pamtram.update-site"/>
       <sourceLocator
           rootFolder="${clone.location.genlibrary.main}"/>
       <sourceLocator

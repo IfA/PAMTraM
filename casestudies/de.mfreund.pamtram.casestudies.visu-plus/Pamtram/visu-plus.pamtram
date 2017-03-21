@@ -2562,6 +2562,11 @@
     </sections>
   </targetSectionModels>
   <mappingModels name="Basic">
+    <globalAttributes name="xmax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0"/>
+      <globalAttributes name="xmin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.1"/>
+      <globalAttributes name="ymax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.2"/>
+      <globalAttributes name="ymin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.3"/>
+      <globalAttributes name="unitspermeter" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.4"/>
     <mappings name="sourceContainerMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPCClientEditorType" targetSection="//@targetSectionModels.1/@sections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="fileNameMapping" modifiers="//@mappingModels.0/@modifierSets.3" target="//@targetSectionModels.1/@sections.0/@attributes.0">
@@ -2583,11 +2588,6 @@
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="target (mainPanelName)" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.3/@value.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <globalVariables name="xmax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0"/>
-      <globalVariables name="xmin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.1"/>
-      <globalVariables name="ymax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.2"/>
-      <globalVariables name="ymin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.3"/>
-      <globalVariables name="unitspermeter" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.4"/>
     </mappings>
     <mappings name="LayerMapping" sourceSection="//@sourceSectionModels.0/@sections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MovResource" targetSection="//@targetSectionModels.0/@sections.0">

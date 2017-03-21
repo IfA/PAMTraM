@@ -389,7 +389,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ModifierSets() {
+	public EReference getPAMTraM_GlobalAttributes() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -398,7 +398,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_ConditionModels() {
+	public EReference getPAMTraM_ModifierSets() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -407,8 +407,17 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPAMTraM_SharedConditionModels() {
+	public EReference getPAMTraM_ConditionModels() {
 		return (EReference)pamTraMEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPAMTraM_SharedConditionModels() {
+		return (EReference)pamTraMEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -517,6 +526,15 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 */
 	public EReference getMappingModel_ActiveMappings() {
 		return (EReference)mappingModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappingModel_GlobalAttributes() {
+		return (EReference)mappingModelEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -682,6 +700,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__MAPPINGS);
 		createEReference(pamTraMEClass, PAM_TRA_M__ACTIVE_MAPPINGS);
 		createEReference(pamTraMEClass, PAM_TRA_M__GLOBAL_VALUES);
+		createEReference(pamTraMEClass, PAM_TRA_M__GLOBAL_ATTRIBUTES);
 		createEReference(pamTraMEClass, PAM_TRA_M__MODIFIER_SETS);
 		createEReference(pamTraMEClass, PAM_TRA_M__CONDITION_MODELS);
 		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_CONDITION_MODELS);
@@ -701,6 +720,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(mappingModelEClass, MAPPING_MODEL__MODIFIER_SETS);
 		createEReference(mappingModelEClass, MAPPING_MODEL__GLOBAL_VALUES);
 		createEReference(mappingModelEClass, MAPPING_MODEL__ACTIVE_MAPPINGS);
+		createEReference(mappingModelEClass, MAPPING_MODEL__GLOBAL_ATTRIBUTES);
 
 		conditionalElementEClass = createEClass(CONDITIONAL_ELEMENT);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__LOCAL_CONDITION);
@@ -859,6 +879,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getPAMTraM_Mappings(), theMappingPackage.getMapping(), null, "mappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_GlobalValues(), this.getFixedValue(), null, "globalValues", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getPAMTraM_GlobalAttributes(), theMappingPackage.getGlobalAttribute(), null, "globalAttributes", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ModifierSets(), theModifierPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, PAMTraM.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_ConditionModels(), this.getConditionModel(), null, "conditionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPAMTraM_SharedConditionModels(), this.getConditionModel(), null, "sharedConditionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -880,6 +901,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getMappingModel_ModifierSets(), theModifierPackage.getValueModifierSet(), null, "modifierSets", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_GlobalValues(), this.getFixedValue(), null, "globalValues", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingModel_ActiveMappings(), theMappingPackage.getMapping(), null, "activeMappings", null, 0, -1, MappingModel.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingModel_GlobalAttributes(), theMappingPackage.getGlobalAttribute(), null, "globalAttributes", null, 0, -1, MappingModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionalElement_LocalCondition(), theConditionPackage.getComplexCondition(), null, "localCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -4,6 +4,7 @@ package pamtram;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
 
@@ -20,6 +21,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  *   <li>{@link pamtram.MappingModel#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.MappingModel#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.MappingModel#getActiveMappings <em>Active Mappings</em>}</li>
+ *   <li>{@link pamtram.MappingModel#getGlobalAttributes <em>Global Attributes</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getMappingModel()
@@ -87,5 +89,21 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * @generated
 	 */
 	EList<Mapping> getActiveMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Global Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.mapping.GlobalAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Attributes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Attributes</em>' containment reference list.
+	 * @see pamtram.PamtramPackage#getMappingModel_GlobalAttributes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<GlobalAttribute> getGlobalAttributes();
 
 } // MappingModel

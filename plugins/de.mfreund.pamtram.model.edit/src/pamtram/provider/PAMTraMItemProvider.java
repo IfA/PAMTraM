@@ -60,6 +60,7 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 			addSharedSourceSectionModelsPropertyDescriptor(object);
 			addSharedTargetSectionModelsPropertyDescriptor(object);
 			addSharedMappingModelsPropertyDescriptor(object);
+			addGlobalAttributesPropertyDescriptor(object);
 			addSharedConditionModelsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -126,6 +127,28 @@ public class PAMTraMItemProvider extends PamtramItemProviderAdapter
 				 true,
 				 false,
 				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Global Attributes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGlobalAttributesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PAMTraM_globalAttributes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PAMTraM_globalAttributes_feature", "_UI_PAMTraM_type"),
+				 PamtramPackage.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,
+				 false,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));

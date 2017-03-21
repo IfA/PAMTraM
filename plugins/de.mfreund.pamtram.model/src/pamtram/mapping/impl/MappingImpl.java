@@ -21,7 +21,6 @@ import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -42,7 +41,6 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getSharedCondition <em>Shared Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingImpl#getGlobalVariables <em>Global Variables</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#isAbstract <em>Abstract</em>}</li>
  * </ul>
  *
@@ -88,16 +86,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @ordered
 	 */
 	protected EList<MappingHintGroupImporter> importedMappingHintGroups;
-
-	/**
-	 * The cached value of the '{@link #getGlobalVariables() <em>Global Variables</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGlobalVariables()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<GlobalAttribute> globalVariables;
 
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
@@ -243,19 +231,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			importedMappingHintGroups = new EObjectContainmentEList<MappingHintGroupImporter>(MappingHintGroupImporter.class, this, MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 		}
 		return importedMappingHintGroups;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<GlobalAttribute> getGlobalVariables() {
-		if (globalVariables == null) {
-			globalVariables = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, MappingPackage.MAPPING__GLOBAL_VARIABLES);
-		}
-		return globalVariables;
 	}
 
 	/**
@@ -434,8 +409,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return ((InternalEList<?>)getMappingHintGroups()).basicRemove(otherEnd, msgs);
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return ((InternalEList<?>)getImportedMappingHintGroups()).basicRemove(otherEnd, msgs);
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				return ((InternalEList<?>)getGlobalVariables()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -457,8 +430,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return getMappingHintGroups();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return getImportedMappingHintGroups();
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				return getGlobalVariables();
 			case MappingPackage.MAPPING__ABSTRACT:
 				return isAbstract();
 		}
@@ -488,10 +459,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				getImportedMappingHintGroups().clear();
 				getImportedMappingHintGroups().addAll((Collection<? extends MappingHintGroupImporter>)newValue);
 				return;
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				getGlobalVariables().clear();
-				getGlobalVariables().addAll((Collection<? extends GlobalAttribute>)newValue);
-				return;
 			case MappingPackage.MAPPING__ABSTRACT:
 				setAbstract((Boolean)newValue);
 				return;
@@ -519,9 +486,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				getImportedMappingHintGroups().clear();
 				return;
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				getGlobalVariables().clear();
-				return;
 			case MappingPackage.MAPPING__ABSTRACT:
 				setAbstract(ABSTRACT_EDEFAULT);
 				return;
@@ -545,8 +509,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
 				return importedMappingHintGroups != null && !importedMappingHintGroups.isEmpty();
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
-				return globalVariables != null && !globalVariables.isEmpty();
 			case MappingPackage.MAPPING__ABSTRACT:
 				return abstract_ != ABSTRACT_EDEFAULT;
 		}

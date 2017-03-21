@@ -112,6 +112,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS);
 			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES);
+			childrenFeatures.add(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_ATTRIBUTES);
 		}
 		return childrenFeatures;
 	}
@@ -196,6 +197,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -256,6 +258,11 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
 				 PamtramFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_ATTRIBUTES,
+				 MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
 
 }

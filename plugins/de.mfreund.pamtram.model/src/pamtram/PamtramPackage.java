@@ -242,13 +242,22 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__GLOBAL_VALUES = 10;
 
 	/**
+	 * The feature id for the '<em><b>Global Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__GLOBAL_ATTRIBUTES = 11;
+
+	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 11;
+	int PAM_TRA_M__MODIFIER_SETS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Condition Models</b></em>' containment reference list.
@@ -257,7 +266,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__CONDITION_MODELS = 12;
+	int PAM_TRA_M__CONDITION_MODELS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition Models</b></em>' reference list.
@@ -266,7 +275,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SHARED_CONDITION_MODELS = 13;
+	int PAM_TRA_M__SHARED_CONDITION_MODELS = 14;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -275,7 +284,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 14;
+	int PAM_TRA_M_FEATURE_COUNT = 15;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -552,13 +561,22 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__ACTIVE_MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Global Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL__GLOBAL_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -991,6 +1009,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_GlobalValues();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getGlobalAttributes <em>Global Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Global Attributes</em>'.
+	 * @see pamtram.PAMTraM#getGlobalAttributes()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_GlobalAttributes();
+
+	/**
 	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1149,6 +1178,17 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingModel_ActiveMappings();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getGlobalAttributes <em>Global Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Global Attributes</em>'.
+	 * @see pamtram.MappingModel#getGlobalAttributes()
+	 * @see #getMappingModel()
+	 * @generated
+	 */
+	EReference getMappingModel_GlobalAttributes();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
@@ -1444,6 +1484,14 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__GLOBAL_VALUES = eINSTANCE.getPAMTraM_GlobalValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Global Attributes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__GLOBAL_ATTRIBUTES = eINSTANCE.getPAMTraM_GlobalAttributes();
+
+		/**
 		 * The meta object literal for the '<em><b>Modifier Sets</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1570,6 +1618,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_MODEL__ACTIVE_MAPPINGS = eINSTANCE.getMappingModel_ActiveMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Global Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_MODEL__GLOBAL_ATTRIBUTES = eINSTANCE.getMappingModel_GlobalAttributes();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionalElementImpl <em>Conditional Element</em>}' class.

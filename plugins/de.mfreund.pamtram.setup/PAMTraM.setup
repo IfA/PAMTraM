@@ -632,6 +632,9 @@
           <operand
               xsi:type="predicates:NamePredicate"
               pattern="de.mfreund.pamtram.examples"/>
+          <operand
+              xsi:type="predicates:LocationPredicate"
+              pattern="${clone.location.pamtram.main}\casestudies"/>
         </predicate>
       </workingSet>
       <workingSet

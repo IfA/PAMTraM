@@ -4,12 +4,13 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:git="http://www.eclipse.org/oomph/setup/git/1.0"
+    xmlns:mylyn="http://www.eclipse.org/oomph/setup/mylyn/1.0"
     xmlns:predicates="http://www.eclipse.org/oomph/predicates/1.0"
     xmlns:projects="http://www.eclipse.org/oomph/setup/projects/1.0"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
     xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/setup/mylyn/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Mylyn.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore"
     name="pamtram"
     label="PAMTraM">
   <setupTask
@@ -73,12 +74,17 @@
     <requirement
         name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"
         optional="true"/>
+    <requirement
+        name="de.weingardt.mylyn.gitlab.feature.group"
+        optional="true"/>
     <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
         url="https://agtele.eats.et.tu-dresden.de/eclipse/updates/"/>
     <repository
         url="http://download.eclipse.org/windowbuilder/WB/release/4.6/"/>
+    <repository
+        url="http://pweingardt.github.com/mylyn-gitlab/"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
@@ -239,6 +245,21 @@
           value=".git"
           label=".git"/>
       <description>Whether or not to append a '.git' suffix to cloned repositories.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        id="gitlab.user"
+        name="gitlab.user"
+        label="Gitlab user name">
+      <description>Gitlab user name</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:VariableTask"
+        id="gitlab.password"
+        type="PASSWORD"
+        name="gitlab.password"
+        label="Gitlab password">
+      <description>Gitlab password</description>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -711,6 +732,68 @@
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        id="gitlab.mylyn.integration"
+        name="Gitlab Mylyn integration">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          id="issue.origin.pamtram"
+          name="issue.origin.pamtram"
+          value="https://git.agtele.eats.et.tu-dresden.de/pamtram/de.mfreund.pamtram.git"
+          defaultValue="https://git.agtele.eats.et.tu-dresden.de/pamtram/de.mfreund.pamtram.git"
+          label="Pamtram clone origin">
+        <description>The URL that is used to retrieve issues for pamtram.</description>
+      </setupTask>
+      <setupTask
+          xsi:type="mylyn:MylynQueriesTask"
+          id="gitlab.mylyn.queries"
+          connectorKind="gitlab"
+          repositoryURL="${issue.origin.pamtram}"
+          userID="${gitlab.user}"
+          password="${gitlab.password}">
+        <query
+            summary="all.open.issues.query"
+            url="${issue.origin.pamtram}">
+          <attribute
+              key="closed"
+              value="false"/>
+          <attribute
+              key="opened"
+              value="true"/>
+          <attribute
+              key="assignee"
+              value=""/>
+          <attribute
+              key="milestone"
+              value=""/>
+          <attribute
+              key="labels"
+              value=""/>
+        </query>
+        <query
+            summary="issues.assigned.to.me.query"
+            url="${issue.origin.pamtram}">
+          <attribute
+              key="closed"
+              value="false"/>
+          <attribute
+              key="opened"
+              value="true"/>
+          <attribute
+              key="assignee"
+              value="${gitlab.user}"/>
+          <attribute
+              key="milestone"
+              value=""/>
+          <attribute
+              key="labels"
+              value=""/>
+        </query>
+        <description>Create some mylyn queries</description>
+      </setupTask>
+      <description>Create a task repository based on the gitlab issues and create some queries</description>
     </setupTask>
   </stream>
   <logicalProjectContainer

@@ -61,6 +61,7 @@ public class MappingContentProvider extends AdapterFactoryContentProvider implem
 
 		if (feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS)
 				|| feature.equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES)
+				|| feature.equals(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_ATTRIBUTES)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS)

@@ -27,6 +27,7 @@ import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.util.PamtramValidator;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
@@ -46,6 +47,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  *   <li>{@link pamtram.impl.MappingModelImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalValues <em>Global Values</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getActiveMappings <em>Active Mappings</em>}</li>
+ *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalAttributes <em>Global Attributes</em>}</li>
  * </ul>
  *
  * @generated
@@ -120,6 +122,16 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @ordered
 	 */
 	protected EList<FixedValue> globalValues;
+
+	/**
+	 * The cached value of the '{@link #getGlobalAttributes() <em>Global Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlobalAttributes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GlobalAttribute> globalAttributes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -300,6 +312,18 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<GlobalAttribute> getGlobalAttributes() {
+		if (globalAttributes == null) {
+			globalAttributes = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES);
+		}
+		return globalAttributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -361,6 +385,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return ((InternalEList<?>)getModifierSets()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				return ((InternalEList<?>)getGlobalValues()).basicRemove(otherEnd, msgs);
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
+				return ((InternalEList<?>)getGlobalAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -388,6 +414,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return getGlobalValues();
 			case PamtramPackage.MAPPING_MODEL__ACTIVE_MAPPINGS:
 				return getActiveMappings();
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
+				return getGlobalAttributes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -422,6 +450,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				getGlobalValues().clear();
 				getGlobalValues().addAll((Collection<? extends FixedValue>)newValue);
 				return;
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
+				getGlobalAttributes().clear();
+				getGlobalAttributes().addAll((Collection<? extends GlobalAttribute>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -452,6 +484,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES:
 				getGlobalValues().clear();
 				return;
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
+				getGlobalAttributes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -478,6 +513,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return globalValues != null && !globalValues.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__ACTIVE_MAPPINGS:
 				return !getActiveMappings().isEmpty();
+			case PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES:
+				return globalAttributes != null && !globalAttributes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

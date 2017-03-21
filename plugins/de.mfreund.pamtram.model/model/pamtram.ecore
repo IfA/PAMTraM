@@ -65,6 +65,13 @@
         <details key="get" value="&lt;%java.util.List%>&lt;FixedValue> globalValues = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalValues().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,&#xD;&#xA;&#x9;&#x9;globalValues.size(), globalValues.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttributes" upperBound="-1"
+        eType="#//mapping/GlobalAttribute" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="get" value="&lt;%java.util.List%>&lt;GlobalAttribute> globalAttributes = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalAttributes().parallelStream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,&#xD;&#xA;&#x9;&#x9;globalAttributes.size(), globalAttributes.toArray());"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet" changeable="false" volatile="true"
         transient="true" derived="true">
@@ -149,6 +156,8 @@
         <details key="get" value="&lt;%java.util.List%>&lt;Mapping> mappings = this.getMappings().parallelStream().filter(m -> !m.isDeactivated() &amp;&amp; !m.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttributes" upperBound="-1"
+        eType="#//mapping/GlobalAttribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1679,8 +1688,6 @@
           eType="#//mapping/MappingHintGroupType" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="importedMappingHintGroups"
           upperBound="-1" eType="#//mapping/MappingHintGroupImporter" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="globalVariables" upperBound="-1"
-          eType="#//mapping/GlobalAttribute" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>

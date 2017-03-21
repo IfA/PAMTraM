@@ -190,22 +190,13 @@ public interface MappingPackage extends EPackage {
 	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Global Variables</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__GLOBAL_VARIABLES = MAPPING_TYPE_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 5;
+	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -214,7 +205,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 6;
+	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -3129,17 +3120,6 @@ public interface MappingPackage extends EPackage {
 	EReference getMapping_ImportedMappingHintGroups();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.Mapping#getGlobalVariables <em>Global Variables</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Global Variables</em>'.
-	 * @see pamtram.mapping.Mapping#getGlobalVariables()
-	 * @see #getMapping()
-	 * @generated
-	 */
-	EReference getMapping_GlobalVariables();
-
-	/**
 	 * Returns the meta object for the attribute '{@link pamtram.mapping.Mapping#isAbstract <em>Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4029,14 +4009,6 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING__IMPORTED_MAPPING_HINT_GROUPS = eINSTANCE.getMapping_ImportedMappingHintGroups();
-
-		/**
-		 * The meta object literal for the '<em><b>Global Variables</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MAPPING__GLOBAL_VARIABLES = eINSTANCE.getMapping_GlobalVariables();
 
 		/**
 		 * The meta object literal for the '<em><b>Abstract</b></em>' attribute feature.

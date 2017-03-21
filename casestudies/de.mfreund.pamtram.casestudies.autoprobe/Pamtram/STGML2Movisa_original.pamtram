@@ -5508,6 +5508,10 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
     </libraryElements>
   </targetSectionModels>
   <mappingModels>
+    <globalAttributes name="xmax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0"/>
+      <globalAttributes name="ymax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.2"/>
+      <globalAttributes name="xmin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.1"/>
+      <globalAttributes name="ymin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.3"/>
     <mappings name="Movisa Template " sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisAppModel" targetSection="//@targetSectionModels.0/@sections.0">
         <mappingHints xsi:type="mapping:AttributeMapping" name="VisAppName" target="//@targetSectionModels.0/@sections.0/@attributes.0">
@@ -5542,10 +5546,6 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="rootStateEvent" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.24"/>
         </mappingHints>
       </mappingHintGroups>
-      <globalVariables name="xmax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0"/>
-      <globalVariables name="ymax" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.2"/>
-      <globalVariables name="xmin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.1"/>
-      <globalVariables name="ymin" source="//@sourceSectionModels.0/@sections.0/@references.2/@value.0/@attributes.3"/>
     </mappings>
     <mappings name="Signal String" sourceSection="//@sourceSectionModels.0/@sections.28">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal String" targetSection="//@targetSectionModels.0/@sections.6">

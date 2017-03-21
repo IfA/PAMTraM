@@ -50,6 +50,7 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider im
 			List<Object> elements = new ArrayList<>();
 			elements.addAll(((MappingModel) object).getModifierSets());
 			elements.addAll(((MappingModel) object).getGlobalValues());
+			elements.addAll(((MappingModel) object).getGlobalAttributes());
 			return elements.toArray();
 		}
 		return super.getElements(object);

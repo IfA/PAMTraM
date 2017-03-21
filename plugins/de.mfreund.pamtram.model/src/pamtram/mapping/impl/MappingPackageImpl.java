@@ -478,17 +478,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_GlobalVariables() {
-		return (EReference)mappingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getMapping_Abstract() {
-		return (EAttribute)mappingEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)mappingEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1254,7 +1245,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		mappingEClass = createEClass(MAPPING);
 		createEReference(mappingEClass, MAPPING__MAPPING_HINT_GROUPS);
 		createEReference(mappingEClass, MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
-		createEReference(mappingEClass, MAPPING__GLOBAL_VARIABLES);
 		createEAttribute(mappingEClass, MAPPING__ABSTRACT);
 		createEOperation(mappingEClass, MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS);
 		createEOperation(mappingEClass, MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS);
@@ -1577,7 +1567,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMapping_MappingHintGroups(), this.getMappingHintGroupType(), null, "mappingHintGroups", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_ImportedMappingHintGroups(), this.getMappingHintGroupImporter(), null, "importedMappingHintGroups", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMapping_GlobalVariables(), this.getGlobalAttribute(), null, "globalVariables", null, 0, -1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMapping_Abstract(), ecorePackage.getEBoolean(), "abstract", "false", 1, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMapping__GetActiveMappingHintGroups(), this.getMappingHintGroupType(), "getActiveMappingHintGroups", 0, -1, IS_UNIQUE, IS_ORDERED);

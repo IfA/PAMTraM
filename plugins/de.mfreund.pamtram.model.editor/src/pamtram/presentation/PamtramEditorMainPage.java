@@ -80,13 +80,14 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -346,7 +347,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		this.globalElementsViewer.setInput(this.editor.pamtram);
 
 		this.globalElementsViewer.getTree()
-				.addSelectionListener(new SetViewerSelectionListener(this.editor, this.globalElementsViewer));
+				.addSelectionListener(new GlobalElementsViewerSelectionListener(this.globalElementsViewer));
 		this.globalElementsViewer.getTree()
 				.addMouseListener(new SetViewerMouseListener(this.editor, this.globalElementsViewer));
 
@@ -563,12 +564,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					 */
 				} else if (item.getData() instanceof GlobalAttribute) {
 					GlobalAttribute g = (GlobalAttribute) item.getData();
-					mapping = (Mapping) g.eContainer();
-					if (g.getSource() != null) {
-						source = g.getSource();
-					} else {
-						source = mapping.getSourceSection();
-					}
+					source = g.getSource();
 					// expanded.add(mapping);
 					// expanded.add(g);
 
@@ -668,12 +664,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.currentMapping = mapping;
 
 				/*
-				 * If a DynamicSourceElement is selected, select the source attribute that it represents and the
-				 * target attribute of a possible parent AttributeMapping.
+				 * If a DynamicSourceElement is selected, select the source attribute that it represents and the target
+				 * attribute of a possible parent AttributeMapping.
 				 */
 			} else if (item.getData() instanceof DynamicSourceElement<?, ?, ?, ?>) {
-				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) item
-						.getData();
+				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) item.getData();
 
 				Attribute<?, ?, ?, ?> target = null;
 				if (modifiedAttribute.eContainer() instanceof AttributeMapping) {
@@ -889,6 +884,46 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					PamtramEditorMainPage.this.libTargetViewer.setSelection(new StructuredSelection(target));
 				}
 			}
+		}
+	}
+
+	/**
+	 * A {@link SourceViewerSelectionListener} that handles selections in the
+	 * {@link PamtramEditorMainPage#globalElementsViewer}.
+	 * <p />
+	 * It automatically expands referenced elements. For example, if a {@link GlobalAttribute} is selected, the
+	 * associated {@link SourceSectionAttribute} is expanded so that the user can easily determine it.
+	 *
+	 * @author mfreund
+	 */
+	private final class GlobalElementsViewerSelectionListener extends SetViewerSelectionListener {
+
+		private GlobalElementsViewerSelectionListener(TreeViewer viewer) {
+			super(PamtramEditorMainPage.this.editor, viewer);
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+
+			super.widgetSelected(e);
+
+			TreeItem item = (TreeItem) e.item;
+
+			Object source = null;
+
+			if (item.getData() instanceof GlobalAttribute) {
+
+				source = ((GlobalAttribute) item.getData()).getSource();
+			}
+
+			// Select and expand the source and target items associated with
+			// the selected mapping.
+			if (source == null) {
+				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection());
+			} else {
+				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection(source));
+			}
+
 		}
 	}
 

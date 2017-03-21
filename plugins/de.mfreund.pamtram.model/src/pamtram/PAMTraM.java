@@ -5,6 +5,7 @@ package pamtram;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.mapping.Mapping;
@@ -30,6 +31,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  *   <li>{@link pamtram.PAMTraM#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getActiveMappings <em>Active Mappings</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getGlobalValues <em>Global Values</em>}</li>
+ *   <li>{@link pamtram.PAMTraM#getGlobalAttributes <em>Global Attributes</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getConditionModels <em>Condition Models</em>}</li>
  *   <li>{@link pamtram.PAMTraM#getSharedConditionModels <em>Shared Condition Models</em>}</li>
@@ -220,6 +222,23 @@ public interface PAMTraM extends EObject {
 	 * @generated
 	 */
 	EList<FixedValue> getGlobalValues();
+
+	/**
+	 * Returns the value of the '<em><b>Global Attributes</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.GlobalAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Global Attributes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Global Attributes</em>' reference list.
+	 * @see pamtram.PamtramPackage#getPAMTraM_GlobalAttributes()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><GlobalAttribute> globalAttributes = <%java.util.stream.Stream%>.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())\r\n\t\t.flatMap(s -> s.getGlobalAttributes().parallelStream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,\r\n\t\tglobalAttributes.size(), globalAttributes.toArray());'"
+	 * @generated
+	 */
+	EList<GlobalAttribute> getGlobalAttributes();
 
 	/**
 	 * Returns the value of the '<em><b>Modifier Sets</b></em>' reference list.

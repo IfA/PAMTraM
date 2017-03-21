@@ -488,8 +488,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		GlobalAttributeValueExtractor globalAttributeValueExtractor = new GlobalAttributeValueExtractor(
 				attributeValueModifier, this.transformationConfig.getLogger());
-		Map<GlobalAttribute, String> globalAttributeValues = globalAttributeValueExtractor
-				.extractGlobalAttributeValues(matchingResult, suitableMappings);
+		Map<GlobalAttribute, String> globalAttributeValues = globalAttributeValueExtractor.extractGlobalAttributeValues(
+				matchingResult, this.transformationConfig.getPamtramModel().getMappingModels());
 
 		// Collect the values of FixedValues and GlobalAttributes in a common map that will be passed to consumers
 		//

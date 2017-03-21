@@ -41,6 +41,7 @@ import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ContainerSelectorTargetAttribute;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
@@ -78,6 +79,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  *   <li>{@link pamtram.impl.PAMTraMImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getActiveMappings <em>Active Mappings</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalValues <em>Global Values</em>}</li>
+ *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalAttributes <em>Global Attributes</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getConditionModels <em>Condition Models</em>}</li>
  *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedConditionModels <em>Shared Condition Models</em>}</li>
@@ -320,6 +322,18 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				.flatMap(s -> s.getGlobalValues().parallelStream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
 				globalValues.size(), globalValues.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GlobalAttribute> getGlobalAttributes() {
+		List<GlobalAttribute> globalAttributes = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
+				.flatMap(s -> s.getGlobalAttributes().parallelStream()).collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,
+				globalAttributes.size(), globalAttributes.toArray());
 	}
 
 	/**
@@ -862,6 +876,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return getActiveMappings();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
 				return getGlobalValues();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_ATTRIBUTES:
+				return getGlobalAttributes();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
 				return getModifierSets();
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
@@ -980,6 +996,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return !getActiveMappings().isEmpty();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
 				return !getGlobalValues().isEmpty();
+			case PamtramPackage.PAM_TRA_M__GLOBAL_ATTRIBUTES:
+				return !getGlobalAttributes().isEmpty();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
 				return !getModifierSets().isEmpty();
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:

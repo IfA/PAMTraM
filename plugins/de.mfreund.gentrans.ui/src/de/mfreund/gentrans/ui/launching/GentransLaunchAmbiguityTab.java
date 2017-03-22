@@ -34,6 +34,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchConfigurationTab2} that allows to customize the ambiguity resolving strategies to be applied during
@@ -46,7 +47,7 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
 	 */
-	private static final String PAMTRAM_FOLDER = "Pamtram";
+	private static final String PAMTRAM_FOLDER = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	/**
 	 * The name of the folder in the PAMTraM folder where transformation models are stored.

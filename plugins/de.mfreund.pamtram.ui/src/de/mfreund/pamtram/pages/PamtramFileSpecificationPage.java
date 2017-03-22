@@ -31,6 +31,7 @@ import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
 import de.tud.et.ifa.agtele.ui.listeners.KeyReleasedListener;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.PAMTraM;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * This {@link WizardPage} allows create a new {@link PAMTraM} model.
@@ -43,7 +44,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 
 	private IWizardContainer wizContainer;
 
-	private String pamtramFile = "my.pamtram";
+	private String pamtramFile = "my" + PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING");
 
 	private Text pamtramFileTextfield;
 
@@ -100,7 +101,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 
 		// create a text field for the pamtram file
 		this.pamtramFileTextfield = new Text(container, SWT.BORDER);
-		this.pamtramFileTextfield.setText("my.pamtram");
+		this.pamtramFileTextfield.setText(this.pamtramFile);
 		this.pamtramFileTextfield.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 		this.pamtramFileTextfield.setMessage("The name of the PAMTraM file to be created...");
 		// set a listener that updates the buttons
@@ -201,10 +202,10 @@ public class PamtramFileSpecificationPage extends WizardPage {
 	 */
 	public String getPamtramFile() {
 
-		if (this.pamtramFile.endsWith(".pamtram")) {
+		if (this.pamtramFile.endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"))) {
 			return this.pamtramFile;
 		} else {
-			return this.pamtramFile + ".pamtram";
+			return this.pamtramFile + PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING");
 		}
 	}
 

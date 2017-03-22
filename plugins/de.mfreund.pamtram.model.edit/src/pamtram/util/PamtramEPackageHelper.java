@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * A utility class that allows can check if {@link EPackage EPackages} referenced in a {@link PAMTraM} model are already
@@ -68,10 +69,10 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		 * errors resulting from unregistered packages are not reflected in the 'main' resource set (and are thus not
 		 * displayed e.g. in an editor)!
 		 */
-		Resource pamtramResource = resourceSet.getResource(
-				URI.createPlatformResourceURI(
-						project.getName() + File.separator + "Pamtram" + File.separator + pamtramFile.getName(), true),
-				true);
+		Resource pamtramResource = resourceSet.getResource(URI.createPlatformResourceURI(
+				project.getName() + File.separator + PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME")
+						+ File.separator + pamtramFile.getName(),
+				true), true);
 		EList<EObject> contents = pamtramResource.getContents();
 		if (contents == null || contents.isEmpty() || !(contents.get(0) instanceof PAMTraM)) {
 			return EPackageCheck.ERROR_PAMTRAM_NOT_FOUND;
@@ -124,7 +125,7 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		// in the 'metamodel' folder of the project
 		//
 		Map<String, EPackage> ePackagesToRegister;
-		IFolder metamodelFolder = project.getFolder("metamodel");
+		IFolder metamodelFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("METAMODEL_FOLDER_NAME"));
 		if (!metamodelFolder.exists()) {
 			return EPackageCheck.ERROR_METAMODEL_FOLDER_NOT_FOUND;
 		}

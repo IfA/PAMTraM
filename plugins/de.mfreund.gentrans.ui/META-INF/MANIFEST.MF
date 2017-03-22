@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.databinding,
  com.ibm.icu,
  de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
- de.mfreund.gentrans;bundle-version="1.8.0"
+ de.mfreund.gentrans;bundle-version="1.8.0",
+ de.mfreund.pamtram.model.edit
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation based on a selection.
@@ -36,22 +37,19 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
 
 		// get the existing launch configurations for the current selection
-		ILaunchConfiguration[] launchConfigs =
-				this.getLaunchConfigurations(selection);
+		ILaunchConfiguration[] launchConfigs = this.getLaunchConfigurations(selection);
 
 		ILaunchConfiguration configToLaunch;
 
-		if(launchConfigs.length == 0) {
+		if (launchConfigs.length == 0) {
 			// if no launch config has been found, create a new one
 			try {
 				IResource res = this.getLaunchableResource(selection);
-				if(res == null) {
-					MessageDialog.openError(new Shell(),
-							"Error", "No launchable resource found!");
+				if (res == null) {
+					MessageDialog.openError(new Shell(), "Error", "No launchable resource found!");
 					return;
 				}
-				ILaunchConfigurationWorkingCopy workingCopy =
-						type.newInstance(null, res.getName());
+				ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, res.getName());
 
 				// set default for common settings
 				CommonTab tab = new CommonTab();
@@ -104,14 +102,15 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 	@Override
 	public void launch(IEditorPart editor, String mode) {
+
 		return;
 	}
 
 	/**
-	 * Retrieve the existing launch configurations that are available for the
-	 * current selection.
+	 * Retrieve the existing launch configurations that are available for the current selection.
 	 *
-	 * @param selection the current selection
+	 * @param selection
+	 *            the current selection
 	 * @return a list of launch configurations for the current selection
 	 */
 	@Override
@@ -120,13 +119,12 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		IResource res = this.getLaunchableResource(selection);
 		// if no launchable project could be determined, return
 		// an empty list of launch configurations
-		if(res == null || !(res instanceof IProject)) {
-			return new ILaunchConfiguration[]{};
+		if (res == null || !(res instanceof IProject)) {
+			return new ILaunchConfiguration[] {};
 		}
 
 		IProject project = (IProject) res;
-		ArrayList<ILaunchConfiguration> launchConfigs =
-				new ArrayList<>();
+		ArrayList<ILaunchConfiguration> launchConfigs = new ArrayList<>();
 
 		try {
 
@@ -135,8 +133,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 					.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
 
 			// retrieve the launch configurations from the launch manager
-			ILaunchConfiguration[] launchConfigurations =
-					launchManager.getLaunchConfigurations(type);
+			ILaunchConfiguration[] launchConfigurations = launchManager.getLaunchConfigurations(type);
 
 			for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
 				// the launch configuration is applicable if the project
@@ -163,26 +160,26 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	@Override
 	public IResource getLaunchableResource(ISelection selection) {
 
-		if(!selection.isEmpty() && selection instanceof TreeSelection) {
+		if (!selection.isEmpty() && selection instanceof TreeSelection) {
 
 			// the selected object
 			Object el = ((TreeSelection) selection).getFirstElement();
 
-			if(el instanceof IProject) {
+			if (el instanceof IProject) {
 
 				// if a project has been selected, return it
 				return (IProject) el;
 
-			} else if(el instanceof IFile) {
+			} else if (el instanceof IFile) {
 
 				// if a source or pamtram file has been selected, determine
 				// the corresponding project and return it
 				IFile file = (IFile) el;
-				if((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) &&
-						file.getParent().getName().equals("Source")) {
+				if ((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) && file.getParent().getName()
+						.equals(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))) {
 					return file.getProject();
-				} else if(file.getName().endsWith(".pamtram") &&
-						file.getParent().getName().equals("Pamtram")) {
+				} else if (file.getName().endsWith(".pamtram") && file.getParent().getName()
+						.equals(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"))) {
 					return file.getProject();
 				}
 			}
@@ -194,6 +191,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 	@Override
 	public IResource getLaunchableResource(IEditorPart editorpart) {
+
 		return null;
 	}
 

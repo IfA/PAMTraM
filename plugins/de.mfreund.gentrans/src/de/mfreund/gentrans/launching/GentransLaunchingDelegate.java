@@ -31,6 +31,7 @@ import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrateg
 import de.mfreund.gentrans.transformation.resolving.history.HistoryResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.statistics.StatisticsResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.ProjectRefreshingJobDoneListener;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchConfigurationDelegate} that is able to launch GenTrans transformations.
@@ -131,17 +132,17 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	/**
 	 * The name of the folder where the target models are stored.
 	 */
-	private static final String TARGET_FOLDER_NAME = "Target";
+	private static final String TARGET_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 
 	/**
 	 * The name of the folder where the source models are stored.
 	 */
-	private static final String SOURCE_FOLDER_NAME = "Source";
+	private static final String SOURCE_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME");
 
 	/**
 	 * The name of the folder where the pamtram models are stored.
 	 */
-	private static final String PAMTRAM_FOLDER_NAME = "Pamtram";
+	private static final String PAMTRAM_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor)

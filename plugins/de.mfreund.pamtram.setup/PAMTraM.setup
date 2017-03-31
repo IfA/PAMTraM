@@ -178,15 +178,15 @@
         name="clone.origin.pamtram"
         defaultValue="git@git.agtele.eats.et.tu-dresden.de:agtele/de.mfreund.pamtram.git"
         label="Pamtram clone origin">
-      <description>Description	The URL where the 'pamtram' repository will be cloned from.</description>
+      <description>The URL where the 'genlibrary' repository will be cloned from.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
         id="clone.origin.genlibrary"
         name="clone.origin.genlibrary"
-        defaultValue="git@git.agtele.eats.et.tu-dresden.de:projects/genlibrary/common"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:agtele/de.tud.et.ifa.agtele.genlibrary.git"
         label="Genlibrary clone origin">
-      <description>The URL where all projects related to the 'genlibrary' will be cloned from.</description>
+      <description>The URL where the 'genlibrary' repository will be cloned from.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
@@ -208,13 +208,13 @@
       <choice
           value=""
           label="Located in the specified absolute folder location"/>
-      <description>The folder where all projects related to the 'pamtram' will be cloned to.</description>
+      <description>The folder where the 'pamtram' repository will be cloned to.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
         id="clone.location.genlibrary"
         name="clone.location.genlibrary"
-        defaultValue="${install.root}\repos\genlibrary"
+        defaultValue="${install.root}\repos"
         label="Genlibrary clone location">
       <choice
           value="${installation.location/repos/genlibrary}"
@@ -222,7 +222,7 @@
       <choice
           value=""
           label="Located in the specified absolute folder location"/>
-      <description>The folder where all projects related to the 'genlibrary' will be cloned to.</description>
+      <description>The folder where the 'genlibrary' repository will be cloned to.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
@@ -296,24 +296,6 @@
           value="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary${clone.append.suffix|trimRight}"
           defaultValue=""
           label="Clone location Genlibrary">
-        <description></description>
-      </setupTask>
-      <setupTask
-          xsi:type="setup:VariableTask"
-          id="clone.location.genlibrary.edit"
-          name="clone.location.genlibrary.edit"
-          value="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.edit${clone.append.suffix|trimRight}"
-          defaultValue=""
-          label="Clone location Genlibrary edit">
-        <description></description>
-      </setupTask>
-      <setupTask
-          xsi:type="setup:VariableTask"
-          id="clone.location.genlibrary.ui"
-          name="clone.location.genlibrary.ui"
-          value="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary.ui${clone.append.suffix|trimRight}"
-          defaultValue=""
-          label="Clone location Genlibrary ui">
         <description></description>
       </setupTask>
       <setupTask
@@ -393,7 +375,7 @@
           xsi:type="git:GitCloneTask"
           id="clone.genlibrary"
           location="${clone.location.genlibrary.main}"
-          remoteURI="${clone.origin.genlibrary}/de.tud.et.ifa.agtele.genlibrary.git">
+          remoteURI="${clone.origin.genlibrary}">
         <configSections
             name="gitflow &quot;prefix&quot;">
           <properties
@@ -615,10 +597,6 @@
           rootFolder="${clone.location.pamtram.main}"/>
       <sourceLocator
           rootFolder="${clone.location.genlibrary.main}"/>
-      <sourceLocator
-          rootFolder="${clone.location.genlibrary.edit}"/>
-      <sourceLocator
-          rootFolder="${clone.location.genlibrary.ui}"/>
       <sourceLocator
           rootFolder="${clone.location.commons.main}"/>
       <sourceLocator

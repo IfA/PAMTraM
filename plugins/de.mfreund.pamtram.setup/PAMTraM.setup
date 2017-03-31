@@ -176,9 +176,9 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.pamtram"
         name="clone.origin.pamtram"
-        defaultValue="git@git.agtele.eats.et.tu-dresden.de:pamtram"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:agtele/de.mfreund.pamtram.git"
         label="Pamtram clone origin">
-      <description>The URL where all projects related to the 'pamtram' will be cloned from.</description>
+      <description>Description	The URL where the 'pamtram' repository will be cloned from.</description>
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
@@ -200,7 +200,7 @@
         xsi:type="setup:VariableTask"
         id="clone.location.pamtram"
         name="clone.location.pamtram"
-        defaultValue="${install.root}\repos\pamtram"
+        defaultValue="${install.root}\repos"
         label="Pamtram clone location">
       <choice
           value="${installation.location/repos/pamtram}"
@@ -362,7 +362,7 @@
           xsi:type="git:GitCloneTask"
           id="clone.pamtram"
           location="${clone.location.pamtram.main}"
-          remoteURI="${clone.origin.pamtram}/de.mfreund.pamtram.git">
+          remoteURI="${clone.origin.pamtram}">
         <configSections
             name="gitflow &quot;prefix&quot;">
           <properties

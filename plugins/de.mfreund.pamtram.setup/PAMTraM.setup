@@ -534,7 +534,14 @@
       <sourceLocator
           rootFolder="${clone.location.pamtram.main}"/>
       <sourceLocator
-          rootFolder="${clone.location.genlibrary.main}"/>
+          rootFolder="${clone.location.genlibrary.main}">
+        <predicate
+            xsi:type="predicates:NotPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.tud.et.ifa.agtele.genlibrary.epsilon"/>
+        </predicate>
+      </sourceLocator>
       <sourceLocator
           rootFolder="${clone.location.commons.main}"/>
       <sourceLocator

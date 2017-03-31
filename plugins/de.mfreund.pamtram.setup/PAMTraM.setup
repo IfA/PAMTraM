@@ -24,6 +24,21 @@
       value="2048m"
       vm="true"/>
   <setupTask
+      xsi:type="setup:EclipseIniTask"
+      id="open.java.perspective"
+      option="-perspective"
+      value="org.eclipse.jdt.ui.JavaPerspective">
+    <description>Open Java perspective already upon very first start (see: https://wiki.eclipse.org/Eclipse_Oomph_Authoring#Open_default_perspective_already_upon_very_first_start).</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:ResourceCreationTask"
+      id="suppress.workspace.prompt"
+      content="MAX_RECENT_WORKSPACES=5&#xA;RECENT_WORKSPACES=${workspace.location|property}&#xA;RECENT_WORKSPACES_PROTOCOL=3&#xA;SHOW_WORKSPACE_SELECTION_DIALOG=false&#xA;eclipse.preferences.version=1"
+      targetURL="configuration:/.settings/org.eclipse.ui.ide.prefs"
+      encoding="UTF-8">
+    <description>Suppress prompt for default workspace already upon very first start (see https://wiki.eclipse.org/Eclipse_Oomph_Authoring#Suppress_prompt_for_default_workspace_already_upon_very_first_start).</description>
+  </setupTask>
+  <setupTask
       xsi:type="setup.p2:P2Task"
       label="PAMTraM">
     <requirement

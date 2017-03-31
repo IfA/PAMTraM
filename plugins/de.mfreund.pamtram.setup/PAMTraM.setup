@@ -192,7 +192,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.commons"
         name="clone.origin.commons"
-        defaultValue="git@git.agtele.eats.et.tu-dresden.de:projects/eclipse-commons"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:eclipse-commons"
         label="AGTele Eclipse Commons clone origin">
       <description>The URL where all projects from the 'AGTele Eclipse Commons' feature will be cloned from.</description>
     </setupTask>
@@ -401,68 +401,6 @@
               value="master"/>
         </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.edit"
-          location="${clone.location.genlibrary.edit}"
-          remoteURI="${clone.origin.genlibrary}/de.tud.et.ifa.agtele.genlibrary.edit.git">
-        <configSections
-            name="gitflow &quot;prefix&quot;">
-          <properties
-              key="feature"
-              value="feature/"/>
-          <properties
-              key="release"
-              value="release/"/>
-          <properties
-              key="hotfix"
-              value="hotfix/"/>
-          <properties
-              key="versiontag"
-              value=""/>
-        </configSections>
-        <configSections
-            name="gitflow &quot;branch&quot;">
-          <properties
-              key="develop"
-              value="develop"/>
-          <properties
-              key="master"
-              value="master"/>
-        </configSections>
-        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.edit.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.genlibrary.ui"
-          location="${clone.location.genlibrary.ui}"
-          remoteURI="${clone.origin.genlibrary}/de.tud.et.ifa.agtele.genlibrary.ui.git">
-        <configSections
-            name="gitflow &quot;prefix&quot;">
-          <properties
-              key="feature"
-              value="feature/"/>
-          <properties
-              key="release"
-              value="release/"/>
-          <properties
-              key="hotfix"
-              value="hotfix/"/>
-          <properties
-              key="versiontag"
-              value=""/>
-        </configSections>
-        <configSections
-            name="gitflow &quot;branch&quot;">
-          <properties
-              key="develop"
-              value="develop"/>
-          <properties
-              key="master"
-              value="master"/>
-        </configSections>
-        <description>Clone the 'de.tud.et.ifa.agtele.genlibrary.ui.git' repository.</description>
       </setupTask>
       <setupTask
           xsi:type="git:GitCloneTask"

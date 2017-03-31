@@ -679,7 +679,7 @@
           xsi:type="setup:VariableTask"
           id="issue.origin.pamtram"
           name="issue.origin.pamtram"
-          value="https://git.agtele.eats.et.tu-dresden.de/pamtram/de.mfreund.pamtram.git"
+          value="https://git.agtele.eats.et.tu-dresden.de/agtele/de.mfreund.pamtram.git"
           defaultValue="https://git.agtele.eats.et.tu-dresden.de/pamtram/de.mfreund.pamtram.git"
           label="Pamtram clone origin">
         <description>The URL that is used to retrieve issues for pamtram.</description>

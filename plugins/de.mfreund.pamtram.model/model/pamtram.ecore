@@ -1310,6 +1310,17 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VirtualSourceSectionAttribute">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivation" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionAttribute"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/VirtualAttribute">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
     </eSubpackages>
     <eSubpackages name="target" nsURI="http://mfreund.de/pamtram/structure/target"
         nsPrefix="target">

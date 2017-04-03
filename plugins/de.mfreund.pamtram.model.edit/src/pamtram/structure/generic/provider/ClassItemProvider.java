@@ -40,16 +40,18 @@ import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ *
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ClassItemProvider(AdapterFactory adapterFactory) {
@@ -57,45 +59,40 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEClassPropertyDescriptor(object);
-			addCardinalityPropertyDescriptor(object);
-			addContainerPropertyDescriptor(object);
+			this.addEClassPropertyDescriptor(object);
+			this.addCardinalityPropertyDescriptor(object);
+			this.addContainerPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the EClass feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EClass feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_eClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-				 GenericPackage.Literals.CLASS__ECLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_eClass_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+				GenericPackage.Literals.CLASS__ECLASS, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the EClass feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EClass feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
 
@@ -115,8 +112,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 						List<EClass> choiceOfValues = new LinkedList<>();
 
 						/*
-						 * If we have a container parameter with a specified source, we do not need to scan package
-						 * contents. Instead, the user may only select the eClass of the specified source element.
+						 * If we have a container parameter with a specified
+						 * source, we do not need to scan package contents.
+						 * Instead, the user may only select the eClass of the
+						 * specified source element.
 						 */
 						if (section.eContainer() instanceof ContainerParameter
 								&& ((ContainerParameter) section.eContainer()).getSource() != null) {
@@ -128,8 +127,21 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 						packagesToScan.add(sectionModel.getMetaModelPackage());
 
-						List<EClass> documentRoot = new LinkedList<>();// this should only contain one element but we
-																		// need to implement this in a generic way...
+						List<EClass> documentRoot = new LinkedList<>();// this
+																		// should
+																		// only
+																		// contain
+																		// one
+																		// element
+																		// but
+																		// we
+																		// need
+																		// to
+																		// implement
+																		// this
+																		// in a
+																		// generic
+																		// way...
 
 						while (packagesToScan.size() > 0) {
 							EPackage pkg = packagesToScan.remove(0);
@@ -143,7 +155,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 								if (c instanceof EClass) {
 									EClass cl = (EClass) c;
 									if (!documentRoot.contains(cl)) {
-										// abstract EClasses are only allowed for abstract sections
+										// abstract EClasses are only allowed
+										// for abstract sections
 										if (!cl.isAbstract() || object instanceof Section<?, ?, ?, ?>
 												&& ((Section<?, ?, ?, ?>) object).isAbstract()) {
 											choiceOfValues.add((EClass) c);
@@ -185,100 +198,94 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Cardinality feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Cardinality feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_cardinality_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-				 GenericPackage.Literals.CLASS__CARDINALITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this
+				.createItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_Class_cardinality_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature",
+								"_UI_Class_type"),
+						GenericPackage.Literals.CLASS__CARDINALITY, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Container feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Container feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-				 GenericPackage.Literals.CLASS__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_container_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
+				GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
-			childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
+			this.childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
+			this.childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns Class.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Class.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Class"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/Class"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> The label of the class is
-	 * composed of its name and the name of the associated eClass. <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> The label of the class is composed of its name and the
+	 * name of the associated eClass. <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -307,31 +314,33 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.structure.generic.Class.class)) {
-			case GenericPackage.CLASS__CARDINALITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GenericPackage.CLASS__REFERENCES:
-			case GenericPackage.CLASS__ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GenericPackage.CLASS__CARDINALITY:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case GenericPackage.CLASS__REFERENCES:
+		case GenericPackage.CLASS__ATTRIBUTES:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -354,6 +363,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
 				TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
+				SourceFactory.eINSTANCE.createVirtualSourceSectionAttribute()));
 
 		/*
 		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
@@ -398,7 +410,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 			Collection<?> collection) {
 
 		/*
-		 * If a 'FileAttribute' is removed, we also need to reset the 'file' reference.
+		 * If a 'FileAttribute' is removed, we also need to reset the 'file'
+		 * reference.
 		 */
 		if (feature == GenericPackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {

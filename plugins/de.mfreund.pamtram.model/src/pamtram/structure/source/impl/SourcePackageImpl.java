@@ -54,6 +54,7 @@ import pamtram.structure.source.SourceSectionCompositeReference;
 import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 
+import pamtram.structure.source.VirtualSourceSectionAttribute;
 import pamtram.structure.source.util.SourceValidator;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.impl.TargetPackageImpl;
@@ -113,6 +114,13 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * @generated
 	 */
 	private EClass actualSourceSectionAttributeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass virtualSourceSectionAttributeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -329,6 +337,24 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVirtualSourceSectionAttribute() {
+		return virtualSourceSectionAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVirtualSourceSectionAttribute_Derivation() {
+		return (EAttribute)virtualSourceSectionAttributeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SourceFactory getSourceFactory() {
 		return (SourceFactory)getEFactoryInstance();
 	}
@@ -370,6 +396,9 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 
 		actualSourceSectionAttributeEClass = createEClass(ACTUAL_SOURCE_SECTION_ATTRIBUTE);
+
+		virtualSourceSectionAttributeEClass = createEClass(VIRTUAL_SOURCE_SECTION_ATTRIBUTE);
+		createEAttribute(virtualSourceSectionAttributeEClass, VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION);
 	}
 
 	/**
@@ -483,6 +512,18 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		actualSourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getSourceSectionAttribute());
+		virtualSourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theGenericPackage.getVirtualAttribute());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		virtualSourceSectionAttributeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(sourceSectionEClass, SourceSection.class, "SourceSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -511,6 +552,9 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		initEReference(getSourceSectionAttribute_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraints", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actualSourceSectionAttributeEClass, ActualSourceSectionAttribute.class, "ActualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(virtualSourceSectionAttributeEClass, VirtualSourceSectionAttribute.class, "VirtualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVirtualSourceSectionAttribute_Derivation(), ecorePackage.getEString(), "derivation", null, 1, 1, VirtualSourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

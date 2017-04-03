@@ -1049,6 +1049,98 @@ public interface SourcePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.source.impl.VirtualSourceSectionAttributeImpl <em>Virtual Source Section Attribute</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.source.impl.VirtualSourceSectionAttributeImpl
+	 * @see pamtram.structure.source.impl.SourcePackageImpl#getVirtualSourceSectionAttribute()
+	 * @generated
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__NAME = SOURCE_SECTION_ATTRIBUTE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS = SOURCE_SECTION_ATTRIBUTE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS = SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Derivation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Virtual Source Section Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT = SOURCE_SECTION_ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION = SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL = SOURCE_SECTION_ATTRIBUTE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The number of operations of the '<em>Virtual Source Section Attribute</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSection <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1171,6 +1263,27 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActualSourceSectionAttribute();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.source.VirtualSourceSectionAttribute <em>Virtual Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Virtual Source Section Attribute</em>'.
+	 * @see pamtram.structure.source.VirtualSourceSectionAttribute
+	 * @generated
+	 */
+	EClass getVirtualSourceSectionAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.source.VirtualSourceSectionAttribute#getDerivation <em>Derivation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Derivation</em>'.
+	 * @see pamtram.structure.source.VirtualSourceSectionAttribute#getDerivation()
+	 * @see #getVirtualSourceSectionAttribute()
+	 * @generated
+	 */
+	EAttribute getVirtualSourceSectionAttribute_Derivation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1304,6 +1417,24 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTUAL_SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getActualSourceSectionAttribute();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.VirtualSourceSectionAttributeImpl <em>Virtual Source Section Attribute</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.source.impl.VirtualSourceSectionAttributeImpl
+		 * @see pamtram.structure.source.impl.SourcePackageImpl#getVirtualSourceSectionAttribute()
+		 * @generated
+		 */
+		EClass VIRTUAL_SOURCE_SECTION_ATTRIBUTE = eINSTANCE.getVirtualSourceSectionAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Derivation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION = eINSTANCE.getVirtualSourceSectionAttribute_Derivation();
 
 	}
 

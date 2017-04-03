@@ -17,6 +17,7 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
+import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.*;
 
 /**
@@ -147,6 +148,17 @@ public class SourceSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE: {
+				VirtualSourceSectionAttribute virtualSourceSectionAttribute = (VirtualSourceSectionAttribute)theEObject;
+				T result = caseVirtualSourceSectionAttribute(virtualSourceSectionAttribute);
+				if (result == null) result = caseSourceSectionAttribute(virtualSourceSectionAttribute);
+				if (result == null) result = caseVirtualAttribute(virtualSourceSectionAttribute);
+				if (result == null) result = caseAttribute(virtualSourceSectionAttribute);
+				if (result == null) result = caseMetaModelElement(virtualSourceSectionAttribute);
+				if (result == null) result = caseNamedElement(virtualSourceSectionAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -253,6 +265,21 @@ public class SourceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Source Section Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVirtualSourceSectionAttribute(VirtualSourceSectionAttribute object) {
 		return null;
 	}
 
@@ -388,6 +415,21 @@ public class SourceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseActualAttribute(ActualAttribute<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Attribute</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
 		return null;
 	}
 

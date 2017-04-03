@@ -67,6 +67,15 @@ public interface SourceFactory extends EFactory {
 	ActualSourceSectionAttribute createActualSourceSectionAttribute();
 
 	/**
+	 * Returns a new object of class '<em>Virtual Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Virtual Source Section Attribute</em>'.
+	 * @generated
+	 */
+	VirtualSourceSectionAttribute createVirtualSourceSectionAttribute();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

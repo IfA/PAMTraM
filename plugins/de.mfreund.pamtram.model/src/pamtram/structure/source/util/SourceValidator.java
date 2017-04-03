@@ -119,6 +119,8 @@ public class SourceValidator extends EObjectValidator {
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case SourcePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
 				return validateActualSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE:
+				return validateVirtualSourceSectionAttribute((VirtualSourceSectionAttribute)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -336,6 +338,15 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateActualAttribute_attributeMatchesParentEClass(actualSourceSectionAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateActualAttribute_validateAttributeMatchesParentEClass(actualSourceSectionAttribute, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualSourceSectionAttribute(VirtualSourceSectionAttribute virtualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(virtualSourceSectionAttribute, diagnostics, context);
 	}
 
 	/**

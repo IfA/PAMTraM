@@ -21,7 +21,7 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.mfreund.gentrans.transformation.util.OCLUtil;
+import de.mfreund.pamtram.util.OCLUtil;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;

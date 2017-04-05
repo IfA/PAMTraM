@@ -1,8 +1,9 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.util;
+package de.mfreund.pamtram.util;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
@@ -63,6 +64,29 @@ public class OCLUtil {
 		OCLExpression<EClassifier> oclExpression = helper.createQuery(expression);
 		Query query = OCLUtil.getOclInstance().createQuery(oclExpression);
 		return query.evaluate(contextElement);
+	}
+
+	/**
+	 * This validates the {@link OCLExpression} represented by the given
+	 * <em>expression</em>. If the expression is not valid, this will throw a
+	 * {@link ParserException} that contains more information - otherwise, the
+	 * method will just return normally.
+	 *
+	 * @param expression
+	 *            A String representing the {@link OCLExpression} to be
+	 *            validated.
+	 * @param contextClass
+	 *            The {@link EClass} representing the context of the
+	 *            <em>expression</em>.
+	 * @throws ParserException
+	 *             If the given <em>expression</em> was no valid
+	 *             {@link OCLExpression}.
+	 */
+	public static void validateQuery(String expression, EClass contextClass) throws ParserException {
+
+		OCLHelper<EClassifier, ?, ?, Constraint> helper = OCLUtil.getOclInstance().createOCLHelper();
+		helper.setContext(contextClass);
+		helper.createQuery(expression);
 	}
 
 }

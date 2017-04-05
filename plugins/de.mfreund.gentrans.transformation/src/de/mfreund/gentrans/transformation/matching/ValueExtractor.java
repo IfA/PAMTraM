@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -412,7 +413,8 @@ public abstract class ValueExtractor extends CancelableElement {
 				return new ArrayList<>();
 			}
 
-			return new ArrayList<>(Arrays.asList(result));
+			return result instanceof Collection<?> ? new ArrayList<>((Collection<?>) result)
+					: new ArrayList<>(Arrays.asList(result));
 
 		}
 	}

@@ -1131,13 +1131,22 @@ public interface SourcePackage extends EPackage {
 	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY = SOURCE_SECTION_ATTRIBUTE___IS_LIBRARY_ENTRY;
 
 	/**
+	 * The operation id for the '<em>Validate Derivation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Virtual Source Section Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT + 0;
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT = SOURCE_SECTION_ATTRIBUTE_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1284,6 +1293,16 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVirtualSourceSectionAttribute_Derivation();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.source.VirtualSourceSectionAttribute#validateDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Derivation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Derivation</em>' operation.
+	 * @see pamtram.structure.source.VirtualSourceSectionAttribute#validateDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getVirtualSourceSectionAttribute__ValidateDerivation__DiagnosticChain_Map();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1435,6 +1454,14 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION = eINSTANCE.getVirtualSourceSectionAttribute_Derivation();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Derivation</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VIRTUAL_SOURCE_SECTION_ATTRIBUTE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVirtualSourceSectionAttribute__ValidateDerivation__DiagnosticChain_Map();
 
 	}
 

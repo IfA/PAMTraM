@@ -355,6 +355,15 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getVirtualSourceSectionAttribute__ValidateDerivation__DiagnosticChain_Map() {
+		return virtualSourceSectionAttributeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SourceFactory getSourceFactory() {
 		return (SourceFactory)getEFactoryInstance();
 	}
@@ -399,6 +408,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 
 		virtualSourceSectionAttributeEClass = createEClass(VIRTUAL_SOURCE_SECTION_ATTRIBUTE);
 		createEAttribute(virtualSourceSectionAttributeEClass, VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION);
+		createEOperation(virtualSourceSectionAttributeEClass, VIRTUAL_SOURCE_SECTION_ATTRIBUTE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP);
 	}
 
 	/**
@@ -555,6 +565,15 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 
 		initEClass(virtualSourceSectionAttributeEClass, VirtualSourceSectionAttribute.class, "VirtualSourceSectionAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVirtualSourceSectionAttribute_Derivation(), ecorePackage.getEString(), "derivation", null, 1, 1, VirtualSourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getVirtualSourceSectionAttribute__ValidateDerivation__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateDerivation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore

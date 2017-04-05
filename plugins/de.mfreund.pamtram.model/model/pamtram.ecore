@@ -1311,6 +1311,18 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualSourceSectionAttribute">
+        <eOperations name="validateDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if (this.getDerivation() == null || this.getDerivation().isEmpty()&#xD;&#xA;&#x9;&#x9;|| !(this.eContainer() instanceof SourceSectionClass)&#xD;&#xA;&#x9;&#x9;|| ((&lt;%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = true;&#xD;&#xA;String parserException = &quot;&quot;;&#xD;&#xA;&#xD;&#xA;try {&#xD;&#xA;&#x9;&lt;%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());&#xD;&#xA;} catch (&lt;%org.eclipse.ocl.ParserException%> e) {&#xD;&#xA;&#x9;result = false;&#xD;&#xA;&#x9;parserException = e.getMessage();&#xD;&#xA;&#x9;e.printStackTrace();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The specified derivation is not valid! The following error was provided: &quot; + parserException;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SourceValidator.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivation" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionAttribute"/>

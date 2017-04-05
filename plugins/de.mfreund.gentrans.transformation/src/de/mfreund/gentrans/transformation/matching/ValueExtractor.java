@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
@@ -18,6 +20,7 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
+import de.mfreund.gentrans.transformation.util.OCLUtil;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -298,7 +301,7 @@ public abstract class ValueExtractor extends CancelableElement {
 		// Collect all values of the attribute in all source elements
 		//
 		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource());
+				mappingHintSourceElement.getSource(), this.logger);
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning("No hint value found for source element '" + mappingHintSourceElement.getName() + "'!");
@@ -338,7 +341,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or
 	 * values} of the given {@link EAttribute} by collecting the values returned
 	 * by
-	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute)}
+	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)}
 	 * for every element.
 	 *
 	 * @param sourceElements
@@ -346,13 +349,16 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            be returned.
 	 * @param sourceAttribute
 	 *            The {@link EAttribute} for that the values shall be returned.
+	 * @param logger
+	 *            The {@link Logger} to be used to print message to the user.
 	 * @return The determined values (either an empty list, a list consisting of
 	 *         a single value, or multiple values).
 	 */
 	public static List<Object> getAttributeValueAsList(List<EObject> sourceElements,
-			SourceSectionAttribute sourceAttribute) {
+			SourceSectionAttribute sourceAttribute, Logger logger) {
 
-		return sourceElements.stream().flatMap(e -> ValueExtractor.getAttributeValueAsList(e, sourceAttribute).stream())
+		return sourceElements.stream()
+				.flatMap(e -> ValueExtractor.getAttributeValueAsList(e, sourceAttribute, logger).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -379,17 +385,35 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            The {@link EObject} for that the values shall be returned.
 	 * @param sourceAttribute
 	 *            The {@link EAttribute} for that the values shall be returned.
+	 * @param logger
+	 *            The {@link Logger} to be used to print message to the user.
 	 * @return The determined values (either an empty list, a list consisting of
 	 *         a single value, or multiple values).
 	 */
-	public static List<Object> getAttributeValueAsList(EObject sourceElement, SourceSectionAttribute sourceAttribute) {
+	public static List<Object> getAttributeValueAsList(EObject sourceElement, SourceSectionAttribute sourceAttribute,
+			Logger logger) {
 
-		if (sourceAttribute != null) {
+		if (sourceAttribute instanceof ActualSourceSectionAttribute) {
 			EAttribute eAttribute = ((ActualSourceSectionAttribute) sourceAttribute).getAttribute();
 			return AgteleEcoreUtil.getAttributeValueAsList(sourceElement, eAttribute);
 		} else {
 
-			return new ArrayList<>();
+			Object result;
+
+			try {
+				result = OCLUtil.evaluteQuery(((VirtualSourceSectionAttribute) sourceAttribute).getDerivation(),
+						sourceElement);
+			} catch (ParserException e) {
+				logger.severe("Unable to evaluate OCL query '"
+						+ ((VirtualSourceSectionAttribute) sourceAttribute).getDerivation()
+						+ "' for SourceSectionAttribute '" + sourceAttribute.getName() + "'!");
+				logger.severe("The following error occurred: " + e.getMessage());
+				e.printStackTrace();
+				return new ArrayList<>();
+			}
+
+			return new ArrayList<>(Arrays.asList(result));
+
 		}
 	}
 

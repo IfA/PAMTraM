@@ -1201,7 +1201,7 @@ public class SourceSectionMatcher {
 		// Check if all the constraints are satisfied for every attribute value.
 		//
 		return srcSection.getAttributes().stream().allMatch(at -> {
-			List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at);
+			List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
 			if (values.isEmpty()) {
 				/*
 				 * This is not a problem unless an AttributeValueConstraint was

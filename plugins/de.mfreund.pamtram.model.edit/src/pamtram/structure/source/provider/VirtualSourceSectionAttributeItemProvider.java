@@ -44,12 +44,12 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addDerivationPropertyDescriptor(object);
+			addDerivationPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -59,14 +59,19 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 	 * @generated
 	 */
 	protected void addDerivationPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_VirtualSourceSectionAttribute_derivation_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_VirtualSourceSectionAttribute_derivation_feature",
-						"_UI_VirtualSourceSectionAttribute_type"),
-				SourcePackage.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VirtualSourceSectionAttribute_derivation_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VirtualSourceSectionAttribute_derivation_feature", "_UI_VirtualSourceSectionAttribute_type"),
+				 SourcePackage.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION,
+				 true,
+				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -81,14 +86,14 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -123,21 +128,20 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(VirtualSourceSectionAttribute.class)) {
-		case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

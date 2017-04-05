@@ -48,22 +48,22 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -74,29 +74,26 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>) object).getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
-					StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
-					StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

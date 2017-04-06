@@ -19,6 +19,7 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
+import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.*;
 
 /**
@@ -106,6 +107,10 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 				return createActualSourceSectionAttributeAdapter();
 			}
 			@Override
+			public Adapter caseVirtualSourceSectionAttribute(VirtualSourceSectionAttribute object) {
+				return createVirtualSourceSectionAttributeAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -140,6 +145,10 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualAttribute(ActualAttribute<S, C, R, A> object) {
 				return createActualAttributeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
+				return createVirtualAttributeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -256,6 +265,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActualSourceSectionAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.VirtualSourceSectionAttribute <em>Virtual Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.source.VirtualSourceSectionAttribute
+	 * @generated
+	 */
+	public Adapter createVirtualSourceSectionAttributeAdapter() {
 		return null;
 	}
 
@@ -382,6 +405,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActualAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.VirtualAttribute
+	 * @generated
+	 */
+	public Adapter createVirtualAttributeAdapter() {
 		return null;
 	}
 

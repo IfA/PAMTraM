@@ -48,8 +48,9 @@ import pamtram.structure.target.TargetSection;
 public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ClassItemProvider(AdapterFactory adapterFactory) {
@@ -57,8 +58,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -74,8 +76,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the EClass feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EClass feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
@@ -95,7 +98,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the EClass feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EClass feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
 
@@ -115,8 +119,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 						List<EClass> choiceOfValues = new LinkedList<>();
 
 						/*
-						 * If we have a container parameter with a specified source, we do not need to scan package
-						 * contents. Instead, the user may only select the eClass of the specified source element.
+						 * If we have a container parameter with a specified
+						 * source, we do not need to scan package contents.
+						 * Instead, the user may only select the eClass of the
+						 * specified source element.
 						 */
 						if (section.eContainer() instanceof ContainerParameter
 								&& ((ContainerParameter) section.eContainer()).getSource() != null) {
@@ -128,8 +134,21 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 						packagesToScan.add(sectionModel.getMetaModelPackage());
 
-						List<EClass> documentRoot = new LinkedList<>();// this should only contain one element but we
-																		// need to implement this in a generic way...
+						List<EClass> documentRoot = new LinkedList<>();// this
+																		// should
+																		// only
+																		// contain
+																		// one
+																		// element
+																		// but
+																		// we
+																		// need
+																		// to
+																		// implement
+																		// this
+																		// in a
+																		// generic
+																		// way...
 
 						while (packagesToScan.size() > 0) {
 							EPackage pkg = packagesToScan.remove(0);
@@ -143,7 +162,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 								if (c instanceof EClass) {
 									EClass cl = (EClass) c;
 									if (!documentRoot.contains(cl)) {
-										// abstract EClasses are only allowed for abstract sections
+										// abstract EClasses are only allowed
+										// for abstract sections
 										if (!cl.isAbstract() || object instanceof Section<?, ?, ?, ?>
 												&& ((Section<?, ?, ?, ?>) object).isAbstract()) {
 											choiceOfValues.add((EClass) c);
@@ -185,8 +205,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Cardinality feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Cardinality feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
@@ -206,8 +227,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Container feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Container feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
@@ -230,8 +252,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -268,7 +289,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -277,8 +299,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> The label of the class is
-	 * composed of its name and the name of the associated eClass. <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> The label of the class is composed of its name and the
+	 * name of the associated eClass. <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -307,10 +330,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -330,8 +353,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -354,6 +378,9 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
 				TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
+				SourceFactory.eINSTANCE.createVirtualSourceSectionAttribute()));
 
 		/*
 		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
@@ -398,7 +425,8 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 			Collection<?> collection) {
 
 		/*
-		 * If a 'FileAttribute' is removed, we also need to reset the 'file' reference.
+		 * If a 'FileAttribute' is removed, we also need to reset the 'file'
+		 * reference.
 		 */
 		if (feature == GenericPackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {

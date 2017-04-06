@@ -30,16 +30,18 @@ import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.GlobalAttribute} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a
+ * {@link pamtram.mapping.GlobalAttribute} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- *
+ * 
  * @generated
  */
 public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GlobalAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -47,13 +49,13 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
 		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -64,7 +66,8 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 
@@ -85,7 +88,8 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 
 						List<SourceSectionClass> classes = new ArrayList<>(pamtramModel.getSourceSections());
 
-						// Recursively collect all SourceSectionAttributes in all SourceSections
+						// Recursively collect all SourceSectionAttributes in
+						// all SourceSections
 						//
 						while (!classes.isEmpty()) {
 							SourceSectionClass c = classes.remove(0);
@@ -100,7 +104,8 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 											.flatMap(r -> r.getValuesGeneric().stream()).collect(Collectors.toList()));
 						}
 
-						// Return only those attributes that represent an actual EAttribute with an upper bound of '1'
+						// Return only those attributes that represent an actual
+						// EAttribute with an upper bound of '1'
 						//
 						return sources.stream()
 								.filter(a -> a instanceof ActualSourceSectionAttribute
@@ -113,12 +118,12 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Modifiers feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ModifiableElement_modifiers_feature"),
@@ -128,35 +133,35 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns GlobalAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns GlobalAttribute.gif. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-
 		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/GlobalAttribute"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
 		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
 		String label = ((GlobalAttribute) object).getName();
 		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
@@ -169,39 +174,39 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
 		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-
 		return PamtramEditPlugin.INSTANCE;
 	}
 

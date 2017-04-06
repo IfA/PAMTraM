@@ -61,6 +61,7 @@ public class SourceFactoryImpl extends EFactoryImpl implements SourceFactory {
 			case SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE: return createSourceSectionCompositeReference();
 			case SourcePackage.SOURCE_SECTION_CROSS_REFERENCE: return createSourceSectionCrossReference();
 			case SourcePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE: return createVirtualSourceSectionAttribute();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -114,6 +115,16 @@ public class SourceFactoryImpl extends EFactoryImpl implements SourceFactory {
 	public ActualSourceSectionAttribute createActualSourceSectionAttribute() {
 		ActualSourceSectionAttributeImpl actualSourceSectionAttribute = new ActualSourceSectionAttributeImpl();
 		return actualSourceSectionAttribute;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VirtualSourceSectionAttribute createVirtualSourceSectionAttribute() {
+		VirtualSourceSectionAttributeImpl virtualSourceSectionAttribute = new VirtualSourceSectionAttributeImpl();
+		return virtualSourceSectionAttribute;
 	}
 
 	/**

@@ -51,12 +51,20 @@ public class SourceValidator extends EObjectValidator {
 	public static final int SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Derivation' of 'Virtual Source Section Attribute'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION = 2;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -119,6 +127,8 @@ public class SourceValidator extends EObjectValidator {
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case SourcePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
 				return validateActualSourceSectionAttribute((ActualSourceSectionAttribute)value, diagnostics, context);
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE:
+				return validateVirtualSourceSectionAttribute((VirtualSourceSectionAttribute)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -336,6 +346,35 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateActualAttribute_attributeMatchesParentEClass(actualSourceSectionAttribute, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateActualAttribute_validateAttributeMatchesParentEClass(actualSourceSectionAttribute, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualSourceSectionAttribute(VirtualSourceSectionAttribute virtualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(virtualSourceSectionAttribute, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(virtualSourceSectionAttribute, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVirtualSourceSectionAttribute_validateDerivation(virtualSourceSectionAttribute, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateDerivation constraint of '<em>Virtual Source Section Attribute</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualSourceSectionAttribute_validateDerivation(VirtualSourceSectionAttribute virtualSourceSectionAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return virtualSourceSectionAttribute.validateDerivation(diagnostics, context);
 	}
 
 	/**

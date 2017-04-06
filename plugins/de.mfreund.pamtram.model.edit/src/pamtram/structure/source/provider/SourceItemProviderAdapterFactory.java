@@ -189,6 +189,29 @@ public class SourceItemProviderAdapterFactory extends SourceAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.VirtualSourceSectionAttribute} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VirtualSourceSectionAttributeItemProvider virtualSourceSectionAttributeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.source.VirtualSourceSectionAttribute}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVirtualSourceSectionAttributeAdapter() {
+		if (virtualSourceSectionAttributeItemProvider == null) {
+			virtualSourceSectionAttributeItemProvider = new VirtualSourceSectionAttributeItemProvider(this);
+		}
+
+		return virtualSourceSectionAttributeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,6 +315,7 @@ public class SourceItemProviderAdapterFactory extends SourceAdapterFactory imple
 		if (sourceSectionCompositeReferenceItemProvider != null) sourceSectionCompositeReferenceItemProvider.dispose();
 		if (sourceSectionCrossReferenceItemProvider != null) sourceSectionCrossReferenceItemProvider.dispose();
 		if (actualSourceSectionAttributeItemProvider != null) actualSourceSectionAttributeItemProvider.dispose();
+		if (virtualSourceSectionAttributeItemProvider != null) virtualSourceSectionAttributeItemProvider.dispose();
 	}
 
 }

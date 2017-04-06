@@ -50,16 +50,16 @@ import pamtram.structure.source.SourceFactory;
 import pamtram.structure.target.TargetFactory;
 
 /**
- * This is the item provider adapter for a {@link pamtram.SectionModel} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.SectionModel} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class SectionModelItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -67,18 +67,17 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addMetaModelPackagePropertyDescriptor(object);
+			addMetaModelPackagePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -154,24 +153,22 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
+			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,14 +180,13 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -258,21 +254,24 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				SourceFactory.eINSTANCE.createSourceSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				 SourceFactory.eINSTANCE.createSourceSection()));
 
-		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				TargetFactory.eINSTANCE.createTargetSection()));
+		newChildDescriptors.add
+			(createChildParameter
+				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				 TargetFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**

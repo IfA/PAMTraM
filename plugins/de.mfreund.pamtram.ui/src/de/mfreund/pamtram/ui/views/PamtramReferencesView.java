@@ -5,6 +5,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecoretools.ui.views.AnalysisView;
 import org.eclipse.emf.ecoretools.ui.views.EReferencesView;
@@ -12,9 +13,15 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.WorkbenchJob;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.provider.GenLibraryItemProviderAdapterFactory;
@@ -73,6 +80,8 @@ public class PamtramReferencesView extends AnalysisView {
 		this.referencesTree.setLabelProvider(
 				new AdapterFactoryLabelProvider.StyledLabelProvider(this.adapterFactory, this.referencesTree));
 
+		this.referencesTree.addDoubleClickListener(new ReferenceViewDoubleClickListener());
+
 		this.referencesTree.getControl().addDisposeListener(e -> {
 			if (this.refreshJob != null) {
 				this.refreshJob.cancel();
@@ -126,5 +135,35 @@ public class PamtramReferencesView extends AnalysisView {
 		job.setSystem(true);
 
 		return job;
+	}
+
+	/**
+	 * An {@link IDoubleClickListener} that sets the selection of the active
+	 * editor to the element that the user double-clicked on.
+	 *
+	 * @author mfreund
+	 */
+	private class ReferenceViewDoubleClickListener implements IDoubleClickListener {
+
+		@Override
+		public void doubleClick(DoubleClickEvent event) {
+
+			ISelection selection = event.getSelection();
+
+			if (!(selection instanceof StructuredSelection)
+					|| !(((StructuredSelection) selection).getFirstElement() instanceof EObject)) {
+				return;
+			}
+
+			EObject selectedElement = (EObject) ((StructuredSelection) selection).getFirstElement();
+
+			IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.getActiveEditor();
+
+			if (editorPart instanceof IViewerProvider) {
+				((IViewerProvider) editorPart).getViewer().setSelection(new StructuredSelection(selectedElement), true);
+			}
+		}
+
 	}
 }

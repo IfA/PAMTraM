@@ -5,8 +5,8 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
 /**
- * An {@link IPerspectiveFactory} that generates the layout and initializes actions for the <em>PAMTraM</em>
- * perspective.
+ * An {@link IPerspectiveFactory} that generates the layout and initializes
+ * actions for the <em>PAMTraM</em> perspective.
  *
  * @author mfreund
  */
@@ -19,7 +19,8 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 	}
 
 	/**
-	 * Customize the <em>new wizard</em> and <em>show view</em> actions available for the PAMTraM perspective.
+	 * Customize the <em>new wizard</em> and <em>show view</em> actions
+	 * available for the PAMTraM perspective.
 	 *
 	 * @param layout
 	 *            The {@link IPageLayout} to which the actions are added.
@@ -30,6 +31,7 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 
 		layout.addShowViewShortcut("org.eclipse.ui.views.ProblemView");
 		layout.addShowViewShortcut("org.eclipse.ui.console.ConsoleView");
+		layout.addShowViewShortcut("de.mfreund.pamtram.ui.views.PamtramReferencesView");
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 
 	}
@@ -46,16 +48,15 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 
 		// Show the PackageExplorer to the left
 		//
-		IFolderLayout left = layout.createFolder(
-				"left", IPageLayout.LEFT, (float) 0.2, editorArea);
+		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float) 0.2, editorArea);
 		left.addView("org.eclipse.jdt.ui.PackageExplorer");
 
 		// Show the ProblemView and ConsoleView to the bottom
 		//
-		IFolderLayout bottom = layout.createFolder(
-				"bottom", IPageLayout.BOTTOM, (float) 0.7, editorArea);
+		IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, (float) 0.7, editorArea);
 		bottom.addView("org.eclipse.ui.views.ProblemView");
 		bottom.addView("org.eclipse.ui.console.ConsoleView");
+		bottom.addView("de.mfreund.pamtram.ui.views.PamtramReferencesView");
 		bottom.addView(IPageLayout.ID_PROP_SHEET);
 	}
 

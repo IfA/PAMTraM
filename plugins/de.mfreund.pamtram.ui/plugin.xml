@@ -163,7 +163,7 @@
       <view
             category=""
             class="de.mfreund.pamtram.ui.views.PamtramReferencesView"
-            icon="icons/full/obj16/PamtramModelFile.gif"
+            icon="icons/ShowReferencesView.gif"
             id="de.mfreund.pamtram.ui.views.PamtramReferencesView"
             name="References"
             restorable="true"/>

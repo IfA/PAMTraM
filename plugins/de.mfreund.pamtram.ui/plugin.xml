@@ -168,4 +168,27 @@
             name="References"
             restorable="true"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.mfreund.pamtram.ui.handlers.ShowReferencesHandler"
+            id="pamtram.commands.ShowReferences"
+            name="ShowReferences">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:pamtram.presentation.PamtramEditorID">
+         <command
+               commandId="pamtram.commands.ShowReferences"
+               label="PAMTraM: Show References"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
 </plugin>

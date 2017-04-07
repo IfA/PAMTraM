@@ -6,7 +6,7 @@ package de.mfreund.gentrans.transformation.resolving.enhancing;
 import java.io.IOException;
 import java.util.List;
 
-import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
@@ -34,7 +34,8 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 		extends MappingModelEnhancer<GenericSelectionDialogRunner<EObjectWrapper>> {
 
 	/**
-	 * The {@link MappingHintGroup} of which created target instances that shall be enhanced to the selected instance.
+	 * The {@link MappingHintGroup} of which created target instances that shall
+	 * be enhanced to the selected instance.
 	 */
 	private MappingHintGroup hintGroup;
 
@@ -43,8 +44,8 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 	 *
 	 * @param pamtramModel
 	 * @param hintGroup
-	 *            The {@link MappingHintGroup} of which created target instances that shall be enhanced to the selected
-	 *            instance.
+	 *            The {@link MappingHintGroup} of which created target instances
+	 *            that shall be enhanced to the selected instance.
 	 */
 	public JoiningSelectContainerInstanceMappingModelEnhancer(PAMTraM pamtramModel, MappingHintGroup hintGroup) {
 		super(pamtramModel);
@@ -58,9 +59,8 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		ContainerSelector selector = this.hintGroup.getContainerSelector();
-
-		if (selector != null) {
+		if (this.hintGroup.getMappingHints().parallelStream().filter(hint -> hint instanceof ContainerSelector)
+				.findAny().isPresent()) {
 			MessageDialog.openError(UIHelper.getShell(), "Error",
 					"The MappingHintGroup that was responsible for instantiating the instances "
 							+ "to to be connected already specifies a ContainerSelector.");
@@ -69,13 +69,14 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 		// The ContainerSelector that is used to enhance the MappingModel
 		//
-		selector = MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget();
+		ContainerSelector selector = MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget();
 
 		if (editor == null) {
 
-			// Use the 'classic' way to add the new elements as we can not use any command stack
+			// Use the 'classic' way to add the new elements as we can not use
+			// any command stack
 			//
-			this.hintGroup.setContainerSelector(selector);
+			this.hintGroup.getMappingHints().add(selector);
 
 			// finally, we save the model
 			try {
@@ -95,9 +96,9 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 			// Use a command to add the new elements
 			//
-			SetCommand setCommand = new SetCommand(editor.getEditingDomain(), hintGroupMatch,
-					MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, selector);
-			editor.getEditingDomain().getCommandStack().execute(setCommand);
+			AddCommand addCommand = new AddCommand(editor.getEditingDomain(), hintGroupMatch,
+					MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS, selector);
+			editor.getEditingDomain().getCommandStack().execute(addCommand);
 
 		}
 	}

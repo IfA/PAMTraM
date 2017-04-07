@@ -329,11 +329,14 @@ public class MappingSwitch<T> extends Switch<T> {
 			case MappingPackage.CONTAINER_SELECTOR: {
 				ContainerSelector containerSelector = (ContainerSelector)theEObject;
 				T result = caseContainerSelector(containerSelector);
-				if (result == null) result = caseMappingHintBaseType(containerSelector);
+				if (result == null) result = caseMappingHint(containerSelector);
 				if (result == null) result = caseInstanceSelector(containerSelector);
-				if (result == null) result = caseNamedElement(containerSelector);
+				if (result == null) result = caseMappingHintType(containerSelector);
+				if (result == null) result = caseConditionalElement(containerSelector);
 				if (result == null) result = caseExpressionElement(containerSelector);
 				if (result == null) result = caseModifiableElement(containerSelector);
+				if (result == null) result = caseMappingHintBaseType(containerSelector);
+				if (result == null) result = caseNamedElement(containerSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

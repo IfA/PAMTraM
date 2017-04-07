@@ -45,7 +45,6 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.impl.MappingFactoryImpl;
@@ -662,6 +661,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						hintTarget = ((ReferenceTargetSelector) abstractHint).getAffectedReference();
 					} else if(abstractHint instanceof CardinalityMapping) {
 						hintTarget = ((CardinalityMapping) abstractHint).getTarget();
+					} else if(abstractHint instanceof ContainerSelector) {
+						// nothing to do as ContainerSelectorTargetAttributes are handled separately
 					} else {
 						throw new RuntimeException("Unsupported hint type '" + abstractHint.eClass().getName() + "' in HintGroup '" + 
 								abstractHintGroup.getName() + "': These kind of hints are not supported yet in abstract HintGroups!");
@@ -672,11 +673,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						hintsToCopy.add(abstractHint);
 					}
 		
-				}
-				// model connection hints need to be handled separately
-				if(abstractHintGroup instanceof MappingHintGroup && concreteHintGroup instanceof MappingHintGroup && 
-						((MappingHintGroup) concreteHintGroup).getContainerSelector() == null) {
-					hintsToCopy.add(((MappingHintGroup) abstractHintGroup).getContainerSelector());
 				}
 		
 				Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
@@ -760,12 +756,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 				// Finally, we add the copied hints to the concrete hint group
 				for (MappingHintBaseType copiedHint : copiedHints) {
-					if(copiedHint instanceof ContainerSelector) {
-						((MappingHintGroup) concreteHintGroup).setContainerSelector((ContainerSelector) copiedHint);	
-					} else {
-						concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);					
-					}
-		
+					concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);
 				}
 			}
 		}

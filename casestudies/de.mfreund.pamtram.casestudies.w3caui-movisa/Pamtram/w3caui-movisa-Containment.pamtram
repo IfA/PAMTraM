@@ -519,10 +519,10 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         <mappingHints xsi:type="mapping:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
-        <containerSelector xsi:type="mapping:ContainerSelector">
+        <mappingHints xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.0"/>
-        </containerSelector>
+        </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="DropDownOptionMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
@@ -535,10 +535,10 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <containerSelector xsi:type="mapping:ContainerSelector">
+        <mappingHints xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="DropDownId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
-        </containerSelector>
+        </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.0/@sections.4">
         <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">

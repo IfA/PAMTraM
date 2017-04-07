@@ -397,13 +397,49 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE__EXTEND = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Attribute Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Cardinality Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Reference Target Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Container Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Hint Group Type</em>' class.
@@ -543,6 +579,42 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__EXTEND = MAPPING_HINT_GROUP_TYPE__EXTEND;
 
 	/**
+	 * The feature id for the '<em><b>Attribute Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ATTRIBUTE_MAPPINGS = MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Cardinality Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__CARDINALITY_MAPPINGS = MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Reference Target Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__REFERENCE_TARGET_SELECTORS = MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS;
+
+	/**
+	 * The feature id for the '<em><b>Container Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -570,22 +642,13 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__SHARED_CONDITION = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Container Selector</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_HINT_GROUP__CONTAINER_SELECTOR = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Hint Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 4;
+	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -888,6 +951,42 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP__EXTEND = MAPPING_HINT_GROUP_TYPE__EXTEND;
+
+	/**
+	 * The feature id for the '<em><b>Attribute Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ATTRIBUTE_MAPPINGS = MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Cardinality Mappings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__CARDINALITY_MAPPINGS = MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS;
+
+	/**
+	 * The feature id for the '<em><b>Reference Target Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__REFERENCE_TARGET_SELECTORS = MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS;
+
+	/**
+	 * The feature id for the '<em><b>Container Selectors</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Exported Mapping Hint Group</em>' class.
@@ -2239,7 +2338,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__NAME = MAPPING_HINT_BASE_TYPE__NAME;
+	int CONTAINER_SELECTOR__NAME = MAPPING_HINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__LOCAL_CONDITION = MAPPING_HINT__LOCAL_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -2248,7 +2365,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__EXPRESSION = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
@@ -2257,7 +2374,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__MODIFIERS = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 1;
+	int CONTAINER_SELECTOR__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -2266,7 +2383,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 2;
+	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
@@ -2275,7 +2392,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 3;
+	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MAPPING_HINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector</em>' class.
@@ -2284,7 +2401,25 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 4;
+	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -2293,7 +2428,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -2302,7 +2437,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -2311,7 +2446,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 2;
+	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Container Selector</em>' class.
@@ -2320,7 +2455,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 3;
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3531,17 +3666,6 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintGroup();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Container Selector</em>'.
-	 * @see pamtram.mapping.MappingHintGroup#getContainerSelector()
-	 * @see #getMappingHintGroup()
-	 * @generated
-	 */
-	EReference getMappingHintGroup_ContainerSelector();
-
-	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3593,6 +3717,50 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroupType_Extend();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAttributeMappings <em>Attribute Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Attribute Mappings</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAttributeMappings()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AttributeMappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getCardinalityMappings <em>Cardinality Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Cardinality Mappings</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getCardinalityMappings()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_CardinalityMappings();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getReferenceTargetSelectors <em>Reference Target Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Reference Target Selectors</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getReferenceTargetSelectors()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_ReferenceTargetSelectors();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getContainerSelectors <em>Container Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Container Selectors</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getContainerSelectors()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_ContainerSelectors();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
@@ -4349,14 +4517,6 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_GROUP = eINSTANCE.getMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '<em><b>Container Selector</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MAPPING_HINT_GROUP__CONTAINER_SELECTOR = eINSTANCE.getMappingHintGroup_ContainerSelector();
-
-		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4399,6 +4559,38 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_HINT_GROUP_TYPE__EXTEND = eINSTANCE.getMappingHintGroupType_Extend();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS = eINSTANCE.getMappingHintGroupType_AttributeMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Cardinality Mappings</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS = eINSTANCE.getMappingHintGroupType_CardinalityMappings();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Target Selectors</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS = eINSTANCE.getMappingHintGroupType_ReferenceTargetSelectors();
+
+		/**
+		 * The meta object literal for the '<em><b>Container Selectors</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = eINSTANCE.getMappingHintGroupType_ContainerSelectors();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.

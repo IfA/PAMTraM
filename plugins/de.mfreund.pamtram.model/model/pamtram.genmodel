@@ -358,6 +358,10 @@
         <genClasses ecoreClass="pamtram.ecore#//structure/source/ActualSourceSectionAttribute"/>
         <genClasses ecoreClass="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute">
           <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/derivation"/>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/validateDerivation">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/validateDerivation/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/validateDerivation/context"/>
+          </genOperations>
         </genClasses>
       </nestedGenPackages>
       <nestedGenPackages prefix="Target" disposableProviderFactory="true" multipleEditorPages="false"
@@ -517,11 +521,13 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/mappingHints"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/extend"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/attributeMappings"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/cardinalityMappings"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/referenceTargetSelectors"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/containerSelectors"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>
-      <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroup/containerSelector"/>
-      </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroupImporter">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>

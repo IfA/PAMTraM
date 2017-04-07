@@ -23,7 +23,7 @@ import pamtram.structure.InstanceSelector;
  * @model
  * @generated
  */
-public interface ContainerSelector extends MappingHintBaseType, InstanceSelector {
+public interface ContainerSelector extends MappingHint, InstanceSelector {
 
 	/**
 	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.

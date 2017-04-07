@@ -457,10 +457,10 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         <mappingHints xsi:type="mapping:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <containerSelector>
+        <mappingHints xsi:type="mapping:ContainerSelector">
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.0/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10"/>
-        </containerSelector>
+        </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="DropDownElementMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
@@ -473,10 +473,10 @@ xsi:type="source:ActualSourceSectionAttribute" name="id">
         <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
           <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <containerSelector>
+        <mappingHints xsi:type="mapping:ContainerSelector">
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6"/>
-        </containerSelector>
+        </mappingHints>
       </mappingHintGroups>
     </mappings>
     <modifierSets name="getNumber">

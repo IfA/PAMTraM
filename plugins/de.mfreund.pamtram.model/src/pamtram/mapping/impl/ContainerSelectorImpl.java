@@ -51,7 +51,7 @@ import pamtram.structure.util.StructureValidator;
  *
  * @generated
  */
-public class ContainerSelectorImpl extends MappingHintBaseTypeImpl implements ContainerSelector {
+public class ContainerSelectorImpl extends MappingHintImpl implements ContainerSelector {
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.

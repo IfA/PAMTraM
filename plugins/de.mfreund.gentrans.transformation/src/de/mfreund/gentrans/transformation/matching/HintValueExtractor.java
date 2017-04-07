@@ -1,12 +1,12 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -31,10 +31,9 @@ import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappedAttributeValuePrepender;
+import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -48,48 +47,58 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
- * This class can be used to extract hint values and values of {@link GlobalAttribute GlobalAttributes} from source
- * model elements for a given list of {@link MappingInstanceStorage mapping instances}.
+ * This class can be used to extract hint values and values of
+ * {@link GlobalAttribute GlobalAttributes} from source model elements for a
+ * given list of {@link MappingInstanceStorage mapping instances}.
  *
  * @author mfreund
  */
 public class HintValueExtractor extends ValueExtractor {
 
 	/**
-	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
-	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
+	 * Registry for <em>source model objects</em> that have already been
+	 * matched. The matched objects are stored in a map where the key is the
+	 * corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be extracted.
+	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for
+	 * that the hint values shall be extracted.
 	 */
 	private List<MappingInstanceStorage> mappingInstances;
 
 	/**
-	 * This keeps track of the {@link MappingInstanceStorage MappingInstanceStorages} representing
-	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups}.
+	 * This keeps track of the {@link MappingInstanceStorage
+	 * MappingInstanceStorages} representing {@link ExportedMappingHintGroup
+	 * ExportedMappingHintGroups}.
 	 * <p/>
-	 * This is used during {@link #extractImportedHintValues(MappingInstanceStorage)} to import hint values for
-	 * {@link MappingHintGroupImporter MappingHintGroupImporters}.
+	 * This is used during
+	 * {@link #extractImportedHintValues(MappingInstanceStorage)} to import hint
+	 * values for {@link MappingHintGroupImporter MappingHintGroupImporters}.
 	 */
 	private Map<ExportedMappingHintGroup, MappingInstanceStorage> exportedHintGroups;
 
 	/**
-	 * This creates an instance for a given list of {@link MappingInstanceStorage mappingInstances}.
+	 * This creates an instance for a given list of
+	 * {@link MappingInstanceStorage mappingInstances}.
 	 * <p />
-	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>.
+	 * Note: The extracted hint values are stored in the given
+	 * <em>mappingInstances</em>.
 	 *
 	 * @param matchingResult
 	 *            The result of the <em>matching</em> step.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
+	 *            The list of {@link MappingInstanceStorage
+	 *            MappingInstanceStorages} for that the hint values shall be
 	 *            extracted.
 	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
@@ -105,11 +114,13 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts the hint values and stores them in the {@link #mappingInstances}.
+	 * This extracts the hint values and stores them in the
+	 * {@link #mappingInstances}.
 	 */
 	public void extractHintValues() {
 
-		// In a first step, we extract the hints of 'normal' and exported hint groups.
+		// In a first step, we extract the hints of 'normal' and exported hint
+		// groups.
 		//
 		this.mappingInstances.parallelStream().forEach(this::extractHintValues);
 
@@ -124,35 +135,35 @@ public class HintValueExtractor extends ValueExtractor {
 					this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
 				}));
 
-		// Now, we extract the hints for hint group importers (as we can now used the
+		// Now, we extract the hints for hint group importers (as we can now
+		// used the
 		// hint values of exported hint groups that have been calculated before)
 		//
 		this.mappingInstances.parallelStream().forEach(this::extractImportedHintValues);
 	}
 
 	/**
-	 * This extracts the hint values for the given {@link MappingInstanceStorage}.
+	 * This extracts the hint values for the given
+	 * {@link MappingInstanceStorage}.
 	 * <p />
-	 * Note: The extracted hint values are stored in the <em>mappingInstance</em>.
+	 * Note: The extracted hint values are stored in the
+	 * <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that the hint values shall be extracted.
+	 *            The {@link MappingInstanceStorage} for that the hint values
+	 *            shall be extracted.
 	 */
 	private void extractHintValues(MappingInstanceStorage mappingInstance) {
 
-		// First, we collect all hints (including a possible ModelConnectionHint)
+		// First, we collect all hints of all hint groups
 		//
-		List<MappingHintBaseType> mappingHints = new ArrayList<>();
-		for (MappingHintGroupType hintGroup : mappingInstance.getMappingHintGroups()) {
-			if (hintGroup instanceof MappingHintGroup
-					&& ((MappingHintGroup) hintGroup).getContainerSelector() != null) {
-				mappingHints.add(((MappingHintGroup) hintGroup).getContainerSelector());
-			}
-			mappingHints.addAll(hintGroup.getMappingHints());
-		}
+		List<MappingHint> mappingHints = mappingInstance.getMappingHintGroups().parallelStream()
+				.flatMap(hintGroup -> hintGroup.getMappingHints().stream()).collect(Collectors.toList());
 
-		// Now, we need to initialize the corresponding maps to store hint values
-		// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential
+		// Now, we need to initialize the corresponding maps to store hint
+		// values
+		// (Note: Using a parallel stream would for whatever reason result in
+		// exceptions, so we make use of a sequential
 		// stream).
 		//
 		mappingHints.stream().forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
@@ -163,20 +174,23 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts the hint values of {@link MappingHintGroupImporter MappingHintGroupImporters} for the given
-	 * {@link MappingInstanceStorage}.
+	 * This extracts the hint values of {@link MappingHintGroupImporter
+	 * MappingHintGroupImporters} for the given {@link MappingInstanceStorage}.
 	 * <p />
-	 * Note: The extracted hint values are stored in the <em>mappingInstance</em>.
+	 * Note: The extracted hint values are stored in the
+	 * <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that the hint values shall be extracted.
+	 *            The {@link MappingInstanceStorage} for that the hint values
+	 *            shall be extracted.
 	 */
 	private void extractImportedHintValues(MappingInstanceStorage mappingInstance) {
 
 		for (MappingHintGroupImporter hintGroupImporter : mappingInstance.getMappingHintGroupImporters()) {
 
 			// First, we copy all imported hint values
-			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a
+			// (Note: Using a parallel stream would for whatever reason result
+			// in exceptions, so we make use of a
 			// sequential stream).
 			//
 			ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
@@ -187,15 +201,18 @@ public class HintValueExtractor extends ValueExtractor {
 				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValuesCloned(hint));
 			});
 
-			// Now, we need to initialize the corresponding maps to store values for own hints
-			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a
+			// Now, we need to initialize the corresponding maps to store values
+			// for own hints
+			// (Note: Using a parallel stream would for whatever reason result
+			// in exceptions, so we make use of a
 			// sequential stream).
 			//
 			hintGroupImporter.getMappingHints().stream()
 					.forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
 
 			// Now, we can extract the hint values for each own hint.
-			// (Note: MappedAttributeValueExpanders that change existing values of imported hints are also handled
+			// (Note: MappedAttributeValueExpanders that change existing values
+			// of imported hints are also handled
 			// here).
 			//
 			hintGroupImporter.getMappingHints().parallelStream()
@@ -205,18 +222,22 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts the hint value for the given {@link MappingHintBaseType mapping hint}.
+	 * This extracts the hint value for the given {@link MappingHintBaseType
+	 * mapping hint}.
 	 * <p />
 	 * Note: The extracted hint value is stored in the <em>mappingInstance</em>.
 	 *
 	 * @param hint
-	 *            The {@link MappingHintBaseType} for that the hint values shall be extracted.
+	 *            The {@link MappingHintBaseType} for that the hint values shall
+	 *            be extracted.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that the hint values shall be extracted.
+	 *            The {@link MappingInstanceStorage} for that the hint values
+	 *            shall be extracted.
 	 */
 	private void extractHintValue(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
 
-		// The MatchedSectionDescriptor for the SourceSection from that we want to extract hint values
+		// The MatchedSectionDescriptor for the SourceSection from that we want
+		// to extract hint values
 		//
 		MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
 
@@ -256,13 +277,17 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link AttributeMapping}.
+	 * This extracts and returns the hint value for the given
+	 * {@link AttributeMapping}.
 	 *
 	 * @param attributeMapping
-	 *            The {@link AttributeMapping} for that the hint values shall be extracted.
+	 *            The {@link AttributeMapping} for that the hint values shall be
+	 *            extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values
+	 *            shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be
+	 *         extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<AttributeMappingSourceInterface, AttributeValueRepresentation> extractHintValue(
@@ -306,13 +331,17 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link MappingHintBaseType mapping hint}.
+	 * This extracts and returns the hint value for the given
+	 * {@link MappingHintBaseType mapping hint}.
 	 *
 	 * @param attributeMatcher
-	 *            The {@link AttributeMatcher} for that the hint values shall be extracted.
+	 *            The {@link AttributeMatcher} for that the hint values shall be
+	 *            extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values
+	 *            shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be
+	 *         extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
@@ -357,13 +386,17 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link ContainerSelector}.
+	 * This extracts and returns the hint value for the given
+	 * {@link ContainerSelector}.
 	 *
 	 * @param modelConnectionHint
-	 *            The {@link ContainerSelector} for that the hint values shall be extracted.
+	 *            The {@link ContainerSelector} for that the hint values shall
+	 *            be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values
+	 *            shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be
+	 *         extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
@@ -408,13 +441,17 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link CardinalityMapping}.
+	 * This extracts and returns the hint value for the given
+	 * {@link CardinalityMapping}.
 	 *
 	 * @param cardinalityMapping
-	 *            The {@link CardinalityMapping} for that the hint values shall be extracted.
+	 *            The {@link CardinalityMapping} for that the hint values shall
+	 *            be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values
+	 *            shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be
+	 *         extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private Object extractHintValue(CardinalityMapping cardinalityMapping,
@@ -424,7 +461,8 @@ public class HintValueExtractor extends ValueExtractor {
 
 			if (cardinalityMapping.getSource() instanceof SourceSectionClass) {
 
-				// If the cardinality mapping specifies a SourceSectionClass as source, we simply return the number of
+				// If the cardinality mapping specifies a SourceSectionClass as
+				// source, we simply return the number of
 				// times
 				// this class has been matched
 				//
@@ -434,8 +472,10 @@ public class HintValueExtractor extends ValueExtractor {
 
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
 
-				// If the cardinality mapping specifies a SourceSectionAttribute as source, we first collect all matches
-				// of this attribute and then return the sum of the values for each of the found matches
+				// If the cardinality mapping specifies a SourceSectionAttribute
+				// as source, we first collect all matches
+				// of this attribute and then return the sum of the values for
+				// each of the found matches
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
 				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
@@ -499,13 +539,17 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link MappedAttributeValueExpander}.
+	 * This extracts and returns the hint value for the given
+	 * {@link MappedAttributeValueExpander}.
 	 *
 	 * @param mappedAttributeValueExpander
-	 *            The {@link MappedAttributeValueExpander} for that the hint values shall be extracted.
+	 *            The {@link MappedAttributeValueExpander} for that the hint
+	 *            values shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values
+	 *            shall be extracted.
+	 * @return The extracted hint value or '<em>null</em>' if nothing could be
+	 *         extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private String extractHintValue(MappedAttributeValueExpander mappedAttributeValueExpander,
@@ -529,13 +573,16 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * For a given {@link MappingHintBaseType hint}, this {@link HintValueMap#init(EObject, boolean) initializes} the
+	 * For a given {@link MappingHintBaseType hint}, this
+	 * {@link HintValueMap#init(EObject, boolean) initializes} the
 	 * {@link HintValueMap} in the given {@link MappingInstanceStorage}.
 	 *
 	 * @param hint
-	 *            The {@link MappingHintBaseType} for that the map shall be initialized.
+	 *            The {@link MappingHintBaseType} for that the map shall be
+	 *            initialized.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} in that the hint value map shall be initialized.
+	 *            The {@link MappingInstanceStorage} in that the hint value map
+	 *            shall be initialized.
 	 */
 	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
 
@@ -554,30 +601,35 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This stores the given '<em>hintValue</em>' produced by the given {@link MappingHintBaseType} in the given
-	 * {@link MappingInstanceStorage}.
+	 * This stores the given '<em>hintValue</em>' produced by the given
+	 * {@link MappingHintBaseType} in the given {@link MappingInstanceStorage}.
 	 * <p />
-	 * Note: If the '<em>hintValue</em>' represents a 'complex', attribute-based hint (i.e. one that is composed of
-	 * multiple source elements like e.g. an 'AttributeMapping), it is consolidated first. By 'consolidated', we mean
-	 * that, if one or more of the source elements returned {@link AttributeValueRepresentation#isMany() multiple
-	 * values}, multiple distinct hint values are created.
+	 * Note: If the '<em>hintValue</em>' represents a 'complex', attribute-based
+	 * hint (i.e. one that is composed of multiple source elements like e.g. an
+	 * 'AttributeMapping), it is consolidated first. By 'consolidated', we mean
+	 * that, if one or more of the source elements returned
+	 * {@link AttributeValueRepresentation#isMany() multiple values}, multiple
+	 * distinct hint values are created.
 	 *
 	 * @param hintValue
-	 *            The object representing the hint value. The type of this is dependent on the concrete
-	 *            {@link MappingHintBaseType} represented by the given '<em>hint</em>'.
+	 *            The object representing the hint value. The type of this is
+	 *            dependent on the concrete {@link MappingHintBaseType}
+	 *            represented by the given '<em>hint</em>'.
 	 * @param hint
 	 *            The {@link MappingHintBaseType hint} that produced the value.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} where the hint value shall be stored.
+	 *            The {@link MappingInstanceStorage} where the hint value shall
+	 *            be stored.
 	 */
 	@SuppressWarnings("unchecked")
 	private void storeHintValueConsolidated(Object hintValue, MappingHintBaseType hint,
 			MappingInstanceStorage mappingInstance) {
 
 		/*
-		 * If we deal with a 'complex' hint (one that is composed of multiple source elements) and one or more of the
-		 * source elements returned multiple values, we need to 'consolidate' the hint values, i.e. create multiple
-		 * distinct hint values.
+		 * If we deal with a 'complex' hint (one that is composed of multiple
+		 * source elements) and one or more of the source elements returned
+		 * multiple values, we need to 'consolidate' the hint values, i.e.
+		 * create multiple distinct hint values.
 		 */
 		if (hintValue instanceof Map<?, ?>) {
 
@@ -605,8 +657,9 @@ public class HintValueExtractor extends ValueExtractor {
 			}
 
 			/*
-			 * In case we are dealing with a HintImporterMappingHint, we cannot simply store the extracted hint value.
-			 * Instead, we need to update to the existing value.
+			 * In case we are dealing with a HintImporterMappingHint, we cannot
+			 * simply store the extracted hint value. Instead, we need to update
+			 * to the existing value.
 			 */
 		} else if (hint instanceof HintImporterMappingHint) {
 
@@ -624,7 +677,8 @@ public class HintValueExtractor extends ValueExtractor {
 					.forEach(h -> this.expandHint(h, hintValue, mappingInstance, prepend));
 
 			/*
-			 * Otherwise, we can simply store the single hint value in the mapping instance.
+			 * Otherwise, we can simply store the single hint value in the
+			 * mapping instance.
 			 */
 		} else if (hintValue != null) {
 
@@ -633,17 +687,20 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * Expand the existing values of the given {@link ExpandableHint} stored for the given
-	 * {@link MappingInstanceStorage}.
+	 * Expand the existing values of the given {@link ExpandableHint} stored for
+	 * the given {@link MappingInstanceStorage}.
 	 *
 	 * @param expandableHint
-	 *            The {@link ExpandableHint} of which the existing values shall be expanded.
+	 *            The {@link ExpandableHint} of which the existing values shall
+	 *            be expanded.
 	 * @param hintValue
 	 *            The value to append/prepend.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} containing the hint values to expand.
+	 *            The {@link MappingInstanceStorage} containing the hint values
+	 *            to expand.
 	 * @param prepend
-	 *            If this is '<em><b>true</b></em>', the hintValue shall be prepended; otherwise, it shall be appended.
+	 *            If this is '<em><b>true</b></em>', the hintValue shall be
+	 *            prepended; otherwise, it shall be appended.
 	 */
 	private void expandHint(ExpandableHint expandableHint, Object hintValue, MappingInstanceStorage mappingInstance,
 			boolean prepend) {
@@ -665,17 +722,20 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * Expand the existing values of the given {@link AttributeMapping} stored for the given
-	 * {@link MappingInstanceStorage}.
+	 * Expand the existing values of the given {@link AttributeMapping} stored
+	 * for the given {@link MappingInstanceStorage}.
 	 *
 	 * @param attributeMapping
-	 *            The {@link AttributeMapping} of which the existing values shall be expanded.
+	 *            The {@link AttributeMapping} of which the existing values
+	 *            shall be expanded.
 	 * @param hintValue
 	 *            The value to append/prepend.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} containing the hint values to expand.
+	 *            The {@link MappingInstanceStorage} containing the hint values
+	 *            to expand.
 	 * @param prepend
-	 *            If this is '<em><b>true</b></em>', the hintValue shall be prepended; otherwise, it shall be appended.
+	 *            If this is '<em><b>true</b></em>', the hintValue shall be
+	 *            prepended; otherwise, it shall be appended.
 	 */
 	private void expandAttributeMapping(AttributeMapping attributeMapping, String hintValue,
 			MappingInstanceStorage mappingInstance, boolean prepend) {
@@ -701,17 +761,20 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * Expand the existing values of the given {@link AttributeMatcher} stored for the given
-	 * {@link MappingInstanceStorage}.
+	 * Expand the existing values of the given {@link AttributeMatcher} stored
+	 * for the given {@link MappingInstanceStorage}.
 	 *
 	 * @param attributeMatcher
-	 *            The {@link AttributeMatcher} of which the existing values shall be expanded.
+	 *            The {@link AttributeMatcher} of which the existing values
+	 *            shall be expanded.
 	 * @param hintValue
 	 *            The value to append/prepend.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} containing the hint values to expand.
+	 *            The {@link MappingInstanceStorage} containing the hint values
+	 *            to expand.
 	 * @param prepend
-	 *            If this is '<em><b>true</b></em>', the hintValue shall be prepended; otherwise, it shall be appended.
+	 *            If this is '<em><b>true</b></em>', the hintValue shall be
+	 *            prepended; otherwise, it shall be appended.
 	 */
 	private void expandAttributeMatcher(AttributeMatcher attributeMatcher, String hintValue,
 			MappingInstanceStorage mappingInstance, boolean prepend) {

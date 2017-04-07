@@ -39,6 +39,7 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParamet
 import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
+import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -57,8 +58,8 @@ import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceStorage
- * MappingInstanceStorages}.
+ * Class for instantiating target model sections using the hints supplied by
+ * {@link MappingInstanceStorage MappingInstanceStorages}.
  *
  * @author mfreund
  */
@@ -69,8 +70,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private static final String RESOLVE_INSTANTIATING_AMBIGUITY_STARTED = "[Ambiguity] Resolve expanding ambiguity...";
 
 	/**
-	 * TargetSectionContainmentReferences that point to a EReference with an upporBound of 1 but at one point more than
-	 * one element was supposed to be connected with them
+	 * TargetSectionContainmentReferences that point to a EReference with an
+	 * upporBound of 1 but at one point more than one element was supposed to be
+	 * connected with them
 	 */
 	private final Set<TargetSectionCompositeReference> wrongCardinalityContainmentRefs;
 
@@ -90,19 +92,21 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to their
-	 * {@link LibraryEntryInstantiator}.
+	 * This relates temporarily created elements for LibraryEntries (represented
+	 * by an {@link EObjectWrapper}) to their {@link LibraryEntryInstantiator}.
 	 */
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 * An instance of {@link AttributeValueCalculator} that is used to calculate
+	 * attribute values.
 	 */
 	private AttributeValueCalculator calculator;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
-	 * execution of the transformation.
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
+	 * resolve ambiguities that arise during the execution of the
+	 * transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
@@ -120,7 +124,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
+	 *            resolve occurring ambiguities.
 	 */
 	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attributeValueRegistry, final GlobalValueMap globalValueMap,
@@ -141,8 +146,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
-	 * {@link MappingInstanceStorage}.
+	 * This expands the {@link TargetSection TargetSections} represented by the
+	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
 	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
@@ -172,8 +177,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
@@ -183,7 +189,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to expand.
 	 * @param hintGroup
-	 *            The {@link MappingHintGroup} that lead to the instantiation of the given <em>mappingInstance</em>.
+	 *            The {@link MappingHintGroup} that lead to the instantiation of
+	 *            the given <em>mappingInstance</em>.
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance, MappingHintGroup hintGroup) {
 
@@ -207,8 +214,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * This expands the given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
@@ -218,8 +226,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to expand.
 	 * @param mappingHintGroupImporter
-	 *            The {@link MappingHintGroupImporter} that lead to the instantiation of the given
-	 *            <em>mappingInstance</em>.
+	 *            The {@link MappingHintGroupImporter} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
@@ -247,23 +255,29 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * From the given list of {@link MappingHint MappingHints} and the given {@link HintValueStorage hint values}, find
-	 * one attribute mapping that determines the cardinality of the given {@link TargetSectionClass}.
+	 * From the given list of {@link MappingHint MappingHints} and the given
+	 * {@link HintValueStorage hint values}, find one attribute mapping that
+	 * determines the cardinality of the given {@link TargetSectionClass}.
 	 * <p />
-	 * Note: This function iterates downward in the containment hierarchy of the {@link TargetSection}. Thereby, the
-	 * <em>oldSelectedHint</em> is taken into account and only attribute mappings that result in a higher cardinality
-	 * than the one already determined are considered.
+	 * Note: This function iterates downward in the containment hierarchy of the
+	 * {@link TargetSection}. Thereby, the <em>oldSelectedHint</em> is taken
+	 * into account and only attribute mappings that result in a higher
+	 * cardinality than the one already determined are considered.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
+	 *            The {@link TargetSectionClass} for that the cardinality shall
+	 *            be determined.
 	 * @param hints
 	 *            The list of {@link MappingHint MappingHints} to be considered.
 	 * @param hintValues
-	 *            The {@link HintValueStorage} for the current TargetSection containing all extracted hint values.
+	 *            The {@link HintValueStorage} for the current TargetSection
+	 *            containing all extracted hint values.
 	 * @param oldSelectedHint
-	 *            The {@link AttributeMapping} that was previously determined as 'cardinality-defining'.
-	 * @return The {@link AttributeMapping} that determines the cardinality or <em>null</em> if no AttributeMapping
-	 *         could be determined that would produce a higher cardinality than the one produced by the
+	 *            The {@link AttributeMapping} that was previously determined as
+	 *            'cardinality-defining'.
+	 * @return The {@link AttributeMapping} that determines the cardinality or
+	 *         <em>null</em> if no AttributeMapping could be determined that
+	 *         would produce a higher cardinality than the one produced by the
 	 *         '<em>oldSelectedHint</em>'.
 	 */
 	private static AttributeMapping searchAttributeMapping(final TargetSectionClass targetSectionClass,
@@ -318,31 +332,37 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * Instantiate the given {@link TargetSection} using the specified {@link HintValueStorage hint values}.
+	 * Instantiate the given {@link TargetSection} using the specified
+	 * {@link HintValueStorage hint values}.
 	 * <p />
-	 * Note: This constitutes the first pass of the instantiation that only creates attributes and containment
-	 * references. Non-containment references are created during the
+	 * Note: This constitutes the first pass of the instantiation that only
+	 * creates attributes and containment references. Non-containment references
+	 * are created during the
 	 * {@link #instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)
 	 * second pass}.
 	 *
 	 * @param targetSection
 	 *            The {@link TargetSection} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @return A map relating created {@link EObjectWrapper instances} to the {@link TargetSectionClass} based on which
-	 *         they have been created.
+	 * @return A map relating created {@link EObjectWrapper instances} to the
+	 *         {@link TargetSectionClass} based on which they have been created.
 	 */
 	private Map<TargetSectionClass, List<EObjectWrapper>> instantiateTargetSectionFirstPass(
 			final TargetSection targetSection, final InstantiableMappingHintGroup mappingGroup,
 			final List<MappingHint> mappingHints, final HintValueStorage hintValues) {
 
-		// This will be filled as we iterate through the TargetSection and will be returned in the end
+		// This will be filled as we iterate through the TargetSection and will
+		// be returned in the end
 		//
 		final Map<TargetSectionClass, List<EObjectWrapper>> instBySection = new LinkedHashMap<>();
 
@@ -360,26 +380,35 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * Instantiate the given {@link TargetSectionClass} using the specified {@link HintValueStorage hint values}.
+	 * Instantiate the given {@link TargetSectionClass} using the specified
+	 * {@link HintValueStorage hint values}.
 	 * <p />
-	 * Note: This is called recursively as we iterate downward in the containment hierarchy of the {@link TargetSection}
-	 * to be instantiated. Note: Created instances are registered in the <em>createdInstancesByTargetSectionClass</em>.
+	 * Note: This is called recursively as we iterate downward in the
+	 * containment hierarchy of the {@link TargetSection} to be instantiated.
+	 * Note: Created instances are registered in the
+	 * <em>createdInstancesByTargetSectionClass</em>.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
-	 *            The map where all created {@link EObjectWrapper instances} are registered.
+	 *            The map where all created {@link EObjectWrapper instances} are
+	 *            registered.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
-	 * @return The list of created {@link EObjectWrapper instances} or '<em>null</em>' if an error occurred.
+	 *            These are used to determine if an attribute value was used
+	 *            higher up in the section hierarchy.
+	 * @return The list of created {@link EObjectWrapper instances} or
+	 *         '<em>null</em>' if an error occurred.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionFirstPass(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
@@ -462,36 +491,43 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This determines and returns the cardinality when instantiating the given {@link TargetSectionClass} using the
-	 * specified {@link HintValueStorage hint values}, i.e. how many instances of {@link TargetSectionClass} shall be
-	 * created.
+	 * This determines and returns the cardinality when instantiating the given
+	 * {@link TargetSectionClass} using the specified {@link HintValueStorage
+	 * hint values}, i.e. how many instances of {@link TargetSectionClass} shall
+	 * be created.
 	 * <p />
-	 * Therefore, existing {@link AttributeMapping AttributeMappings} and {@link CardinalityMapping CardinalityMappings}
-	 * are evaluated based on the given {@link HintValueStorage hint values}.
+	 * Therefore, existing {@link AttributeMapping AttributeMappings} and
+	 * {@link CardinalityMapping CardinalityMappings} are evaluated based on the
+	 * given {@link HintValueStorage hint values}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
+	 *            The {@link TargetSectionClass} for that the cardinality shall
+	 *            be determined.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account for the determination of the
-	 *            cardinality.
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account for the determination of the cardinality.
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @return The cardinality to be used whne instantiating the given {@link TargetSectionClass}.
+	 * @return The cardinality to be used whne instantiating the given
+	 *         {@link TargetSectionClass}.
 	 */
 	private int determineCardinality(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
 
 		/*
-		 * ignore attribute hints and cardinality hint, if variableCardinality == false
+		 * ignore attribute hints and cardinality hint, if variableCardinality
+		 * == false
 		 */
 		if (targetSectionClass.getCardinality().equals(CardinalityType.ONE)) {
 			return 1;
 		}
 
-		// This will be returned in the end. We start by assuming a cardinality of '1'.
+		// This will be returned in the end. We start by assuming a cardinality
+		// of '1'.
 		//
 		int cardinality = 1;
 
@@ -548,10 +584,20 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-			if (mhGrp.getContainerSelector() != null && mhGrp.getTargetSection().equals(targetSectionClass)) {
+			if (!mhGrp.getContainerSelectors().isEmpty() && mhGrp.getTargetSection().equals(targetSectionClass)) {
 
 				hintFound = true;
-				cardinality = hintValues.getHintValues(mhGrp.getContainerSelector()).size();
+
+				// Use the maximum cardinality provided by one of the
+				// ContainerSelectors
+				//
+				for (ContainerSelector containerSelector : mhGrp.getContainerSelectors()) {
+
+					int containerSelectorCardinality = hintValues.getHintValues(containerSelector).size();
+					if (containerSelectorCardinality > cardinality) {
+						cardinality = containerSelectorCardinality;
+					}
+				}
 			}
 		}
 
@@ -563,7 +609,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 			int hintCardinality = hintValues.getHintValues(hint).size();
 
 			/*
-			 * Now, we have to check if there are multi-valued attributes that also try to determine the cardinality.
+			 * Now, we have to check if there are multi-valued attributes that
+			 * also try to determine the cardinality.
 			 */
 			int multiValuedAttributeCardinality = 1;
 
@@ -623,7 +670,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 				} else {
 					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.
+					 * Consult the specified resolving strategy to resolve the
+					 * ambiguity.
 					 */
 					try {
 						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
@@ -654,20 +702,24 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the given {@link TargetSectionClass} by creating a new {@link EObject} and wrapping it in an
-	 * {@link EObjectWrapper}.
+	 * This instantiates the given {@link TargetSectionClass} by creating a new
+	 * {@link EObject} and wrapping it in an {@link EObjectWrapper}.
 	 * <p />
-	 * If the given TargetSectionClass represents a {@link TargetSectionClass#isLibraryEntry() LibraryEntry},
-	 * additionally, a new {@link LibraryEntryInstantiator} is created and registered in the
+	 * If the given TargetSectionClass represents a
+	 * {@link TargetSectionClass#isLibraryEntry() LibraryEntry}, additionally, a
+	 * new {@link LibraryEntryInstantiator} is created and registered in the
 	 * {@link #libEntryInstantiators} and {@link #libEntryInstantiatorMap}.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
@@ -681,18 +733,20 @@ public class TargetSectionInstantiator extends CancelableElement {
 		final EObject inst = targetSectionClass.getEClass().getEPackage().getEFactoryInstance()
 				.create(targetSectionClass.getEClass());
 
-		// create an EObjectTransformationHelper that wraps the eObject and more stuff
+		// create an EObjectTransformationHelper that wraps the eObject and more
+		// stuff
 		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.attributeValueRegistry);
 
 		/*
-		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator' that will insert the
-		 * real library entry at the end.
+		 * If the target section is a library entry, we create a new
+		 * 'LibraryEntryInstantiator' that will insert the real library entry at
+		 * the end.
 		 */
 		if (targetSectionClass.isLibraryEntry()) {
 
 			/*
-			 * As LibraryEntries may get inserted multiple times, we need to create a self-contained copy of the library
-			 * entry
+			 * As LibraryEntries may get inserted multiple times, we need to
+			 * create a self-contained copy of the library entry
 			 */
 			LibraryEntry originallibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 			ArrayList<EObject> originals = new ArrayList<>();
@@ -710,21 +764,27 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the {@link TargetSectionAttribute TargetSectionAttributes} for the given
-	 * {@link TargetSectionClass} based on the provided {@link HintValueStorage hint values}.
+	 * This instantiates the {@link TargetSectionAttribute
+	 * TargetSectionAttributes} for the given {@link TargetSectionClass} based
+	 * on the provided {@link HintValueStorage hint values}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} defining the attributes to be instantiated.
+	 *            The {@link TargetSectionClass} defining the attributes to be
+	 *            instantiated.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
+	 *            These are used to determine if an attribute value was used
+	 *            higher up in the section hierarchy.
 	 * @param cardinality
 	 * @param instances
 	 * @return markedForDelete
@@ -741,7 +801,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 		List<EObjectWrapper> markedForDelete = new ArrayList<>();
 
 		/*
-		 * we don't need to reference the EObjects, since their order doesn't change while we are using this
+		 * we don't need to reference the EObjects, since their order doesn't
+		 * change while we are using this
 		 */
 		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
 
@@ -752,7 +813,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 			// any attributes as direct children of it
 			assert attributes.isEmpty();
 			attributes = new BasicEList<>();
-			// however, we want to perform the calculation of the values affected by AttributeParameters
+			// however, we want to perform the calculation of the values
+			// affected by AttributeParameters
 			LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 
 			for (LibraryParameter<?> parameter : libEntry.getParameters()) {
@@ -831,7 +893,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 				if (attrValue == null) {
 					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.
+					 * Consult the specified resolving strategy to resolve the
+					 * ambiguity.
 					 */
 					try {
 						this.logger.fine("[Ambiguity] Resolve expanding ambiguity...");
@@ -879,7 +942,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 						|| attributeValues.get(attr).contains(attrValue) || attrValUsedInSection)) {
 
 					/*
-					 * we can only delete this at the end, or else the attributeHint values won't fit anymore
+					 * we can only delete this at the end, or else the
+					 * attributeHint values won't fit anymore
 					 */
 					markedForDelete.add(instance);
 
@@ -892,8 +956,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		/*
-		 * Now that we know which instances will be deleted we set (and register) the actual attribute values of the
-		 * instances that will not get deleted
+		 * Now that we know which instances will be deleted we set (and
+		 * register) the actual attribute values of the instances that will not
+		 * get deleted
 		 */
 		for (final EObjectWrapper instance : instances) {
 
@@ -910,14 +975,17 @@ public class TargetSectionInstantiator extends CancelableElement {
 						// finally, we can set the value of the attribute
 						if (!targetSectionClass.isLibraryEntry()) {
 							/*
-							 * setting an Attribute causes the value to be saved in the attribute value registry
+							 * setting an Attribute causes the value to be saved
+							 * in the attribute value registry
 							 */
 							instance.setAttributeValue(attr, setValue);
 						} else {
 							/*
-							 * for library entries, we cannot simply set the value as the attribute we are handling is
-							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
-							 * for the affected AttributeParameter
+							 * for library entries, we cannot simply set the
+							 * value as the attribute we are handling is not
+							 * part of the targetSectionClass; instead we want
+							 * to specify the value as 'new value' for the
+							 * affected AttributeParameter
 							 */
 							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(instance)
 									.getLibraryEntry();
@@ -948,34 +1016,43 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the {@link TargetSectionContainmentReference TargetSectionContainmentReferences} defined by the
-	 * given {@link TargetSectionClass}. Therefore, it iterates further downward in the containment hierarchy of the
-	 * TargetSection and call
+	 * This instantiates the {@link TargetSectionContainmentReference
+	 * TargetSectionContainmentReferences} defined by the given
+	 * {@link TargetSectionClass}. Therefore, it iterates further downward in
+	 * the containment hierarchy of the TargetSection and call
 	 * {@link #instantiateTargetSectionFirstPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map, Map)}
 	 * .
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} of which the {@link TargetSectionContainmentReference
+	 *            The {@link TargetSectionClass} of which the
+	 *            {@link TargetSectionContainmentReference
 	 *            TargetSectionContainmentReferences} are to be instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
-	 *            The registry where created {@link EObjectWrapper instances} shall be stored.
+	 *            The registry where created {@link EObjectWrapper instances}
+	 *            shall be stored.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
+	 *            These are used to determine if an attribute value was used
+	 *            higher up in the section hierarchy.
 	 * @param instances
-	 *            The list of {@link EObjectWrapper instances} that have been created for the given
-	 *            {@link TargetSectionClass}. The references need to be created for each of these instances unless they
-	 *            are <em>markedForDelete</em>.
+	 *            The list of {@link EObjectWrapper instances} that have been
+	 *            created for the given {@link TargetSectionClass}. The
+	 *            references need to be created for each of these instances
+	 *            unless they are <em>markedForDelete</em>.
 	 * @param markedForDelete
-	 *            The subset of the given list of <em>instances/<em> that will get deleted in the end due to duplicate
-	 *            attribute values that should be unique.
+	 *            The subset of the given list of <em>instances/<em> that will
+	 *            get deleted in the end due to duplicate attribute values that
+	 *            should be unique.
 	 * @return The created {@link EObjectWrapper instance}.
 	 */
 	private boolean instantiateTargetSectionContainmentReferences(final TargetSectionClass targetSectionClass,
@@ -1059,12 +1136,14 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * For the given {@link MappingHintGroupImporter}, this collects the <em>local</em> hints as well as the imported
-	 * hints from the referenced {@link ExportedMappingHintGroup} for the given {@link MappingInstanceStorage mapping
-	 * instance}.
+	 * For the given {@link MappingHintGroupImporter}, this collects the
+	 * <em>local</em> hints as well as the imported hints from the referenced
+	 * {@link ExportedMappingHintGroup} for the given
+	 * {@link MappingInstanceStorage mapping instance}.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that imported hints shall be returned.
+	 *            The {@link MappingInstanceStorage} for that imported hints
+	 *            shall be returned.
 	 * @param hintGroupImporter
 	 *            The {@link MappingHintGroupImporter} to handle.
 	 * @return The imported {@link MappingHint MappingHints}.
@@ -1086,7 +1165,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	/**
 	 * This is the getter for the {@link #libEntryInstantiatorMap}.
 	 *
-	 * @return The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and their
+	 * @return The temporarily created elements for LibraryEntries (represented
+	 *         by an {@link EObjectWrapper}) and their
 	 *         {@link LibraryEntryInstantiator}.
 	 */
 	public Map<EObjectWrapper, LibraryEntryInstantiator> getLibEntryInstantiatorMap() {

@@ -1726,10 +1726,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" abstract="true"
         eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="containerSelector" eType="#//mapping/ContainerSelector"
-          containment="true"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType #//mapping/InstantiableMappingHintGroup"/>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"
           eType="#//mapping/ExportedMappingHintGroup"/>
@@ -2018,7 +2015,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
           eType="#//structure/target/TargetSectionAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHintBaseType #//structure/InstanceSelector">
+    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHint #//structure/InstanceSelector">
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
           upperBound="-1" eType="#//mapping/ContainerSelectorTargetAttribute" containment="true"/>
     </eClassifiers>

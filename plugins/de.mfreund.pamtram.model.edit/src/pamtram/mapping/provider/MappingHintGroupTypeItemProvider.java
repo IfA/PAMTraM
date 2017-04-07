@@ -282,6 +282,11 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
 				 MappingFactory.eINSTANCE.createReferenceTargetSelector()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS,
+				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 	/**

@@ -23,7 +23,6 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSection;
-import pamtram.mapping.ContainerSelector;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -37,7 +36,6 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getSharedCondition <em>Shared Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getContainerSelector <em>Container Selector</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,16 +77,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @ordered
 	 */
 	protected ComplexCondition sharedCondition;
-	/**
-	 * The cached value of the '{@link #getContainerSelector() <em>Container Selector</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainerSelector()
-	 * @generated
-	 * @ordered
-	 */
-	protected ContainerSelector containerSelector;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -221,51 +209,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public ContainerSelector getContainerSelector() {
-		return containerSelector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainerSelector(ContainerSelector newContainerSelector, NotificationChain msgs) {
-		ContainerSelector oldContainerSelector = containerSelector;
-		containerSelector = newContainerSelector;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, oldContainerSelector, newContainerSelector);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContainerSelector(ContainerSelector newContainerSelector) {
-		if (newContainerSelector != containerSelector) {
-			NotificationChain msgs = null;
-			if (containerSelector != null)
-				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			if (newContainerSelector != null)
-				msgs = ((InternalEObject)newContainerSelector).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			msgs = basicSetContainerSelector(newContainerSelector, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, newContainerSelector, newContainerSelector));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -321,8 +264,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return basicSetContainerSelector(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -342,8 +283,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return getContainerSelector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -364,9 +303,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
-				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				setContainerSelector((ContainerSelector)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -389,9 +325,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				setContainerSelector((ContainerSelector)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -410,8 +343,6 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				return localCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				return sharedCondition != null;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return containerSelector != null;
 		}
 		return super.eIsSet(featureID);
 	}

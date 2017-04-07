@@ -35,8 +35,9 @@ import pamtram.mapping.MappingPackage;
 public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingHintGroupItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +45,9 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,8 +62,9 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Deactivated feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -81,8 +84,9 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Shared Condition feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -105,8 +109,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,7 +117,6 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -133,7 +135,8 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 	/**
 	 * This returns MappingHintGroup.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,7 +146,8 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,8 +156,9 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -171,10 +176,10 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -186,7 +191,6 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -194,9 +198,10 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,16 +237,12 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
-				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
@@ -249,7 +250,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 		this.collectNewChildDescriptorsGen(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
+				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}

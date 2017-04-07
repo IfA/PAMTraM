@@ -33,7 +33,7 @@ import pamtram.structure.impl.StructurePackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContainerSelectorItemProvider extends MappingHintBaseTypeItemProvider {
+public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier.

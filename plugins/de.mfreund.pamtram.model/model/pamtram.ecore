@@ -1723,6 +1723,34 @@
           eType="#//mapping/MappingHint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1"
           eType="#//mapping/MappingHintGroupType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributeMappings" upperBound="-1"
+          eType="#//mapping/AttributeMapping" changeable="false" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.AttributeMapping%>> attributeMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;attributeMappings.size(),attributeMappings.toArray());&#xD;&#xA;"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityMappings"
+          upperBound="-1" eType="#//mapping/CardinalityMapping" changeable="false"
+          volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.CardinalityMapping%>> cardinalityMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,&#xD;&#xA;&#x9;&#x9;cardinalityMappings.size(),cardinalityMappings.toArray());&#xD;&#xA;"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referenceTargetSelectors"
+          upperBound="-1" eType="#//mapping/ReferenceTargetSelector" changeable="false"
+          volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,&#xD;&#xA;&#x9;&#x9;referenceTargetSelectors.size(),referenceTargetSelectors.toArray());&#xD;&#xA;"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containerSelectors" upperBound="-1"
+          eType="#//mapping/ContainerSelector" changeable="false" volatile="true"
+          transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,&#xD;&#xA;&#x9;&#x9;containerSelectors.size(),containerSelectors.toArray());&#xD;&#xA;"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" abstract="true"
         eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement"/>

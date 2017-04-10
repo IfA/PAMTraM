@@ -135,11 +135,11 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 			mappings = this.eResource().getResourceSet().getResources().stream()
 					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
-					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
+					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())
 					.collect(Collectors.toList());
 		}
 		
-		List<Mapping> referencingMappings = mappings.parallelStream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());
+		List<Mapping> referencingMappings = mappings.stream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());
 		
 		return new UnmodifiableEList<>(this, SourcePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
 				referencingMappings.size(), referencingMappings.toArray());

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -23,53 +24,76 @@ import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This class is used to store mapping hint values. It stores the hint values separated by their type in various
- * {@link HintValueMap HintValueMaps} and provides a common interface to them.
+ * This class is used to store mapping hint values. It stores the hint values
+ * separated by their type in various {@link HintValueMap HintValueMaps} and
+ * provides a common interface to them.
  *
  * @author mfreund
  */
 public class HintValueStorage {
 
 	/**
-	 * This keeps track of hint values for {@link AttributeMapping AttributeMappings}.
+	 * This keeps track of hint values for {@link AttributeMapping
+	 * AttributeMappings}.
 	 */
 	private final AttributeMappingHintValueMap attributeMappingHintValues;
 
 	/**
-	 * This keeps track of hint values for {@link CardinalityMapping CardinalityMappings}.
+	 * This keeps track of hint values for {@link CardinalityMapping
+	 * CardinalityMappings}.
 	 */
 	private final CardinalityMappingHintValueMap cardinalityMappingHintValues;
 
 	/**
-	 * This keeps track of hint values for {@link ReferenceTargetSelector MappingInstanceSelectors}.
+	 * This keeps track of hint values for {@link ReferenceTargetSelector
+	 * MappingInstanceSelectors}.
 	 */
 	private final MappingInstanceSelectorHintValueMap mappingInstanceSelectorHintValues;
 
 	/**
-	 * This keeps track of hint values for {@link ContainerSelector ModelConnectionHints}.
+	 * This keeps track of hint values for {@link ContainerSelector
+	 * ModelConnectionHints}.
 	 */
 	private final ContainerSelectorHintValueMap containerSelectorHintValues;
 
 	/**
-	 * This constructs an instance and initializes the various maps to store hint values.
+	 * Whether extended parallelization shall be used during the transformation
+	 * that might lead to the fact that the transformation result (especially
+	 * the order of lists) varies between executions.
 	 */
-	public HintValueStorage() {
+	private boolean useParallelization;
+
+	/**
+	 * This constructs an instance and initializes the various maps to store
+	 * hint values.
+	 *
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
+	 */
+	public HintValueStorage(boolean useParallelization) {
 
 		this.attributeMappingHintValues = new AttributeMappingHintValueMap();
 		this.cardinalityMappingHintValues = new CardinalityMappingHintValueMap();
 		this.mappingInstanceSelectorHintValues = new MappingInstanceSelectorHintValueMap();
 		this.containerSelectorHintValues = new ContainerSelectorHintValueMap();
+		this.useParallelization = useParallelization;
 	}
 
 	/**
 	 * This returns the list of stored values for the given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the stored values shall be returned. The concrete type of this needs to be one of
-	 *            {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for which the stored values shall be returned. The
+	 *            concrete type of this needs to be one of
+	 *            {@link AttributeMapping}, {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
-	 * @return The stored values for the given hint. The concrete return type is in line with the type of the
-	 *         <em>hint</em> according to the concrete implementation of the {@link HintValueMap} type.
+	 * @return The stored values for the given hint. The concrete return type is
+	 *         in line with the type of the <em>hint</em> according to the
+	 *         concrete implementation of the {@link HintValueMap} type.
 	 */
 	public Object getHintValues(EObject hint) {
 
@@ -87,17 +111,23 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * This returns a cloned copy of the list of stored values for the given
+	 * hint.
 	 * <p />
-	 * This should be used over {@link #getHintValues(EObject)} when the returned values will, e.g., be added to another
-	 * HintValueStorage in order to prevent concurrent usages of the same value.
+	 * This should be used over {@link #getHintValues(EObject)} when the
+	 * returned values will, e.g., be added to another HintValueStorage in order
+	 * to prevent concurrent usages of the same value.
 	 *
 	 * @param hint
-	 *            The hint for which the stored values shall be returned. The concrete type of this needs to be one of
-	 *            {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for which the stored values shall be returned. The
+	 *            concrete type of this needs to be one of
+	 *            {@link AttributeMapping}, {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
-	 * @return A cloned copy of the stored values for the given hint. The concrete return type is in line with the type
-	 *         of the <em>hint</em> according to the concrete implementation of the {@link HintValueMap} type.
+	 * @return A cloned copy of the stored values for the given hint. The
+	 *         concrete return type is in line with the type of the
+	 *         <em>hint</em> according to the concrete implementation of the
+	 *         {@link HintValueMap} type.
 	 */
 	public Object getHintValuesCloned(EObject hint) {
 
@@ -136,10 +166,12 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * This returns a cloned copy of the list of stored values for the given
+	 * hint.
 	 * <p />
-	 * This should be used over {@link #getHintValues(EObject)} when the returned values will, e.g., be added to another
-	 * HintValueStorage in order to prevent concurrent usages of the same value.
+	 * This should be used over {@link #getHintValues(EObject)} when the
+	 * returned values will, e.g., be added to another HintValueStorage in order
+	 * to prevent concurrent usages of the same value.
 	 *
 	 * @param hint
 	 *            The hint for which the stored values shall be returned.
@@ -149,13 +181,14 @@ public class HintValueStorage {
 			AttributeMapping hint) {
 
 		return new LinkedList<>(
-				this.attributeMappingHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-					Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-					for (AttributeMappingSourceInterface key : oldHintValue.keySet()) {
-						newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
-					}
-					return newHintValue;
-				}).collect(Collectors.toList()));
+				(this.useParallelization ? this.attributeMappingHintValues.getHintValues(hint).parallelStream()
+						: this.attributeMappingHintValues.getHintValues(hint).stream()).map(oldHintValue -> {
+							Map<AttributeMappingSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+							for (AttributeMappingSourceInterface key : oldHintValue.keySet()) {
+								newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+							}
+							return newHintValue;
+						}).collect(Collectors.toList()));
 	}
 
 	/**
@@ -179,7 +212,8 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * This returns a cloned copy of the list of stored values for the given
+	 * hint.
 	 *
 	 * @param hint
 	 *            The hint for which the stored values shall be returned.
@@ -188,21 +222,24 @@ public class HintValueStorage {
 	@SuppressWarnings("unchecked")
 	public LinkedList<Object> getHintValuesCloned(CardinalityMapping hint) {
 
+		Stream<Object> oldHintValues = this.useParallelization
+				? this.cardinalityMappingHintValues.getHintValues(hint).parallelStream()
+				: this.cardinalityMappingHintValues.getHintValues(hint).stream();
+
 		if (hint.getSource() != null) {
-			return new LinkedList<>(this.cardinalityMappingHintValues.getHintValues(hint).parallelStream()
-					.map(oldHintValue -> new Integer((Integer) oldHintValue)).collect(Collectors.toList()));
+			return new LinkedList<>(oldHintValues.map(oldHintValue -> new Integer((Integer) oldHintValue))
+					.collect(Collectors.toList()));
 		} else {
-			return new LinkedList<>(
-					this.cardinalityMappingHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-						Map<CardinalityMappingSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-						for (CardinalityMappingSourceInterface key : ((Map<CardinalityMappingSourceInterface, AttributeValueRepresentation>) oldHintValue)
-								.keySet()) {
-							newHintValue.put(key,
-									(AttributeValueRepresentation) ((Map<CardinalityMappingSourceInterface, AttributeValueRepresentation>) oldHintValue)
-											.get(key).clone());
-						}
-						return newHintValue;
-					}).collect(Collectors.toList()));
+			return new LinkedList<>(oldHintValues.map(oldHintValue -> {
+				Map<CardinalityMappingSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+				for (CardinalityMappingSourceInterface key : ((Map<CardinalityMappingSourceInterface, AttributeValueRepresentation>) oldHintValue)
+						.keySet()) {
+					newHintValue.put(key,
+							(AttributeValueRepresentation) ((Map<CardinalityMappingSourceInterface, AttributeValueRepresentation>) oldHintValue)
+									.get(key).clone());
+				}
+				return newHintValue;
+			}).collect(Collectors.toList()));
 		}
 	}
 
@@ -228,7 +265,8 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * This returns a cloned copy of the list of stored values for the given
+	 * hint.
 	 *
 	 * @param hint
 	 *            The hint for which the stored values shall be returned.
@@ -238,13 +276,14 @@ public class HintValueStorage {
 			ReferenceTargetSelector hint) {
 
 		return new LinkedList<>(
-				this.mappingInstanceSelectorHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-					Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-					for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
-						newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
-					}
-					return newHintValue;
-				}).collect(Collectors.toList()));
+				(this.useParallelization ? this.mappingInstanceSelectorHintValues.getHintValues(hint).parallelStream()
+						: this.mappingInstanceSelectorHintValues.getHintValues(hint).stream()).map(oldHintValue -> {
+							Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+							for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
+								newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+							}
+							return newHintValue;
+						}).collect(Collectors.toList()));
 	}
 
 	/**
@@ -269,7 +308,8 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This returns a cloned copy of the list of stored values for the given hint.
+	 * This returns a cloned copy of the list of stored values for the given
+	 * hint.
 	 *
 	 * @param hint
 	 *            The hint for which the stored values shall be returned.
@@ -279,27 +319,32 @@ public class HintValueStorage {
 			ContainerSelector hint) {
 
 		return new LinkedList<>(
-				this.containerSelectorHintValues.getHintValues(hint).parallelStream().map(oldHintValue -> {
-					Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
-					for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
-						newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
-					}
-					return newHintValue;
-				}).collect(Collectors.toList()));
+				(this.useParallelization ? this.containerSelectorHintValues.getHintValues(hint).parallelStream()
+						: this.containerSelectorHintValues.getHintValues(hint).stream()).map(oldHintValue -> {
+							Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> newHintValue = new HashMap<>();
+							for (InstanceSelectorSourceInterface key : oldHintValue.keySet()) {
+								newHintValue.put(key, (AttributeValueRepresentation) oldHintValue.get(key).clone());
+							}
+							return newHintValue;
+						}).collect(Collectors.toList()));
 	}
 
 	/**
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The hint for that the value shall be added. The concrete type of this needs to be one of
-	 *            {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for that the value shall be added. The concrete type
+	 *            of this needs to be one of {@link AttributeMapping},
+	 *            {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param value
-	 *            The value to be added. The concrete type needs to be in line with the type of the <em>hint</em>
-	 *            according to the concrete implementation of the {@link HintValueMap} type.
+	 *            The value to be added. The concrete type needs to be in line
+	 *            with the type of the <em>hint</em> according to the concrete
+	 *            implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException
-	 *             if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 *             if the concrete type of the <em>value</em> is not in line
+	 *             with the type of the <em>hint</em>.
 	 */
 	@SuppressWarnings("unchecked")
 	public void addHintValue(EObject hint, Object value) throws ClassCastException {
@@ -326,7 +371,8 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link AttributeMapping} for that the value shall be added.
+	 *            The {@link AttributeMapping} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -340,7 +386,8 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link CardinalityMapping} for that the value shall be added.
+	 *            The {@link CardinalityMapping} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -353,7 +400,8 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ReferenceTargetSelector} for that the value shall be added.
+	 *            The {@link ReferenceTargetSelector} for that the value shall
+	 *            be added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -367,7 +415,8 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ContainerSelector} for that the value shall be added.
+	 *            The {@link ContainerSelector} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -381,9 +430,11 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link AttributeMapping} for that the value shall be added.
+	 *            The {@link AttributeMapping} for that the value shall be
+	 *            added.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the value shall be added.
+	 *            The {@link SourceSectionClass} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -397,9 +448,11 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link CardinalityMapping} for that the value shall be added.
+	 *            The {@link CardinalityMapping} for that the value shall be
+	 *            added.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the value shall be added.
+	 *            The {@link SourceSectionClass} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -412,9 +465,11 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ReferenceTargetSelector} for that the value shall be added.
+	 *            The {@link ReferenceTargetSelector} for that the value shall
+	 *            be added.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the value shall be added.
+	 *            The {@link SourceSectionClass} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -428,9 +483,11 @@ public class HintValueStorage {
 	 * This adds a hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ContainerSelector} for that the value shall be added.
+	 *            The {@link ContainerSelector} for that the value shall be
+	 *            added.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the value shall be added.
+	 *            The {@link SourceSectionClass} for that the value shall be
+	 *            added.
 	 * @param value
 	 *            The value to be added.
 	 */
@@ -441,10 +498,12 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This adds the hint values stored in another {@link HintValueStorage} to this storage.
+	 * This adds the hint values stored in another {@link HintValueStorage} to
+	 * this storage.
 	 *
 	 * @param hintValuesToAdd
-	 *            The {@link HintValueStorage} that contains the hint values to add.
+	 *            The {@link HintValueStorage} that contains the hint values to
+	 *            add.
 	 */
 	public void addHintValues(HintValueStorage hintValuesToAdd) {
 
@@ -460,14 +519,18 @@ public class HintValueStorage {
 	 * This adds a list of hint value to the storage.
 	 *
 	 * @param hint
-	 *            The hint for that the value shall be added. The concrete type of this needs to be one of
-	 *            {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for that the value shall be added. The concrete type
+	 *            of this needs to be one of {@link AttributeMapping},
+	 *            {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param values
-	 *            The values to be added. The concrete type needs to be in line with the type of the <em>hint</em>
-	 *            according to the concrete implementation of the {@link HintValueMap} type.
+	 *            The values to be added. The concrete type needs to be in line
+	 *            with the type of the <em>hint</em> according to the concrete
+	 *            implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException
-	 *             if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 *             if the concrete type of the <em>value</em> is not in line
+	 *             with the type of the <em>hint</em>.
 	 */
 	@SuppressWarnings("unchecked")
 	public void addHintValues(EObject hint, Object values) throws ClassCastException {
@@ -494,7 +557,8 @@ public class HintValueStorage {
 	 * This adds a list of hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link AttributeMapping} for that the value shall be added.
+	 *            The {@link AttributeMapping} for that the value shall be
+	 *            added.
 	 * @param values
 	 *            The values to be added.
 	 */
@@ -508,7 +572,8 @@ public class HintValueStorage {
 	 * This adds a list of hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link CardinalityMapping} for that the value shall be added.
+	 *            The {@link CardinalityMapping} for that the value shall be
+	 *            added.
 	 * @param values
 	 *            The values to be added.
 	 */
@@ -521,7 +586,8 @@ public class HintValueStorage {
 	 * This adds a list of hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ReferenceTargetSelector} for that the value shall be added.
+	 *            The {@link ReferenceTargetSelector} for that the value shall
+	 *            be added.
 	 * @param values
 	 *            The values to be added.
 	 */
@@ -535,7 +601,8 @@ public class HintValueStorage {
 	 * This adds a list of hint value to the storage.
 	 *
 	 * @param hint
-	 *            The {@link ContainerSelector} for that the value shall be added.
+	 *            The {@link ContainerSelector} for that the value shall be
+	 *            added.
 	 * @param values
 	 *            The values to be added.
 	 */
@@ -549,14 +616,18 @@ public class HintValueStorage {
 	 * This sets the list of stored hint values for the given hint.
 	 *
 	 * @param hint
-	 *            The hint for that the value shall be set. The concrete type of this needs to be one of
-	 *            {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for that the value shall be set. The concrete type of
+	 *            this needs to be one of {@link AttributeMapping},
+	 *            {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
 	 * @param values
-	 *            The values to be set. The concrete type needs to be in line with the type of the <em>hint</em>
-	 *            according to the concrete implementation of the {@link HintValueMap} type.
+	 *            The values to be set. The concrete type needs to be in line
+	 *            with the type of the <em>hint</em> according to the concrete
+	 *            implementation of the {@link HintValueMap} type.
 	 * @throws ClassCastException
-	 *             if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 *             if the concrete type of the <em>value</em> is not in line
+	 *             with the type of the <em>hint</em>.
 	 */
 	@SuppressWarnings("unchecked")
 	public void setHintValues(EObject hint, Object values) throws ClassCastException {
@@ -597,7 +668,8 @@ public class HintValueStorage {
 	 * This sets the list of stored hint values for the given hint.
 	 *
 	 * @param hint
-	 *            The {@link CardinalityMapping} for that the values shall be set.
+	 *            The {@link CardinalityMapping} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -610,7 +682,8 @@ public class HintValueStorage {
 	 * This sets the list of stored hint values for the given hint.
 	 *
 	 * @param hint
-	 *            The {@link ReferenceTargetSelector} for that the values shall be set.
+	 *            The {@link ReferenceTargetSelector} for that the values shall
+	 *            be set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -624,7 +697,8 @@ public class HintValueStorage {
 	 * This sets the list of stored hint values for the given hint.
 	 *
 	 * @param hint
-	 *            The {@link ContainerSelector} for that the values shall be set.
+	 *            The {@link ContainerSelector} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -635,12 +709,14 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * This sets the list of stored hint values for the given hint and a given
+	 * {@link SourceSectionClass}.
 	 *
 	 * @param hint
 	 *            The {@link AttributeMapping} for that the values shall be set.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the values shall be set.
+	 *            The {@link SourceSectionClass} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -651,27 +727,34 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * This sets the list of stored hint values for the given hint and a given
+	 * {@link SourceSectionClass}.
 	 *
 	 * @param hint
-	 *            The {@link CardinalityMapping} for that the values shall be set.
+	 *            The {@link CardinalityMapping} for that the values shall be
+	 *            set.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the values shall be set.
+	 *            The {@link SourceSectionClass} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
-	public void setCardinalityMappingHintValues(CardinalityMapping hint, SourceSectionClass clazz, LinkedList<Object> values) {
+	public void setCardinalityMappingHintValues(CardinalityMapping hint, SourceSectionClass clazz,
+			LinkedList<Object> values) {
 
 		this.cardinalityMappingHintValues.setHintValues(hint, clazz, values);
 	}
 
 	/**
-	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * This sets the list of stored hint values for the given hint and a given
+	 * {@link SourceSectionClass}.
 	 *
 	 * @param hint
-	 *            The {@link ReferenceTargetSelector} for that the values shall be set.
+	 *            The {@link ReferenceTargetSelector} for that the values shall
+	 *            be set.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the values shall be set.
+	 *            The {@link SourceSectionClass} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -682,12 +765,15 @@ public class HintValueStorage {
 	}
 
 	/**
-	 * This sets the list of stored hint values for the given hint and a given {@link SourceSectionClass}.
+	 * This sets the list of stored hint values for the given hint and a given
+	 * {@link SourceSectionClass}.
 	 *
 	 * @param hint
-	 *            The {@link ContainerSelector} for that the values shall be set.
+	 *            The {@link ContainerSelector} for that the values shall be
+	 *            set.
 	 * @param clazz
-	 *            The {@link SourceSectionClass} for that the values shall be set.
+	 *            The {@link SourceSectionClass} for that the values shall be
+	 *            set.
 	 * @param values
 	 *            The values to be set.
 	 */
@@ -701,11 +787,14 @@ public class HintValueStorage {
 	 * This retrieves and removes the hint values stored for a given hint
 	 *
 	 * @param hint
-	 *            The hint for which the hint values shall be retrieved and removed. The concrete type of this needs to
-	 *            be one of {@link AttributeMapping}, {@link CardinalityMapping}, {@link MappedAttributeValueExpander},
+	 *            The hint for which the hint values shall be retrieved and
+	 *            removed. The concrete type of this needs to be one of
+	 *            {@link AttributeMapping}, {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
 	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
-	 * @return The removed hint values. The concrete type is in line with the type of the <em>hint</em> according to the
-	 *         concrete implementation of the {@link HintValueMap} type.
+	 * @return The removed hint values. The concrete type is in line with the
+	 *         type of the <em>hint</em> according to the concrete
+	 *         implementation of the {@link HintValueMap} type.
 	 */
 	public Object removeHint(EObject hint) {
 
@@ -726,11 +815,14 @@ public class HintValueStorage {
 	 * This retrieves and removes the first hint value stored for a given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the first hint value shall be retrieved and removed.. The concrete type of this
-	 *            needs to be one of {@link AttributeMapping}, {@link CardinalityMapping},
-	 *            {@link MappedAttributeValueExpander}, {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
-	 * @return The removed hint value. The concrete type is in line with the type of the <em>hint</em> according to the
-	 *         concrete implementation of the {@link HintValueMap} type.
+	 *            The hint for which the first hint value shall be retrieved and
+	 *            removed.. The concrete type of this needs to be one of
+	 *            {@link AttributeMapping}, {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
+	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
+	 * @return The removed hint value. The concrete type is in line with the
+	 *         type of the <em>hint</em> according to the concrete
+	 *         implementation of the {@link HintValueMap} type.
 	 */
 	public Object removeHintValue(EObject hint) {
 
@@ -753,7 +845,8 @@ public class HintValueStorage {
 	 * This retrieves and removes the first hint value stored for a given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the first hint value shall be retrieved and removed.
+	 *            The hint for which the first hint value shall be retrieved and
+	 *            removed.
 	 * @return The removed hint value.
 	 */
 	public Map<AttributeMappingSourceInterface, AttributeValueRepresentation> removeHintValue(AttributeMapping hint) {
@@ -765,7 +858,8 @@ public class HintValueStorage {
 	 * This retrieves and removes the first hint value stored for a given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the first hint value shall be retrieved and removed.
+	 *            The hint for which the first hint value shall be retrieved and
+	 *            removed.
 	 * @return The removed hint value.
 	 */
 	public Object removeHintValue(CardinalityMapping hint) {
@@ -777,7 +871,8 @@ public class HintValueStorage {
 	 * This retrieves and removes the first hint value stored for a given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the first hint value shall be retrieved and removed.
+	 *            The hint for which the first hint value shall be retrieved and
+	 *            removed.
 	 * @return The removed hint value.
 	 */
 	public Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(
@@ -790,7 +885,8 @@ public class HintValueStorage {
 	 * This retrieves and removes the first hint value stored for a given hint.
 	 *
 	 * @param hint
-	 *            The hint for which the first hint value shall be retrieved and removed.
+	 *            The hint for which the first hint value shall be retrieved and
+	 *            removed.
 	 * @return The removed hint value.
 	 */
 	public Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> removeHintValue(ContainerSelector hint) {
@@ -802,13 +898,16 @@ public class HintValueStorage {
 	 * This checks whether hint values are stored for the given hint.
 	 *
 	 * @param hint
-	 *            The hint that shall be checked. The concrete type of this needs to be one of {@link AttributeMapping},
-	 *            {@link CardinalityMapping}, {@link MappedAttributeValueExpander}, {@link ReferenceTargetSelector}, or
-	 *            {@link ContainerSelector}.
-	 * @return '<em><b>true</b></em>' if the given <em>hint</em> is contained in the storage, '<em><b>false</b></em>'
-	 *         otherwise
+	 *            The hint that shall be checked. The concrete type of this
+	 *            needs to be one of {@link AttributeMapping},
+	 *            {@link CardinalityMapping},
+	 *            {@link MappedAttributeValueExpander},
+	 *            {@link ReferenceTargetSelector}, or {@link ContainerSelector}.
+	 * @return '<em><b>true</b></em>' if the given <em>hint</em> is contained in
+	 *         the storage, '<em><b>false</b></em>' otherwise
 	 * @throws ClassCastException
-	 *             if the concrete type of the <em>value</em> is not in line with the type of the <em>hint</em>.
+	 *             if the concrete type of the <em>value</em> is not in line
+	 *             with the type of the <em>hint</em>.
 	 */
 	public boolean containsHint(EObject hint) throws ClassCastException {
 

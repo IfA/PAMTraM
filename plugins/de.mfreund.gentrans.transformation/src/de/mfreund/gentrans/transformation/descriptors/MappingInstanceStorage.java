@@ -73,21 +73,34 @@ public class MappingInstanceStorage {
 	private MatchedSectionDescriptor matchedSectionDescriptor;
 
 	/**
+	 * Whether extended parallelization shall be used during the transformation
+	 * that might lead to the fact that the transformation result (especially
+	 * the order of lists) varies between executions.
+	 */
+	private boolean useParallelization;
+
+	/**
 	 * This constructs an instance based on a given
 	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} that this is associated
 	 *            with.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
-	public MappingInstanceStorage(MatchedSectionDescriptor matchedSectionDescriptor) {
+	public MappingInstanceStorage(MatchedSectionDescriptor matchedSectionDescriptor, boolean useParallelization) {
 
 		this.matchedSectionDescriptor = matchedSectionDescriptor;
 		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
 		this.mapping = null;
 		this.instancesBySection = new ConcurrentHashMap<>();
-		this.hintValues = new HintValueStorage();
+		this.hintValues = new HintValueStorage(useParallelization);
 		this.elementsWithNegativeConditions = new HashSet<>();
+		this.useParallelization = useParallelization;
 
 	}
 
@@ -280,10 +293,11 @@ public class MappingInstanceStorage {
 	 */
 	public List<MappingHintGroupType> getMappingHintGroups() {
 
-		return this.getMapping().getActiveMappingHintGroups().parallelStream()
-				.filter(hg -> !(hg instanceof ConditionalElement)
-						|| !this.isElementWithNegativeCondition((ConditionalElement) hg))
-				.collect(Collectors.toList());
+		return (this.useParallelization ? this.getMapping().getActiveMappingHintGroups().parallelStream()
+				: this.getMapping().getActiveMappingHintGroups().stream())
+						.filter(hg -> !(hg instanceof ConditionalElement)
+								|| !this.isElementWithNegativeCondition((ConditionalElement) hg))
+						.collect(Collectors.toList());
 	}
 
 	/**
@@ -298,8 +312,9 @@ public class MappingInstanceStorage {
 	 */
 	public List<MappingHintGroupImporter> getMappingHintGroupImporters() {
 
-		return this.getMapping().getActiveImportedMappingHintGroups().parallelStream()
-				.filter(hg -> !this.isElementWithNegativeCondition(hg)).collect(Collectors.toList());
+		return (this.useParallelization ? this.getMapping().getActiveImportedMappingHintGroups().parallelStream()
+				: this.getMapping().getActiveImportedMappingHintGroups().stream())
+						.filter(hg -> !this.isElementWithNegativeCondition(hg)).collect(Collectors.toList());
 	}
 
 	/**
@@ -320,8 +335,9 @@ public class MappingInstanceStorage {
 			return new BasicEList<>();
 		}
 
-		return hintGroup.getMappingHints().parallelStream().filter(h -> !this.isElementWithNegativeCondition(h))
-				.collect(Collectors.toList());
+		return (this.useParallelization ? hintGroup.getMappingHints().parallelStream()
+				: hintGroup.getMappingHints().stream()).filter(h -> !this.isElementWithNegativeCondition(h))
+						.collect(Collectors.toList());
 	}
 
 	/**
@@ -341,9 +357,11 @@ public class MappingInstanceStorage {
 			return new BasicEList<>();
 		}
 
-		return hintGroupImporter.getMappingHints().parallelStream().filter(
-				h -> !(h instanceof ConditionalElement) || !this.isElementWithNegativeCondition((ConditionalElement) h))
-				.collect(Collectors.toList());
+		return (this.useParallelization ? hintGroupImporter.getMappingHints().parallelStream()
+				: hintGroupImporter.getMappingHints().stream())
+						.filter(h -> !(h instanceof ConditionalElement)
+								|| !this.isElementWithNegativeCondition((ConditionalElement) h))
+						.collect(Collectors.toList());
 	}
 
 	/**
@@ -395,4 +413,9 @@ public class MappingInstanceStorage {
 		return null;
 	}
 
+	@Override
+	public String toString() {
+
+		return super.toString() + " (Mapping:" + this.getMapping().getName() + ")";
+	}
 }

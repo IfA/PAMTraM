@@ -134,10 +134,15 @@ public class SourceSectionMatcher {
 	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			Logger logger) {
+			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger,
+			boolean useParallelization) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
@@ -149,7 +154,7 @@ public class SourceSectionMatcher {
 		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(globalValueMap,
 				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), logger),
-				logger);
+				logger, useParallelization);
 	}
 
 	/**

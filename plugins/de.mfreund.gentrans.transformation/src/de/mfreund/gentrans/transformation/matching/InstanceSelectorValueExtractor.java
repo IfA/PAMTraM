@@ -12,9 +12,9 @@ import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -22,8 +22,9 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
- * This class can be used to extract values required by an {@link InstanceSelector} from source model elements for a
- * given list of {@link MatchedSectionDescriptor matched sections}.
+ * This class can be used to extract values required by an
+ * {@link InstanceSelector} from source model elements for a given list of
+ * {@link MatchedSectionDescriptor matched sections}.
  *
  * @author mfreund
  */
@@ -35,54 +36,75 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	private AttributeValueCalculator attributeValueCalculator;
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param globalAttributeValues
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public InstanceSelectorValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
 			AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalAttributeValues, attributeValueModifierExecutor, logger);
+		super(globalAttributeValues, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public InstanceSelectorValueExtractor(AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(attributeValueModifierExecutor, logger);
+		super(attributeValueModifierExecutor, logger, useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
-	 * This extracts and returns the required target value for the given {@link InstanceSelector} as specified by its
+	 * This extracts and returns the required target value for the given
+	 * {@link InstanceSelector} as specified by its
 	 * {@link InstanceSelector#getSourceElements() source attributes}.
 	 *
 	 * @param instancePointer
-	 *            The {@link InstanceSelector} for that the target value shall be extracted.
+	 *            The {@link InstanceSelector} for that the target value shall
+	 *            be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link InstanceSelector#getModifiers() result modifier} or
+	 *            The {@link MatchedSectionDescriptor} for that the value shall
+	 *            be extracted.
+	 * @return The extracted value (after applying a possible
+	 *         {@link InstanceSelector#getModifiers() result modifier} or
 	 *         '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,7 +148,8 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 			}
 		}
 
-		// Assemble the target value based on the value parts and a potential expression
+		// Assemble the target value based on the value parts and a potential
+		// expression
 		//
 		String expression = instancePointer.getExpression();
 		if (expression == null || expression.isEmpty()) {

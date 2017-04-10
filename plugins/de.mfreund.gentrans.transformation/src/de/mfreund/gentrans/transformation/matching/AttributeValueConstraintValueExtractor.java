@@ -24,8 +24,9 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
- * This class can be used to extract values required by an {@link ValueConstraint} from source model elements for a
- * given list of {@link MatchedSectionDescriptor matched sections}.
+ * This class can be used to extract values required by an
+ * {@link ValueConstraint} from source model elements for a given list of
+ * {@link MatchedSectionDescriptor matched sections}.
  *
  * @author mfreund
  */
@@ -37,55 +38,78 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	private AttributeValueCalculator attributeValueCalculator;
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param globalAttributeValues
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
+	 *            The values of {@link GlobalAttribute GlobalAttributes} that
+	 *            shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public AttributeValueConstraintValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
 			AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalAttributeValues, attributeValueModifierExecutor, logger);
+		super(globalAttributeValues, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of
+	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            for modifying attribute values.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public AttributeValueConstraintValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor,
-			AttributeValueCalculator attributeValueCalculator, Logger logger) {
+			AttributeValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
 
-		super(attributeValueModifierExecutor, logger);
+		super(attributeValueModifierExecutor, logger, useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
 
 	/**
-	 * This extracts and returns the required target value for the given {@link SingleReferenceValueConstraint} as
-	 * specified by its {@link SingleReferenceValueConstraint#getSourceElements() source elements}.
+	 * This extracts and returns the required target value for the given
+	 * {@link SingleReferenceValueConstraint} as specified by its
+	 * {@link SingleReferenceValueConstraint#getSourceElements() source
+	 * elements}.
 	 *
 	 * @param valueConstraint
-	 *            The {@link SingleReferenceValueConstraint} for that the target value shall be extracted.
+	 *            The {@link SingleReferenceValueConstraint} for that the target
+	 *            value shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
-	 * @return The extracted value (after applying a possible {@link SingleReferenceValueConstraint#getModifiers()
-	 *         result modifier} or '<em><b>null</b></em>' if no value could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the value shall
+	 *            be extracted.
+	 * @return The extracted value (after applying a possible
+	 *         {@link SingleReferenceValueConstraint#getModifiers() result
+	 *         modifier} or '<em><b>null</b></em>' if no value could be
+	 *         extracted.
 	 */
 	public String extractRequiredTargetValue(SingleReferenceValueConstraint valueConstraint,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
@@ -99,18 +123,23 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the required target value for the given list of {@link ValueConstraintSourceInterface
-	 * source elements} for the given {@link MatchedSectionDescriptor}.
+	 * This extracts and returns the required target value for the given list of
+	 * {@link ValueConstraintSourceInterface source elements} for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the value shall
+	 *            be extracted.
 	 * @param sourceElements
-	 *            The list of {@link ValueConstraintSourceInterface source elements} to take into account.
+	 *            The list of {@link ValueConstraintSourceInterface source
+	 *            elements} to take into account.
 	 * @param expression
-	 *            The expression to use or '<em>null</em>' if no expression shall be used.
+	 *            The expression to use or '<em>null</em>' if no expression
+	 *            shall be used.
 	 * @param resultModifiers
-	 *            The list of {@link ValueModifierSet AttributeValueModifierSets} to apply before the resulting target
-	 *            value is returned.
+	 *            The list of {@link ValueModifierSet
+	 *            AttributeValueModifierSets} to apply before the resulting
+	 *            target value is returned.
 	 * @return The extracted target value.
 	 */
 	@SuppressWarnings("unchecked")
@@ -153,7 +182,8 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			}
 		}
 
-		// Assemble the target value based on the value parts and a potential expression
+		// Assemble the target value based on the value parts and a potential
+		// expression
 		//
 		if (expression == null || expression.isEmpty()) {
 			return this.attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(sourceElements),

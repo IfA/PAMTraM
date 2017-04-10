@@ -119,7 +119,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
 		this.libPaths = baseConfig.getLibPaths();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
-		this.useParallelization = baseConfig.getUseParallelization();
+		this.useParallelization = baseConfig.isUseParallelization();
 
 		// Initialize the mandatory parameters
 		//

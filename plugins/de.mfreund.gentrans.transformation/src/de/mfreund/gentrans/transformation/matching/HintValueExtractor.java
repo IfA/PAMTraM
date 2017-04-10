@@ -101,12 +101,17 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
 			List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalAttributes, attributeValueModifierExecutor, logger);
+		super(globalAttributes, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
 		this.mappingInstances = mappingInstances;
@@ -122,24 +127,28 @@ public class HintValueExtractor extends ValueExtractor {
 		// In a first step, we extract the hints of 'normal' and exported hint
 		// groups.
 		//
-		this.mappingInstances.parallelStream().forEach(this::extractHintValues);
+		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+				.forEach(this::extractHintValues);
 
 		// Now, we collect exported hint groups and associated mapping instances
 		//
-		this.mappingInstances.parallelStream().forEach(m -> m.getMappingHintGroups().parallelStream()
-				.filter(hg -> hg instanceof ExportedMappingHintGroup).forEach(hg -> {
-					if (this.exportedHintGroups.containsKey(hg)) {
-						this.logger.warning("Multiple occurences found for exported hint group '" + hg.getName()
-								+ "'! This is currently not supported!");
-					}
-					this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
-				}));
+		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+				.forEach(m -> (this.useParallelization ? m.getMappingHintGroups().parallelStream()
+						: m.getMappingHintGroups().stream()).filter(hg -> hg instanceof ExportedMappingHintGroup)
+								.forEach(hg -> {
+									if (this.exportedHintGroups.containsKey(hg)) {
+										this.logger.warning("Multiple occurences found for exported hint group '"
+												+ hg.getName() + "'! This is currently not supported!");
+									}
+									this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
+								}));
 
 		// Now, we extract the hints for hint group importers (as we can now
 		// used the
 		// hint values of exported hint groups that have been calculated before)
 		//
-		this.mappingInstances.parallelStream().forEach(this::extractImportedHintValues);
+		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+				.forEach(this::extractImportedHintValues);
 	}
 
 	/**
@@ -157,8 +166,10 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// First, we collect all hints of all hint groups
 		//
-		List<MappingHint> mappingHints = mappingInstance.getMappingHintGroups().parallelStream()
-				.flatMap(hintGroup -> hintGroup.getMappingHints().stream()).collect(Collectors.toList());
+		List<MappingHint> mappingHints = (this.useParallelization
+				? mappingInstance.getMappingHintGroups().parallelStream()
+				: mappingInstance.getMappingHintGroups().stream())
+						.flatMap(hintGroup -> hintGroup.getMappingHints().stream()).collect(Collectors.toList());
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values
@@ -170,7 +181,8 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// Now, we can extract the hint values for each hint
 		//
-		mappingHints.parallelStream().forEach(h -> this.extractHintValue(h, mappingInstance));
+		(this.useParallelization ? mappingHints.parallelStream() : mappingHints.stream())
+				.forEach(h -> this.extractHintValue(h, mappingInstance));
 	}
 
 	/**
@@ -215,8 +227,9 @@ public class HintValueExtractor extends ValueExtractor {
 			// of imported hints are also handled
 			// here).
 			//
-			hintGroupImporter.getMappingHints().parallelStream()
-					.forEach(h -> this.extractHintValue(h, mappingInstance));
+			(this.useParallelization ? hintGroupImporter.getMappingHints().parallelStream()
+					: hintGroupImporter.getMappingHints().stream())
+							.forEach(h -> this.extractHintValue(h, mappingInstance));
 		}
 
 	}
@@ -306,7 +319,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMappingSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) attributeMappingSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
+						this.matchedSections, matchedSectionDescriptor, this.useParallelization);
 			} else if (attributeMappingSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
@@ -360,7 +373,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (attributeMatcherSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) attributeMatcherSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
+						this.matchedSections, matchedSectionDescriptor, this.useParallelization);
 			} else if (attributeMatcherSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
@@ -416,7 +429,7 @@ public class HintValueExtractor extends ValueExtractor {
 			if (modelConnectionHintSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) modelConnectionHintSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
+						this.matchedSections, matchedSectionDescriptor, this.useParallelization);
 			} else if (modelConnectionHintSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
 						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
@@ -511,7 +524,7 @@ public class HintValueExtractor extends ValueExtractor {
 				if (cardinalityMappingSourceInterface instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 					attributeValueRepresentation = this.extractValue(
 							(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) cardinalityMappingSourceInterface,
-							this.matchedSections, matchedSectionDescriptor);
+							this.matchedSections, matchedSectionDescriptor, this.useParallelization);
 				} else if (cardinalityMappingSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 					attributeValueRepresentation = this.extractValue(
 							(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
@@ -673,8 +686,9 @@ public class HintValueExtractor extends ValueExtractor {
 			boolean prepend = hint instanceof MappedAttributeValuePrepender
 					|| hint instanceof ExternalMappedAttributeValuePrepender;
 
-			((MappedAttributeValueExpander) hint).getHintsToExpand().parallelStream()
-					.forEach(h -> this.expandHint(h, hintValue, mappingInstance, prepend));
+			(this.useParallelization ? ((MappedAttributeValueExpander) hint).getHintsToExpand().parallelStream()
+					: ((MappedAttributeValueExpander) hint).getHintsToExpand().stream())
+							.forEach(h -> this.expandHint(h, hintValue, mappingInstance, prepend));
 
 			/*
 			 * Otherwise, we can simply store the single hint value in the

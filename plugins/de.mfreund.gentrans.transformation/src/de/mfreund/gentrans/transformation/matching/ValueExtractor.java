@@ -64,6 +64,13 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected final Map<GlobalAttribute, String> globalAttributeValues;
 
 	/**
+	 * Whether extended parallelization shall be used during the transformation
+	 * that might lead to the fact that the transformation result (especially
+	 * the order of lists) varies between executions.
+	 */
+	protected boolean useParallelization;
+
+	/**
 	 * This creates an instance for a given list of
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
@@ -72,11 +79,18 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
-	public ValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+	public ValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger,
+			boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
 		this.logger = logger;
+		this.useParallelization = useParallelization;
 		this.globalAttributeValues = new HashMap<>();
 	}
 
@@ -93,12 +107,18 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public ValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
 		this.logger = logger;
+		this.useParallelization = useParallelization;
 		this.globalAttributeValues = globalAttributeValues;
 	}
 
@@ -223,22 +243,29 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the hint values
 	 *            shall be extracted.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 * @return The extracted {@link AttributeValueRepresentation hint value} or
 	 *         '<em>null</em>' if no hint value could be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> mappingHintSourceElement,
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			MatchedSectionDescriptor matchedSectionDescriptor) {
+			MatchedSectionDescriptor matchedSectionDescriptor, boolean useParallelization) {
 
 		List<MatchedSectionDescriptor> sourceDescriptors = matchedSections
 				.get(mappingHintSourceElement.getSource().getContainingSection());
 
 		// Collect all instances for the MatchedSectionDescriptors
 		//
-		List<EObject> sourceElements = sourceDescriptors.parallelStream().flatMap(descriptor -> descriptor
-				.getSourceModelObjectsMapped().get(mappingHintSourceElement.getSource().eContainer()).stream())
-				.collect(Collectors.toList());
+		List<EObject> sourceElements = (useParallelization ? sourceDescriptors.parallelStream()
+				: sourceDescriptors.stream())
+						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
+								.get(mappingHintSourceElement.getSource().eContainer()).stream())
+						.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
@@ -246,7 +273,8 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
 			InstanceSelectorHandler instancePointerHandler = new InstanceSelectorHandler(matchedSections, gv,
-					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger);
+					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger,
+					useParallelization);
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 

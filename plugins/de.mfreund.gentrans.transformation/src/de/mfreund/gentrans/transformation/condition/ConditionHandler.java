@@ -89,63 +89,91 @@ public class ConditionHandler {
 	private Logger logger;
 
 	/**
-	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
-	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
+	 * Registry for <em>source model objects</em> that have already been
+	 * matched. The matched objects are stored in a map where the key is the
+	 * corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so we don't
-	 * need to send a potential error message twice. This might e.g. happen for a malformed regular expression in a
-	 * {@link RegExConstraint}.
+	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints}
+	 * that could not be evaluated so we don't need to send a potential error
+	 * message twice. This might e.g. happen for a malformed regular expression
+	 * in a {@link RegExConstraint}.
 	 */
 	private final Set<ValueConstraint> attributeConditionConstraintsWithErrors;
 
 	/**
-	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
+	 * It will be used for calculating referenceValues that are needed for
+	 * {@link AttributeCondition}s
 	 */
 	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
 
 	/**
-	 * It will be used for extract a more in detail specified Element which was more than one times matched
+	 * It will be used for extract a more in detail specified Element which was
+	 * more than one times matched
 	 */
 	private InstanceSelectorHandler instancePointerHandler;
+
+	/**
+	 * Whether extended parallelization shall be used during the transformation
+	 * that might lead to the fact that the transformation result (especially
+	 * the order of lists) varies between executions.
+	 */
+	private boolean useParallelization;
 
 	/**
 	 * This creates an instance.
 	 *
 	 * @param matchedSections
-	 *            The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} that result from the matching process.
+	 *            The map of {@link SourceSection SourceSections} and associated
+	 *            {@link MatchedSectionDescriptor MatchedSectionDescriptors}
+	 *            that result from the matching process.
 	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 *            The <em>global values</em> (values of {@link FixedValue
+	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
+	 *            defined in the PAMTraM model.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            calculate resulting values.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator) {
+			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger,
+			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
+		this.logger = logger;
+		this.useParallelization = useParallelization;
 		this.instancePointerHandler = new InstanceSelectorHandler(matchedSections, globalValues,
-				attributeValueCalculator, this.logger);
+				attributeValueCalculator, this.logger, this.useParallelization);
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(matchedSections, globalValues,
-				this.instancePointerHandler, attributeValueCalculator, this.logger);
+				this.instancePointerHandler, attributeValueCalculator, this.logger, this.useParallelization);
 	}
 
 	/**
-	 * This is the general checkCondition method. Based on the type of condition to be evaluated, it will forward to the
-	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor, Map)}).
+	 * This is the general checkCondition method. Based on the type of condition
+	 * to be evaluated, it will forward to the specific checking methods (e.g.
+	 * {@link #checkConditionAnd(And, MatchedSectionDescriptor, Map)}).
 	 *
 	 * @param complexCondition
 	 *            The {@link ComplexCondition} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	public CondResult checkCondition(ComplexCondition complexCondition,
@@ -157,7 +185,8 @@ public class ConditionHandler {
 			return CondResult.TRUE;
 		}
 
-		// First, we check if that condition already has been checked. In case we are dealing with a 'global'
+		// First, we check if that condition already has been checked. In case
+		// we are dealing with a 'global'
 		// condition, we may reuse this result.
 		//
 		if (this.conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()) {
@@ -202,22 +231,26 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Check the given {@link CardinalityCondition} for the given {@link MatchedSectionDescriptor}.
+	 * Check the given {@link CardinalityCondition} for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param sectionCondition
 	 *            The {@link CardinalityCondition} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the given
+	 *            condition shall be checked.
 	 * @return The {@link CondResult result} of the check.
 	 */
 	private CondResult checkCardinalityCondition(CardinalityCondition sectionCondition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The Section referenced by the CardinalityCondition was not matched in the source model
+		// The Section referenced by the CardinalityCondition was not matched in
+		// the source model
 		//
 		if (!this.matchedSections.containsKey(sectionCondition.getTarget().getContainingSection())) {
 
-			// For conditions where the referred Section shouldn't be part of a model
+			// For conditions where the referred Section shouldn't be part of a
+			// model
 			if (sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ) {
 
 				return CondResult.TRUE;
@@ -233,7 +266,8 @@ public class ConditionHandler {
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
 
-		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+		// check Cardinality of the condition (e.g. the condition have to be at
+		// least 5 times true)
 		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(),
 				sectionCondition.getComparator());
 
@@ -245,12 +279,14 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Check the given {@link AttributeCondition} for the given {@link MatchedSectionDescriptor}.
+	 * Check the given {@link AttributeCondition} for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param attrCondition
 	 *            The {@link AttributeCondition} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the given
+	 *            condition shall be checked.
 	 * @return The {@link CondResult result} of the check.
 	 */
 	private CondResult checkAttributeCondition(AttributeCondition attrCondition,
@@ -274,7 +310,8 @@ public class ConditionHandler {
 				.map(instance -> instance.eGet(attribute)).collect(Collectors.toList());
 
 		/*
-		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
+		 * First, we check if all the constraints are satisfied for every
+		 * attribute value of an AttributeConditon
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
 
@@ -302,10 +339,13 @@ public class ConditionHandler {
 
 				boolean constraintVal = false;
 				try {
-					// Note: 'checkConstraint' already takes the type (REQUIRED/FORBIDDEN) into consideration
-					// Starting from now we have to differentiate between Single- and
+					// Note: 'checkConstraint' already takes the type
+					// (REQUIRED/FORBIDDEN) into consideration
+					// Starting from now we have to differentiate between
+					// Single- and
 					// MultipleReferenceAttributeValueConstraints
-					// and we need to extract the right reference Value(s) for each constraint
+					// and we need to extract the right reference Value(s) for
+					// each constraint
 
 					if (constraint instanceof SingleReferenceValueConstraint) {
 						String srcAttrRefValAsString = this.refValueCalculator.calculateReferenceValue(constraint,
@@ -327,7 +367,8 @@ public class ConditionHandler {
 					} else {
 						// If we are here, some mistake is happened
 						// more types could be supported in the future
-						// placeholder for other MultipleReferenceAttributeValueConstraints
+						// placeholder for other
+						// MultipleReferenceAttributeValueConstraints
 						this.logger.severe("ReferenceableElement type " + constraint.getClass().getName()
 								+ " is not yet supported!");
 					}
@@ -364,11 +405,13 @@ public class ConditionHandler {
 			}
 		}
 
-		// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+		// check Cardinality of the condition (e.g. the condition have to be at
+		// least 5 times true)
 		boolean cardinalityRes = this.checkCardinality(attrCondition.getValue(),
 				Collections.frequency(attrBoolResults, true), attrCondition.getComparator());
 
-		// return Result of this condition (and store result if its referred model objects already were marked as
+		// return Result of this condition (and store result if its referred
+		// model objects already were marked as
 		// 'matched'
 		if (cardinalityRes) {
 
@@ -385,21 +428,26 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Check the given {@link ApplicationDependency} for the given {@link MatchedSectionDescriptor}.
+	 * Check the given {@link ApplicationDependency} for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param applicationDependency
 	 *            The {@link ApplicationDependency} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the given
+	 *            condition shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings.
 	 * @return The {@link CondResult result} of the check.
 	 */
 	private CondResult checkApplicationDependency(ApplicationDependency applicationDependency,
 			MatchedSectionDescriptor matchedSectionDescriptor,
 			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
 
-		// The Section referenced by the SectionCondition was not matched in the source model
+		// The Section referenced by the SectionCondition was not matched in the
+		// source model
 		//
 		if (applicationDependency.getTarget() instanceof Mapping) {
 
@@ -407,11 +455,13 @@ public class ConditionHandler {
 			//
 			if (!mappingInstances.containsKey(applicationDependency.getTarget())) {
 
-				// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+				// check Cardinality of the condition (e.g. the condition have
+				// to be at least 5 times true)
 				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(), 0,
 						applicationDependency.getComparator());
 
-				// return Result of this condition (and store result if its referred model objects already were marked
+				// return Result of this condition (and store result if its
+				// referred model objects already were marked
 				// as 'matched'
 				if (cardinalityRes) {
 
@@ -433,11 +483,13 @@ public class ConditionHandler {
 			// no instance pointers
 			if (applicationDependency.getInstanceSelectors().isEmpty()) {
 
-				// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+				// check Cardinality of the condition (e.g. the condition have
+				// to be at least 5 times true)
 				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(),
 						storageInstances.size(), applicationDependency.getComparator());
 
-				// return Result of this condition (and store result if its referred model objects already were marked
+				// return Result of this condition (and store result if its
+				// referred model objects already were marked
 				// as 'matched'
 				if (cardinalityRes) {
 
@@ -457,7 +509,8 @@ public class ConditionHandler {
 			List<EObject> instancesToConsider = this.getInstancesToConsider(applicationDependency,
 					matchedSectionDescriptor);
 
-			// check Cardinality of the condition (e.g. the condition have to be at least 5 times true)
+			// check Cardinality of the condition (e.g. the condition have to be
+			// at least 5 times true)
 			boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(), instancesToConsider.size(),
 					applicationDependency.getComparator());
 
@@ -488,25 +541,30 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This collects and returns the list of {@link EObject EObjects} that need to be considered during the evaluation
-	 * of the given {@link Condition} for the given {@link MatchedSectionDescriptor}.
+	 * This collects and returns the list of {@link EObject EObjects} that need
+	 * to be considered during the evaluation of the given {@link Condition} for
+	 * the given {@link MatchedSectionDescriptor}.
 	 * <p />
-	 * Depending on whether the condition is a {@link Condition#isLocalCondition() local} condition and on the presence
-	 * of {@link InstanceSelector InstancePointers}, only the elements represented by the given
-	 * <em>matchedSectionDescriptor</em> or the elements represented by all suitable descriptors stored in the
+	 * Depending on whether the condition is a
+	 * {@link Condition#isLocalCondition() local} condition and on the presence
+	 * of {@link InstanceSelector InstancePointers}, only the elements
+	 * represented by the given <em>matchedSectionDescriptor</em> or the
+	 * elements represented by all suitable descriptors stored in the
 	 * {@link #matchedSections} need to be considered.
 	 *
 	 * @param condition
 	 *            The {@link Condition} to be checked.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} that the condition shall be checked for.
-	 * @return The list of {@link EObject elements of the source model} that need to be considered when checking the
-	 *         condition.
+	 *            The {@link MatchedSectionDescriptor} that the condition shall
+	 *            be checked for.
+	 * @return The list of {@link EObject elements of the source model} that
+	 *         need to be considered when checking the condition.
 	 */
 	private List<EObject> getInstancesToConsider(Condition<?> condition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The SourceSectionClass holding the attribute that the AttributeCondition is based on
+		// The SourceSectionClass holding the attribute that the
+		// AttributeCondition is based on
 		//
 		SourceSectionClass affectedClass;
 
@@ -536,24 +594,28 @@ public class ConditionHandler {
 
 		if (condition.isLocalCondition() && condition.getInstanceSelectors().isEmpty()) {
 
-			// In case of a 'local' condition without any InstancePointers specified,
+			// In case of a 'local' condition without any InstancePointers
+			// specified,
 			// we only consider the given 'matchedSectionDescriptor'.
 			//
 			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
 
 		} else {
 
-			// In case of a 'global' condition or if an InstanceSelector has been specified, we
-			// have to consider all 'descriptors' for the SourceSection under consideration
+			// In case of a 'global' condition or if an InstanceSelector has
+			// been specified, we
+			// have to consider all 'descriptors' for the SourceSection under
+			// consideration
 			//
 			descriptorsToConsider = this.matchedSections.get(affectedClass);
 		}
 
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
-		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedClass).stream())
-				.collect(Collectors.toList());
+		List<EObject> correspondEClassInstances = (this.useParallelization ? descriptorsToConsider.parallelStream()
+				: descriptorsToConsider.stream())
+						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedClass).stream())
+						.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
@@ -571,14 +633,18 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Store the given {@link CondResult} for the given {@link ComplexCondition} in the {@link #conditionRepository}.
+	 * Store the given {@link CondResult} for the given {@link ComplexCondition}
+	 * in the {@link #conditionRepository}.
 	 * <p />
-	 * Note: Result will only be stored in case of {@link ComplexCondition#isLocalCondition() global} conditions.
+	 * Note: Result will only be stored in case of
+	 * {@link ComplexCondition#isLocalCondition() global} conditions.
 	 *
 	 * @param condition
-	 *            The {@link ComplexCondition} for that the result shall be stored.
+	 *            The {@link ComplexCondition} for that the result shall be
+	 *            stored.
 	 * @param result
-	 *            The {@link CondResult} to be stored in the {@link #conditionRepository}.
+	 *            The {@link CondResult} to be stored in the
+	 *            {@link #conditionRepository}.
 	 */
 	private void storeConditionResult(ComplexCondition condition, CondResult result) {
 
@@ -589,58 +655,65 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * Check the determined <em>isValue</em> cardinality against the required <em>refValue</em> cardinality while taking
-	 * the given {@link ComparatorEnum} into account.
+	 * Check the determined <em>isValue</em> cardinality against the required
+	 * <em>refValue</em> cardinality while taking the given
+	 * {@link ComparatorEnum} into account.
 	 *
 	 * @param refValue
 	 *            The required cardinality.
 	 * @param isValue
 	 *            The determined (actual) cardinality.
 	 * @param comparator
-	 *            The {@link ComparatorEnum} describing how to compare the two cardinalities.
-	 * @return '<em><b>true</b></em>' if the check succeeded, '<em><b>false</b></em>' otherwise.
+	 *            The {@link ComparatorEnum} describing how to compare the two
+	 *            cardinalities.
+	 * @return '<em><b>true</b></em>' if the check succeeded,
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkCardinality(int refValue, int isValue, ComparatorEnum comparator) {
 
 		switch (comparator.getValue()) {
-			case ComparatorEnum.EQ_VALUE:
+		case ComparatorEnum.EQ_VALUE:
 
-				return isValue == refValue;
+			return isValue == refValue;
 
-			case ComparatorEnum.GE_VALUE:
+		case ComparatorEnum.GE_VALUE:
 
-				return isValue >= refValue;
+			return isValue >= refValue;
 
-			case ComparatorEnum.GT_VALUE:
+		case ComparatorEnum.GT_VALUE:
 
-				return isValue > refValue;
+			return isValue > refValue;
 
-			case ComparatorEnum.LE_VALUE:
+		case ComparatorEnum.LE_VALUE:
 
-				return isValue <= refValue;
+			return isValue <= refValue;
 
-			case ComparatorEnum.LT_VALUE:
+		case ComparatorEnum.LT_VALUE:
 
-				return isValue < refValue;
+			return isValue < refValue;
 
-			default:
-				this.logger.severe("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!"
-						+ ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
-				return true;
+		default:
+			this.logger.severe("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!"
+					+ ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
+			return true;
 		}
 	}
 
 	/**
-	 * This is the general checkCondition method for {@link UnaryCondition UnaryConditions}. Based on the type of
-	 * condition to be evaluated, it will forward to the specific checking methods.
+	 * This is the general checkCondition method for {@link UnaryCondition
+	 * UnaryConditions}. Based on the type of condition to be evaluated, it will
+	 * forward to the specific checking methods.
 	 *
 	 * @param condition
 	 *            The {@link UnaryCondition} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkUnaryCondition(UnaryCondition condition, MatchedSectionDescriptor matchedSectionDescriptor,
@@ -649,7 +722,8 @@ public class ConditionHandler {
 		if (condition instanceof Not) {
 			return this.checkConditionNot((Not) condition, matchedSectionDescriptor, mappingInstances);
 		} else {
-			// If we are here, some mistake is happened, more types could be supported in the future
+			// If we are here, some mistake is happened, more types could be
+			// supported in the future
 			this.logger.severe("SingleConditionOperator type " + condition.getClass().getName()
 					+ " is not yet supported!" + ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
 			return CondResult.TRUE;
@@ -657,15 +731,19 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This checks the given {@link Not} condition for the given {@link MatchedSectionDescriptor}.
+	 * This checks the given {@link Not} condition for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param condition
 	 *            The {@link Not} condition to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkConditionNot(Not condition, MatchedSectionDescriptor matchedSectionDescriptor,
@@ -700,16 +778,20 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This is the general checkCondition method for {@link VariadicCondition VariadicConditions}. Based on the type of
-	 * condition to be evaluated, it will forward to the specific checking methods.
+	 * This is the general checkCondition method for {@link VariadicCondition
+	 * VariadicConditions}. Based on the type of condition to be evaluated, it
+	 * will forward to the specific checking methods.
 	 *
 	 * @param condition
 	 *            The {@link VariadicCondition} to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkVariadicCondition(VariadicCondition condition,
@@ -732,15 +814,19 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This checks the given {@link And} condition for the given {@link MatchedSectionDescriptor}.
+	 * This checks the given {@link And} condition for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param condition
 	 *            The {@link And} condition to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkConditionAnd(And condition, MatchedSectionDescriptor matchedSectionDescriptor,
@@ -753,7 +839,8 @@ public class ConditionHandler {
 
 		for (ComplexCondition arg : args) {
 
-			// In order to save some time we break the loop after one argument returned false (And-Operator)
+			// In order to save some time we break the loop after one argument
+			// returned false (And-Operator)
 			//
 			if (this.checkCondition(arg, matchedSectionDescriptor, mappingInstances) == CondResult.FALSE) {
 				return CondResult.FALSE;
@@ -764,15 +851,19 @@ public class ConditionHandler {
 	}
 
 	/**
-	 * This checks the given {@link Or} condition for the given {@link MatchedSectionDescriptor}.
+	 * This checks the given {@link Or} condition for the given
+	 * {@link MatchedSectionDescriptor}.
 	 *
 	 * @param condition
 	 *            The {@link Or} condition to check.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
+	 *            The {@link MatchedSectionDescriptor} for that the condition
+	 *            shall be checked.
 	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
+	 *            A map relating the already created
+	 *            {@link MappingInstanceStorage mapping instances} to their
+	 *            mappings. This is required for checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkConditionOr(Or condition, MatchedSectionDescriptor matchedSectionDescriptor,
@@ -785,7 +876,8 @@ public class ConditionHandler {
 
 		for (ComplexCondition arg : args) {
 
-			// In order to save some time we break the loop after one argument returned false (And-Operator)
+			// In order to save some time we break the loop after one argument
+			// returned false (And-Operator)
 			//
 			if (this.checkCondition(arg, matchedSectionDescriptor, mappingInstances) == CondResult.TRUE) {
 				return CondResult.TRUE;

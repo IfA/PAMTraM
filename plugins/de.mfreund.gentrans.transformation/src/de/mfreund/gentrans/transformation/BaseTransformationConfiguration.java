@@ -322,7 +322,7 @@ public class BaseTransformationConfiguration {
 	 *
 	 * @return the useParallelization
 	 */
-	public boolean getUseParallelization() {
+	public boolean isUseParallelization() {
 
 		return this.useParallelization;
 	}

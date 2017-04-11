@@ -151,7 +151,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		this.useParallelization = useParallelzation;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
-		this.libEntryInstantiatorMap = new HashMap<>();
+		this.libEntryInstantiatorMap = new LinkedHashMap<>();
 
 		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
 

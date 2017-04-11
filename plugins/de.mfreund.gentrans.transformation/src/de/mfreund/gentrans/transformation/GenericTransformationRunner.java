@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,7 @@ import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.FixedValue;
 import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -606,8 +608,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		this.writePamtramMessage("Analyzing target metamodel");
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				this.transformationConfig.getLogger(), attrValueRegistry,
-				this.transformationConfig.getPamtramModel().getTargetSectionModels().parallelStream()
-						.map(m -> m.getMetaModelPackage()).collect(Collectors.toSet()));
+				new LinkedHashSet<>(this.transformationConfig.getPamtramModel().getTargetSectionModels().stream()
+						.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toList())));
 		this.objectsToCancel.add(targetSectionRegistry);
 
 		this.writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");

@@ -170,7 +170,7 @@ public class SourceSectionMatcher {
 	 */
 	public Map<SourceSection, List<MatchedSectionDescriptor>> matchSections() {
 
-		this.sections2Descriptors = new HashMap<>();
+		this.sections2Descriptors = new LinkedHashMap<>();
 
 		while (this.containmentTree.getNumberOfAvailableElements() > 0) {
 

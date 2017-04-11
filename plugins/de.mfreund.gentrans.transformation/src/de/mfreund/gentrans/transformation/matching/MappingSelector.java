@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
@@ -142,7 +141,7 @@ public class MappingSelector extends CancelableElement {
 		this.matchedSections = matchedSections;
 		this.mappings = new ArrayList<>(mappings);
 		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
-		this.selectedMappings = Collections.synchronizedMap(new HashMap<>());
+		this.selectedMappings = Collections.synchronizedMap(new LinkedHashMap<>());
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
@@ -166,11 +165,12 @@ public class MappingSelector extends CancelableElement {
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
 		//
-		Set<MappingModel> mappingModels = (this.useParallelization ? this.mappings.parallelStream()
-				: this.mappings.stream()).map(m -> (MappingModel) m.eContainer()).collect(Collectors.toSet());
+		Set<MappingModel> mappingModels = new LinkedHashSet<>(
+				(this.useParallelization ? this.mappings.parallelStream() : this.mappings.stream())
+						.map(m -> (MappingModel) m.eContainer()).collect(Collectors.toList()));
 
-		Set<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
-				.filter(m -> !this.checkCondition(m)).collect(Collectors.toSet());
+		List<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
+				.filter(m -> !this.checkCondition(m)).collect(Collectors.toList());
 		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
@@ -191,10 +191,12 @@ public class MappingSelector extends CancelableElement {
 						.map(e -> this.selectMapping(e.getKey(), e.getValue(), true)).flatMap(Collection::stream)
 						.collect(Collectors.toList());
 
-		this.selectedMappings
-				.putAll((this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
-						.collect(Collectors.toConcurrentMap(MappingInstanceStorage::getMapping, Arrays::asList,
-								(m1, m2) -> Stream.concat(m1.stream(), m2.stream()).collect(Collectors.toList()))));
+		for (MappingInstanceStorage mappingInstance : mappingInstances) {
+			List<MappingInstanceStorage> instances = this.selectedMappings.containsKey(mappingInstance.getMapping())
+					? this.selectedMappings.get(mappingInstance.getMapping()) : new ArrayList<>();
+			instances.add(mappingInstance);
+			this.selectedMappings.put(mappingInstance.getMapping(), instances);
+		}
 
 		// Now, do the same stuff for the 'deferred' sections as we are now able
 		// to evaluate the
@@ -205,10 +207,12 @@ public class MappingSelector extends CancelableElement {
 						.map(s -> this.selectMapping(s, this.matchedSections.get(s), false)).flatMap(Collection::stream)
 						.collect(Collectors.toList());
 
-		this.selectedMappings
-				.putAll((this.useParallelization ? deferredInstances.parallelStream() : deferredInstances.stream())
-						.collect(Collectors.toConcurrentMap(MappingInstanceStorage::getMapping, Arrays::asList,
-								(m1, m2) -> Stream.concat(m1.stream(), m2.stream()).collect(Collectors.toList()))));
+		for (MappingInstanceStorage mappingInstance : deferredInstances) {
+			List<MappingInstanceStorage> instances = this.selectedMappings.containsKey(mappingInstance.getMapping())
+					? this.selectedMappings.get(mappingInstance.getMapping()) : new ArrayList<>();
+			instances.add(mappingInstance);
+			this.selectedMappings.put(mappingInstance.getMapping(), instances);
+		}
 
 		return this.selectedMappings;
 	}
@@ -249,9 +253,9 @@ public class MappingSelector extends CancelableElement {
 
 		// The mappings with suitable 'sourceMMSections'
 		//
-		Set<Mapping> applicableMappings = (this.useParallelization ? this.mappings.parallelStream()
+		List<Mapping> applicableMappings = (this.useParallelization ? this.mappings.parallelStream()
 				: this.mappings.stream()).filter(m -> matchedSection.equals(m.getSourceSection()))
-						.collect(Collectors.toSet());
+						.collect(Collectors.toList());
 
 		// Check if we need to 'defer' the selection of mappings for the given
 		// set of 'descriptors' as at least one of
@@ -264,13 +268,13 @@ public class MappingSelector extends CancelableElement {
 
 		// Filter mappings and descriptors by the applicability of conditions
 		//
-		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = this
+		Map<List<Mapping>, List<MatchedSectionDescriptor>> applicableMappingsToDescriptors = this
 				.checkConditions(applicableMappings, descriptors);
 
 		// Select mappings to be instantiated and create
 		// 'MappingInstanceStorages'
 		//
-		for (Entry<Set<Mapping>, Set<MatchedSectionDescriptor>> entry : applicableMappingsToDescriptors.entrySet()) {
+		for (Entry<List<Mapping>, List<MatchedSectionDescriptor>> entry : applicableMappingsToDescriptors.entrySet()) {
 
 			switch (entry.getKey().size()) {
 			case 0:
@@ -353,15 +357,15 @@ public class MappingSelector extends CancelableElement {
 	 *            The list of {@link MatchedSectionDescriptor
 	 *            MatchedSectionDescriptor} to be used during the check.
 	 *
-	 * @return A map relating sets of applicable mappings to sets of descriptors
-	 *         for that the applicable mappings are valid.
+	 * @return A map relating lists of applicable mappings to lists of
+	 *         descriptors for that the applicable mappings are valid.
 	 */
-	private Map<Set<Mapping>, Set<MatchedSectionDescriptor>> checkConditions(Set<Mapping> applicableMappings,
+	private Map<List<Mapping>, List<MatchedSectionDescriptor>> checkConditions(List<Mapping> applicableMappings,
 			List<MatchedSectionDescriptor> descriptors) {
 
 		// The map that will be returned in the end
 		//
-		Map<Set<Mapping>, Set<MatchedSectionDescriptor>> applicableMappingsToDescriptors = new HashMap<>();
+		Map<List<Mapping>, List<MatchedSectionDescriptor>> applicableMappingsToDescriptors = new LinkedHashMap<>();
 
 		// Check conditions
 		//
@@ -370,14 +374,14 @@ public class MappingSelector extends CancelableElement {
 			// The subset of the given 'applicableMappings' that is applicable
 			// for the current 'descriptor'
 			//
-			Set<Mapping> localApplicableMappings = (this.useParallelization ? applicableMappings.parallelStream()
+			List<Mapping> localApplicableMappings = (this.useParallelization ? applicableMappings.parallelStream()
 					: applicableMappings.stream()).filter(m -> this.checkConditions(m, descriptor))
-							.collect(Collectors.toSet());
+							.collect(Collectors.toList());
 
 			// Check if there are already descriptors for that the same set of
 			// mappings are applicable
 			//
-			Optional<Entry<Set<Mapping>, Set<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors
+			Optional<Entry<List<Mapping>, List<MatchedSectionDescriptor>>> existing = applicableMappingsToDescriptors
 					.entrySet().stream().filter(entry -> entry.getKey().size() == localApplicableMappings.size()
 							&& entry.getKey().containsAll(localApplicableMappings))
 					.findFirst();
@@ -385,7 +389,8 @@ public class MappingSelector extends CancelableElement {
 			if (existing.isPresent()) {
 				existing.get().getValue().add(descriptor);
 			} else {
-				applicableMappingsToDescriptors.put(localApplicableMappings, new HashSet<>(Arrays.asList(descriptor)));
+				applicableMappingsToDescriptors.put(localApplicableMappings,
+						new ArrayList<>(Arrays.asList(descriptor)));
 			}
 		}
 
@@ -527,7 +532,7 @@ public class MappingSelector extends CancelableElement {
 	 *             If an error occurred while applying the resolving strategy.
 	 */
 	private List<Mapping> selectMappingForDescriptor(MatchedSectionDescriptor descriptor,
-			Set<Mapping> applicableMappings) throws AmbiguityResolvingException {
+			List<Mapping> applicableMappings) throws AmbiguityResolvingException {
 
 		this.logger.fine("[Ambiguity] Resolve searching ambiguity...");
 		List<Mapping> resolved = this.ambiguityResolvingStrategy.searchingSelectMapping(

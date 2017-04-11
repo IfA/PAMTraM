@@ -5,7 +5,7 @@
 <booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
 <listAttribute key="libraryPaths">
-<listEntry value="D:\git-repos\autoprobe\de.tud.et.ifa.agtele.autoprobe.resources.git\lib"/>
+<listEntry value="D:\git-repos\de.tud.et.ifa.agtele.autoprobe\de.tud.et.ifa.agtele.autoprobe.resources\lib"/>
 </listAttribute>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="0"/>
@@ -18,5 +18,6 @@
 <booleanAttribute key="storeTransformation" value="false"/>
 <stringAttribute key="targetFile" value="out.xmi"/>
 <stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
 <intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

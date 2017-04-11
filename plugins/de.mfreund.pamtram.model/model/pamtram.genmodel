@@ -425,7 +425,7 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/ResourceParameter/originalParameter"/>
         </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/library/LibraryEntry">
+        <genClasses provider="Stateful" ecoreClass="pamtram.ecore#//structure/library/LibraryEntry">
           <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/library/LibraryEntry/parameters"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/library/LibraryEntry/libraryFile"/>
           <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"

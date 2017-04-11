@@ -45,25 +45,28 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * An {@link ILaunchConfigurationTab2} that allows to customize the main settings to be applied during a GenTrans
- * transformation.
+ * An {@link ILaunchConfigurationTab2} that allows to customize the main
+ * settings to be applied during a GenTrans transformation.
  *
  * @author mfreund
  */
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	/**
-	 * The name of the folder in the PAMTraM project where the source files are located.
+	 * The name of the folder in the PAMTraM project where the source files are
+	 * located.
 	 */
 	private static final String SOURCE_FOLDER = PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME");
 
 	/**
-	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
+	 * The name of the folder in the PAMTraM project where the PAMTraM files are
+	 * located.
 	 */
 	private static final String PAMTRAM_FOLDER = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	/**
-	 * The name of the folder in the PAMTraM project where the target files are located.
+	 * The name of the folder in the PAMTraM project where the target files are
+	 * located.
 	 */
 	private static final String TARGET_FOLDER = PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 
@@ -73,7 +76,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private static final String FONT = "Segoe UI";
 
 	/**
-	 * The domain model that this tab operates on and that is used to realize all data bindings to the various widgets.
+	 * The domain model that this tab operates on and that is used to realize
+	 * all data bindings to the various widgets.
 	 */
 	private GentransLaunchContext context;
 
@@ -118,18 +122,28 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Spinner pathLengthSpinner;
 
 	/**
-	 * The check box for setting whether the user should be asked only once which mapping to use
+	 * The check box for setting whether the user should be asked only once
+	 * which mapping to use
 	 */
 	private Button onlyAskOnceForAmbiguousMappings;
 
 	/**
-	 * This CheckBox controls whether a TransformationModel representing the results of the transformation shall be
-	 * created at the end of every executed transformation.
+	 * This CheckBox controls whether a TransformationModel representing the
+	 * results of the transformation shall be created at the end of every
+	 * executed transformation.
 	 */
 	private Button createTransformationModel;
 
 	/**
-	 * A {@link List} to display the selected source files to be used in a GenTrans transformation.
+	 * This CheckBox controls whether extended parallelization is used during
+	 * the transformation that might lead to the fact that the transformation
+	 * result (especially the order of lists) varies between executions.
+	 */
+	private Button useParallelization;
+
+	/**
+	 * A {@link List} to display the selected source files to be used in a
+	 * GenTrans transformation.
 	 */
 	private List sourceFileList;
 
@@ -137,7 +151,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * This creates an instance.
 	 *
 	 * @param context
-	 *            The {@link GentransLaunchContext} that shall be used for data bindings to the various widgets.
+	 *            The {@link GentransLaunchContext} that shall be used for data
+	 *            bindings to the various widgets.
 	 */
 	public GentransLaunchMainTab(GentransLaunchContext context) {
 		this.context = context;
@@ -175,7 +190,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			this.projectCombo.add(project.getName());
 		}
 
-		// if a project is selected populate the source, pamtram and target file lists
+		// if a project is selected populate the source, pamtram and target file
+		// lists
 		//
 		this.projectCombo.addModifyListener(e -> this.updateFileLists(this.projectCombo.getText()));
 
@@ -192,21 +208,24 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		Label srcFileLabel = new Label(fileGroup, SWT.NONE);
 		srcFileLabel.setText("Source File(s):");
 
-		// create drop-down list for the source file selection (based on the project)
+		// create drop-down list for the source file selection (based on the
+		// project)
 		//
 		this.srcFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
 		this.srcFileCombo.setEnabled(false);
 		this.srcFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).applyTo(this.srcFileCombo);
 
-		// create a button that allows to add additional source files to be used in the transformation
+		// create a button that allows to add additional source files to be used
+		// in the transformation
 		//
 		Button addSourceFileButton = new Button(fileGroup, SWT.NONE);
 		addSourceFileButton.setText("Add...");
 		addSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleAddSourceFileButtonPressed());
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(addSourceFileButton);
 
-		// a composite to display the selected source files as well as buttons to add/remove/reorder files
+		// a composite to display the selected source files as well as buttons
+		// to add/remove/reorder files
 		//
 		ScrolledComposite scrolledComposite = new ScrolledComposite(fileGroup, SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
@@ -256,7 +275,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		Label pamtramFileLabel = new Label(fileGroup, SWT.NONE);
 		pamtramFileLabel.setText("Pamtram File:");
 
-		// create drop-down list for the pamtram file selection (based on the project)
+		// create drop-down list for the pamtram file selection (based on the
+		// project)
 		//
 		this.pamtramFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
 		this.pamtramFileCombo.setEnabled(false);
@@ -277,7 +297,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 						+ "this will be used as single target model.");
 		targetFileLabel.setText("Default Target File:");
 
-		// create drop-down list for the target file selection (based on the project)
+		// create drop-down list for the target file selection (based on the
+		// project)
 		//
 		this.targetFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
 		this.targetFileCombo.setEnabled(false);
@@ -327,7 +348,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		this.onlyAskOnceForAmbiguousMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
 		this.onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
 
-		// create a check box to customize whether a transformation model shall be stored
+		// create a check box to customize whether a transformation model shall
+		// be stored
 		//
 		this.createTransformationModel = new Button(settingsGroup, SWT.CHECK);
 		this.createTransformationModel.addSelectionListener(new SelectionAdapter() {
@@ -357,7 +379,25 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		logLevelLabel.setText("Select the verbosity of the log.");
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(logLevelLabel);
 
-		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
+		// create a check box to customize whether a transformation model shall
+		// be stored
+		//
+		this.useParallelization = new Button(settingsGroup, SWT.CHECK);
+		this.useParallelization.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
+			}
+		});
+		this.useParallelization.setToolTipText(
+				"Whether extended parallelization shall be used during the transformation. If checked, this will speed up the transformation. However, it might lead to the fact that the transformation result (especially the order of lists) varies between executions.");
+		this.useParallelization.setText("Use extended parallelization");
+		GridDataFactory.swtDefaults().span(2, 1).applyTo(this.useParallelization);
+
+		// After we have created all widgets, we can initialize the data
+		// bindings among the widgets and between widgets
 		// and the context
 		//
 		this.initDataBindings();
@@ -365,7 +405,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Add the file specified in the {@link #srcFileCombo} to the {@link #sourceFileList}.
+	 * Add the file specified in the {@link #srcFileCombo} to the
+	 * {@link #sourceFileList}.
 	 */
 	private void handleAddSourceFileButtonPressed() {
 
@@ -438,8 +479,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Based on a given <em>projectName</em> that represents the project selected by the user in the
-	 * {@link #projectCombo}, update the list of available source, pamtram, and target files.
+	 * Based on a given <em>projectName</em> that represents the project
+	 * selected by the user in the {@link #projectCombo}, update the list of
+	 * available source, pamtram, and target files.
 	 *
 	 * @param projectName
 	 */
@@ -564,6 +606,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false));
 			this.logLevelCombo.select(this.logLevelCombo
 					.indexOf(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO")));
+			this.useParallelization.setSelection(
+					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false));
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
@@ -591,6 +635,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION,
 				this.createTransformationModel.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, this.logLevelCombo.getText());
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION,
+				this.useParallelization.getSelection());
+
 	}
 
 	@Override
@@ -635,7 +682,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the project specified in the {@link #projectCombo} exists.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isProjectComboValid() {
 
@@ -650,7 +698,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the source files specified in the {@link #sourceFileList} exist.
 	 *
-	 * @return '<em><b>true</b></em>' if the settings are valid; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the settings are valid;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isSrcFileListValid() {
 
@@ -665,9 +714,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Check if the pamtram file specified in the {@link #pamtramFileCombo} exists.
+	 * Check if the pamtram file specified in the {@link #pamtramFileCombo}
+	 * exists.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isPamtramFileComboValid() {
 
@@ -680,7 +731,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the target specified in the {@link #targetFileCombo} is valid.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isTargetFileComboValid() {
 
@@ -690,7 +742,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the specified {@link #logLevelCombo Log Level} is valid.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid;
+	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isLogLevelValid() {
 
@@ -699,7 +752,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initializes the values of a launch configuration based on the current selection
+	 * Initializes the values of a launch configuration based on the current
+	 * selection
 	 *
 	 * @param workingCopy
 	 *            a launch configuration to be initialized
@@ -787,6 +841,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			// set the log level
 			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO");
 
+			// set whether parallelization shall be used
+			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false);
+
 		} else {
 			return;
 		}
@@ -794,8 +851,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
-	 * {@link #context} as well as among widgets.
+	 * Initialize all {@link Binding data bindings} between the various widgets
+	 * displayed on this tab and the {@link #context} as well as among widgets.
 	 *
 	 */
 	@SuppressWarnings("unchecked")

@@ -264,9 +264,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<SourceSection> getSourceSections() {
 		List<SourceSection> sourceSections = Stream
-				.concat(this.getSourceSectionModels().parallelStream(),
-						this.getSharedSourceSectionModels().parallelStream())
-				.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());
+				.concat(this.getSourceSectionModels().stream(),
+						this.getSharedSourceSectionModels().stream())
+				.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,
 				sourceSections.size(), sourceSections.toArray());
 	}
@@ -278,9 +278,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<TargetSection> getTargetSections() {
 		List<TargetSection> targetSections = Stream
-				.concat(this.getTargetSectionModels().parallelStream(),
-						this.getSharedTargetSectionModels().parallelStream())
-				.flatMap(s -> s.getSections().parallelStream()).collect(Collectors.toList());
+				.concat(this.getTargetSectionModels().stream(),
+						this.getSharedTargetSectionModels().stream())
+				.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,
 				targetSections.size(), targetSections.toArray());
 	}
@@ -291,8 +291,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
-		List<Mapping> mappings = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
-				.flatMap(s -> s.getMappings().parallelStream()).collect(Collectors.toList());
+		List<Mapping> mappings = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+				.flatMap(s -> s.getMappings().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}
@@ -304,8 +304,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Mapping> getActiveMappings() {
-		List<Mapping> mappings = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream()).filter(m -> !m.isDeactivated())
-				.flatMap(s -> s.getActiveMappings().parallelStream()).collect(Collectors.toList());
+		List<Mapping> mappings = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())
+				.flatMap(s -> s.getActiveMappings().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}
@@ -317,8 +317,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<FixedValue> getGlobalValues() {
-		List<FixedValue> globalValues = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
-				.flatMap(s -> s.getGlobalValues().parallelStream()).collect(Collectors.toList());
+		List<FixedValue> globalValues = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+				.flatMap(s -> s.getGlobalValues().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
 				globalValues.size(), globalValues.toArray());
 	}
@@ -329,8 +329,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	public EList<GlobalAttribute> getGlobalAttributes() {
-		List<GlobalAttribute> globalAttributes = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
-				.flatMap(s -> s.getGlobalAttributes().parallelStream()).collect(Collectors.toList());
+		List<GlobalAttribute> globalAttributes = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+				.flatMap(s -> s.getGlobalAttributes().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,
 				globalAttributes.size(), globalAttributes.toArray());
 	}
@@ -342,8 +342,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<ValueModifierSet> getModifierSets() {
-		List<ValueModifierSet> modifierSets = Stream.concat(this.getMappingModels().parallelStream(), this.getSharedMappingModels().parallelStream())
-				.flatMap(s -> s.getModifierSets().parallelStream()).collect(Collectors.toList());
+		List<ValueModifierSet> modifierSets = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+				.flatMap(s -> s.getModifierSets().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS,
 				modifierSets.size(), modifierSets.toArray());
 	}

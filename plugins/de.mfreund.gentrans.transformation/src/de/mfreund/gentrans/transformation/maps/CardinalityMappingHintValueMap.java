@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.maps;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
@@ -12,17 +12,23 @@ import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This class represents a map that allows to collect hint values for {@link CardinalityMapping CardinalityMappings}.
+ * This class represents a map that allows to collect hint values for
+ * {@link CardinalityMapping CardinalityMappings}.
  * <p />
- * Thereby, the stored hint values are associated with the <em>CardinalityMapping</em> and the
- * <em>{@link SourceSectionClass}</em> that they belong to.
+ * Thereby, the stored hint values are associated with the
+ * <em>CardinalityMapping</em> and the <em>{@link SourceSectionClass}</em> that
+ * they belong to.
  * <p />
- * Note: As {@link CardinalityMapping CardinalityMappings} may specify two different types of sources for hint values
- * (either a {@link CardinalityMapping#getSource() source} or a list of {@link CardinalityMapping#getSourceElements()
- * sourceElements}), this basically just wraps to different {@link HintValueMap HintValueMaps}. Thus, the methods of
- * this map only operate on <em>Objects</em>. However, the concrete parameter/return types need to be/are always either
- * <em>Integer</em> (for CardinalityMappings that specify a <em>source</em>) or <em> Map<CardinalityMapping,
- * AttributeValueRepresentation> (for CardinalityMappings that specify a list of <em>sourceElements</em>).
+ * Note: As {@link CardinalityMapping CardinalityMappings} may specify two
+ * different types of sources for hint values (either a
+ * {@link CardinalityMapping#getSource() source} or a list of
+ * {@link CardinalityMapping#getSourceElements() sourceElements}), this
+ * basically just wraps to different {@link HintValueMap HintValueMaps}. Thus,
+ * the methods of this map only operate on <em>Objects</em>. However, the
+ * concrete parameter/return types need to be/are always either <em>Integer</em>
+ * (for CardinalityMappings that specify a <em>source</em>) or <em>
+ * Map<CardinalityMapping, AttributeValueRepresentation> (for
+ * CardinalityMappings that specify a list of <em>sourceElements</em>).
  *
  * @author mfreund
  */
@@ -31,14 +37,14 @@ public class CardinalityMappingHintValueMap extends HintValueMap<CardinalityMapp
 	private static final long serialVersionUID = 8438717886501675768L;
 
 	/**
-	 * The internal {@link HintValueMap} for CardinalityMappings that are based on the
-	 * {@link CardinalityMapping#getSource()} reference.
+	 * The internal {@link HintValueMap} for CardinalityMappings that are based
+	 * on the {@link CardinalityMapping#getSource()} reference.
 	 */
 	private HintValueMap<CardinalityMapping, Integer> sourceHintValueMap;
 
 	/**
-	 * The internal {@link HintValueMap} for CardinalityMappings that are based on the
-	 * {@link CardinalityMapping#getSourceElements()} reference.
+	 * The internal {@link HintValueMap} for CardinalityMappings that are based
+	 * on the {@link CardinalityMapping#getSourceElements()} reference.
 	 */
 	private AttributeBasedHintValueMap<CardinalityMapping, CardinalityMappingSourceInterface> sourceElementsHintValueMap;
 
@@ -193,13 +199,13 @@ public class CardinalityMappingHintValueMap extends HintValueMap<CardinalityMapp
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<CardinalityMapping, HashMap<SourceSectionClass, LinkedList<Object>>>> entrySet() {
+	public Set<java.util.Map.Entry<CardinalityMapping, LinkedHashMap<SourceSectionClass, LinkedList<Object>>>> entrySet() {
 
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Collection<HashMap<SourceSectionClass, LinkedList<Object>>> values() {
+	public Collection<LinkedHashMap<SourceSectionClass, LinkedList<Object>>> values() {
 
 		throw new UnsupportedOperationException();
 	}

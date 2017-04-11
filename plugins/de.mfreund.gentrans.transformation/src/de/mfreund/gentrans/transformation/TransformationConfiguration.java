@@ -9,14 +9,16 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import pamtram.PAMTraM;
 
 /**
- * Instances of this class describe a concrete <em>Generic Transformation</em> to be executed and describe all
- * parameters necessary for these tasks.
+ * Instances of this class describe a concrete <em>Generic Transformation</em>
+ * to be executed and describe all parameters necessary for these tasks.
  * <p />
- * They are used by the {@link GenericTransformationRunnerFactory} to instantiate the
- * {@link GenericTransformationRunner}.
+ * They are used by the {@link GenericTransformationRunnerFactory} to
+ * instantiate the {@link GenericTransformationRunner}.
  * <p />
- * If additional parameters become necessary, the can be added here without the need to change the signature of the
- * {@link GenericTransformationRunner#GenericTransformationRunner(TransformationConfiguration)} constructor.
+ * If additional parameters become necessary, the can be added here without the
+ * need to change the signature of the
+ * {@link GenericTransformationRunner#GenericTransformationRunner(TransformationConfiguration)}
+ * constructor.
  *
  * @author mfreund
  *
@@ -24,8 +26,9 @@ import pamtram.PAMTraM;
 public class TransformationConfiguration extends BaseTransformationConfiguration {
 
 	/**
-	 * The list of {@link EObject source models} to be transformed. Each element of this list should represent a root
-	 * element of a model to be transformed.
+	 * The list of {@link EObject source models} to be transformed. Each element
+	 * of this list should represent a root element of a model to be
+	 * transformed.
 	 */
 	private List<EObject> sourceModels;
 
@@ -35,7 +38,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	private PAMTraM pamtramModel;
 
 	/**
-	 * The path relative to that all target models will be created. This needs to be in the form 'project-name/path'.
+	 * The path relative to that all target models will be created. This needs
+	 * to be in the form 'project-name/path'.
 	 */
 	private String targetBasePath;
 
@@ -47,18 +51,21 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	/**
 	 * This creates an instance and sets all necessary parameters.
 	 * <p />
-	 * Note: All optional parameters are initialized with default values but can be set/changed with the various
-	 * <em>with...</em> methods.
+	 * Note: All optional parameters are initialized with default values but can
+	 * be set/changed with the various <em>with...</em> methods.
 	 *
 	 * @param sourceModels
-	 *            The list of {@link EObject EObjects} representing the source models to be transformed.
+	 *            The list of {@link EObject EObjects} representing the source
+	 *            models to be transformed.
 	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute in the transformation.
+	 *            The {@link PAMTraM} model containing the mappings to execute
+	 *            in the transformation.
 	 * @param targetBasePath
-	 *            The path to the folder where the target models shall be stored. This needs to be in the form
-	 *            'project-name/path'.
+	 *            The path to the folder where the target models shall be
+	 *            stored. This needs to be in the form 'project-name/path'.
 	 * @param logger
-	 *            The {@link Logger} that shall be used by the transformation to print messages.
+	 *            The {@link Logger} that shall be used by the transformation to
+	 *            print messages.
 	 */
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
 			Logger logger) {
@@ -79,25 +86,31 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	/**
 	 * This creates an instance and sets all necessary parameters.
 	 * <p />
-	 * Note: All optional parameters are initialized based on the value specified in the given
-	 * {@link BaseTransformationConfiguration} but can be changed afterwards with the various <em>with...</em> methods.
+	 * Note: All optional parameters are initialized based on the value
+	 * specified in the given {@link BaseTransformationConfiguration} but can be
+	 * changed afterwards with the various <em>with...</em> methods.
 	 *
 	 * @param sourceModels
-	 *            The list of {@link EObject EObjects} representing the source models to be transformed.
+	 *            The list of {@link EObject EObjects} representing the source
+	 *            models to be transformed.
 	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute in the transformation.
+	 *            The {@link PAMTraM} model containing the mappings to execute
+	 *            in the transformation.
 	 * @param targetBasePath
-	 *            The path to the folder where the target models shall be stored. This needs to be in the form
-	 *            '/project-name/path'.
+	 *            The path to the folder where the target models shall be
+	 *            stored. This needs to be in the form '/project-name/path'.
 	 * @param logger
-	 *            The {@link Logger} that shall be used by the transformation to print messages.
+	 *            The {@link Logger} that shall be used by the transformation to
+	 *            print messages.
 	 * @param baseConfig
-	 *            The {@link BaseTransformationConfiguration} that shall be used to set the optional parameters.
+	 *            The {@link BaseTransformationConfiguration} that shall be used
+	 *            to set the optional parameters.
 	 */
 	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
 			Logger logger, BaseTransformationConfiguration baseConfig) {
 
-		// Initialize all optional parameters with the values specified in the given
+		// Initialize all optional parameters with the values specified in the
+		// given
 		// BaseTransformationConfiguraiton
 		//
 		this.defaultTargetModel = baseConfig.getDefaultTargetModel();
@@ -106,6 +119,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
 		this.libPaths = baseConfig.getLibPaths();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
+		this.useParallelization = baseConfig.isUseParallelization();
 
 		// Initialize the mandatory parameters
 		//
@@ -118,8 +132,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	/**
 	 * Check if all parameters have been initialized with meaningful values.
 	 *
-	 * @return '<em><b>true</b></em>' if all parameters have been initialized with meaningful values;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if all parameters have been initialized
+	 *         with meaningful values; '<em><b>false</b></em>' otherwise.
 	 */
 	@Override
 	public boolean validate() {

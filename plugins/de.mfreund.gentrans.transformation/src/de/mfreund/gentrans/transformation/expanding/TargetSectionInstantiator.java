@@ -111,6 +111,13 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
+	 * Whether extended parallelization shall be used during the transformation
+	 * that might lead to the fact that the transformation result (especially
+	 * the order of lists) varies between executions.
+	 */
+	private boolean useParallelization;
+
+	/**
 	 * This creates an instance.
 	 *
 	 * @param targetSectionRegistry
@@ -126,19 +133,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
 	 *            resolve occurring ambiguities.
+	 * @param useParallelzation
+	 *            Whether extended parallelization shall be used during the
+	 *            transformation that might lead to the fact that the
+	 *            transformation result (especially the order of lists) varies
+	 *            between executions.
 	 */
 	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attributeValueRegistry, final GlobalValueMap globalValueMap,
 			final AttributeValueModifierExecutor attributeValuemodifier, final Logger logger,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, boolean useParallelzation) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.attributeValueRegistry = attributeValueRegistry;
 		this.logger = logger;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		this.useParallelization = useParallelzation;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
-		this.libEntryInstantiatorMap = new HashMap<>();
+		this.libEntryInstantiatorMap = new LinkedHashMap<>();
 
 		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
@@ -1064,9 +1077,10 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		// collect all containment references
 		//
-		List<TargetSectionCompositeReference> containmentReferences = targetSectionClass.getReferences()
-				.parallelStream().filter(ref -> ref instanceof TargetSectionCompositeReference)
-				.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
+		List<TargetSectionCompositeReference> containmentReferences = (this.useParallelization
+				? targetSectionClass.getReferences().parallelStream() : targetSectionClass.getReferences().stream())
+						.filter(ref -> ref instanceof TargetSectionCompositeReference)
+						.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
 
 		// recursively instantiate the containment references
 		//
@@ -1153,9 +1167,11 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
 
-		final List<MappingHint> hints = mappingInstance.getMappingHints(hintGroupImporter).parallelStream()
-				.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)
-				.collect(Collectors.toList());
+		final List<MappingHint> hints = (this.useParallelization
+				? mappingInstance.getMappingHints(hintGroupImporter).parallelStream()
+				: mappingInstance.getMappingHints(hintGroupImporter).stream())
+						.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)
+						.collect(Collectors.toList());
 
 		hints.addAll(exportedHintGroup.getMappingHints());
 

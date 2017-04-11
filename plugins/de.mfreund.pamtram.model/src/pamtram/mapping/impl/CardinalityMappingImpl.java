@@ -474,7 +474,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingSourceElement> getLocalSourceElements() {
-		return new BasicEList<>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));
+		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));
 	}
 
 	/**
@@ -483,7 +483,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingExternalSourceElement> getExternalSourceElements() {
-		return new BasicEList<>(this.getSourceElements().parallelStream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(Collectors.toList()));
+		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(Collectors.toList()));
 	}
 
 	/**

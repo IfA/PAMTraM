@@ -140,7 +140,7 @@ public class MatchedSectionDescriptor {
 	 *         descriptor.
 	 */
 	public Set<EObject> getSourceModelObjectFlat() {
-		return this.sourceModelObjetsMapped.entrySet().parallelStream().map(e -> e.getValue()).flatMap(l -> l.stream())
+		return this.sourceModelObjetsMapped.entrySet().stream().map(e -> e.getValue()).flatMap(l -> l.stream())
 				.collect(Collectors.toSet());
 	}
 
@@ -230,7 +230,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * Set the {@link #containerDescriptor}.
-	 * 
+	 *
 	 * @param containerDescriptor
 	 *            tThe {@link MatchedSectionDescriptor} that represents the
 	 *            {@link EObject#eContainer()} of the

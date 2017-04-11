@@ -4,10 +4,10 @@ package pamtram.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
@@ -28,14 +29,13 @@ import pamtram.MappingModel;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.util.PamtramValidator;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping Model</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mapping
+ * Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -55,8 +55,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
 public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -65,8 +64,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -75,8 +73,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -85,8 +83,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -95,8 +92,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMappings()
 	 * @generated
 	 * @ordered
@@ -105,8 +101,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getModifierSets() <em>Modifier Sets</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifierSets()
 	 * @generated
 	 * @ordered
@@ -115,8 +111,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getGlobalValues() <em>Global Values</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getGlobalValues()
 	 * @generated
 	 * @ordered
@@ -134,8 +130,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected EList<GlobalAttribute> globalAttributes;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MappingModelImpl() {
@@ -143,8 +138,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -153,19 +147,19 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isDeactivated() {
 		return deactivated;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
@@ -174,17 +168,16 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getLocalCondition() {
 		return localCondition;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
@@ -198,10 +191,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
@@ -217,10 +210,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getSharedCondition() {
 		if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
@@ -234,8 +227,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComplexCondition basicGetSharedCondition() {
@@ -243,10 +235,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
@@ -255,8 +247,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -268,8 +259,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -281,8 +271,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -294,24 +283,24 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * This returns the active mappings (the subset of the defined mappings ({@link #mapping}) 
-	 * for that {@link Mapping#isDeactivated()} and {@link Mapping#isAbstract()} both return '<em>false</em>').
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This returns the active mappings (the subset of
+	 * the defined mappings ({@link #mapping}) for that
+	 * {@link Mapping#isDeactivated()} and {@link Mapping#isAbstract()} both
+	 * return '<em>false</em>'). <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<Mapping> getActiveMappings() {
-		List<Mapping> mappings = this.getMappings().parallelStream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
+		List<Mapping> mappings = this.getMappings().stream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GlobalAttribute> getGlobalAttributes() {
 		if (globalAttributes == null) {
 			globalAttributes = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES);
@@ -320,10 +309,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -345,11 +334,12 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
 		
@@ -370,8 +360,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -392,8 +381,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -421,8 +409,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -459,8 +446,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -492,8 +478,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -520,8 +505,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -543,8 +527,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -566,8 +549,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -588,8 +570,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -605,8 +586,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -620,4 +600,4 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		return result.toString();
 	}
 
-} //MappingModelImpl
+} // MappingModelImpl

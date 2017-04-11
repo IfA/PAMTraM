@@ -151,11 +151,11 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 			mappings = this.eResource().getResourceSet().getResources().stream()
 					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
-					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
+					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())
 					.collect(Collectors.toList());
 		}
 		
-		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
+		List<MappingHintGroupType> referencingHintGroups = mappings.stream().flatMap(m -> m.getMappingHintGroups().stream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
 		
 		return new UnmodifiableEList<>(this, TargetPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				referencingHintGroups.size(), referencingHintGroups.toArray());

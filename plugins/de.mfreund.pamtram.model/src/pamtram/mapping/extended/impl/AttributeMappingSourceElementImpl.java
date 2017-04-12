@@ -1,11 +1,11 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.AttributeMappingSourceElement;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.structure.impl.LocalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;

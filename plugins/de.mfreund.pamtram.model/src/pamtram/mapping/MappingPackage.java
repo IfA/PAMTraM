@@ -291,10 +291,10 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT = 9;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMappingImpl
+	 * @see pamtram.mapping.extended.impl.AttributeMappingImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMapping()
 	 * @generated
 	 */
@@ -728,10 +728,10 @@ public interface MappingPackage extends EPackage {
 	int CONTAINER_SELECTOR = 25;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMappingSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.AttributeMappingSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
 	 * @generated
 	 */
@@ -798,10 +798,10 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_IMPORTER = 32;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.AttributeMappingSourceInterface
+	 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
@@ -1413,10 +1413,10 @@ public interface MappingPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.AttributeMappingExternalSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
@@ -1535,10 +1535,10 @@ public interface MappingPackage extends EPackage {
 	int EXPANDABLE_HINT = 37;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingGlobalSourceElement()
 	 * @generated
 	 */
@@ -3337,63 +3337,63 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMapping <em>Attribute Mapping</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMapping <em>Attribute Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Mapping</em>'.
-	 * @see pamtram.mapping.AttributeMapping
+	 * @see pamtram.mapping.extended.AttributeMapping
 	 * @generated
 	 */
 	EClass getAttributeMapping();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.AttributeMapping#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.mapping.AttributeMapping#getTarget()
+	 * @see pamtram.mapping.extended.AttributeMapping#getTarget()
 	 * @see #getAttributeMapping()
 	 * @generated
 	 */
 	EReference getAttributeMapping_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.AttributeMapping#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.extended.AttributeMapping#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.mapping.AttributeMapping#getSourceElements()
+	 * @see pamtram.mapping.extended.AttributeMapping#getSourceElements()
 	 * @see #getAttributeMapping()
 	 * @generated
 	 */
 	EReference getAttributeMapping_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.AttributeMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.AttributeMapping#getLocalSourceElements()
+	 * @see pamtram.mapping.extended.AttributeMapping#getLocalSourceElements()
 	 * @generated
 	 */
 	EOperation getAttributeMapping__GetLocalSourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMapping#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.AttributeMapping#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
-	 * @see pamtram.mapping.AttributeMapping#getExternalSourceElements()
+	 * @see pamtram.mapping.extended.AttributeMapping#getExternalSourceElements()
 	 * @generated
 	 */
 	EOperation getAttributeMapping__GetExternalSourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMapping#validateTargetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Attribute Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.AttributeMapping#validateTargetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Attribute Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Target Attribute Matches Section</em>' operation.
-	 * @see pamtram.mapping.AttributeMapping#validateTargetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.AttributeMapping#validateTargetAttributeMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getAttributeMapping__ValidateTargetAttributeMatchesSection__DiagnosticChain_Map();
@@ -3847,11 +3847,11 @@ public interface MappingPackage extends EPackage {
 	EReference getContainerSelector_TargetAttributes();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Mapping Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMappingSourceElement
+	 * @see pamtram.mapping.extended.AttributeMappingSourceElement
 	 * @generated
 	 */
 	EClass getAttributeMappingSourceElement();
@@ -4010,11 +4010,11 @@ public interface MappingPackage extends EPackage {
 	EReference getGlobalAttributeImporter_GlobalAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Mapping Source Interface</em>'.
-	 * @see pamtram.mapping.AttributeMappingSourceInterface
+	 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
 	 * @generated
 	 */
 	EClass getAttributeMappingSourceInterface();
@@ -4030,11 +4030,11 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Mapping External Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMappingExternalSourceElement
+	 * @see pamtram.mapping.extended.AttributeMappingExternalSourceElement
 	 * @generated
 	 */
 	EClass getAttributeMappingExternalSourceElement();
@@ -4080,11 +4080,11 @@ public interface MappingPackage extends EPackage {
 	EClass getExpandableHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Mapping Global Source Element</em>'.
-	 * @see pamtram.mapping.AttributeMappingGlobalSourceElement
+	 * @see pamtram.mapping.extended.AttributeMappingGlobalSourceElement
 	 * @generated
 	 */
 	EClass getAttributeMappingGlobalSourceElement();
@@ -4247,10 +4247,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMappingImpl
+		 * @see pamtram.mapping.extended.impl.AttributeMappingImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMapping()
 		 * @generated
 		 */
@@ -4665,10 +4665,10 @@ public interface MappingPackage extends EPackage {
 		EReference CONTAINER_SELECTOR__TARGET_ATTRIBUTES = eINSTANCE.getContainerSelector_TargetAttributes();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMappingSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.AttributeMappingSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceElement()
 		 * @generated
 		 */
@@ -4813,10 +4813,10 @@ public interface MappingPackage extends EPackage {
 		EReference GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = eINSTANCE.getGlobalAttributeImporter_GlobalAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.AttributeMappingSourceInterface
+		 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingSourceInterface()
 		 * @generated
 		 */
@@ -4833,10 +4833,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_SOURCE_INTERFACE = eINSTANCE.getMappingHintSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMappingExternalSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.AttributeMappingExternalSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingExternalSourceElement()
 		 * @generated
 		 */
@@ -4883,10 +4883,10 @@ public interface MappingPackage extends EPackage {
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMappingGlobalSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMappingGlobalSourceElement()
 		 * @generated
 		 */

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -11,26 +11,27 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.AttributeMappingGlobalSourceElement;
+import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.GlobalDynamicSourceElementItemProvider;
+import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingGlobalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMappingSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
+public class AttributeMappingSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMappingGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public AttributeMappingSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,14 +51,14 @@ public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynam
 	}
 
 	/**
-	 * This returns AttributeMappingGlobalSourceElement.gif.
+	 * This returns AttributeMappingSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingGlobalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingSourceElement"));
 	}
 
 	/**
@@ -71,6 +72,7 @@ public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynam
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
+
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -79,15 +81,15 @@ public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynam
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMappingGlobalSourceElement)object).getName();
+		String label = ((AttributeMappingSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_AttributeMappingSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_AttributeMappingSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

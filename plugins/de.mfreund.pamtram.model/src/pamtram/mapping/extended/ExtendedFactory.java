@@ -39,4 +39,47 @@ public interface ExtendedFactory extends EFactory {
 	 */
 	ExtendedPackage getExtendedPackage();
 
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping</em>'.
+	 * @generated
+	 */
+	AttributeMapping createAttributeMapping();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping</em>' that
+	 * already contains a source element.
+	 * @return a new object of class '<em>Attribute Mapping</em>'.
+	 */
+	AttributeMapping createAttributeMappingWithSource();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMappingSourceElement createAttributeMappingSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping External Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
+
 } //ExtendedFactory

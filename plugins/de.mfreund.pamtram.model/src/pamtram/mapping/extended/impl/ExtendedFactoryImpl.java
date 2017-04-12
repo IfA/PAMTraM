@@ -82,6 +82,56 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeMapping createAttributeMapping() {
+		AttributeMappingImpl attributeMapping = new AttributeMappingImpl();
+		return attributeMapping;
+	}
+
+	/**
+	 */
+	@Override
+	public AttributeMapping createAttributeMappingWithSource() {
+	
+		AttributeMapping attributeMapping = this.createAttributeMapping();
+		attributeMapping.getSourceElements().add(new AttributeMappingSourceElementImpl());
+		return attributeMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeMappingSourceElement createAttributeMappingSourceElement() {
+		AttributeMappingSourceElementImpl attributeMappingSourceElement = new AttributeMappingSourceElementImpl();
+		return attributeMappingSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement() {
+		AttributeMappingExternalSourceElementImpl attributeMappingExternalSourceElement = new AttributeMappingExternalSourceElementImpl();
+		return attributeMappingExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement() {
+		AttributeMappingGlobalSourceElementImpl attributeMappingGlobalSourceElement = new AttributeMappingGlobalSourceElementImpl();
+		return attributeMappingGlobalSourceElement;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @deprecated

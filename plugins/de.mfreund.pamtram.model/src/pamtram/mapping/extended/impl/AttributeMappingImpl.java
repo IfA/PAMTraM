@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -21,15 +21,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingExternalSourceElement;
-import pamtram.mapping.AttributeMappingSourceElement;
-import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
+import pamtram.mapping.extended.AttributeMappingSourceElement;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
@@ -40,10 +41,10 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated

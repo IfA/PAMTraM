@@ -1,13 +1,14 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import pamtram.mapping.AttributeMappingGlobalSourceElement;
+
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.impl.GlobalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;

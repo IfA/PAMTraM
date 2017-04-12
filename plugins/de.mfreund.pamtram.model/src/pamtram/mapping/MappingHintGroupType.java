@@ -5,6 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
+import pamtram.mapping.extended.AttributeMapping;
 import pamtram.structure.target.TargetSection;
 
 /**
@@ -90,7 +91,7 @@ public interface MappingHintGroupType extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Attribute Mappings</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeMapping}.
+	 * The list contents are of type {@link pamtram.mapping.extended.AttributeMapping}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attribute Mappings</em>' reference list isn't clear,

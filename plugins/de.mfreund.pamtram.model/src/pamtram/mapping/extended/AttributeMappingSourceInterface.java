@@ -1,7 +1,9 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->

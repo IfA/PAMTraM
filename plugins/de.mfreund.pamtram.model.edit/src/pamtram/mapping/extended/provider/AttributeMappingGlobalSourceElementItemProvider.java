@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -11,26 +11,26 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.AttributeMappingExternalSourceElement;
+
+import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
+import pamtram.structure.provider.GlobalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingExternalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMappingGlobalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingExternalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
+public class AttributeMappingGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMappingExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public AttributeMappingGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,14 +50,14 @@ public class AttributeMappingExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This returns AttributeMappingExternalSourceElement.gif.
+	 * This returns AttributeMappingGlobalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingExternalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingGlobalSourceElement"));
 	}
 
 	/**
@@ -71,7 +71,6 @@ public class AttributeMappingExternalSourceElementItemProvider extends ExternalD
 		return ((StyledString)getStyledText(object)).getString();
 	}
 	
-
 	/**
 	 * This returns the label styled text for the adapted class.
 	 * <!-- begin-user-doc -->
@@ -80,15 +79,15 @@ public class AttributeMappingExternalSourceElementItemProvider extends ExternalD
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMappingExternalSourceElement)object).getName();
+		String label = ((AttributeMappingGlobalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_AttributeMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_AttributeMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}
+	}	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached

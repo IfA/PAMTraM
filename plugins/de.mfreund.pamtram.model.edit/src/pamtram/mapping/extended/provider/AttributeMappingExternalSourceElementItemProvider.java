@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -13,24 +13,25 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.AttributeMappingSourceElement;
+
+import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
+import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMappingSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMappingExternalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeMappingSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
+public class AttributeMappingExternalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AttributeMappingSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public AttributeMappingExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,14 +51,14 @@ public class AttributeMappingSourceElementItemProvider extends LocalDynamicSourc
 	}
 
 	/**
-	 * This returns AttributeMappingSourceElement.gif.
+	 * This returns AttributeMappingExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMappingExternalSourceElement"));
 	}
 
 	/**
@@ -80,12 +81,12 @@ public class AttributeMappingSourceElementItemProvider extends LocalDynamicSourc
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((AttributeMappingSourceElement)object).getName();
+		String label = ((AttributeMappingExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_AttributeMappingSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_AttributeMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_AttributeMappingSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_AttributeMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

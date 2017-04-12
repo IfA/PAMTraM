@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -8,6 +8,9 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
@@ -19,8 +22,8 @@ import pamtram.structure.target.TargetSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.AttributeMapping#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.AttributeMapping#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.AttributeMapping#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMapping()
@@ -45,7 +48,7 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	TargetSectionAttribute getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.AttributeMapping#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.AttributeMapping#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
@@ -56,7 +59,7 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.AttributeMappingSourceInterface}.
+	 * The list contents are of type {@link pamtram.mapping.extended.AttributeMappingSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Attribute Mappings</em>' containment reference list isn't clear,

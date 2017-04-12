@@ -3,6 +3,7 @@
 package pamtram.mapping;
 
 import pamtram.NamedElement;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 

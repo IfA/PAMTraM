@@ -31,22 +31,6 @@ public interface MappingFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Mapping</em>'.
-	 * @generated
-	 */
-	AttributeMapping createAttributeMapping();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Mapping</em>' that
-	 * already contains a source element.
-	 * @return a new object of class '<em>Attribute Mapping</em>'.
-	 */
-	AttributeMapping createAttributeMappingWithSource();
-
-	/**
 	 * Returns a new object of class '<em>Cardinality Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -149,15 +133,6 @@ public interface MappingFactory extends EFactory {
 	ContainerSelector createContainerSelectorWithSourceAndTarget();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Mapping Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Mapping Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMappingSourceElement createAttributeMappingSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>Container Selector Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,15 +187,6 @@ public interface MappingFactory extends EFactory {
 	GlobalAttributeImporter createGlobalAttributeImporter();
 
 	/**
-	 * Returns a new object of class '<em>Attribute Mapping External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Mapping External Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMappingExternalSourceElement createAttributeMappingExternalSourceElement();
-
-	/**
 	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -237,15 +203,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Mapping Global Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Mapping Global Source Element</em>'.
-	 * @generated
-	 */
-	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
 
 	/**
 	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.

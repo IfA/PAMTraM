@@ -50,6 +50,8 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingHintSourceInterface;
 import pamtram.mapping.MappingHintType;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.impl.ModifierPackageImpl;
 import pamtram.mapping.MappingPackage;
@@ -403,6 +405,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) : LibraryPackage.eINSTANCE);
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theMappingPackage.createPackageContents();
@@ -415,6 +418,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		theLibraryPackage.createPackageContents();
 		theConditionPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theMappingPackage.initializePackageContents();
@@ -427,6 +431,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		theLibraryPackage.initializePackageContents();
 		theConditionPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -1418,6 +1423,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Obtain other dependent packages
 		ModifierPackage theModifierPackage = (ModifierPackage)EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI);
+		ExtendedPackage theExtendedPackage = (ExtendedPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI);
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
@@ -1427,6 +1433,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
 		// Add subpackages
 		getESubpackages().add(theModifierPackage);
+		getESubpackages().add(theExtendedPackage);
 
 		// Create type parameters
 

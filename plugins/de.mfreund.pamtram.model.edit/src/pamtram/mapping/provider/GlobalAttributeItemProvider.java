@@ -24,8 +24,6 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingPackage;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.generic.CompositeReference;
-import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 
@@ -41,7 +39,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public GlobalAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -99,17 +97,18 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 							}
 
 							// search children
-							classes.addAll(
-									c.getReferences().stream().filter(r -> r instanceof CompositeReference<?, ?, ?, ?>)
-											.flatMap(r -> r.getValuesGeneric().stream()).collect(Collectors.toList()));
+							classes.addAll(c.getReferences().stream()
+									.filter(r -> r instanceof pamtram.structure.generic.CompositeReference<?, ?, ?, ?>)
+									.flatMap(r -> r.getValuesGeneric().stream()).collect(Collectors.toList()));
 						}
 
 						// Return only those attributes that represent an actual
 						// EAttribute with an upper bound of '1'
 						//
 						return sources.stream()
-								.filter(a -> a instanceof ActualSourceSectionAttribute
-										&& ((ActualSourceSectionAttribute) a).getAttribute().getUpperBound() == 1)
+								.filter(a -> a instanceof pamtram.structure.source.ActualSourceSectionAttribute
+										&& ((pamtram.structure.source.ActualSourceSectionAttribute) a).getAttribute()
+												.getUpperBound() == 1)
 								.collect(Collectors.toList());
 
 					}
@@ -120,7 +119,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -157,7 +156,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -178,7 +177,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,7 +190,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -202,7 +201,7 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

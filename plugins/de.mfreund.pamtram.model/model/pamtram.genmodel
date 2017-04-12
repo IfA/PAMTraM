@@ -690,6 +690,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/ToUpperCaseConverter/regex"/>
         </genClasses>
       </nestedGenPackages>
+      <nestedGenPackages prefix="Extended" disposableProviderFactory="true" ecorePackage="pamtram.ecore#//mapping/extended"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

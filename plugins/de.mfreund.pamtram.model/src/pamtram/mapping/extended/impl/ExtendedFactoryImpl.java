@@ -264,6 +264,56 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public LocalMappedAttributeValueExpander createLocalMappedAttributeValueExpander() {
+		LocalMappedAttributeValueExpanderImpl localMappedAttributeValueExpander = new LocalMappedAttributeValueExpanderImpl();
+		return localMappedAttributeValueExpander;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MappedAttributeValuePrepender createMappedAttributeValuePrepender() {
+		MappedAttributeValuePrependerImpl mappedAttributeValuePrepender = new MappedAttributeValuePrependerImpl();
+		return mappedAttributeValuePrepender;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MappedAttributeValueAppender createMappedAttributeValueAppender() {
+		MappedAttributeValueAppenderImpl mappedAttributeValueAppender = new MappedAttributeValueAppenderImpl();
+		return mappedAttributeValueAppender;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ExternalMappedAttributeValuePrepender createExternalMappedAttributeValuePrepender() {
+		ExternalMappedAttributeValuePrependerImpl externalMappedAttributeValuePrepender = new ExternalMappedAttributeValuePrependerImpl();
+		return externalMappedAttributeValuePrepender;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender() {
+		ExternalMappedAttributeValueAppenderImpl externalMappedAttributeValueAppender = new ExternalMappedAttributeValueAppenderImpl();
+		return externalMappedAttributeValueAppender;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @deprecated

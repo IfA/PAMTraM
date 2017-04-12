@@ -10,6 +10,13 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
+import pamtram.mapping.extended.ExternalMappedAttributeValueAppender;
+import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.extended.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
+import pamtram.mapping.extended.MappedAttributeValueAppender;
+import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.extended.MappedAttributeValuePrepender;
 import pamtram.structure.util.StructureValidator;
 import pamtram.util.PamtramValidator;
 

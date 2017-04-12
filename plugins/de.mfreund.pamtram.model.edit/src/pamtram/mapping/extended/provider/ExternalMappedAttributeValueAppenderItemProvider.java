@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -8,25 +8,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.MappedAttributeValueAppender;
+
+import pamtram.mapping.extended.ExternalMappedAttributeValueAppender;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueAppender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttributeValueExpanderItemProvider {
+public class ExternalMappedAttributeValueAppenderItemProvider extends ExternalMappedAttributeValueExpanderItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MappedAttributeValueAppenderItemProvider(AdapterFactory adapterFactory) {
+	public ExternalMappedAttributeValueAppenderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -46,14 +48,14 @@ public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttribu
 	}
 
 	/**
-	 * This returns MappedAttributeValueAppender.gif.
+	 * This returns ExternalMappedAttributeValueAppender.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappedAttributeValueAppender"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExternalMappedAttributeValueAppender"));
 	}
 
 	/**
@@ -76,12 +78,12 @@ public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttribu
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MappedAttributeValueAppender)object).getName();
+		String label = ((ExternalMappedAttributeValueAppender)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ExternalMappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_MappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ExternalMappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

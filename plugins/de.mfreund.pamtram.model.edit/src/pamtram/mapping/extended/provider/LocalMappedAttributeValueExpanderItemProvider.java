@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -8,30 +8,32 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ExternalMappedAttributeValueExpander;
+
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
+import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ExternalMappedAttributeValueExpander} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.LocalMappedAttributeValueExpander} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDynamicSourceElementItemProvider {
+public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalMappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
+	public LocalMappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -74,6 +76,17 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDy
 	}
 
 	/**
+	 * This returns LocalMappedAttributeValueExpander.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/LocalMappedAttributeValueExpander"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,12 +106,12 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDy
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalMappedAttributeValueExpander)object).getName();
+		String label = ((LocalMappedAttributeValueExpander)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ExternalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ExternalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -138,56 +151,5 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDy
 	public ResourceLocator getResourceLocator() {
 		return PamtramEditPlugin.INSTANCE;
 	}
-
-
-//	/* (non-Javadoc)
-//	 * @see pamtram.mapping.provider.MappedAttributeValueExpanderItemProvider#addSourceAttributePropertyDescriptor(java.lang.Object)
-//	 */
-//	@Override
-//	protected void addSourceAttributePropertyDescriptor(Object object) {
-//		itemPropertyDescriptors.add
-//		(new ItemPropertyDescriptor
-//			(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-//			 getResourceLocator(),
-//			 getString("_UI_MappedAttributeValueExpander_sourceAttribute_feature"),
-//			 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_sourceAttribute_feature", "_UI_MappedAttributeValueExpander_type"),
-//			 MappingPackage.Literals.ModifMAPPED_ATTRIBUTE_VALUE_EXPANDER_TYPE__SOURCE_ATTRIBUTE,
-//			 true,
-//			 false,
-//			 true,
-//			 null,
-//			 null,
-//			 null){
-//
-//				@Override
-//				public Collection<?> getChoiceOfValues(Object object) {
-//
-//					//the parent Mapping Hint Group
-//					MappingHintGroupImporter parent=(MappingHintGroupImporter) ((ExternalMappedAttributeValueExpander) object).eContainer();
-//					// the parent mapping
-//					Mapping mapping=(Mapping)parent.eContainer();
-//
-//					// the container section
-//					SourceSectionClass container = mapping.getSourceMMSection().getContainer();
-//
-//					List<Object> choiceOfValues = new ArrayList<Object>();
-//					
-//					if(container != null){
-//						//add atttributes of container and the metamodel section above
-//						while(true){
-//							choiceOfValues.addAll(container.getAttributes());
-//							if(container.eContainer() instanceof SourceSectionContainmentReference){
-//								container=(SourceSectionClass) container.eContainer().eContainer();
-//							}else if(container.eContainer() instanceof SourceSectionModel && container.getContainer() != null){
-//								container=container.getContainer();
-//							} else {
-//								break;
-//							}
-//						}
-//					}					
-//					return choiceOfValues;
-//				}
-//		});
-//	}
 
 }

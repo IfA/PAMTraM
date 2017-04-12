@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -11,10 +11,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.MappedAttributeValuePrepender;
+
+import pamtram.mapping.extended.MappedAttributeValuePrepender;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValuePrepender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappedAttributeValuePrepender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

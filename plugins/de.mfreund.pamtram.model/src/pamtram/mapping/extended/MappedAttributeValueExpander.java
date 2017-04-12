@@ -1,8 +1,12 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import org.eclipse.emf.common.util.EList;
+
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.HintImporterMappingHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.source.SourceSectionAttribute;
 
 
@@ -15,7 +19,7 @@ import pamtram.structure.source.SourceSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.MappedAttributeValueExpander#getHintsToExpand <em>Hints To Expand</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.MappedAttributeValueExpander#getHintsToExpand <em>Hints To Expand</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappedAttributeValueExpander()

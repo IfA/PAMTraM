@@ -184,4 +184,49 @@ public interface ExtendedFactory extends EFactory {
 	 */
 	ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute();
 
+	/**
+	 * Returns a new object of class '<em>Local Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Local Mapped Attribute Value Expander</em>'.
+	 * @generated
+	 */
+	LocalMappedAttributeValueExpander createLocalMappedAttributeValueExpander();
+
+	/**
+	 * Returns a new object of class '<em>Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapped Attribute Value Prepender</em>'.
+	 * @generated
+	 */
+	MappedAttributeValuePrepender createMappedAttributeValuePrepender();
+
+	/**
+	 * Returns a new object of class '<em>Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mapped Attribute Value Appender</em>'.
+	 * @generated
+	 */
+	MappedAttributeValueAppender createMappedAttributeValueAppender();
+
+	/**
+	 * Returns a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Mapped Attribute Value Prepender</em>'.
+	 * @generated
+	 */
+	ExternalMappedAttributeValuePrepender createExternalMappedAttributeValuePrepender();
+
+	/**
+	 * Returns a new object of class '<em>External Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>External Mapped Attribute Value Appender</em>'.
+	 * @generated
+	 */
+	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
+
 } //ExtendedFactory

@@ -1770,27 +1770,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType #//ConditionalElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
         eSuperTypes="#//mapping/MappingHintType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
-        eSuperTypes="#//mapping/HintImporterMappingHint">
-      <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
-          upperBound="-1" eType="#//mapping/ExpandableHint"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander">
-      <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeHasUpperBoundOne"/>
@@ -1816,20 +1795,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
         interface="true" eSuperTypes="#//NamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
-        abstract="true">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
-        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
-        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true" interface="true"/>
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">
@@ -2180,6 +2145,42 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
+          eSuperTypes="#//mapping/HintImporterMappingHint">
+        <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+          </eAnnotations>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
+            upperBound="-1" eType="#//mapping/ExpandableHint"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander"
+          abstract="true">
+        <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
+          abstract="true">
+        <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

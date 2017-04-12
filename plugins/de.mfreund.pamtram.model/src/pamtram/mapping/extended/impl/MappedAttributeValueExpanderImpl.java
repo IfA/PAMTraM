@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -9,10 +9,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExternalMappedAttributeValueExpander;
-import pamtram.mapping.LocalMappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
+import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.impl.HintImporterMappingHintImpl;
 import pamtram.structure.source.SourceSectionAttribute;
 
 /**
@@ -23,7 +24,7 @@ import pamtram.structure.source.SourceSectionAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl#getHintsToExpand <em>Hints To Expand</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl#getHintsToExpand <em>Hints To Expand</em>}</li>
  * </ul>
  *
  * @generated

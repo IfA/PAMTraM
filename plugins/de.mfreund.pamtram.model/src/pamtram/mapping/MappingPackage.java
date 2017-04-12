@@ -668,30 +668,30 @@ public interface MappingPackage extends EPackage {
 	int HINT_IMPORTER_MAPPING_HINT = 10;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 11;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
+	 * @see pamtram.mapping.extended.impl.MappedAttributeValuePrependerImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
+	 * @see pamtram.mapping.extended.impl.MappedAttributeValueAppenderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
@@ -1051,40 +1051,40 @@ public interface MappingPackage extends EPackage {
 	int HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.extended.impl.LocalMappedAttributeValueExpanderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 12;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl
+	 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValueExpanderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 18;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl
+	 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValuePrependerImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 19;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueAppenderImpl <em>External Mapped Attribute Value Appender</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValueAppenderImpl <em>External Mapped Attribute Value Appender</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ExternalMappedAttributeValueAppenderImpl
+	 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValueAppenderImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
@@ -2125,62 +2125,62 @@ public interface MappingPackage extends EPackage {
 	EClass getHintImporterMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Mapped Attribute Value Expander</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueExpander
+	 * @see pamtram.mapping.extended.MappedAttributeValueExpander
 	 * @generated
 	 */
 	EClass getMappedAttributeValueExpander();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappedAttributeValueExpander#getHintsToExpand <em>Hints To Expand</em>}'.
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.extended.MappedAttributeValueExpander#getHintsToExpand <em>Hints To Expand</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Hints To Expand</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueExpander#getHintsToExpand()
+	 * @see pamtram.mapping.extended.MappedAttributeValueExpander#getHintsToExpand()
 	 * @see #getMappedAttributeValueExpander()
 	 * @generated
 	 */
 	EReference getMappedAttributeValueExpander_HintsToExpand();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.MappedAttributeValueExpander#getSourceAttribute() <em>Get Source Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Source Attribute</em>' operation.
-	 * @see pamtram.mapping.MappedAttributeValueExpander#getSourceAttribute()
+	 * @see pamtram.mapping.extended.MappedAttributeValueExpander#getSourceAttribute()
 	 * @generated
 	 */
 	EOperation getMappedAttributeValueExpander__GetSourceAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.LocalMappedAttributeValueExpander <em>Local Mapped Attribute Value Expander</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.LocalMappedAttributeValueExpander <em>Local Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Local Mapped Attribute Value Expander</em>'.
-	 * @see pamtram.mapping.LocalMappedAttributeValueExpander
+	 * @see pamtram.mapping.extended.LocalMappedAttributeValueExpander
 	 * @generated
 	 */
 	EClass getLocalMappedAttributeValueExpander();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Mapped Attribute Value Prepender</em>'.
-	 * @see pamtram.mapping.MappedAttributeValuePrepender
+	 * @see pamtram.mapping.extended.MappedAttributeValuePrepender
 	 * @generated
 	 */
 	EClass getMappedAttributeValuePrepender();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappedAttributeValueAppender <em>Mapped Attribute Value Appender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValueAppender <em>Mapped Attribute Value Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Mapped Attribute Value Appender</em>'.
-	 * @see pamtram.mapping.MappedAttributeValueAppender
+	 * @see pamtram.mapping.extended.MappedAttributeValueAppender
 	 * @generated
 	 */
 	EClass getMappedAttributeValueAppender();
@@ -2248,31 +2248,31 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>External Mapped Attribute Value Expander</em>'.
-	 * @see pamtram.mapping.ExternalMappedAttributeValueExpander
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValueExpander
 	 * @generated
 	 */
 	EClass getExternalMappedAttributeValueExpander();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExternalMappedAttributeValuePrepender <em>External Mapped Attribute Value Prepender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender <em>External Mapped Attribute Value Prepender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>External Mapped Attribute Value Prepender</em>'.
-	 * @see pamtram.mapping.ExternalMappedAttributeValuePrepender
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValuePrepender
 	 * @generated
 	 */
 	EClass getExternalMappedAttributeValuePrepender();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExternalMappedAttributeValueAppender <em>External Mapped Attribute Value Appender</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender <em>External Mapped Attribute Value Appender</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>External Mapped Attribute Value Appender</em>'.
-	 * @see pamtram.mapping.ExternalMappedAttributeValueAppender
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValueAppender
 	 * @generated
 	 */
 	EClass getExternalMappedAttributeValueAppender();
@@ -2565,10 +2565,10 @@ public interface MappingPackage extends EPackage {
 		EClass HINT_IMPORTER_MAPPING_HINT = eINSTANCE.getHintImporterMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappedAttributeValueExpanderImpl
+		 * @see pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueExpander()
 		 * @generated
 		 */
@@ -2591,30 +2591,30 @@ public interface MappingPackage extends EPackage {
 		EOperation MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = eINSTANCE.getMappedAttributeValueExpander__GetSourceAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.LocalMappedAttributeValueExpanderImpl
+		 * @see pamtram.mapping.extended.impl.LocalMappedAttributeValueExpanderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getLocalMappedAttributeValueExpander()
 		 * @generated
 		 */
 		EClass LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = eINSTANCE.getLocalMappedAttributeValueExpander();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValuePrependerImpl <em>Mapped Attribute Value Prepender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappedAttributeValuePrependerImpl
+		 * @see pamtram.mapping.extended.impl.MappedAttributeValuePrependerImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValuePrepender()
 		 * @generated
 		 */
 		EClass MAPPED_ATTRIBUTE_VALUE_PREPENDER = eINSTANCE.getMappedAttributeValuePrepender();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueAppenderImpl <em>Mapped Attribute Value Appender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappedAttributeValueAppenderImpl
+		 * @see pamtram.mapping.extended.impl.MappedAttributeValueAppenderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappedAttributeValueAppender()
 		 * @generated
 		 */
@@ -2675,30 +2675,30 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_SOURCE_INTERFACE = eINSTANCE.getMappingHintSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValueExpanderImpl <em>External Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExternalMappedAttributeValueExpanderImpl
+		 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValueExpanderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueExpander()
 		 * @generated
 		 */
 		EClass EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = eINSTANCE.getExternalMappedAttributeValueExpander();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValuePrependerImpl <em>External Mapped Attribute Value Prepender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExternalMappedAttributeValuePrependerImpl
+		 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValuePrependerImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValuePrepender()
 		 * @generated
 		 */
 		EClass EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = eINSTANCE.getExternalMappedAttributeValuePrepender();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ExternalMappedAttributeValueAppenderImpl <em>External Mapped Attribute Value Appender</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ExternalMappedAttributeValueAppenderImpl <em>External Mapped Attribute Value Appender</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ExternalMappedAttributeValueAppenderImpl
+		 * @see pamtram.mapping.extended.impl.ExternalMappedAttributeValueAppenderImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExternalMappedAttributeValueAppender()
 		 * @generated
 		 */

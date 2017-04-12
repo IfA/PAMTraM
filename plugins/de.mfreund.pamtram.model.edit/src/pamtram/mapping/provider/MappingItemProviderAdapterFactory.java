@@ -20,6 +20,12 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import pamtram.mapping.extended.provider.ExternalMappedAttributeValueAppenderItemProvider;
+import pamtram.mapping.extended.provider.ExternalMappedAttributeValuePrependerItemProvider;
+import pamtram.mapping.extended.provider.LocalMappedAttributeValueExpanderItemProvider;
+import pamtram.mapping.extended.provider.MappedAttributeValueAppenderItemProvider;
+import pamtram.mapping.extended.provider.MappedAttributeValuePrependerItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -167,7 +173,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.LocalMappedAttributeValueExpander} instances. <!--
+	 * {@link pamtram.mapping.extended.LocalMappedAttributeValueExpander} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -176,7 +182,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.LocalMappedAttributeValueExpander}. <!--
+	 * {@link pamtram.mapping.extended.LocalMappedAttributeValueExpander}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -192,7 +198,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.MappedAttributeValuePrepender} instances. <!--
+	 * {@link pamtram.mapping.extended.MappedAttributeValuePrepender} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -201,7 +207,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.MappedAttributeValuePrepender}. <!--
+	 * {@link pamtram.mapping.extended.MappedAttributeValuePrepender}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -217,7 +223,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.MappedAttributeValueAppender} instances. <!--
+	 * {@link pamtram.mapping.extended.MappedAttributeValueAppender} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -225,7 +231,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected MappedAttributeValueAppenderItemProvider mappedAttributeValueAppenderItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.MappedAttributeValueAppender}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.MappedAttributeValueAppender}.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -286,7 +292,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalMappedAttributeValuePrepender} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -294,7 +300,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.ExternalMappedAttributeValuePrepender}. <!--
+	 * {@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -309,7 +315,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ExternalMappedAttributeValueAppender} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -317,7 +323,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.ExternalMappedAttributeValueAppender}. <!--
+	 * {@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

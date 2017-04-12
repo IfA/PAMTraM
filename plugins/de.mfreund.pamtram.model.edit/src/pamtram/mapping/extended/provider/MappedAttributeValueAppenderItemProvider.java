@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -8,31 +8,26 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.LocalMappedAttributeValueExpander;
-import pamtram.mapping.MappingPackage;
-import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
+
+import pamtram.mapping.extended.MappedAttributeValueAppender;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.LocalMappedAttributeValueExpander} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappedAttributeValueAppender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicSourceElementItemProvider {
+public class MappedAttributeValueAppenderItemProvider extends LocalMappedAttributeValueExpanderItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalMappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
+	public MappedAttributeValueAppenderItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,42 +42,19 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addHintsToExpandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Hints To Expand feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHintsToExpandPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns LocalMappedAttributeValueExpander.gif.
+	 * This returns MappedAttributeValueAppender.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LocalMappedAttributeValueExpander"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappedAttributeValueAppender"));
 	}
 
 	/**
@@ -105,12 +77,12 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalMappedAttributeValueExpander)object).getName();
+		String label = ((MappedAttributeValueAppender)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_MappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -138,17 +110,6 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

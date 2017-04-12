@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -15,16 +15,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.MappedAttributeValueExpander;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.mapping.provider.HintImporterMappingHintItemProvider;
 import pamtram.mapping.MappingPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappedAttributeValueExpander} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappedAttributeValueExpander} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

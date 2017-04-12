@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -12,22 +12,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ExternalMappedAttributeValueAppender;
+
+import pamtram.mapping.extended.ExternalMappedAttributeValuePrepender;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ExternalMappedAttributeValueAppender} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ExternalMappedAttributeValueAppenderItemProvider extends ExternalMappedAttributeValueExpanderItemProvider {
+public class ExternalMappedAttributeValuePrependerItemProvider extends ExternalMappedAttributeValueExpanderItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExternalMappedAttributeValueAppenderItemProvider(AdapterFactory adapterFactory) {
+	public ExternalMappedAttributeValuePrependerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -47,14 +48,14 @@ public class ExternalMappedAttributeValueAppenderItemProvider extends ExternalMa
 	}
 
 	/**
-	 * This returns ExternalMappedAttributeValueAppender.gif.
+	 * This returns ExternalMappedAttributeValuePrepender.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExternalMappedAttributeValueAppender"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ExternalMappedAttributeValuePrepender"));
 	}
 
 	/**
@@ -77,12 +78,12 @@ public class ExternalMappedAttributeValueAppenderItemProvider extends ExternalMa
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalMappedAttributeValueAppender)object).getName();
+		String label = ((ExternalMappedAttributeValuePrepender)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ExternalMappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ExternalMappedAttributeValuePrepender_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_ExternalMappedAttributeValueAppender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ExternalMappedAttributeValuePrepender_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

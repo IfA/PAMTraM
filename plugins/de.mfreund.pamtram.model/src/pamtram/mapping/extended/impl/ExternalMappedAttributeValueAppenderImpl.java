@@ -1,11 +1,11 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExternalMappedAttributeValueAppender;
 
 /**
  * <!-- begin-user-doc -->

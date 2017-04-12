@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModels name="Variablen">
     <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
     <sections 
@@ -157,51 +157,51 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
     </mappings>
     <mappings name="AbstractMBTCPItemMapping" sourceSection="//@sourceSectionModels.0/@sections.2" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ModbusTcpItem" targetSection="//@targetSectionModels.1/@sections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.1/@sections.1/@attributes.2">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.1/@sections.1/@attributes.2">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.3">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="TypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.3">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="CoilsMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="Coils" value="Coils"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="DiscreteInputMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.4">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="DiscreteInput" value="DiscreteInput"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="HoldingRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="HoldingRegister" value="HoldingRegister"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="InputRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.6">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="InputRegister" value="InputRegister"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.6/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ReferenceAddressMapping" target="//@targetSectionModels.1/@sections.1/@attributes.1">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Adresse" source="//@sourceSectionModels.0/@sections.6/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -212,17 +212,17 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
     </mappings>
     <mappings name="AbstractXMLDAItemMapping" sourceSection="//@sourceSectionModels.0/@sections.2" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaItem" targetSection="//@targetSectionModels.2/@sections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemTypeMapping" target="//@targetSectionModels.2/@sections.1/@attributes.3">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.2/@modifierSets.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ItemTypeMapping" target="//@targetSectionModels.2/@sections.1/@attributes.3">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.2/@modifierSets.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemNameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.1">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ItemNameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.1">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ItemPathMapping" target="//@targetSectionModels.2/@sections.1/@attributes.2">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0" modifiers="//@mappingModels.2/@modifierSets.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ItemPathMapping" target="//@targetSectionModels.2/@sections.1/@attributes.2">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0" modifiers="//@mappingModels.2/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

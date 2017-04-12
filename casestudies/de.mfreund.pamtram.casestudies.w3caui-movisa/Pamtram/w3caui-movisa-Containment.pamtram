@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModels xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui-containment#/0"/>
     <sections 
@@ -505,19 +505,19 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="CompositionMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModels.0/@sections.5"/>
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="DropDownMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDown" targetSection="//@targetSectionModels.0/@sections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="DropDownNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="DropDownNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ContainerSelector">
           <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
@@ -527,8 +527,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="DropDownOptionMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetSection="//@targetSectionModels.0/@sections.3">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
         </mappingHints>
         <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModels.0/@sections.3/@references.0">
           <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
@@ -541,11 +541,11 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.0/@sections.4">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.4/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

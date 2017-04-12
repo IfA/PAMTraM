@@ -21,12 +21,12 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootE
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;

@@ -17,15 +17,15 @@ import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDial
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.presentation.PamtramEditor;
 
 /**
  * A concrete {@link MappingModelEnhancer} that can be used during
- * {@link UserDecisionResolvingStrategy#joiningSelectContainerInstance(List, List, pamtram.mapping.MappingHintGroupType, pamtram.mapping.ContainerSelector, String)
+ * {@link UserDecisionResolvingStrategy#joiningSelectContainerInstance(List, List, pamtram.mapping.MappingHintGroupType, pamtram.mapping.extended.ContainerSelector, String)
  * joiningSelectContainerInstance} ambiguities.
  *
  * @author mfreund
@@ -69,7 +69,7 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 		// The ContainerSelector that is used to enhance the MappingModel
 		//
-		ContainerSelector selector = MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget();
+		ContainerSelector selector = ExtendedFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget();
 
 		if (editor == null) {
 

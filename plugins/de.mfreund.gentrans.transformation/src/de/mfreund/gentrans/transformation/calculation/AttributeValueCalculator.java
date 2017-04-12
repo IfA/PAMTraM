@@ -15,12 +15,12 @@ import pamtram.ExpressionElement;
 import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
 

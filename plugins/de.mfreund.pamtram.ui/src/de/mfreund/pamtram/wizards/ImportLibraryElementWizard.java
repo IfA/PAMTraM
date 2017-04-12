@@ -21,9 +21,9 @@ import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.ExternalReferenceParameter;
@@ -125,7 +125,8 @@ public class ImportLibraryElementWizard extends Wizard {
 									MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
 									((ContainerParameter) parameter).getClass_()));
 						} else if (parameter instanceof ExternalReferenceParameter) {
-							ReferenceTargetSelector selector = MappingFactory.eINSTANCE.createReferenceTargetSelector();
+							ReferenceTargetSelector selector = ExtendedFactory.eINSTANCE
+									.createReferenceTargetSelector();
 							mappingHints.add(selector);
 							// set the affected reference of the mapping
 							// instance selector

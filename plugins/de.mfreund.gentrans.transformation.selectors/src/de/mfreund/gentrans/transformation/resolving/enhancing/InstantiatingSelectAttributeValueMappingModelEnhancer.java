@@ -17,12 +17,12 @@ import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrateg
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
-import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.presentation.PamtramEditor;
 import pamtram.structure.target.TargetSectionAttribute;
 
@@ -42,7 +42,8 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 	private TargetSectionAttribute attributeToEnhance;
 
 	/**
-	 * The {@link InstantiableMappingHintGroup} based on which the attribute is created.
+	 * The {@link InstantiableMappingHintGroup} based on which the attribute is
+	 * created.
 	 */
 	private InstantiableMappingHintGroup mappingHintGroup;
 
@@ -53,7 +54,8 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 	 * @param attributeToEnhance
 	 *            The {@link TargetSectionAttribute} to be enhanced.
 	 * @param mappingHintGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the attribute is created.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            attribute is created.
 	 */
 	public InstantiatingSelectAttributeValueMappingModelEnhancer(PAMTraM pamtramModel,
 			TargetSectionAttribute attributeToEnhance, InstantiableMappingHintGroup mappingHintGroup) {
@@ -69,11 +71,12 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		AttributeMapping attributeMapping = MappingFactory.eINSTANCE.createAttributeMappingWithSource();
+		AttributeMapping attributeMapping = ExtendedFactory.eINSTANCE.createAttributeMappingWithSource();
 
 		if (editor == null) {
 
-			// Use the 'classic' way to add the new elements as we can not use any command stack
+			// Use the 'classic' way to add the new elements as we can not use
+			// any command stack
 			//
 			attributeMapping.setTarget(this.attributeToEnhance);
 			if (this.mappingHintGroup instanceof MappingHintGroup) {
@@ -117,7 +120,7 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 			// Set the 'target' reference of the AttributeMapping
 			//
 			addCommand.append(new SetCommand(editor.getEditingDomain(), attributeMapping,
-					MappingPackage.Literals.ATTRIBUTE_MAPPING__TARGET, attributeToEnhanceMatch));
+					ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET, attributeToEnhanceMatch));
 
 			editor.getEditingDomain().getCommandStack().execute(addCommand);
 

@@ -11,7 +11,7 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;

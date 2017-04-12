@@ -2,6 +2,9 @@
  */
 package pamtram.mapping;
 
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.MappingHint;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Hint
  * Group</b></em>'. <!-- end-user-doc -->

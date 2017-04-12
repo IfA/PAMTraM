@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.maps;
 
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 

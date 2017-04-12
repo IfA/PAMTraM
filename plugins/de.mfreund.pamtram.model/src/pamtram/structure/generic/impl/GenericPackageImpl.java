@@ -26,6 +26,8 @@ import pamtram.impl.PamtramPackageImpl;
 
 import pamtram.mapping.MappingPackage;
 
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.mapping.modifier.ModifierPackage;
@@ -192,6 +194,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theGenericPackage.createPackageContents();
@@ -204,6 +207,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theGenericPackage.initializePackageContents();
@@ -216,6 +220,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put

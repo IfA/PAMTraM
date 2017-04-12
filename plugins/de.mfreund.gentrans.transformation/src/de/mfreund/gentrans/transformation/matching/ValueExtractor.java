@@ -25,7 +25,7 @@ import de.mfreund.pamtram.util.OCLUtil;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;

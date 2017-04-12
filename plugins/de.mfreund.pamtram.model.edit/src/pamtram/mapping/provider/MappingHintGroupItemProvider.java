@@ -21,10 +21,10 @@ import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ExtendedFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
@@ -37,7 +37,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public MappingHintGroupItemProvider(AdapterFactory adapterFactory) {
@@ -47,7 +47,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -64,7 +64,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	/**
 	 * This adds a property descriptor for the Deactivated feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -86,7 +86,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	/**
 	 * This adds a property descriptor for the Shared Condition feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -201,7 +201,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -251,7 +251,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 		newChildDescriptors
 				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
+						ExtendedFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
 
 	}
 

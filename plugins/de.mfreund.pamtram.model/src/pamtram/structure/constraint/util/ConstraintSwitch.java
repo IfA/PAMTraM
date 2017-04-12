@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.DynamicSourceElement;
@@ -379,13 +379,13 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping Hint Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping Hint Source Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

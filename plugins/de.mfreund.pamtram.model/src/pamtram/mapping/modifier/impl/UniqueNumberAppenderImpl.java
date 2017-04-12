@@ -58,7 +58,6 @@ public class UniqueNumberAppenderImpl extends NamedElementImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected UniqueNumberAppenderImpl() {
@@ -67,7 +66,6 @@ public class UniqueNumberAppenderImpl extends NamedElementImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -83,14 +81,13 @@ public class UniqueNumberAppenderImpl extends NamedElementImpl implements Unique
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case ModifierPackage.UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING:
-			return this.modifyValue((String) arguments.get(0));
+			case ModifierPackage.UNIQUE_NUMBER_APPENDER___MODIFY_VALUE__STRING:
+				return modifyValue((String)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

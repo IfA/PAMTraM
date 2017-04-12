@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.CardinalityMappingSourceInterface;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 
 /**

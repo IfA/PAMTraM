@@ -37,17 +37,17 @@ import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.mapping.impl.MappingFactoryImpl;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.mapping.extended.impl.ExtendedFactoryImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ExternalDynamicSourceElement;
@@ -62,7 +62,8 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>PAM Tra M</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>PAM Tra
+ * M</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -99,9 +100,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<SourceSectionModel> sourceSectionModels;
 
 	/**
-	 * The cached value of the '{@link #getSharedSourceSectionModels() <em>Shared Source Section Models</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSharedSourceSectionModels()
+	 * <em>Shared Source Section Models</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSharedSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -119,9 +121,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<TargetSectionModel> targetSectionModels;
 
 	/**
-	 * The cached value of the '{@link #getSharedTargetSectionModels() <em>Shared Target Section Models</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSharedTargetSectionModels()
+	 * <em>Shared Target Section Models</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSharedTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -130,8 +133,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * The cached value of the '{@link #getMappingModels() <em>Mapping Models</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getMappingModels()
 	 * @generated
 	 * @ordered
@@ -140,8 +143,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * The cached value of the '{@link #getSharedMappingModels() <em>Shared Mapping Models</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSharedMappingModels()
 	 * @generated
 	 * @ordered
@@ -150,8 +153,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * The cached value of the '{@link #getConditionModels() <em>Condition Models</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getConditionModels()
 	 * @generated
 	 * @ordered
@@ -160,8 +163,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * The cached value of the '{@link #getSharedConditionModels() <em>Shared Condition Models</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSharedConditionModels()
 	 * @generated
 	 * @ordered
@@ -324,10 +327,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<GlobalAttribute> getGlobalAttributes() {
 		List<GlobalAttribute> globalAttributes = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.flatMap(s -> s.getGlobalAttributes().stream()).collect(Collectors.toList());
@@ -373,17 +376,21 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	}
 
 	/**
-	 * <!-- begin-user-doc --> This merges all HintGroups and Sections that are extended by other
-	 * {@link MappingHintGroupType#getExtend() HintGroups} or {@link Section#getExtend() Sections} into these elements.
-	 * This means that all children of the extended elements are copied/duplicated into every extending element.
-	 * Additionally, all cross-references to the extended elements (or sub-elements) are redirected to the duplicated
-	 * elements as well. <br />
-	 * Consequently, the result of this process is a 'simple' PAMTraM model without any extensions that can be used e.g.
-	 * in a transformation without any further hassle. <br />
+	 * <!-- begin-user-doc --> This merges all HintGroups and Sections that are
+	 * extended by other {@link MappingHintGroupType#getExtend() HintGroups} or
+	 * {@link Section#getExtend() Sections} into these elements. This means that
+	 * all children of the extended elements are copied/duplicated into every
+	 * extending element. Additionally, all cross-references to the extended
+	 * elements (or sub-elements) are redirected to the duplicated elements as
+	 * well. <br />
+	 * Consequently, the result of this process is a 'simple' PAMTraM model
+	 * without any extensions that can be used e.g. in a transformation without
+	 * any further hassle. <br />
 	 * <br />
-	 * <b><em>Note:</em></b> This algorithm changes the contents of the {@link PAMTraM} instance so that it might in
-	 * some cases be necessary to create a {@link EcoreUtil#copy(EObject) copy} that gets changed instead. <!--
-	 * end-user-doc -->
+	 * <b><em>Note:</em></b> This algorithm changes the contents of the
+	 * {@link PAMTraM} instance so that it might in some cases be necessary to
+	 * create a {@link EcoreUtil#copy(EObject) copy} that gets changed instead.
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -589,7 +596,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 							ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();
 		
 							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {
-								ContainerSelectorTargetAttribute copy = MappingFactoryImpl.eINSTANCE.createContainerSelectorTargetAttribute();
+								ContainerSelectorTargetAttribute copy = ExtendedFactoryImpl.eINSTANCE.createContainerSelectorTargetAttribute();
 								copy.setName(original.getName());
 								copy.getModifiers().addAll(original.getModifiers());
 								copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);
@@ -778,18 +785,23 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	}
 
 	/**
-	 * This merges the given {@link TargetSectionAttribute} 'copy' into the the given {@link TargetSection}
-	 * 'targetSection'. Merging in this case means that before adding the attribute, the algorithm checks whether the
-	 * 'same' attribute is already present. If this is the case, the attribute is not added but all references to it are
-	 * redirected to the attribute already present in the target section.
+	 * This merges the given {@link TargetSectionAttribute} 'copy' into the the
+	 * given {@link TargetSection} 'targetSection'. Merging in this case means
+	 * that before adding the attribute, the algorithm checks whether the 'same'
+	 * attribute is already present. If this is the case, the attribute is not
+	 * added but all references to it are redirected to the attribute already
+	 * present in the target section.
 	 *
 	 * @param targetSection
 	 * @param att
 	 */
-	// private void merge(TargetSection targetSection, TargetSectionAttribute att) {
-	// for (TargetSectionAttribute targetSectionAttribute : targetSection.getAttributes()) {
+	// private void merge(TargetSection targetSection, TargetSectionAttribute
+	// att) {
+	// for (TargetSectionAttribute targetSectionAttribute :
+	// targetSection.getAttributes()) {
 	// if(checkEquality(targetSectionAttribute, att)) {
-	// Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(this, att);
+	// Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.find(this,
+	// att);
 	// for (Setting setting : refs) {
 	// setting.set(targetSectionAttribute);
 	// }
@@ -799,18 +811,23 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	// }
 
 	/**
-	 * This merges the given {@link TargetSectionReference} 'copy' into the the given {@link TargetSection}
-	 * 'targetSection'. Merging in this case means that before adding the reference, the algorithm checks whether the
-	 * 'same' reference is already present. If this is the case, the reference is not added but all references to it are
-	 * redirected to the attribute already present in the target section.
+	 * This merges the given {@link TargetSectionReference} 'copy' into the the
+	 * given {@link TargetSection} 'targetSection'. Merging in this case means
+	 * that before adding the reference, the algorithm checks whether the 'same'
+	 * reference is already present. If this is the case, the reference is not
+	 * added but all references to it are redirected to the attribute already
+	 * present in the target section.
 	 *
 	 * @param targetSection
 	 * @param att
 	 */
-	// private void merge(TargetSection targetSection, TargetSectionReference ref) {
-	// for (TargetSectionReference targetSectionReference : targetSection.getReferences()) {
+	// private void merge(TargetSection targetSection, TargetSectionReference
+	// ref) {
+	// for (TargetSectionReference targetSectionReference :
+	// targetSection.getReferences()) {
 	// if(checkEquality(targetSectionReference, ref)) {
-	// Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.findAll(ref., this);
+	// Collection<Setting> refs = EcoreUtil.UsageCrossReferencer.findAll(ref.,
+	// this);
 	// for (Setting setting : refs) {
 	// setting.set(targetSectionReference);
 	// }

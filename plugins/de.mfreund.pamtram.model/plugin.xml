@@ -86,4 +86,12 @@
             genModel="model/pamtram.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated pamtram -->
+      <package
+            uri="http://mfreund.de/pamtram/mapping/extended"
+            class="pamtram.mapping.extended.ExtendedPackage"
+            genModel="model/pamtram.genmodel"/>
+   </extension>
+
 </plugin>

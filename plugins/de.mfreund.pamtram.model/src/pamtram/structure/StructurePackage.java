@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import pamtram.PamtramPackage;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -341,7 +341,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_INTERFACE__NAME = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE__NAME;
+	int INSTANCE_SELECTOR_SOURCE_INTERFACE__NAME = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Instance Selector Source Interface</em>' class.
@@ -350,7 +350,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_INTERFACE_FEATURE_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+	int INSTANCE_SELECTOR_SOURCE_INTERFACE_FEATURE_COUNT = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector Source Interface</em>' class.
@@ -359,7 +359,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+	int INSTANCE_SELECTOR_SOURCE_INTERFACE_OPERATION_COUNT = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.DynamicSourceElementImpl <em>Dynamic Source Element</em>}' class.

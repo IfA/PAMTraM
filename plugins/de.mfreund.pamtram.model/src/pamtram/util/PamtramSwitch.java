@@ -6,9 +6,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.*;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.CardinalityMappingSourceInterface;
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
@@ -344,13 +344,13 @@ public class PamtramSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mapping Hint Source Interface</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mapping Hint Source Interface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

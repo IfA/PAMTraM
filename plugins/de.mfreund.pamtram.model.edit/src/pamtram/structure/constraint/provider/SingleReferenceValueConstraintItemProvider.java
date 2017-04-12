@@ -28,8 +28,8 @@ import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.StructureFactory;
@@ -46,8 +46,9 @@ import pamtram.structure.source.SourcePackage;
 public class SingleReferenceValueConstraintItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SingleReferenceValueConstraintItemProvider(AdapterFactory adapterFactory) {
@@ -55,8 +56,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +75,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -93,8 +96,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Expression feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -114,8 +118,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Modifiers feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -138,8 +143,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -168,8 +172,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
 
 		/*
-		 * we do not need to add the 'expression' feature here as notifications for this attribute are already generated
-		 * automatically as its 'Notify' property in the genmodel is set to 'true'
+		 * we do not need to add the 'expression' feature here as notifications
+		 * for this attribute are already generated automatically as its
+		 * 'Notify' property in the genmodel is set to 'true'
 		 */
 		return Arrays.asList(ConstraintPackage.eINSTANCE.getSingleReferenceValueConstraint_SourceElements());
 
@@ -177,7 +182,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -186,8 +192,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -203,10 +210,10 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -234,8 +241,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -248,7 +256,8 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			return;
 		}
 
-		// Do not allow to add InstancePointers below SourceSectionAttributes as these are only supported as part of
+		// Do not allow to add InstancePointers below SourceSectionAttributes as
+		// these are only supported as part of
 		// Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
@@ -259,14 +268,17 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 					StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 		}
 
-		// Do not allow to add local/external source attributes or GlobalAttributeImporters below
-		// SourceSectionAttributes as these are only supported as part of Conditions
+		// Do not allow to add local/external source attributes or
+		// GlobalAttributeImporters below
+		// SourceSectionAttributes as these are only supported as part of
+		// Conditions
 		//
 		if (!AgteleEcoreUtil.hasAncestorOfKind((EObject) object,
 				SourcePackage.eINSTANCE.getActualSourceSectionAttribute())) {
 
 			// Do not allow to add local/external/global source attributes below
-			// Conditions that are located inside a ConditionModel or that are MappingModel conditions
+			// Conditions that are located inside a ConditionModel or that are
+			// MappingModel conditions
 			//
 			ComplexCondition condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind((EObject) object,
 					ConditionPackage.eINSTANCE.getComplexCondition());
@@ -293,7 +305,7 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 			if (condition == null || !(condition.eContainer() instanceof MappingModel)) {
 				newChildDescriptors.add(this.createChildParameter(
 						ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS,
-						MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+						ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
 			}
 		}
 
@@ -303,8 +315,9 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

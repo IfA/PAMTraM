@@ -1,6 +1,6 @@
 package de.mfreund.gentrans.transformation.maps;
 
-import pamtram.mapping.ContainerSelector;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 

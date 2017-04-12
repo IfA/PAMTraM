@@ -31,6 +31,8 @@ import pamtram.condition.UnaryCondition;
 import pamtram.condition.util.ConditionValidator;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.impl.ModifierPackageImpl;
@@ -190,6 +192,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) : LibraryPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConditionPackage.createPackageContents();
@@ -202,6 +205,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		theLibraryPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConditionPackage.initializePackageContents();
@@ -214,6 +218,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		theLibraryPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put

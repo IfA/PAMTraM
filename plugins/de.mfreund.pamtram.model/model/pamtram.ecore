@@ -15,7 +15,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PAMTraM">
     <eOperations name="mergeExtends">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="//TODO handle hierarchical extensions (an extended section extends other sections&#xD;&#xA;//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * First, we collect each abstract source and target section as well as the concrete sections that&#xD;&#xA; * reference them&#xD;&#xA; */&#xD;&#xA;HashMap&lt;Section, LinkedList&lt;Section>> abstractToConcreteSectionMap = new HashMap&lt;>();&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());&#xD;&#xA;for (Section section : getSourceSections()) {&#xD;&#xA;&#x9;if(section.isAbstract() &amp;&amp; sourceSettings.containsKey(section)) {&#xD;&#xA;&#x9;&#x9;LinkedList&lt;Section> concreteSections = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : sourceSettings.get(section)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.structure.generic.impl.GenericPackageImpl%>.eINSTANCE.getSection_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;concreteSections.add((Section) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteSectionMap.put(section, concreteSections);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());&#xD;&#xA;for (Section section : getTargetSections()) {&#xD;&#xA;&#x9;if(section.isAbstract() &amp;&amp; targetSettings.containsKey(section)) {&#xD;&#xA;&#x9;&#x9;LinkedList&lt;Section> concreteSections = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : targetSettings.get(section)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;concreteSections.add((Section) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteSectionMap.put(section, concreteSections);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;ArrayList&lt;Mapping> concreteMappings = new ArrayList&lt;>();&#xD;&#xA;for (Mapping mapping : getActiveMappings()) {&#xD;&#xA;&#x9;if(!mapping.isAbstract()) {&#xD;&#xA;&#x9;&#x9;concreteMappings.add(mapping);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Now, we copy all elements from the abstract sections to the concrete sections&#xD;&#xA; * that extend them. In this process, we store the associations between the elements from&#xD;&#xA; * the abstract sections and the copied elements in a map.&#xD;&#xA; */&#xD;&#xA;HashMap&lt;EObject, LinkedList&lt;EObject>> abstractToConcreteElementMap = new HashMap&lt;>();&#xD;&#xA;for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Section copiedSection = EcoreUtil.copy(abstractSection);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;TreeIterator&lt;EObject> originalIterator = EcoreUtil.getAllContents(Collections.singleton(abstractSection));&#xD;&#xA;&#x9;&#x9;TreeIterator&lt;EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;// these lists will store the elements that we will add to the concrete section&#xD;&#xA;&#x9;&#x9;ArrayList&lt;Attribute> attributesToAdd = new ArrayList&lt;>();&#xD;&#xA;&#x9;&#x9;ArrayList&lt;Reference> referencesToAdd = new ArrayList&lt;>();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;while(originalIterator.hasNext()) {&#xD;&#xA;&#x9;&#x9;&#x9;assert copyIterator.hasNext();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;EObject originalNext = originalIterator.next();&#xD;&#xA;&#x9;&#x9;&#x9;EObject copyNext = copyIterator.next();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// if the element is the section itself, we skip it&#xD;&#xA;&#x9;&#x9;&#x9;if(originalNext instanceof Section) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// if the element is a top-level element below the section, we add it to the concrete section&#xD;&#xA;&#x9;&#x9;&#x9;if(originalNext.eContainer().equals(abstractSection)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(copyNext instanceof Attribute) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attributesToAdd.add((Attribute) copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(copyNext instanceof Reference) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;referencesToAdd.add((Reference) copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Unsupported element type '&quot; + copyNext.eClass().getName() + &quot;' encountered when merging extends!&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// in any case, we fill the abstractToConcreteElementMap&#xD;&#xA;&#x9;&#x9;&#x9;LinkedList&lt;EObject> vals = abstractToConcreteElementMap.get(originalNext);&#xD;&#xA;&#x9;&#x9;&#x9;if(vals == null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;vals = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;vals.add(copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;abstractToConcreteElementMap.put(originalNext, vals);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;//TODO do we need to redirect references to these elements???&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * now, we add the collected elements to the concrete section; we have to do this&#xD;&#xA;&#x9;&#x9; * after the process of iterating over the contents - otherwise, the TreeIterator will throw&#xD;&#xA;&#x9;&#x9; * IndexOutOfBoundsExceptions&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;concreteSection.getAttributes().addAll(attributesToAdd);&#xD;&#xA;&#x9;&#x9;concreteSection.getReferences().addAll(referencesToAdd);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. &#xD;&#xA;&#x9;&#x9; * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint&#xD;&#xA;&#x9;&#x9; * groups) are handled afterwards when these hint groups are copied.&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);&#xD;&#xA;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// this is the element referencing the abstract section (it should be an element of a mapping hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject hintElement = setting.getEObject().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;MappingHintGroupType hintGroup = null;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintElement instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(hintElement.eContainer() instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// We do not need to handle deactivated Mappings/MappingHintGroups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintGroup instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * check if the hint group or its parent mapping equals the section that we just added the concrete elements to&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(concreteSection.equals(hintGroup.getTargetSection()) || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.isContainerFor(hintGroup.getTargetSection()) ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceSection()) || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.structure.impl.StructurePackageImpl%>.eINSTANCE.getDynamicSourceElement_Source()) &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.getEObject() instanceof ContainerSelectorTargetAttribute) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// do nothing as ContainerSelectors are handled below separately&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Now, we handle the ContainerSelectors that we skipped above. We can do this now as we now know all concrete TargetSections that&#xD;&#xA; * are a possible match for each ContainerSelector that points to an abstract TargetSection.&#xD;&#xA; */&#xD;&#xA;for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * as ContainerSelectors will get treated differently (see below), we store the ContainerSelectorTargetAttributes&#xD;&#xA;&#x9;&#x9; * holding the referneces to the Attributes in the abstract section and will delete these later&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;ArrayList&lt;ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList&lt;>();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);&#xD;&#xA;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// this is the element referencing the abstract section (it should be an element of a mapping hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject hintElement = setting.getEObject().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;MappingHintGroupType hintGroup = null;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintElement instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(hintElement.eContainer() instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// We do not need to handle deactivated Mappings/MappingHintGroups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintGroup instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * if we are dealing with a model ContainerSelectorTargetAttribute&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source()) &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.getEObject() instanceof ContainerSelectorTargetAttribute) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;// in this case, we must not simply redirect but we create a new ContainerSelectorTargetAttribute&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ContainerSelectorTargetAttribute copy = &lt;%pamtram.mapping.impl.MappingFactoryImpl%>.eINSTANCE.createContainerSelectorTargetAttribute();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.setName(original.getName());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.getModifiers().addAll(original.getModifiers());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((ContainerSelector) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;mchTargetAttributesToDelete.add((ContainerSelectorTargetAttribute) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;for (ContainerSelectorTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {&#xD;&#xA;&#x9;&#x9;&#x9;EcoreUtil.delete(mchTargetAttribute);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Finally, we can copy the abstract hint groups&#xD;&#xA; */&#xD;&#xA;&#xD;&#xA;// collect each abstract hint group as well as the concrete hint groups that reference them&#xD;&#xA;HashMap&lt;MappingHintGroupType, LinkedList&lt;MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap&lt;>();&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getActiveMappings());&#xD;&#xA;for (EObject element : mappingSettings.keySet()) {&#xD;&#xA;&#x9;if(element instanceof MappingHintGroupType &amp;&amp; ((Mapping)(element.eContainer())).isAbstract()) {&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;// We do not need to handle deactivated MappingHintGroups&#xD;&#xA;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;if(element instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) element).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;element.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) element.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;LinkedList&lt;MappingHintGroupType> concreteHintGroups = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : mappingSettings.get(element)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.mapping.impl.MappingPackageImpl%>.eINSTANCE.getMappingHintGroupType_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// only copy hints to activated hint groups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if((setting.getEObject() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) setting.getEObject()).isDeactivated()) ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(setting.getEObject().eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;concreteHintGroups.add((MappingHintGroupType) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// copy the hints to the concrete hint groups&#xD;&#xA;for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {&#xD;&#xA;&#x9;for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Collection&lt;MappingHintBaseType> hintsToCopy = new BasicEList&lt;>();&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not&#xD;&#xA;&#x9;&#x9; * 'overwritten' by hints of the concrete HintGroup.&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {&#xD;&#xA;&#x9;&#x9;&#x9;EObject hintTarget = null;&#xD;&#xA;&#x9;&#x9;&#x9;if(abstractHint instanceof AttributeMapping) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((AttributeMapping) abstractHint).getTarget();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof ReferenceTargetSelector) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((ReferenceTargetSelector) abstractHint).getAffectedReference();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof CardinalityMapping) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((CardinalityMapping) abstractHint).getTarget();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof ContainerSelector) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// nothing to do as ContainerSelectorTargetAttributes are handled separately&#xD;&#xA;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Unsupported hint type '&quot; + abstractHint.eClass().getName() + &quot;' in HintGroup '&quot; + &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abstractHintGroup.getName() + &quot;': These kind of hints are not supported yet in abstract HintGroups!&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if(abstractToConcreteElementMap.get(hintTarget) == null || abstractToConcreteElementMap.get(hintTarget).isEmpty() || concreteHintGroup.getMappingHints().isEmpty() || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.get(hintTarget), concreteHintGroup.getMappingHints()).isEmpty()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintsToCopy.add(abstractHint);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Collection&lt;MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9; * make sure that all references to elements from the abstract sections are redirected to the concrete sections&#xD;&#xA;&#x9;&#x9; * that we created earlier&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;for (MappingHintBaseType copiedHint : copiedHints) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9; * these are the references from the copied hint (that will get added to the concrete hint group) to elements from&#xD;&#xA;&#x9;&#x9;&#x9; * abstract sections&#xD;&#xA;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), copiedHint);&#xD;&#xA;&#x9;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * based on the type of hint element that we are handling (local or external), source and target &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * sections or their containers are checked&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;boolean local = true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(refsToAbstractSection.get(referencedObject).size() > 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal Error! The hint '&quot; + copiedHint.getName() + &quot;' in the hint group '&quot; + abstractHintGroup.getName() + &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;' holds multiple references to the same object of an abstract section ('&quot; + referencedObject + &quot;'.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(refsToAbstractSection.get(referencedObject).iterator().next().getEObject() instanceof &lt;%pamtram.structure.ExternalDynamicSourceElement%>) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;local = false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;ArrayList&lt;Section> sourceAndTargetSections = new ArrayList&lt;>();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(local) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(sourceSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;while (sourceSection.getContainer() != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceSection = sourceSection.getContainer().getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(sourceSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;TargetSection targetSection = concreteHintGroup.getTargetSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(local) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(targetSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;while (targetSection.getContainer() != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;targetSection = targetSection.getContainer().getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(targetSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * these are possible targets for the redirection of references to the referenced object&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LinkedList&lt;EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;boolean found = false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject target = null; // this will contain the new value for the reference&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for (EObject possibleTarget : possibleTargets) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(sourceAndTargetSections.contains(containingSection)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(found == false ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target = possibleTarget;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// this should not happen, should it?&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal error! Multiple targets found for redirection of element '&quot; + referencedObject + &quot;' in.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(found == false) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal error! No target found for redirection of element '&quot; + referencedObject + &quot;'.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;setting.set(target);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;// Finally, we add the copied hints to the concrete hint group&#xD;&#xA;&#x9;&#x9;for (MappingHintBaseType copiedHint : copiedHints) {&#xD;&#xA;&#x9;&#x9;&#x9;concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * At the end, we clear the values of the 'extend' references of the concrete elements as these&#xD;&#xA; * are no longer needed.&#xD;&#xA; */&#xD;&#xA;for (Entry&lt;Section, LinkedList&lt;Section>> entry : abstractToConcreteSectionMap.entrySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : entry.getValue()) {&#xD;&#xA;&#x9;&#x9;concreteSection.getExtend().remove(entry.getKey());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;for (Entry&lt;MappingHintGroupType, LinkedList&lt;MappingHintGroupType>> entry : abstractToConcreteHintGroupMap.entrySet()) {&#xD;&#xA;&#x9;for (MappingHintGroupType concreteHintGroup : entry.getValue()) {&#xD;&#xA;&#x9;&#x9;concreteHintGroup.getExtend().remove(entry.getKey());&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
+        <details key="body" value="//TODO handle hierarchical extensions (an extended section extends other sections&#xD;&#xA;//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * First, we collect each abstract source and target section as well as the concrete sections that&#xD;&#xA; * reference them&#xD;&#xA; */&#xD;&#xA;HashMap&lt;Section, LinkedList&lt;Section>> abstractToConcreteSectionMap = new HashMap&lt;>();&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());&#xD;&#xA;for (Section section : getSourceSections()) {&#xD;&#xA;&#x9;if(section.isAbstract() &amp;&amp; sourceSettings.containsKey(section)) {&#xD;&#xA;&#x9;&#x9;LinkedList&lt;Section> concreteSections = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : sourceSettings.get(section)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.structure.generic.impl.GenericPackageImpl%>.eINSTANCE.getSection_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;concreteSections.add((Section) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteSectionMap.put(section, concreteSections);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());&#xD;&#xA;for (Section section : getTargetSections()) {&#xD;&#xA;&#x9;if(section.isAbstract() &amp;&amp; targetSettings.containsKey(section)) {&#xD;&#xA;&#x9;&#x9;LinkedList&lt;Section> concreteSections = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : targetSettings.get(section)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;concreteSections.add((Section) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteSectionMap.put(section, concreteSections);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;ArrayList&lt;Mapping> concreteMappings = new ArrayList&lt;>();&#xD;&#xA;for (Mapping mapping : getActiveMappings()) {&#xD;&#xA;&#x9;if(!mapping.isAbstract()) {&#xD;&#xA;&#x9;&#x9;concreteMappings.add(mapping);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Now, we copy all elements from the abstract sections to the concrete sections&#xD;&#xA; * that extend them. In this process, we store the associations between the elements from&#xD;&#xA; * the abstract sections and the copied elements in a map.&#xD;&#xA; */&#xD;&#xA;HashMap&lt;EObject, LinkedList&lt;EObject>> abstractToConcreteElementMap = new HashMap&lt;>();&#xD;&#xA;for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Section copiedSection = EcoreUtil.copy(abstractSection);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;TreeIterator&lt;EObject> originalIterator = EcoreUtil.getAllContents(Collections.singleton(abstractSection));&#xD;&#xA;&#x9;&#x9;TreeIterator&lt;EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;// these lists will store the elements that we will add to the concrete section&#xD;&#xA;&#x9;&#x9;ArrayList&lt;Attribute> attributesToAdd = new ArrayList&lt;>();&#xD;&#xA;&#x9;&#x9;ArrayList&lt;Reference> referencesToAdd = new ArrayList&lt;>();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;while(originalIterator.hasNext()) {&#xD;&#xA;&#x9;&#x9;&#x9;assert copyIterator.hasNext();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;EObject originalNext = originalIterator.next();&#xD;&#xA;&#x9;&#x9;&#x9;EObject copyNext = copyIterator.next();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// if the element is the section itself, we skip it&#xD;&#xA;&#x9;&#x9;&#x9;if(originalNext instanceof Section) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// if the element is a top-level element below the section, we add it to the concrete section&#xD;&#xA;&#x9;&#x9;&#x9;if(originalNext.eContainer().equals(abstractSection)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(copyNext instanceof Attribute) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;attributesToAdd.add((Attribute) copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(copyNext instanceof Reference) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;referencesToAdd.add((Reference) copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Unsupported element type '&quot; + copyNext.eClass().getName() + &quot;' encountered when merging extends!&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// in any case, we fill the abstractToConcreteElementMap&#xD;&#xA;&#x9;&#x9;&#x9;LinkedList&lt;EObject> vals = abstractToConcreteElementMap.get(originalNext);&#xD;&#xA;&#x9;&#x9;&#x9;if(vals == null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;vals = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;vals.add(copyNext);&#xD;&#xA;&#x9;&#x9;&#x9;abstractToConcreteElementMap.put(originalNext, vals);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;//TODO do we need to redirect references to these elements???&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * now, we add the collected elements to the concrete section; we have to do this&#xD;&#xA;&#x9;&#x9; * after the process of iterating over the contents - otherwise, the TreeIterator will throw&#xD;&#xA;&#x9;&#x9; * IndexOutOfBoundsExceptions&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;concreteSection.getAttributes().addAll(attributesToAdd);&#xD;&#xA;&#x9;&#x9;concreteSection.getReferences().addAll(referencesToAdd);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. &#xD;&#xA;&#x9;&#x9; * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint&#xD;&#xA;&#x9;&#x9; * groups) are handled afterwards when these hint groups are copied.&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);&#xD;&#xA;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// this is the element referencing the abstract section (it should be an element of a mapping hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject hintElement = setting.getEObject().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;MappingHintGroupType hintGroup = null;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintElement instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(hintElement.eContainer() instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// We do not need to handle deactivated Mappings/MappingHintGroups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintGroup instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * check if the hint group or its parent mapping equals the section that we just added the concrete elements to&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(concreteSection.equals(hintGroup.getTargetSection()) || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.isContainerFor(hintGroup.getTargetSection()) ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceSection()) || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;concreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.structure.impl.StructurePackageImpl%>.eINSTANCE.getDynamicSourceElement_Source()) &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.getEObject() instanceof ContainerSelectorTargetAttribute) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// do nothing as ContainerSelectors are handled below separately&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// redirect the reference (we can always use the 'last' of the concrete objects as we just added it above&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Now, we handle the ContainerSelectors that we skipped above. We can do this now as we now know all concrete TargetSections that&#xD;&#xA; * are a possible match for each ContainerSelector that points to an abstract TargetSection.&#xD;&#xA; */&#xD;&#xA;for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * as ContainerSelectors will get treated differently (see below), we store the ContainerSelectorTargetAttributes&#xD;&#xA;&#x9;&#x9; * holding the referneces to the Attributes in the abstract section and will delete these later&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;ArrayList&lt;ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList&lt;>();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);&#xD;&#xA;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// this is the element referencing the abstract section (it should be an element of a mapping hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject hintElement = setting.getEObject().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;MappingHintGroupType hintGroup = null;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintElement instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else if(hintElement.eContainer() instanceof MappingHintGroupType) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// We do not need to handle deactivated Mappings/MappingHintGroups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(hintGroup instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;hintGroup.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * if we are dealing with a model ContainerSelectorTargetAttribute&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source()) &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;setting.getEObject() instanceof ContainerSelectorTargetAttribute) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;// in this case, we must not simply redirect but we create a new ContainerSelectorTargetAttribute&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ContainerSelectorTargetAttribute copy = &lt;%pamtram.mapping.extended.impl.ExtendedFactoryImpl%>.eINSTANCE.createContainerSelectorTargetAttribute();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.setName(original.getName());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.getModifiers().addAll(original.getModifiers());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;copy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;((ContainerSelector) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;mchTargetAttributesToDelete.add((ContainerSelectorTargetAttribute) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;for (ContainerSelectorTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {&#xD;&#xA;&#x9;&#x9;&#x9;EcoreUtil.delete(mchTargetAttribute);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * Finally, we can copy the abstract hint groups&#xD;&#xA; */&#xD;&#xA;&#xD;&#xA;// collect each abstract hint group as well as the concrete hint groups that reference them&#xD;&#xA;HashMap&lt;MappingHintGroupType, LinkedList&lt;MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap&lt;>();&#xD;&#xA;Map&lt;EObject, Collection&lt;Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getActiveMappings());&#xD;&#xA;for (EObject element : mappingSettings.keySet()) {&#xD;&#xA;&#x9;if(element instanceof MappingHintGroupType &amp;&amp; ((Mapping)(element.eContainer())).isAbstract()) {&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;// We do not need to handle deactivated MappingHintGroups&#xD;&#xA;&#x9;&#x9;//&#xD;&#xA;&#x9;&#x9;if(element instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) element).isDeactivated() ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;element.eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) element.eContainer()).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;LinkedList&lt;MappingHintGroupType> concreteHintGroups = new LinkedList&lt;>();&#xD;&#xA;&#x9;&#x9;for (Setting setting : mappingSettings.get(element)) {&#xD;&#xA;&#x9;&#x9;&#x9;if(setting.getEStructuralFeature().equals(&lt;%pamtram.mapping.impl.MappingPackageImpl%>.eINSTANCE.getMappingHintGroupType_Extend())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// only copy hints to activated hint groups&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if((setting.getEObject() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) setting.getEObject()).isDeactivated()) ||&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(setting.getEObject().eContainer() instanceof DeactivatableElement &amp;&amp; ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated())) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;continue;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;concreteHintGroups.add((MappingHintGroupType) setting.getEObject());&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// copy the hints to the concrete hint groups&#xD;&#xA;for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {&#xD;&#xA;&#x9;for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Collection&lt;MappingHintBaseType> hintsToCopy = new BasicEList&lt;>();&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not&#xD;&#xA;&#x9;&#x9; * 'overwritten' by hints of the concrete HintGroup.&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {&#xD;&#xA;&#x9;&#x9;&#x9;EObject hintTarget = null;&#xD;&#xA;&#x9;&#x9;&#x9;if(abstractHint instanceof AttributeMapping) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((AttributeMapping) abstractHint).getTarget();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof ReferenceTargetSelector) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((ReferenceTargetSelector) abstractHint).getAffectedReference();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof CardinalityMapping) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintTarget = ((CardinalityMapping) abstractHint).getTarget();&#xD;&#xA;&#x9;&#x9;&#x9;} else if(abstractHint instanceof ContainerSelector) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;// nothing to do as ContainerSelectorTargetAttributes are handled separately&#xD;&#xA;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Unsupported hint type '&quot; + abstractHint.eClass().getName() + &quot;' in HintGroup '&quot; + &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;abstractHintGroup.getName() + &quot;': These kind of hints are not supported yet in abstract HintGroups!&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if(abstractToConcreteElementMap.get(hintTarget) == null || abstractToConcreteElementMap.get(hintTarget).isEmpty() || concreteHintGroup.getMappingHints().isEmpty() || &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.get(hintTarget), concreteHintGroup.getMappingHints()).isEmpty()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;hintsToCopy.add(abstractHint);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;Collection&lt;MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9; * make sure that all references to elements from the abstract sections are redirected to the concrete sections&#xD;&#xA;&#x9;&#x9; * that we created earlier&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;for (MappingHintBaseType copiedHint : copiedHints) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9; * these are the references from the copied hint (that will get added to the concrete hint group) to elements from&#xD;&#xA;&#x9;&#x9;&#x9; * abstract sections&#xD;&#xA;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;Map&lt;EObject, Collection&lt;Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), copiedHint);&#xD;&#xA;&#x9;&#x9;&#x9;for (EObject referencedObject : refsToAbstractSection.keySet()) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * based on the type of hint element that we are handling (local or external), source and target &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * sections or their containers are checked&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;boolean local = true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(refsToAbstractSection.get(referencedObject).size() > 1) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal Error! The hint '&quot; + copiedHint.getName() + &quot;' in the hint group '&quot; + abstractHintGroup.getName() + &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&quot;' holds multiple references to the same object of an abstract section ('&quot; + referencedObject + &quot;'.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(refsToAbstractSection.get(referencedObject).iterator().next().getEObject() instanceof &lt;%pamtram.structure.ExternalDynamicSourceElement%>) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;local = false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;ArrayList&lt;Section> sourceAndTargetSections = new ArrayList&lt;>();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(local) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(sourceSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;while (sourceSection.getContainer() != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceSection = sourceSection.getContainer().getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(sourceSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;TargetSection targetSection = concreteHintGroup.getTargetSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(local) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(targetSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;while (targetSection.getContainer() != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;targetSection = targetSection.getContainer().getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;sourceAndTargetSections.add(targetSection);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} &#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;/* &#xD;&#xA;&#x9;&#x9;&#x9;&#x9; * these are possible targets for the redirection of references to the referenced object&#xD;&#xA;&#x9;&#x9;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;LinkedList&lt;EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;boolean found = false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;EObject target = null; // this will contain the new value for the reference&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for (EObject possibleTarget : possibleTargets) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(sourceAndTargetSections.contains(containingSection)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(found == false ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target = possibleTarget;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;// this should not happen, should it?&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal error! Multiple targets found for redirection of element '&quot; + referencedObject + &quot;' in.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(found == false) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;throw new RuntimeException(&quot;Internal error! No target found for redirection of element '&quot; + referencedObject + &quot;'.&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;for (Setting setting : refsToAbstractSection.get(referencedObject)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;setting.set(target);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;// Finally, we add the copied hints to the concrete hint group&#xD;&#xA;&#x9;&#x9;for (MappingHintBaseType copiedHint : copiedHints) {&#xD;&#xA;&#x9;&#x9;&#x9;concreteHintGroup.getMappingHints().add((MappingHint) copiedHint);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/*&#xD;&#xA; * At the end, we clear the values of the 'extend' references of the concrete elements as these&#xD;&#xA; * are no longer needed.&#xD;&#xA; */&#xD;&#xA;for (Entry&lt;Section, LinkedList&lt;Section>> entry : abstractToConcreteSectionMap.entrySet()) {&#xD;&#xA;&#x9;for (Section concreteSection : entry.getValue()) {&#xD;&#xA;&#x9;&#x9;concreteSection.getExtend().remove(entry.getKey());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;for (Entry&lt;MappingHintGroupType, LinkedList&lt;MappingHintGroupType>> entry : abstractToConcreteHintGroupMap.entrySet()) {&#xD;&#xA;&#x9;for (MappingHintGroupType concreteHintGroup : entry.getValue()) {&#xD;&#xA;&#x9;&#x9;concreteHintGroup.getExtend().remove(entry.getKey());&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSectionModels" upperBound="-1"
@@ -203,7 +203,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/CardinalityMappingSourceInterface">
+  <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/extended/CardinalityMappingSourceInterface">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eSubpackages name="structure" nsURI="http://mfreund.de/pamtram/structure" nsPrefix="structure">
@@ -252,7 +252,7 @@
           eType="#//structure/target/TargetSectionAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+        interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceElement">
       <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
@@ -1090,7 +1090,7 @@
           interface="true" eSuperTypes="#//NamedElement">
         <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="if (this instanceof &lt;%pamtram.structure.constraint.ChoiceConstraint%>) {&#xD;&#xA;&#x9;return ((ChoiceConstraint) this).getChoices().stream().allMatch(&lt;%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!(this instanceof &lt;%pamtram.structure.constraint.SingleReferenceValueConstraint%>)&#xD;&#xA;&#x9;&#x9;|| !AgteleEcoreUtil.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while (!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if (container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;SourceSection localSection = ((Mapping) container).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;.allMatch(s -> s instanceof &lt;%pamtram.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintSourceElement%> &amp;&amp; ((ValueConstraintSourceElement) s).getSource()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.getContainingSection().equals(localSection)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.isContainerFor(localSection))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return ((SingleReferenceValueConstraint) this).getInstanceSelectors()&#xD;&#xA;&#x9;&#x9;.parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(s -> s instanceof &lt;%pamtram.structure.InstanceSelectorSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.InstanceSelectorExternalSourceElement%>))&#xD;&#xA;&#x9;&#x9;.findAny().isPresent();"/>
+            <details key="body" value="if (this instanceof &lt;%pamtram.structure.constraint.ChoiceConstraint%>) {&#xD;&#xA;&#x9;return ((ChoiceConstraint) this).getChoices().stream().allMatch(&lt;%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!(this instanceof &lt;%pamtram.structure.constraint.SingleReferenceValueConstraint%>)&#xD;&#xA;&#x9;&#x9;|| !AgteleEcoreUtil.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while (!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if (container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;SourceSection localSection = ((Mapping) container).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;.allMatch(s -> s instanceof &lt;%pamtram.FixedValue%> || s instanceof &lt;%pamtram.mapping.extended.GlobalAttributeImporter%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintSourceElement%> &amp;&amp; ((ValueConstraintSourceElement) s).getSource()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.getContainingSection().equals(localSection)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.isContainerFor(localSection))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return ((SingleReferenceValueConstraint) this).getInstanceSelectors()&#xD;&#xA;&#x9;&#x9;.parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(s -> s instanceof &lt;%pamtram.structure.InstanceSelectorSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.InstanceSelectorExternalSourceElement%>))&#xD;&#xA;&#x9;&#x9;.findAny().isPresent();"/>
           </eAnnotations>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
@@ -1124,7 +1124,7 @@
         <eOperations name="validateOnlyFixedValuesOrGlobalAttributesInConditionModel"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.condition.ComplexCondition%> condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition());&#xD;&#xA;&#xD;&#xA;if(!condition.isConditionModelCondition()) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.FixedValue%> || s instanceof &lt;%pamtram.mapping.GlobalAttributeImporter%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This ValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.structure.constraint.ConstraintPackage%>.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="if(this.getSourceElements().isEmpty() || &#xD;&#xA;&#x9;&#x9;!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition())) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.condition.ComplexCondition%> condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition());&#xD;&#xA;&#xD;&#xA;if(!condition.isConditionModelCondition()) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof &lt;%pamtram.FixedValue%> || s instanceof &lt;%pamtram.mapping.extended.GlobalAttributeImporter%>);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;This ValueConstraint must only&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot; contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this,  &lt;%pamtram.structure.constraint.ConstraintPackage%>.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1186,7 +1186,7 @@
         <eLiterals name="MATCH_REGEX" value="4"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintSourceInterface"
-          abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintSourceElement">
         <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
@@ -1720,35 +1720,35 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetSection" lowerBound="1"
           eType="#//structure/target/TargetSection"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHint" containment="true"/>
+          eType="#//mapping/extended/MappingHint" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1"
           eType="#//mapping/MappingHintGroupType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="attributeMappings" upperBound="-1"
-          eType="#//mapping/AttributeMapping" changeable="false" volatile="true" transient="true"
-          derived="true">
+          eType="#//mapping/extended/AttributeMapping" changeable="false" volatile="true"
+          transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.AttributeMapping%>> attributeMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;attributeMappings.size(),attributeMappings.toArray());&#xD;&#xA;"/>
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.extended.AttributeMapping%>> attributeMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;attributeMappings.size(),attributeMappings.toArray());&#xD;&#xA;"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="cardinalityMappings"
-          upperBound="-1" eType="#//mapping/CardinalityMapping" changeable="false"
+          upperBound="-1" eType="#//mapping/extended/CardinalityMapping" changeable="false"
           volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.CardinalityMapping%>> cardinalityMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,&#xD;&#xA;&#x9;&#x9;cardinalityMappings.size(),cardinalityMappings.toArray());&#xD;&#xA;"/>
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.extended.CardinalityMapping%>> cardinalityMappings = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,&#xD;&#xA;&#x9;&#x9;cardinalityMappings.size(),cardinalityMappings.toArray());&#xD;&#xA;"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referenceTargetSelectors"
-          upperBound="-1" eType="#//mapping/ReferenceTargetSelector" changeable="false"
+          upperBound="-1" eType="#//mapping/extended/ReferenceTargetSelector" changeable="false"
           volatile="true" transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,&#xD;&#xA;&#x9;&#x9;referenceTargetSelectors.size(),referenceTargetSelectors.toArray());&#xD;&#xA;"/>
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.extended.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,&#xD;&#xA;&#x9;&#x9;referenceTargetSelectors.size(),referenceTargetSelectors.toArray());&#xD;&#xA;"/>
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="containerSelectors" upperBound="-1"
-          eType="#//mapping/ContainerSelector" changeable="false" volatile="true"
+          eType="#//mapping/extended/ContainerSelector" changeable="false" volatile="true"
           transient="true" derived="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,&#xD;&#xA;&#x9;&#x9;containerSelectors.size(),containerSelectors.toArray());&#xD;&#xA;"/>
+          <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.extended.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,&#xD;&#xA;&#x9;&#x9;containerSelectors.size(),containerSelectors.toArray());&#xD;&#xA;"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -1761,336 +1761,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//structure/target/TargetSectionClass"
           unsettable="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHints" upperBound="-1"
-          eType="#//mapping/MappingHintType" unsettable="true" containment="true"/>
+          eType="#//mapping/extended/MappingHintType" unsettable="true" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExportedMappingHintGroup" eSuperTypes="#//mapping/MappingHintGroupType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
-        eSuperTypes="#//NamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true" eSuperTypes="#//mapping/MappingHintBaseType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/MappingHintType #//ConditionalElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
-        eSuperTypes="#//mapping/MappingHintType"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/MappingHint #//ExpressionElement #//ModifiableElement #//mapping/ExpandableHint">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="targetAttributeMatchesSection"/>
-      </eAnnotations>
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/AttributeMappingSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#x9;&#x9;EList&lt;AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof AttributeMappingSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMappingSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
-          eType="#//mapping/AttributeMappingExternalSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingExternalSourceElement>();&#xD;&#xA;&#xD;&#xA;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof AttributeMappingExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((AttributeMappingExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="validateTargetAttributeMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;MappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());&#xD;&#xA;&#xD;&#xA;boolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The target attribute '&quot; + this.getTarget().getName() + &quot;' is not part of the target section referenced by parent hint group &quot; + ((MappingHintGroupType) this.eContainer()).getName() + &quot;!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/target/TargetSectionAttribute"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
-          upperBound="-1" eType="#//mapping/AttributeMappingSourceInterface" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-        <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/AttributeMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/MappingHint #//ExpressionElement #//ModifiableElement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
-      </eAnnotations>
-      <eOperations name="validateSourceElementMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The source element '&quot; + this.getSource().getName() + &quot;' is not part of the source section referenced by parent mapping '&quot; + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateTargetClassMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The target class '&quot; + this.getTarget().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + ((MappingHintGroupType) this.eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateSourceClassIsVariableCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || !(this.getSource() instanceof SourceSectionClass) ? true : ((SourceSectionClass) this.getSource()).getCardinality() != CardinalityType.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for source classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateTargetClassIsVariableCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != &lt;%pamtram.structure.generic.CardinalityType%>.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for target classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateNoCardinalityMappingForSourceSectionRoot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null ? true : this.getSource() != this.getSource().getContainingSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings must not be defined for SourceSection root classes!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateOnlySourceOrSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || this.getSourceElements() == null || this.getSourceElements().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must not specify both a 'source' and a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateExpressionOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify an 'expression' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateModifiersOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify 'modifiers' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="getLocalSourceElements" unique="false" upperBound="-1" eType="#//mapping/CardinalityMappingSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
-        </eAnnotations>
-      </eOperations>
-      <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
-          eType="#//mapping/CardinalityMappingExternalSourceElement">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source">
-        <eGenericType eClassifier="#//structure/generic/MetaModelElement">
-          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-        </eGenericType>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/target/TargetSectionClass"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
-          eType="#//mapping/CardinalityMappingSourceInterface" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
-        abstract="true" interface="true" eSuperTypes="#//mapping/MappingHintSourceInterface"/>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
-      <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-        <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/CardinalityMappingSourceInterface"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/MappingHint">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="affectedReferenceIsNonContainment affectedReferenceMatchesSection"/>
-      </eAnnotations>
-      <eOperations name="validateAffectedReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;boolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is no non-containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eOperations name="validateAffectedReferenceMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(this.getAffectedReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((&lt;%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + hintGroupName + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference" lowerBound="1"
-          eType="#//structure/target/TargetSectionCrossReference"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
-          eType="#//mapping/Matcher" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/Matcher">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
-          eType="#//structure/target/TargetSectionClass"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/Matcher #//mapping/ExpandableHint #//structure/InstanceSelector">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="targetMatchesAffectedReferenceType"/>
-      </eAnnotations>
-      <eOperations name="validateTargetMatchesAffectedReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(!(this.eContainer() instanceof &lt;%pamtram.mapping.ReferenceTargetSelector%>) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + &quot;') is not allowed by the affected reference of the parent ReferenceTargetSelector that &quot; +&#xD;&#xA;&#x9;&#x9;&#x9;&quot;requires a (sub-)type of '&quot; + ((pamtram.mapping.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.MappingPackage%>.Literals.ATTRIBUTE_MATCHER__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/target/TargetSectionAttribute"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/MappingHint #//structure/InstanceSelector">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
-          upperBound="-1" eType="#//mapping/ContainerSelectorTargetAttribute" containment="true"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorTargetAttribute">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="sourceMatchesPossibleContainerType"/>
-      </eAnnotations>
-      <eOperations name="validateSourceMatchesPossibleContainerType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the parent hint group's target section ('&quot; + &#xD;&#xA;&#x9;&#x9;((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + &#xD;&#xA;&#x9;&#x9;&quot;') cannot be connected to (contained in) the type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getName() + &quot;')!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-        </eAnnotations>
-        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-        <eParameters name="context">
-          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-            <eTypeArguments/>
-            <eTypeArguments/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
-      <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
-      </eGenericSuperTypes>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
-        eSuperTypes="#//mapping/HintImporterMappingHint">
-      <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
-        </eAnnotations>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
-          upperBound="-1" eType="#//mapping/ExpandableHint"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander">
-      <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/LocalMappedAttributeValueExpander"/>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalAttribute" eSuperTypes="#//NamedElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeHasUpperBoundOne"/>
@@ -2110,27 +1783,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//structure/source/ActualSourceSectionAttribute"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
-          eType="#//mapping/GlobalAttribute"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//NamedElement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
-        abstract="true">
-      <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
-        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
-      </eGenericSuperTypes>
-      <eGenericSuperTypes eClassifier="#//mapping/MappedAttributeValueExpander"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
-        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
-        eSuperTypes="#//mapping/ExternalMappedAttributeValueExpander"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true" interface="true"/>
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
@@ -2173,6 +1825,364 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
+    </eSubpackages>
+    <eSubpackages name="extended" nsURI="http://mfreund.de/pamtram/mapping/extended"
+        nsPrefix="extended">
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
+          eSuperTypes="#//NamedElement"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true"
+          eSuperTypes="#//mapping/extended/MappingHintBaseType"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/extended/MappingHintType #//ConditionalElement"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true"
+          interface="true"/>
+      <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
+          eSuperTypes="#//mapping/extended/MappingHintType"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
+          interface="true" eSuperTypes="#//NamedElement"/>
+      <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
+            eType="#//mapping/GlobalAttribute"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/extended/MappingHint #//ExpressionElement #//ModifiableElement #//mapping/extended/ExpandableHint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="targetAttributeMatchesSection"/>
+        </eAnnotations>
+        <eOperations name="getLocalSourceElements" unique="false" upperBound="-1"
+            eType="#//mapping/extended/AttributeMappingSourceElement">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#x9;&#x9;EList&lt;AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingSourceElement>();&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;&#x9;&#x9;if(i instanceof AttributeMappingSourceElement){&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;elements.add((AttributeMappingSourceElement) i);&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;return elements;"/>
+          </eAnnotations>
+        </eOperations>
+        <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+            eType="#//mapping/extended/AttributeMappingExternalSourceElement">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="EList&lt;AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList&lt;AttributeMappingExternalSourceElement>();&#xD;&#xA;&#xD;&#xA;for(AttributeMappingSourceInterface i : this.getSourceElements()){&#xD;&#xA;&#x9;if(i instanceof AttributeMappingExternalSourceElement){&#xD;&#xA;&#x9;&#x9;elements.add((AttributeMappingExternalSourceElement) i);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return elements;"/>
+          </eAnnotations>
+        </eOperations>
+        <eOperations name="validateTargetAttributeMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;MappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());&#xD;&#xA;&#xD;&#xA;boolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The target attribute '&quot; + this.getTarget().getName() + &quot;' is not part of the target section referenced by parent hint group &quot; + ((MappingHintGroupType) this.eContainer()).getName() + &quot;!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+            eType="#//structure/target/TargetSectionAttribute"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
+            upperBound="-1" eType="#//mapping/extended/AttributeMappingSourceInterface"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface"
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+          <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/extended/MappingHint #//ExpressionElement #//ModifiableElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
+        </eAnnotations>
+        <eOperations name="validateSourceElementMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The source element '&quot; + this.getSource().getName() + &quot;' is not part of the source section referenced by parent mapping '&quot; + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateTargetClassMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The target class '&quot; + this.getTarget().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + ((MappingHintGroupType) this.eContainer()).getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateSourceClassIsVariableCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || !(this.getSource() instanceof SourceSectionClass) ? true : ((SourceSectionClass) this.getSource()).getCardinality() != CardinalityType.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for source classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateTargetClassIsVariableCardinality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != &lt;%pamtram.structure.generic.CardinalityType%>.ONE;&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings may only be defined for target classes with a specified cardinality distinct from 'CardinalityType::ONE'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateNoCardinalityMappingForSourceSectionRoot" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null ? true : this.getSource() != this.getSource().getContainingSection();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;Cardinality mappings must not be defined for SourceSection root classes!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateOnlySourceOrSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getSource() == null || this.getSourceElements() == null || this.getSourceElements().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must not specify both a 'source' and a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateExpressionOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify an 'expression' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateModifiersOnlyForSourceElements" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;A CardinalityMapping must only specify 'modifiers' if it also specifies a set of 'sourceElements'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="getLocalSourceElements" unique="false" upperBound="-1"
+            eType="#//mapping/extended/CardinalityMappingSourceElement">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+          </eAnnotations>
+        </eOperations>
+        <eOperations name="getExternalSourceElements" unique="false" upperBound="-1"
+            eType="#//mapping/extended/CardinalityMappingExternalSourceElement">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+          </eAnnotations>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="source">
+          <eGenericType eClassifier="#//structure/generic/MetaModelElement">
+            <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+            <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+            <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+            <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+          </eGenericType>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+            eType="#//structure/target/TargetSectionClass"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
+            eType="#//mapping/extended/CardinalityMappingSourceInterface" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/CardinalityMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/CardinalityMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
+        <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+          <eTypeArguments eClassifier="#//structure/SourceInstanceSelector"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/CardinalityMappingSourceInterface"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/extended/MappingHint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="affectedReferenceIsNonContainment affectedReferenceMatchesSection"/>
+        </eAnnotations>
+        <eOperations name="validateAffectedReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;boolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is no non-containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eOperations name="validateAffectedReferenceMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(this.getAffectedReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((&lt;%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();&#xD;&#xA;&#x9;String errorMessage = &quot;The affected reference '&quot; + this.getAffectedReference().getName() + &quot;' is not part of the target section referenced by parent hint group '&quot; + hintGroupName + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference"
+            lowerBound="1" eType="#//structure/target/TargetSectionCrossReference"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
+            eType="#//mapping/extended/Matcher" containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/extended/Matcher">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
+            eType="#//structure/target/TargetSectionClass"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/extended/Matcher #//mapping/extended/ExpandableHint #//structure/InstanceSelector">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="targetMatchesAffectedReferenceType"/>
+        </eAnnotations>
+        <eOperations name="validateTargetMatchesAffectedReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(!(this.eContainer() instanceof &lt;%pamtram.mapping.extended.ReferenceTargetSelector%>) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + &quot;') is not allowed by the affected reference of the parent ReferenceTargetSelector that &quot; +&#xD;&#xA;&#x9;&#x9;&#x9;&quot;requires a (sub-)type of '&quot; + ((pamtram.mapping.extended.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MATCHER__TARGET }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+            eType="#//structure/target/TargetSectionAttribute"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/extended/MappingHint #//structure/InstanceSelector">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
+            upperBound="-1" eType="#//mapping/extended/ContainerSelectorTargetAttribute"
+            containment="true"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorTargetAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="sourceMatchesPossibleContainerType"/>
+        </eAnnotations>
+        <eOperations name="validateSourceMatchesPossibleContainerType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(!(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();&#xD;&#xA;&#xD;&#xA;boolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the parent hint group's target section ('&quot; + &#xD;&#xA;&#x9;&#x9;((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + &#xD;&#xA;&#x9;&#x9;&quot;') cannot be connected to (contained in) the type of the class containing the target attribute ('&quot; + &#xD;&#xA;&#x9;&#x9;((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.getSource().eContainer()).getName() + &quot;')!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ExtendedValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
+          eSuperTypes="#//mapping/extended/HintImporterMappingHint">
+        <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
+          </eAnnotations>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
+            upperBound="-1" eType="#//mapping/extended/ExpandableHint"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander"
+          abstract="true">
+        <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
+          abstract="true">
+        <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

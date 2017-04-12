@@ -21,7 +21,7 @@ import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.MappingFactory;
+import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.provider.ExpressionElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -38,8 +38,9 @@ import pamtram.structure.StructurePackage;
 public class InstanceSelectorItemProvider extends ExpressionElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InstanceSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -47,8 +48,9 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,8 +64,9 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Modifiers feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -86,8 +89,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,7 +115,8 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 
 	/**
 	 * This returns InstanceSelector.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -123,7 +126,8 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +136,9 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,10 +154,10 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -168,8 +173,9 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -215,13 +221,14 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 		if (parentCondition != null && !(parentCondition.eContainer() instanceof MappingModel)) {
 			newChildDescriptors
 					.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-							MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+							ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
 		}
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

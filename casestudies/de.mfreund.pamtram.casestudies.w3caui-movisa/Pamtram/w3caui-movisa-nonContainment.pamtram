@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModels xsi:type="pamtram:SourceSectionModel">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://www.w3.org/2013/mbui-aui-modified#/0"/>
     <sections 
@@ -554,51 +554,51 @@ xsi:type="source:ActualSourceSectionAttribute" name="outputId">
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="sequentialCompositionMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.3">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="PanelNameMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NewViewNavigationFlow" targetSection="//@targetSectionModels.0/@sections.5"/>
     </mappings>
     <mappings xsi:type="mapping:Mapping" name="PanelMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxArray" targetSection="//@targetSectionModels.0/@sections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="ArrayId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="CheckBoxArrayNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="ArrayId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
+        <mappingHints xsi:type="extended:ContainerSelector">
+          <targetAttributes xsi:type="extended:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="PanelId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModels.0/@sections.6">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextLabelNameMapping" target="//@targetSectionModels.0/@sections.6/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="outputId" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelNameMapping" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="outputId" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
+        <mappingHints xsi:type="extended:ContainerSelector">
+          <targetAttributes xsi:type="extended:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.3/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="PanelId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBox" targetSection="//@targetSectionModels.0/@sections.2">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="CheckBoxNameNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="CheckBoxNameNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
+        <mappingHints xsi:type="extended:ContainerSelector">
+          <targetAttributes xsi:type="extended:ContainerSelectorTargetAttribute" name="CheckBoxArrayName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ArrayId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.0/@sections.4">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.4/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.4/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.4/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.4/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="TextBoxNameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="TextBoxNameMapping" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="CheckBoxId" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

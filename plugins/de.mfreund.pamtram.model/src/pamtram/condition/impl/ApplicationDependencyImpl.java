@@ -9,7 +9,7 @@ import pamtram.condition.ApplicationDependency;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.source.SourceSection;
 
 /**

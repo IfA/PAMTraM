@@ -38,7 +38,7 @@ import pamtram.condition.VariadicCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;

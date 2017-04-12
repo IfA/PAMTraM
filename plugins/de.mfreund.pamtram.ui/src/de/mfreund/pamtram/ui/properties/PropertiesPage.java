@@ -31,11 +31,10 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
  * @author mfreund
  */
 public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
-	public PropertiesPage() {
-	}
 
 	/**
-	 * The {@link FileFieldEditor} that allows the user to select new library locations.
+	 * The {@link FileFieldEditor} that allows the user to select new library
+	 * locations.
 	 */
 	private DirectoryFieldEditor libraryPathSelector;
 
@@ -68,13 +67,15 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 				.applyTo(directoryEditorComposite);
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
 
-		// create drop-down list for the source file selection (based on the project)
+		// create drop-down list for the source file selection (based on the
+		// project)
 		//
 		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
 				directoryEditorComposite);
 		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// a composite to display the selected source files as well as buttons to add/remove/reorder files
+		// a composite to display the selected source files as well as buttons
+		// to add/remove/reorder files
 		//
 		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
@@ -195,7 +196,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
 
 		if (libraryPaths.isEmpty()) {
-			// do nothing as this is not necessary if no library entries are used
+			// do nothing as this is not necessary if no library entries are
+			// used
 			return true;
 		}
 
@@ -214,7 +216,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	}
 
 	/**
-	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
+	 * Add the file specified in the {@link #libraryPathSelector} to the
+	 * {@link #libraryPathList}.
 	 */
 	private void handleAddLibrarySelected() {
 

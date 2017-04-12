@@ -39,13 +39,13 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParamet
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.library.AttributeParameter;

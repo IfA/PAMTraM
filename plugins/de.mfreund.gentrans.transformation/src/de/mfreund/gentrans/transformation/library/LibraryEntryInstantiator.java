@@ -18,10 +18,10 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParamet
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintType;
 import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.ContainerParameter;

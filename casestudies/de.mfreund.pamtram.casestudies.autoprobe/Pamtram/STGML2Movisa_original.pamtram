@@ -5961,7 +5961,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:MappedAttributeValuePrepender" name="Add State id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.4 //@mappingModels.0/@modifierSets.2" hintsToExpand="//@mappingModels.0/@mappings.0/@mappingHintGroups.1/@mappingHints.1"/>
+        <mappingHints xsi:type="extended:MappedAttributeValuePrepender" name="Add State id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.4 //@mappingModels.0/@modifierSets.2" hintsToExpand="//@mappingModels.0/@mappings.0/@mappingHintGroups.1/@mappingHints.1"/>
       </importedMappingHintGroups>
       <importedMappingHintGroups name="Inherited NavFlowTriggers" hintGroup="//@mappingModels.0/@mappings.0/@mappingHintGroups.2" mappingHints=""/>
     </mappings>

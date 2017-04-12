@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -18,8 +18,8 @@ import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -30,8 +30,8 @@ import pamtram.util.PamtramValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingHintImpl#getLocalCondition <em>Local Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getLocalCondition <em>Local Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getSharedCondition <em>Shared Condition</em>}</li>
  * </ul>
  *
  * @generated

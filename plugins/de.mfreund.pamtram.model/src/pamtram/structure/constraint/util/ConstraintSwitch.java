@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.DynamicSourceElement;

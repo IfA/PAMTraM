@@ -2,7 +2,7 @@
  */
 package pamtram.structure.constraint;
 
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Value Constraint Source Interface</b></em>'.

@@ -5,7 +5,6 @@ package pamtram.mapping.extended;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import pamtram.mapping.ExpandableHint;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.target.TargetSectionAttribute;
 

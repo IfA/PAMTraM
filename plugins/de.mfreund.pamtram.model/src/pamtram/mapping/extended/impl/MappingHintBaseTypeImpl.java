@@ -1,13 +1,12 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.impl.NamedElementImpl;
-
-import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.MappingHintBaseType;
 
 /**
  * <!-- begin-user-doc -->

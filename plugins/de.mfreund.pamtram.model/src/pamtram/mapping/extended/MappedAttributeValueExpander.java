@@ -4,8 +4,6 @@ package pamtram.mapping.extended;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.HintImporterMappingHint;
 import pamtram.structure.source.SourceSectionAttribute;
 
 
@@ -29,7 +27,7 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 
 	/**
 	 * Returns the value of the '<em><b>Hints To Expand</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ExpandableHint}.
+	 * The list contents are of type {@link pamtram.mapping.extended.ExpandableHint}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Hints To Expand</em>' reference list isn't clear,

@@ -2,7 +2,7 @@
  */
 package pamtram.structure;
 
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 
 /**
  * <!-- begin-user-doc -->

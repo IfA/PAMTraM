@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,11 +20,11 @@ import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.MappingHint;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingHint} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappingHint} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated

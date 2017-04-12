@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.extended;
 
-import pamtram.mapping.MappingHintSourceInterface;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cardinality Mapping Source Interface</b></em>'.

@@ -1,8 +1,9 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import pamtram.ConditionalElement;
+import pamtram.mapping.MappingPackage;
 
 
 /**

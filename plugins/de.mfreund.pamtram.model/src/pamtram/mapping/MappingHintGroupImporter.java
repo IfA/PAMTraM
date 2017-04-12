@@ -5,6 +5,7 @@ package pamtram.mapping;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -107,7 +108,7 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 
 	/**
 	 * Returns the value of the '<em><b>Mapping Hints</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.MappingHintType}.
+	 * The list contents are of type {@link pamtram.mapping.extended.MappingHintType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Mapping Hints</em>' containment reference list isn't clear,

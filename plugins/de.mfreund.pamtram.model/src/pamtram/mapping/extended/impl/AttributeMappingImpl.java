@@ -22,15 +22,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.util.ExtendedValidator;
-import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
 

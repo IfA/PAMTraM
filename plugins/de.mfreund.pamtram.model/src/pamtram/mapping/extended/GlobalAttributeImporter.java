@@ -1,9 +1,10 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import pamtram.NamedElement;
-import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -16,7 +17,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getGlobalAttributeImporter()
@@ -41,7 +42,7 @@ public interface GlobalAttributeImporter extends NamedElement, AttributeMappingS
 	GlobalAttribute getGlobalAttribute();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Global Attribute</em>' reference.

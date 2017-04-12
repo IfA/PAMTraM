@@ -4,7 +4,6 @@ package pamtram.mapping.extended;
 
 import org.eclipse.emf.common.util.EList;
 
-import pamtram.mapping.MappingHint;
 import pamtram.structure.InstanceSelector;
 
 

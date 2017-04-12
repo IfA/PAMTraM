@@ -1,32 +1,31 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.HintImporterMappingHint;
+
+import pamtram.mapping.extended.MappingHintType;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.HintImporterMappingHint} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappingHintType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class HintImporterMappingHintItemProvider extends MappingHintTypeItemProvider {
+public class MappingHintTypeItemProvider extends MappingHintBaseTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public HintImporterMappingHintItemProvider(AdapterFactory adapterFactory) {
+	public MappingHintTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,12 +64,12 @@ public class HintImporterMappingHintItemProvider extends MappingHintTypeItemProv
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((HintImporterMappingHint)object).getName();
+		String label = ((MappingHintType)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_HintImporterMappingHint_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_MappingHintType_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_HintImporterMappingHint_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MappingHintType_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}

@@ -8,8 +8,6 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.MappingHint;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**

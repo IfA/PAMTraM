@@ -28,7 +28,6 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
-import pamtram.mapping.provider.MappingHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Class;

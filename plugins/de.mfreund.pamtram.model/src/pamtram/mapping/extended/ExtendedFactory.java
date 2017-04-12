@@ -220,4 +220,13 @@ public interface ExtendedFactory extends EFactory {
 	 */
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
 
+	/**
+	 * Returns a new object of class '<em>Global Attribute Importer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Global Attribute Importer</em>'.
+	 * @generated
+	 */
+	GlobalAttributeImporter createGlobalAttributeImporter();
+
 } //ExtendedFactory

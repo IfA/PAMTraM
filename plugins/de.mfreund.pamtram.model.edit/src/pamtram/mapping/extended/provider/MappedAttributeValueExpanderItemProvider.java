@@ -14,15 +14,14 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.ReferenceTargetSelector;
-import pamtram.mapping.provider.HintImporterMappingHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**

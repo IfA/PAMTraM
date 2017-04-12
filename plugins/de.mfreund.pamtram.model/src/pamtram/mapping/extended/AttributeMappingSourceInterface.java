@@ -2,8 +2,6 @@
  */
 package pamtram.mapping.extended;
 
-import pamtram.mapping.MappingHintSourceInterface;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Attribute Mapping Source Interface</b></em>'.

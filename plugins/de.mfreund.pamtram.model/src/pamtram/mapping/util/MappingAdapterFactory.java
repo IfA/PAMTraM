@@ -12,6 +12,13 @@ import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.ExpandableHint;
+import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.HintImporterMappingHint;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -208,13 +215,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHint <em>Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHint <em>Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingHint
+	 * @see pamtram.mapping.extended.MappingHint
 	 * @generated
 	 */
 	public Adapter createMappingHintAdapter() {
@@ -264,13 +271,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Hint Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingHintBaseType
+	 * @see pamtram.mapping.extended.MappingHintBaseType
 	 * @generated
 	 */
 	public Adapter createMappingHintBaseTypeAdapter() {
@@ -334,13 +341,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintType <em>Hint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingHintType
+	 * @see pamtram.mapping.extended.MappingHintType
 	 * @generated
 	 */
 	public Adapter createMappingHintTypeAdapter() {
@@ -348,13 +355,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.HintImporterMappingHint
+	 * @see pamtram.mapping.extended.HintImporterMappingHint
 	 * @generated
 	 */
 	public Adapter createHintImporterMappingHintAdapter() {
@@ -376,13 +383,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.GlobalAttributeImporter
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter
 	 * @generated
 	 */
 	public Adapter createGlobalAttributeImporterAdapter() {
@@ -404,13 +411,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
 	 * @generated
 	 */
 	public Adapter createMappingHintSourceInterfaceAdapter() {
@@ -418,13 +425,13 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.ExpandableHint
+	 * @see pamtram.mapping.extended.ExpandableHint
 	 * @generated
 	 */
 	public Adapter createExpandableHintAdapter() {

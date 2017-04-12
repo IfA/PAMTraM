@@ -9,14 +9,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.MappingHintBaseType;
-import pamtram.mapping.MappingHintType;
+import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.extended.HintImporterMappingHint;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.impl.ExternalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;

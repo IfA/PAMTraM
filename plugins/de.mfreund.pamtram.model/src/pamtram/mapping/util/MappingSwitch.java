@@ -11,6 +11,13 @@ import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.ExpandableHint;
+import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.HintImporterMappingHint;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 

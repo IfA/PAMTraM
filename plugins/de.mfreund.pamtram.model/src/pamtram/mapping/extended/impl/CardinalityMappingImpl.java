@@ -32,7 +32,6 @@ import pamtram.mapping.extended.CardinalityMappingSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.util.ExtendedValidator;
-import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.MetaModelElement;

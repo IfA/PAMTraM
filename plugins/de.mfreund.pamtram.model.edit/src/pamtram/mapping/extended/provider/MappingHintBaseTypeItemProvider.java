@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -14,13 +14,13 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.MappingHintBaseType;
 
+import pamtram.mapping.extended.MappingHintBaseType;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingHintBaseType} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappingHintBaseType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -20,6 +20,8 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import pamtram.mapping.extended.provider.GlobalAttributeImporterItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -189,7 +191,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.GlobalAttributeImporter} instances. <!--
+	 * {@link pamtram.mapping.extended.GlobalAttributeImporter} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -197,7 +199,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected GlobalAttributeImporterItemProvider globalAttributeImporterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.GlobalAttributeImporter}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.GlobalAttributeImporter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

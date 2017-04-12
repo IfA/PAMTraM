@@ -270,20 +270,20 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappingHintTypeImpl
+	 * @see pamtram.mapping.extended.impl.MappingHintTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 	 * @generated
 	 */
 	int MAPPING_HINT_TYPE = 8;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintImpl <em>Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappingHintImpl
+	 * @see pamtram.mapping.extended.impl.MappingHintImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHint()
 	 * @generated
 	 */
@@ -617,20 +617,20 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MappingHintBaseTypeImpl
+	 * @see pamtram.mapping.extended.impl.MappingHintBaseTypeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintBaseType()
 	 * @generated
 	 */
 	int MAPPING_HINT_BASE_TYPE = 7;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 	 * @generated
 	 */
@@ -657,10 +657,10 @@ public interface MappingPackage extends EPackage {
 	int EXPORTED_MAPPING_HINT_GROUP = 6;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
+	 * @see pamtram.mapping.extended.impl.HintImporterMappingHintImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
 	 * @generated
 	 */
@@ -677,10 +677,10 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE = 11;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
+	 * @see pamtram.mapping.extended.impl.GlobalAttributeImporterImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 	 * @generated
 	 */
@@ -1020,10 +1020,10 @@ public interface MappingPackage extends EPackage {
 	int HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.ExpandableHint
+	 * @see pamtram.mapping.extended.ExpandableHint
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 	 * @generated
 	 */
@@ -1269,11 +1269,11 @@ public interface MappingPackage extends EPackage {
 	EReference getMappingType_SourceSection();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappingHint <em>Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHint <em>Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Hint</em>'.
-	 * @see pamtram.mapping.MappingHint
+	 * @see pamtram.mapping.extended.MappingHint
 	 * @generated
 	 */
 	EClass getMappingHint();
@@ -1289,11 +1289,11 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHintGroup();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Hint Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Hint Base Type</em>'.
-	 * @see pamtram.mapping.MappingHintBaseType
+	 * @see pamtram.mapping.extended.MappingHintBaseType
 	 * @generated
 	 */
 	EClass getMappingHintBaseType();
@@ -1449,21 +1449,21 @@ public interface MappingPackage extends EPackage {
 	EClass getExportedMappingHintGroup();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintType <em>Hint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Hint Type</em>'.
-	 * @see pamtram.mapping.MappingHintType
+	 * @see pamtram.mapping.extended.MappingHintType
 	 * @generated
 	 */
 	EClass getMappingHintType();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Hint Importer Mapping Hint</em>'.
-	 * @see pamtram.mapping.HintImporterMappingHint
+	 * @see pamtram.mapping.extended.HintImporterMappingHint
 	 * @generated
 	 */
 	EClass getHintImporterMappingHint();
@@ -1500,42 +1500,42 @@ public interface MappingPackage extends EPackage {
 	EOperation getGlobalAttribute__ValidateSourceAttributeHasUpperBoundOne__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Global Attribute Importer</em>'.
-	 * @see pamtram.mapping.GlobalAttributeImporter
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter
 	 * @generated
 	 */
 	EClass getGlobalAttributeImporter();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Global Attribute</em>'.
-	 * @see pamtram.mapping.GlobalAttributeImporter#getGlobalAttribute()
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute()
 	 * @see #getGlobalAttributeImporter()
 	 * @generated
 	 */
 	EReference getGlobalAttributeImporter_GlobalAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Hint Source Interface</em>'.
-	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
 	 * @generated
 	 */
 	EClass getMappingHintSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Expandable Hint</em>'.
-	 * @see pamtram.mapping.ExpandableHint
+	 * @see pamtram.mapping.extended.ExpandableHint
 	 * @generated
 	 */
 	EClass getExpandableHint();
@@ -1648,10 +1648,10 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPING_TYPE__SOURCE_SECTION = eINSTANCE.getMappingType_SourceSection();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintImpl <em>Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintImpl <em>Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappingHintImpl
+		 * @see pamtram.mapping.extended.impl.MappingHintImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHint()
 		 * @generated
 		 */
@@ -1668,10 +1668,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT_GROUP = eINSTANCE.getMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintBaseTypeImpl <em>Hint Base Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappingHintBaseTypeImpl
+		 * @see pamtram.mapping.extended.impl.MappingHintBaseTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintBaseType()
 		 * @generated
 		 */
@@ -1798,20 +1798,20 @@ public interface MappingPackage extends EPackage {
 		EClass EXPORTED_MAPPING_HINT_GROUP = eINSTANCE.getExportedMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintTypeImpl <em>Hint Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MappingHintTypeImpl
+		 * @see pamtram.mapping.extended.impl.MappingHintTypeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintType()
 		 * @generated
 		 */
 		EClass MAPPING_HINT_TYPE = eINSTANCE.getMappingHintType();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.HintImporterMappingHintImpl
+		 * @see pamtram.mapping.extended.impl.HintImporterMappingHintImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getHintImporterMappingHint()
 		 * @generated
 		 */
@@ -1844,10 +1844,10 @@ public interface MappingPackage extends EPackage {
 		EOperation GLOBAL_ATTRIBUTE___VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getGlobalAttribute__ValidateSourceAttributeHasUpperBoundOne__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.GlobalAttributeImporterImpl
+		 * @see pamtram.mapping.extended.impl.GlobalAttributeImporterImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getGlobalAttributeImporter()
 		 * @generated
 		 */
@@ -1862,20 +1862,20 @@ public interface MappingPackage extends EPackage {
 		EReference GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = eINSTANCE.getGlobalAttributeImporter_GlobalAttribute();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.MappingHintSourceInterface
+		 * @see pamtram.mapping.extended.MappingHintSourceInterface
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMappingHintSourceInterface()
 		 * @generated
 		 */
 		EClass MAPPING_HINT_SOURCE_INTERFACE = eINSTANCE.getMappingHintSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.ExpandableHint
+		 * @see pamtram.mapping.extended.ExpandableHint
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getExpandableHint()
 		 * @generated
 		 */

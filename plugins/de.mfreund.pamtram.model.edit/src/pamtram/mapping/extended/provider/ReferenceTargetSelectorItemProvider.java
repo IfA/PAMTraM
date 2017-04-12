@@ -23,7 +23,6 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
-import pamtram.mapping.provider.MappingHintItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;

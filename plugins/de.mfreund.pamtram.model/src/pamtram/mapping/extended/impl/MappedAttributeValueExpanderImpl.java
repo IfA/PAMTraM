@@ -8,12 +8,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
-import pamtram.mapping.impl.HintImporterMappingHintImpl;
 import pamtram.structure.source.SourceSectionAttribute;
 
 /**

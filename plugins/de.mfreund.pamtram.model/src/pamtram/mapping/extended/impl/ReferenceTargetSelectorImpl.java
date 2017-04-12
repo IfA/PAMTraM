@@ -21,7 +21,6 @@ import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.Matcher;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.util.ExtendedValidator;
-import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionCrossReference;
 

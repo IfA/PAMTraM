@@ -28,7 +28,6 @@ import pamtram.condition.ComplexCondition;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExtendedPackage;
-import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;

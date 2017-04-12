@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.Matcher;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.Matcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionCrossReference;
@@ -32,8 +33,8 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected Reference</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @generated

@@ -1,10 +1,11 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;

@@ -17,9 +17,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;

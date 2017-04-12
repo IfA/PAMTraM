@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionClass;
 
 
@@ -14,7 +15,7 @@ import pamtram.structure.target.TargetSectionClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ClassMatcher#getTargetClass <em>Target Class</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.ClassMatcher#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getClassMatcher()
@@ -39,7 +40,7 @@ public interface ClassMatcher extends Matcher {
 	TargetSectionClass getTargetClass();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ClassMatcher#getTargetClass <em>Target Class</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.ClassMatcher#getTargetClass <em>Target Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target Class</em>' reference.

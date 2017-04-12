@@ -31,56 +31,6 @@ public interface MappingFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
-	 * Returns a new object of class '<em>Reference Target Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Target Selector</em>'.
-	 * @generated
-	 */
-	ReferenceTargetSelector createReferenceTargetSelector();
-
-	/**
-	 * Returns a new object of class '<em>Instance Selector</em>' that
-	 * already contains a class matcher.
-	 * @return a new object of class '<em>Instance Selector</em>'.
-	 */
-	ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher();
-
-	/**
-	 * Returns a new object of class '<em>Instance Selector</em>' that
-	 * already contains an attribute matcher.
-	 * @return a new object of class '<em>Instance Selector</em>'.
-	 */
-	ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher</em>'.
-	 * @generated
-	 */
-	AttributeMatcher createAttributeMatcher();
-
-	/**
-	 * Returns a new object of class '<em>Attribute Matcher</em>' that
-	 * already contains a source element.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Attribute Matcher</em>'.
-	 */
-	AttributeMatcher createAttributeMatcherWithSource();
-
-	/**
-	 * Returns a new object of class '<em>Class Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Class Matcher</em>'.
-	 * @generated
-	 */
-	ClassMatcher createClassMatcher();
-
-	/**
 	 * Returns a new object of class '<em>Hint Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,31 +56,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExportedMappingHintGroup createExportedMappingHintGroup();
-
-	/**
-	 * Returns a new object of class '<em>Container Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Selector</em>'.
-	 * @generated
-	 */
-	ContainerSelector createContainerSelector();
-
-	/**
-	 * Returns a new object of class '<em>Model Connection Hint</em>' that
-	 * already contains a source element and a target attribute.
-	 * @return a new object of class '<em>Model Connection Hint</em>'.
-	 */
-	ContainerSelector createContainerSelectorWithSourceAndTarget();
-
-	/**
-	 * Returns a new object of class '<em>Container Selector Target Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Selector Target Attribute</em>'.
-	 * @generated
-	 */
-	ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute();
 
 	/**
 	 * Returns a new object of class '<em>Local Mapped Attribute Value Expander</em>'.

@@ -1,9 +1,12 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
+
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.target.TargetSectionAttribute;
 
@@ -16,7 +19,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.AttributeMatcher#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.AttributeMatcher#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getAttributeMatcher()
@@ -41,7 +44,7 @@ public interface AttributeMatcher extends Matcher, ExpandableHint, InstanceSelec
 	TargetSectionAttribute getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.AttributeMatcher#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.AttributeMatcher#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.

@@ -1,14 +1,14 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import pamtram.mapping.ClassMatcher;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ClassMatcher;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -19,7 +19,7 @@ import pamtram.structure.target.TargetSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ClassMatcherImpl#getTargetClass <em>Target Class</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.ClassMatcherImpl#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
  * @generated

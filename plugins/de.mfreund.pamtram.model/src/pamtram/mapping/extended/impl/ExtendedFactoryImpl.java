@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import pamtram.mapping.extended.*;
+import pamtram.structure.StructureFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -166,6 +167,95 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	public CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement() {
 		CardinalityMappingGlobalSourceElementImpl cardinalityMappingGlobalSourceElement = new CardinalityMappingGlobalSourceElementImpl();
 		return cardinalityMappingGlobalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ReferenceTargetSelector createReferenceTargetSelector() {
+		ReferenceTargetSelectorImpl referenceTargetSelector = new ReferenceTargetSelectorImpl();
+		return referenceTargetSelector;
+	}
+
+	/**
+	 */
+	@Override
+	public ReferenceTargetSelector createMappingInstanceSelectorWithClassMatcher() {
+	
+		ReferenceTargetSelector mappingInstanceSelector = this.createReferenceTargetSelector();
+		mappingInstanceSelector.setMatcher(this.createClassMatcher());
+		return mappingInstanceSelector;
+	}
+
+	@Override
+	public ReferenceTargetSelector createMappingInstanceSelectorWithAttributeMatcher() {
+	
+		ReferenceTargetSelector mappingInstanceSelector = this.createReferenceTargetSelector();
+		mappingInstanceSelector.setMatcher(this.createAttributeMatcherWithSource());
+		return mappingInstanceSelector;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AttributeMatcher createAttributeMatcher() {
+		AttributeMatcherImpl attributeMatcher = new AttributeMatcherImpl();
+		return attributeMatcher;
+	}
+
+	/**
+	 */
+	@Override
+	public AttributeMatcher createAttributeMatcherWithSource() {
+	
+		AttributeMatcher attributeMatcher = this.createAttributeMatcher();
+		attributeMatcher.getSourceElements().add(StructureFactory.eINSTANCE.createInstanceSelectorSourceElement());
+		return attributeMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ClassMatcher createClassMatcher() {
+		ClassMatcherImpl classMatcher = new ClassMatcherImpl();
+		return classMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ContainerSelector createContainerSelector() {
+		ContainerSelectorImpl containerSelector = new ContainerSelectorImpl();
+		return containerSelector;
+	}
+
+	/**
+	 */
+	@Override
+	public ContainerSelector createContainerSelectorWithSourceAndTarget() {
+	
+		ContainerSelector modelConnectionHint = this.createContainerSelector();
+		modelConnectionHint.getTargetAttributes().add(new ContainerSelectorTargetAttributeImpl());
+		modelConnectionHint.getSourceElements().add(StructureFactory.eINSTANCE.createInstanceSelectorSourceElement());
+		return modelConnectionHint;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute() {
+		ContainerSelectorTargetAttributeImpl containerSelectorTargetAttribute = new ContainerSelectorTargetAttributeImpl();
+		return containerSelectorTargetAttribute;
 	}
 
 	/**

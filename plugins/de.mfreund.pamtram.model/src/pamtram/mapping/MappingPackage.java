@@ -291,40 +291,40 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT = 9;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl <em>Reference Target Selector</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl <em>Reference Target Selector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ReferenceTargetSelectorImpl
+	 * @see pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getReferenceTargetSelector()
 	 * @generated
 	 */
 	int REFERENCE_TARGET_SELECTOR = 11;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.MatcherImpl
+	 * @see pamtram.mapping.extended.impl.MatcherImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getMatcher()
 	 * @generated
 	 */
 	int MATCHER = 12;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.AttributeMatcherImpl
+	 * @see pamtram.mapping.extended.impl.AttributeMatcherImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcher()
 	 * @generated
 	 */
 	int ATTRIBUTE_MATCHER = 14;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ClassMatcherImpl
+	 * @see pamtram.mapping.extended.impl.ClassMatcherImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getClassMatcher()
 	 * @generated
 	 */
@@ -698,10 +698,10 @@ public interface MappingPackage extends EPackage {
 	int EXPORTED_MAPPING_HINT_GROUP = 6;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ContainerSelectorImpl
+	 * @see pamtram.mapping.extended.impl.ContainerSelectorImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 	 * @generated
 	 */
@@ -768,10 +768,10 @@ public interface MappingPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_IMPORTER = 22;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl
+	 * @see pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 	 * @generated
 	 */
@@ -2427,114 +2427,114 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ReferenceTargetSelector <em>Reference Target Selector</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ReferenceTargetSelector <em>Reference Target Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Reference Target Selector</em>'.
-	 * @see pamtram.mapping.ReferenceTargetSelector
+	 * @see pamtram.mapping.extended.ReferenceTargetSelector
 	 * @generated
 	 */
 	EClass getReferenceTargetSelector();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Affected Reference</em>'.
-	 * @see pamtram.mapping.ReferenceTargetSelector#getAffectedReference()
+	 * @see pamtram.mapping.extended.ReferenceTargetSelector#getAffectedReference()
 	 * @see #getReferenceTargetSelector()
 	 * @generated
 	 */
 	EReference getReferenceTargetSelector_AffectedReference();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Matcher</em>'.
-	 * @see pamtram.mapping.ReferenceTargetSelector#getMatcher()
+	 * @see pamtram.mapping.extended.ReferenceTargetSelector#getMatcher()
 	 * @see #getReferenceTargetSelector()
 	 * @generated
 	 */
 	EReference getReferenceTargetSelector_Matcher();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ReferenceTargetSelector#validateAffectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Affected Reference Is Non Containment</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateAffectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Affected Reference Is Non Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
-	 * @see pamtram.mapping.ReferenceTargetSelector#validateAffectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.ReferenceTargetSelector#validateAffectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getReferenceTargetSelector__ValidateAffectedReferenceIsNonContainment__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ReferenceTargetSelector#validateAffectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Affected Reference Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateAffectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Affected Reference Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Affected Reference Matches Section</em>' operation.
-	 * @see pamtram.mapping.ReferenceTargetSelector#validateAffectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.ReferenceTargetSelector#validateAffectedReferenceMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.Matcher <em>Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.Matcher <em>Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Matcher</em>'.
-	 * @see pamtram.mapping.Matcher
+	 * @see pamtram.mapping.extended.Matcher
 	 * @generated
 	 */
 	EClass getMatcher();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.AttributeMatcher <em>Attribute Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMatcher <em>Attribute Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Matcher</em>'.
-	 * @see pamtram.mapping.AttributeMatcher
+	 * @see pamtram.mapping.extended.AttributeMatcher
 	 * @generated
 	 */
 	EClass getAttributeMatcher();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.AttributeMatcher#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.AttributeMatcher#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.mapping.AttributeMatcher#getTarget()
+	 * @see pamtram.mapping.extended.AttributeMatcher#getTarget()
 	 * @see #getAttributeMatcher()
 	 * @generated
 	 */
 	EReference getAttributeMatcher_Target();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Matches Affected Reference Type</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Matches Affected Reference Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Target Matches Affected Reference Type</em>' operation.
-	 * @see pamtram.mapping.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ClassMatcher <em>Class Matcher</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ClassMatcher <em>Class Matcher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Class Matcher</em>'.
-	 * @see pamtram.mapping.ClassMatcher
+	 * @see pamtram.mapping.extended.ClassMatcher
 	 * @generated
 	 */
 	EClass getClassMatcher();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.ClassMatcher#getTargetClass <em>Target Class</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.ClassMatcher#getTargetClass <em>Target Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target Class</em>'.
-	 * @see pamtram.mapping.ClassMatcher#getTargetClass()
+	 * @see pamtram.mapping.extended.ClassMatcher#getTargetClass()
 	 * @see #getClassMatcher()
 	 * @generated
 	 */
@@ -2711,42 +2711,42 @@ public interface MappingPackage extends EPackage {
 	EClass getExportedMappingHintGroup();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelector <em>Container Selector</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ContainerSelector <em>Container Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Container Selector</em>'.
-	 * @see pamtram.mapping.ContainerSelector
+	 * @see pamtram.mapping.extended.ContainerSelector
 	 * @generated
 	 */
 	EClass getContainerSelector();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.extended.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Target Attributes</em>'.
-	 * @see pamtram.mapping.ContainerSelector#getTargetAttributes()
+	 * @see pamtram.mapping.extended.ContainerSelector#getTargetAttributes()
 	 * @see #getContainerSelector()
 	 * @generated
 	 */
 	EReference getContainerSelector_TargetAttributes();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Container Selector Target Attribute</em>'.
-	 * @see pamtram.mapping.ContainerSelectorTargetAttribute
+	 * @see pamtram.mapping.extended.ContainerSelectorTargetAttribute
 	 * @generated
 	 */
 	EClass getContainerSelectorTargetAttribute();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Matches Possible Container Type</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Matches Possible Container Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Source Matches Possible Container Type</em>' operation.
-	 * @see pamtram.mapping.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map();
@@ -3052,10 +3052,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ReferenceTargetSelectorImpl <em>Reference Target Selector</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl <em>Reference Target Selector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ReferenceTargetSelectorImpl
+		 * @see pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getReferenceTargetSelector()
 		 * @generated
 		 */
@@ -3094,20 +3094,20 @@ public interface MappingPackage extends EPackage {
 		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.MatcherImpl <em>Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.MatcherImpl
+		 * @see pamtram.mapping.extended.impl.MatcherImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getMatcher()
 		 * @generated
 		 */
 		EClass MATCHER = eINSTANCE.getMatcher();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.AttributeMatcherImpl
+		 * @see pamtram.mapping.extended.impl.AttributeMatcherImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getAttributeMatcher()
 		 * @generated
 		 */
@@ -3130,10 +3130,10 @@ public interface MappingPackage extends EPackage {
 		EOperation ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ClassMatcherImpl
+		 * @see pamtram.mapping.extended.impl.ClassMatcherImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getClassMatcher()
 		 * @generated
 		 */
@@ -3288,10 +3288,10 @@ public interface MappingPackage extends EPackage {
 		EClass EXPORTED_MAPPING_HINT_GROUP = eINSTANCE.getExportedMappingHintGroup();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ContainerSelectorImpl
+		 * @see pamtram.mapping.extended.impl.ContainerSelectorImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelector()
 		 * @generated
 		 */
@@ -3306,10 +3306,10 @@ public interface MappingPackage extends EPackage {
 		EReference CONTAINER_SELECTOR__TARGET_ATTRIBUTES = eINSTANCE.getContainerSelector_TargetAttributes();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.ContainerSelectorTargetAttributeImpl
+		 * @see pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getContainerSelectorTargetAttribute()
 		 * @generated
 		 */

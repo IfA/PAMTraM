@@ -20,6 +20,12 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
+import pamtram.mapping.extended.provider.AttributeMatcherItemProvider;
+import pamtram.mapping.extended.provider.ClassMatcherItemProvider;
+import pamtram.mapping.extended.provider.ContainerSelectorItemProvider;
+import pamtram.mapping.extended.provider.ContainerSelectorTargetAttributeItemProvider;
+import pamtram.mapping.extended.provider.ReferenceTargetSelectorItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -97,7 +103,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.ReferenceTargetSelector} instances. <!--
+	 * {@link pamtram.mapping.extended.ReferenceTargetSelector} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -105,7 +111,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected ReferenceTargetSelectorItemProvider referenceTargetSelectorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ReferenceTargetSelector}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.ReferenceTargetSelector}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,7 +126,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.AttributeMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.AttributeMatcher} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -128,7 +134,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected AttributeMatcherItemProvider attributeMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.AttributeMatcher}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.AttributeMatcher}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -142,7 +148,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ClassMatcher} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ClassMatcher} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +156,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected ClassMatcherItemProvider classMatcherItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ClassMatcher}. <!--
+	 * This creates an adapter for a {@link pamtram.mapping.extended.ClassMatcher}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -235,7 +241,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.ContainerSelector} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ContainerSelector} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -243,7 +249,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected ContainerSelectorItemProvider containerSelectorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.ContainerSelector}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.ContainerSelector}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -258,7 +264,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.ContainerSelectorTargetAttribute} instances. <!--
+	 * {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -267,7 +273,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.ContainerSelectorTargetAttribute}. <!--
+	 * {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

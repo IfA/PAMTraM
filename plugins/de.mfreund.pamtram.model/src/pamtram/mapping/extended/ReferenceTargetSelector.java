@@ -1,11 +1,13 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
@@ -16,8 +18,8 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector()
@@ -42,7 +44,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	TargetSectionCrossReference getAffectedReference();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Affected Reference</em>' reference.
@@ -68,7 +70,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	Matcher getMatcher();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.ReferenceTargetSelector#getMatcher <em>Matcher</em>}' containment reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Matcher</em>' containment reference.

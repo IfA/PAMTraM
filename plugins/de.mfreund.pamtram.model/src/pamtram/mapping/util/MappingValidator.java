@@ -10,6 +10,12 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ClassMatcher;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
+import pamtram.mapping.extended.Matcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.util.StructureValidator;
 import pamtram.util.PamtramValidator;
 

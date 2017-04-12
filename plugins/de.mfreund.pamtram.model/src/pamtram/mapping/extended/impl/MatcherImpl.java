@@ -1,12 +1,12 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.Matcher;
+import pamtram.mapping.extended.Matcher;
 
 /**
  * <!-- begin-user-doc -->

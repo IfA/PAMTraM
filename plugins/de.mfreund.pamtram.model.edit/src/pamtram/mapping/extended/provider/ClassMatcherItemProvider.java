@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ClassMatcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ClassMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ClassMatcher} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -22,11 +22,11 @@ import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.target.TargetSection;
 import pamtram.util.PamtramValidator;
 

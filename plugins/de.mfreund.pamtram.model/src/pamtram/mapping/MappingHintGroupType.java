@@ -7,6 +7,8 @@ import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSection;
 
 /**
@@ -126,7 +128,7 @@ public interface MappingHintGroupType extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Reference Target Selectors</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ReferenceTargetSelector}.
+	 * The list contents are of type {@link pamtram.mapping.extended.ReferenceTargetSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reference Target Selectors</em>' reference list isn't clear,
@@ -143,7 +145,7 @@ public interface MappingHintGroupType extends NamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Container Selectors</b></em>' reference list.
-	 * The list contents are of type {@link pamtram.mapping.ContainerSelector}.
+	 * The list contents are of type {@link pamtram.mapping.extended.ContainerSelector}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Container Selectors</em>' reference list isn't clear,

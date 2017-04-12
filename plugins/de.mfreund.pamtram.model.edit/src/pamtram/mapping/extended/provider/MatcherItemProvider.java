@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -21,7 +21,7 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.Matcher} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.Matcher} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

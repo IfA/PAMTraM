@@ -1,8 +1,10 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import org.eclipse.emf.ecore.EObject;
+
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->

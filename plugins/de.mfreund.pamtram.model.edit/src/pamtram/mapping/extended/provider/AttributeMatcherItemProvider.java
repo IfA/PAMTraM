@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,10 +19,10 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
-import pamtram.mapping.AttributeMatcher;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructureFactory;
@@ -32,7 +32,7 @@ import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.AttributeMatcher} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMatcher} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated

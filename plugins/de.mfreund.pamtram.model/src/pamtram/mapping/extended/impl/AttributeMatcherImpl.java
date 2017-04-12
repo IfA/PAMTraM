@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -25,33 +25,36 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
+import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
+import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Connection Hint</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attribute Matcher</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
- *   <li>{@link pamtram.mapping.impl.ContainerSelectorImpl#getTargetAttributes <em>Target Attributes</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMatcherImpl#getExpression <em>Expression</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMatcherImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMatcherImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMatcherImpl#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContainerSelectorImpl extends MappingHintImpl implements ContainerSelector {
+public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatcher {
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
@@ -94,19 +97,20 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	protected EList<InstanceSelectorSourceInterface> sourceElements;
 
 	/**
-	 * The cached value of the '{@link #getTargetAttributes() <em>Target Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getTargetAttributes()
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ContainerSelectorTargetAttribute> targetAttributes;
+	protected TargetSectionAttribute target;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ContainerSelectorImpl() {
+	protected AttributeMatcherImpl() {
 		super();
 	}
 
@@ -116,7 +120,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.CONTAINER_SELECTOR;
+		return MappingPackage.Literals.ATTRIBUTE_MATCHER;
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CONTAINER_SELECTOR__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -147,7 +151,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.CONTAINER_SELECTOR__MODIFIERS);
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS);
 		}
 		return modifiers;
 	}
@@ -157,11 +161,102 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 */
 	@Override
-	public EList<ContainerSelectorTargetAttribute> getTargetAttributes() {
-		if (targetAttributes == null) {
-			targetAttributes = new EObjectContainmentEList<ContainerSelectorTargetAttribute>(ContainerSelectorTargetAttribute.class, this, MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+	public TargetSectionAttribute getTarget() {
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (TargetSectionAttribute)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
+			}
 		}
-		return targetAttributes;
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionAttribute basicGetTarget() {
+		return target;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTarget(TargetSectionAttribute newTarget) {
+		TargetSectionAttribute oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorSourceInterface> getSourceElements() {
+		if (sourceElements == null) {
+			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
+		}
+		return sourceElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
+		return new BasicEList<>(
+				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateTargetMatchesAffectedReferenceType(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if(!(this.eContainer() instanceof ReferenceTargetSelector) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
+			return true;
+		}
+		
+		boolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The type of the class containing the target attribute ('" + 
+					((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + "') is not allowed by the affected reference of the parent ReferenceTargetSelector that " +
+					"requires a (sub-)type of '" + ((pamtram.mapping.extended.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + "'!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET }));
+		
+		}
+		
+		return result;
 	}
 
 	/**
@@ -195,46 +290,10 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 */
 	@Override
-	public EList<InstanceSelectorSourceInterface> getSourceElements() {
-		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
-		}
-		return sourceElements;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
-		return new BasicEList<>(
-				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
-		return new BasicEList<>(
-				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
-			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				return ((InternalEList<?>)getTargetAttributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -246,14 +305,15 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.CONTAINER_SELECTOR__EXPRESSION:
+			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return getExpression();
-			case MappingPackage.CONTAINER_SELECTOR__MODIFIERS:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return getModifiers();
-			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return getSourceElements();
-			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				return getTargetAttributes();
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -266,20 +326,19 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.CONTAINER_SELECTOR__EXPRESSION:
+			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__MODIFIERS:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				getTargetAttributes().clear();
-				getTargetAttributes().addAll((Collection<? extends ContainerSelectorTargetAttribute>)newValue);
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				setTarget((TargetSectionAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -292,17 +351,17 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.CONTAINER_SELECTOR__EXPRESSION:
+			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__MODIFIERS:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
-			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				getTargetAttributes().clear();
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				setTarget((TargetSectionAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,14 +374,14 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.CONTAINER_SELECTOR__EXPRESSION:
+			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case MappingPackage.CONTAINER_SELECTOR__MODIFIERS:
+			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
-			case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				return targetAttributes != null && !targetAttributes.isEmpty();
+			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+				return target != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -333,21 +392,26 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.CONTAINER_SELECTOR__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.CONTAINER_SELECTOR__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS: return StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS;
+				case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS: return StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -360,21 +424,26 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.CONTAINER_SELECTOR__EXPRESSION;
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.CONTAINER_SELECTOR__MODIFIERS;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS;
 				default: return -1;
 			}
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (baseFeatureID) {
-				case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS: return MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -387,6 +456,11 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == ExpandableHint.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == ExpressionElement.class) {
 			switch (baseOperationID) {
 				default: return -1;
@@ -399,9 +473,9 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (baseOperationID) {
-				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return MappingPackage.CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
-				case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS: return MappingPackage.CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS;
-				case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS: return MappingPackage.CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -413,13 +487,16 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+				return validateTargetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
-			case MappingPackage.CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
+			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
@@ -440,4 +517,4 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		return result.toString();
 	}
 
-} // ModelConnectionHintImpl
+} // AttributeMatcherImpl

@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -13,12 +13,13 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
+
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.provider.DynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.ContainerSelectorTargetAttribute} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

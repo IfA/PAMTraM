@@ -1,9 +1,11 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelector;
 
 
@@ -15,8 +17,8 @@ import pamtram.structure.InstanceSelector;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link pamtram.mapping.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}</li>
- * <li>{@link pamtram.mapping.ContainerSelector#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.extended.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}</li>
+ * <li>{@link pamtram.mapping.extended.ContainerSelector#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getContainerSelector()
@@ -27,7 +29,7 @@ public interface ContainerSelector extends MappingHint, InstanceSelector {
 
 	/**
 	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.ContainerSelectorTargetAttribute}.
+	 * The list contents are of type {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Attributes</em>' containment reference list isn't clear,

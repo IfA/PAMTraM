@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.ContainerSelectorTargetAttribute;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.DynamicSourceElementImpl;

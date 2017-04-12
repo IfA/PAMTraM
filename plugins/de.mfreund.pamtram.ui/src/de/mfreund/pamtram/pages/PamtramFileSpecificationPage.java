@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.PackageNotFoundException;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.jface.preference.FileFieldEditor;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -53,11 +55,60 @@ public class PamtramFileSpecificationPage extends WizardPage {
 	private FileFieldEditor srcFileFieldEditor;
 
 	/*
-	 * A list that stores all known namespace URIs (value) for the specified source files (key).
+	 * A list that stores all known namespace URIs (value) for the specified
+	 * source files (key).
 	 */
 	private HashMap<String, String> nsUris = new HashMap<>();
 
-	private List srcFileList;
+	/**
+	 * A {@link IPropertyChangeListener} that loads the source model specified
+	 * by the user via the {@link #srcFileFieldEditor}.
+	 */
+	private IPropertyChangeListener srcFileFieldEditorTextChangedListener = event -> {
+
+		PamtramFileSpecificationPage.this.srcFile = PamtramFileSpecificationPage.this.srcFileFieldEditor
+				.getStringValue();
+
+		if (this.srcFile.isEmpty()) {
+			// nothing to be done
+			return;
+		}
+
+		try {
+			Resource resource;
+			EObject object = null;
+
+			// Create a resource set.
+			ResourceSet rs = new ResourceSetImpl();
+
+			if (PamtramFileSpecificationPage.this.srcFile.endsWith(".xml")) {
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xml",
+						new GenericXMLResourceFactoryImpl());
+			}
+
+			// Create a File URI
+			URI sourceUri = URI.createFileURI(new java.io.File(PamtramFileSpecificationPage.this.srcFile).toString());
+
+			// Load the resource
+			resource = rs.getResource(sourceUri, true);
+			resource.load(null);
+
+			// Get the first object in the resource
+			object = resource.getContents().get(0);
+
+			// Get the namespace Uri
+			PamtramFileSpecificationPage.this.nsUris.put(PamtramFileSpecificationPage.this.srcFile,
+					object.eClass().getEPackage().getNsURI());
+		} catch (Exception e) {
+			if (e.getCause() instanceof PackageNotFoundException) {
+				PamtramFileSpecificationPage.this.nsUris.put(PamtramFileSpecificationPage.this.srcFile, null);
+			} else {
+				e.printStackTrace();
+			}
+		}
+
+		PamtramFileSpecificationPage.this.wizContainer.updateButtons();
+	};
 
 	/**
 	 * This creates an instance.
@@ -121,47 +172,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 		// set the allowed file extensions
 		this.srcFileFieldEditor.setFileExtensions(new String[] { "*.xmi", "*.xml" });
 		// set a listener that updates the buttons
-		this.srcFileFieldEditor.setPropertyChangeListener(event -> {
-
-			PamtramFileSpecificationPage.this.srcFile = PamtramFileSpecificationPage.this.srcFileFieldEditor
-					.getStringValue();
-
-			try {
-				Resource resource;
-				EObject object = null;
-
-				// Create a resource set.
-				ResourceSet rs = new ResourceSetImpl();
-
-				if (PamtramFileSpecificationPage.this.srcFile.endsWith(".xml")) {
-					Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xml",
-							new GenericXMLResourceFactoryImpl());
-				}
-
-				// Create a File URI
-				URI sourceUri = URI
-						.createFileURI(new java.io.File(PamtramFileSpecificationPage.this.srcFile).toString());
-
-				// Load the resource
-				resource = rs.getResource(sourceUri, true);
-				resource.load(null);
-
-				// Get the first object in the resource
-				object = resource.getContents().get(0);
-
-				// Get the namespace Uri
-				PamtramFileSpecificationPage.this.nsUris.put(PamtramFileSpecificationPage.this.srcFile,
-						object.eClass().getEPackage().getNsURI());
-			} catch (Exception e) {
-				if (e.getCause() instanceof PackageNotFoundException) {
-					PamtramFileSpecificationPage.this.nsUris.put(PamtramFileSpecificationPage.this.srcFile, null);
-				} else {
-					e.printStackTrace();
-				}
-			}
-
-			PamtramFileSpecificationPage.this.wizContainer.updateButtons();
-		});
+		this.srcFileFieldEditor.setPropertyChangeListener(this.srcFileFieldEditorTextChangedListener);
 
 		// create a button that allows specifying another source model
 		Button addButton = new Button(container, SWT.NONE);
@@ -169,25 +180,26 @@ public class PamtramFileSpecificationPage extends WizardPage {
 		addButton.setToolTipText("Add another source model...");
 		addButton.setImage(
 				BundleContentHelper.getBundleImage(PamtramFileSpecificationPage.BUNDLE_ID, "icons/add_obj.gif"));
-		addButton.addSelectionListener((SelectionListener2) e -> {
-			// TODO prevent duplicate entries as this should not make any sense
-			if (PamtramFileSpecificationPage.this.isSrcFileValid()) {
-				// add the item to the list and clear the value of the FileFieldEditor
-				PamtramFileSpecificationPage.this.srcFileList
-						.add(PamtramFileSpecificationPage.this.srcFileFieldEditor.getStringValue());
-				PamtramFileSpecificationPage.this.srcFileFieldEditor.setStringValue(null);
+
+		// A List displaying the selected source models to the user.
+		//
+		List srcFileList = new List(container, SWT.NONE);
+		srcFileList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 4, 1));
+		srcFileList.addKeyListener((KeyPressedListener) e -> {
+
+			if (e.keyCode == SWT.DEL && srcFileList.getSelectionIndex() != -1) {
+				PamtramFileSpecificationPage.this.nsUris.remove(srcFileList.getItem(srcFileList.getSelectionIndex()));
+				srcFileList.remove(srcFileList.getSelectionIndex());
 			}
 		});
 
-		this.srcFileList = new List(container, SWT.NONE);
-		this.srcFileList.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 4, 1));
-		this.srcFileList.addKeyListener((KeyPressedListener) e -> {
-
-			if (e.keyCode == SWT.DEL && PamtramFileSpecificationPage.this.srcFileList.getSelectionIndex() != -1) {
-				PamtramFileSpecificationPage.this.nsUris.remove(PamtramFileSpecificationPage.this.srcFileList
-						.getItem(PamtramFileSpecificationPage.this.srcFileList.getSelectionIndex()));
-				PamtramFileSpecificationPage.this.srcFileList
-						.remove(PamtramFileSpecificationPage.this.srcFileList.getSelectionIndex());
+		addButton.addSelectionListener((SelectionListener2) e -> {
+			// TODO prevent duplicate entries as this should not make any sense
+			if (PamtramFileSpecificationPage.this.isSrcFileValid()) {
+				// add the item to the list and clear the value of the
+				// FileFieldEditor
+				srcFileList.add(PamtramFileSpecificationPage.this.srcFileFieldEditor.getStringValue());
+				PamtramFileSpecificationPage.this.srcFileFieldEditor.setStringValue(null);
 			}
 		});
 
@@ -196,7 +208,8 @@ public class PamtramFileSpecificationPage extends WizardPage {
 	}
 
 	/**
-	 * Returns the name of the pamtram file to be created (including the file extension '.pamtram'
+	 * Returns the name of the pamtram file to be created (including the file
+	 * extension '.pamtram'
 	 *
 	 * @return the pamtram file
 	 */
@@ -216,7 +229,7 @@ public class PamtramFileSpecificationPage extends WizardPage {
 	 */
 	public Set<String> getSrcFiles() {
 
-		return this.nsUris.keySet().stream().filter(s -> s != null).collect(Collectors.toSet());
+		return this.nsUris.keySet().stream().filter(Objects::nonNull).collect(Collectors.toSet());
 
 	}
 

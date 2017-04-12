@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -24,10 +25,11 @@ import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.provider.MappingHintItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -37,7 +39,7 @@ import pamtram.structure.source.SourceSectionClass;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.extended.CardinalityMapping} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class CardinalityMappingItemProvider extends MappingHintItemProvider {
@@ -45,7 +47,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public CardinalityMappingItemProvider(AdapterFactory adapterFactory) {
@@ -55,7 +57,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -74,7 +76,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Expression feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -90,7 +92,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -105,7 +107,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Source feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
@@ -114,7 +116,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 				this.getString("_UI_CardinalityMapping_source_feature"),
 				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature",
 						"_UI_CardinalityMapping_type"),
-				MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null));
+				ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null));
 	}
 
 	/**
@@ -128,7 +130,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_source_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature",
 								"_UI_CardinalityMapping_type"),
-						MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null) {
+						ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -189,7 +191,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Target feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
@@ -198,7 +200,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 				this.getString("_UI_CardinalityMapping_target_feature"),
 				this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature",
 						"_UI_CardinalityMapping_type"),
-				MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null));
+				ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null));
 	}
 
 	/**
@@ -212,7 +214,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_target_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature",
 								"_UI_CardinalityMapping_type"),
-						MappingPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null) {
+						ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -259,21 +261,21 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS);
 		}
 		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -288,7 +290,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This returns CardinalityMapping.gif. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -299,7 +301,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -346,10 +348,10 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(CardinalityMapping.class)) {
-		case MappingPackage.CARDINALITY_MAPPING__EXPRESSION:
+		case ExtendedPackage.CARDINALITY_MAPPING__EXPRESSION:
 			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case MappingPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
+		case ExtendedPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
 			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -360,24 +362,35 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
 				ExtendedFactory.eINSTANCE.createCardinalityMappingSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
 				ExtendedFactory.eINSTANCE.createCardinalityMappingExternalSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
 				ExtendedFactory.eINSTANCE.createCardinalityMappingGlobalSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
 				PamtramFactory.eINSTANCE.createFixedValue()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

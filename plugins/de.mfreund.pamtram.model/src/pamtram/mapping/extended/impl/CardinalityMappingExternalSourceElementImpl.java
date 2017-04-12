@@ -3,9 +3,8 @@
 package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.structure.impl.ExternalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -36,7 +35,7 @@ public class CardinalityMappingExternalSourceElementImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT;
+		return ExtendedPackage.Literals.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 } // CardinalityMappingExternalSourceElementImpl

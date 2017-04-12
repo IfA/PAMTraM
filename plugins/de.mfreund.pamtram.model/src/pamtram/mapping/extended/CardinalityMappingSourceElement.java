@@ -2,7 +2,6 @@
  */
 package pamtram.mapping.extended;
 
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.LocalDynamicSourceElement;
 
 import pamtram.structure.source.SourceSection;
@@ -16,7 +15,7 @@ import pamtram.structure.source.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getCardinalityMappingSourceElement()
+ * @see pamtram.mapping.extended.ExtendedPackage#getCardinalityMappingSourceElement()
  * @model
  * @generated
  */

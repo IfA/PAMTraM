@@ -13,13 +13,7 @@ import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
-import pamtram.mapping.extended.CardinalityMapping;
-import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
-import pamtram.mapping.extended.CardinalityMappingGlobalSourceElement;
-import pamtram.mapping.extended.CardinalityMappingSourceElement;
-import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.structure.ExternalDynamicSourceElement;
-import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalDynamicSourceElement;
@@ -130,26 +124,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createHintImporterMappingHintAdapter();
 			}
 			@Override
-			public Adapter caseCardinalityMapping(CardinalityMapping object) {
-				return createCardinalityMappingAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingSourceInterface(CardinalityMappingSourceInterface object) {
-				return createCardinalityMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingSourceElement(CardinalityMappingSourceElement object) {
-				return createCardinalityMappingSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingExternalSourceElement(CardinalityMappingExternalSourceElement object) {
-				return createCardinalityMappingExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement object) {
-				return createCardinalityMappingGlobalSourceElementAdapter();
-			}
-			@Override
 			public Adapter caseReferenceTargetSelector(ReferenceTargetSelector object) {
 				return createReferenceTargetSelectorAdapter();
 			}
@@ -238,24 +212,16 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
+			public Adapter caseInstanceSelector(InstanceSelector object) {
+				return createInstanceSelectorAdapter();
+			}
+			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
 				return createDynamicSourceElementAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
 				return createLocalDynamicSourceElementAdapter();
-			}
-			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
-				return createExternalDynamicSourceElementAdapter();
-			}
-			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> Adapter caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A, InstanceSelectorType> object) {
-				return createGlobalDynamicSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseInstanceSelector(InstanceSelector object) {
-				return createInstanceSelectorAdapter();
 			}
 			@Override
 			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
@@ -268,6 +234,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 				return createValueConstraintSourceInterfaceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
+				return createExternalDynamicSourceElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -402,20 +372,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.GlobalDynamicSourceElement <em>Global Dynamic Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.GlobalDynamicSourceElement
-	 * @generated
-	 */
-	public Adapter createGlobalDynamicSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -426,20 +382,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMapping <em>Cardinality Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.CardinalityMapping
-	 * @generated
-	 */
-	public Adapter createCardinalityMappingAdapter() {
 		return null;
 	}
 
@@ -818,62 +760,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMappingSourceElement <em>Cardinality Mapping Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.CardinalityMappingSourceElement
-	 * @generated
-	 */
-	public Adapter createCardinalityMappingSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.CardinalityMappingSourceInterface
-	 * @generated
-	 */
-	public Adapter createCardinalityMappingSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement <em>Cardinality Mapping External Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.CardinalityMappingExternalSourceElement
-	 * @generated
-	 */
-	public Adapter createCardinalityMappingExternalSourceElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement <em>Cardinality Mapping Global Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.CardinalityMappingGlobalSourceElement
-	 * @generated
-	 */
-	public Adapter createCardinalityMappingGlobalSourceElementAdapter() {
 		return null;
 	}
 

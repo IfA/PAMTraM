@@ -166,6 +166,98 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CardinalityMappingItemProvider cardinalityMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.CardinalityMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCardinalityMappingAdapter() {
+		if (cardinalityMappingItemProvider == null) {
+			cardinalityMappingItemProvider = new CardinalityMappingItemProvider(this);
+		}
+
+		return cardinalityMappingItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMappingSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CardinalityMappingSourceElementItemProvider cardinalityMappingSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.CardinalityMappingSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCardinalityMappingSourceElementAdapter() {
+		if (cardinalityMappingSourceElementItemProvider == null) {
+			cardinalityMappingSourceElementItemProvider = new CardinalityMappingSourceElementItemProvider(this);
+		}
+
+		return cardinalityMappingSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CardinalityMappingExternalSourceElementItemProvider cardinalityMappingExternalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCardinalityMappingExternalSourceElementAdapter() {
+		if (cardinalityMappingExternalSourceElementItemProvider == null) {
+			cardinalityMappingExternalSourceElementItemProvider = new CardinalityMappingExternalSourceElementItemProvider(this);
+		}
+
+		return cardinalityMappingExternalSourceElementItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CardinalityMappingGlobalSourceElementItemProvider cardinalityMappingGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCardinalityMappingGlobalSourceElementAdapter() {
+		if (cardinalityMappingGlobalSourceElementItemProvider == null) {
+			cardinalityMappingGlobalSourceElementItemProvider = new CardinalityMappingGlobalSourceElementItemProvider(this);
+		}
+
+		return cardinalityMappingGlobalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
@@ -270,6 +362,10 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
 		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();
 		if (attributeMappingGlobalSourceElementItemProvider != null) attributeMappingGlobalSourceElementItemProvider.dispose();
+		if (cardinalityMappingItemProvider != null) cardinalityMappingItemProvider.dispose();
+		if (cardinalityMappingSourceElementItemProvider != null) cardinalityMappingSourceElementItemProvider.dispose();
+		if (cardinalityMappingExternalSourceElementItemProvider != null) cardinalityMappingExternalSourceElementItemProvider.dispose();
+		if (cardinalityMappingGlobalSourceElementItemProvider != null) cardinalityMappingGlobalSourceElementItemProvider.dispose();
 	}
 
 }

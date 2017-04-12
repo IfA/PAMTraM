@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -14,14 +14,13 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.CardinalityMappingSourceElement;
-
+import pamtram.mapping.extended.CardinalityMappingSourceElement;
 import pamtram.provider.PamtramEditPlugin;
 
 import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMappingSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.CardinalityMappingSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

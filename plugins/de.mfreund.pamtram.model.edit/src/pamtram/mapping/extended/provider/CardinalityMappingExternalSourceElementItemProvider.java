@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.provider;
+package pamtram.mapping.extended.provider;
 
 
 import java.util.Collection;
@@ -14,26 +14,25 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.mapping.CardinalityMappingGlobalSourceElement;
-
+import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
 import pamtram.provider.PamtramEditPlugin;
 
-import pamtram.structure.provider.GlobalDynamicSourceElementItemProvider;
+import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.CardinalityMappingGlobalSourceElement} object.
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDynamicSourceElementItemProvider {
+public class CardinalityMappingExternalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CardinalityMappingGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
+	public CardinalityMappingExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,14 +52,14 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	}
 
 	/**
-	 * This returns CardinalityMappingGlobalSourceElement.gif.
+	 * This returns CardinalityMappingExternalSourceElement.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CardinalityMappingGlobalSourceElement"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CardinalityMappingExternalSourceElement"));
 	}
 
 	/**
@@ -82,12 +81,12 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((CardinalityMappingGlobalSourceElement)object).getName();
+		String label = ((CardinalityMappingExternalSourceElement)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_CardinalityMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_CardinalityMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(getString("_UI_CardinalityMappingGlobalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_CardinalityMappingExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}	

@@ -10,6 +10,11 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
+import pamtram.mapping.extended.CardinalityMappingGlobalSourceElement;
+import pamtram.mapping.extended.CardinalityMappingSourceElement;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.structure.util.StructureValidator;
 import pamtram.util.PamtramValidator;
 

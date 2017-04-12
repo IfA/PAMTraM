@@ -1,11 +1,11 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.mapping.CardinalityMappingExternalSourceElement;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
 import pamtram.structure.impl.ExternalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;

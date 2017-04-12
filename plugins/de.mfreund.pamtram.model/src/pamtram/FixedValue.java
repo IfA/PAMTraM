@@ -2,8 +2,8 @@
  */
 package pamtram;
 
-import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 

@@ -31,15 +31,6 @@ public interface MappingFactory extends EFactory {
 	Mapping createMapping();
 
 	/**
-	 * Returns a new object of class '<em>Cardinality Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cardinality Mapping</em>'.
-	 * @generated
-	 */
-	CardinalityMapping createCardinalityMapping();
-
-	/**
 	 * Returns a new object of class '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,33 +194,6 @@ public interface MappingFactory extends EFactory {
 	 * @generated
 	 */
 	ExternalMappedAttributeValueAppender createExternalMappedAttributeValueAppender();
-
-	/**
-	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cardinality Mapping Source Element</em>'.
-	 * @generated
-	 */
-	CardinalityMappingSourceElement createCardinalityMappingSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>Cardinality Mapping External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cardinality Mapping External Source Element</em>'.
-	 * @generated
-	 */
-	CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement();
-
-	/**
-	 * Returns a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
-	 * @generated
-	 */
-	CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement();
 
 	/**
 	 * Returns the package supported by this factory.

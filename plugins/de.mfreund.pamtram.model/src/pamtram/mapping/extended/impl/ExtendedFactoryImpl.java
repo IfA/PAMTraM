@@ -125,6 +125,46 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CardinalityMapping createCardinalityMapping() {
+		CardinalityMappingImpl cardinalityMapping = new CardinalityMappingImpl();
+		return cardinalityMapping;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CardinalityMappingSourceElement createCardinalityMappingSourceElement() {
+		CardinalityMappingSourceElementImpl cardinalityMappingSourceElement = new CardinalityMappingSourceElementImpl();
+		return cardinalityMappingSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement() {
+		CardinalityMappingExternalSourceElementImpl cardinalityMappingExternalSourceElement = new CardinalityMappingExternalSourceElementImpl();
+		return cardinalityMappingExternalSourceElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement() {
+		CardinalityMappingGlobalSourceElementImpl cardinalityMappingGlobalSourceElement = new CardinalityMappingGlobalSourceElementImpl();
+		return cardinalityMappingGlobalSourceElement;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @deprecated

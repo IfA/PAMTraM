@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -8,6 +8,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -25,9 +27,9 @@ import pamtram.structure.target.TargetSectionClass;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.CardinalityMapping#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.CardinalityMapping#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.CardinalityMapping#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.CardinalityMapping#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getCardinalityMapping()
@@ -52,7 +54,7 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> getSource();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.CardinalityMapping#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -78,7 +80,7 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	TargetSectionClass getTarget();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.mapping.extended.CardinalityMapping#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
@@ -89,7 +91,7 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.CardinalityMappingSourceInterface}.
+	 * The list contents are of type {@link pamtram.mapping.extended.CardinalityMappingSourceInterface}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source Elements</em>' containment reference list isn't clear,

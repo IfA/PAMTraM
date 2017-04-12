@@ -291,10 +291,10 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT = 9;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.CardinalityMappingImpl
+	 * @see pamtram.mapping.extended.impl.CardinalityMappingImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMapping()
 	 * @generated
 	 */
@@ -1396,20 +1396,20 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.CardinalityMappingSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.CardinalityMappingSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceElement()
 	 * @generated
 	 */
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT = 13;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @see pamtram.mapping.extended.CardinalityMappingSourceInterface
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceInterface()
 	 * @generated
 	 */
@@ -1515,10 +1515,10 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.CardinalityMappingExternalSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingExternalSourceElement()
 	 * @generated
 	 */
@@ -1597,10 +1597,10 @@ public interface MappingPackage extends EPackage {
 	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl
+	 * @see pamtram.mapping.extended.impl.CardinalityMappingGlobalSourceElementImpl
 	 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingGlobalSourceElement()
 	 * @generated
 	 */
@@ -2918,144 +2918,144 @@ public interface MappingPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMapping <em>Cardinality Mapping</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMapping <em>Cardinality Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Cardinality Mapping</em>'.
-	 * @see pamtram.mapping.CardinalityMapping
+	 * @see pamtram.mapping.extended.CardinalityMapping
 	 * @generated
 	 */
 	EClass getCardinalityMapping();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.CardinalityMapping#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.CardinalityMapping#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see pamtram.mapping.CardinalityMapping#getSource()
+	 * @see pamtram.mapping.extended.CardinalityMapping#getSource()
 	 * @see #getCardinalityMapping()
 	 * @generated
 	 */
 	EReference getCardinalityMapping_Source();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.CardinalityMapping#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.CardinalityMapping#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.mapping.CardinalityMapping#getTarget()
+	 * @see pamtram.mapping.extended.CardinalityMapping#getTarget()
 	 * @see #getCardinalityMapping()
 	 * @generated
 	 */
 	EReference getCardinalityMapping_Target();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.CardinalityMapping#getSourceElements <em>Source Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.extended.CardinalityMapping#getSourceElements <em>Source Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Source Elements</em>'.
-	 * @see pamtram.mapping.CardinalityMapping#getSourceElements()
+	 * @see pamtram.mapping.extended.CardinalityMapping#getSourceElements()
 	 * @see #getCardinalityMapping()
 	 * @generated
 	 */
 	EReference getCardinalityMapping_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Source Element Matches Section</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Target Class Matches Section</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateTargetClassMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateSourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Class Is Variable Cardinality</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateSourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Class Is Variable Cardinality</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Source Class Is Variable Cardinality</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateSourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateSourceClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateSourceClassIsVariableCardinality__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateTargetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Is Variable Cardinality</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateTargetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Is Variable Cardinality</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Target Class Is Variable Cardinality</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateTargetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateTargetClassIsVariableCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateTargetClassIsVariableCardinality__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateNoCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Cardinality Mapping For Source Section Root</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateNoCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Cardinality Mapping For Source Section Root</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate No Cardinality Mapping For Source Section Root</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateNoCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateNoCardinalityMappingForSourceSectionRoot(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateNoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Source Or Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Source Or Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Only Source Or Source Elements</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateOnlySourceOrSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Expression Only For Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Expression Only For Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Expression Only For Source Elements</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateExpressionOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Modifiers Only For Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Modifiers Only For Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get Local Source Elements</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#getLocalSourceElements()
+	 * @see pamtram.mapping.extended.CardinalityMapping#getLocalSourceElements()
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__GetLocalSourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.CardinalityMapping#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#getExternalSourceElements() <em>Get External Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the '<em>Get External Source Elements</em>' operation.
-	 * @see pamtram.mapping.CardinalityMapping#getExternalSourceElements()
+	 * @see pamtram.mapping.extended.CardinalityMapping#getExternalSourceElements()
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__GetExternalSourceElements();
@@ -3569,41 +3569,41 @@ public interface MappingPackage extends EPackage {
 	EClass getExpandableHint();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingSourceElement <em>Cardinality Mapping Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMappingSourceElement <em>Cardinality Mapping Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Cardinality Mapping Source Element</em>'.
-	 * @see pamtram.mapping.CardinalityMappingSourceElement
+	 * @see pamtram.mapping.extended.CardinalityMappingSourceElement
 	 * @generated
 	 */
 	EClass getCardinalityMappingSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Cardinality Mapping Source Interface</em>'.
-	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @see pamtram.mapping.extended.CardinalityMappingSourceInterface
 	 * @generated
 	 */
 	EClass getCardinalityMappingSourceInterface();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingExternalSourceElement <em>Cardinality Mapping External Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement <em>Cardinality Mapping External Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Cardinality Mapping External Source Element</em>'.
-	 * @see pamtram.mapping.CardinalityMappingExternalSourceElement
+	 * @see pamtram.mapping.extended.CardinalityMappingExternalSourceElement
 	 * @generated
 	 */
 	EClass getCardinalityMappingExternalSourceElement();
 
 	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.CardinalityMappingGlobalSourceElement <em>Cardinality Mapping Global Source Element</em>}'.
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement <em>Cardinality Mapping Global Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Cardinality Mapping Global Source Element</em>'.
-	 * @see pamtram.mapping.CardinalityMappingGlobalSourceElement
+	 * @see pamtram.mapping.extended.CardinalityMappingGlobalSourceElement
 	 * @generated
 	 */
 	EClass getCardinalityMappingGlobalSourceElement();
@@ -3726,10 +3726,10 @@ public interface MappingPackage extends EPackage {
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.CardinalityMappingImpl <em>Cardinality Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.CardinalityMappingImpl
+		 * @see pamtram.mapping.extended.impl.CardinalityMappingImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMapping()
 		 * @generated
 		 */
@@ -4282,40 +4282,40 @@ public interface MappingPackage extends EPackage {
 		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.CardinalityMappingSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.CardinalityMappingSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceElement()
 		 * @generated
 		 */
 		EClass CARDINALITY_MAPPING_SOURCE_ELEMENT = eINSTANCE.getCardinalityMappingSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.CardinalityMappingSourceInterface
+		 * @see pamtram.mapping.extended.CardinalityMappingSourceInterface
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingSourceInterface()
 		 * @generated
 		 */
 		EClass CARDINALITY_MAPPING_SOURCE_INTERFACE = eINSTANCE.getCardinalityMappingSourceInterface();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.CardinalityMappingExternalSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.CardinalityMappingExternalSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingExternalSourceElement()
 		 * @generated
 		 */
 		EClass CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT = eINSTANCE.getCardinalityMappingExternalSourceElement();
 
 		/**
-		 * The meta object literal for the '{@link pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.impl.CardinalityMappingGlobalSourceElementImpl
+		 * @see pamtram.mapping.extended.impl.CardinalityMappingGlobalSourceElementImpl
 		 * @see pamtram.mapping.impl.MappingPackageImpl#getCardinalityMappingGlobalSourceElement()
 		 * @generated
 		 */

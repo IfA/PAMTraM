@@ -21,6 +21,10 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import pamtram.mapping.extended.provider.CardinalityMappingExternalSourceElementItemProvider;
+import pamtram.mapping.extended.provider.CardinalityMappingGlobalSourceElementItemProvider;
+import pamtram.mapping.extended.provider.CardinalityMappingItemProvider;
+import pamtram.mapping.extended.provider.CardinalityMappingSourceElementItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -97,7 +101,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CardinalityMapping} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMapping} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @generated
@@ -105,7 +109,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	protected CardinalityMappingItemProvider cardinalityMappingItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link pamtram.mapping.CardinalityMapping}.
+	 * This creates an adapter for a {@link pamtram.mapping.extended.CardinalityMapping}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -472,7 +476,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.CardinalityMappingSourceElement} instances. <!--
+	 * {@link pamtram.mapping.extended.CardinalityMappingSourceElement} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -481,7 +485,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.CardinalityMappingSourceElement}. <!--
+	 * {@link pamtram.mapping.extended.CardinalityMappingSourceElement}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -496,7 +500,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CardinalityMappingExternalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -504,7 +508,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.CardinalityMappingExternalSourceElement}. <!--
+	 * {@link pamtram.mapping.extended.CardinalityMappingExternalSourceElement}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -519,7 +523,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.CardinalityMappingGlobalSourceElement} instances.
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -527,7 +531,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 
 	/**
 	 * This creates an adapter for a
-	 * {@link pamtram.mapping.CardinalityMappingGlobalSourceElement}. <!--
+	 * {@link pamtram.mapping.extended.CardinalityMappingGlobalSourceElement}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated

@@ -1,13 +1,14 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import pamtram.mapping.CardinalityMappingGlobalSourceElement;
+
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.CardinalityMappingGlobalSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.impl.GlobalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;

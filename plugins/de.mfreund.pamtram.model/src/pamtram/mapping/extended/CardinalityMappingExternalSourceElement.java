@@ -1,7 +1,8 @@
 /**
  */
-package pamtram.mapping;
+package pamtram.mapping.extended;
 
+import pamtram.mapping.MappingPackage;
 import pamtram.structure.ExternalDynamicSourceElement;
 
 import pamtram.structure.source.SourceSection;

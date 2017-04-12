@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.structure.target.TargetSection;
 
 /**

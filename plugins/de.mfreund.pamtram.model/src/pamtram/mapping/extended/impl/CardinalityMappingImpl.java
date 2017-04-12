@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.mapping.impl;
+package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -24,13 +24,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.CardinalityMappingExternalSourceElement;
-import pamtram.mapping.CardinalityMappingSourceElement;
-import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
+import pamtram.mapping.extended.CardinalityMappingSourceElement;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
+import pamtram.mapping.impl.MappingHintImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.generic.CardinalityType;
@@ -48,11 +49,11 @@ import pamtram.structure.target.TargetSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getSource <em>Source</em>}</li>
- *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.impl.CardinalityMappingImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated

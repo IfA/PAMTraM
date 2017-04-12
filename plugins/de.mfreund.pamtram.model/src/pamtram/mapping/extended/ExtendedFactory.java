@@ -73,4 +73,40 @@ public interface ExtendedFactory extends EFactory {
 	 */
 	AttributeMappingGlobalSourceElement createAttributeMappingGlobalSourceElement();
 
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping</em>'.
+	 * @generated
+	 */
+	CardinalityMapping createCardinalityMapping();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingSourceElement createCardinalityMappingSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping External Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingExternalSourceElement createCardinalityMappingExternalSourceElement();
+
+	/**
+	 * Returns a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cardinality Mapping Global Source Element</em>'.
+	 * @generated
+	 */
+	CardinalityMappingGlobalSourceElement createCardinalityMappingGlobalSourceElement();
+
 } //ExtendedFactory

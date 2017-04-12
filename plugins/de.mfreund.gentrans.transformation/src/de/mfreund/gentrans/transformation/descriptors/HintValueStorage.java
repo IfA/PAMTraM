@@ -13,13 +13,13 @@ import de.mfreund.gentrans.transformation.maps.CardinalityMappingHintValueMap;
 import de.mfreund.gentrans.transformation.maps.ContainerSelectorHintValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.mfreund.gentrans.transformation.maps.MappingInstanceSelectorHintValueMap;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceInterface;
 import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.CardinalityMappingSourceInterface;
 import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 

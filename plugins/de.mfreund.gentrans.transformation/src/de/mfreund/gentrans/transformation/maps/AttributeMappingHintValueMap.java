@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.maps;
 
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.structure.source.SourceSectionClass;
 
 /**

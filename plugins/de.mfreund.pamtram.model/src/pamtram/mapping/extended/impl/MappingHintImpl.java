@@ -18,7 +18,7 @@ import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.util.PamtramValidator;
 
@@ -71,7 +71,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MAPPING_HINT;
+		return ExtendedPackage.Literals.MAPPING_HINT;
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		ComplexCondition oldLocalCondition = localCondition;
 		localCondition = newLocalCondition;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -107,14 +107,14 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
-				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
+				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
 			if (newLocalCondition != null)
-				msgs = ((InternalEObject)newLocalCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
+				msgs = ((InternalEObject)newLocalCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
 			msgs = basicSetLocalCondition(newLocalCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
 	}
 
 	/**
@@ -128,7 +128,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 			}
 		}
 		return sharedCondition;
@@ -152,7 +152,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 	}
 
 	/**
@@ -213,7 +213,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -227,9 +227,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				return getLocalCondition();
-			case MappingPackage.MAPPING_HINT__SHARED_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
 		}
@@ -244,10 +244,10 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				setLocalCondition((ComplexCondition)newValue);
 				return;
-			case MappingPackage.MAPPING_HINT__SHARED_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
 				return;
 		}
@@ -262,10 +262,10 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				setLocalCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING_HINT__SHARED_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
 		}
@@ -280,9 +280,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				return localCondition != null;
-			case MappingPackage.MAPPING_HINT__SHARED_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				return sharedCondition != null;
 		}
 		return super.eIsSet(featureID);
@@ -297,8 +297,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.MAPPING_HINT__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
-				case MappingPackage.MAPPING_HINT__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
+				case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -314,8 +314,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return MappingPackage.MAPPING_HINT__LOCAL_CONDITION;
-				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return MappingPackage.MAPPING_HINT__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return ExtendedPackage.MAPPING_HINT__SHARED_CONDITION;
 				default: return -1;
 			}
 		}
@@ -331,8 +331,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -348,9 +348,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
+			case ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
 				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+			case ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

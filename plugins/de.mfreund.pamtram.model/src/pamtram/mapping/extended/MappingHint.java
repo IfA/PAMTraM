@@ -3,7 +3,6 @@
 package pamtram.mapping.extended;
 
 import pamtram.ConditionalElement;
-import pamtram.mapping.MappingPackage;
 
 
 /**
@@ -12,7 +11,7 @@ import pamtram.mapping.MappingPackage;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getMappingHint()
+ * @see pamtram.mapping.extended.ExtendedPackage#getMappingHint()
  * @model abstract="true"
  * @generated
  */

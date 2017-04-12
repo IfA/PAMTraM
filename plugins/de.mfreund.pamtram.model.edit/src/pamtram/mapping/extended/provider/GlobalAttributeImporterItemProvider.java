@@ -15,8 +15,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
@@ -67,7 +66,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 				 getResourceLocator(),
 				 getString("_UI_GlobalAttributeImporter_globalAttribute_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttributeImporter_globalAttribute_feature", "_UI_GlobalAttributeImporter_type"),
-				 MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE,
+				 ExtendedPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE,
 				 true,
 				 false,
 				 true,

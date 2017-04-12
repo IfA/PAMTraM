@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import pamtram.mapping.MappingPackage;
+import pamtram.PamtramPackage;
 import pamtram.structure.StructurePackage;
 
 /**
@@ -59,14 +59,14 @@ public interface ExtendedPackage extends EPackage {
 	ExtendedPackage eINSTANCE = pamtram.mapping.extended.impl.ExtendedPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintBaseTypeImpl <em>Mapping Hint Base Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.extended.impl.AttributeMappingImpl
-	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMapping()
+	 * @see pamtram.mapping.extended.impl.MappingHintBaseTypeImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintBaseType()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING = 0;
+	int MAPPING_HINT_BASE_TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -75,7 +75,81 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__NAME = MappingPackage.MAPPING_HINT__NAME;
+	int MAPPING_HINT_BASE_TYPE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Mapping Hint Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_BASE_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mapping Hint Base Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_BASE_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintTypeImpl <em>Mapping Hint Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.impl.MappingHintTypeImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintType()
+	 * @generated
+	 */
+	int MAPPING_HINT_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE__NAME = MAPPING_HINT_BASE_TYPE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Mapping Hint Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE_FEATURE_COUNT = MAPPING_HINT_BASE_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mapping Hint Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_TYPE_OPERATION_COUNT = MAPPING_HINT_BASE_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappingHintImpl <em>Mapping Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.impl.MappingHintImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHint()
+	 * @generated
+	 */
+	int MAPPING_HINT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__NAME = MAPPING_HINT_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -84,7 +158,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__LOCAL_CONDITION = MappingPackage.MAPPING_HINT__LOCAL_CONDITION;
+	int MAPPING_HINT__LOCAL_CONDITION = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
@@ -93,52 +167,16 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__SHARED_CONDITION = MappingPackage.MAPPING_HINT__SHARED_CONDITION;
+	int MAPPING_HINT__SHARED_CONDITION = MAPPING_HINT_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * The number of structural features of the '<em>Mapping Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING__EXPRESSION = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING__MODIFIERS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING__TARGET = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING__SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Mapping</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING_FEATURE_COUNT = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 4;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -147,7 +185,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+	int MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -156,7 +194,264 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Mapping Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.ExpandableHint
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExpandableHint()
+	 * @generated
+	 */
+	int EXPANDABLE_HINT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Expandable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPANDABLE_HINT_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Expandable Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPANDABLE_HINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.impl.HintImporterMappingHintImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getHintImporterMappingHint()
+	 * @generated
+	 */
+	int HINT_IMPORTER_MAPPING_HINT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT__NAME = MAPPING_HINT_TYPE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Hint Importer Mapping Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Hint Importer Mapping Hint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Mapping Hint Source Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintSourceInterface()
+	 * @generated
+	 */
+	int MAPPING_HINT_SOURCE_INTERFACE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_SOURCE_INTERFACE__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mapping Hint Source Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.impl.GlobalAttributeImporterImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getGlobalAttributeImporter()
+	 * @generated
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Global Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Global Attribute Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Global Attribute Importer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.mapping.extended.impl.AttributeMappingImpl
+	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMapping()
+	 * @generated
+	 */
+	int ATTRIBUTE_MAPPING = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__NAME = MAPPING_HINT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__LOCAL_CONDITION = MAPPING_HINT__LOCAL_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -165,7 +460,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -174,7 +469,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Target Attribute Matches Section</em>' operation.
@@ -183,7 +478,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING___VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING___VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping</em>' class.
@@ -192,7 +487,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_OPERATION_COUNT = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 3;
+	int ATTRIBUTE_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}' class.
@@ -202,7 +497,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMappingSourceInterface()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 1;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -211,7 +506,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE__NAME = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE__NAME;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Mapping Source Interface</em>' class.
@@ -220,7 +515,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping Source Interface</em>' class.
@@ -229,7 +524,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingSourceElementImpl <em>Attribute Mapping Source Element</em>}' class.
@@ -239,7 +534,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMappingSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 2;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -321,7 +616,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMappingExternalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 3;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -403,7 +698,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMappingGlobalSourceElement()
 	 * @generated
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT = 4;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -486,7 +781,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getCardinalityMapping()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING = 5;
+	int CARDINALITY_MAPPING = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -495,7 +790,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__NAME = MappingPackage.MAPPING_HINT__NAME;
+	int CARDINALITY_MAPPING__NAME = MAPPING_HINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -504,7 +799,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__LOCAL_CONDITION = MappingPackage.MAPPING_HINT__LOCAL_CONDITION;
+	int CARDINALITY_MAPPING__LOCAL_CONDITION = MAPPING_HINT__LOCAL_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
@@ -513,7 +808,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SHARED_CONDITION = MappingPackage.MAPPING_HINT__SHARED_CONDITION;
+	int CARDINALITY_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -522,7 +817,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__EXPRESSION = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 0;
+	int CARDINALITY_MAPPING__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
@@ -531,7 +826,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__MODIFIERS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 1;
+	int CARDINALITY_MAPPING__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -540,7 +835,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SOURCE = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING__SOURCE = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -549,7 +844,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__TARGET = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 3;
+	int CARDINALITY_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -558,7 +853,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 4;
+	int CARDINALITY_MAPPING__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Mapping</em>' class.
@@ -567,7 +862,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_FEATURE_COUNT = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 5;
+	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -576,7 +871,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+	int CARDINALITY_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -585,7 +880,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int CARDINALITY_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Source Element Matches Section</em>' operation.
@@ -594,7 +889,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Target Class Matches Section</em>' operation.
@@ -603,7 +898,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 1;
+	int CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Source Class Is Variable Cardinality</em>' operation.
@@ -612,7 +907,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 2;
+	int CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Target Class Is Variable Cardinality</em>' operation.
@@ -621,7 +916,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 3;
+	int CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate No Cardinality Mapping For Source Section Root</em>' operation.
@@ -630,7 +925,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 4;
+	int CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Only Source Or Source Elements</em>' operation.
@@ -639,7 +934,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 5;
+	int CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Expression Only For Source Elements</em>' operation.
@@ -648,7 +943,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 6;
+	int CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
@@ -657,7 +952,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 7;
+	int CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -666,7 +961,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 8;
+	int CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -675,7 +970,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 9;
+	int CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping</em>' class.
@@ -684,7 +979,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_OPERATION_COUNT = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 10;
+	int CARDINALITY_MAPPING_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
@@ -694,7 +989,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getCardinalityMappingSourceInterface()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING_SOURCE_INTERFACE = 6;
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -703,7 +998,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_INTERFACE__NAME = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE__NAME;
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE__NAME = MAPPING_HINT_SOURCE_INTERFACE__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Mapping Source Interface</em>' class.
@@ -712,7 +1007,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping Source Interface</em>' class.
@@ -721,7 +1016,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MappingPackage.MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE_OPERATION_COUNT = MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingSourceElementImpl <em>Cardinality Mapping Source Element</em>}' class.
@@ -731,7 +1026,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getCardinalityMappingSourceElement()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING_SOURCE_ELEMENT = 7;
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -813,7 +1108,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getCardinalityMappingExternalSourceElement()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT = 8;
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -895,7 +1190,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getCardinalityMappingGlobalSourceElement()
 	 * @generated
 	 */
-	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT = 9;
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -978,7 +1273,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getReferenceTargetSelector()
 	 * @generated
 	 */
-	int REFERENCE_TARGET_SELECTOR = 10;
+	int REFERENCE_TARGET_SELECTOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -987,7 +1282,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__NAME = MappingPackage.MAPPING_HINT__NAME;
+	int REFERENCE_TARGET_SELECTOR__NAME = MAPPING_HINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -996,7 +1291,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__LOCAL_CONDITION = MappingPackage.MAPPING_HINT__LOCAL_CONDITION;
+	int REFERENCE_TARGET_SELECTOR__LOCAL_CONDITION = MAPPING_HINT__LOCAL_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
@@ -1005,7 +1300,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__SHARED_CONDITION = MappingPackage.MAPPING_HINT__SHARED_CONDITION;
+	int REFERENCE_TARGET_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Affected Reference</b></em>' reference.
@@ -1014,7 +1309,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 0;
+	int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Matcher</b></em>' containment reference.
@@ -1023,7 +1318,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__MATCHER = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 1;
+	int REFERENCE_TARGET_SELECTOR__MATCHER = MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Reference Target Selector</em>' class.
@@ -1032,7 +1327,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 2;
+	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -1041,7 +1336,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1050,7 +1345,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
@@ -1059,7 +1354,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 0;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Affected Reference Matches Section</em>' operation.
@@ -1068,7 +1363,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 1;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Reference Target Selector</em>' class.
@@ -1077,7 +1372,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 2;
+	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.
@@ -1087,7 +1382,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMatcher()
 	 * @generated
 	 */
-	int MATCHER = 11;
+	int MATCHER = 18;
 
 	/**
 	 * The number of structural features of the '<em>Matcher</em>' class.
@@ -1115,7 +1410,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getClassMatcher()
 	 * @generated
 	 */
-	int CLASS_MATCHER = 12;
+	int CLASS_MATCHER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Target Class</b></em>' reference.
@@ -1152,7 +1447,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMatcher()
 	 * @generated
 	 */
-	int ATTRIBUTE_MATCHER = 13;
+	int ATTRIBUTE_MATCHER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1252,7 +1547,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getContainerSelector()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR = 14;
+	int CONTAINER_SELECTOR = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1261,7 +1556,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__NAME = MappingPackage.MAPPING_HINT__NAME;
+	int CONTAINER_SELECTOR__NAME = MAPPING_HINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -1270,7 +1565,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__LOCAL_CONDITION = MappingPackage.MAPPING_HINT__LOCAL_CONDITION;
+	int CONTAINER_SELECTOR__LOCAL_CONDITION = MAPPING_HINT__LOCAL_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
@@ -1279,7 +1574,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__SHARED_CONDITION = MappingPackage.MAPPING_HINT__SHARED_CONDITION;
+	int CONTAINER_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1288,7 +1583,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__EXPRESSION = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 0;
+	int CONTAINER_SELECTOR__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
@@ -1297,7 +1592,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__MODIFIERS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 1;
+	int CONTAINER_SELECTOR__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -1306,7 +1601,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 2;
+	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
@@ -1315,7 +1610,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 3;
+	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MAPPING_HINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector</em>' class.
@@ -1324,7 +1619,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_FEATURE_COUNT = MappingPackage.MAPPING_HINT_FEATURE_COUNT + 4;
+	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -1333,7 +1628,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+	int CONTAINER_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1342,7 +1637,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -1351,7 +1646,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 0;
+	int CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -1360,7 +1655,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 1;
+	int CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -1369,7 +1664,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 2;
+	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Container Selector</em>' class.
@@ -1378,7 +1673,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_OPERATION_COUNT = MappingPackage.MAPPING_HINT_OPERATION_COUNT + 3;
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
@@ -1388,7 +1683,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getContainerSelectorTargetAttribute()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 15;
+	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1471,7 +1766,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 16;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1480,7 +1775,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = MappingPackage.HINT_IMPORTER_MAPPING_HINT__NAME;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__NAME = HINT_IMPORTER_MAPPING_HINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -1489,7 +1784,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = MappingPackage.HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mapped Attribute Value Expander</em>' class.
@@ -1498,7 +1793,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = MappingPackage.HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 1;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_FEATURE_COUNT = HINT_IMPORTER_MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -1507,7 +1802,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = MappingPackage.HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 0;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Mapped Attribute Value Expander</em>' class.
@@ -1516,7 +1811,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = MappingPackage.HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 1;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT = HINT_IMPORTER_MAPPING_HINT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.LocalMappedAttributeValueExpanderImpl <em>Local Mapped Attribute Value Expander</em>}' class.
@@ -1526,7 +1821,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 17;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1626,7 +1921,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 18;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1726,7 +2021,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 19;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1826,7 +2121,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 20;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1926,7 +2221,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 21;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2026,7 +2321,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 22;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 29;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2118,6 +2413,87 @@ public interface ExtendedPackage extends EPackage {
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER_OPERATION_COUNT = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER_OPERATION_COUNT + 0;
 
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Mapping Hint Base Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Hint Base Type</em>'.
+	 * @see pamtram.mapping.extended.MappingHintBaseType
+	 * @generated
+	 */
+	EClass getMappingHintBaseType();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintType <em>Mapping Hint Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Hint Type</em>'.
+	 * @see pamtram.mapping.extended.MappingHintType
+	 * @generated
+	 */
+	EClass getMappingHintType();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHint <em>Mapping Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Hint</em>'.
+	 * @see pamtram.mapping.extended.MappingHint
+	 * @generated
+	 */
+	EClass getMappingHint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expandable Hint</em>'.
+	 * @see pamtram.mapping.extended.ExpandableHint
+	 * @generated
+	 */
+	EClass getExpandableHint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Hint Importer Mapping Hint</em>'.
+	 * @see pamtram.mapping.extended.HintImporterMappingHint
+	 * @generated
+	 */
+	EClass getHintImporterMappingHint();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Mapping Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mapping Hint Source Interface</em>'.
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
+	 * @generated
+	 */
+	EClass getMappingHintSourceInterface();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.mapping.extended.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Global Attribute Importer</em>'.
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter
+	 * @generated
+	 */
+	EClass getGlobalAttributeImporter();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Global Attribute</em>'.
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute()
+	 * @see #getGlobalAttributeImporter()
+	 * @generated
+	 */
+	EReference getGlobalAttributeImporter_GlobalAttribute();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMapping <em>Attribute Mapping</em>}'.
@@ -2673,6 +3049,76 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintBaseTypeImpl <em>Mapping Hint Base Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.impl.MappingHintBaseTypeImpl
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintBaseType()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_BASE_TYPE = eINSTANCE.getMappingHintBaseType();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintTypeImpl <em>Mapping Hint Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.impl.MappingHintTypeImpl
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintType()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_TYPE = eINSTANCE.getMappingHintType();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappingHintImpl <em>Mapping Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.impl.MappingHintImpl
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHint()
+		 * @generated
+		 */
+		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.ExpandableHint
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExpandableHint()
+		 * @generated
+		 */
+		EClass EXPANDABLE_HINT = eINSTANCE.getExpandableHint();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.HintImporterMappingHintImpl <em>Hint Importer Mapping Hint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.impl.HintImporterMappingHintImpl
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getHintImporterMappingHint()
+		 * @generated
+		 */
+		EClass HINT_IMPORTER_MAPPING_HINT = eINSTANCE.getHintImporterMappingHint();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Mapping Hint Source Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.MappingHintSourceInterface
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappingHintSourceInterface()
+		 * @generated
+		 */
+		EClass MAPPING_HINT_SOURCE_INTERFACE = eINSTANCE.getMappingHintSourceInterface();
+		/**
+		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.mapping.extended.impl.GlobalAttributeImporterImpl
+		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getGlobalAttributeImporter()
+		 * @generated
+		 */
+		EClass GLOBAL_ATTRIBUTE_IMPORTER = eINSTANCE.getGlobalAttributeImporter();
+		/**
+		 * The meta object literal for the '<em><b>Global Attribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = eINSTANCE.getGlobalAttributeImporter_GlobalAttribute();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
 		 * <!-- begin-user-doc -->

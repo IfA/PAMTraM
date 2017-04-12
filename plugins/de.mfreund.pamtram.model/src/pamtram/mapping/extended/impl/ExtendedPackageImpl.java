@@ -37,15 +37,22 @@ import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.ClassMatcher;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
+import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueAppender;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.HintImporterMappingHint;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueAppender;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValuePrepender;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.mapping.extended.Matcher;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.util.ExtendedValidator;
@@ -86,6 +93,48 @@ import pamtram.structure.target.impl.TargetPackageImpl;
  * @generated
  */
 public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintBaseTypeEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintTypeEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass expandableHintEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass hintImporterMappingHintEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mappingHintSourceInterfaceEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass globalAttributeImporterEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,6 +376,78 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ExtendedPackage.eNS_URI, theExtendedPackage);
 		return theExtendedPackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappingHintBaseType() {
+		return mappingHintBaseTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappingHintType() {
+		return mappingHintTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappingHint() {
+		return mappingHintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpandableHint() {
+		return expandableHintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getHintImporterMappingHint() {
+		return hintImporterMappingHintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMappingHintSourceInterface() {
+		return mappingHintSourceInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGlobalAttributeImporter() {
+		return globalAttributeImporterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlobalAttributeImporter_GlobalAttribute() {
+		return (EReference)globalAttributeImporterEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -825,6 +946,21 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		isCreated = true;
 
 		// Create classes and their features
+		mappingHintBaseTypeEClass = createEClass(MAPPING_HINT_BASE_TYPE);
+
+		mappingHintTypeEClass = createEClass(MAPPING_HINT_TYPE);
+
+		mappingHintEClass = createEClass(MAPPING_HINT);
+
+		expandableHintEClass = createEClass(EXPANDABLE_HINT);
+
+		hintImporterMappingHintEClass = createEClass(HINT_IMPORTER_MAPPING_HINT);
+
+		mappingHintSourceInterfaceEClass = createEClass(MAPPING_HINT_SOURCE_INTERFACE);
+
+		globalAttributeImporterEClass = createEClass(GLOBAL_ATTRIBUTE_IMPORTER);
+		createEReference(globalAttributeImporterEClass, GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE);
+
 		attributeMappingEClass = createEClass(ATTRIBUTE_MAPPING);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__TARGET);
 		createEReference(attributeMappingEClass, ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
@@ -925,10 +1061,11 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
-		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
+		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
+		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 
@@ -937,11 +1074,21 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		attributeMappingEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		mappingHintBaseTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintTypeEClass.getESuperTypes().add(this.getMappingHintBaseType());
+		mappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
+		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
+		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
+		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
+		globalAttributeImporterEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
+		attributeMappingEClass.getESuperTypes().add(this.getMappingHint());
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		attributeMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		attributeMappingEClass.getESuperTypes().add(theMappingPackage.getExpandableHint());
-		attributeMappingSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		attributeMappingEClass.getESuperTypes().add(this.getExpandableHint());
+		attributeMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -980,10 +1127,10 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		cardinalityMappingEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
 		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1022,12 +1169,12 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		referenceTargetSelectorEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
 		classMatcherEClass.getESuperTypes().add(this.getMatcher());
 		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
-		attributeMatcherEClass.getESuperTypes().add(theMappingPackage.getExpandableHint());
+		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		attributeMatcherEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
-		containerSelectorEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		containerSelectorEClass.getESuperTypes().add(this.getMappingHint());
 		containerSelectorEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
 		g1 = createEGenericType(theStructurePackage.getDynamicSourceElement());
 		g2 = createEGenericType(theTargetPackage.getTargetSection());
@@ -1039,7 +1186,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g2 = createEGenericType(theTargetPackage.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		containerSelectorTargetAttributeEClass.getEGenericSuperTypes().add(g1);
-		mappedAttributeValueExpanderEClass.getESuperTypes().add(theMappingPackage.getHintImporterMappingHint());
+		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -1070,6 +1217,21 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		externalMappedAttributeValueAppenderEClass.getESuperTypes().add(this.getExternalMappedAttributeValueExpander());
 
 		// Initialize classes, features, and operations; add parameters
+		initEClass(mappingHintBaseTypeEClass, MappingHintBaseType.class, "MappingHintBaseType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mappingHintTypeEClass, MappingHintType.class, "MappingHintType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mappingHintEClass, MappingHint.class, "MappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(expandableHintEClass, ExpandableHint.class, "ExpandableHint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(mappingHintSourceInterfaceEClass, MappingHintSourceInterface.class, "MappingHintSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(globalAttributeImporterEClass, GlobalAttributeImporter.class, "GlobalAttributeImporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlobalAttributeImporter_GlobalAttribute(), theMappingPackage.getGlobalAttribute(), null, "globalAttribute", null, 1, 1, GlobalAttributeImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeMapping_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAttributeMapping_SourceElements(), this.getAttributeMappingSourceInterface(), null, "sourceElements", null, 1, -1, AttributeMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1247,7 +1409,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMappedAttributeValueExpander_HintsToExpand(), theMappingPackage.getExpandableHint(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappedAttributeValueExpander_HintsToExpand(), this.getExpandableHint(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMappedAttributeValueExpander__GetSourceAttribute(), theSourcePackage.getSourceSectionAttribute(), "getSourceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 

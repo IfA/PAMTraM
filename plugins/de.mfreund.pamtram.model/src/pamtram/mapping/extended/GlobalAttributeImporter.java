@@ -4,7 +4,6 @@ package pamtram.mapping.extended;
 
 import pamtram.NamedElement;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -20,7 +19,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  *   <li>{@link pamtram.mapping.extended.GlobalAttributeImporter#getGlobalAttribute <em>Global Attribute</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getGlobalAttributeImporter()
+ * @see pamtram.mapping.extended.ExtendedPackage#getGlobalAttributeImporter()
  * @model
  * @generated
  */
@@ -35,7 +34,7 @@ public interface GlobalAttributeImporter extends NamedElement, AttributeMappingS
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Global Attribute</em>' reference.
 	 * @see #setGlobalAttribute(GlobalAttribute)
-	 * @see pamtram.mapping.MappingPackage#getGlobalAttributeImporter_GlobalAttribute()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getGlobalAttributeImporter_GlobalAttribute()
 	 * @model required="true"
 	 * @generated
 	 */

@@ -18,7 +18,9 @@ import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -79,6 +81,34 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ExtendedSwitch<Adapter> modelSwitch =
 		new ExtendedSwitch<Adapter>() {
+			@Override
+			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
+				return createMappingHintBaseTypeAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintType(MappingHintType object) {
+				return createMappingHintTypeAdapter();
+			}
+			@Override
+			public Adapter caseMappingHint(MappingHint object) {
+				return createMappingHintAdapter();
+			}
+			@Override
+			public Adapter caseExpandableHint(ExpandableHint object) {
+				return createExpandableHintAdapter();
+			}
+			@Override
+			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
+				return createHintImporterMappingHintAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+				return createMappingHintSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseGlobalAttributeImporter(GlobalAttributeImporter object) {
+				return createGlobalAttributeImporterAdapter();
+			}
 			@Override
 			public Adapter caseAttributeMapping(AttributeMapping object) {
 				return createAttributeMappingAdapter();
@@ -176,20 +206,16 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
-				return createMappingHintBaseTypeAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintType(MappingHintType object) {
-				return createMappingHintTypeAdapter();
-			}
-			@Override
 			public Adapter caseConditionalElement(ConditionalElement object) {
 				return createConditionalElementAdapter();
 			}
 			@Override
-			public Adapter caseMappingHint(MappingHint object) {
-				return createMappingHintAdapter();
+			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
+				return createInstanceSelectorSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
+				return createValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseExpressionElement(ExpressionElement object) {
@@ -198,14 +224,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseModifiableElement(ModifiableElement object) {
 				return createModifiableElementAdapter();
-			}
-			@Override
-			public Adapter caseExpandableHint(ExpandableHint object) {
-				return createExpandableHintAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
-				return createMappingHintSourceInterfaceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
@@ -226,10 +244,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInstanceSelector(InstanceSelector object) {
 				return createInstanceSelectorAdapter();
-			}
-			@Override
-			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
-				return createHintImporterMappingHintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -588,7 +602,7 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Hint Base Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Mapping Hint Base Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -602,7 +616,7 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintType <em>Hint Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintType <em>Mapping Hint Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -630,7 +644,35 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHint <em>Hint</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.InstanceSelectorSourceInterface
+	 * @generated
+	 */
+	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
+	 * @generated
+	 */
+	public Adapter createValueConstraintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHint <em>Mapping Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -686,7 +728,7 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Mapping Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -696,6 +738,20 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.GlobalAttributeImporter
+	 * @generated
+	 */
+	public Adapter createGlobalAttributeImporterAdapter() {
 		return null;
 	}
 

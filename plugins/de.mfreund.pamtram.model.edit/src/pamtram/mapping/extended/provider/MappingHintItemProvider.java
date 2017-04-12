@@ -20,7 +20,7 @@ import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappingHint;
 
 /**
@@ -144,7 +144,7 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHint.class)) {
-			case MappingPackage.MAPPING_HINT__LOCAL_CONDITION:
+			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

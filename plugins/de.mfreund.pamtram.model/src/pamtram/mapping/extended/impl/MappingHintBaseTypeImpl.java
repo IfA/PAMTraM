@@ -5,7 +5,7 @@ package pamtram.mapping.extended.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappingHintBaseType;
 
 /**
@@ -32,7 +32,7 @@ public abstract class MappingHintBaseTypeImpl extends NamedElementImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MAPPING_HINT_BASE_TYPE;
+		return ExtendedPackage.Literals.MAPPING_HINT_BASE_TYPE;
 	}
 
 } //MappingHintBaseTypeImpl

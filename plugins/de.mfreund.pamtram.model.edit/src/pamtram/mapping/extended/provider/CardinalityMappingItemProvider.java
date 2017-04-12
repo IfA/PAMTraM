@@ -11,7 +11,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -28,7 +27,6 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
-import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -408,17 +406,6 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 			(createChildParameter
 				(ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE_ELEMENTS,
 				 PamtramFactory.eINSTANCE.createFixedValue()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

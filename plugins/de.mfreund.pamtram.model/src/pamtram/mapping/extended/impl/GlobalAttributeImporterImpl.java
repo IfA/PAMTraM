@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 
@@ -51,7 +51,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER;
+		return ExtendedPackage.Literals.GLOBAL_ATTRIBUTE_IMPORTER;
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 			globalAttribute = (GlobalAttribute)eResolveProxy(oldGlobalAttribute);
 			if (globalAttribute != oldGlobalAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
 			}
 		}
 		return globalAttribute;
@@ -89,7 +89,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 		GlobalAttribute oldGlobalAttribute = globalAttribute;
 		globalAttribute = newGlobalAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
 	}
 	
 	
@@ -126,7 +126,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+			case ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
 				if (resolve) return getGlobalAttribute();
 				return basicGetGlobalAttribute();
 		}
@@ -141,7 +141,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+			case ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
 				setGlobalAttribute((GlobalAttribute)newValue);
 				return;
 		}
@@ -156,7 +156,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+			case ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
 				setGlobalAttribute((GlobalAttribute)null);
 				return;
 		}
@@ -171,7 +171,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
+			case ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE:
 				return globalAttribute != null;
 		}
 		return super.eIsSet(featureID);

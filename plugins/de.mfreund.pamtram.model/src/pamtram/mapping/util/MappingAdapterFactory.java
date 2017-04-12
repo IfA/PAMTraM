@@ -11,16 +11,6 @@ import pamtram.DeactivatableElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.mapping.extended.AttributeMappingSourceInterface;
-import pamtram.mapping.extended.ExpandableHint;
-import pamtram.mapping.extended.GlobalAttributeImporter;
-import pamtram.mapping.extended.HintImporterMappingHint;
-import pamtram.mapping.extended.MappingHint;
-import pamtram.mapping.extended.MappingHintBaseType;
-import pamtram.mapping.extended.MappingHintSourceInterface;
-import pamtram.mapping.extended.MappingHintType;
-import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,36 +97,8 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 				return createExportedMappingHintGroupAdapter();
 			}
 			@Override
-			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
-				return createMappingHintBaseTypeAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintType(MappingHintType object) {
-				return createMappingHintTypeAdapter();
-			}
-			@Override
-			public Adapter caseMappingHint(MappingHint object) {
-				return createMappingHintAdapter();
-			}
-			@Override
-			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
-				return createHintImporterMappingHintAdapter();
-			}
-			@Override
 			public Adapter caseGlobalAttribute(GlobalAttribute object) {
 				return createGlobalAttributeAdapter();
-			}
-			@Override
-			public Adapter caseGlobalAttributeImporter(GlobalAttributeImporter object) {
-				return createGlobalAttributeImporterAdapter();
-			}
-			@Override
-			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
-				return createMappingHintSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseExpandableHint(ExpandableHint object) {
-				return createExpandableHintAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -153,18 +115,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseModifiableElement(ModifiableElement object) {
 				return createModifiableElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
-				return createAttributeMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
-				return createInstanceSelectorSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
-				return createValueConstraintSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -215,20 +165,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHint <em>Hint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.MappingHint
-	 * @generated
-	 */
-	public Adapter createMappingHintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -243,20 +179,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.InstanceSelectorSourceInterface
-	 * @generated
-	 */
-	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintGroup <em>Hint Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -267,20 +189,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMappingHintGroupAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintBaseType <em>Hint Base Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.MappingHintBaseType
-	 * @generated
-	 */
-	public Adapter createMappingHintBaseTypeAdapter() {
 		return null;
 	}
 
@@ -341,34 +249,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintType <em>Hint Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.MappingHintType
-	 * @generated
-	 */
-	public Adapter createMappingHintTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.HintImporterMappingHint
-	 * @generated
-	 */
-	public Adapter createHintImporterMappingHintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.GlobalAttribute <em>Global Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -379,62 +259,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGlobalAttributeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.GlobalAttributeImporter <em>Global Attribute Importer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.GlobalAttributeImporter
-	 * @generated
-	 */
-	public Adapter createGlobalAttributeImporterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
-	 * @generated
-	 */
-	public Adapter createAttributeMappingSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.MappingHintSourceInterface
-	 * @generated
-	 */
-	public Adapter createMappingHintSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.ExpandableHint
-	 * @generated
-	 */
-	public Adapter createExpandableHintAdapter() {
 		return null;
 	}
 
@@ -477,20 +301,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionalElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.constraint.ValueConstraintSourceInterface <em>Value Constraint Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.constraint.ValueConstraintSourceInterface
-	 * @generated
-	 */
-	public Adapter createValueConstraintSourceInterfaceAdapter() {
 		return null;
 	}
 

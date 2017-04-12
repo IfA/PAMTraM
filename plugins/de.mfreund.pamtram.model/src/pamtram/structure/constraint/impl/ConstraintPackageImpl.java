@@ -592,7 +592,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
-		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+		ExtendedPackage theExtendedPackage = (ExtendedPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 
 		// Create type parameters
@@ -608,7 +608,7 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		choiceConstraintEClass.getESuperTypes().add(this.getValueConstraint());
 		numericConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
 		stringConstraintEClass.getESuperTypes().add(this.getSingleReferenceValueConstraint());
-		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		valueConstraintSourceInterfaceEClass.getESuperTypes().add(theExtendedPackage.getMappingHintSourceInterface());
 		EGenericType g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);

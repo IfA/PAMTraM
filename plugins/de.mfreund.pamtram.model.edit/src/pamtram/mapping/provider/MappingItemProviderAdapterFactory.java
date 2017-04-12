@@ -20,8 +20,6 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import pamtram.mapping.extended.provider.GlobalAttributeImporterItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -190,30 +188,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.extended.GlobalAttributeImporter} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected GlobalAttributeImporterItemProvider globalAttributeImporterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.GlobalAttributeImporter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGlobalAttributeImporterAdapter() {
-		if (globalAttributeImporterItemProvider == null) {
-			globalAttributeImporterItemProvider = new GlobalAttributeImporterItemProvider(this);
-		}
-
-		return globalAttributeImporterItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -319,7 +293,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
 		if (globalAttributeItemProvider != null) globalAttributeItemProvider.dispose();
-		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 	}
 
 }

@@ -3,8 +3,7 @@
 package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.HintImporterMappingHint;
 
 /**
@@ -31,7 +30,7 @@ public abstract class HintImporterMappingHintImpl extends MappingHintTypeImpl im
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.HINT_IMPORTER_MAPPING_HINT;
+		return ExtendedPackage.Literals.HINT_IMPORTER_MAPPING_HINT;
 	}
 
 } //HintImporterMappingHintImpl

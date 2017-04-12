@@ -74,6 +74,29 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.GlobalAttributeImporter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GlobalAttributeImporterItemProvider globalAttributeImporterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.GlobalAttributeImporter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGlobalAttributeImporterAdapter() {
+		if (globalAttributeImporterItemProvider == null) {
+			globalAttributeImporterItemProvider = new GlobalAttributeImporterItemProvider(this);
+		}
+
+		return globalAttributeImporterItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.AttributeMapping} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,6 +588,7 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	 */
 	@Override
 	public void dispose() {
+		if (globalAttributeImporterItemProvider != null) globalAttributeImporterItemProvider.dispose();
 		if (attributeMappingItemProvider != null) attributeMappingItemProvider.dispose();
 		if (attributeMappingSourceElementItemProvider != null) attributeMappingSourceElementItemProvider.dispose();
 		if (attributeMappingExternalSourceElementItemProvider != null) attributeMappingExternalSourceElementItemProvider.dispose();

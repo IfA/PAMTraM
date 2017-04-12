@@ -535,6 +535,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
 		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
+		ExtendedPackage theExtendedPackage = (ExtendedPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
 		// Add subpackages
@@ -732,7 +733,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
 		targetInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
-		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
+		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theExtendedPackage.getMappingHintSourceInterface());
 		g1 = createEGenericType(this.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);

@@ -10,13 +10,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.mapping.*;
-import pamtram.mapping.extended.ExpandableHint;
-import pamtram.mapping.extended.GlobalAttributeImporter;
-import pamtram.mapping.extended.HintImporterMappingHint;
-import pamtram.mapping.extended.MappingHint;
-import pamtram.mapping.extended.MappingHintBaseType;
-import pamtram.mapping.extended.MappingHintSourceInterface;
-import pamtram.mapping.extended.MappingHintType;
 import pamtram.util.PamtramValidator;
 
 /**
@@ -136,22 +129,8 @@ public class MappingValidator extends EObjectValidator {
 				return validateMappingHintGroupImporter((MappingHintGroupImporter)value, diagnostics, context);
 			case MappingPackage.EXPORTED_MAPPING_HINT_GROUP:
 				return validateExportedMappingHintGroup((ExportedMappingHintGroup)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_BASE_TYPE:
-				return validateMappingHintBaseType((MappingHintBaseType)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_TYPE:
-				return validateMappingHintType((MappingHintType)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT:
-				return validateMappingHint((MappingHint)value, diagnostics, context);
-			case MappingPackage.HINT_IMPORTER_MAPPING_HINT:
-				return validateHintImporterMappingHint((HintImporterMappingHint)value, diagnostics, context);
 			case MappingPackage.GLOBAL_ATTRIBUTE:
 				return validateGlobalAttribute((GlobalAttribute)value, diagnostics, context);
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER:
-				return validateGlobalAttributeImporter((GlobalAttributeImporter)value, diagnostics, context);
-			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE:
-				return validateMappingHintSourceInterface((MappingHintSourceInterface)value, diagnostics, context);
-			case MappingPackage.EXPANDABLE_HINT:
-				return validateExpandableHint((ExpandableHint)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -326,37 +305,6 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMappingHintBaseType(MappingHintBaseType mappingHintBaseType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintBaseType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMappingHint(MappingHint mappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(mappingHint, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHint, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHint, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateMappingHintGroupImporter(MappingHintGroupImporter mappingHintGroupImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(mappingHintGroupImporter, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(mappingHintGroupImporter, diagnostics, context);
@@ -381,24 +329,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateExportedMappingHintGroup(ExportedMappingHintGroup exportedMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(exportedMappingHintGroup, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMappingHintType(MappingHintType mappingHintType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintType, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateHintImporterMappingHint(HintImporterMappingHint hintImporterMappingHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(hintImporterMappingHint, diagnostics, context);
 	}
 
 	/**
@@ -457,33 +387,6 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateGlobalAttribute_validateSourceAttributeHasUpperBoundOne(GlobalAttribute globalAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return globalAttribute.validateSourceAttributeHasUpperBoundOne(diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateGlobalAttributeImporter(GlobalAttributeImporter globalAttributeImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(globalAttributeImporter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateMappingHintSourceInterface(MappingHintSourceInterface mappingHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintSourceInterface, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExpandableHint(ExpandableHint expandableHint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(expandableHint, diagnostics, context);
 	}
 
 	/**

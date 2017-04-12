@@ -3,7 +3,6 @@
 package pamtram.mapping.extended;
 
 import pamtram.NamedElement;
-import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,7 +10,7 @@ import pamtram.mapping.MappingPackage;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getMappingHintBaseType()
+ * @see pamtram.mapping.extended.ExtendedPackage#getMappingHintBaseType()
  * @model abstract="true"
  * @generated
  */

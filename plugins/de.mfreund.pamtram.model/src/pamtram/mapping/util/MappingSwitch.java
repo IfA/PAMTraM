@@ -10,16 +10,6 @@ import pamtram.DeactivatableElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.mapping.extended.AttributeMappingSourceInterface;
-import pamtram.mapping.extended.ExpandableHint;
-import pamtram.mapping.extended.GlobalAttributeImporter;
-import pamtram.mapping.extended.HintImporterMappingHint;
-import pamtram.mapping.extended.MappingHint;
-import pamtram.mapping.extended.MappingHintBaseType;
-import pamtram.mapping.extended.MappingHintSourceInterface;
-import pamtram.mapping.extended.MappingHintType;
-import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
 /**
  * <!-- begin-user-doc -->
@@ -141,69 +131,11 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MappingPackage.MAPPING_HINT_BASE_TYPE: {
-				MappingHintBaseType mappingHintBaseType = (MappingHintBaseType)theEObject;
-				T result = caseMappingHintBaseType(mappingHintBaseType);
-				if (result == null) result = caseNamedElement(mappingHintBaseType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MAPPING_HINT_TYPE: {
-				MappingHintType mappingHintType = (MappingHintType)theEObject;
-				T result = caseMappingHintType(mappingHintType);
-				if (result == null) result = caseMappingHintBaseType(mappingHintType);
-				if (result == null) result = caseNamedElement(mappingHintType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MAPPING_HINT: {
-				MappingHint mappingHint = (MappingHint)theEObject;
-				T result = caseMappingHint(mappingHint);
-				if (result == null) result = caseMappingHintType(mappingHint);
-				if (result == null) result = caseConditionalElement(mappingHint);
-				if (result == null) result = caseMappingHintBaseType(mappingHint);
-				if (result == null) result = caseNamedElement(mappingHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.HINT_IMPORTER_MAPPING_HINT: {
-				HintImporterMappingHint hintImporterMappingHint = (HintImporterMappingHint)theEObject;
-				T result = caseHintImporterMappingHint(hintImporterMappingHint);
-				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
-				if (result == null) result = caseMappingHintBaseType(hintImporterMappingHint);
-				if (result == null) result = caseNamedElement(hintImporterMappingHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MappingPackage.GLOBAL_ATTRIBUTE: {
 				GlobalAttribute globalAttribute = (GlobalAttribute)theEObject;
 				T result = caseGlobalAttribute(globalAttribute);
 				if (result == null) result = caseNamedElement(globalAttribute);
 				if (result == null) result = caseModifiableElement(globalAttribute);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.GLOBAL_ATTRIBUTE_IMPORTER: {
-				GlobalAttributeImporter globalAttributeImporter = (GlobalAttributeImporter)theEObject;
-				T result = caseGlobalAttributeImporter(globalAttributeImporter);
-				if (result == null) result = caseAttributeMappingSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseInstanceSelectorSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
-				if (result == null) result = caseNamedElement(globalAttributeImporter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MAPPING_HINT_SOURCE_INTERFACE: {
-				MappingHintSourceInterface mappingHintSourceInterface = (MappingHintSourceInterface)theEObject;
-				T result = caseMappingHintSourceInterface(mappingHintSourceInterface);
-				if (result == null) result = caseNamedElement(mappingHintSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.EXPANDABLE_HINT: {
-				ExpandableHint expandableHint = (ExpandableHint)theEObject;
-				T result = caseExpandableHint(expandableHint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -242,21 +174,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingHint(MappingHint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -272,21 +189,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Selector Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Hint Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -298,21 +200,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingHintGroup(MappingHintGroup object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Base Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Base Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingHintBaseType(MappingHintBaseType object) {
 		return null;
 	}
 
@@ -377,36 +264,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingHintType(MappingHintType object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseHintImporterMappingHint(HintImporterMappingHint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Global Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -418,66 +275,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGlobalAttribute(GlobalAttribute object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Global Attribute Importer</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Global Attribute Importer</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGlobalAttributeImporter(GlobalAttributeImporter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Hint Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMappingHintSourceInterface(MappingHintSourceInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expandable Hint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expandable Hint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpandableHint(ExpandableHint object) {
 		return null;
 	}
 
@@ -523,21 +320,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionalElement(ConditionalElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Value Constraint Source Interface</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseValueConstraintSourceInterface(ValueConstraintSourceInterface object) {
 		return null;
 	}
 

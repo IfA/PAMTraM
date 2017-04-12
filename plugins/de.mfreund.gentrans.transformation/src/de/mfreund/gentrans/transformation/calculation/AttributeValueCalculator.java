@@ -16,11 +16,11 @@ import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.CardinalityMapping;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.ReferenceTargetSelector;
 import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
 

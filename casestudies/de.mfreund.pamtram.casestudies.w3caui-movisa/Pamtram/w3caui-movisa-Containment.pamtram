@@ -519,8 +519,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualDropDownRepresentationNameMapping" target="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
+        <mappingHints xsi:type="extended:ContainerSelector">
+          <targetAttributes xsi:type="extended:ContainerSelectorTargetAttribute" name="PanelName" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.0"/>
         </mappingHints>
       </mappingHintGroups>
@@ -530,13 +530,13 @@ xsi:type="source:ActualSourceSectionAttribute" name="ElementId">
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModels.0/@sections.3/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModels.0/@sections.3/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.4/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ElementId" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector">
-          <targetAttributes xsi:type="mapping:ContainerSelectorTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:ContainerSelector">
+          <targetAttributes xsi:type="extended:ContainerSelectorTargetAttribute" name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="DropDownId" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>

@@ -36,11 +36,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="invalid selector">
+        <mappingHints xsi:type="extended:ContainerSelector" name="invalid selector">
           <sourceElements xsi:type="pamtram:FixedValue" name="invalid value" value="abcde"/>
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="connectToSimpleContainer">
+        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>

@@ -74,16 +74,16 @@
   <mappingModels>
     <mappings name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetSection="//@targetSectionModels.0/@sections.0">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Class Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Class Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0"/>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Buttons" targetSection="//@targetSectionModels.0/@sections.1">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Attribute Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModels.0/@sections.1"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Attribute Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModels.0/@sections.1"/>
       </mappingHintGroups>
     </mappings>
     <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.2">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Source Element Cardinality" expression="repetitionFactor-2" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.2">
-          <sourceElements xsi:type="mapping:CardinalityMappingSourceElement" name="repetitionFactor" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Source Element Cardinality" expression="repetitionFactor-2" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.2">
+          <sourceElements xsi:type="extended:CardinalityMappingSourceElement" name="repetitionFactor" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

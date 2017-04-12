@@ -63,13 +63,13 @@
           <sourceElements xsi:type="pamtram:FixedValue" name="_to_" value="_to_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="[Ziel]" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="source" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="source" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="target" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="target" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="target" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
           </matcher>
         </mappingHints>

@@ -5520,23 +5520,23 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="VersionNumber" target="//@targetSectionModels.0/@sections.0/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="SCXMLVersion" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.3/@value.0/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="initfialFlowTarget" affectedReference="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.3/@value.0/@references.1">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="initial Panel" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.3/@value.0/@references.0/@value.0/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:ExportedMappingHintGroup" name="AbstractNavFlows" targetSection="//@targetSectionModels.0/@sections.8">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModels.0/@sections.8/@references.2">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModels.0/@sections.8/@references.2">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="NavFlowTrigger AttrMatcher" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.1/@value.0/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.24"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="FlowName" target="//@targetSectionModels.0/@sections.8/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="rootStateTarget" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.1/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="NavFlowTarget" affectedReference="//@targetSectionModels.0/@sections.8/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="NavFlowTarget" affectedReference="//@targetSectionModels.0/@sections.8/@references.1">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="target" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.1/@value.0/@attributes.1"/>
           </matcher>
         </mappingHints>
@@ -5563,8 +5563,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@String" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ String" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ String" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5573,7 +5573,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@String" target="//@targetSectionModels.0/@sections.5/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -5582,24 +5582,24 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ String" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ String" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.3"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.3"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.3"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem String" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="MonitoredItemName@String" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (String)" source="//@sourceSectionModels.0/@sections.28/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5616,8 +5616,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Bool" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5631,24 +5631,24 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Boolean" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="MonitoredItemName@Bool" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5657,7 +5657,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Bool" target="//@targetSectionModels.0/@sections.3/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -5671,8 +5671,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Integer" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Integer" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Integer" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5689,7 +5689,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Integer" target="//@targetSectionModels.0/@sections.4/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -5698,8 +5698,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="MonitoredItemName@Integer" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5708,16 +5708,16 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Integer" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Integer" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.25/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -5732,8 +5732,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Double" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Double" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Double" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5742,7 +5742,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="Name@Double (for uniqueness)" target="//@targetSectionModels.0/@sections.2/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -5756,24 +5756,24 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Double" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Double" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Double" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.1"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Double" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="MonitoredItemName@Double" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5781,8 +5781,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
     </mappings>
     <mappings name="UA Items (FunctionInterface)" sourceSection="//@sourceSectionModels.0/@sections.3">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Boolean ActivateChannel" targetSection="//@targetSectionModels.0/@sections.11">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5800,26 +5800,26 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataItem Bool ActivateChannel" targetSection="//@targetSectionModels.0/@sections.10">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal Bool ActivateChannel" targetSection="//@targetSectionModels.0/@sections.6">
@@ -5831,14 +5831,14 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModels.0/@sections.3/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem Boolean LockedChannel" targetSection="//@targetSectionModels.0/@sections.11">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5856,26 +5856,26 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataItem Bool LockedChannel" targetSection="//@targetSectionModels.0/@sections.10">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal Bool LockedChannel" targetSection="//@targetSectionModels.0/@sections.6">
@@ -5887,14 +5887,14 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModels.0/@sections.3/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MonitoredItem String ReturnChannel" targetSection="//@targetSectionModels.0/@sections.11">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5912,26 +5912,26 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="returnDataItem Name" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ Bool" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataItem String ReturnChannel" targetSection="//@targetSectionModels.0/@sections.10">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LP SignalOnChange @ Bool" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="LPDataItemName@Bool" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.3"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.3"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal String ReturnChannel" targetSection="//@targetSectionModels.0/@sections.6">
@@ -5943,7 +5943,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="activateDataItem Name" target="//@targetSectionModels.0/@sections.5/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1"/>
         </mappingHints>
@@ -5956,8 +5956,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         </mappingHints>
       </mappingHintGroups>
       <importedMappingHintGroups name="InheritedFlows" hintGroup="//@mappingModels.0/@mappings.0/@mappingHintGroups.1">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="sourcePanel" affectedReference="//@targetSectionModels.0/@sections.8/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="sourcePanel" affectedReference="//@targetSectionModels.0/@sections.8/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -5967,8 +5967,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
     </mappings>
     <mappings name="Transitions" sourceSection="//@sourceSectionModels.0/@sections.5">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavFlow" targetSection="//@targetSectionModels.0/@sections.8">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModels.0/@sections.8/@references.2">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="NavFlowTrigger" affectedReference="//@targetSectionModels.0/@sections.8/@references.2">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Event" source="//@sourceSectionModels.0/@sections.5/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.24"/>
           </matcher>
         </mappingHints>
@@ -5976,13 +5976,13 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.4 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="target" source="//@sourceSectionModels.0/@sections.5/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="NavFlowTarget" affectedReference="//@targetSectionModels.0/@sections.8/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="NavFlowTarget" affectedReference="//@targetSectionModels.0/@sections.8/@references.1">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Target" source="//@sourceSectionModels.0/@sections.5/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="sourcePanel" affectedReference="//@targetSectionModels.0/@sections.8/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="sourcePanel" affectedReference="//@targetSectionModels.0/@sections.8/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.7/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.4/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6020,13 +6020,13 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepBooleanCompName" target="//@targetSectionModels.0/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:Out" source="//@sourceSectionModels.0/@sections.8/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger repAn" affectedReference="//@targetSectionModels.0/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger repAn" affectedReference="//@targetSectionModels.0/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
@@ -6077,7 +6077,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName @Bool:Out" target="//@targetSectionModels.0/@sections.12/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6089,8 +6089,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepAlignmentName@Bool:Out Label" target="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:Out" source="//@sourceSectionModels.0/@sections.8/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text @ Label Output:Bool" affectedReference="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@Bool:Out" source="//@sourceSectionModels.0/@sections.8/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6137,8 +6137,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName(Bool:Output Label)" target="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="backGroundColor" affectedReference="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.5/@value.0/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="backGroundColor" affectedReference="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.5/@value.0/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.0/@value.0/@references.0/@value.11"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModels.0/@sections.13/@references.0/@value.0/@references.6/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:Out" source="//@sourceSectionModels.0/@sections.8/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.36 //@mappingModels.0/@modifierSets.2"/>
@@ -6151,7 +6151,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.8/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6179,8 +6179,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepBorderName@Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.5/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Double:Out" source="//@sourceSectionModels.0/@sections.9/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.36 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
@@ -6235,7 +6235,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6247,8 +6247,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Double:Out" source="//@sourceSectionModels.0/@sections.9/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@Double:Out" source="//@sourceSectionModels.0/@sections.9/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6306,7 +6306,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.9/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6346,16 +6346,16 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepBorderName" target="//@targetSectionModels.0/@sections.17/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:In" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.36 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger VO" affectedReference="//@targetSectionModels.0/@sections.17/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger VO" affectedReference="//@targetSectionModels.0/@sections.17/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="WriteEnteredDataEffect Name" target="//@targetSectionModels.0/@sections.17/@references.2/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:In" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.11 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataItem for WriteDataEffect" affectedReference="//@targetSectionModels.0/@sections.17/@references.2/@value.0/@references.0/@value.0/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataItem for WriteDataEffect" affectedReference="//@targetSectionModels.0/@sections.17/@references.2/@value.0/@references.0/@value.0/@references.1">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6408,12 +6408,12 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.25 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="textDef" affectedReference="//@targetSectionModels.0/@sections.17/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="textDef" affectedReference="//@targetSectionModels.0/@sections.17/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.40"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:In">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:In">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6439,8 +6439,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.5/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:In" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.36 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Bool)" source="//@sourceSectionModels.0/@sections.27/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
@@ -6495,7 +6495,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6507,8 +6507,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Bool:In" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@Bool:In" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6566,7 +6566,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.10/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6586,8 +6586,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepColorName@Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.5/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Double:In" source="//@sourceSectionModels.0/@sections.11/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.36 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" affectedReference="//@targetSectionModels.0/@sections.15/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (Double)" source="//@sourceSectionModels.0/@sections.26/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
@@ -6642,7 +6642,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName @Double:Out" target="//@targetSectionModels.0/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6662,8 +6662,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepAlignmentName@Double:Out Label" target="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@Double:In" source="//@sourceSectionModels.0/@sections.11/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text @ Label Output:Double" affectedReference="//@targetSectionModels.0/@sections.16/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@Double:In" source="//@sourceSectionModels.0/@sections.11/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6721,7 +6721,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.11/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="TextLabel Bool:Out">
+        <mappingHints xsi:type="extended:ContainerSelector" name="TextLabel Bool:Out">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6741,21 +6741,21 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="WriteFixedBoolName" target="//@targetSectionModels.0/@sections.18/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@FunctionButton" source="//@sourceSectionModels.0/@sections.12/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.6 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="LPItem WriteFIxedBool" affectedReference="//@targetSectionModels.0/@sections.18/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LPItem WriteFIxedBool" affectedReference="//@targetSectionModels.0/@sections.18/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.18/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.18/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@FunctionButton" source="//@sourceSectionModels.0/@sections.12/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ClickTriggerName" target="//@targetSectionModels.0/@sections.18/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@FunctionButton" source="//@sourceSectionModels.0/@sections.12/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.5 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ButtonAnimationTriggerSignal" affectedReference="//@targetSectionModels.0/@sections.18/@references.2/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ButtonAnimationTriggerSignal" affectedReference="//@targetSectionModels.0/@sections.18/@references.2/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
@@ -6808,7 +6808,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosZName(Double:Output Label)" target="//@targetSectionModels.0/@sections.18/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="FunctionButton">
+        <mappingHints xsi:type="extended:ContainerSelector" name="FunctionButton">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6822,18 +6822,18 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@libraryElements.4/@parameters.4/@class">
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.5/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.5/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.2/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.6/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.6/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.7/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.4/@parameters.7/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" source="//@sourceSectionModels.0/@sections.3/@references.0/@value.2/@references.0/@value.0/@references.0/@value.2/@references.0/@value.3/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6857,7 +6857,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="FunctionButtonLabel" target="//@targetSectionModels.0/@libraryElements.4/@parameters.8/@attribute">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label@FunctionButton" source="//@sourceSectionModels.0/@sections.12/@attributes.5"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="FunctionButton">
+        <mappingHints xsi:type="extended:ContainerSelector" name="FunctionButton">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -6922,8 +6922,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h" source="//@sourceSectionModels.0/@sections.13/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@NavigatorButton" source="//@sourceSectionModels.0/@sections.13/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -6935,12 +6935,12 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.6 //@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.13/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="sendSignal" affectedReference="//@targetSectionModels.0/@sections.19/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="sendSignal" affectedReference="//@targetSectionModels.0/@sections.19/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="send" source="//@sourceSectionModels.0/@sections.13/@attributes.6" modifiers="//@mappingModels.0/@modifierSets.24 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="NavButton">
+        <mappingHints xsi:type="extended:ContainerSelector" name="NavButton">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layer" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7013,8 +7013,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h" source="//@sourceSectionModels.0/@sections.14/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.0/@sections.19/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.14/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@NavigatorButton" source="//@sourceSectionModels.0/@sections.14/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.40 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -7026,12 +7026,12 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.6 //@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="label" source="//@sourceSectionModels.0/@sections.14/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="sendSignal" affectedReference="//@targetSectionModels.0/@sections.19/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="sendSignal" affectedReference="//@targetSectionModels.0/@sections.19/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.9/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="send" source="//@sourceSectionModels.0/@sections.14/@attributes.6" modifiers="//@mappingModels.0/@modifierSets.24 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="NavButton">
+        <mappingHints xsi:type="extended:ContainerSelector" name="NavButton">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layer" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7045,7 +7045,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlertButtonAnimation" targetSection="//@targetSectionModels.0/@sections.20">
-        <mappingHints xsi:type="mapping:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector">
           <targetAttributes name="Name NavButton" source="//@targetSectionModels.0/@sections.19/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="label@NavigatorButton" source="//@sourceSectionModels.0/@sections.14/@attributes.5" modifiers="//@mappingModels.0/@modifierSets.7 //@mappingModels.0/@modifierSets.2"/>
@@ -7111,10 +7111,10 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.21/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="Image">
+        <mappingHints xsi:type="extended:ContainerSelector" name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layer" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7179,10 +7179,10 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.15/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="Image">
+        <mappingHints xsi:type="extended:ContainerSelector" name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layer" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7247,10 +7247,10 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.21/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.0/@sections.21/@references.0/@value.0/@references.4">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@references.1/@value.0/@references.0/@value.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="Image">
+        <mappingHints xsi:type="extended:ContainerSelector" name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7278,7 +7278,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" source="//@sourceSectionModels.0/@sections.24/@references.0/@value.1/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.59"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="label" source="//@sourceSectionModels.0/@sections.15/@attributes.6"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="PanelSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" name="PanelSelector">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7306,7 +7306,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="IDMapping" target="//@targetSectionModels.0/@libraryElements.0/@id">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameStation" source="//@sourceSectionModels.0/@sections.19/@references.0/@value.3/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="Image">
+        <mappingHints xsi:type="extended:ContainerSelector" name="Image">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7327,72 +7327,72 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="y" source="//@sourceSectionModels.0/@sections.16/@attributes.2"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h" source="//@sourceSectionModels.0/@sections.16/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.5/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.5/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.48 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.6/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.6/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.49 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.7/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.7/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.50 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.8/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.8/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.51 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.9/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.9/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.52 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.10/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.10/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.53 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.11/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.11/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.54 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.12/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.12/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.55 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.13/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.13/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.56 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.14/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.14/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.57 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.15/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.15/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.58 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.16/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.16/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.60 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.17/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.0/@libraryElements.5/@parameters.17/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ctrltype = &quot;AlertInterface&quot;" source="//@sourceSectionModels.0/@sections.16/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.61 //@mappingModels.0/@modifierSets.22"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="logLibItemConnectionHint">
+        <mappingHints xsi:type="extended:ContainerSelector" name="logLibItemConnectionHint">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7413,7 +7413,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.15/@attributes.2"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.15/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="matflowLibItemConnectionHint">
+        <mappingHints xsi:type="extended:ContainerSelector" name="matflowLibItemConnectionHint">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7436,21 +7436,21 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.0/@libraryElements.2/@parameters.1/@attribute">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.21/@attributes.4"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo CarrierID" affectedReference="//@targetSectionModels.0/@libraryElements.2/@parameters.5/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo CarrierID" affectedReference="//@targetSectionModels.0/@libraryElements.2/@parameters.5/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="PointsTo ProductID" affectedReference="//@targetSectionModels.0/@libraryElements.2/@parameters.6/@reference">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo ProductID" affectedReference="//@targetSectionModels.0/@libraryElements.2/@parameters.6/@reference">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.2">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="IDMapping" target="//@targetSectionModels.0/@libraryElements.2/@id">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.15 //@mappingModels.0/@modifierSets.62"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:CardinalityMapping" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3" target="//@targetSectionModels.0/@libraryElements.2/@parameters.4/@class"/>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="Panel">
+        <mappingHints xsi:type="extended:CardinalityMapping" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3" target="//@targetSectionModels.0/@libraryElements.2/@parameters.4/@class"/>
+        <mappingHints xsi:type="extended:ContainerSelector" name="Panel">
           <targetAttributes name="Panel Name" source="//@targetSectionModels.0/@sections.7/@attributes.0" modifiers="//@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName" source="//@sourceSectionModels.0/@sections.7/@attributes.0"/>
         </mappingHints>
@@ -7462,8 +7462,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="CarrierID Name" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CarrierID IsAccessedVia" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="CarrierID IsAccessedVia" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -7478,8 +7478,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="ProductID Name" target="//@targetSectionModels.0/@sections.1/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ProductID IsAccessedVia" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ProductID IsAccessedVia" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -7501,7 +7501,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="CarrierID Name" target="//@targetSectionModels.0/@sections.4/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -7510,7 +7510,7 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="ProductID Name" target="//@targetSectionModels.0/@sections.4/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.23"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ContainerSelector" name="OpcUAItem">
+        <mappingHints xsi:type="extended:ContainerSelector" name="OpcUAItem">
           <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.2" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
@@ -7519,8 +7519,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="CarrierID MonitoredItemName" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="CarrierID valueBrowsePath" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -7529,8 +7529,8 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="ProductID MonitoredItemName" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="MonitoredItem" affectedReference="//@targetSectionModels.0/@sections.11/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.10/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="CarrierID valueBrowsePath" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
           </matcher>
         </mappingHints>
@@ -7539,32 +7539,32 @@ xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFIN
         <mappingHints xsi:type="extended:AttributeMapping" name="CarrierID LPDataItemName" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="CarrierID LP SignalOnChange" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="CarrierID LP SignalOnChange" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="LPDataItem ProductID" targetSection="//@targetSectionModels.0/@sections.10">
         <mappingHints xsi:type="extended:AttributeMapping" name="ProductID LPDataItemName" target="//@targetSectionModels.0/@sections.10/@attributes.4">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="ProductID LP SignalOnChange" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ProductID LP SignalOnChange" affectedReference="//@targetSectionModels.0/@sections.10/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.6/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" source="//@sourceSectionModels.0/@sections.17/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15"/>
           </matcher>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="DataType" affectedReference="//@targetSectionModels.0/@sections.10/@references.2">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.1"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
-          <matcher xsi:type="mapping:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Dimension" affectedReference="//@targetSectionModels.0/@sections.10/@references.1">
+          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.1/@value.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

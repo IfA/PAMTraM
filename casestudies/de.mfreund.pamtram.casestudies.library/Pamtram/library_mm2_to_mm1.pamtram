@@ -83,8 +83,8 @@ xsi:type="source:ActualSourceSectionAttribute" name="name">
         <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="loans" affectedReference="//@targetSectionModels.0/@sections.2/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="loans" affectedReference="//@targetSectionModels.0/@sections.2/@references.0">
+          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.0">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
           </matcher>
         </mappingHints>

@@ -9,7 +9,24 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.ConditionalElement;
+import pamtram.ExpressionElement;
+import pamtram.ModifiableElement;
+import pamtram.NamedElement;
+import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.MappingHint;
+import pamtram.mapping.MappingHintBaseType;
+import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.MappingHintType;
 import pamtram.mapping.extended.*;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,8 +85,76 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	protected ExtendedSwitch<Adapter> modelSwitch =
 		new ExtendedSwitch<Adapter>() {
 			@Override
-			public Adapter caseTest(Test object) {
-				return createTestAdapter();
+			public Adapter caseAttributeMapping(AttributeMapping object) {
+				return createAttributeMappingAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
+				return createAttributeMappingSourceInterfaceAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
+				return createAttributeMappingSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
+				return createAttributeMappingExternalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
+				return createAttributeMappingGlobalSourceElementAdapter();
+			}
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintBaseType(MappingHintBaseType object) {
+				return createMappingHintBaseTypeAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintType(MappingHintType object) {
+				return createMappingHintTypeAdapter();
+			}
+			@Override
+			public Adapter caseConditionalElement(ConditionalElement object) {
+				return createConditionalElementAdapter();
+			}
+			@Override
+			public Adapter caseMappingHint(MappingHint object) {
+				return createMappingHintAdapter();
+			}
+			@Override
+			public Adapter caseExpressionElement(ExpressionElement object) {
+				return createExpressionElementAdapter();
+			}
+			@Override
+			public Adapter caseModifiableElement(ModifiableElement object) {
+				return createModifiableElementAdapter();
+			}
+			@Override
+			public Adapter caseExpandableHint(ExpandableHint object) {
+				return createExpandableHintAdapter();
+			}
+			@Override
+			public Adapter caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+				return createMappingHintSourceInterfaceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
+				return createDynamicSourceElementAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
+				return createLocalDynamicSourceElementAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseExternalDynamicSourceElement(ExternalDynamicSourceElement<S, C, R, A> object) {
+				return createExternalDynamicSourceElementAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>, InstanceSelectorType extends InstanceSelector> Adapter caseGlobalDynamicSourceElement(GlobalDynamicSourceElement<S, C, R, A, InstanceSelectorType> object) {
+				return createGlobalDynamicSourceElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -92,16 +177,254 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.Test <em>Test</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMapping <em>Attribute Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.Test
+	 * @see pamtram.mapping.extended.AttributeMapping
 	 * @generated
 	 */
-	public Adapter createTestAdapter() {
+	public Adapter createAttributeMappingAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
+	 * @generated
+	 */
+	public Adapter createAttributeMappingSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.AttributeMappingSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMappingSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.AttributeMappingExternalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMappingExternalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.AttributeMappingGlobalSourceElement
+	 * @generated
+	 */
+	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintBaseType <em>Hint Base Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintBaseType
+	 * @generated
+	 */
+	public Adapter createMappingHintBaseTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintType <em>Hint Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintType
+	 * @generated
+	 */
+	public Adapter createMappingHintTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ConditionalElement
+	 * @generated
+	 */
+	public Adapter createConditionalElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHint <em>Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHint
+	 * @generated
+	 */
+	public Adapter createMappingHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ExpressionElement <em>Expression Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ExpressionElement
+	 * @generated
+	 */
+	public Adapter createExpressionElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.ModifiableElement <em>Modifiable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.ModifiableElement
+	 * @generated
+	 */
+	public Adapter createModifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExpandableHint <em>Expandable Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.ExpandableHint
+	 * @generated
+	 */
+	public Adapter createExpandableHintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @generated
+	 */
+	public Adapter createMappingHintSourceInterfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.DynamicSourceElement <em>Dynamic Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.DynamicSourceElement
+	 * @generated
+	 */
+	public Adapter createDynamicSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.LocalDynamicSourceElement <em>Local Dynamic Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.LocalDynamicSourceElement
+	 * @generated
+	 */
+	public Adapter createLocalDynamicSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Dynamic Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.ExternalDynamicSourceElement
+	 * @generated
+	 */
+	public Adapter createExternalDynamicSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.GlobalDynamicSourceElement <em>Global Dynamic Source Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.GlobalDynamicSourceElement
+	 * @generated
+	 */
+	public Adapter createGlobalDynamicSourceElementAdapter() {
 		return null;
 	}
 

@@ -12,10 +12,6 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.mapping.extended.AttributeMapping;
-import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
-import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
-import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -127,26 +123,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
 				return createHintImporterMappingHintAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMapping(AttributeMapping object) {
-				return createAttributeMappingAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
-				return createAttributeMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
-				return createAttributeMappingSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
-				return createAttributeMappingExternalSourceElementAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
-				return createAttributeMappingGlobalSourceElementAdapter();
 			}
 			@Override
 			public Adapter caseCardinalityMapping(CardinalityMapping object) {
@@ -275,6 +251,10 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInstanceSelector(InstanceSelector object) {
 				return createInstanceSelectorAdapter();
+			}
+			@Override
+			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
+				return createAttributeMappingSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
@@ -441,20 +421,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMapping <em>Attribute Mapping</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMapping
-	 * @generated
-	 */
-	public Adapter createAttributeMappingAdapter() {
 		return null;
 	}
 
@@ -627,20 +593,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingSourceElement <em>Attribute Mapping Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMappingSourceElement
-	 * @generated
-	 */
-	public Adapter createAttributeMappingSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -795,20 +747,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingExternalSourceElement <em>Attribute Mapping External Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMappingExternalSourceElement
-	 * @generated
-	 */
-	public Adapter createAttributeMappingExternalSourceElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -875,20 +813,6 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingGlobalSourceElement <em>Attribute Mapping Global Source Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMappingGlobalSourceElement
-	 * @generated
-	 */
-	public Adapter createAttributeMappingGlobalSourceElementAdapter() {
 		return null;
 	}
 

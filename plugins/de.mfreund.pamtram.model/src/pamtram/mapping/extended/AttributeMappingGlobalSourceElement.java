@@ -2,7 +2,6 @@
  */
 package pamtram.mapping.extended;
 
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
@@ -16,7 +15,7 @@ import pamtram.structure.source.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  *
- * @see pamtram.mapping.MappingPackage#getAttributeMappingGlobalSourceElement()
+ * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMappingGlobalSourceElement()
  * @model
  * @generated
  */

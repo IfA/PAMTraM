@@ -22,15 +22,6 @@ public interface ExtendedFactory extends EFactory {
 	ExtendedFactory eINSTANCE = pamtram.mapping.extended.impl.ExtendedFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Test</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Test</em>'.
-	 * @generated
-	 */
-	Test createTest();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

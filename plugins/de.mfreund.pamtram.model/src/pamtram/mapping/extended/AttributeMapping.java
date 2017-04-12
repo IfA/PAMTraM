@@ -10,7 +10,6 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
@@ -26,7 +25,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  *   <li>{@link pamtram.mapping.extended.AttributeMapping#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getAttributeMapping()
+ * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMapping()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='targetAttributeMatchesSection'"
  * @generated
  */
@@ -41,7 +40,7 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(TargetSectionAttribute)
-	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_Target()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMapping_Target()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -67,7 +66,7 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getAttributeMapping_SourceElements()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMapping_SourceElements()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -94,7 +93,7 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());\r\n\r\nboolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target attribute \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \" + ((MappingHintGroupType) this.eContainer()).getName() + \"!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());\r\n\r\nboolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target attribute \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \" + ((MappingHintGroupType) this.eContainer()).getName() + \"!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateTargetAttributeMatchesSection(DiagnosticChain diagnostics, Map<?, ?> context);

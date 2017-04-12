@@ -3,9 +3,8 @@
 package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.structure.impl.ExternalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -36,7 +35,7 @@ public class AttributeMappingExternalSourceElementImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT;
+		return ExtendedPackage.Literals.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT;
 	}
 
 } // AttributeMappingExternalSourceElementImpl

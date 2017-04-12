@@ -11,10 +11,6 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
-import pamtram.mapping.extended.AttributeMapping;
-import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
-import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
-import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -178,64 +174,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
 				if (result == null) result = caseMappingHintBaseType(hintImporterMappingHint);
 				if (result == null) result = caseNamedElement(hintImporterMappingHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING: {
-				AttributeMapping attributeMapping = (AttributeMapping)theEObject;
-				T result = caseAttributeMapping(attributeMapping);
-				if (result == null) result = caseMappingHint(attributeMapping);
-				if (result == null) result = caseExpressionElement(attributeMapping);
-				if (result == null) result = caseModifiableElement(attributeMapping);
-				if (result == null) result = caseExpandableHint(attributeMapping);
-				if (result == null) result = caseMappingHintType(attributeMapping);
-				if (result == null) result = caseConditionalElement(attributeMapping);
-				if (result == null) result = caseMappingHintBaseType(attributeMapping);
-				if (result == null) result = caseNamedElement(attributeMapping);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_INTERFACE: {
-				AttributeMappingSourceInterface attributeMappingSourceInterface = (AttributeMappingSourceInterface)theEObject;
-				T result = caseAttributeMappingSourceInterface(attributeMappingSourceInterface);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceInterface);
-				if (result == null) result = caseNamedElement(attributeMappingSourceInterface);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: {
-				AttributeMappingSourceElement attributeMappingSourceElement = (AttributeMappingSourceElement)theEObject;
-				T result = caseAttributeMappingSourceElement(attributeMappingSourceElement);
-				if (result == null) result = caseLocalDynamicSourceElement(attributeMappingSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingSourceElement);
-				if (result == null) result = caseDynamicSourceElement(attributeMappingSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: {
-				AttributeMappingExternalSourceElement attributeMappingExternalSourceElement = (AttributeMappingExternalSourceElement)theEObject;
-				T result = caseAttributeMappingExternalSourceElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseExternalDynamicSourceElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingExternalSourceElement);
-				if (result == null) result = caseDynamicSourceElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: {
-				AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement = (AttributeMappingGlobalSourceElement)theEObject;
-				T result = caseAttributeMappingGlobalSourceElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseGlobalDynamicSourceElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseDynamicSourceElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
-				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -639,21 +577,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMapping(AttributeMapping object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Cardinality Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -834,21 +757,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Source Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMappingSourceElement(AttributeMappingSourceElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Container Selector Target Attribute</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1014,21 +922,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping External Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping External Source Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMappingExternalSourceElement(AttributeMappingExternalSourceElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Expander</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1100,21 +993,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceSelector(InstanceSelector object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Mapping Global Source Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Mapping Global Source Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement object) {
 		return null;
 	}
 

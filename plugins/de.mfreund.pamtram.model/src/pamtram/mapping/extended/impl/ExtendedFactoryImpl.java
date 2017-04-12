@@ -56,20 +56,13 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ExtendedPackage.TEST: return createTest();
+			case ExtendedPackage.ATTRIBUTE_MAPPING: return createAttributeMapping();
+			case ExtendedPackage.ATTRIBUTE_MAPPING_SOURCE_ELEMENT: return createAttributeMappingSourceElement();
+			case ExtendedPackage.ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createAttributeMappingExternalSourceElement();
+			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT: return createAttributeMappingGlobalSourceElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Test createTest() {
-		TestImpl test = new TestImpl();
-		return test;
 	}
 
 	/**

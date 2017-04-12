@@ -6,9 +6,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.impl.GlobalDynamicSourceElementImpl;
 import pamtram.structure.source.SourceSection;
@@ -40,7 +39,7 @@ public class AttributeMappingGlobalSourceElementImpl extends
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT;
+		return ExtendedPackage.Literals.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT;
 	}
 
 	/**
@@ -52,7 +51,7 @@ public class AttributeMappingGlobalSourceElementImpl extends
 	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, MappingPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}

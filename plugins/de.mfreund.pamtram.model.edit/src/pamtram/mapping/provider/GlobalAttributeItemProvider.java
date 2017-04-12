@@ -28,10 +28,9 @@ import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.GlobalAttribute} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.mapping.GlobalAttribute} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class GlobalAttributeItemProvider extends NamedElementItemProvider {
@@ -54,13 +53,13 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addModifiersPropertyDescriptor(object);
-			this.addSourcePropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -123,34 +122,41 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ModifiableElement_modifiers_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature",
-						"_UI_ModifiableElement_type"),
-				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns GlobalAttribute.gif. <!-- begin-user-doc --> <!--
+	 * This returns GlobalAttribute.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/GlobalAttribute"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/GlobalAttribute"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -161,28 +167,26 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalAttribute) object).getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((GlobalAttribute)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER)
-					.append(" " + label);
+			styledLabel.append(getString("_UI_GlobalAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

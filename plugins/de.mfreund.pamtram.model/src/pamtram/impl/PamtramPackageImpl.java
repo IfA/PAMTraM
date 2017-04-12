@@ -778,6 +778,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		ModifierPackage theModifierPackage = (ModifierPackage)EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI);
 		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
+		ExtendedPackage theExtendedPackage = (ExtendedPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
 		// Add subpackages
@@ -860,7 +861,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		mappingModelEClass.getESuperTypes().add(this.getConditionalElement());
 		conditionModelEClass.getESuperTypes().add(this.getNamedElement());
 		fixedValueEClass.getESuperTypes().add(this.getNamedElement());
-		fixedValueEClass.getESuperTypes().add(theMappingPackage.getAttributeMappingSourceInterface());
+		fixedValueEClass.getESuperTypes().add(theExtendedPackage.getAttributeMappingSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theConstraintPackage.getValueConstraintSourceInterface());
 		fixedValueEClass.getESuperTypes().add(theMappingPackage.getCardinalityMappingSourceInterface());

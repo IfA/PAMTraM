@@ -28,13 +28,19 @@ import pamtram.mapping.extended.AttributeMappingExternalSourceElement;
 import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
 import pamtram.mapping.extended.CardinalityMappingGlobalSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceInterface;
+import pamtram.mapping.extended.ClassMatcher;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.Matcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.util.ExtendedValidator;
 import pamtram.mapping.impl.MappingPackageImpl;
 
@@ -133,6 +139,42 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * @generated
 	 */
 	private EClass cardinalityMappingGlobalSourceElementEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass referenceTargetSelectorEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass matcherEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass classMatcherEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeMatcherEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass containerSelectorEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass containerSelectorTargetAttributeEClass = null;
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -495,6 +537,141 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getReferenceTargetSelector() {
+		return referenceTargetSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReferenceTargetSelector_AffectedReference() {
+		return (EReference)referenceTargetSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getReferenceTargetSelector_Matcher() {
+		return (EReference)referenceTargetSelectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getReferenceTargetSelector__ValidateAffectedReferenceIsNonContainment__DiagnosticChain_Map() {
+		return referenceTargetSelectorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map() {
+		return referenceTargetSelectorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMatcher() {
+		return matcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getClassMatcher() {
+		return classMatcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClassMatcher_TargetClass() {
+		return (EReference)classMatcherEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAttributeMatcher() {
+		return attributeMatcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeMatcher_Target() {
+		return (EReference)attributeMatcherEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map() {
+		return attributeMatcherEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContainerSelector() {
+		return containerSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContainerSelector_TargetAttributes() {
+		return (EReference)containerSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContainerSelectorTargetAttribute() {
+		return containerSelectorTargetAttributeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map() {
+		return containerSelectorTargetAttributeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExtendedFactory getExtendedFactory() {
 		return (ExtendedFactory)getEFactoryInstance();
 	}
@@ -555,6 +732,27 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		cardinalityMappingExternalSourceElementEClass = createEClass(CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT);
 
 		cardinalityMappingGlobalSourceElementEClass = createEClass(CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT);
+
+		referenceTargetSelectorEClass = createEClass(REFERENCE_TARGET_SELECTOR);
+		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE);
+		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__MATCHER);
+		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
+
+		matcherEClass = createEClass(MATCHER);
+
+		classMatcherEClass = createEClass(CLASS_MATCHER);
+		createEReference(classMatcherEClass, CLASS_MATCHER__TARGET_CLASS);
+
+		attributeMatcherEClass = createEClass(ATTRIBUTE_MATCHER);
+		createEReference(attributeMatcherEClass, ATTRIBUTE_MATCHER__TARGET);
+		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
+
+		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
+		createEReference(containerSelectorEClass, CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+
+		containerSelectorTargetAttributeEClass = createEClass(CONTAINER_SELECTOR_TARGET_ATTRIBUTE);
+		createEOperation(containerSelectorTargetAttributeEClass, CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
 	}
 
 	/**
@@ -678,6 +876,23 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		referenceTargetSelectorEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		classMatcherEClass.getESuperTypes().add(this.getMatcher());
+		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
+		attributeMatcherEClass.getESuperTypes().add(theMappingPackage.getExpandableHint());
+		attributeMatcherEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
+		containerSelectorEClass.getESuperTypes().add(theMappingPackage.getMappingHint());
+		containerSelectorEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
+		g1 = createEGenericType(theStructurePackage.getDynamicSourceElement());
+		g2 = createEGenericType(theTargetPackage.getTargetSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theTargetPackage.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theTargetPackage.getTargetSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theTargetPackage.getTargetSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		containerSelectorTargetAttributeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(attributeMappingEClass, AttributeMapping.class, "AttributeMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -803,6 +1018,59 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 
 		initEClass(cardinalityMappingGlobalSourceElementEClass, CardinalityMappingGlobalSourceElement.class, "CardinalityMappingGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(referenceTargetSelectorEClass, ReferenceTargetSelector.class, "ReferenceTargetSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReferenceTargetSelector_AffectedReference(), theTargetPackage.getTargetSectionCrossReference(), null, "affectedReference", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReferenceTargetSelector_Matcher(), this.getMatcher(), null, "matcher", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getReferenceTargetSelector__ValidateAffectedReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAffectedReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAffectedReferenceMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(matcherEClass, Matcher.class, "Matcher", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(classMatcherEClass, ClassMatcher.class, "ClassMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getClassMatcher_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, ClassMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeMatcherEClass, AttributeMatcher.class, "AttributeMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeMatcher_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, AttributeMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetMatchesAffectedReferenceType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(containerSelectorEClass, ContainerSelector.class, "ContainerSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainerSelector_TargetAttributes(), this.getContainerSelectorTargetAttribute(), null, "targetAttributes", null, 1, -1, ContainerSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(containerSelectorTargetAttributeEClass, ContainerSelectorTargetAttribute.class, "ContainerSelectorTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
@@ -827,6 +1095,24 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		   source, 
 		   new String[] {
 			 "constraints", "sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"
+		   });	
+		addAnnotation
+		  (referenceTargetSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "affectedReferenceIsNonContainment affectedReferenceMatchesSection"
+		   });	
+		addAnnotation
+		  (attributeMatcherEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "targetMatchesAffectedReferenceType"
+		   });	
+		addAnnotation
+		  (containerSelectorTargetAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "sourceMatchesPossibleContainerType"
 		   });
 	}
 

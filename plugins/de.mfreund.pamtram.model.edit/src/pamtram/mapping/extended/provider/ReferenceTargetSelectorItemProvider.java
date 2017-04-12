@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -19,10 +20,11 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.provider.MappingHintItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
@@ -30,14 +32,14 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.extended.ReferenceTargetSelector} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ReferenceTargetSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -47,7 +49,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -70,7 +72,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 				this.getString("_UI_ReferenceTargetSelector_affectedReference_feature"),
 				this.getString("_UI_PropertyDescriptor_description",
 						"_UI_ReferenceTargetSelector_affectedReference_feature", "_UI_ReferenceTargetSelector_type"),
-				MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null, null,
+				ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null, null,
 				null) {
 
 			@Override
@@ -114,7 +116,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
+			this.childrenFeatures.add(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
 		}
 		return this.childrenFeatures;
 	}
@@ -158,7 +160,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -192,7 +194,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(ReferenceTargetSelector.class)) {
-		case MappingPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
+		case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -203,18 +205,29 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
 				ExtendedFactory.eINSTANCE.createClassMatcher()));
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
 				ExtendedFactory.eINSTANCE.createAttributeMatcher()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

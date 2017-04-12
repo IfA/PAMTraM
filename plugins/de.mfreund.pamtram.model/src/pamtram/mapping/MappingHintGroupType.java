@@ -138,7 +138,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Reference Target Selectors</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_ReferenceTargetSelectors()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.extended.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());\r\n'"
 	 * @generated
 	 */
 	EList<ReferenceTargetSelector> getReferenceTargetSelectors();
@@ -155,7 +155,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Container Selectors</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_ContainerSelectors()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><<%pamtram.mapping.extended.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());\r\n'"
 	 * @generated
 	 */
 	EList<ContainerSelector> getContainerSelectors();

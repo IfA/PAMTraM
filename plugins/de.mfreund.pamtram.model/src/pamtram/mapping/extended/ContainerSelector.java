@@ -5,7 +5,6 @@ package pamtram.mapping.extended;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.InstanceSelector;
 
 
@@ -37,7 +36,7 @@ public interface ContainerSelector extends MappingHint, InstanceSelector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
-	 * @see pamtram.mapping.MappingPackage#getContainerSelector_TargetAttributes()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getContainerSelector_TargetAttributes()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

@@ -26,11 +26,11 @@ import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.mapping.extended.util.ExtendedValidator;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.mapping.util.MappingValidator;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
@@ -120,7 +120,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.ATTRIBUTE_MATCHER;
+		return ExtendedPackage.Literals.ATTRIBUTE_MATCHER;
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION, oldExpression, expression));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS);
+			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS);
 		}
 		return modifiers;
 	}
@@ -167,7 +167,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 			target = (TargetSectionAttribute)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -190,7 +190,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		TargetSectionAttribute oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.ATTRIBUTE_MATCHER__TARGET, oldTarget, target));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
+			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS);
 		}
 		return sourceElements;
 	}
@@ -249,10 +249,10 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,
+					ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,
 							errorMessage,
-					new Object[] { this, MappingPackage.Literals.ATTRIBUTE_MATCHER__TARGET }));
+					new Object[] { this, ExtendedPackage.Literals.ATTRIBUTE_MATCHER__TARGET }));
 		
 		}
 		
@@ -292,7 +292,7 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -305,13 +305,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return getExpression();
-			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return getModifiers();
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return getSourceElements();
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
 		}
@@ -326,18 +326,18 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression((String)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__TARGET:
 				setTarget((TargetSectionAttribute)newValue);
 				return;
 		}
@@ -351,16 +351,16 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				return;
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__TARGET:
 				setTarget((TargetSectionAttribute)null);
 				return;
 		}
@@ -374,13 +374,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
-			case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
-			case MappingPackage.ATTRIBUTE_MATCHER__TARGET:
+			case ExtendedPackage.ATTRIBUTE_MATCHER__TARGET:
 				return target != null;
 		}
 		return super.eIsSet(featureID);
@@ -399,19 +399,19 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		}
 		if (baseClass == ExpressionElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+				case ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION: return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				case ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
 				default: return -1;
 			}
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS: return StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS;
+				case ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS: return StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -431,19 +431,19 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		}
 		if (baseClass == ExpressionElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return MappingPackage.ATTRIBUTE_MATCHER__EXPRESSION;
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION: return ExtendedPackage.ATTRIBUTE_MATCHER__EXPRESSION;
 				default: return -1;
 			}
 		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return MappingPackage.ATTRIBUTE_MATCHER__MODIFIERS;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ExtendedPackage.ATTRIBUTE_MATCHER__MODIFIERS;
 				default: return -1;
 			}
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (baseFeatureID) {
-				case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS: return ExtendedPackage.ATTRIBUTE_MATCHER__SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -473,9 +473,9 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 		}
 		if (baseClass == InstanceSelector.class) {
 			switch (baseOperationID) {
-				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
-				case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS;
-				case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS: return MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP;
+				case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS: return ExtendedPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS;
+				case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS: return ExtendedPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS;
 				default: return -1;
 			}
 		}
@@ -490,13 +490,13 @@ public class AttributeMatcherImpl extends MatcherImpl implements AttributeMatche
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
+			case ExtendedPackage.ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateTargetMatchesAffectedReferenceType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
+			case ExtendedPackage.ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
-			case MappingPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
+			case ExtendedPackage.ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);

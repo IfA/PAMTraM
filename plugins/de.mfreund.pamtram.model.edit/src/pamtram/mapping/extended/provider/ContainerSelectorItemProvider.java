@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -18,12 +19,13 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.MappingFactory;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExtendedFactory;
-import pamtram.mapping.impl.MappingPackageImpl;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.provider.MappingHintItemProvider;
+import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
@@ -33,7 +35,7 @@ import pamtram.structure.impl.StructurePackageImpl;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.extended.ContainerSelector} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ContainerSelectorItemProvider extends MappingHintItemProvider {
@@ -41,7 +43,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ContainerSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +53,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -68,7 +70,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Expression feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -84,7 +86,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -111,7 +113,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			this.childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
-			this.childrenFeatures.add(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+			this.childrenFeatures.add(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
 		}
 		return this.childrenFeatures;
 	}
@@ -122,7 +124,8 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		if (this.labelRelatedChildrenFeatures == null) {
 			this.labelRelatedChildrenFeatures = new ArrayList<>();
 			this.labelRelatedChildrenFeatures.add(StructurePackageImpl.eINSTANCE.getInstanceSelector_SourceElements());
-			this.labelRelatedChildrenFeatures.add(MappingPackageImpl.eINSTANCE.getContainerSelector_TargetAttributes());
+			this.labelRelatedChildrenFeatures
+					.add(ExtendedPackageImpl.eINSTANCE.getContainerSelector_TargetAttributes());
 		}
 		return this.labelRelatedChildrenFeatures;
 	}
@@ -197,18 +200,18 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainerSelector.class)) {
-		case MappingPackage.CONTAINER_SELECTOR__EXPRESSION:
+		case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
 			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case MappingPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-		case MappingPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
+		case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
+		case ExtendedPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -226,15 +229,12 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
 
 		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
 				PamtramFactory.eINSTANCE.createFixedValue()));
@@ -248,8 +248,23 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
 				StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
 
-		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES,
-				ExtendedFactory.eINSTANCE.createContainerSelectorTargetAttribute()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				MappingFactory.eINSTANCE.createGlobalAttributeImporter()));
+
+		newChildDescriptors
+				.add(this.createChildParameter(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES,
+						ExtendedFactory.eINSTANCE.createContainerSelectorTargetAttribute()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PamtramEditPlugin.INSTANCE;
 	}
 
 }

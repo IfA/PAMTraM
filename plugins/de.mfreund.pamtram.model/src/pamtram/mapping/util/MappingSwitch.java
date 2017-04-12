@@ -7,19 +7,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
-import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.*;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
-import pamtram.mapping.extended.AttributeMatcher;
-import pamtram.mapping.extended.ClassMatcher;
-import pamtram.mapping.extended.ContainerSelector;
-import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
-import pamtram.mapping.extended.Matcher;
-import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.ExternalDynamicSourceElement;
-import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.DynamicSourceElement;
@@ -179,64 +171,6 @@ public class MappingSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintType(hintImporterMappingHint);
 				if (result == null) result = caseMappingHintBaseType(hintImporterMappingHint);
 				if (result == null) result = caseNamedElement(hintImporterMappingHint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.REFERENCE_TARGET_SELECTOR: {
-				ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector)theEObject;
-				T result = caseReferenceTargetSelector(referenceTargetSelector);
-				if (result == null) result = caseMappingHint(referenceTargetSelector);
-				if (result == null) result = caseMappingHintType(referenceTargetSelector);
-				if (result == null) result = caseConditionalElement(referenceTargetSelector);
-				if (result == null) result = caseMappingHintBaseType(referenceTargetSelector);
-				if (result == null) result = caseNamedElement(referenceTargetSelector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.MATCHER: {
-				Matcher matcher = (Matcher)theEObject;
-				T result = caseMatcher(matcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CLASS_MATCHER: {
-				ClassMatcher classMatcher = (ClassMatcher)theEObject;
-				T result = caseClassMatcher(classMatcher);
-				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.ATTRIBUTE_MATCHER: {
-				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
-				T result = caseAttributeMatcher(attributeMatcher);
-				if (result == null) result = caseMatcher(attributeMatcher);
-				if (result == null) result = caseExpandableHint(attributeMatcher);
-				if (result == null) result = caseInstanceSelector(attributeMatcher);
-				if (result == null) result = caseExpressionElement(attributeMatcher);
-				if (result == null) result = caseModifiableElement(attributeMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CONTAINER_SELECTOR: {
-				ContainerSelector containerSelector = (ContainerSelector)theEObject;
-				T result = caseContainerSelector(containerSelector);
-				if (result == null) result = caseMappingHint(containerSelector);
-				if (result == null) result = caseInstanceSelector(containerSelector);
-				if (result == null) result = caseMappingHintType(containerSelector);
-				if (result == null) result = caseConditionalElement(containerSelector);
-				if (result == null) result = caseExpressionElement(containerSelector);
-				if (result == null) result = caseModifiableElement(containerSelector);
-				if (result == null) result = caseMappingHintBaseType(containerSelector);
-				if (result == null) result = caseNamedElement(containerSelector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE: {
-				ContainerSelectorTargetAttribute containerSelectorTargetAttribute = (ContainerSelectorTargetAttribute)theEObject;
-				T result = caseContainerSelectorTargetAttribute(containerSelectorTargetAttribute);
-				if (result == null) result = caseDynamicSourceElement(containerSelectorTargetAttribute);
-				if (result == null) result = caseNamedElement(containerSelectorTargetAttribute);
-				if (result == null) result = caseModifiableElement(containerSelectorTargetAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -420,21 +354,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpressionElement(ExpressionElement object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Modifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -506,66 +425,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Reference Target Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Reference Target Selector</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseReferenceTargetSelector(ReferenceTargetSelector object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatcher(Matcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcher(AttributeMatcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassMatcher(ClassMatcher object) {
 		return null;
 	}
 
@@ -656,36 +515,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExportedMappingHintGroup(ExportedMappingHintGroup object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Selector</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerSelector(ContainerSelector object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Selector Target Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Selector Target Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute object) {
 		return null;
 	}
 
@@ -896,21 +725,6 @@ public class MappingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExpandableHint(ExpandableHint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Selector</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstanceSelector(InstanceSelector object) {
 		return null;
 	}
 

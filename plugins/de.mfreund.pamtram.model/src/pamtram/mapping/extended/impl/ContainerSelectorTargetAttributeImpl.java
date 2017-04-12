@@ -12,9 +12,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
-import pamtram.mapping.util.MappingValidator;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.util.ExtendedValidator;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.DynamicSourceElementImpl;
 import pamtram.structure.target.TargetSection;
@@ -23,16 +23,16 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model Connection Hint Target Attribute</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model
+ * Connection Hint Target Attribute</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
-public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> implements ContainerSelectorTargetAttribute {
+public class ContainerSelectorTargetAttributeImpl extends
+		DynamicSourceElementImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
+		implements ContainerSelectorTargetAttribute {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ContainerSelectorTargetAttributeImpl() {
@@ -40,19 +40,18 @@ public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE;
+		return ExtendedPackage.Literals.CONTAINER_SELECTOR_TARGET_ATTRIBUTE;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,12 +60,12 @@ public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceMatchesPossibleContainerType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateSourceMatchesPossibleContainerType(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		if(!(this.eContainer().eContainer() instanceof MappingHintGroupType) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {
 			return true;
@@ -85,8 +84,8 @@ public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementIm
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,
+					ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,
 							errorMessage,
 					new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 		
@@ -96,18 +95,17 @@ public class ContainerSelectorTargetAttributeImpl extends DynamicSourceElementIm
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP:
+			case ExtendedPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP:
 				return validateSourceMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ModelConnectionHintTargetAttributeImpl
+} // ModelConnectionHintTargetAttributeImpl

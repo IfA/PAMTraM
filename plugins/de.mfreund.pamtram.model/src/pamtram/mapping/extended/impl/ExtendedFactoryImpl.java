@@ -65,6 +65,11 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 			case ExtendedPackage.CARDINALITY_MAPPING_SOURCE_ELEMENT: return createCardinalityMappingSourceElement();
 			case ExtendedPackage.CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT: return createCardinalityMappingExternalSourceElement();
 			case ExtendedPackage.CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT: return createCardinalityMappingGlobalSourceElement();
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR: return createReferenceTargetSelector();
+			case ExtendedPackage.CLASS_MATCHER: return createClassMatcher();
+			case ExtendedPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
+			case ExtendedPackage.CONTAINER_SELECTOR: return createContainerSelector();
+			case ExtendedPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE: return createContainerSelectorTargetAttribute();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

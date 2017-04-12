@@ -2,7 +2,6 @@
  */
 package pamtram.mapping.extended;
 
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionClass;
 
 
@@ -18,7 +17,7 @@ import pamtram.structure.target.TargetSectionClass;
  *   <li>{@link pamtram.mapping.extended.ClassMatcher#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getClassMatcher()
+ * @see pamtram.mapping.extended.ExtendedPackage#getClassMatcher()
  * @model
  * @generated
  */
@@ -33,7 +32,7 @@ public interface ClassMatcher extends Matcher {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Class</em>' reference.
 	 * @see #setTargetClass(TargetSectionClass)
-	 * @see pamtram.mapping.MappingPackage#getClassMatcher_TargetClass()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getClassMatcher_TargetClass()
 	 * @model required="true"
 	 * @generated
 	 */

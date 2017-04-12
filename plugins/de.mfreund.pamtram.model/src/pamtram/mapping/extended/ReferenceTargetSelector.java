@@ -7,7 +7,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 import pamtram.mapping.MappingHint;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
@@ -22,7 +21,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  *   <li>{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector()
+ * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment affectedReferenceMatchesSection'"
  * @generated
  */
@@ -37,7 +36,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Affected Reference</em>' reference.
 	 * @see #setAffectedReference(TargetSectionCrossReference)
-	 * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector_AffectedReference()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_AffectedReference()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -63,7 +62,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matcher</em>' containment reference.
 	 * @see #setMatcher(Matcher)
-	 * @see pamtram.mapping.MappingPackage#getReferenceTargetSelector_Matcher()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_Matcher()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -82,7 +81,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is no non-containment reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is no non-containment reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateAffectedReferenceIsNonContainment(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -90,7 +89,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getAffectedReference() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();\r\n\r\nboolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + hintGroupName + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getAffectedReference() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();\r\n\r\nboolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + hintGroupName + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateAffectedReferenceMatchesSection(DiagnosticChain diagnostics, Map<?, ?> context);

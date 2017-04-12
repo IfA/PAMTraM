@@ -20,12 +20,6 @@ import org.eclipse.emf.edit.provider.IItemStyledLabelProvider;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
-import pamtram.mapping.extended.provider.AttributeMatcherItemProvider;
-import pamtram.mapping.extended.provider.ClassMatcherItemProvider;
-import pamtram.mapping.extended.provider.ContainerSelectorItemProvider;
-import pamtram.mapping.extended.provider.ContainerSelectorTargetAttributeItemProvider;
-import pamtram.mapping.extended.provider.ReferenceTargetSelectorItemProvider;
 import pamtram.mapping.util.MappingAdapterFactory;
 
 /**
@@ -102,75 +96,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.extended.ReferenceTargetSelector} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ReferenceTargetSelectorItemProvider referenceTargetSelectorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.ReferenceTargetSelector}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createReferenceTargetSelectorAdapter() {
-		if (referenceTargetSelectorItemProvider == null) {
-			referenceTargetSelectorItemProvider = new ReferenceTargetSelectorItemProvider(this);
-		}
-
-		return referenceTargetSelectorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.AttributeMatcher} instances.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeMatcherItemProvider attributeMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.AttributeMatcher}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeMatcherAdapter() {
-		if (attributeMatcherItemProvider == null) {
-			attributeMatcherItemProvider = new AttributeMatcherItemProvider(this);
-		}
-
-		return attributeMatcherItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ClassMatcher} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassMatcherItemProvider classMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.ClassMatcher}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createClassMatcherAdapter() {
-		if (classMatcherItemProvider == null) {
-			classMatcherItemProvider = new ClassMatcherItemProvider(this);
-		}
-
-		return classMatcherItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.MappingHintGroup} instances.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
@@ -238,53 +163,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 		}
 
 		return exportedMappingHintGroupItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ContainerSelector} instances.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContainerSelectorItemProvider containerSelectorItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.ContainerSelector}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContainerSelectorAdapter() {
-		if (containerSelectorItemProvider == null) {
-			containerSelectorItemProvider = new ContainerSelectorItemProvider(this);
-		}
-
-		return containerSelectorItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ContainerSelectorTargetAttributeItemProvider containerSelectorTargetAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a
-	 * {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createContainerSelectorTargetAttributeAdapter() {
-		if (containerSelectorTargetAttributeItemProvider == null) {
-			containerSelectorTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
-		}
-
-		return containerSelectorTargetAttributeItemProvider;
 	}
 
 	/**
@@ -558,11 +436,6 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory
 		if (mappingHintGroupItemProvider != null) mappingHintGroupItemProvider.dispose();
 		if (mappingHintGroupImporterItemProvider != null) mappingHintGroupImporterItemProvider.dispose();
 		if (exportedMappingHintGroupItemProvider != null) exportedMappingHintGroupItemProvider.dispose();
-		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
-		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
-		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
-		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
-		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
 		if (localMappedAttributeValueExpanderItemProvider != null) localMappedAttributeValueExpanderItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();

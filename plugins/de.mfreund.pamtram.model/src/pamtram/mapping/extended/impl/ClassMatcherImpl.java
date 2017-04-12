@@ -6,9 +6,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.ClassMatcher;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -51,7 +50,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.CLASS_MATCHER;
+		return ExtendedPackage.Literals.CLASS_MATCHER;
 	}
 
 	/**
@@ -65,7 +64,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
 			}
 		}
 		return targetClass;
@@ -89,7 +88,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CLASS_MATCHER__TARGET_CLASS, oldTargetClass, targetClass));
 	}
 
 	/**
@@ -100,7 +99,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+			case ExtendedPackage.CLASS_MATCHER__TARGET_CLASS:
 				if (resolve) return getTargetClass();
 				return basicGetTargetClass();
 		}
@@ -115,7 +114,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+			case ExtendedPackage.CLASS_MATCHER__TARGET_CLASS:
 				setTargetClass((TargetSectionClass)newValue);
 				return;
 		}
@@ -130,7 +129,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+			case ExtendedPackage.CLASS_MATCHER__TARGET_CLASS:
 				setTargetClass((TargetSectionClass)null);
 				return;
 		}
@@ -145,7 +144,7 @@ public class ClassMatcherImpl extends MatcherImpl implements ClassMatcher {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.CLASS_MATCHER__TARGET_CLASS:
+			case ExtendedPackage.CLASS_MATCHER__TARGET_CLASS:
 				return targetClass != null;
 		}
 		return super.eIsSet(featureID);

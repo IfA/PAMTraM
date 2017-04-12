@@ -4,8 +4,7 @@ package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.Matcher;
 
 /**
@@ -32,7 +31,7 @@ public abstract class MatcherImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MATCHER;
+		return ExtendedPackage.Literals.MATCHER;
 	}
 
 } //MatcherImpl

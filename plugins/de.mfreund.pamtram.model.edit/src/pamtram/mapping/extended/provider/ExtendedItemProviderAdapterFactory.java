@@ -373,6 +373,98 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.MappedAttributeValuePrepender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappedAttributeValuePrependerItemProvider mappedAttributeValuePrependerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.MappedAttributeValuePrepender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappedAttributeValuePrependerAdapter() {
+		if (mappedAttributeValuePrependerItemProvider == null) {
+			mappedAttributeValuePrependerItemProvider = new MappedAttributeValuePrependerItemProvider(this);
+		}
+
+		return mappedAttributeValuePrependerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.MappedAttributeValueAppender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MappedAttributeValueAppenderItemProvider mappedAttributeValueAppenderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.MappedAttributeValueAppender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMappedAttributeValueAppenderAdapter() {
+		if (mappedAttributeValueAppenderItemProvider == null) {
+			mappedAttributeValueAppenderItemProvider = new MappedAttributeValueAppenderItemProvider(this);
+		}
+
+		return mappedAttributeValueAppenderItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalMappedAttributeValuePrependerItemProvider externalMappedAttributeValuePrependerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalMappedAttributeValuePrependerAdapter() {
+		if (externalMappedAttributeValuePrependerItemProvider == null) {
+			externalMappedAttributeValuePrependerItemProvider = new ExternalMappedAttributeValuePrependerItemProvider(this);
+		}
+
+		return externalMappedAttributeValuePrependerItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExternalMappedAttributeValueAppenderItemProvider externalMappedAttributeValueAppenderItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExternalMappedAttributeValueAppenderAdapter() {
+		if (externalMappedAttributeValueAppenderItemProvider == null) {
+			externalMappedAttributeValueAppenderItemProvider = new ExternalMappedAttributeValueAppenderItemProvider(this);
+		}
+
+		return externalMappedAttributeValueAppenderItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
@@ -486,6 +578,10 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
+		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
+		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
+		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();
+		if (externalMappedAttributeValueAppenderItemProvider != null) externalMappedAttributeValueAppenderItemProvider.dispose();
 	}
 
 }

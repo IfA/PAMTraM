@@ -70,6 +70,10 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 			case ExtendedPackage.ATTRIBUTE_MATCHER: return createAttributeMatcher();
 			case ExtendedPackage.CONTAINER_SELECTOR: return createContainerSelector();
 			case ExtendedPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE: return createContainerSelectorTargetAttribute();
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createMappedAttributeValuePrepender();
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: return createMappedAttributeValueAppender();
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: return createExternalMappedAttributeValuePrepender();
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: return createExternalMappedAttributeValueAppender();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -261,16 +265,6 @@ public class ExtendedFactoryImpl extends EFactoryImpl implements ExtendedFactory
 	public ContainerSelectorTargetAttribute createContainerSelectorTargetAttribute() {
 		ContainerSelectorTargetAttributeImpl containerSelectorTargetAttribute = new ContainerSelectorTargetAttributeImpl();
 		return containerSelectorTargetAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public LocalMappedAttributeValueExpander createLocalMappedAttributeValueExpander() {
-		LocalMappedAttributeValueExpanderImpl localMappedAttributeValueExpander = new LocalMappedAttributeValueExpanderImpl();
-		return localMappedAttributeValueExpander;
 	}
 
 	/**

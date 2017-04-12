@@ -3,8 +3,7 @@
 package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappedAttributeValuePrepender;
 
 /**
@@ -31,7 +30,7 @@ public class MappedAttributeValuePrependerImpl extends LocalMappedAttributeValue
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_PREPENDER;
+		return ExtendedPackage.Literals.MAPPED_ATTRIBUTE_VALUE_PREPENDER;
 	}
 
 } //MappedAttributeValuePrependerImpl

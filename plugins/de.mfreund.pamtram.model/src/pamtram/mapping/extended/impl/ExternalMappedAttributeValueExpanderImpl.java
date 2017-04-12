@@ -13,7 +13,7 @@ import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
@@ -63,7 +63,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
+		return ExtendedPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
-			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
 	}
@@ -103,7 +103,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return getHintsToExpand();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				getHintsToExpand().addAll((Collection<? extends ExpandableHint>)newValue);
 				return;
@@ -134,7 +134,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				return;
 		}
@@ -149,7 +149,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return hintsToExpand != null && !hintsToExpand.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -179,7 +179,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -210,7 +210,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -241,7 +241,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+				case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -256,7 +256,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

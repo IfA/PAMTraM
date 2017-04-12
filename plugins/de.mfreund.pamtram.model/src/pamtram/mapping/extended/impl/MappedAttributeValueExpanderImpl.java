@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
@@ -56,7 +56,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER;
+		return ExtendedPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
-			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
 	}
@@ -96,7 +96,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return getHintsToExpand();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -111,7 +111,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				getHintsToExpand().addAll((Collection<? extends ExpandableHint>)newValue);
 				return;
@@ -127,7 +127,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				return;
 		}
@@ -142,7 +142,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return hintsToExpand != null && !hintsToExpand.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -156,7 +156,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

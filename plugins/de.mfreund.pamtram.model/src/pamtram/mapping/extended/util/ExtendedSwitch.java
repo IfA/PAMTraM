@@ -12,6 +12,7 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -253,6 +254,104 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseDynamicSourceElement(containerSelectorTargetAttribute);
 				if (result == null) result = caseNamedElement(containerSelectorTargetAttribute);
 				if (result == null) result = caseModifiableElement(containerSelectorTargetAttribute);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER: {
+				MappedAttributeValueExpander mappedAttributeValueExpander = (MappedAttributeValueExpander)theEObject;
+				T result = caseMappedAttributeValueExpander(mappedAttributeValueExpander);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintType(mappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintBaseType(mappedAttributeValueExpander);
+				if (result == null) result = caseNamedElement(mappedAttributeValueExpander);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: {
+				LocalMappedAttributeValueExpander localMappedAttributeValueExpander = (LocalMappedAttributeValueExpander)theEObject;
+				T result = caseLocalMappedAttributeValueExpander(localMappedAttributeValueExpander);
+				if (result == null) result = caseLocalDynamicSourceElement(localMappedAttributeValueExpander);
+				if (result == null) result = caseMappedAttributeValueExpander(localMappedAttributeValueExpander);
+				if (result == null) result = caseDynamicSourceElement(localMappedAttributeValueExpander);
+				if (result == null) result = caseHintImporterMappingHint(localMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(localMappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintType(localMappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintBaseType(localMappedAttributeValueExpander);
+				if (result == null) result = caseNamedElement(localMappedAttributeValueExpander);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_PREPENDER: {
+				MappedAttributeValuePrepender mappedAttributeValuePrepender = (MappedAttributeValuePrepender)theEObject;
+				T result = caseMappedAttributeValuePrepender(mappedAttributeValuePrepender);
+				if (result == null) result = caseLocalMappedAttributeValueExpander(mappedAttributeValuePrepender);
+				if (result == null) result = caseLocalDynamicSourceElement(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
+				if (result == null) result = caseDynamicSourceElement(mappedAttributeValuePrepender);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
+				if (result == null) result = caseMappingHintBaseType(mappedAttributeValuePrepender);
+				if (result == null) result = caseNamedElement(mappedAttributeValuePrepender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_APPENDER: {
+				MappedAttributeValueAppender mappedAttributeValueAppender = (MappedAttributeValueAppender)theEObject;
+				T result = caseMappedAttributeValueAppender(mappedAttributeValueAppender);
+				if (result == null) result = caseLocalMappedAttributeValueExpander(mappedAttributeValueAppender);
+				if (result == null) result = caseLocalDynamicSourceElement(mappedAttributeValueAppender);
+				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
+				if (result == null) result = caseDynamicSourceElement(mappedAttributeValueAppender);
+				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(mappedAttributeValueAppender);
+				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
+				if (result == null) result = caseMappingHintBaseType(mappedAttributeValueAppender);
+				if (result == null) result = caseNamedElement(mappedAttributeValueAppender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER: {
+				ExternalMappedAttributeValueExpander externalMappedAttributeValueExpander = (ExternalMappedAttributeValueExpander)theEObject;
+				T result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValueExpander);
+				if (result == null) result = caseExternalDynamicSourceElement(externalMappedAttributeValueExpander);
+				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueExpander);
+				if (result == null) result = caseDynamicSourceElement(externalMappedAttributeValueExpander);
+				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueExpander);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintType(externalMappedAttributeValueExpander);
+				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueExpander);
+				if (result == null) result = caseNamedElement(externalMappedAttributeValueExpander);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER: {
+				ExternalMappedAttributeValuePrepender externalMappedAttributeValuePrepender = (ExternalMappedAttributeValuePrepender)theEObject;
+				T result = caseExternalMappedAttributeValuePrepender(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseExternalDynamicSourceElement(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseDynamicSourceElement(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseMappingHintType(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValuePrepender);
+				if (result == null) result = caseNamedElement(externalMappedAttributeValuePrepender);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER: {
+				ExternalMappedAttributeValueAppender externalMappedAttributeValueAppender = (ExternalMappedAttributeValueAppender)theEObject;
+				T result = caseExternalMappedAttributeValueAppender(externalMappedAttributeValueAppender);
+				if (result == null) result = caseExternalMappedAttributeValueExpander(externalMappedAttributeValueAppender);
+				if (result == null) result = caseExternalDynamicSourceElement(externalMappedAttributeValueAppender);
+				if (result == null) result = caseMappedAttributeValueExpander(externalMappedAttributeValueAppender);
+				if (result == null) result = caseDynamicSourceElement(externalMappedAttributeValueAppender);
+				if (result == null) result = caseHintImporterMappingHint(externalMappedAttributeValueAppender);
+				if (result == null) result = caseModifiableElement(externalMappedAttributeValueAppender);
+				if (result == null) result = caseMappingHintType(externalMappedAttributeValueAppender);
+				if (result == null) result = caseMappingHintBaseType(externalMappedAttributeValueAppender);
+				if (result == null) result = caseNamedElement(externalMappedAttributeValueAppender);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -501,6 +600,111 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Expander</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Local Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Local Mapped Attribute Value Expander</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLocalMappedAttributeValueExpander(LocalMappedAttributeValueExpander object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Prepender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValuePrepender(MappedAttributeValuePrepender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mapped Attribute Value Appender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMappedAttributeValueAppender(MappedAttributeValueAppender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Expander</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Expander</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalMappedAttributeValueExpander(ExternalMappedAttributeValueExpander object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Prepender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Prepender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalMappedAttributeValuePrepender(ExternalMappedAttributeValuePrepender object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Appender</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>External Mapped Attribute Value Appender</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExternalMappedAttributeValueAppender(ExternalMappedAttributeValueAppender object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -707,6 +911,21 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceSelector(InstanceSelector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hint Importer Mapping Hint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHintImporterMappingHint(HintImporterMappingHint object) {
 		return null;
 	}
 

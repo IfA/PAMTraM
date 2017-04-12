@@ -12,7 +12,7 @@ import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintType;
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
@@ -35,7 +35,7 @@ import pamtram.structure.source.SourceSectionReference;
  *
  * @generated
  */
-public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements LocalMappedAttributeValueExpander {
+public abstract class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceElementImpl<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> implements LocalMappedAttributeValueExpander {
 	/**
 	 * The cached value of the '{@link #getHintsToExpand() <em>Hints To Expand</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -62,7 +62,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
+		return ExtendedPackage.Literals.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER;
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
 		if (hintsToExpand == null) {
-			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
+			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
 		return hintsToExpand;
 	}
@@ -102,7 +102,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return getHintsToExpand();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				getHintsToExpand().addAll((Collection<? extends ExpandableHint>)newValue);
 				return;
@@ -133,7 +133,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				getHintsToExpand().clear();
 				return;
 		}
@@ -148,7 +148,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND:
 				return hintsToExpand != null && !hintsToExpand.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -178,7 +178,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (derivedFeatureID) {
-				case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -209,7 +209,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseFeatureID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
+				case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND: return ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND;
 				default: return -1;
 			}
 		}
@@ -240,7 +240,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 		}
 		if (baseClass == MappedAttributeValueExpander.class) {
 			switch (baseOperationID) {
-				case MappingPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
+				case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE: return ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE;
 				default: return -1;
 			}
 		}
@@ -255,7 +255,7 @@ public class LocalMappedAttributeValueExpanderImpl extends LocalDynamicSourceEle
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case MappingPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
+			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___GET_SOURCE_ATTRIBUTE:
 				return getSourceAttribute();
 		}
 		return super.eInvoke(operationID, arguments);

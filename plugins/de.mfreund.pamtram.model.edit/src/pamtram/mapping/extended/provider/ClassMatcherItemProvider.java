@@ -21,10 +21,9 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.extended.ClassMatcher} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ClassMatcher} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ClassMatcherItemProvider extends MatcherItemProvider {
@@ -46,12 +45,12 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addTargetClassPropertyDescriptor(object);
+			addTargetClassPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -92,18 +91,18 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/ClassMatcher"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ClassMatcher"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -130,15 +129,14 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

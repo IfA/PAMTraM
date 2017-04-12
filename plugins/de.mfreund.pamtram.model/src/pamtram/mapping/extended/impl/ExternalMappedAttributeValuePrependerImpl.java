@@ -3,8 +3,7 @@
 package pamtram.mapping.extended.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValuePrepender;
 
 /**
@@ -31,7 +30,7 @@ public class ExternalMappedAttributeValuePrependerImpl extends ExternalMappedAtt
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MappingPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER;
+		return ExtendedPackage.Literals.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER;
 	}
 
 } //ExternalMappedAttributeValuePrependerImpl

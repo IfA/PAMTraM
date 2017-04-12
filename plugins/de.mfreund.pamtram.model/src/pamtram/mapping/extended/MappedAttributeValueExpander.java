@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.MappingPackage;
 import pamtram.structure.source.SourceSectionAttribute;
 
 
@@ -22,7 +21,7 @@ import pamtram.structure.source.SourceSectionAttribute;
  *   <li>{@link pamtram.mapping.extended.MappedAttributeValueExpander#getHintsToExpand <em>Hints To Expand</em>}</li>
  * </ul>
  *
- * @see pamtram.mapping.MappingPackage#getMappedAttributeValueExpander()
+ * @see pamtram.mapping.extended.ExtendedPackage#getMappedAttributeValueExpander()
  * @model abstract="true"
  * @generated
  */
@@ -38,7 +37,7 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hints To Expand</em>' reference list.
-	 * @see pamtram.mapping.MappingPackage#getMappedAttributeValueExpander_HintsToExpand()
+	 * @see pamtram.mapping.extended.ExtendedPackage#getMappedAttributeValueExpander_HintsToExpand()
 	 * @model required="true"
 	 * @generated
 	 */

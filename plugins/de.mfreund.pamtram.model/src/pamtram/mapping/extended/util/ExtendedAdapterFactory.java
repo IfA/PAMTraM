@@ -14,6 +14,7 @@ import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.ExpandableHint;
+import pamtram.mapping.HintImporterMappingHint;
 import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintBaseType;
 import pamtram.mapping.MappingHintSourceInterface;
@@ -149,6 +150,34 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 				return createContainerSelectorTargetAttributeAdapter();
 			}
 			@Override
+			public Adapter caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
+				return createMappedAttributeValueExpanderAdapter();
+			}
+			@Override
+			public Adapter caseLocalMappedAttributeValueExpander(LocalMappedAttributeValueExpander object) {
+				return createLocalMappedAttributeValueExpanderAdapter();
+			}
+			@Override
+			public Adapter caseMappedAttributeValuePrepender(MappedAttributeValuePrepender object) {
+				return createMappedAttributeValuePrependerAdapter();
+			}
+			@Override
+			public Adapter caseMappedAttributeValueAppender(MappedAttributeValueAppender object) {
+				return createMappedAttributeValueAppenderAdapter();
+			}
+			@Override
+			public Adapter caseExternalMappedAttributeValueExpander(ExternalMappedAttributeValueExpander object) {
+				return createExternalMappedAttributeValueExpanderAdapter();
+			}
+			@Override
+			public Adapter caseExternalMappedAttributeValuePrepender(ExternalMappedAttributeValuePrepender object) {
+				return createExternalMappedAttributeValuePrependerAdapter();
+			}
+			@Override
+			public Adapter caseExternalMappedAttributeValueAppender(ExternalMappedAttributeValueAppender object) {
+				return createExternalMappedAttributeValueAppenderAdapter();
+			}
+			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -203,6 +232,10 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInstanceSelector(InstanceSelector object) {
 				return createInstanceSelectorAdapter();
+			}
+			@Override
+			public Adapter caseHintImporterMappingHint(HintImporterMappingHint object) {
+				return createHintImporterMappingHintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -449,6 +482,104 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.MappedAttributeValueExpander
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValueExpanderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.LocalMappedAttributeValueExpander <em>Local Mapped Attribute Value Expander</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.LocalMappedAttributeValueExpander
+	 * @generated
+	 */
+	public Adapter createLocalMappedAttributeValueExpanderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappedAttributeValuePrepender <em>Mapped Attribute Value Prepender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.MappedAttributeValuePrepender
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValuePrependerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappedAttributeValueAppender <em>Mapped Attribute Value Appender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.MappedAttributeValueAppender
+	 * @generated
+	 */
+	public Adapter createMappedAttributeValueAppenderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ExternalMappedAttributeValueExpander <em>External Mapped Attribute Value Expander</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValueExpander
+	 * @generated
+	 */
+	public Adapter createExternalMappedAttributeValueExpanderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ExternalMappedAttributeValuePrepender <em>External Mapped Attribute Value Prepender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValuePrepender
+	 * @generated
+	 */
+	public Adapter createExternalMappedAttributeValuePrependerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ExternalMappedAttributeValueAppender <em>External Mapped Attribute Value Appender</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.extended.ExternalMappedAttributeValueAppender
+	 * @generated
+	 */
+	public Adapter createExternalMappedAttributeValueAppenderAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -641,6 +772,20 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.HintImporterMappingHint <em>Hint Importer Mapping Hint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.mapping.HintImporterMappingHint
+	 * @generated
+	 */
+	public Adapter createHintImporterMappingHintAdapter() {
 		return null;
 	}
 

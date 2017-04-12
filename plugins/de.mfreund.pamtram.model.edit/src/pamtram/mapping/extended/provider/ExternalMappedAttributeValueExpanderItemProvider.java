@@ -13,8 +13,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
 import org.eclipse.emf.edit.provider.StyledString;
-
-import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.provider.ExternalDynamicSourceElementItemProvider;
@@ -65,7 +64,7 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDy
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
-				 MappingPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
+				 ExtendedPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
 				 true,
 				 false,
 				 true,

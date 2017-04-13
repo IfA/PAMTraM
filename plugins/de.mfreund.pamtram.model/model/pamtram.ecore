@@ -1358,6 +1358,12 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionCrossReference">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1370,6 +1376,12 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" upperBound="-1"
@@ -1492,6 +1504,12 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
         <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1513,6 +1531,12 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"

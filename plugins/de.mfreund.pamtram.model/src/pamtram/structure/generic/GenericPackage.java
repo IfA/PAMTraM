@@ -614,6 +614,224 @@ public interface GenericPackage extends EPackage {
 	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.ActualReferenceImpl <em>Actual Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.generic.impl.ActualReferenceImpl
+	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getActualReference()
+	 * @generated
+	 */
+	int ACTUAL_REFERENCE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE__NAME = REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>EReference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
+
+	/**
+	 * The number of structural features of the '<em>Actual Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Actual Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link pamtram.structure.generic.impl.VirtualReferenceImpl <em>Virtual Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.generic.impl.VirtualReferenceImpl
+	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getVirtualReference()
+	 * @generated
+	 */
+	int VIRTUAL_REFERENCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE__NAME = REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>EReference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE__EREFERENCE = REFERENCE__EREFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE__OWNING_CLASS = REFERENCE__OWNING_CLASS;
+
+	/**
+	 * The number of structural features of the '<em>Virtual Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE_FEATURE_COUNT = REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___GET_CONTAINING_SECTION = REFERENCE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___GET_CONTAINING_SECTION_MODEL = REFERENCE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___IS_LIBRARY_ENTRY = REFERENCE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___GET_VALUES_GENERIC = REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The number of operations of the '<em>Virtual Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE_OPERATION_COUNT = REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.generic.impl.CompositeReferenceImpl <em>Composite Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -621,7 +839,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCompositeReference()
 	 * @generated
 	 */
-	int COMPOSITE_REFERENCE = 4;
+	int COMPOSITE_REFERENCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -748,7 +966,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCrossReference()
 	 * @generated
 	 */
-	int CROSS_REFERENCE = 5;
+	int CROSS_REFERENCE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -875,7 +1093,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getAttribute()
 	 * @generated
 	 */
-	int ATTRIBUTE = 6;
+	int ATTRIBUTE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -948,7 +1166,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getActualAttribute()
 	 * @generated
 	 */
-	int ACTUAL_ATTRIBUTE = 7;
+	int ACTUAL_ATTRIBUTE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1039,7 +1257,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getVirtualAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_ATTRIBUTE = 8;
+	int VIRTUAL_ATTRIBUTE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1113,7 +1331,7 @@ public interface GenericPackage extends EPackage {
 	 * @see pamtram.structure.generic.impl.GenericPackageImpl#getCardinalityType()
 	 * @generated
 	 */
-	int CARDINALITY_TYPE = 9;
+	int CARDINALITY_TYPE = 11;
 
 
 	/**
@@ -1404,6 +1622,26 @@ public interface GenericPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getReference__AddValuesGeneric__EList();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.generic.ActualReference <em>Actual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Actual Reference</em>'.
+	 * @see pamtram.structure.generic.ActualReference
+	 * @generated
+	 */
+	EClass getActualReference();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.generic.VirtualReference <em>Virtual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Virtual Reference</em>'.
+	 * @see pamtram.structure.generic.VirtualReference
+	 * @generated
+	 */
+	EClass getVirtualReference();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.CompositeReference <em>Composite Reference</em>}'.
@@ -1793,6 +2031,26 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ActualReferenceImpl <em>Actual Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.generic.impl.ActualReferenceImpl
+		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getActualReference()
+		 * @generated
+		 */
+		EClass ACTUAL_REFERENCE = eINSTANCE.getActualReference();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.generic.impl.VirtualReferenceImpl <em>Virtual Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.generic.impl.VirtualReferenceImpl
+		 * @see pamtram.structure.generic.impl.GenericPackageImpl#getVirtualReference()
+		 * @generated
+		 */
+		EClass VIRTUAL_REFERENCE = eINSTANCE.getVirtualReference();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.CompositeReferenceImpl <em>Composite Reference</em>}' class.

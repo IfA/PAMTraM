@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
@@ -18,6 +19,7 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.generic.VirtualReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,6 +107,24 @@ public class GenericSwitch<T> extends Switch<T> {
 				T result = caseReference(reference);
 				if (result == null) result = caseMetaModelElement(reference);
 				if (result == null) result = caseNamedElement(reference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericPackage.ACTUAL_REFERENCE: {
+				ActualReference<?, ?, ?, ?> actualReference = (ActualReference<?, ?, ?, ?>)theEObject;
+				T result = caseActualReference(actualReference);
+				if (result == null) result = caseReference(actualReference);
+				if (result == null) result = caseMetaModelElement(actualReference);
+				if (result == null) result = caseNamedElement(actualReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case GenericPackage.VIRTUAL_REFERENCE: {
+				VirtualReference<?, ?, ?, ?> virtualReference = (VirtualReference<?, ?, ?, ?>)theEObject;
+				T result = caseVirtualReference(virtualReference);
+				if (result == null) result = caseReference(virtualReference);
+				if (result == null) result = caseMetaModelElement(virtualReference);
+				if (result == null) result = caseNamedElement(virtualReference);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -213,6 +233,36 @@ public class GenericSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseReference(Reference<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Actual Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Actual Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseActualReference(ActualReference<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualReference(VirtualReference<S, C, R, A> object) {
 		return null;
 	}
 

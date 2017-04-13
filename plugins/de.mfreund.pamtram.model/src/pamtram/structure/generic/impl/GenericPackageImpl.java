@@ -37,6 +37,7 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.impl.ConstraintPackageImpl;
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
@@ -48,6 +49,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
 
+import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.generic.util.GenericValidator;
 
 import pamtram.structure.impl.StructurePackageImpl;
@@ -92,6 +94,20 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * @generated
 	 */
 	private EClass referenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actualReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass virtualReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -497,6 +513,24 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getActualReference() {
+		return actualReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getVirtualReference() {
+		return virtualReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompositeReference() {
 		return compositeReferenceEClass;
 	}
@@ -669,6 +703,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEOperation(referenceEClass, REFERENCE___GET_VALUES_GENERIC);
 		createEOperation(referenceEClass, REFERENCE___ADD_VALUES_GENERIC__ELIST);
 
+		actualReferenceEClass = createEClass(ACTUAL_REFERENCE);
+
+		virtualReferenceEClass = createEClass(VIRTUAL_REFERENCE);
+
 		compositeReferenceEClass = createEClass(COMPOSITE_REFERENCE);
 		createEReference(compositeReferenceEClass, COMPOSITE_REFERENCE__VALUE);
 		createEOperation(compositeReferenceEClass, COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
@@ -733,6 +771,14 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		ETypeParameter referenceEClass_C = addETypeParameter(referenceEClass, "C");
 		ETypeParameter referenceEClass_R = addETypeParameter(referenceEClass, "R");
 		ETypeParameter referenceEClass_A = addETypeParameter(referenceEClass, "A");
+		ETypeParameter actualReferenceEClass_S = addETypeParameter(actualReferenceEClass, "S");
+		ETypeParameter actualReferenceEClass_C = addETypeParameter(actualReferenceEClass, "C");
+		ETypeParameter actualReferenceEClass_R = addETypeParameter(actualReferenceEClass, "R");
+		ETypeParameter actualReferenceEClass_A = addETypeParameter(actualReferenceEClass, "A");
+		ETypeParameter virtualReferenceEClass_S = addETypeParameter(virtualReferenceEClass, "S");
+		ETypeParameter virtualReferenceEClass_C = addETypeParameter(virtualReferenceEClass, "C");
+		ETypeParameter virtualReferenceEClass_R = addETypeParameter(virtualReferenceEClass, "R");
+		ETypeParameter virtualReferenceEClass_A = addETypeParameter(virtualReferenceEClass, "A");
 		ETypeParameter compositeReferenceEClass_S = addETypeParameter(compositeReferenceEClass, "S");
 		ETypeParameter compositeReferenceEClass_C = addETypeParameter(compositeReferenceEClass, "C");
 		ETypeParameter compositeReferenceEClass_R = addETypeParameter(compositeReferenceEClass, "R");
@@ -915,6 +961,86 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g2 = createEGenericType(referenceEClass_A);
 		g1.getETypeArguments().add(g2);
 		referenceEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(this.getSection());
+		g2 = createEGenericType(actualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		actualReferenceEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType(actualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		actualReferenceEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(actualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		actualReferenceEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(this.getAttribute());
+		g2 = createEGenericType(actualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		actualReferenceEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(this.getSection());
+		g2 = createEGenericType(virtualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		virtualReferenceEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(this.getClass_());
+		g2 = createEGenericType(virtualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		virtualReferenceEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(virtualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		virtualReferenceEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(this.getAttribute());
+		g2 = createEGenericType(virtualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		virtualReferenceEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(this.getSection());
 		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -1149,6 +1275,26 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		referenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(actualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(actualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		actualReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
+		g2 = createEGenericType(virtualReferenceEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(virtualReferenceEClass_A);
+		g1.getETypeArguments().add(g2);
+		virtualReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getReference());
 		g2 = createEGenericType(compositeReferenceEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(compositeReferenceEClass_C);
@@ -1327,6 +1473,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		op = initEOperation(getReference__AddValuesGeneric__EList(), null, "addValuesGeneric", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(referenceEClass_C);
 		addEParameter(op, g1, "values", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(actualReferenceEClass, ActualReference.class, "ActualReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(virtualReferenceEClass, VirtualReference.class, "VirtualReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compositeReferenceEClass, CompositeReference.class, "CompositeReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(compositeReferenceEClass_C);

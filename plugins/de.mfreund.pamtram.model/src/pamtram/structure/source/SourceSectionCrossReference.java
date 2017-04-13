@@ -2,6 +2,7 @@
  */
 package pamtram.structure.source;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CrossReference;
 
 /**
@@ -14,5 +15,5 @@ import pamtram.structure.generic.CrossReference;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='valuesMatchReferenceType'"
  * @generated
  */
-public interface SourceSectionCrossReference extends CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, SourceSectionReference {
+public interface SourceSectionCrossReference extends CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, SourceSectionReference, ActualReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 } // SourceSectionCrossReference

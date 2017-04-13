@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
@@ -173,6 +174,11 @@ public class SourceSectionCrossReferenceImpl
 				default: return -1;
 			}
 		}
+		if (baseClass == ActualReference.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -186,6 +192,11 @@ public class SourceSectionCrossReferenceImpl
 		if (baseClass == SourceSectionReference.class) {
 			switch (baseFeatureID) {
 				case SourcePackage.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS: return SourcePackage.SOURCE_SECTION_CROSS_REFERENCE__IGNORE_UNMATCHED_ELEMENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == ActualReference.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

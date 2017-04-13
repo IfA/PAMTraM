@@ -4,6 +4,7 @@ package pamtram.structure.target;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CrossReference;
 
 /**
@@ -16,7 +17,7 @@ import pamtram.structure.generic.CrossReference;
  * @model
  * @generated
  */
-public interface TargetSectionCrossReference extends CrossReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference {
+public interface TargetSectionCrossReference extends CrossReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>, TargetSectionReference, ActualReference<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute> {
 
 	/**
 	 * <!-- begin-user-doc -->

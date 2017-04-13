@@ -820,6 +820,86 @@
           <eTypeArguments eTypeParameter="#//structure/generic/Reference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ActualReference" abstract="true">
+        <eTypeParameters name="S">
+          <eBounds eClassifier="#//structure/generic/Section">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="C">
+          <eBounds eClassifier="#//structure/generic/Class">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="R">
+          <eBounds eClassifier="#//structure/generic/Reference">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="A">
+          <eBounds eClassifier="#//structure/generic/Attribute">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VirtualReference" abstract="true">
+        <eTypeParameters name="S">
+          <eBounds eClassifier="#//structure/generic/Section">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="C">
+          <eBounds eClassifier="#//structure/generic/Class">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="R">
+          <eBounds eClassifier="#//structure/generic/Reference">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="A">
+          <eBounds eClassifier="#//structure/generic/Attribute">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceIsContainment"/>

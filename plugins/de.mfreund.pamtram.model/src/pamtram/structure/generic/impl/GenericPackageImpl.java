@@ -468,7 +468,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReference_EReference() {
+	public EReference getReference_OwningClass() {
 		return (EReference)referenceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -477,16 +477,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReference_OwningClass() {
-		return (EReference)referenceEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map() {
+	public EOperation getReference__GetValuesGeneric() {
 		return referenceEClass.getEOperations().get(0);
 	}
 
@@ -495,17 +486,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getReference__GetValuesGeneric() {
-		return referenceEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getReference__AddValuesGeneric__EList() {
-		return referenceEClass.getEOperations().get(2);
+		return referenceEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -515,6 +497,24 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 */
 	public EClass getActualReference() {
 		return actualReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActualReference_EReference() {
+		return (EReference)actualReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getActualReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map() {
+		return actualReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -697,13 +697,13 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEOperation(sectionEClass, SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP);
 
 		referenceEClass = createEClass(REFERENCE);
-		createEReference(referenceEClass, REFERENCE__EREFERENCE);
 		createEReference(referenceEClass, REFERENCE__OWNING_CLASS);
-		createEOperation(referenceEClass, REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(referenceEClass, REFERENCE___GET_VALUES_GENERIC);
 		createEOperation(referenceEClass, REFERENCE___ADD_VALUES_GENERIC__ELIST);
 
 		actualReferenceEClass = createEClass(ACTUAL_REFERENCE);
+		createEReference(actualReferenceEClass, ACTUAL_REFERENCE__EREFERENCE);
+		createEOperation(actualReferenceEClass, ACTUAL_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP);
 
 		virtualReferenceEClass = createEClass(VIRTUAL_REFERENCE);
 
@@ -1453,18 +1453,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(referenceEClass, Reference.class, "Reference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(referenceEClass_C);
 		initEReference(getReference_OwningClass(), g1, this.getClass_References(), "owningClass", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = initEOperation(getReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getReference__GetValuesGeneric(), null, "getValuesGeneric", 0, -1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(referenceEClass_C);
@@ -1475,6 +1465,16 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		addEParameter(op, g1, "values", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(actualReferenceEClass, ActualReference.class, "ActualReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActualReference_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, ActualReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getActualReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceMatchesParentEClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(virtualReferenceEClass, VirtualReference.class, "VirtualReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

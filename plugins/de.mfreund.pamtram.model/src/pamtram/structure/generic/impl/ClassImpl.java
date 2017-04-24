@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
@@ -306,7 +307,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		}
 		
 		for (R ref : containerClass.getReferences()) {
-			if(!(ref.getEReference().isContainment())) {
+			if(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {
 				continue;
 			}
 			if(ref instanceof CompositeReference<?,?,?,?>){
@@ -389,11 +390,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateEClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;
@@ -424,11 +425,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateCardinalityIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;

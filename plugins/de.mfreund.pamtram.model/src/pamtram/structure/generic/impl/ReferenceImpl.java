@@ -23,8 +23,7 @@ import pamtram.structure.generic.Section;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.structure.generic.impl.ReferenceImpl#getOwningClass
- * <em>Owning Class</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ReferenceImpl#getOwningClass <em>Owning Class</em>}</li>
  * </ul>
  *
  * @generated
@@ -34,7 +33,6 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReferenceImpl() {
@@ -43,7 +41,6 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,21 +50,17 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
-		if (this.eContainerFeatureID() != GenericPackage.REFERENCE__OWNING_CLASS) {
-			return null;
-		}
-		return (C) this.eInternalContainer();
+		if (eContainerFeatureID() != GenericPackage.REFERENCE__OWNING_CLASS) return null;
+		return (C)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -79,7 +72,6 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,93 +83,85 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case GenericPackage.REFERENCE__OWNING_CLASS:
-			if (this.eInternalContainer() != null) {
-				msgs = this.eBasicRemoveFromContainer(msgs);
-			}
-			return this.eBasicSetContainer(otherEnd, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return eBasicSetContainer(otherEnd, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case GenericPackage.REFERENCE__OWNING_CLASS:
-			return this.eBasicSetContainer(null, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return eBasicSetContainer(null, GenericPackage.REFERENCE__OWNING_CLASS, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (this.eContainerFeatureID()) {
-		case GenericPackage.REFERENCE__OWNING_CLASS:
-			return this.eInternalContainer().eInverseRemove(this, GenericPackage.CLASS__REFERENCES,
-					pamtram.structure.generic.Class.class, msgs);
+		switch (eContainerFeatureID()) {
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return eInternalContainer().eInverseRemove(this, GenericPackage.CLASS__REFERENCES, pamtram.structure.generic.Class.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case GenericPackage.REFERENCE__OWNING_CLASS:
-			return this.getOwningClass();
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return getOwningClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case GenericPackage.REFERENCE__OWNING_CLASS:
-			return this.getOwningClass() != null;
+			case GenericPackage.REFERENCE__OWNING_CLASS:
+				return getOwningClass() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case GenericPackage.REFERENCE___GET_VALUES_GENERIC:
-			return this.getValuesGeneric();
-		case GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
-			this.addValuesGeneric((EList<C>) arguments.get(0));
-			return null;
+			case GenericPackage.REFERENCE___GET_VALUES_GENERIC:
+				return getValuesGeneric();
+			case GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
+				addValuesGeneric((EList<C>)arguments.get(0));
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -274,7 +274,6 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionReference, diagnostics, context);
 		return result;
 	}
 
@@ -294,9 +293,9 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionCompositeReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_eReferenceIsContainment(targetSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_validateEReferenceIsContainment(targetSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateActualReference_validateEReferenceMatchesParentEClass(targetSectionCompositeReference, diagnostics, context);
 		return result;
 	}
 
@@ -316,9 +315,9 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionCrossReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(targetSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(targetSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(targetSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateActualReference_validateEReferenceMatchesParentEClass(targetSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSectionCrossReference_validateEReferenceIsNonContainment(targetSectionCrossReference, diagnostics, context);
 		return result;
 	}

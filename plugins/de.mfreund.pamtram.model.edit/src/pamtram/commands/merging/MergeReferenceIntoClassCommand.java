@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CompositeReference;
@@ -25,7 +26,8 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a {@link Reference} into a {@link Class}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge a
+ * {@link Reference} into a {@link Class}.
  *
  * @author mfreund
  * @param <S>
@@ -46,10 +48,12 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 	 * @param right
 	 *            The right element for the merge.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
-	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
-	 *            the resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted
+	 *            when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
+	 *            redirecting cross-references} after merging elements or
+	 *            <em>null</em> when the elements shall be determined from the
+	 *            resource set associated with the given <em>domain</em>.
 	 */
 	public MergeReferenceIntoClassCommand(EditingDomain domain, C left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
@@ -58,9 +62,19 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 	@Override
 	protected boolean prepare() {
 
-		Optional<R> leftReference = this.left.getReferences().parallelStream().filter(
-				l -> l.getClass() == this.right.getClass() && l.getEReference().equals(this.right.getEReference()))
-				.findAny();
+		// Nothing to be done
+		//
+		if (this.right.getValuesGeneric().isEmpty()) {
+			return true;
+		}
+
+		Optional<R> leftReference = this.right instanceof ActualReference<?, ?, ?, ?>
+				? this.left.getReferences().parallelStream()
+						.filter(l -> l instanceof ActualReference<?, ?, ?, ?> && l.getClass() == this.right.getClass()
+								&& ((ActualReference<?, ?, ?, ?>) l).getEReference()
+										.equals(((ActualReference<?, ?, ?, ?>) this.right).getEReference()))
+						.findAny()
+				: Optional.empty();
 
 		// Simply add the reference
 		//
@@ -74,18 +88,13 @@ public class MergeReferenceIntoClassCommand<S extends Section<S, C, R, A>, C ext
 			return super.prepare();
 		}
 
-		// Nothing to be done
-		//
-		if (this.right.getValuesGeneric().isEmpty()) {
-			return true;
-		}
-
 		// For a single-valued reference, we cannot simply add the values
 		// (unless the 'size == 1'-constraint is
 		// already
 		// violated). Consequently, we try to merge the values...
 		//
-		if (!leftReference.get().getEReference().isMany() && leftReference.get().getValuesGeneric().size() == 1) {
+		if (!((ActualReference<?, ?, ?, ?>) leftReference.get()).getEReference().isMany()
+				&& leftReference.get().getValuesGeneric().size() == 1) {
 
 			Set<C> valuesToMerge = Stream
 					.concat(leftReference.get().getValuesGeneric().stream(), this.right.getValuesGeneric().stream())

@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CompositeReference;
@@ -30,9 +31,11 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualReference;
 
 /**
- * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two {@link Reference References}.
+ * A concrete {@link MergeMetaModelElementsCommand} that allows to merge two
+ * {@link Reference References}.
  *
  * @author mfreund
  * @param <S>
@@ -53,20 +56,24 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 * @param right
 	 *            The right element for the merge.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
-	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
-	 *            the resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted
+	 *            when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
+	 *            redirecting cross-references} after merging elements or
+	 *            <em>null</em> when the elements shall be determined from the
+	 *            resource set associated with the given <em>domain</em>.
 	 */
 	public MergeReferencesCommand(EditingDomain domain, R left, R right, Set<EObject> elementsOfInterest) {
 		super(domain, left, right, elementsOfInterest);
 	}
 
 	/**
-	 * Factory method to create a command that will merge multiple given <em>referencesToMerge</em>.
+	 * Factory method to create a command that will merge multiple given
+	 * <em>referencesToMerge</em>.
 	 * <p />
-	 * Note: This will return a compound command that contains one {@link MergeReferencesCommand} for each
-	 * <em>referencesToMerge</em> to be merged.
+	 * Note: This will return a compound command that contains one
+	 * {@link MergeReferencesCommand} for each <em>referencesToMerge</em> to be
+	 * merged.
 	 *
 	 * @param <S>
 	 * @param <C>
@@ -77,20 +84,28 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	 * @param referencesToMerge
 	 *            The set of {@link Reference References} to be merged.
 	 * @param elementsOfInterest
-	 *            The set of {@link EObject elements} that need to be consulted when
-	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement) redirecting
-	 *            cross-references} after merging elements or <em>null</em> when the elements shall be determined from
-	 *            the resource set associated with the given <em>domain</em>.
+	 *            The set of {@link EObject elements} that need to be consulted
+	 *            when
+	 *            {@link #prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
+	 *            redirecting cross-references} after merging elements or
+	 *            <em>null</em> when the elements shall be determined from the
+	 *            resource set associated with the given <em>domain</em>.
 	 * @return The created command.
 	 */
 	public static <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Command create(
 			EditingDomain domain, Set<R> referencesToMerge, Set<EObject> elementsOfInterest) {
 
+		// Only ActualReferences can be merged
+		//
+		if (referencesToMerge.parallelStream().anyMatch(r -> r instanceof VirtualReference<?, ?, ?, ?>)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
 		// The references can only be merged if they all represent the same
 		// EReference ...
 		//
-		Set<EReference> eReferences = referencesToMerge.parallelStream().map(Reference::getEReference)
-				.collect(Collectors.toSet());
+		Set<EReference> eReferences = referencesToMerge.parallelStream().map(r -> (ActualReference<?, ?, ?, ?>) r)
+				.map(ActualReference::getEReference).collect(Collectors.toSet());
 
 		boolean enabled = eReferences.size() == 1;
 
@@ -149,6 +164,12 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	protected boolean prepare() {
 
+		// This command is only valid for ActualReferences
+		//
+		if (this.left instanceof VirtualReference<?, ?, ?, ?> || this.right instanceof VirtualReference<?, ?, ?, ?>) {
+			return false;
+		}
+
 		// Nothing to be done
 		//
 		if (this.right.getValuesGeneric().isEmpty()) {
@@ -160,7 +181,8 @@ public class MergeReferencesCommand<S extends Section<S, C, R, A>, C extends pam
 		// already
 		// violated). Consequently, we try to merge the values...
 		//
-		if (!this.left.getEReference().isMany() && this.left.getValuesGeneric().size() == 1) {
+		if (!((ActualReference<?, ?, ?, ?>) this.left).getEReference().isMany()
+				&& this.left.getValuesGeneric().size() == 1) {
 
 			Set<C> valuesToMerge = Stream
 					.concat(this.left.getValuesGeneric().stream(), this.right.getValuesGeneric().stream())

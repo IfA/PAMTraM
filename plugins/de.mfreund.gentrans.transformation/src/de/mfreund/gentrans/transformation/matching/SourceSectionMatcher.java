@@ -41,7 +41,9 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -736,10 +738,11 @@ public class SourceSectionMatcher {
 		// current 'sourceSectionClass' and store them in to maps
 		//
 		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().stream()
-				.collect(Collectors.toConcurrentMap(r -> r.getEReference(), r -> r.getValuesGeneric(), (i, j) -> {
-					i.addAll(j);
-					return i;
-				}));
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toConcurrentMap(
+						r -> ((ActualReference<?, ?, ?, ?>) r).getEReference(), Reference::getValuesGeneric, (i, j) -> {
+							i.addAll(j);
+							return i;
+						}));
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().stream()
 				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
@@ -772,7 +775,8 @@ public class SourceSectionMatcher {
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
 					return sourceSectionClass.getReferences().parallelStream()
-							.filter(r -> r.getEReference().equals(reference))
+							.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
+									&& ((ActualReference<?, ?, ?, ?>) r).getEReference().equals(reference))
 							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 				} else {
 					continue;
@@ -912,7 +916,8 @@ public class SourceSectionMatcher {
 		//
 		if (childDescriptor == null) {
 			return sourceSectionClass.getReferences().parallelStream()
-					.filter(r -> r.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
+					.filter(r -> r instanceof ActualReference<?, ?, ?, ?> && ((ActualReference<?, ?, ?, ?>) r)
+							.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
 					.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 		}
 

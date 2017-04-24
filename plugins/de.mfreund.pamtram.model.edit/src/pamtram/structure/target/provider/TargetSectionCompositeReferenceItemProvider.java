@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
@@ -51,8 +52,31 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addEReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the EReference feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActualReference_eReference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActualReference_eReference_feature", "_UI_ActualReference_type"),
+				 GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

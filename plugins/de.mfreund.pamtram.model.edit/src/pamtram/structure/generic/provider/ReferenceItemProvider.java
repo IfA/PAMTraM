@@ -21,10 +21,9 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.generic.Reference} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Reference} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class ReferenceItemProvider extends MetaModelElementItemProvider {
@@ -47,12 +46,11 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addEReferencePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -82,14 +80,14 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -132,16 +130,15 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 

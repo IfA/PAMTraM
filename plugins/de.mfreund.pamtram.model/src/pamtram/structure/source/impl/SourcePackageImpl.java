@@ -57,6 +57,7 @@ import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 
 import pamtram.structure.source.VirtualSourceSectionAttribute;
+import pamtram.structure.source.VirtualSourceSectionCrossReference;
 import pamtram.structure.source.util.SourceValidator;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.impl.TargetPackageImpl;
@@ -102,6 +103,13 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * @generated
 	 */
 	private EClass sourceSectionCrossReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass virtualSourceSectionCrossReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -315,6 +323,33 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVirtualSourceSectionCrossReference() {
+		return virtualSourceSectionCrossReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVirtualSourceSectionCrossReference_Derivation() {
+		return (EAttribute)virtualSourceSectionCrossReferenceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getVirtualSourceSectionCrossReference__ValidateDerivation__DiagnosticChain_Map() {
+		return virtualSourceSectionCrossReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSourceSectionAttribute() {
 		return sourceSectionAttributeEClass;
 	}
@@ -405,6 +440,10 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_COMPOSITE_REFERENCE);
 
 		sourceSectionCrossReferenceEClass = createEClass(SOURCE_SECTION_CROSS_REFERENCE);
+
+		virtualSourceSectionCrossReferenceEClass = createEClass(VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE);
+		createEAttribute(virtualSourceSectionCrossReferenceEClass, VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__DERIVATION);
+		createEOperation(virtualSourceSectionCrossReferenceEClass, VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP);
 
 		sourceSectionAttributeEClass = createEClass(SOURCE_SECTION_ATTRIBUTE);
 		createEReference(sourceSectionAttributeEClass, SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
@@ -525,6 +564,28 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		sourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theGenericPackage.getCrossReference());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		virtualSourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getSourceSectionReference());
+		virtualSourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theGenericPackage.getVirtualReference());
+		g2 = createEGenericType(this.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		virtualSourceSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
 		g2 = createEGenericType(this.getSourceSection());
 		g1.getETypeArguments().add(g2);
@@ -582,6 +643,18 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionCompositeReference.class, "SourceSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(virtualSourceSectionCrossReferenceEClass, VirtualSourceSectionCrossReference.class, "VirtualSourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVirtualSourceSectionCrossReference_Derivation(), ecorePackage.getEString(), "derivation", null, 1, 1, VirtualSourceSectionCrossReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getVirtualSourceSectionCrossReference__ValidateDerivation__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateDerivation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceSectionAttributeEClass, SourceSectionAttribute.class, "SourceSectionAttribute", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSourceSectionAttribute_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraints", null, 0, -1, SourceSectionAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

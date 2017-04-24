@@ -19,6 +19,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.*;
 
 /**
@@ -131,6 +132,18 @@ public class SourceSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE: {
+				VirtualSourceSectionCrossReference virtualSourceSectionCrossReference = (VirtualSourceSectionCrossReference)theEObject;
+				T result = caseVirtualSourceSectionCrossReference(virtualSourceSectionCrossReference);
+				if (result == null) result = caseCrossReference(virtualSourceSectionCrossReference);
+				if (result == null) result = caseSourceSectionReference(virtualSourceSectionCrossReference);
+				if (result == null) result = caseVirtualReference(virtualSourceSectionCrossReference);
+				if (result == null) result = caseReference(virtualSourceSectionCrossReference);
+				if (result == null) result = caseMetaModelElement(virtualSourceSectionCrossReference);
+				if (result == null) result = caseNamedElement(virtualSourceSectionCrossReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SourcePackage.SOURCE_SECTION_ATTRIBUTE: {
 				SourceSectionAttribute sourceSectionAttribute = (SourceSectionAttribute)theEObject;
 				T result = caseSourceSectionAttribute(sourceSectionAttribute);
@@ -238,6 +251,21 @@ public class SourceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSourceSectionCrossReference(SourceSectionCrossReference object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Source Section Cross Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Source Section Cross Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVirtualSourceSectionCrossReference(VirtualSourceSectionCrossReference object) {
 		return null;
 	}
 
@@ -403,6 +431,21 @@ public class SourceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseCrossReference(CrossReference<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseVirtualReference(VirtualReference<S, C, R, A> object) {
 		return null;
 	}
 

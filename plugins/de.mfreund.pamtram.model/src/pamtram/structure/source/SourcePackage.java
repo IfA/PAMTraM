@@ -848,6 +848,142 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.source.impl.VirtualSourceSectionCrossReferenceImpl <em>Virtual Source Section Cross Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.source.impl.VirtualSourceSectionCrossReferenceImpl
+	 * @see pamtram.structure.source.impl.SourcePackageImpl#getVirtualSourceSectionCrossReference()
+	 * @generated
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__NAME = GenericPackage.CROSS_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__OWNING_CLASS = GenericPackage.CROSS_REFERENCE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Ignore Unmatched Elements</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Derivation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__DERIVATION = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Virtual Source Section Cross Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CROSS_REFERENCE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CROSS_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Derivation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Virtual Source Section Cross Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionAttributeImpl <em>Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -855,7 +991,7 @@ public interface SourcePackage extends EPackage {
 	 * @see pamtram.structure.source.impl.SourcePackageImpl#getSourceSectionAttribute()
 	 * @generated
 	 */
-	int SOURCE_SECTION_ATTRIBUTE = 5;
+	int SOURCE_SECTION_ATTRIBUTE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -937,7 +1073,7 @@ public interface SourcePackage extends EPackage {
 	 * @see pamtram.structure.source.impl.SourcePackageImpl#getActualSourceSectionAttribute()
 	 * @generated
 	 */
-	int ACTUAL_SOURCE_SECTION_ATTRIBUTE = 6;
+	int ACTUAL_SOURCE_SECTION_ATTRIBUTE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1038,7 +1174,7 @@ public interface SourcePackage extends EPackage {
 	 * @see pamtram.structure.source.impl.SourcePackageImpl#getVirtualSourceSectionAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE = 7;
+	int VIRTUAL_SOURCE_SECTION_ATTRIBUTE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1225,6 +1361,37 @@ public interface SourcePackage extends EPackage {
 	EClass getSourceSectionCrossReference();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.structure.source.VirtualSourceSectionCrossReference <em>Virtual Source Section Cross Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Virtual Source Section Cross Reference</em>'.
+	 * @see pamtram.structure.source.VirtualSourceSectionCrossReference
+	 * @generated
+	 */
+	EClass getVirtualSourceSectionCrossReference();
+
+	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.source.VirtualSourceSectionCrossReference#getDerivation <em>Derivation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Derivation</em>'.
+	 * @see pamtram.structure.source.VirtualSourceSectionCrossReference#getDerivation()
+	 * @see #getVirtualSourceSectionCrossReference()
+	 * @generated
+	 */
+	EAttribute getVirtualSourceSectionCrossReference_Derivation();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.source.VirtualSourceSectionCrossReference#validateDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Derivation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Derivation</em>' operation.
+	 * @see pamtram.structure.source.VirtualSourceSectionCrossReference#validateDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getVirtualSourceSectionCrossReference__ValidateDerivation__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionAttribute <em>Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1390,6 +1557,32 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SOURCE_SECTION_CROSS_REFERENCE = eINSTANCE.getSourceSectionCrossReference();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.source.impl.VirtualSourceSectionCrossReferenceImpl <em>Virtual Source Section Cross Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.source.impl.VirtualSourceSectionCrossReferenceImpl
+		 * @see pamtram.structure.source.impl.SourcePackageImpl#getVirtualSourceSectionCrossReference()
+		 * @generated
+		 */
+		EClass VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE = eINSTANCE.getVirtualSourceSectionCrossReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Derivation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__DERIVATION = eINSTANCE.getVirtualSourceSectionCrossReference_Derivation();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Derivation</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVirtualSourceSectionCrossReference__ValidateDerivation__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionAttributeImpl <em>Section Attribute</em>}' class.

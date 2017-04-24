@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 import de.mfreund.pamtram.util.NullComparator;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.Reference;
@@ -43,16 +44,19 @@ import pamtram.structure.target.TargetSectionAttribute;
 public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> {
 
 	/**
-	 * After a call to {@link #merge()} this contains all the {@link EObject elements} that have been merged into other
-	 * elements and that can now be deleted from the model.
+	 * After a call to {@link #merge()} this contains all the {@link EObject
+	 * elements} that have been merged into other elements and that can now be
+	 * deleted from the model.
 	 * <p />
-	 * The key of this map represents the element into which the associated set of values has been merged.
+	 * The key of this map represents the element into which the associated set
+	 * of values has been merged.
 	 */
 	protected Map<EObject, Set<EObject>> mergedElements;
 
 	/**
-	 * After a call to {@link #merge()} this contains all the {@link EObject elements} that have been deleted during the
-	 * merging process because they could not be merged with other elements.
+	 * After a call to {@link #merge()} this contains all the {@link EObject
+	 * elements} that have been deleted during the merging process because they
+	 * could not be merged with other elements.
 	 */
 	protected Set<EObject> deletedElements;
 
@@ -62,8 +66,8 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 	protected Set<C> elementsToMerge;
 
 	/**
-	 * The list of contained {@link ClassMerger ClassMergers} that are used to merge elements further down in the
-	 * containment hierarchy.
+	 * The list of contained {@link ClassMerger ClassMergers} that are used to
+	 * merge elements further down in the containment hierarchy.
 	 */
 	private List<ClassMerger<S, C, R, A>> subMergers;
 
@@ -84,10 +88,12 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 	/**
 	 * Merge the {@link #elementsToMerge}.
 	 * <p />
-	 * Note: Clients should call {@link #canMerge()} before actually merging the elements so that an unsuccessful merge
-	 * process won't affect the {@link #elementsToMerge}.
+	 * Note: Clients should call {@link #canMerge()} before actually merging the
+	 * elements so that an unsuccessful merge process won't affect the
+	 * {@link #elementsToMerge}.
 	 *
-	 * @return <em>true</em> if the elements were merged successfully; <em>false</em> otherwise.
+	 * @return <em>true</em> if the elements were merged successfully;
+	 *         <em>false</em> otherwise.
 	 */
 	public boolean merge() {
 
@@ -98,14 +104,16 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 	/**
 	 * Check if the {@link #elementsToMerge} can be merged successfully.
 	 * <p />
-	 * Note: This won't affect the {@link #elementsToMerge} so that it is safe to call this even if a merge would not be
-	 * successful.
+	 * Note: This won't affect the {@link #elementsToMerge} so that it is safe
+	 * to call this even if a merge would not be successful.
 	 *
-	 * @return <em>true</em> if the elements can be merged successfully; <em>false</em> otherwise.
+	 * @return <em>true</em> if the elements can be merged successfully;
+	 *         <em>false</em> otherwise.
 	 */
 	public boolean canMerge() {
 
-		// Create a self-contained copy of all elements that we can safely try to merge without having to think
+		// Create a self-contained copy of all elements that we can safely try
+		// to merge without having to think
 		// about
 		// any consequences if the merge fails
 		//
@@ -235,7 +243,8 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 		if (leftAttribute.get() instanceof SourceSectionAttribute) {
 
 			// TODO find a better algorithm to merge constraints?
-			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get()).getValueConstraints();
+			List<ValueConstraint> leftConstraints = ((SourceSectionAttribute) leftAttribute.get())
+					.getValueConstraints();
 			List<ValueConstraint> rightConstraints = ((SourceSectionAttribute) rightAttribute).getValueConstraints();
 
 			if (leftConstraints.isEmpty() && rightConstraints.isEmpty()) {
@@ -284,10 +293,12 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 */
 	private boolean mergeReference(C left, R rightReference) {
 
-		Optional<R> leftReference = left.getReferences().parallelStream()
-				.filter(l -> l.getClass() == rightReference.getClass()
-						&& l.getEReference().equals(rightReference.getEReference()))
-				.findAny();
+		Optional<R> leftReference = rightReference instanceof ActualReference<?, ?, ?, ?> ? left.getReferences()
+				.parallelStream()
+				.filter(l -> l instanceof ActualReference<?, ?, ?, ?> && l.getClass() == rightReference.getClass()
+						&& ((ActualReference<?, ?, ?, ?>) l).getEReference()
+								.equals(((ActualReference<?, ?, ?, ?>) rightReference).getEReference()))
+				.findAny() : Optional.empty();
 
 		// Simply add the reference
 		//
@@ -302,11 +313,13 @@ public class ClassMerger<S extends Section<S, C, R, A>, C extends pamtram.struct
 			return true;
 		}
 
-		// For a single-valued reference, we cannot simply add the values (unless the 'size == 1'-constraint is
+		// For a single-valued reference, we cannot simply add the values
+		// (unless the 'size == 1'-constraint is
 		// already
 		// violated). Consequently, we try to merge the values...
 		//
-		if (!leftReference.get().getEReference().isMany() && leftReference.get().getValuesGeneric().size() == 1) {
+		if (!((ActualReference<?, ?, ?, ?>) leftReference.get()).getEReference().isMany()
+				&& leftReference.get().getValuesGeneric().size() == 1) {
 
 			Set<C> valuesToMerge = Stream
 					.concat(leftReference.get().getValuesGeneric().stream(), rightReference.getValuesGeneric().stream())

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" name="Viobjects">
+<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" name="Viobjects">
   <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
   <sections xsi:type="source:SourceSection" name="viObject Base" abstract="true">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
@@ -19,5 +19,32 @@
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="label">
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
     </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="viObject with FunctionInterface Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="externaldata">
+      <value xsi:type="source:SourceSectionClass" name="extdataType">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+        <references xsi:type="source:SourceSectionCrossReference" name="extdata">
+          <value xsi:type="source:SourceSection" href="Extdata.pamtram.source#//@sections.0"/>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="viObject Input/Output Bool/Double">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Output:Bool" expression="Output:Bool"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Input:Bool" expression="Input:Bool"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Output:Double" expression="Output:Double"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Input:Double" expression="Input:Double"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <extend xsi:type="source:SourceSection" href="#//@sections.0"/>
+    <extend xsi:type="source:SourceSection" href="../STGML2Movisa_enhanced.pamtram#//@sourceSectionModels.0/@sections.0"/>
   </sections>
 </pamtram:SourceSectionModel>

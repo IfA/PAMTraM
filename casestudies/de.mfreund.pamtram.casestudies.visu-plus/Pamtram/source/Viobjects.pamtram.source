@@ -20,4 +20,18 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
     </attributes>
   </sections>
+  <sections xsi:type="source:SourceSection" name="viObject with FunctionInterface Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="externaldata">
+      <value xsi:type="source:SourceSectionClass" name="extdataType">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+        <references xsi:type="source:SourceSectionCrossReference" name="extdata">
+          <value xsi:type="source:SourceSection" href="Extdata.pamtram.source#//@sections.0"/>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+  </sections>
 </pamtram:SourceSectionModel>

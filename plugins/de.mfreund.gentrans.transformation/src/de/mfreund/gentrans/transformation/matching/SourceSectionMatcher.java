@@ -178,16 +178,15 @@ public class SourceSectionMatcher {
 
 		this.sections2Descriptors = new LinkedHashMap<>();
 
-		while (this.containmentTree.getNumberOfAvailableElements() > 0) {
+		Optional<EObject> element;
+		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
 
-			EObject element = this.containmentTree.getNextElementForMatching();
-
-			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element);
+			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element.get());
 
 			// If there are multiple matches, select the one section to actually
 			// apply.
 			//
-			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element, matches);
+			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element.get(), matches);
 
 			if (descriptor == null) {
 				continue;

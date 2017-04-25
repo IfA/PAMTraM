@@ -331,6 +331,60 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 	 */
 	protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
+	protected IPartListener handleRestoreListener = new IPartListener() {
+
+		@Override
+		public void partOpened(IWorkbenchPart part) {
+
+			// Ignore.
+		}
+
+		@Override
+		public void partDeactivated(IWorkbenchPart part) {
+
+			// Ignore.
+		}
+
+		@Override
+		public void partClosed(IWorkbenchPart part) {
+
+			// Ignore.
+		}
+
+		@Override
+		public void partBroughtToTop(IWorkbenchPart part) {
+
+			// Ignore.
+		}
+
+		@Override
+		public void partActivated(IWorkbenchPart p) {
+
+			if (p == PamtramEditor.this) {
+				PamtramEditor.this.handleActivate();
+
+				if (PamtramEditor.this.getEditorInput() instanceof FileEditorInput) {
+
+					// Restore the UI state
+					//
+					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();
+					IDialogSettings section = settings.getSection("UI_STATE");
+					if (section != null) {
+						String pamtramFile = ((FileEditorInput) PamtramEditor.this.getEditorInput()).getFile()
+								.toString();
+						IDialogSettings project = section.getSection(pamtramFile);
+
+						if (project != null) {
+							PamtramEditor.this.restore(project);
+						}
+					}
+				}
+
+				PamtramEditor.this.getSite().getPage().removePartListener(this);
+			}
+		}
+	};
+
 	/**
 	 * This listens for when the outline becomes active <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -352,25 +406,6 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 				if (PamtramEditor.this.propertySheetPages.contains(((PropertySheet) p).getCurrentPage())) {
 					PamtramEditor.this.getActionBarContributor().setActiveEditor(PamtramEditor.this);
 					PamtramEditor.this.handleActivate();
-				}
-			} else if (p == PamtramEditor.this) {
-				PamtramEditor.this.handleActivate();
-
-				if (PamtramEditor.this.getEditorInput() instanceof FileEditorInput) {
-
-					// Restore the UI state
-					//
-					IDialogSettings settings = PamtramEditorPlugin.getPlugin().getDialogSettings();
-					IDialogSettings section = settings.getSection("UI_STATE");
-					if (section != null) {
-						String pamtramFile = ((FileEditorInput) PamtramEditor.this.getEditorInput()).getFile()
-								.toString();
-						IDialogSettings project = section.getSection(pamtramFile);
-
-						if (project != null) {
-							PamtramEditor.this.restore(project);
-						}
-					}
 				}
 			}
 
@@ -413,7 +448,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 		@Override
 		public void partOpened(IWorkbenchPart p) {
 
-			// Ignore.
+			PamtramEditor.this.getSite().getPage().addPartListener(PamtramEditor.this.handleRestoreListener);
 		}
 	};
 

@@ -57,6 +57,7 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 			super.getPropertyDescriptors(object);
 
 			addIgnoreUnmatchedElementsPropertyDescriptor(object);
+			addEReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +80,28 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the EReference feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActualReference_eReference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActualReference_eReference_feature", "_UI_ActualReference_type"),
+				 GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

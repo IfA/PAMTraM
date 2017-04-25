@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
@@ -20,6 +21,7 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.generic.VirtualReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +94,14 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseReference(Reference<S, C, R, A> object) {
 				return createReferenceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualReference(ActualReference<S, C, R, A> object) {
+				return createActualReferenceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualReference(VirtualReference<S, C, R, A> object) {
+				return createVirtualReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCompositeReference(CompositeReference<S, C, R, A> object) {
@@ -190,6 +200,34 @@ public class GenericAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.ActualReference <em>Actual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.ActualReference
+	 * @generated
+	 */
+	public Adapter createActualReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualReference <em>Virtual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.VirtualReference
+	 * @generated
+	 */
+	public Adapter createVirtualReferenceAdapter() {
 		return null;
 	}
 

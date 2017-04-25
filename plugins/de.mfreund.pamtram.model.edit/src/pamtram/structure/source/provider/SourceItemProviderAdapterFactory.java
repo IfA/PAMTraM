@@ -166,6 +166,29 @@ public class SourceItemProviderAdapterFactory extends SourceAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.VirtualSourceSectionCrossReference} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VirtualSourceSectionCrossReferenceItemProvider virtualSourceSectionCrossReferenceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.source.VirtualSourceSectionCrossReference}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVirtualSourceSectionCrossReferenceAdapter() {
+		if (virtualSourceSectionCrossReferenceItemProvider == null) {
+			virtualSourceSectionCrossReferenceItemProvider = new VirtualSourceSectionCrossReferenceItemProvider(this);
+		}
+
+		return virtualSourceSectionCrossReferenceItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.structure.source.ActualSourceSectionAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -314,6 +337,7 @@ public class SourceItemProviderAdapterFactory extends SourceAdapterFactory imple
 		if (sourceSectionClassItemProvider != null) sourceSectionClassItemProvider.dispose();
 		if (sourceSectionCompositeReferenceItemProvider != null) sourceSectionCompositeReferenceItemProvider.dispose();
 		if (sourceSectionCrossReferenceItemProvider != null) sourceSectionCrossReferenceItemProvider.dispose();
+		if (virtualSourceSectionCrossReferenceItemProvider != null) virtualSourceSectionCrossReferenceItemProvider.dispose();
 		if (actualSourceSectionAttributeItemProvider != null) actualSourceSectionAttributeItemProvider.dispose();
 		if (virtualSourceSectionAttributeItemProvider != null) virtualSourceSectionAttributeItemProvider.dispose();
 	}

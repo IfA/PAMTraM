@@ -25,7 +25,8 @@ import pamtram.structure.source.SourceFactory;
 import pamtram.structure.target.TargetFactory;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.CompositeReference} object. <!--
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.generic.CompositeReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -33,8 +34,9 @@ import pamtram.structure.target.TargetFactory;
 public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +44,9 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,8 +62,7 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -85,7 +87,8 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the EReference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EReference feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
@@ -95,18 +98,21 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 						this.getResourceLocator(), this.getString("_UI_Reference_eReference_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature",
 								"_UI_Reference_type"),
-						GenericPackage.Literals.REFERENCE__EREFERENCE, true, false, true, null, null, null) {
+						GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
 						List<Object> choiceOfValues = new ArrayList<>();
 
-						// make sure that only those references can be selected that belong to the parent eClass
-						pamtram.structure.generic.Class parent = (Class) ((ReferenceImpl) object).eContainer();
+						// make sure that only those references can be selected
+						// that belong to the parent eClass
+						Class<?, ?, ?, ?> parent = (Class<?, ?, ?, ?>) ((ReferenceImpl<?, ?, ?, ?>) object)
+								.eContainer();
 						Iterator<EReference> it = parent.getEClass().getEAllReferences().iterator();
 
-						// filter the choices further so that only containment references are displayed
+						// filter the choices further so that only containment
+						// references are displayed
 						while (it.hasNext()) {
 							EReference ref = it.next();
 							if (ref.isContainment()) {
@@ -121,7 +127,8 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -130,7 +137,8 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -141,10 +149,10 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -160,8 +168,9 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */

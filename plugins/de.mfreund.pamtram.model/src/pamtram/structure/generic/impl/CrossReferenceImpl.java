@@ -11,8 +11,10 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
@@ -79,14 +81,16 @@ public abstract class CrossReferenceImpl<S extends Section<S, C, R, A>, C extend
 	 */
 	public boolean validateValuesMatchReferenceType(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getEReference() == null ? true : this.getValue().parallelStream().allMatch(c -> this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass()));
+		EReference reference = this instanceof ActualReference ? ((ActualReference<?, ?, ?, ?>) this).getEReference() : null;
+		
+		boolean result = reference == null ? true : this.getValue().parallelStream().allMatch(c -> reference.getEReferenceType().isSuperTypeOf(c.getEClass()));
 		
 		if (!result && diagnostics != null) {
 		
 			String errorMessage = this.getValue().parallelStream()
-				.filter(c -> !this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass())).count()
+				.filter(c -> !reference.getEReferenceType().isSuperTypeOf(c.getEClass())).count()
 				+ " of the selected target Classes (Value) are not allowed by the selected eReference '"
-				+ this.getEReference().getName() + "'!";
+				+ reference.getName() + "'!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
@@ -123,6 +124,7 @@ public class TargetSwitch<T> extends Switch<T> {
 				T result = caseTargetSectionCompositeReference(targetSectionCompositeReference);
 				if (result == null) result = caseCompositeReference(targetSectionCompositeReference);
 				if (result == null) result = caseTargetSectionReference(targetSectionCompositeReference);
+				if (result == null) result = caseActualReference(targetSectionCompositeReference);
 				if (result == null) result = caseReference(targetSectionCompositeReference);
 				if (result == null) result = caseMetaModelElement(targetSectionCompositeReference);
 				if (result == null) result = caseNamedElement(targetSectionCompositeReference);
@@ -134,6 +136,7 @@ public class TargetSwitch<T> extends Switch<T> {
 				T result = caseTargetSectionCrossReference(targetSectionCrossReference);
 				if (result == null) result = caseCrossReference(targetSectionCrossReference);
 				if (result == null) result = caseTargetSectionReference(targetSectionCrossReference);
+				if (result == null) result = caseActualReference(targetSectionCrossReference);
 				if (result == null) result = caseReference(targetSectionCrossReference);
 				if (result == null) result = caseMetaModelElement(targetSectionCrossReference);
 				if (result == null) result = caseNamedElement(targetSectionCrossReference);
@@ -427,6 +430,21 @@ public class TargetSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseCompositeReference(CompositeReference<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Actual Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Actual Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseActualReference(ActualReference<S, C, R, A> object) {
 		return null;
 	}
 

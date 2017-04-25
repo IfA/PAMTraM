@@ -60,6 +60,7 @@ public class SourceFactoryImpl extends EFactoryImpl implements SourceFactory {
 			case SourcePackage.SOURCE_SECTION_CLASS: return createSourceSectionClass();
 			case SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE: return createSourceSectionCompositeReference();
 			case SourcePackage.SOURCE_SECTION_CROSS_REFERENCE: return createSourceSectionCrossReference();
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE: return createVirtualSourceSectionCrossReference();
 			case SourcePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE: return createActualSourceSectionAttribute();
 			case SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE: return createVirtualSourceSectionAttribute();
 			default:
@@ -105,6 +106,16 @@ public class SourceFactoryImpl extends EFactoryImpl implements SourceFactory {
 	public SourceSectionCrossReference createSourceSectionCrossReference() {
 		SourceSectionCrossReferenceImpl sourceSectionCrossReference = new SourceSectionCrossReferenceImpl();
 		return sourceSectionCrossReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VirtualSourceSectionCrossReference createVirtualSourceSectionCrossReference() {
+		VirtualSourceSectionCrossReferenceImpl virtualSourceSectionCrossReference = new VirtualSourceSectionCrossReferenceImpl();
+		return virtualSourceSectionCrossReference;
 	}
 
 	/**

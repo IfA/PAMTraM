@@ -2,6 +2,7 @@
  */
 package pamtram.structure.source;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CompositeReference;
 
 /**
@@ -14,5 +15,5 @@ import pamtram.structure.generic.CompositeReference;
  * @model
  * @generated
  */
-public interface SourceSectionCompositeReference extends CompositeReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, SourceSectionReference {
+public interface SourceSectionCompositeReference extends CompositeReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, SourceSectionReference, ActualReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 } // SourceSectionCompositeReference

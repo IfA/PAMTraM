@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
@@ -28,8 +29,9 @@ import pamtram.structure.generic.Reference;
 public class ReferenceItemProvider extends MetaModelElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +39,9 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -46,13 +49,13 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the EReference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the EReference feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addEReferencePropertyDescriptor(Object object) {
 
@@ -61,12 +64,13 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 						this.getResourceLocator(), this.getString("_UI_Reference_eReference_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature",
 								"_UI_Reference_type"),
-						GenericPackage.Literals.REFERENCE__EREFERENCE, true, false, true, null, null, null) {
+						GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
-						// make sure that only those references can be selected that belong to the parent eClass
+						// make sure that only those references can be selected
+						// that belong to the parent eClass
 						pamtram.structure.generic.Class parent = (Class) ((Reference) object).eContainer();
 						return parent.getEClass().getEAllReferences();
 
@@ -77,7 +81,8 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -86,15 +91,17 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 
-		String label = ((Reference) object).getName();
-		EReference eReference = ((pamtram.structure.generic.Reference) object).getEReference();
+		String label = ((Reference<?, ?, ?, ?>) object).getName();
+		EReference eReference = object instanceof ActualReference<?, ?, ?, ?>
+				? ((ActualReference<?, ?, ?, ?>) object).getEReference() : null;
 
 		StyledString styledLabel = new StyledString();
 
@@ -123,10 +130,10 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,9 +143,10 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override

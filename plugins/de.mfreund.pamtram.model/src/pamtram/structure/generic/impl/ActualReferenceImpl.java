@@ -1,6 +1,6 @@
 /**
  */
-package pamtram.structure.target.impl;
+package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -10,37 +10,31 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import pamtram.structure.generic.ActualReference;
+import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
-import pamtram.structure.generic.impl.CompositeReferenceImpl;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
-import pamtram.structure.target.TargetPackage;
-import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAttribute;
-import pamtram.structure.target.TargetSectionClass;
-import pamtram.structure.target.TargetSectionCompositeReference;
-import pamtram.structure.target.TargetSectionReference;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Containment Reference</b></em>'.
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Actual Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.target.impl.TargetSectionCompositeReferenceImpl#getEReference <em>EReference</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ActualReferenceImpl#getEReference <em>EReference</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TargetSectionCompositeReferenceImpl extends
-		CompositeReferenceImpl<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>
-		implements TargetSectionCompositeReference {
-
+public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ActualReference<S, C, R, A> {
 	/**
 	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -52,34 +46,22 @@ public class TargetSectionCompositeReferenceImpl extends
 	protected EReference eReference;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TargetSectionCompositeReferenceImpl() {
+	protected ActualReferenceImpl() {
 		super();
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TargetPackage.Literals.TARGET_SECTION_COMPOSITE_REFERENCE;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific element type known in
-	 * this context.
-	 *
-	 * @generated
-	 */
-	@Override
-	public EList<TargetSectionClass> getValue() {
-		if (value == null) {
-			value = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__VALUE);
-		}
-		return value;
+		return GenericPackage.Literals.ACTUAL_REFERENCE;
 	}
 
 	/**
@@ -93,7 +75,7 @@ public class TargetSectionCompositeReferenceImpl extends
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE, oldEReference, eReference));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericPackage.ACTUAL_REFERENCE__EREFERENCE, oldEReference, eReference));
 			}
 		}
 		return eReference;
@@ -117,7 +99,7 @@ public class TargetSectionCompositeReferenceImpl extends
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE, oldEReference, eReference));
+			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.ACTUAL_REFERENCE__EREFERENCE, oldEReference, eReference));
 	}
 
 	/**
@@ -159,7 +141,7 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE:
+			case GenericPackage.ACTUAL_REFERENCE__EREFERENCE:
 				if (resolve) return getEReference();
 				return basicGetEReference();
 		}
@@ -174,7 +156,7 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE:
+			case GenericPackage.ACTUAL_REFERENCE__EREFERENCE:
 				setEReference((EReference)newValue);
 				return;
 		}
@@ -189,7 +171,7 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE:
+			case GenericPackage.ACTUAL_REFERENCE__EREFERENCE:
 				setEReference((EReference)null);
 				return;
 		}
@@ -204,7 +186,7 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE:
+			case GenericPackage.ACTUAL_REFERENCE__EREFERENCE:
 				return eReference != null;
 		}
 		return super.eIsSet(featureID);
@@ -216,88 +198,12 @@ public class TargetSectionCompositeReferenceImpl extends
 	 * @generated
 	 */
 	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == TargetSectionReference.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ActualReference.class) {
-			switch (derivedFeatureID) {
-				case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE: return GenericPackage.ACTUAL_REFERENCE__EREFERENCE;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == TargetSectionReference.class) {
-			switch (baseFeatureID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ActualReference.class) {
-			switch (baseFeatureID) {
-				case GenericPackage.ACTUAL_REFERENCE__EREFERENCE: return TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == TargetSectionReference.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == ActualReference.class) {
-			switch (baseOperationID) {
-				case GenericPackage.ACTUAL_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP: return TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
+			case GenericPackage.ACTUAL_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-	@Override
-	public void addValuesGeneric(EList<TargetSectionClass> values) {
-
-		this.getValue().addAll(values);
-
-	}
-
-	@Override
-	public EList<TargetSectionClass> getValuesGeneric() {
-
-		return this.getValue();
-	}
-
-} // TargetSectionCompositeReferenceImpl
+} //ActualReferenceImpl

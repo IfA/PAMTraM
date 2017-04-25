@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
@@ -29,7 +30,8 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Class</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -48,8 +50,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEClass()
 	 * @generated
 	 * @ordered
@@ -58,8 +59,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
@@ -68,8 +68,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
@@ -77,9 +76,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	protected CardinalityType cardinality = CARDINALITY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getReferences()
 	 * @generated
 	 * @ordered
@@ -88,8 +86,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getContainer()
 	 * @generated
 	 * @ordered
@@ -97,9 +94,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	protected C container;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -306,7 +302,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		}
 		
 		for (R ref : containerClass.getReferences()) {
-			if(!(ref.getEReference().isContainment())) {
+			if(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {
 				continue;
 			}
 			if(ref instanceof CompositeReference<?,?,?,?>){
@@ -348,7 +344,6 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated NOT
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public boolean isReferencedBy(final C referencingClass, EList<C> referencedClasses) {
 
 		if (referencedClasses == null) {
@@ -361,9 +356,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 			if (ref instanceof CompositeReference<?, ?, ?, ?>) {
 				classes.addAll(((CompositeReference<S, C, R, A>) ref).getValue());
-			} else if (ref instanceof CrossReference) {
-				classes.addAll(((CrossReference) ref).getValue());
-			} else if (ref instanceof CrossReference) {
+			} else if (ref instanceof CrossReference<?, ?, ?, ?>) {
 				classes.addAll(((CrossReference<S, C, R, A>) ref).getValue());
 			}
 		}
@@ -389,11 +382,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateEClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;
@@ -424,11 +417,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateCardinalityIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;

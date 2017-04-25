@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
@@ -55,16 +56,17 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 		// the notifying reference
 		Reference<?, ?, ?, ?> ref = (Reference<?, ?, ?, ?>) n.getNotifier();
 
-		if (n.getFeature() == GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE) {
+		if (ref instanceof ActualReference<?, ?, ?, ?>
+				&& n.getFeature() == GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE) {
 
 			if (n.getEventType() == Notification.ADD) {
 
 				pamtram.structure.generic.Class<?, ?, ?, ?> clazz = (Class<?, ?, ?, ?>) n.getNewValue();
 
-				if (ref.getEReference() != null && clazz.getEClass() == null) {
+				if (((ActualReference<?, ?, ?, ?>) ref).getEReference() != null && clazz.getEClass() == null) {
 					// set the type of the reference as default value for the
 					// eClass reference
-					clazz.setEClass(ref.getEReference().getEReferenceType());
+					clazz.setEClass(((ActualReference<?, ?, ?, ?>) ref).getEReference().getEReferenceType());
 				}
 			}
 		}
@@ -75,42 +77,30 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 
 		if (n.getEventType() == Notification.ADD) {
 
-			if (n.getFeature() == GenericPackage.Literals.CLASS__REFERENCES) {
+			if (n.getFeature() == GenericPackage.Literals.CLASS__REFERENCES
+					&& n.getNewValue() instanceof ActualReference<?, ?, ?, ?>) {
 
 				// the notifying class
 				pamtram.structure.generic.Class<?, ?, ?, ?> c = (Class<?, ?, ?, ?>) n.getNotifier();
 
-				if (n.getNewValue() instanceof CrossReference) {
-
-					// the created non-containment reference
-					CrossReference ref = (CrossReference) n.getNewValue();
-
-					if (ref.getEReference() == null && c.getEClass() != null
-							&& !c.getEClass().getEAllReferences().isEmpty()) {
-
-						// set the first reference type of the class as default
-						// value for
-						// the eReference reference
-						ref.setEReference(c.getEClass().getEAllReferences().get(0));
-					}
-				} else if (n.getNewValue() instanceof CompositeReference) {
+				if (n.getNewValue() instanceof CompositeReference) {
 
 					// the created containment reference
 					CompositeReference<?, ?, ?, ?> ref = (CompositeReference<?, ?, ?, ?>) n.getNewValue();
 
-					if (ref.getEReference() == null && c.getEClass() != null
+					if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null && c.getEClass() != null
 							&& !c.getEClass().getEAllContainments().isEmpty()) {
 						// set the first containment reference type of the class
 						// as default value for
 						// the eReference reference
-						ref.setEReference(c.getEClass().getEAllContainments().get(0));
+						((ActualReference<?, ?, ?, ?>) ref).setEReference(c.getEClass().getEAllContainments().get(0));
 					}
 				} else if (n.getNewValue() instanceof CrossReference) {
 
 					// the created non-containment reference
 					CrossReference<?, ?, ?, ?> ref = (CrossReference<?, ?, ?, ?>) n.getNewValue();
 
-					if (ref.getEReference() == null && c.getEClass() != null
+					if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null && c.getEClass() != null
 							&& !c.getEClass().getEAllReferences().isEmpty()) {
 
 						// set the first non-containment reference type of the
@@ -118,7 +108,7 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 						// the eReference reference
 						for (EReference eReference : c.getEClass().getEAllReferences()) {
 							if (!eReference.isContainment()) {
-								ref.setEReference(eReference);
+								((ActualReference<?, ?, ?, ?>) ref).setEReference(eReference);
 								break;
 							}
 
@@ -130,13 +120,17 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	}
 
 	/**
-	 * Set a (derived) string-based feature of an element based on another (original) feature that has changed.
+	 * Set a (derived) string-based feature of an element based on another
+	 * (original) feature that has changed.
 	 *
-	 * The new value of the feature is composed of a prepended string, the new value of the original feature that is
-	 * represented in the notification and an appended string.
+	 * The new value of the feature is composed of a prepended string, the new
+	 * value of the original feature that is represented in the notification and
+	 * an appended string.
 	 *
-	 * The feature is only set, if the existing value of the feature is either 'null', empty, or matches the value that
-	 * would have been set if this method would be called with a notification for the old value of the original feature.
+	 * The feature is only set, if the existing value of the feature is either
+	 * 'null', empty, or matches the value that would have been set if this
+	 * method would be called with a notification for the old value of the
+	 * original feature.
 	 *
 	 * @param object
 	 *            the element for which the feature shall be set
@@ -206,8 +200,9 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	}
 
 	/**
-	 * Convenience method to set a string-based feature of an element based on another feature that has changed. Equal
-	 * to calling 'setFeatureDerived(object, derivedFeatureId, n, "", "")'.
+	 * Convenience method to set a string-based feature of an element based on
+	 * another feature that has changed. Equal to calling
+	 * 'setFeatureDerived(object, derivedFeatureId, n, "", "")'.
 	 *
 	 * @param object
 	 * @param derivedFeature
@@ -220,8 +215,9 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	}
 
 	/**
-	 * Convenience method to set the name of a named element based on another feature that has changed. Equal to calling
-	 * 'setFeatureDerived(object, PamtramPackage.NAMED_ELEMENT__NAME, n, "", "")'.
+	 * Convenience method to set the name of a named element based on another
+	 * feature that has changed. Equal to calling 'setFeatureDerived(object,
+	 * PamtramPackage.NAMED_ELEMENT__NAME, n, "", "")'.
 	 *
 	 * @param object
 	 *            the element for which the feature shall be set
@@ -234,8 +230,9 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	}
 
 	/**
-	 * Convenience method to set the name of a named element based on another feature that has changed. Equal to calling
-	 * 'setFeatureDerived(object, PamtramPackage.NAMED_ELEMENT__NAME, n, preprendString, appendString)'.
+	 * Convenience method to set the name of a named element based on another
+	 * feature that has changed. Equal to calling 'setFeatureDerived(object,
+	 * PamtramPackage.NAMED_ELEMENT__NAME, n, preprendString, appendString)'.
 	 *
 	 * @param object
 	 *            the element for which the feature shall be set
@@ -252,14 +249,17 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	}
 
 	/**
-	 * Returns true, if 'stringToTest' is either 'null', empty or matches the given value.
+	 * Returns true, if 'stringToTest' is either 'null', empty or matches the
+	 * given value.
 	 *
 	 * @param stringToTest
 	 *            the string that shall be checked
 	 * @param value
-	 *            the string that 'stringToTest' shall be checked against; if 'value' is 'null', no check is performed
+	 *            the string that 'stringToTest' shall be checked against; if
+	 *            'value' is 'null', no check is performed
 	 *
-	 * @return true if 'stringToTest' is 'null', empty or matches 'value'; false otherwise
+	 * @return true if 'stringToTest' is 'null', empty or matches 'value'; false
+	 *         otherwise
 	 */
 	private boolean isEmptyOrValue(String stringToTest, String value) {
 

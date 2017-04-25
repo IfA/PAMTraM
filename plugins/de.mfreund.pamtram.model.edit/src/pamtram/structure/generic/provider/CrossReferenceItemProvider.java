@@ -86,7 +86,7 @@ public class CrossReferenceItemProvider extends ReferenceItemProvider {
 						this.getResourceLocator(), this.getString("_UI_Reference_eReference_feature"),
 						this.getString("_UI_PropertyDescriptor_description", "_UI_Reference_eReference_feature",
 								"_UI_Reference_type"),
-						GenericPackage.Literals.REFERENCE__EREFERENCE, true, false, true, null, null, null) {
+						GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

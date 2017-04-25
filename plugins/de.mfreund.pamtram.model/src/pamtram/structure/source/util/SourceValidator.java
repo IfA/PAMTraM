@@ -51,12 +51,20 @@ public class SourceValidator extends EObjectValidator {
 	public static final int SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Derivation' of 'Virtual Source Section Cross Reference'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__VALIDATE_DERIVATION = 2;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Derivation' of 'Virtual Source Section Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION = 2;
+	public static final int VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -64,7 +72,7 @@ public class SourceValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -123,6 +131,8 @@ public class SourceValidator extends EObjectValidator {
 				return validateSourceSectionCompositeReference((SourceSectionCompositeReference)value, diagnostics, context);
 			case SourcePackage.SOURCE_SECTION_CROSS_REFERENCE:
 				return validateSourceSectionCrossReference((SourceSectionCrossReference)value, diagnostics, context);
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE:
+				return validateVirtualSourceSectionCrossReference((VirtualSourceSectionCrossReference)value, diagnostics, context);
 			case SourcePackage.SOURCE_SECTION_ATTRIBUTE:
 				return validateSourceSectionAttribute((SourceSectionAttribute)value, diagnostics, context);
 			case SourcePackage.ACTUAL_SOURCE_SECTION_ATTRIBUTE:
@@ -242,7 +252,6 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionReference, diagnostics, context);
 		return result;
 	}
 
@@ -262,9 +271,9 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionCompositeReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_eReferenceIsContainment(sourceSectionCompositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_validateEReferenceIsContainment(sourceSectionCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateActualReference_validateEReferenceMatchesParentEClass(sourceSectionCompositeReference, diagnostics, context);
 		return result;
 	}
 
@@ -284,9 +293,9 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(sourceSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(sourceSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(sourceSectionCrossReference, diagnostics, context);
-		if (result || diagnostics != null) result &= genericValidator.validateReference_validateEReferenceMatchesParentEClass(sourceSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(sourceSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(sourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateActualReference_validateEReferenceMatchesParentEClass(sourceSectionCrossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSourceSectionCrossReference_valuesMatchReferenceType(sourceSectionCrossReference, diagnostics, context);
 		return result;
 	}
@@ -317,6 +326,38 @@ public class SourceValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualSourceSectionCrossReference(VirtualSourceSectionCrossReference virtualSourceSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(virtualSourceSectionCrossReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(virtualSourceSectionCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVirtualSourceSectionCrossReference_validateDerivation(virtualSourceSectionCrossReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateDerivation constraint of '<em>Virtual Source Section Cross Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualSourceSectionCrossReference_validateDerivation(VirtualSourceSectionCrossReference virtualSourceSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return virtualSourceSectionCrossReference.validateDerivation(diagnostics, context);
 	}
 
 	/**

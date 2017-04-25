@@ -12,9 +12,11 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
@@ -86,18 +88,20 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	@Override
 	public boolean validateEReferenceIsContainment(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();
+		EReference reference = this instanceof ActualReference ? ((ActualReference<?, ?, ?, ?>) this).getEReference() : null;
+		
+		boolean result = reference == null || reference.isContainment();
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is no containment reference!";
+			String errorMessage = "The eReference '" + reference.getName() + "' is no containment reference!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
 					GenericValidator.DIAGNOSTIC_SOURCE,
 							GenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,
 							errorMessage,
-					new Object[] { this, GenericPackage.Literals.REFERENCE__EREFERENCE }));
+					new Object[] { this, GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE }));
 		
 		}
 		

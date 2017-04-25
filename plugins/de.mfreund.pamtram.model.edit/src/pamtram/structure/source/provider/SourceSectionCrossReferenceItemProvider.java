@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.provider.CrossReferenceItemProvider;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSectionCrossReference;
@@ -49,6 +50,7 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 			super.getPropertyDescriptors(object);
 
 			addIgnoreUnmatchedElementsPropertyDescriptor(object);
+			addEReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,6 +73,28 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the EReference feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEReferencePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ActualReference_eReference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ActualReference_eReference_feature", "_UI_ActualReference_type"),
+				 GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

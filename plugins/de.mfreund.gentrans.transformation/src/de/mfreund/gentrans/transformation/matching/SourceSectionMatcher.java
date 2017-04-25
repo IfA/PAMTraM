@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
@@ -34,6 +35,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.pamtram.util.NullComparator;
+import de.mfreund.pamtram.util.OCLUtil;
 import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.structure.constraint.ChoiceConstraint;
@@ -41,8 +43,11 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -50,6 +55,7 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
+import pamtram.structure.source.VirtualSourceSectionCrossReference;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a
@@ -172,16 +178,15 @@ public class SourceSectionMatcher {
 
 		this.sections2Descriptors = new LinkedHashMap<>();
 
-		while (this.containmentTree.getNumberOfAvailableElements() > 0) {
+		Optional<EObject> element;
+		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
 
-			EObject element = this.containmentTree.getNextElementForMatching();
-
-			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element);
+			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element.get());
 
 			// If there are multiple matches, select the one section to actually
 			// apply.
 			//
-			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element, matches);
+			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element.get(), matches);
 
 			if (descriptor == null) {
 				continue;
@@ -736,10 +741,20 @@ public class SourceSectionMatcher {
 		// current 'sourceSectionClass' and store them in to maps
 		//
 		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().stream()
-				.collect(Collectors.toConcurrentMap(r -> r.getEReference(), r -> r.getValuesGeneric(), (i, j) -> {
-					i.addAll(j);
-					return i;
-				}));
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toConcurrentMap(
+						r -> ((ActualReference<?, ?, ?, ?>) r).getEReference(), Reference::getValuesGeneric, (i, j) -> {
+							i.addAll(j);
+							return i;
+						}));
+
+		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = sourceSectionClass
+				.getReferences().stream().filter(r -> r instanceof VirtualReference<?, ?, ?, ?>)
+				.collect(Collectors.toConcurrentMap(r -> (VirtualSourceSectionCrossReference) r,
+						Reference::getValuesGeneric, (i, j) -> {
+							i.addAll(j);
+							return i;
+						}));
+
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().stream()
 				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
@@ -772,7 +787,8 @@ public class SourceSectionMatcher {
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
 					return sourceSectionClass.getReferences().parallelStream()
-							.filter(r -> r.getEReference().equals(reference))
+							.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
+									&& ((ActualReference<?, ?, ?, ?>) r).getEReference().equals(reference))
 							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 				} else {
 					continue;
@@ -786,6 +802,78 @@ public class SourceSectionMatcher {
 			final Object refTarget = srcModelObject.eGet(reference);
 
 			if (!reference.isMany()) {
+
+				// check the single-valued reference
+				//
+				if (!this.checkSingleValuedReference((EObject) refTarget, descriptor, classes, refByClassMap, usedOkay,
+						sourceSectionClass)) {
+					return false;
+				}
+
+			} else {
+
+				// check the multi-valued reference
+				//
+				if (!this.checkManyValuedReference(new ArrayList<>((Collection<EObject>) refTarget), descriptor,
+						classes, refByClassMap, usedOkay)) {
+					return false;
+				}
+			}
+
+		}
+
+		// Finally, also check all modeled VirtualReferences (and reference
+		// targets) and check if they can be matched for
+		// the current 'srcModelObject'
+		//
+		for (final Entry<VirtualSourceSectionCrossReference, List<SourceSectionClass>> entry : classByVirtualRefMap
+				.entrySet()) {
+
+			// the reference that we are currently checking
+			//
+			VirtualSourceSectionCrossReference virtualReference = entry.getKey();
+
+			Object value;
+			try {
+				value = OCLUtil.evaluteQuery(virtualReference.getDerivation(), srcModelObject);
+			} catch (ParserException e) {
+				this.logger.severe("Unable to evaluate OCL query '" + virtualReference.getDerivation()
+						+ "' for SourceSectionCrossReference '" + virtualReference.getName() + "'!");
+				this.logger.severe("The following error occurred: " + e.getMessage());
+				e.printStackTrace();
+				return false;
+			}
+
+			// the SourceSectionClasses that have been modeled for the
+			// 'reference' in the pamtram model
+			//
+			List<SourceSectionClass> classes = entry.getValue();
+
+			if (classes.isEmpty()) {
+
+				/*
+				 * if no target SourceSectionClass has been specified, this
+				 * means that there must be NO target element in the source
+				 * model (unless there is a reference with
+				 * 'ignoreUnmatchedElements' set to 'true'); if this is not the
+				 * case (meaning that there is a target element for the
+				 * reference), the mapping is not applicable
+				 */
+
+				if (!(value == null || value instanceof Collection<?> && ((Collection<?>) value).isEmpty())) {
+					return virtualReference.isIgnoreUnmatchedElements();
+				} else {
+					continue;
+				}
+			}
+
+			// get targets of the reference in the source model, then proceed
+			// depending on the cardinality of the
+			// reference
+			//
+			final Object refTarget = value;
+
+			if (!(value instanceof Collection<?>)) {
 
 				// check the single-valued reference
 				//
@@ -883,7 +971,9 @@ public class SourceSectionMatcher {
 			// iterate further
 			//
 			childDescriptor = this.checkSection(referencedElement,
-					refByClassMap.get(c) instanceof SourceSectionCrossReference || usedOkay, c, descriptor);
+					refByClassMap.get(c) instanceof SourceSectionCrossReference
+							|| refByClassMap.get(c) instanceof VirtualSourceSectionCrossReference || usedOkay,
+					c, descriptor);
 		}
 
 		if (!nonZeroCardSectionFound) {
@@ -898,7 +988,9 @@ public class SourceSectionMatcher {
 				// iterate further
 				//
 				childDescriptor = this.checkSection(referencedElement,
-						refByClassMap.get(c) instanceof SourceSectionCrossReference || usedOkay, c, descriptor);
+						refByClassMap.get(c) instanceof SourceSectionCrossReference
+								|| refByClassMap.get(c) instanceof VirtualSourceSectionCrossReference || usedOkay,
+						c, descriptor);
 
 				if (childDescriptor != null) {
 					break;
@@ -912,7 +1004,8 @@ public class SourceSectionMatcher {
 		//
 		if (childDescriptor == null) {
 			return sourceSectionClass.getReferences().parallelStream()
-					.filter(r -> r.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
+					.filter(r -> r instanceof ActualReference<?, ?, ?, ?> && ((ActualReference<?, ?, ?, ?>) r)
+							.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
 					.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
 		}
 
@@ -925,7 +1018,9 @@ public class SourceSectionMatcher {
 		// MetaModelSectionReference, we need to register this descriptor in
 		// the 'sections2Descriptors' map that will be returned in the end
 		//
-		if (refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
+		if ((refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
+				|| refByClassMap.get(childDescriptor
+						.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference)
 				&& childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
 
 			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor,
@@ -1006,7 +1101,9 @@ public class SourceSectionMatcher {
 			for (final SourceSectionClass val : classes) {
 
 				final MatchedSectionDescriptor childDescriptor = this.checkSection(rt,
-						refByClassMap.get(val) instanceof SourceSectionCrossReference || usedOkay, val, descriptor);
+						refByClassMap.get(val) instanceof SourceSectionCrossReference
+								|| refByClassMap.get(val) instanceof VirtualSourceSectionCrossReference || usedOkay,
+						val, descriptor);
 
 				// we found a match
 				//
@@ -1075,8 +1172,10 @@ public class SourceSectionMatcher {
 				//
 				descriptor.add(srcSectionResult);
 
-				if (refByClassMap.get(
-						srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference) {
+				if (refByClassMap
+						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
+						|| refByClassMap.get(srcSectionResult
+								.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference) {
 					/*
 					 * Register the created child descriptor in the
 					 * 'sections2Descriptors' map that will be returned in the
@@ -1135,8 +1234,10 @@ public class SourceSectionMatcher {
 
 				// remember mapping
 				descriptor.add(srcSectionResult);
-				if (refByClassMap.get(
-						srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference) {
+				if (refByClassMap
+						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
+						|| refByClassMap.get(srcSectionResult
+								.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference) {
 					/*
 					 * Register the created child descriptor in the
 					 * 'sections2Descriptors' map that will be returned in the

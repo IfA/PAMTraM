@@ -368,7 +368,7 @@
       <eOperations name="validateSourceAttributeMatchesSectionOrContainedSection"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| !(this.source.getContainingSection() instanceof &lt;%pamtram.structure.source.SourceSection%>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;SourceSection sourceSection = this.getMapping().getSourceSection();&#xD;&#xA;SourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();&#xD;&#xA;&#xD;&#xA;boolean result = sourceSection == containingSourceSection &#xD;&#xA;&#x9;&#x9;|| containingSourceSection.isReferencedBy(sourceSection, null)&#xD;&#xA;&#x9;&#x9;|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()&#xD;&#xA;&#x9;&#x9;|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;The source attribute '&quot; +&#xD;&#xA;&#x9;&#x9;&#x9; this.source.getName() + &quot;' is not referenced by the source section of the parent mapping '&quot; +&#xD;&#xA;&#x9;&#x9;&#x9; sourceSection.getName() + &quot;' or in one of its extended sections/sub-sections!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          <details key="body" value="if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| !(this.source.getContainingSection() instanceof &lt;%pamtram.structure.source.SourceSection%>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;SourceSection sourceSection = this.getMapping().getSourceSection();&#xD;&#xA;SourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();&#xD;&#xA;&#xD;&#xA;boolean result = sourceSection == containingSourceSection &#xD;&#xA;&#x9;&#x9;|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()&#xD;&#xA;&#x9;&#x9;|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()&#xD;&#xA;&#x9;&#x9;|| containingSourceSection.isReferencedBy(sourceSection, null);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;String errorMessage = &quot;The source attribute '&quot; +&#xD;&#xA;&#x9;&#x9;&#x9; this.source.getName() + &quot;' is not referenced by the source section of the parent mapping '&quot; +&#xD;&#xA;&#x9;&#x9;&#x9; sourceSection.getName() + &quot;' or in one of its extended sections/sub-sections!'&quot;;&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;diagnostics.add&#xD;&#xA;&#x9;&#x9;(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9; &lt;%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9; StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,&#xD;&#xA;&#x9;&#x9;&#x9; errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9; new Object [] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;return result;"/>
         </eAnnotations>
         <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
         <eParameters name="context">
@@ -592,7 +592,7 @@
         </eOperations>
         <eOperations name="isContainedIn" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref.getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof CompositeReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((CompositeReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof CrossReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((CrossReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
+            <details key="body" value="EList&lt;C> containedClasses = new BasicEList&lt;>();&#xD;&#xA;&#xD;&#xA;// collect all classes that are referenced by containment references&#xD;&#xA;BasicEList&lt;R> refs = new BasicEList&lt;>(containerClass.getReferences());&#xD;&#xA;if(containerClass instanceof Section) {&#xD;&#xA;&#x9;EList&lt;Section> sections = ((Section) containerClass).getExtend(); &#xD;&#xA;&#x9;for (Section s : sections) {&#xD;&#xA;&#x9;&#x9;refs.addAll(s.getReferences());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for (R ref : containerClass.getReferences()) {&#xD;&#xA;&#x9;if(!(ref instanceof ActualReference&lt;?, ?, ?, ?>) || !(((ActualReference&lt;?, ?, ?, ?>) ref).getEReference().isContainment())) {&#xD;&#xA;&#x9;&#x9;continue;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(ref instanceof CompositeReference&lt;?,?,?,?>){&#xD;&#xA;&#x9;&#x9;containedClasses.addAll(((CompositeReference&lt;S,C,R,A>) ref).getValue());&#xD;&#xA;&#x9;} else if(ref instanceof CrossReference) {&#xD;&#xA;&#x9;&#x9;containedClasses.addAll((Collection&lt;? extends C>) ((CrossReference) ref).getValue());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#x9;&#xD;&#xA;// recursively iterate over all contained classes&#xD;&#xA;boolean found = false;&#xD;&#xA;for (C containedClass : containedClasses) {&#xD;&#xA;&#x9;if(containedClass.equals(this) || isContainedIn(containedClass)) {&#xD;&#xA;&#x9;&#x9;found = true;&#xD;&#xA;&#x9;&#x9;break;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return found;"/>
           </eAnnotations>
           <eParameters name="containerClass" lowerBound="1">
             <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
@@ -622,7 +622,7 @@
         </eOperations>
         <eOperations name="validateEClassMatchesParentEReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.generic.Reference%>&lt;?, ?, ?, ?> parentReference = (Reference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eClass '&quot; + this.eClass().getName() + &quot;' is not allowed by the containing reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ECLASS }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.generic.ActualReference%>&lt;?, ?, ?, ?> parentReference = (ActualReference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eClass '&quot; + this.eClass().getName() + &quot;' is not allowed by the containing reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ECLASS }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -634,7 +634,7 @@
         </eOperations>
         <eOperations name="validateCardinalityIsValid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.generic.Reference%>&lt;?, ?, ?, ?> parentReference = (Reference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = !(this.cardinality != &lt;%pamtram.structure.generic.CardinalityType%>.ONE &amp;&amp; parentReference.getEReference().getUpperBound() == 1);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper bound of the containing Reference is '1'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CARDINALITY }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference&lt;?, ?, ?, ?>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.generic.ActualReference%>&lt;?, ?, ?, ?> parentReference = (ActualReference&lt;?, ?, ?, ?>) this.eContainer();&#xD;&#xA;&#xD;&#xA;if(parentReference.getEReference() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = !(this.cardinality != &lt;%pamtram.structure.generic.CardinalityType%>.ONE &amp;&amp; parentReference.getEReference().getUpperBound() == 1);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper bound of the containing Reference is '1'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CARDINALITY }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -787,18 +787,6 @@
             <eTypeArguments eTypeParameter="#//structure/generic/Reference/A"/>
           </eBounds>
         </eTypeParameters>
-        <eOperations name="validateEReferenceMatchesParentEClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof &lt;%pamtram.structure.generic.Class%>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EClass%> parentEClass = ((Class&lt;?, ?, ?, ?>) this.eContainer()).getEClass();&#xD;&#xA;&#xD;&#xA;boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is not allowed by the containing Class!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
-          </eAnnotations>
-          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
-          <eParameters name="context">
-            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-              <eTypeArguments/>
-              <eTypeArguments/>
-            </eGenericType>
-          </eParameters>
-        </eOperations>
         <eOperations name="getValuesGeneric" upperBound="-1">
           <eGenericType eTypeParameter="#//structure/generic/Reference/C"/>
         </eOperations>
@@ -807,8 +795,6 @@
             <eGenericType eTypeParameter="#//structure/generic/Reference/C"/>
           </eParameters>
         </eOperations>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
-            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" changeable="false"
             eOpposite="#//structure/generic/Class/references">
           <eGenericType eTypeParameter="#//structure/generic/Reference/C"/>
@@ -818,6 +804,100 @@
           <eTypeArguments eTypeParameter="#//structure/generic/Reference/C"/>
           <eTypeArguments eTypeParameter="#//structure/generic/Reference/R"/>
           <eTypeArguments eTypeParameter="#//structure/generic/Reference/A"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ActualReference" abstract="true">
+        <eTypeParameters name="S">
+          <eBounds eClassifier="#//structure/generic/Section">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="C">
+          <eBounds eClassifier="#//structure/generic/Class">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="R">
+          <eBounds eClassifier="#//structure/generic/Reference">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="A">
+          <eBounds eClassifier="#//structure/generic/Attribute">
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eOperations name="validateEReferenceMatchesParentEClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof &lt;%pamtram.structure.generic.Class%>)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EClass%> parentEClass = ((&lt;%pamtram.structure.generic.Class%>&lt;?, ?, ?, ?>) this.eContainer()).getEClass();&#xD;&#xA;&#xD;&#xA;boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is not allowed by the containing Class!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/A"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VirtualReference" abstract="true">
+        <eTypeParameters name="S">
+          <eBounds eClassifier="#//structure/generic/Section">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="C">
+          <eBounds eClassifier="#//structure/generic/Class">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="R">
+          <eBounds eClassifier="#//structure/generic/Reference">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eTypeParameters name="A">
+          <eBounds eClassifier="#//structure/generic/Attribute">
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+            <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
+          </eBounds>
+        </eTypeParameters>
+        <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/C"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/R"/>
+          <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/A"/>
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CompositeReference" abstract="true">
@@ -858,7 +938,7 @@
         </eTypeParameters>
         <eOperations name="validateEReferenceIsContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EReference%> reference = this instanceof &lt;%pamtram.structure.generic.ActualReference%> ? ((ActualReference&lt;?, ?, ?, ?>) this).getEReference() : null;&#xD;&#xA;&#xD;&#xA;boolean result = reference == null || reference.isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + reference.getName() + &quot;' is no containment reference!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -917,7 +997,7 @@
         </eTypeParameters>
         <eOperations name="validateValuesMatchReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : this.getValue().parallelStream().allMatch(c -> this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = this.getValue().parallelStream()&#xD;&#xA;&#x9;&#x9;.filter(c -> !this.getEReference().getEReferenceType().isSuperTypeOf(c.getEClass())).count()&#xD;&#xA;&#x9;&#x9;+ &quot; of the selected target Classes (Value) are not allowed by the selected eReference '&quot;&#xD;&#xA;&#x9;&#x9;+ this.getEReference().getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CROSS_REFERENCE__VALUE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EReference%> reference = this instanceof &lt;%pamtram.structure.generic.ActualReference%> ? ((ActualReference&lt;?, ?, ?, ?>) this).getEReference() : null;&#xD;&#xA;&#xD;&#xA;boolean result = reference == null ? true : this.getValue().parallelStream().allMatch(c -> reference.getEReferenceType().isSuperTypeOf(c.getEClass()));&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = this.getValue().parallelStream()&#xD;&#xA;&#x9;&#x9;.filter(c -> !reference.getEReferenceType().isSuperTypeOf(c.getEClass())).count()&#xD;&#xA;&#x9;&#x9;+ &quot; of the selected target Classes (Value) are not allowed by the selected eReference '&quot;&#xD;&#xA;&#x9;&#x9;+ reference.getName() + &quot;'!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;GenericValidator.CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CROSS_REFERENCE__VALUE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1278,6 +1358,12 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionCrossReference">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1290,6 +1376,41 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="VirtualSourceSectionCrossReference">
+        <eOperations name="validateDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if (this.getDerivation() == null || this.getDerivation().isEmpty()&#xD;&#xA;&#x9;&#x9;|| !(this.eContainer() instanceof SourceSectionClass)&#xD;&#xA;&#x9;&#x9;|| ((&lt;%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = true;&#xD;&#xA;String parserException = &quot;&quot;;&#xD;&#xA;&#xD;&#xA;try {&#xD;&#xA;&#x9;&lt;%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());&#xD;&#xA;} catch (&lt;%org.eclipse.ocl.ParserException%> e) {&#xD;&#xA;&#x9;result = false;&#xD;&#xA;&#x9;parserException = e.getMessage();&#xD;&#xA;&#x9;e.printStackTrace();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The specified derivation is not valid! The following error was provided: &quot; + parserException;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SourceValidator.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__VALIDATE_DERIVATION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivation" lowerBound="1"
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/VirtualReference">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" upperBound="-1"
@@ -1412,11 +1533,17 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
         <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+            <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
           </eAnnotations>
           <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
           <eParameters name="context">
@@ -1433,6 +1560,12 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"

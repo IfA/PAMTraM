@@ -26,6 +26,7 @@ import pamtram.TargetSectionModel;
 import pamtram.structure.constraint.ConstraintFactory;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CompositeReference;
@@ -297,7 +298,7 @@ public class MetaModelSectionGenerator {
 		} else {
 			containmentReference = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 		}
-		containmentReference.setEReference(reference);
+		((ActualReference<?, ?, ?, ?>) containmentReference).setEReference(reference);
 		containmentReference.setName(reference.getName());
 
 		// get the objects contained via the containment reference
@@ -362,7 +363,7 @@ public class MetaModelSectionGenerator {
 		} else {
 			nonContainmentReference = TargetFactory.eINSTANCE.createTargetSectionCrossReference();
 		}
-		nonContainmentReference.setEReference(reference);
+		((ActualReference<?, ?, ?, ?>) nonContainmentReference).setEReference(reference);
 		nonContainmentReference.setName(reference.getName());
 
 		if (source.eGet(reference) == null) { // no referenced object

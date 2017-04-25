@@ -34,7 +34,21 @@
     </references>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
   </sections>
-  <sections xsi:type="source:SourceSection" name="viObject Input/Output Bool/Double">
+  <sections xsi:type="source:SourceSection" name="viObject with SignalInterface Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="externalData">
+      <value xsi:type="source:SourceSectionClass" name="ExternalData">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+        <references xsi:type="source:SourceSectionCrossReference" name="extdata">
+          <value xsi:type="source:SourceSection" href="Extdata.pamtram.source#//@sections.1"/>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="viObject Input/Output Bool/Double" extend="//@sections.0 //@sections.2">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype">
@@ -44,7 +58,5 @@
       <valueConstraints xsi:type="constraint:EqualityConstraint" name="Input:Double" expression="Input:Double"/>
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
     </attributes>
-    <extend xsi:type="source:SourceSection" href="#//@sections.0"/>
-    <extend xsi:type="source:SourceSection" href="../STGML2Movisa_enhanced.pamtram#//@sourceSectionModels.0/@sections.0"/>
   </sections>
 </pamtram:SourceSectionModel>

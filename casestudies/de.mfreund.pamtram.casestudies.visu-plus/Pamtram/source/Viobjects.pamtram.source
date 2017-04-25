@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" name="Viobjects">
+  <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+  <sections xsi:type="source:SourceSection" name="viObject Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="x">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="y">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="width">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="height">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="label">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
+    </attributes>
+  </sections>
+</pamtram:SourceSectionModel>

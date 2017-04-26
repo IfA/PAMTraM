@@ -607,7 +607,7 @@ public class ConditionHandler {
 			// have to consider all 'descriptors' for the SourceSection under
 			// consideration
 			//
-			descriptorsToConsider = this.matchedSections.get(affectedClass);
+			descriptorsToConsider = this.matchedSections.get(affectedClass.getContainingSection());
 		}
 
 		// Collect all instances for the selected MatchedSectionDescriptors

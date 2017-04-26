@@ -52,6 +52,7 @@ import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -483,8 +484,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 					}
 					vals.add(copyNext);
 					abstractToConcreteElementMap.put(originalNext, vals);
-		
-					//TODO do we need to redirect references to these elements???
 				}
 		
 				/*
@@ -495,13 +494,52 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				concreteSection.getAttributes().addAll(attributesToAdd);
 				concreteSection.getReferences().addAll(referencesToAdd);
 		
+				/*
+				 * Now, we redirect references from concrete sections to
+				 * elements from the abstract section to the (new) elements from
+				 * the concrete sections.
+				 */
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(
+						abstractToConcreteElementMap.keySet(),
+						this.getSourceSections().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList()));
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+		
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+		
+						if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getSection_Extend())) {
+							// the 'extend' feature has already been handled
+							// above
+							continue;
+						}
+		
+						// this is the element referencing the abstract section
+						// (it should be an element of a section)
+						EObject hintElement = setting.getEObject();
+		
+						if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getClass_Container())) {
+							if (abstractSection.equals(hintElement)
+									|| abstractSection.isContainerFor((pamtram.structure.generic.Class<?, ?, ?, ?>) hintElement)) {
+		
+								// redirect the reference (we can always use the
+								// 'last' of the concrete objects as we just
+								// added it above
+								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
+							}
+		
+						} else {
+							System.out.println("Unhandled reference to element of an abstract section. Maybe consider redirecting this?");
+						}
+		
+					}
+		
+				}
 		
 				/*
 				 * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. 
 				 * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint
 				 * groups) are handled afterwards when these hint groups are copied.
 				 */
-				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
+				refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
 				for (EObject referencedObject : refsToAbstractSection.keySet()) {
 		
 		

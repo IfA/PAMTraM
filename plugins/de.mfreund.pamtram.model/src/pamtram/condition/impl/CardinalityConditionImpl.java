@@ -20,7 +20,6 @@ import pamtram.structure.source.SourceSectionClass;
 public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> implements CardinalityCondition {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CardinalityConditionImpl() {
@@ -29,7 +28,6 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

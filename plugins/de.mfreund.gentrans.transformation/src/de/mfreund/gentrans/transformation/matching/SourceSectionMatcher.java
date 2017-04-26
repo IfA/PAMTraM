@@ -44,9 +44,7 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
-import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -730,20 +728,25 @@ public class SourceSectionMatcher {
 		// (SourceSectionClasses) for the
 		// current 'sourceSectionClass' and store them in to maps
 		//
-		Map<EReference, List<SourceSectionClass>> classByRefMap = sourceSectionClass.getReferences().stream()
-				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toConcurrentMap(
-						r -> ((ActualReference<?, ?, ?, ?>) r).getEReference(), Reference::getValuesGeneric, (i, j) -> {
-							i.addAll(j);
-							return i;
-						}));
+		Map<EReference, List<SourceSectionClass>> classByRefMap = new HashMap<>();
+		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toList())) {
+			List<SourceSectionClass> currentValues = classByRefMap
+					.containsKey(((ActualReference<?, ?, ?, ?>) reference).getEReference())
+							? classByRefMap.get(((ActualReference<?, ?, ?, ?>) reference).getEReference())
+							: new ArrayList<>();
+			currentValues.addAll(reference.getValuesGeneric());
+			classByRefMap.put(((ActualReference<?, ?, ?, ?>) reference).getEReference(), currentValues);
+		}
 
-		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = sourceSectionClass
-				.getReferences().stream().filter(r -> r instanceof VirtualReference<?, ?, ?, ?>)
-				.collect(Collectors.toConcurrentMap(r -> (VirtualSourceSectionCrossReference) r,
-						Reference::getValuesGeneric, (i, j) -> {
-							i.addAll(j);
-							return i;
-						}));
+		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new HashMap<>();
+		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+				.filter(r -> r instanceof VirtualSourceSectionCrossReference).collect(Collectors.toList())) {
+			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
+					? classByVirtualRefMap.get(reference) : new ArrayList<>();
+			currentValues.addAll(reference.getValuesGeneric());
+			classByVirtualRefMap.put((VirtualSourceSectionCrossReference) reference, currentValues);
+		}
 
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
 		sourceSectionClass.getReferences().stream()

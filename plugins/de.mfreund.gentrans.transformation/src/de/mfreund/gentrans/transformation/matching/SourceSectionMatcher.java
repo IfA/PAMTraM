@@ -2,7 +2,6 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -108,14 +107,6 @@ public class SourceSectionMatcher {
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints}
-	 * that could not be evaluated so we don't need to send a potential error
-	 * message twice. This might e.g. happen for a malformed regular expression
-	 * in a {@link RegExConstraint}.
-	 */
-	private final Set<ValueConstraint> constraintsWithErrors;
-
-	/**
 	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be
 	 * used for calculating referenceValues that are needed for
 	 * {@link ValueConstraint}
@@ -156,7 +147,6 @@ public class SourceSectionMatcher {
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
-		this.constraintsWithErrors = Collections.synchronizedSet(new HashSet<>());
 		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(globalValueMap,
 				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), logger),
@@ -1323,7 +1313,6 @@ public class SourceSectionMatcher {
 						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
 			}
 		});
-
 	}
 
 	/**
@@ -1363,52 +1352,23 @@ public class SourceSectionMatcher {
 			return false;
 		}
 
-		/*
-		 * check AttributeValueConstraints
-		 *
-		 * Inclusions are OR connected
-		 *
-		 * Exclusions are NOR connected
-		 */
-		boolean inclusionMatched = false;
-		boolean containsInclusions = false;
+		List<ValueConstraint> requiredConstraints = attribute.getValueConstraints().stream()
+				.filter(c -> c.getType().equals(ValueConstraintType.REQUIRED)).collect(Collectors.toList());
+		List<ValueConstraint> forbiddenConstraints = attribute.getValueConstraints().stream()
+				.filter(c -> c.getType().equals(ValueConstraintType.FORBIDDEN)).collect(Collectors.toList());
 
-		List<ValueConstraint> validConstraints = attribute.getValueConstraints().parallelStream()
-				.filter(c -> !this.constraintsWithErrors.contains(c)).collect(Collectors.toList());
-
-		// Check each constraint
+		// Check that at least one 'required' constraint is met (OR-connection)
 		//
-		for (final ValueConstraint constraint : validConstraints) {
-
-			try {
-
-				boolean constraintVal = this.checkAttributeValueConstraint(srcAttrAsString, constraint);
-
-				if (!constraintVal && constraint.getType().equals(ValueConstraintType.FORBIDDEN)) {
-
-					return false;
-
-				} else if (constraint.getType().equals(ValueConstraintType.REQUIRED)) {
-
-					containsInclusions = true;
-					inclusionMatched = constraintVal;
-				}
-
-			} catch (final Exception e) {
-				this.constraintsWithErrors.add(constraint);
-				this.logger.warning("The AttributeValueConstraint '" + constraint.getName() + "' of the Attribute '"
-						+ attribute.getName() + " (Class: " + attribute.getOwningClass().getName() + ", Section: "
-						+ attribute.getContainingSection().getName()
-						+ ")' could not be evaluated and will be ignored. The following error was supplied:\n"
-						+ e.getLocalizedMessage());
-			}
-
+		if (!requiredConstraints.isEmpty() && !requiredConstraints.parallelStream()
+				.anyMatch(constraint -> this.checkAttributeValueConstraint(srcAttrAsString, constraint))) {
+			return false;
 		}
 
-		// If we arrive at this point, the constraint is valid unless there is
-		// an unmatched 'inclusion'
+		// Check that no 'forbidden' constraint is violated (NOR-connection)
 		//
-		return !(!inclusionMatched && containsInclusions);
+		return forbiddenConstraints.parallelStream()
+				.allMatch(constraint -> this.checkAttributeValueConstraint(srcAttrAsString, constraint));
+
 	}
 
 	/**

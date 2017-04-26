@@ -691,7 +691,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Connect all target sections
 		 */
-		boolean joiningResult = suitableMappings.stream()
+		boolean joiningResult = suitableMappings.stream().filter(m -> matchingResult.getSelectedMappingsByMapping().get(m) != null)
 				.allMatch(m -> this.targetSectionConnector.joinTargetSections(m,
 						matchingResult.getSelectedMappingsByMapping().get(m),
 						expandingResult.getTargetSectionRegistry()));

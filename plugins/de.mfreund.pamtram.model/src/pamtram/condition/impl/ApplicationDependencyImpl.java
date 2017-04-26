@@ -4,6 +4,7 @@ package pamtram.condition.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import pamtram.ConditionalElement;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.ConditionPackage;
@@ -13,8 +14,8 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.source.SourceSection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Application Dependency</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Application Dependency</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
@@ -22,6 +23,7 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ApplicationDependencyImpl() {
@@ -30,6 +32,7 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -38,8 +41,9 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,11 +89,19 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 		//
 		SourceSection localSection = ((Mapping) container).getSourceSection();
 
-		if (referencedSection.equals(localSection)) {
-			return true;
-		}
+		// A condition is local if it is based on the same section as the
+		// containing mapping or if this section that is a direct or indirect
+		// container section of the section referenced by the condition
+		//
+		do {
+			if (referencedSection.equals(localSection)) {
+				return true;
+			}
+		} while (referencedSection.getContainer() != null
+				&& (referencedSection = referencedSection.getContainer().getContainingSection()) != null);
 
-		// A condition is also 'local' if an InstanceSelector with local or external SourceAttributes exist
+		// A condition is also 'local' if an InstanceSelector with local or
+		// external SourceAttributes exist
 		//
 		return this.getInstanceSelectors().parallelStream()
 				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()

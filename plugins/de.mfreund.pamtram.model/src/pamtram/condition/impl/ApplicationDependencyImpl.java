@@ -23,7 +23,6 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ApplicationDependencyImpl() {
@@ -32,7 +31,6 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

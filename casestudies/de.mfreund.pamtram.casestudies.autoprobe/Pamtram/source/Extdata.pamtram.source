@@ -186,6 +186,7 @@
       </value>
       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
     </references>
+    <container xsi:type="source:SourceSectionClass" href="Viobjects.pamtram.source#//@sections.2/@references.0/@value.0"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="name = &quot;SignalInterface&quot; or &quot;AlertInerface&quot;">
       <valueConstraints xsi:type="constraint:EqualityConstraint" name="SignalInterface" expression="SignalInterface"/>
       <valueConstraints xsi:type="constraint:EqualityConstraint" name="AlertInterface" expression="AlertInterface"/>

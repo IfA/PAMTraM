@@ -173,7 +173,7 @@
           </value>
           <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         </references>
-        <references xsi:type="source:SourceSectionCrossReference" name="extdata" value="//@sections.4 //@sections.5 //@sections.3 //@sections.2">
+        <references xsi:type="source:SourceSectionCrossReference" name="extdata" value="//@sections.2">
           <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         </references>
         <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
@@ -186,13 +186,14 @@
       </value>
       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
     </references>
+    <container xsi:type="source:SourceSectionClass" href="Viobjects.pamtram.source#//@sections.2/@references.0/@value.0"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="name = &quot;SignalInterface&quot; or &quot;AlertInerface&quot;">
       <valueConstraints xsi:type="constraint:EqualityConstraint" name="SignalInterface" expression="SignalInterface"/>
       <valueConstraints xsi:type="constraint:EqualityConstraint" name="AlertInterface" expression="AlertInterface"/>
       <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
     </attributes>
   </sections>
-  <sections xsi:type="source:SourceSection" name="Signal String (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sections.1/@references.0/@value.1">
+  <sections xsi:type="source:SourceSection" name="ExtData &quot;Signal&quot;" cardinality="ZERO__INFINITY" container="//@sections.1/@references.0/@value.1">
     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
     <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
       <value xsi:type="source:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
@@ -204,7 +205,7 @@
               <valueConstraints xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
               <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
             </attributes>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="valueBrowsePath (String)">
+            <attributes xsi:type="source:ActualSourceSectionAttribute" name="valueBrowsePath">
               <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
             </attributes>
           </value>
@@ -224,136 +225,10 @@
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value &quot;String&quot;">
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value DataType">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="String" expression="String"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      </value>
-      <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-    </references>
-  </sections>
-  <sections xsi:type="source:SourceSection" name="Signal  Integer (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sections.1/@references.0/@value.1">
-    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-          <value xsi:type="source:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-              <valueConstraints xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-            </attributes>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="valueBrowsePath @ Integer">
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-            </attributes>
-          </value>
-          <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          </value>
-          <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-        </references>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;Type = Integer&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value &quot;Integer&quot;">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      </value>
-      <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-    </references>
-  </sections>
-  <sections xsi:type="source:SourceSection" name="Signal Boolean (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sections.1/@references.0/@value.1">
-    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-          <value xsi:type="source:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-              <valueConstraints xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-            </attributes>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="valueBrowsePath (Bool)">
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-            </attributes>
-          </value>
-          <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          </value>
-          <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-        </references>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;Type&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value &quot;Bool&quot;">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="Bool" expression="Bool"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      </value>
-      <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-    </references>
-  </sections>
-  <sections xsi:type="source:SourceSection" name="Signal Double (ExternalDataElement)" cardinality="ZERO__INFINITY" container="//@sections.1/@references.0/@value.1">
-    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;DataItems&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-          <value xsi:type="source:SourceSectionClass" name="ExtData &quot;OPCItem&quot;">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-              <valueConstraints xsi:type="constraint:EqualityConstraint" name="OPCItem" expression="OPCItem"/>
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-            </attributes>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" name="valueBrowsePath (Double)">
-              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-            </attributes>
-          </value>
-          <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          </value>
-          <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-        </references>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="DataItems" expression="DataItems"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;Type&quot;">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-          <valueConstraints xsi:type="constraint:EqualityConstraint" name="Type" expression="Type"/>
-          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-        </attributes>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value &quot;Double&quot;">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="Double" expression="Double"/>
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
         </attributes>

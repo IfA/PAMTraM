@@ -3340,7 +3340,7 @@
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
     <sections xsi:type="target:TargetSection" name="OpcUaItem Sig/FuncInterface" cardinality="ZERO__INFINITY" container="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@references.1/@value.0/@references.0/@value.0">
       <eClass href="http://stefan-hennig.de/movisa#//clientdata/opcua/DataVariable"/>
-      <references xsi:type="target:TargetSectionCrossReference" name="IsAccessedVia @ Double">
+      <references xsi:type="target:TargetSectionCrossReference" name="IsAccessedVia">
         <eReference href="http://stefan-hennig.de/movisa#//clientdata/ServerDataItem/IsAccessedVia"/>
       </references>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="BrowseName">
@@ -5203,21 +5203,67 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPUCUAItem" targetSection="//@targetSectionModels.3/@sections.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="BrowseName@String" target="//@targetSectionModels.3/@sections.0/@attributes.0">
+          <localCondition xsi:type="condition:AttributeCondition" name="isStringSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="String" expression="String"/>
+          </localCondition>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.16">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="BrowseName@Bool" target="//@targetSectionModels.3/@sections.0/@attributes.0">
+          <localCondition xsi:type="condition:AttributeCondition" name="isBoolSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Bool" expression="Bool"/>
+          </localCondition>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.17">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </sourceElements>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="BrowseName@Integer" target="//@targetSectionModels.3/@sections.0/@attributes.0">
+          <localCondition xsi:type="condition:AttributeCondition" name="isIntegerSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
+          </localCondition>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.18">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </sourceElements>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="BrowseName@Double" target="//@targetSectionModels.3/@sections.0/@attributes.0">
+          <localCondition xsi:type="condition:AttributeCondition" name="isDoubleSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Double" expression="Double"/>
+          </localCondition>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.19">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </sourceElements>
+        </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="BrowsePath@String" target="//@targetSectionModels.3/@sections.0/@attributes.1">
+          <localCondition xsi:type="condition:AttributeCondition" name="isStringSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="String" expression="String"/>
+          </localCondition>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.20">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="Name@String" target="//@targetSectionModels.3/@sections.0/@attributes.2">
+        <mappingHints xsi:type="extended:AttributeMapping" name="BrowsePath@Bool/Integer/Double" target="//@targetSectionModels.3/@sections.0/@attributes.1">
+          <localCondition xsi:type="condition:AttributeCondition" name="isBool/Integer/DoubleSignal">
+            <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Bool" expression="Bool"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Integer" expression="Integer"/>
+            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Double" expression="Double"/>
+          </localCondition>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.21">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          </sourceElements>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="Name" target="//@targetSectionModels.3/@sections.0/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia @ String" affectedReference="//@targetSectionModels.3/@sections.0/@references.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TP IsAccessedVia" affectedReference="//@targetSectionModels.3/@sections.0/@references.0">
           <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.0/@attributes.4">
             <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath (String)" modifiers="//@mappingModels.0/@modifierSets.14 //@mappingModels.0/@modifierSets.2">
               <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
@@ -5321,7 +5367,7 @@
           </sourceElements>
           <targetAttributes name="Name" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2" source="//@targetSectionModels.3/@sections.0/@attributes.2"/>
         </mappingHints>
-        <localCondition xsi:type="condition:AttributeCondition">
+        <localCondition xsi:type="condition:AttributeCondition" name="isStringSignal">
           <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="String" expression="String"/>
         </localCondition>
@@ -5338,7 +5384,7 @@
           </sourceElements>
           <targetAttributes name="Name" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2" source="//@targetSectionModels.3/@sections.0/@attributes.2"/>
         </mappingHints>
-        <localCondition xsi:type="condition:AttributeCondition">
+        <localCondition xsi:type="condition:AttributeCondition" name="isBoolSignal">
           <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.2/@references.0/@value.1/@attributes.1"/>
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="Bool" expression="Bool"/>
         </localCondition>

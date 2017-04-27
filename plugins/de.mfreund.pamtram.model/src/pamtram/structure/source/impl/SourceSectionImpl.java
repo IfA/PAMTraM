@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingType;
@@ -35,6 +36,7 @@ import pamtram.structure.source.util.SourceValidator;
  * <ul>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getAllExtend <em>All Extend</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getReferencingMappings <em>Referencing Mappings</em>}</li>
  * </ul>
  *
@@ -120,6 +122,22 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			extend = new EObjectResolvingEList<SourceSection>(SourceSection.class, this, SourcePackage.SOURCE_SECTION__EXTEND);
 		}
 		return extend;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSection> getAllExtend() {
+		List<Object> ret = new ArrayList<>(this.getExtend());
+		
+		ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		
+		ret = ret.stream().distinct().collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND,
+				ret.size(), ret.toArray());
 	}
 
 	/**
@@ -240,6 +258,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return isAbstract();
 			case SourcePackage.SOURCE_SECTION__EXTEND:
 				return getExtend();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
+				return getAllExtend();
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
 				return getReferencingMappings();
 		}
@@ -293,6 +313,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return abstract_ != ABSTRACT_EDEFAULT;
 			case SourcePackage.SOURCE_SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
+				return !getAllExtend().isEmpty();
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
 				return !getReferencingMappings().isEmpty();
 		}
@@ -309,6 +331,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			switch (derivedFeatureID) {
 				case SourcePackage.SOURCE_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
 				case SourcePackage.SOURCE_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
+				case SourcePackage.SOURCE_SECTION__ALL_EXTEND: return GenericPackage.SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}
@@ -325,6 +348,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			switch (baseFeatureID) {
 				case GenericPackage.SECTION__ABSTRACT: return SourcePackage.SOURCE_SECTION__ABSTRACT;
 				case GenericPackage.SECTION__EXTEND: return SourcePackage.SOURCE_SECTION__EXTEND;
+				case GenericPackage.SECTION__ALL_EXTEND: return SourcePackage.SOURCE_SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}

@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Section#getAllExtend <em>All Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getSection()
@@ -68,6 +69,22 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * @generated
 	 */
 	EList<S> getExtend();
+
+	/**
+	 * Returns the value of the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Extend</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Extend</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getSection_AllExtend()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = new <%java.util.ArrayList%><>(this.getExtend());\r\n\r\nret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\nret = ret.stream().distinct().collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTEND,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<S> getAllExtend();
 
 	/**
 	 * <!-- begin-user-doc -->

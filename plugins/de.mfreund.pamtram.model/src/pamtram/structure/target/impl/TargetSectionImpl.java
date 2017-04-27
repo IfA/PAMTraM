@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 
 import pamtram.mapping.Mapping;
@@ -39,6 +40,7 @@ import pamtram.structure.target.util.TargetValidator;
  * <ul>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getAllExtend <em>All Extend</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getFile <em>File</em>}</li>
  * </ul>
@@ -135,6 +137,22 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			extend = new EObjectResolvingEList<TargetSection>(TargetSection.class, this, TargetPackage.TARGET_SECTION__EXTEND);
 		}
 		return extend;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSection> getAllExtend() {
+		List<Object> ret = new ArrayList<>(this.getExtend());
+		
+		ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		
+		ret = ret.stream().distinct().collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND,
+				ret.size(), ret.toArray());
 	}
 
 	/**
@@ -317,6 +335,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return isAbstract();
 			case TargetPackage.TARGET_SECTION__EXTEND:
 				return getExtend();
+			case TargetPackage.TARGET_SECTION__ALL_EXTEND:
+				return getAllExtend();
 			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
 			case TargetPackage.TARGET_SECTION__FILE:
@@ -379,6 +399,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return abstract_ != ABSTRACT_EDEFAULT;
 			case TargetPackage.TARGET_SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
+			case TargetPackage.TARGET_SECTION__ALL_EXTEND:
+				return !getAllExtend().isEmpty();
 			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return !getReferencingMappingHintGroups().isEmpty();
 			case TargetPackage.TARGET_SECTION__FILE:
@@ -397,6 +419,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			switch (derivedFeatureID) {
 				case TargetPackage.TARGET_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
 				case TargetPackage.TARGET_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
+				case TargetPackage.TARGET_SECTION__ALL_EXTEND: return GenericPackage.SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}
@@ -413,6 +436,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			switch (baseFeatureID) {
 				case GenericPackage.SECTION__ABSTRACT: return TargetPackage.TARGET_SECTION__ABSTRACT;
 				case GenericPackage.SECTION__EXTEND: return TargetPackage.TARGET_SECTION__EXTEND;
+				case GenericPackage.SECTION__ALL_EXTEND: return TargetPackage.TARGET_SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}

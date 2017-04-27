@@ -5,6 +5,7 @@ package pamtram.structure.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -18,6 +19,7 @@ import pamtram.mapping.Mapping;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
 
@@ -48,22 +50,22 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -74,26 +76,29 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
+		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
@@ -140,6 +145,12 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 							// section above
 							while (true) {
 								choiceOfValues.addAll(container.getAttributes());
+
+								if (container instanceof SourceSection) {
+									choiceOfValues.addAll(((SourceSection) container).getAllExtend().stream()
+											.flatMap(s -> s.getAttributes().stream()).collect(Collectors.toList()));
+								}
+
 								if (container.eContainer() instanceof SourceSectionCompositeReference) {
 									container = (SourceSectionClass) container.eContainer().eContainer();
 								} else if (container.eContainer() instanceof SourceSectionModel
@@ -151,7 +162,7 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 							}
 						}
 
-						return choiceOfValues;
+						return choiceOfValues.stream().distinct().collect(Collectors.toList());
 					}
 				});
 	}

@@ -239,4 +239,44 @@
       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
     </references>
   </sections>
+  <sections xsi:type="source:SourceSection" name="ExtData &quot;Roles&quot;">
+    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
+      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;RoleDefinition&quot;" cardinality="ONE__INFINITY">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
+          <value xsi:type="source:SourceSectionClass" name="extdata &quot;Id&quot;">
+            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+              <valueConstraints xsi:type="constraint:EqualityConstraint" name="Id" expression="Id"/>
+              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+            </attributes>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" name="Id-value">
+              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+            </attributes>
+          </value>
+          <value xsi:type="source:SourceSectionClass" name="extdata &quot;Name&quot;">
+            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+              <valueConstraints xsi:type="constraint:EqualityConstraint" name="Name" expression="Name"/>
+              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+            </attributes>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name-value">
+              <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+            </attributes>
+          </value>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+        </references>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="RoleDefinition" expression="RoleDefinition"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
+    </references>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Roles" expression="Roles"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+    </attributes>
+  </sections>
 </pamtram:SourceSectionModel>

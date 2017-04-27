@@ -710,46 +710,6 @@
   </sourceSectionModels>
   <sourceSectionModels name="Extdata">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-    <sections xsi:type="source:SourceSection" name="ExtData &quot;Roles&quot;">
-      <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-      <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-        <value xsi:type="source:SourceSectionClass" name="ExtData &quot;RoleDefinition&quot;">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-            <value xsi:type="source:SourceSectionClass" name="extdata &quot;Id&quot;">
-              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-                <valueConstraints xsi:type="constraint:EqualityConstraint" name="Id" expression="Id"/>
-                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-              </attributes>
-              <attributes xsi:type="source:ActualSourceSectionAttribute" name="Id-value">
-                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-              </attributes>
-            </value>
-            <value xsi:type="source:SourceSectionClass" name="extdata &quot;Name&quot;">
-              <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-                <valueConstraints xsi:type="constraint:EqualityConstraint" name="Name" expression="Name"/>
-                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-              </attributes>
-              <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name-value">
-                <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-              </attributes>
-            </value>
-            <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-          </references>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="RoleDefinition" expression="RoleDefinition"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-        </value>
-        <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-      </references>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="Roles" expression="Roles"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-      </attributes>
-    </sections>
     <sections xsi:type="source:SourceSection" name="SignalInterface Stopper" container="//@sourceSectionModels.0/@sections.11/@references.0/@value.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
@@ -3422,7 +3382,7 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="SignalInterface StopperMapping" sourceSection="//@sourceSectionModels.1/@sections.1">
+    <mappings name="SignalInterface StopperMapping" sourceSection="//@sourceSectionModels.1/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_empty" targetSection="//@targetSectionModels.0/@sections.5">
         <mappingHints xsi:type="extended:AttributeMapping" name="objectMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="base" value="base"/>
@@ -3436,7 +3396,7 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3460,13 +3420,13 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.11/@attributes.2"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.0"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.3"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.5"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.1"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
@@ -3477,7 +3437,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3498,7 +3458,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3507,7 +3467,7 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.11/@attributes.6"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3519,7 +3479,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3537,7 +3497,7 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3555,13 +3515,13 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.11/@attributes.2"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.0"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.3"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.5"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.1"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
@@ -3578,7 +3538,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3599,7 +3559,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3608,7 +3568,7 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.11/@attributes.6"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3620,7 +3580,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3633,7 +3593,7 @@
           <sourceElements xsi:type="pamtram:FixedValue" name="0" value="0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="varMapping" target="//@targetSectionModels.0/@sections.10/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
@@ -3644,7 +3604,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3662,7 +3622,7 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3686,13 +3646,13 @@
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.11/@attributes.2"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.0"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.3"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.5"/>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="direction" source="//@sourceSectionModels.0/@sections.11/@attributes.1"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
@@ -3703,7 +3663,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3724,7 +3684,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3733,7 +3693,7 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.11/@attributes.6"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3745,7 +3705,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
@@ -3758,7 +3718,7 @@
           <sourceElements xsi:type="pamtram:FixedValue" name="0" value="0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="varMapping" target="//@targetSectionModels.0/@sections.10/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
@@ -3769,38 +3729,38 @@
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.11/@attributes.11"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="width" source="//@sourceSectionModels.0/@sections.11/@attributes.4"/>
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="height" source="//@sourceSectionModels.0/@sections.11/@attributes.12"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item CarrierID" targetSection="//@targetSectionModels.1/@sections.2">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.1" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.6">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="variableMapping" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.7">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           <targetAttributes name="GroupName" source="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ProductID" targetSection="//@targetSectionModels.1/@sections.2">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.2" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.6">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="variableMapping" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.7">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.1/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           <targetAttributes name="GroupName" source="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable CarrierID" targetSection="//@targetSectionModels.2/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.1/@modifierSets.6" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.6">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="DWORD (32 Bit mit VZ)" value="5"/>
@@ -3808,7 +3768,7 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable ProductID" targetSection="//@targetSectionModels.2/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.1/@modifierSets.6" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.6">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="DWORD (32 Bit mit VZ)" value="5"/>
@@ -3816,13 +3776,13 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ItemGroup" targetSection="//@targetSectionModels.1/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@references.0/@value.0/@attributes.7">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="GroupNameMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="GroupNameMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath" source="//@sourceSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

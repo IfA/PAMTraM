@@ -367,54 +367,6 @@
       <container xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.8"/>
       <extend xsi:type="source:SourceSection" href="source/Extdata.pamtram.source#//@sections.5"/>
     </sections>
-    <sections xsi:type="source:SourceSection" name="ExternalData == ClassPath (no Stations)">
-      <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-      <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-        <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="ClassPath" type="FORBIDDEN" expression="ClassPath"/>
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="ExtData ClassPath">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == ClassPath">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="ClassPath" expression="ClassPath"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="value ClassPath">
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="Extdata name">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameLibElement">
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="value != Station">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="no Station" type="FORBIDDEN" expression="Station"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
-      </references>
-      <container xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.7"/>
-      <extend xsi:type="source:SourceSection" href="source/Extdata.pamtram.source#//@sections.4"/>
-    </sections>
   </sourceSectionModels>
   <sharedSourceSectionModels href="source/Layers.pamtram.source#/"/>
   <sharedSourceSectionModels href="source/Viobjects.pamtram.source#/"/>
@@ -3324,7 +3276,8 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="LibraryComponent" sourceSection="//@sourceSectionModels.1/@sections.5">
+    <mappings name="LibraryComponent">
+      <sourceSection href="source/Extdata.pamtram.source#//@sections.7"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.1/@libraryElements.3/@parameters.4/@class">
         <mappingHints xsi:type="extended:AttributeMapping" name="TextLabelRepPosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.3/@parameters.2/@attribute">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x">
@@ -3350,10 +3303,14 @@
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="IDMapping" target="//@targetSectionModels.1/@libraryElements.3/@id">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameLibElement" source="//@sourceSectionModels.1/@sections.5/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameLibElement">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ClasspathMapping" target="//@targetSectionModels.1/@libraryElements.3/@classpath">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.0/@modifierSets.48" source="//@sourceSectionModels.1/@sections.5/@references.0/@value.1/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.0/@modifierSets.48">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.1/@attributes.1"/>
+          </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="label">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.4"/>
           </sourceElements>
@@ -3366,7 +3323,7 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="AlertInterfaceMapping">
+    <mappings name="AlertInterface">
       <sourceSection href="source/Viobjects.pamtram.source#//@sections.6"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.1/@libraryElements.5/@parameters.4/@class">
         <mappingHints xsi:type="extended:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.5/@parameters.0/@attribute">

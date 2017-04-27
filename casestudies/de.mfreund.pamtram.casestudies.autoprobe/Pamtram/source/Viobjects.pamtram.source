@@ -59,4 +59,12 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
     </attributes>
   </sections>
+  <sections xsi:type="source:SourceSection" name="viObject FunctionButton" extend="//@sections.0 //@sections.1">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;FunctionButton&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="FunctionButton" expression="FunctionButton"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+  </sections>
 </pamtram:SourceSectionModel>

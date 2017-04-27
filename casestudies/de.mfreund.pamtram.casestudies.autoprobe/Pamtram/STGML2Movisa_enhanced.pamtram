@@ -45,30 +45,6 @@
       </attributes>
       <extend xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.0"/>
     </sections>
-    <sections xsi:type="source:SourceSection" name="Viobject AlertInterface">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;AlertInterface&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="AlertInterface" expression="AlertInterface"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="x">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="y">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="width">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="height">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
-      </attributes>
-    </sections>
     <sections xsi:type="source:SourceSection" name="viObject container Ellipse">
       <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
       <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
@@ -103,13 +79,13 @@
   </sourceSectionModels>
   <sourceSectionModels name="Extdata">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-    <sections xsi:type="source:SourceSection" name="Externaldatatype (Ellipse) base" container="//@sourceSectionModels.0/@sections.4" abstract="true">
+    <sections xsi:type="source:SourceSection" name="Externaldatatype (Ellipse) base" container="//@sourceSectionModels.0/@sections.3" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
     </sections>
     <sections xsi:type="source:SourceSection" name="Externaldatatype (Rectangle) base" container="//@sourceSectionModels.0/@sections.2" abstract="true">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
     </sections>
-    <sections xsi:type="source:SourceSection" name="ExternalData == Stopper" container="//@sourceSectionModels.0/@sections.4" extend="//@sourceSectionModels.1/@sections.0">
+    <sections xsi:type="source:SourceSection" name="ExternalData == Stopper" container="//@sourceSectionModels.0/@sections.3" extend="//@sourceSectionModels.1/@sections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
         <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
@@ -402,7 +378,7 @@
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
       </references>
     </sections>
-    <sections xsi:type="source:SourceSection" name="ExternalData == Fork/Merge" container="//@sourceSectionModels.0/@sections.4" extend="//@sourceSectionModels.1/@sections.0">
+    <sections xsi:type="source:SourceSection" name="ExternalData == Fork/Merge" container="//@sourceSectionModels.0/@sections.3" extend="//@sourceSectionModels.1/@sections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
         <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
@@ -472,7 +448,7 @@
         <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
       </references>
     </sections>
-    <sections xsi:type="source:SourceSection" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModels.0/@sections.4" extend="//@sourceSectionModels.1/@sections.0">
+    <sections xsi:type="source:SourceSection" name="ExternalData == Conveyor (Ellipse)" container="//@sourceSectionModels.0/@sections.3" extend="//@sourceSectionModels.1/@sections.0">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
         <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
@@ -3504,20 +3480,31 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="AlertInterfaceMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
+    <mappings name="AlertInterfaceMapping">
+      <sourceSection href="source/Viobjects.pamtram.source#//@sections.5"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.1/@libraryElements.5/@parameters.4/@class">
         <mappingHints xsi:type="extended:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.5/@parameters.0/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="w" source="//@sourceSectionModels.0/@sections.3/@attributes.3"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="w">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.2"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="HeightMapping" expression="round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.5/@parameters.1/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h" source="//@sourceSectionModels.0/@sections.3/@attributes.4"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="XMapping" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.5/@parameters.2/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="x" source="//@sourceSectionModels.0/@sections.3/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="x">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.0"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="YMapping" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.5/@parameters.3/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="y" source="//@sourceSectionModels.0/@sections.3/@attributes.2"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h" source="//@sourceSectionModels.0/@sections.3/@attributes.4"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="y">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.1"/>
+          </sourceElements>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="h">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" affectedReference="//@targetSectionModels.1/@libraryElements.5/@parameters.5/@reference">
           <matcher xsi:type="extended:AttributeMatcher" modifiers="//@mappingModels.0/@modifierSets.22" target="//@targetSectionModels.3/@sections.0/@attributes.2">
@@ -4655,11 +4642,11 @@
     <mappings name="Conveyor Element Ellipse base" sourceSection="//@sourceSectionModels.1/@sections.0" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Conveyor Image" targetSection="//@targetSectionModels.1/@sections.15">
         <mappingHints xsi:type="extended:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.4/@attributes.3"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.3/@attributes.3"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.4/@attributes.4"/>
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.4/@attributes.5"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.3/@attributes.4"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.3/@attributes.5"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="width" expression="w-w+conveyorWidth" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="w">
@@ -4673,7 +4660,7 @@
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="imgResource" affectedReference="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.4">
           <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.16/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.4/@attributes.2"/>
+            <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.3/@attributes.2"/>
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="RepPosZValueMapping" expression="transportLayerZIndex" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.1">
@@ -4690,10 +4677,10 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Conveyor Image Resource" targetSection="//@targetSectionModels.1/@sections.16">
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.1/@sections.16/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.4/@attributes.2"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.3/@attributes.2"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="UrlMapping" modifiers="//@mappingModels.0/@modifierSets.51" target="//@targetSectionModels.1/@sections.16/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.4/@attributes.2"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="conveyorImageName" source="//@sourceSectionModels.0/@sections.3/@attributes.2"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -4987,14 +4974,14 @@
     <mappings name="Stopper" sourceSection="//@sourceSectionModels.1/@sections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.1/@libraryElements.2/@parameters.4/@class">
         <mappingHints xsi:type="extended:AttributeMapping" name="PosXValue based on the SignalInterfaceNumber" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperHorizontalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModels.1/@libraryElements.2/@parameters.2/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.4/@attributes.3"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x" source="//@sourceSectionModels.0/@sections.3/@attributes.3"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="sigInterfaceNumber" modifiers="//@mappingModels.0/@modifierSets.50" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.3/@attributes.0"/>
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="stopperHorizontalInDirection" source="//@sourceSectionModels.0/@sections.4/@attributes.6"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="stopperHorizontalInDirection" source="//@sourceSectionModels.0/@sections.3/@attributes.6"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosYValue based on the SignalInterfaceNumber" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))+stopperVerticalInDirection*conveyorWidth*sigInterfaceNumber" target="//@targetSectionModels.1/@libraryElements.2/@parameters.3/@attribute">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.4/@attributes.4"/>
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.4/@attributes.5"/>
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="stopperVerticalInDirection" source="//@sourceSectionModels.0/@sections.4/@attributes.7"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y" source="//@sourceSectionModels.0/@sections.3/@attributes.4"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h" source="//@sourceSectionModels.0/@sections.3/@attributes.5"/>
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="stopperVerticalInDirection" source="//@sourceSectionModels.0/@sections.3/@attributes.7"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="sigInterfaceNumber" modifiers="//@mappingModels.0/@modifierSets.50" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.3/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="width" expression="conveyorWidth" target="//@targetSectionModels.1/@libraryElements.2/@parameters.0/@attribute">

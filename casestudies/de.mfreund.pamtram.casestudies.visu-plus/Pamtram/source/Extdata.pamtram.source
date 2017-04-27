@@ -233,6 +233,16 @@
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
         </attributes>
       </value>
+      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;name&quot;">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="signalName">
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+        </attributes>
+      </value>
       <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ONE__INFINITY">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       </value>

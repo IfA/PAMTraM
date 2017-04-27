@@ -91,4 +91,49 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
     </attributes>
   </sections>
+  <sections xsi:type="source:SourceSection" name="viObject container Rectangle" extend="//@sections.0">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="conveyorImageName">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="viObject container Ellipse" extend="//@sections.0">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Ellipse&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Ellipse" expression="Ellipse"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="conveyorImageName">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedX">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedY">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedHeight">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="stopperHorizontalInDirection">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperHorizontalInDirection"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="stopperVerticalInDirection">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperVerticalInDirection"/>
+    </attributes>
+  </sections>
 </pamtram:SourceSectionModel>

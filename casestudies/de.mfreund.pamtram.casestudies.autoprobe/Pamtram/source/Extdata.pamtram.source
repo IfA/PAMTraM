@@ -233,7 +233,7 @@
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
         </attributes>
       </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;name&quot;">
+      <value xsi:type="source:SourceSectionClass" name="ExtData &quot;name&quot;" cardinality="ZERO__INFINITY">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
         <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>

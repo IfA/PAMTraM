@@ -59,6 +59,18 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
     </attributes>
   </sections>
+  <sections xsi:type="source:SourceSection" name="viObject NavigatorButton" extend="//@sections.0">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;NavigatorButton&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="NavigatorButton" expression="NavigatorButton"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="send@NavigatorButton">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" name="Logout" type="FORBIDDEN" expression="Logout"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
+    </attributes>
+  </sections>
   <sections xsi:type="source:SourceSection" name="viObject FunctionButton" extend="//@sections.0 //@sections.1">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#//@sections.4"/>

@@ -19,6 +19,9 @@
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="label">
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
     </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
+    </attributes>
   </sections>
   <sections xsi:type="source:SourceSection" name="viObject with FunctionInterface Base" abstract="true">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>

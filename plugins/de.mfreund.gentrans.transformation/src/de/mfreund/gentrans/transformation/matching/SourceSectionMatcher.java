@@ -1299,22 +1299,14 @@ public class SourceSectionMatcher {
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
-		return srcSection.getAttributes().stream().allMatch(at -> {
+		return srcSection.getAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty()).allMatch(at -> {
 			List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
-			if (values.isEmpty()) {
-				/*
-				 * This is not a problem unless an AttributeValueConstraint was
-				 * modeled.
-				 */
-				return at.getValueConstraints().isEmpty();
-			} else {
-				/*
-				 * Check if all the constraints are satisfied for every
-				 * attribute value.
-				 */
-				return values.parallelStream()
-						.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
-			}
+			/*
+			 * Check if all the constraints are satisfied for every attribute
+			 * value.
+			 */
+			return values.parallelStream()
+					.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
 		});
 	}
 

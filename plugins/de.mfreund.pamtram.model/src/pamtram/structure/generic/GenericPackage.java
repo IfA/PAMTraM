@@ -189,13 +189,22 @@ public interface GenericPackage extends EPackage {
 	int CLASS__ATTRIBUTES = META_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALL_CONTAINER = META_MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -359,6 +368,15 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int SECTION__ATTRIBUTES = CLASS__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ALL_CONTAINER = CLASS__ALL_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1377,6 +1395,17 @@ public interface GenericPackage extends EPackage {
 	EReference getClass_Attributes();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getAllContainer <em>All Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Container</em>'.
+	 * @see pamtram.structure.generic.Class#getAllContainer()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AllContainer();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1831,6 +1860,14 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__ATTRIBUTES = eINSTANCE.getClass_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>All Container</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ALL_CONTAINER = eINSTANCE.getClass_AllContainer();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.

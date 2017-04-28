@@ -20,6 +20,7 @@ import pamtram.structure.source.SourceSectionClass;
 public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> implements CardinalityCondition {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CardinalityConditionImpl() {
@@ -28,6 +29,7 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -38,7 +40,7 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
 	 * more specific type known in this context.
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -73,13 +75,14 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 		// A condition is local if it is based on the same section as the
 		// containing mapping or if this section that is a direct or indirect
 		// container section of the section referenced by the condition
+		// A condition is also local if it is based on a container section of
+		// the section referenced by the mapping
 		//
-		do {
-			if (referencedSection.equals(localSection)) {
-				return true;
-			}
-		} while (referencedSection.getContainer() != null
-				&& (referencedSection = referencedSection.getContainer().getContainingSection()) != null);
+		//
+		if (referencedSection.equals(localSection) || referencedSection.getAllContainer().contains(localSection)
+				|| localSection.getAllContainer().contains(referencedSection)) {
+			return true;
+		}
 
 		// A condition is also 'local' if an InstanceSelector with local or
 		// external SourceAttributes exist

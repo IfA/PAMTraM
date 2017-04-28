@@ -124,6 +124,15 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_CONTAINER = GenericPackage.CLASS__ALL_CONTAINER;
+
+	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,6 +312,15 @@ public interface SourcePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION__ATTRIBUTES = SOURCE_SECTION_CLASS__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_CONTAINER = SOURCE_SECTION_CLASS__ALL_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.

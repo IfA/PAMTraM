@@ -18,7 +18,6 @@ import pamtram.mapping.Mapping;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
-import pamtram.structure.source.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -27,16 +26,18 @@ import pamtram.structure.source.SourceSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
+ * <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints
+ * <em>Value Constraints</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAttribute> implements AttributeCondition {
 	/**
-	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueConstraints() <em>Value
+	 * Constraints</em>}' containment reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
@@ -45,6 +46,7 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AttributeConditionImpl() {
@@ -53,6 +55,7 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,14 +65,16 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ValueConstraint> getValueConstraints() {
-		if (valueConstraints == null) {
-			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
+		if (this.valueConstraints == null) {
+			this.valueConstraints = new EObjectContainmentEList<>(ValueConstraint.class, this,
+					ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
-		return valueConstraints;
+		return this.valueConstraints;
 	}
 
 	/**
@@ -85,69 +90,74 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				return ((InternalEList<?>)getValueConstraints()).basicRemove(otherEnd, msgs);
+		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+			return ((InternalEList<?>) this.getValueConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				return getValueConstraints();
+		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+			return this.getValueConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				getValueConstraints().clear();
-				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
-				return;
+		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+			this.getValueConstraints().clear();
+			this.getValueConstraints().addAll((Collection<? extends ValueConstraint>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				getValueConstraints().clear();
-				return;
+		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+			this.getValueConstraints().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-				return valueConstraints != null && !valueConstraints.isEmpty();
+		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+			return this.valueConstraints != null && !this.valueConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -161,7 +171,7 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 		// The SourceSection that the condition references
 		//
-		SourceSectionClass referencedSection = this.getTarget().getContainingSection();
+		SourceSection referencedSection = this.getTarget().getContainingSection();
 
 		EObject container = this;
 
@@ -179,13 +189,14 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 		// A condition is local if it is based on the same section as the
 		// containing mapping or if this section that is a direct or indirect
 		// container section of the section referenced by the condition
+		// A condition is also local if it is based on a container section of
+		// the section referenced by the mapping
 		//
-		do {
-			if (referencedSection.equals(localSection)) {
-				return true;
-			}
-		} while (referencedSection.getContainer() != null
-				&& (referencedSection = referencedSection.getContainer().getContainingSection()) != null);
+		//
+		if (referencedSection.equals(localSection) || referencedSection.getAllContainer().contains(localSection)
+				|| localSection.getAllContainer().contains(referencedSection)) {
+			return true;
+		}
 
 		// A condition is also 'local' if an InstanceSelector with local or
 		// external SourceAttributes exist

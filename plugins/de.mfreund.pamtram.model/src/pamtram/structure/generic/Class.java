@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.generic.Class#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllContainer <em>All Container</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getClass_()
@@ -144,6 +145,22 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @generated
 	 */
 	EList<A> getAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Container</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Container</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllContainer()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = new <%java.util.ArrayList%><>();\r\nif(this.getContainer() != null) {\r\n\tret.add(this.getContainer());\r\n\tret.addAll(this.getContainer().getAllContainer());\r\n\t\r\n\tif(this.getContainer() instanceof <%pamtram.structure.generic.Section%><?, ?, ?, ?>) {\t\t\t\t\r\n\t\tret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend());\r\n\t\tret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend().stream().flatMap(s -> s.getAllContainer().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\t}\r\n}\r\n\r\nret = ret.stream().distinct().collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CONTAINER,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<C> getAllContainer();
 
 	/**
 	 * <!-- begin-user-doc -->

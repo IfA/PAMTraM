@@ -598,7 +598,29 @@ public class ConditionHandler {
 			// specified,
 			// we only consider the given 'matchedSectionDescriptor'.
 			//
-			descriptorsToConsider = Arrays.asList(matchedSectionDescriptor);
+			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
+
+			// If we are dealing with an 'external' condition (a local condition
+			// that is based on elements from a container section), we need to
+			// use the corresponding 'container descriptors' instead of the
+			// determined 'descriptors' themselves
+			//
+			if (descriptorToConsider.getAssociatedSourceSectionClass().getAllContainer()
+					.contains(affectedClass.getContainingSection())) {
+
+				while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
+						.equals(affectedClass.getContainingSection())) {
+
+					if (descriptorToConsider.getContainerDescriptor() == null) {
+						this.logger.severe("Internal error while evaluating condition '" + condition.getName()
+								+ "'! Unable to determine correct MatchedSectionDescriptor.");
+						break;
+					}
+					descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
+				}
+			}
+
+			descriptorsToConsider = Arrays.asList(descriptorToConsider);
 
 		} else {
 

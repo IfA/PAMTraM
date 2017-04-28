@@ -619,6 +619,7 @@
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
         <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name exclusions">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
       </value>
@@ -646,5 +647,41 @@
       <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
     </references>
     <container xsi:type="source:SourceSection" href="Viobjects.pamtram.source#//@sections.7"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="ExternalData == Conveyor (Ellipse)" extend="//@sections.5">
+    <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
+      <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name exclusions">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+      </value>
+      <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value == Conveyor">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="Conveyor" expression="Conveyor"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+        </attributes>
+      </value>
+      <value xsi:type="source:SourceSectionClass" name="Extdata name">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameConveyor">
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+        </attributes>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Viobjects.pamtram.source#//@sections.8"/>
   </sections>
 </pamtram:SourceSectionModel>

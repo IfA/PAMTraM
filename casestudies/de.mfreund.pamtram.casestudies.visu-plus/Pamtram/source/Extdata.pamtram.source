@@ -659,7 +659,7 @@
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
       </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
+      <value xsi:type="source:SourceSectionClass" name="ExtData typeID Conveyor">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
         <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
@@ -676,7 +676,44 @@
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
-        <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameConveyor">
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameConveyorCorner">
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+        </attributes>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Viobjects.pamtram.source#//@sections.8"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="ExternalData == Fork/Merge" extend="//@sections.5">
+    <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+    <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
+      <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name exclusions">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" type="FORBIDDEN" expression="name"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+      </value>
+      <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="value == Fork or Merge">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="Fork" expression="Fork"/>
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="MergingPoint" expression="MergingPoint"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
+        </attributes>
+      </value>
+      <value xsi:type="source:SourceSectionClass" name="Extdata name">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
+          <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameFork/Merge">
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
         </attributes>
       </value>

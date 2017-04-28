@@ -622,7 +622,7 @@
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
       </value>
-      <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
+      <value xsi:type="source:SourceSectionClass" name="ExtData typeID Conveyor">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
         <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>

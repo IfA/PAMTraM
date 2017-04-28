@@ -72,42 +72,6 @@
       <container xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.8"/>
       <extend xsi:type="source:SourceSection" href="source/Extdata.pamtram.source#//@sections.5"/>
     </sections>
-    <sections xsi:type="source:SourceSection" name="ExternalData == Conveyor (Rect)">
-      <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-      <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-        <value xsi:type="source:SourceSectionClass" name="ExtData Rest" cardinality="ZERO__INFINITY">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name exclusions">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" type="FORBIDDEN" expression="typeID"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="ExtData typeID Conveyor">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="value == Conveyor">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Conveyor" expression="Conveyor"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="Extdata name">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameConveyorStraight">
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
-      </references>
-      <container xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.7"/>
-      <extend xsi:type="source:SourceSection" href="source/Extdata.pamtram.source#//@sections.4"/>
-    </sections>
     <sections xsi:type="source:SourceSection" name="ExternalData == Conveyor (Ellipse)">
       <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
@@ -4337,73 +4301,73 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="ConveyorCorner" sourceSection="//@sourceSectionModels.1/@sections.3">
+    <mappings name="ConveyorCorner" sourceSection="//@sourceSectionModels.1/@sections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorCorner" targetSection="//@targetSectionModels.1/@sections.15" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="ImageName" target="//@targetSectionModels.1/@sections.15/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.44 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.44 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="RepSizeName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.25 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.25 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.43 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.43 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="FormatName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.31 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.31 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="AlignmentName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="FontSizeName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="HeightName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.27 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.27 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="WidthName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.26 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.26 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosXName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.28 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.28 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosYName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.29 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.29 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosZName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.3/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetSection="//@targetSectionModels.1/@sections.16" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1"/>
@@ -4479,73 +4443,96 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="FixedImage" targetSection="//@targetSectionModels.1/@sections.16" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1"/>
     </mappings>
-    <mappings name="ConveyorStraight" sourceSection="//@sourceSectionModels.1/@sections.2">
+    <mappings name="ConveyorStraight">
+      <sourceSection href="source/Extdata.pamtram.source#//@sections.9"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetSection="//@targetSectionModels.1/@sections.15">
         <mappingHints xsi:type="extended:AttributeMapping" name="ImageName" target="//@targetSectionModels.1/@sections.15/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.44 //@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.44 //@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.0">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="RepSizeName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.25 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.25 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.43 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.43 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="FormatName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.2/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.31 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.31 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="AlignmentName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.3/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.32 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="FontSizeName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.2/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="HeightName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.27 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.27 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="WidthName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.26 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.26 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosXName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.28 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.28 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosYName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.29 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.29 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosZName" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="LayerName" modifiers="//@mappingModels.0/@modifierSets.3 //@mappingModels.0/@modifierSets.2">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.2/@references.0/@value.2/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="imgName" modifiers="//@mappingModels.0/@modifierSets.30 //@mappingModels.0/@modifierSets.2">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+          </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x">

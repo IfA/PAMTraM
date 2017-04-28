@@ -108,6 +108,18 @@
     <attributes xsi:type="source:ActualSourceSectionAttribute" name="conveyorImageName">
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
     </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="isVertical">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/isVertical"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedX">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedY">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedHeight">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
+    </attributes>
   </sections>
   <sections xsi:type="source:SourceSection" name="viObject container Ellipse" extend="//@sections.0">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>

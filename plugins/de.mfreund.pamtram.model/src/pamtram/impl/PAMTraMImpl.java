@@ -104,7 +104,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * The cached value of the '{@link #getSharedSourceSectionModels()
 	 * <em>Shared Source Section Models</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSharedSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -125,7 +125,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * The cached value of the '{@link #getSharedTargetSectionModels()
 	 * <em>Shared Target Section Models</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSharedTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -504,7 +504,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 						this.getSourceSections().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList()));
 				for (EObject referencedObject : refsToAbstractSection.keySet()) {
 		
-					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+					for (Setting setting : refsToAbstractSection.get(referencedObject).stream()
+									.filter(s -> !s.getEStructuralFeature().isDerived()).collect(Collectors.toList())) {
 		
 						if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getSection_Extend())) {
 							// the 'extend' feature has already been handled

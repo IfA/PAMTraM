@@ -3,8 +3,11 @@
 package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.generic.ActualReference;
@@ -41,6 +45,7 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllContainer <em>All Container</em>}</li>
  * </ul>
  *
  * @generated
@@ -259,6 +264,29 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, GenericPackage.CLASS__ATTRIBUTES, GenericPackage.ATTRIBUTE__OWNING_CLASS);
 		}
 		return attributes;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<C> getAllContainer() {
+		List<Object> ret = new ArrayList<>();
+		if(this.getContainer() != null) {
+			ret.add(this.getContainer());
+			ret.addAll(this.getContainer().getAllContainer());
+			
+			if(this.getContainer() instanceof Section<?, ?, ?, ?>) {				
+				ret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend());
+				ret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend().stream().flatMap(s -> s.getAllContainer().stream()).collect(Collectors.toList()));
+			}
+		}
+		
+		ret = ret.stream().distinct().collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CONTAINER,
+				ret.size(), ret.toArray());
 	}
 
 	/**
@@ -520,6 +548,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return basicGetContainer();
 			case GenericPackage.CLASS__ATTRIBUTES:
 				return getAttributes();
+			case GenericPackage.CLASS__ALL_CONTAINER:
+				return getAllContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -596,6 +626,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return container != null;
 			case GenericPackage.CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
+			case GenericPackage.CLASS__ALL_CONTAINER:
+				return !getAllContainer().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

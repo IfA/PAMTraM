@@ -125,6 +125,15 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CONTAINER = GenericPackage.CLASS__ALL_CONTAINER;
+
+	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,6 +304,15 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION__ATTRIBUTES = TARGET_SECTION_CLASS__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CONTAINER = TARGET_SECTION_CLASS__ALL_CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.

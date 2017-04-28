@@ -1,97 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
-  <sourceSectionModels name="Viobjects">
-    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-    <sections xsi:type="source:SourceSection" name="matflow viObject Base" abstract="true">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedX">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedY">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedHeight">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="width">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <valueConstraints xsi:type="constraint:StringConstraint" name="no empty string" expression=".+" operatorType="MATCH_REGEX"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="x">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="y">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="height">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
-      </attributes>
-    </sections>
-    <sections xsi:type="source:SourceSection" name="viObject container Rectangle" abstract="true">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
-      </attributes>
-      <extend xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.0"/>
-    </sections>
-    <sections xsi:type="source:SourceSection" name="viObject container Rectangle with ID" abstract="true">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Rectangle&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
-      </attributes>
-      <extend xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.0"/>
-    </sections>
-    <sections xsi:type="source:SourceSection" name="viObject container Ellipse with ID" abstract="true">
-      <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
-      <container xsi:type="source:SourceSection" href="source/Layers.pamtram.source#//@sections.4"/>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="ctrltype = &quot;StructureComponentControl&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="StructureComponentControl" expression="StructureComponentControl"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="grType == &quot;Ellipse&quot;">
-        <valueConstraints xsi:type="constraint:EqualityConstraint" name="Ellipse" expression="Ellipse"/>
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="conveyorImageName">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedX">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedY">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="correctedHeight">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="stopperHorizontalInDirection">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperHorizontalInDirection"/>
-      </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="stopperVerticalInDirection">
-        <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperVerticalInDirection"/>
-      </attributes>
-      <extend xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.0"/>
-    </sections>
-  </sourceSectionModels>
-  <sourceSectionModels name="Extdata">
-    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-  </sourceSectionModels>
   <sharedSourceSectionModels href="source/Layers.pamtram.source#/"/>
   <sharedSourceSectionModels href="source/Viobjects.pamtram.source#/"/>
   <sharedSourceSectionModels href="source/Extdata.pamtram.source#/"/>
@@ -1280,53 +1188,7 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="matflow viObject BaseMapping" sourceSection="//@sourceSectionModels.0/@sections.0" abstract="true">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MatflowTypeType1_id" targetSection="//@targetSectionModels.0/@sections.14">
-        <mappingHints xsi:type="extended:AttributeMapping" name="xMapping" expression="round( x/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="x" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( ymax/(unitspermeter/xyScale) - y/(unitspermeter/xyScale) - height/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="y" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="height" source="//@sourceSectionModels.0/@sections.0/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="widthMapping" expression="round(width/(unitspermeter/xyScale))" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.2">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="width" source="//@sourceSectionModels.0/@sections.0/@attributes.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="heightMapping" expression="round(height/(unitspermeter/xyScale))" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.3">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="height" source="//@sourceSectionModels.0/@sections.0/@attributes.2"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
-          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
-          </sourceElements>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.4"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="x" source="//@sourceSectionModels.0/@sections.0/@attributes.5"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="y" source="//@sourceSectionModels.0/@sections.0/@attributes.6"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="width" source="//@sourceSectionModels.0/@sections.0/@attributes.3"/>
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="height" source="//@sourceSectionModels.0/@sections.0/@attributes.7"/>
-          <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
-        </mappingHints>
-      </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="MatflowChildType1_id" targetSection="//@targetSectionModels.0/@sections.5">
-        <mappingHints xsi:type="extended:AttributeMapping" name="objectIDMapping" target="//@targetSectionModels.0/@sections.5/@attributes.1">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="layerName">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
-          </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.4"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="x" source="//@sourceSectionModels.0/@sections.0/@attributes.5"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="y" source="//@sourceSectionModels.0/@sections.0/@attributes.6"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="width" source="//@sourceSectionModels.0/@sections.0/@attributes.3"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="height" source="//@sourceSectionModels.0/@sections.0/@attributes.7"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
-          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="layerName">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Layers.pamtram.source#//@sections.4/@attributes.0"/>
-          </sourceElements>
-          <targetAttributes name="layerName" source="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
-        </mappingHints>
-      </mappingHintGroups>
-    </mappings>
-    <mappings name="Viobject_NavigatorButton">
+    <mappings name="NavigatorButton">
       <sourceSection href="source/Viobjects.pamtram.source#//@sections.4"/>
       <localCondition xsi:type="condition:AttributeCondition">
         <target xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.4/@attributes.1"/>
@@ -1642,7 +1504,7 @@
         </localCondition>
       </mappingHintGroups>
     </mappings>
-    <mappings name="Viobject_BackButton">
+    <mappings name="BackButton">
       <sourceSection href="source/Viobjects.pamtram.source#//@sections.4"/>
       <localCondition xsi:type="condition:AttributeCondition">
         <target xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.4/@attributes.1"/>
@@ -1791,7 +1653,7 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="viObject FunctionButtonMapping">
+    <mappings name="FunctionButton">
       <sourceSection href="source/Viobjects.pamtram.source#//@sections.5"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Child_FunctionButton" targetSection="//@targetSectionModels.0/@sections.5" extend="//@mappingModels.1/@mappings.0/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="objectMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">

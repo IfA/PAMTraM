@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:library="http://mfreund.de/pamtram/structure/library" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:movisalib="http://www.et.tu-dresden.de/ifa/agtele/genlib/movisalib" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
-  <sourceSectionModels name="Viobjects">
-    <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-  </sourceSectionModels>
   <sourceSectionModels name="Extdata">
     <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
-    <sections xsi:type="source:SourceSection" name="ExternalData == MatFlow">
-      <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
-      <references xsi:type="source:SourceSectionCompositeReference" name="extdata">
-        <value xsi:type="source:SourceSectionClass" name="ExtData typeID">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="Name == typeID">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="typeID" expression="typeID"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="value == Matflow">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="Matflow" expression="Matflow"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <value xsi:type="source:SourceSectionClass" name="Extdata name">
-          <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="name == &quot;name&quot;">
-            <valueConstraints xsi:type="constraint:EqualityConstraint" name="name" expression="name"/>
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-          </attributes>
-          <attributes xsi:type="source:ActualSourceSectionAttribute" name="NameMatFlow">
-            <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-          </attributes>
-        </value>
-        <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
-      </references>
-      <container xsi:type="source:SourceSection" href="source/Viobjects.pamtram.source#//@sections.7"/>
-      <extend xsi:type="source:SourceSection" href="source/Extdata.pamtram.source#//@sections.4"/>
-    </sections>
   </sourceSectionModels>
   <sharedSourceSectionModels href="source/Layers.pamtram.source#/"/>
   <sharedSourceSectionModels href="source/Viobjects.pamtram.source#/"/>
@@ -4555,7 +4523,8 @@
         </mappingHints>
       </mappingHintGroups>
     </mappings>
-    <mappings name="MatFlow" sourceSection="//@sourceSectionModels.1/@sections.0">
+    <mappings name="MatFlow">
+      <sourceSection href="source/Extdata.pamtram.source#//@sections.12"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Matflow LibItem" targetSection="//@targetSectionModels.1/@libraryElements.1/@parameters.4/@class">
         <mappingHints xsi:type="extended:AttributeMapping" name="WidthMapping" expression="round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@libraryElements.1/@parameters.0/@attribute">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="w">

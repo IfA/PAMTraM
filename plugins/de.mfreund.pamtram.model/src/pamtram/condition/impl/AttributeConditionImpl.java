@@ -26,18 +26,16 @@ import pamtram.structure.source.SourceSection;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints
- * <em>Value Constraints</em>}</li>
+ *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAttribute> implements AttributeCondition {
 	/**
-	 * The cached value of the '{@link #getValueConstraints() <em>Value
-	 * Constraints</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getValueConstraints()
 	 * @generated
 	 * @ordered
@@ -46,7 +44,6 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeConditionImpl() {
@@ -55,7 +52,6 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,16 +61,14 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ValueConstraint> getValueConstraints() {
-		if (this.valueConstraints == null) {
-			this.valueConstraints = new EObjectContainmentEList<>(ValueConstraint.class, this,
-					ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
+		if (valueConstraints == null) {
+			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
-		return this.valueConstraints;
+		return valueConstraints;
 	}
 
 	/**
@@ -90,74 +84,69 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-			return ((InternalEList<?>) this.getValueConstraints()).basicRemove(otherEnd, msgs);
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				return ((InternalEList<?>)getValueConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-			return this.getValueConstraints();
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				return getValueConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-			this.getValueConstraints().clear();
-			this.getValueConstraints().addAll((Collection<? extends ValueConstraint>) newValue);
-			return;
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
+				getValueConstraints().addAll((Collection<? extends ValueConstraint>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-			this.getValueConstraints().clear();
-			return;
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				getValueConstraints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
-			return this.valueConstraints != null && !this.valueConstraints.isEmpty();
+			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
+				return valueConstraints != null && !valueConstraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

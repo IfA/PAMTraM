@@ -2,12 +2,19 @@
  */
 package pamtram.mapping.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -18,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.impl.NamedElementImpl;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMapping;
@@ -25,6 +33,8 @@ import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.mapping.util.MappingValidator;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 
 /**
@@ -217,6 +227,36 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExtendsOnlyValidHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		List<SourceSection> validExtends = new ArrayList<>();
+		validExtends.add(((Mapping) this.eContainer()).getSourceSection());
+		validExtends.addAll(((Mapping) this.eContainer()).getSourceSection().getAllExtend());
+		
+		Optional<MappingHintGroupType> result = this.getExtend().stream()
+				.filter(hg -> !validExtends.contains(((Mapping) hg.eContainer()).getSourceSection())).findFirst();
+		
+		if (result.isPresent() && diagnostics != null) {
+		
+			String errorMessage = "The MappingHintGroup '" + result.get().getName() + "' may not be extended by this MappingHintGroup because the referenced SourceSections are not compatible!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));
+		
+		}
+		
+		return !result.isPresent();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -321,6 +361,20 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return !getContainerSelectors().isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
+				return validateExtendsOnlyValidHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } // MappingHintGroupTypeImpl

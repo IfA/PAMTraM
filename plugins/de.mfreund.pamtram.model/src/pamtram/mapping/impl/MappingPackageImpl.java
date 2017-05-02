@@ -387,6 +387,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map() {
+		return mappingHintGroupTypeEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstantiableMappingHintGroup() {
 		return instantiableMappingHintGroupEClass;
 	}
@@ -511,6 +520,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS);
+		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
 
 		instantiableMappingHintGroupEClass = createEClass(INSTANTIABLE_MAPPING_HINT_GROUP);
 
@@ -622,6 +632,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingHintGroupType_CardinalityMappings(), theExtendedPackage.getCardinalityMapping(), null, "cardinalityMappings", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_ReferenceTargetSelectors(), theExtendedPackage.getReferenceTargetSelector(), null, "referenceTargetSelectors", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_ContainerSelectors(), theExtendedPackage.getContainerSelector(), null, "containerSelectors", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateExtendsOnlyValidHintGroups", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(instantiableMappingHintGroupEClass, InstantiableMappingHintGroup.class, "InstantiableMappingHintGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

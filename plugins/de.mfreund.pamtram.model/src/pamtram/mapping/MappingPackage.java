@@ -361,13 +361,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImpl <em>Hint Group</em>}' class.
@@ -568,6 +577,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -805,6 +823,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Exported Mapping Hint Group</em>' class.
@@ -1069,6 +1096,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroupType_ContainerSelectors();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateExtendsOnlyValidHintGroups(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Only Valid Hint Groups</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
+	 * @see pamtram.mapping.MappingHintGroupType#validateExtendsOnlyValidHintGroups(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
@@ -1346,6 +1383,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = eINSTANCE.getMappingHintGroupType_ContainerSelectors();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Extends Only Valid Hint Groups</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.

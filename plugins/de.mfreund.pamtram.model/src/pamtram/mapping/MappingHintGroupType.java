@@ -2,6 +2,8 @@
  */
 package pamtram.mapping;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.NamedElement;
@@ -160,5 +162,13 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @generated
 	 */
 	EList<ContainerSelector> getContainerSelectors();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n<%java.util.List%><<%pamtram.structure.source.SourceSection%>> validExtends = new <%java.util.ArrayList%><>();\r\nvalidExtends.add(((<%pamtram.mapping.Mapping%>) this.eContainer()).getSourceSection());\r\nvalidExtends.addAll(((Mapping) this.eContainer()).getSourceSection().getAllExtend());\r\n\r\n<%java.util.Optional%><MappingHintGroupType> result = this.getExtend().stream()\r\n\t\t.filter(hg -> !validExtends.contains(((Mapping) hg.eContainer()).getSourceSection())).findFirst();\r\n\r\nif (result.isPresent() && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The MappingHintGroup \'\" + result.get().getName() + \"\' may not be extended by this MappingHintGroup because the referenced SourceSections are not compatible!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));\r\n\r\n}\r\n\r\nreturn !result.isPresent();'"
+	 * @generated
+	 */
+	boolean validateExtendsOnlyValidHintGroups(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // MappingHintGroupType

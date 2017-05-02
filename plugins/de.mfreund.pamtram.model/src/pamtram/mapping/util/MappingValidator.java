@@ -53,12 +53,20 @@ public class MappingValidator extends EObjectValidator {
 	public static final int MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS = 2;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Extends Only Valid Hint Groups' of 'Hint Group Type'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS = 3;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 3;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -66,7 +74,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -253,7 +261,27 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintGroupType(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintGroupType, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingHintGroupType, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroupType, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateExtendsOnlyValidHintGroups constraint of '<em>Hint Group Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mappingHintGroupType.validateExtendsOnlyValidHintGroups(diagnostics, context);
 	}
 
 	/**
@@ -293,6 +321,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
@@ -328,7 +357,17 @@ public class MappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateExportedMappingHintGroup(ExportedMappingHintGroup exportedMappingHintGroup, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(exportedMappingHintGroup, diagnostics, context);
+		if (!validate_NoCircularContainment(exportedMappingHintGroup, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(exportedMappingHintGroup, diagnostics, context);
+		return result;
 	}
 
 	/**

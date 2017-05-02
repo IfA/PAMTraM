@@ -1859,10 +1859,10 @@
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="imageIDMapping" modifiers="//@mappingModels.1/@modifierSets.4" target="//@targetSectionModels.0/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.1/@modifierSets.2">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.6/@references.0/@value.1/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.6/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameStation" modifiers="//@mappingModels.1/@modifierSets.5 //@mappingModels.1/@modifierSets.7">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.6/@references.0/@value.3/@attributes.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="nameValue" modifiers="//@mappingModels.1/@modifierSets.5 //@mappingModels.1/@modifierSets.7">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.4/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -1956,7 +1956,7 @@
     <mappings name="Assembly">
       <sourceSection href="source/Extdata.pamtram.source#//@sections.7"/>
       <localCondition xsi:type="condition:AttributeCondition">
-        <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.3/@attributes.1"/>
+        <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.1/@attributes.1"/>
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="Assembly" expression="Assembly"/>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetSection="//@targetSectionModels.0/@sections.9">
@@ -1965,10 +1965,10 @@
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="imageIDMapping" modifiers="//@mappingModels.1/@modifierSets.4" target="//@targetSectionModels.0/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.1/@modifierSets.2">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.1/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameComponent" modifiers="//@mappingModels.1/@modifierSets.5 //@mappingModels.1/@modifierSets.7">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.2/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.4/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2062,7 +2062,7 @@
     <mappings name="Component">
       <sourceSection href="source/Extdata.pamtram.source#//@sections.7"/>
       <localCondition xsi:type="condition:AttributeCondition">
-        <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.3/@attributes.1"/>
+        <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.1/@attributes.1"/>
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="Component" expression="Component"/>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ExtFillType" targetSection="//@targetSectionModels.0/@sections.9">
@@ -2071,10 +2071,10 @@
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="imageIDMapping" modifiers="//@mappingModels.1/@modifierSets.4" target="//@targetSectionModels.0/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value ClassPath" modifiers="//@mappingModels.1/@modifierSets.2">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.1/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameComponent" modifiers="//@mappingModels.1/@modifierSets.5 //@mappingModels.1/@modifierSets.7">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.7/@references.0/@value.2/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.4/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2510,7 +2510,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameConveyor">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.9/@references.0/@value.2/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.4/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2653,7 +2653,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameConveyor">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.10/@references.0/@value.2/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.5/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2796,7 +2796,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NameType1" targetSection="//@targetSectionModels.0/@sections.11">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping_Name" target="//@targetSectionModels.0/@sections.11/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="NameMergingPoint">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.11/@references.0/@value.2/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.5/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2848,7 +2848,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
         </mappingHints>
@@ -2884,7 +2884,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.6"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
@@ -2898,7 +2898,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.7"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -2921,7 +2921,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -2954,7 +2954,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -2967,7 +2967,7 @@
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
         </mappingHints>
@@ -2991,7 +2991,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_e" value="_e"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3021,7 +3021,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
         </mappingHints>
@@ -3047,7 +3047,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.6"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
@@ -3061,7 +3061,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.7"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="widthMapping" expression="round(conveyorWidth/(unitspermeter/xyScale))" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.2">
@@ -3094,7 +3094,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3127,7 +3127,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3140,7 +3140,7 @@
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
         </mappingHints>
@@ -3164,7 +3164,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3179,7 +3179,7 @@
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="varMapping" target="//@targetSectionModels.0/@sections.10/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.1/@modifierSets.6">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3202,7 +3202,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_f" value="_f"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3232,7 +3232,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
         </mappingHints>
@@ -3268,7 +3268,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.6"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="yMapping" expression="round( (ymax-y-height+direction*conveyorWidth*number)/(unitspermeter/xyScale) )" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.14/@attributes.1">
@@ -3282,7 +3282,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.8/@attributes.7"/>
           </sourceElements>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3305,7 +3305,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3338,7 +3338,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3351,7 +3351,7 @@
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
         </mappingHints>
@@ -3375,7 +3375,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3390,7 +3390,7 @@
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="varMapping" target="//@targetSectionModels.0/@sections.10/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.1/@modifierSets.6">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
@@ -3413,7 +3413,7 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#//@sections.0/@attributes.3"/>
           </sourceElements>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="number" modifiers="//@mappingModels.2/@modifierSets.0">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@attributes.0"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@attributes.0"/>
           </sourceElements>
           <sourceElements xsi:type="pamtram:FixedValue" name="_p" value="_p"/>
           <targetAttributes name="objectID" source="//@targetSectionModels.0/@sections.5/@attributes.1"/>
@@ -3422,17 +3422,17 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item CarrierID" targetSection="//@targetSectionModels.1/@sections.2">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.1" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.6">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="variableMapping" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.7">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.1/@modifierSets.6">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.0/@modifierSets.2">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
           <targetAttributes name="GroupName" source="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0"/>
         </mappingHints>
@@ -3440,17 +3440,17 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OPC Item ProductID" targetSection="//@targetSectionModels.1/@sections.2">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.2" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.6">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="variableMapping" target="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@attributes.7">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.1/@modifierSets.6">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath @ Integer" modifiers="//@mappingModels.0/@modifierSets.2">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
           <targetAttributes name="GroupName" source="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0"/>
         </mappingHints>
@@ -3458,7 +3458,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable CarrierID" targetSection="//@targetSectionModels.2/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.1/@modifierSets.6" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.6">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0">
@@ -3468,7 +3468,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Variable ProductID" targetSection="//@targetSectionModels.2/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.1/@modifierSets.6" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.6">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.2/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0">
@@ -3478,17 +3478,17 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ItemGroup" targetSection="//@targetSectionModels.1/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@references.0/@value.0/@attributes.7">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="GroupNameMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="GroupNameMapping" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="valueBrowsePath @ Integer">
-            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.3/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
+            <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#//@sections.8/@references.0/@value.1/@references.0/@value.1/@references.0/@value.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
           </sourceElements>
         </mappingHints>
       </mappingHintGroups>

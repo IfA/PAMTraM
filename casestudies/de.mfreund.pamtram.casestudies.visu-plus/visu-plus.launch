@@ -20,5 +20,6 @@
 <stringAttribute key="targetLibParser" value=""/>
 <stringAttribute key="targetLibPath" value=""/>
 <stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
 <intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,9 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 						.flatMap(m -> (this.useParallelization ? m.getGlobalAttributes().parallelStream()
 								: m.getGlobalAttributes().stream()))
 						.collect(Collectors.toMap(i -> i,
-								i -> matchingResult.get(i.getSource().getContainingSection())));
+								i -> matchingResult.containsKey(i.getSource().getContainingSection())
+										? matchingResult.get(i.getSource().getContainingSection())
+										: new ArrayList<>()));
 
 		// Extract values for GlobalAttributes
 		//

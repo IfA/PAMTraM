@@ -18,6 +18,8 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.CancelTransformationException;
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -56,8 +58,8 @@ import pamtram.structure.target.TargetSectionCrossReference;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * Class for linking target model sections using the hints supplied by {@link MappingInstanceStorage
- * MappingInstanceStorages}.
+ * Class for linking target model sections using the hints supplied by
+ * {@link MappingInstanceStorage MappingInstanceStorages}.
  *
  * @author mfreund
  */
@@ -78,19 +80,21 @@ public class TargetSectionLinker extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
-	 * execution of the transformation.
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
+	 * resolve ambiguities that arise during the execution of the
+	 * transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to their
-	 * {@link LibraryEntryInstantiator}.
+	 * This relates temporarily created elements for LibraryEntries (represented
+	 * by an {@link EObjectWrapper}) to their {@link LibraryEntryInstantiator}.
 	 */
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 * An instance of {@link AttributeValueCalculator} that is used to calculate
+	 * attribute values.
 	 */
 	private AttributeValueCalculator calculator;
 
@@ -100,16 +104,19 @@ public class TargetSectionLinker extends CancelableElement {
 	 * @param targetSectionRegistry
 	 *            target section registry used when instantiating classes
 	 * @param globalValueMap
-	 *            Registry for values of {@link GlobalAttribute GlobalAttributes} and {@link FixedValue FixedValues}.
+	 *            Registry for values of {@link GlobalAttribute
+	 *            GlobalAttributes} and {@link FixedValue FixedValues}.
 	 * @param libEntryInstantiatorMap
-	 *            The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and
-	 *            their corresponding {@link LibraryEntryInstantiator}.
+	 *            The temporarily created elements for LibraryEntries
+	 *            (represented by an {@link EObjectWrapper}) and their
+	 *            corresponding {@link LibraryEntryInstantiator}.
 	 * @param attributeValuemodifier
 	 *            An instance of the {@link AttributeValueModifierExecutor}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
+	 *            resolve occurring ambiguities.
 	 */
 	public TargetSectionLinker(final TargetSectionRegistry targetSectionRegistry, final GlobalValueMap globalValueMap,
 			final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap,
@@ -128,13 +135,13 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * This links the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
-	 * {@link MappingInstanceStorage}.
+	 * This links the {@link TargetSection TargetSections} represented by the
+	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
 	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 *         '<em><b>false</b></em>' otherwise
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were
+	 *         joined successfully; '<em><b>false</b></em>' otherwise
 	 */
 	public boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance) {
 
@@ -158,17 +165,18 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * This links given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * This links given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
 	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 * @param hintGroupImporter
-	 *            The {@link MappingHintGroupImporter} that lead to the instantiation of the given
-	 *            <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 *         '<em><b>false</b></em>' otherwise
+	 *            The {@link MappingHintGroupImporter} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were
+	 *         joined successfully; '<em><b>false</b></em>' otherwise
 	 */
 	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupImporter hintGroupImporter) {
@@ -203,16 +211,18 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * This links given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * This links given {@link TargetSection} represented by the given
+	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
+	 * redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)}.
 	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 * @param hintGroup
-	 *            The {@link MappingHintGroupType} that lead to the instantiation of the given <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 *         '<em><b>false</b></em>' otherwise
+	 *            The {@link MappingHintGroupType} that lead to the
+	 *            instantiation of the given <em>mappingInstance</em>.
+	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were
+	 *         joined successfully; '<em><b>false</b></em>' otherwise
 	 */
 	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupType hintGroup) {
@@ -235,22 +245,28 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * Instantiate the given {@link TargetSection} using the specified {@link HintValueStorage hint values}.
+	 * Instantiate the given {@link TargetSection} using the specified
+	 * {@link HintValueStorage hint values}.
 	 * <p />
-	 * Note: This constitutes the second pass of the instantiation that creates non-containment references.
+	 * Note: This constitutes the second pass of the instantiation that creates
+	 * non-containment references.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param instancesBySection
-	 *            The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
+	 *            The registry for {@link EObjectWrapper instances} created
+	 *            during the first pass of the instantiation.
 	 */
 	private void instantiateTargetSectionSecondPass(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
@@ -291,7 +307,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 			boolean hintFound = false;
 
-			// Collect MappingInstanceSelectors that affect the current reference
+			// Collect MappingInstanceSelectors that affect the current
+			// reference
 			//
 			List<ReferenceTargetSelector> mappingInstanceSelectorsToConcider = mappingHints.parallelStream()
 					.filter(h -> h instanceof ReferenceTargetSelector
@@ -318,8 +335,9 @@ public class TargetSectionLinker extends CancelableElement {
 					final LinkedList<EObjectWrapper> instancesToConsider = new LinkedList<>();
 					instancesToConsider.addAll(instancesBySection.get(targetSectionClass));
 					/*
-					 * Sizes of instances and attributeHints must either match, or, in case there was a cardinality
-					 * mapping, the size of the hintValues must be 1
+					 * Sizes of instances and attributeHints must either match,
+					 * or, in case there was a cardinality mapping, the size of
+					 * the hintValues must be 1
 					 */
 					LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> newHintValues = new LinkedList<>();
 					int numberOfInstancesToCreate = 0;
@@ -400,7 +418,8 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 
 								/*
-								 * Consult the specified resolving strategy to resolve the ambiguity.
+								 * Consult the specified resolving strategy to
+								 * resolve the ambiguity.
 								 */
 								try {
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
@@ -421,9 +440,16 @@ public class TargetSectionLinker extends CancelableElement {
 										targetInst.add(resolved.get(0).getEObject());
 									}
 								} catch (AmbiguityResolvingException e) {
-									this.logger.severe(e.getMessage());
-									this.cancel();
-									return;
+									if (e.getCause() instanceof UserAbortException) {
+										throw new CancelTransformationException(e.getCause().getMessage(),
+												e.getCause());
+									} else {
+										this.logger
+												.severe("The following exception occured during the resolving of an ambiguity concerning a target instance: "
+														+ e.getMessage());
+										this.logger.severe("Using default instance instead...");
+										targetInst.add(fittingVals.get(0).getEObject());
+									}
 								}
 
 							} else {
@@ -442,9 +468,11 @@ public class TargetSectionLinker extends CancelableElement {
 								this.addValuesToReference(ref, targetInst, srcInst.getEObject());
 							} else {
 								/*
-								 * for library entries, we cannot simply add the value as the reference we are handling
-								 * is not part of the targetSectionClass; instead we want to specify the value as
-								 * 'target' for the affected ExternalReferenceParameter
+								 * for library entries, we cannot simply add the
+								 * value as the reference we are handling is not
+								 * part of the targetSectionClass; instead we
+								 * want to specify the value as 'target' for the
+								 * affected ExternalReferenceParameter
 								 */
 								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(srcInst)
 										.getLibraryEntry();
@@ -502,7 +530,8 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 
 								/*
-								 * Consult the specified resolving strategy to resolve the ambiguity.
+								 * Consult the specified resolving strategy to
+								 * resolve the ambiguity.
 								 */
 								try {
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
@@ -511,10 +540,17 @@ public class TargetSectionLinker extends CancelableElement {
 													null);
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 									targetInstance = resolved.get(0);
-								} catch (Exception e) {
-									this.logger.severe(e.getMessage());
-									this.cancel();
-									return;
+								} catch (AmbiguityResolvingException e) {
+									if (e.getCause() instanceof UserAbortException) {
+										throw new CancelTransformationException(e.getCause().getMessage(),
+												e.getCause());
+									} else {
+										this.logger
+												.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
+														+ e.getMessage());
+										this.logger.severe("Using default instance instead...");
+										targetInstance = insts.get(0);
+									}
 								}
 
 							} else {
@@ -535,9 +571,13 @@ public class TargetSectionLinker extends CancelableElement {
 										this.addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
 									} else {
 										/*
-										 * for library entries, we cannot simply add the value as the reference we are
-										 * handling is not part of the targetSectionClass; instead we want to specify
-										 * the value as 'target' for the affected ExternalReferenceParameter
+										 * for library entries, we cannot simply
+										 * add the value as the reference we are
+										 * handling is not part of the
+										 * targetSectionClass; instead we want
+										 * to specify the value as 'target' for
+										 * the affected
+										 * ExternalReferenceParameter
 										 */
 										LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst)
 												.getLibraryEntry();
@@ -567,10 +607,13 @@ public class TargetSectionLinker extends CancelableElement {
 			}
 
 			/*
-			 * In case no suitable hint could be found we will try the following:
+			 * In case no suitable hint could be found we will try the
+			 * following:
 			 *
-			 * 1.only non-cont ref targets to other subsections of this targetMMSection are considered, we can resolve
-			 * the reference if only one Instance of the ref Target was created in the same mapping instance
+			 * 1.only non-cont ref targets to other subsections of this
+			 * targetMMSection are considered, we can resolve the reference if
+			 * only one Instance of the ref Target was created in the same
+			 * mapping instance
 			 *
 			 * if that isn't the case:
 			 *
@@ -594,8 +637,8 @@ public class TargetSectionLinker extends CancelableElement {
 					final EObject next = it.next();
 					if (refValue.contains(next)) {// at least one of the
 						/*
-						 * values the pamtram-reference points to, is part of the same MappingHintGroup's
-						 * targetMMSection
+						 * values the pamtram-reference points to, is part of
+						 * the same MappingHintGroup's targetMMSection
 						 */
 						foundLocalNonContRefTargets.add((TargetSectionClass) next);
 						refValue.remove(next);
@@ -603,7 +646,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 				}
 				/*
-				 * only non-cont ref targets to other subsections of this targetMMSection are considered
+				 * only non-cont ref targets to other subsections of this
+				 * targetMMSection are considered
 				 */
 				if (foundLocalNonContRefTargets.size() > 0) {
 					// get source instances for the reference
@@ -674,9 +718,11 @@ public class TargetSectionLinker extends CancelableElement {
 								this.addValueToReference(ref, instances.get(0).getEObject(), source.getEObject());
 							} else {
 								/*
-								 * for library entries, we cannot simply add the value as the reference we are handling
-								 * is not part of the targetSectionClass; instead we want to specify the value as
-								 * 'target' for the affected ExternalReferenceParameter
+								 * for library entries, we cannot simply add the
+								 * value as the reference we are handling is not
+								 * part of the targetSectionClass; instead we
+								 * want to specify the value as 'target' for the
+								 * affected ExternalReferenceParameter
 								 */
 								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source)
 										.getLibraryEntry();
@@ -696,7 +742,8 @@ public class TargetSectionLinker extends CancelableElement {
 							}
 
 							/*
-							 * Consult the specified resolving strategy to resolve the ambiguity.
+							 * Consult the specified resolving strategy to
+							 * resolve the ambiguity.
 							 */
 							List<EObject> targets = new ArrayList<>();
 							try {
@@ -710,10 +757,16 @@ public class TargetSectionLinker extends CancelableElement {
 								} else {
 									targets.add(resolved.get(0).getEObject());
 								}
-							} catch (Exception e) {
-								this.logger.severe(e.getMessage());
-								this.cancel();
-								return;
+							} catch (AmbiguityResolvingException e) {
+								if (e.getCause() instanceof UserAbortException) {
+									throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+								} else {
+									this.logger
+											.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
+													+ e.getMessage());
+									this.logger.severe("Using default instance instead...");
+									targets.add(instances.get(0).getEObject());
+								}
 							}
 
 							// final
@@ -748,9 +801,11 @@ public class TargetSectionLinker extends CancelableElement {
 								this.addValuesToReference(ref, targets, source.getEObject());
 							} else {
 								/*
-								 * for library entries, we cannot simply add the value as the reference we are handling
-								 * is not part of the targetSectionClass; instead we want to specify the value as
-								 * 'target' for the affected ExternalReferenceParameter
+								 * for library entries, we cannot simply add the
+								 * value as the reference we are handling is not
+								 * part of the targetSectionClass; instead we
+								 * want to specify the value as 'target' for the
+								 * affected ExternalReferenceParameter
 								 */
 								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source)
 										.getLibraryEntry();
@@ -818,7 +873,8 @@ public class TargetSectionLinker extends CancelableElement {
 						}
 
 						/*
-						 * Consult the specified resolving strategy to resolve the ambiguity.
+						 * Consult the specified resolving strategy to resolve
+						 * the ambiguity.
 						 */
 						HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
 						for (TargetSectionClass targetSection : refValueClone) {
@@ -830,7 +886,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 							Map<TargetSectionClass, List<EObjectWrapper>> resolved;
 							if (choices.size() == 1) {
-								// If there is only one possible TargetSection, we only need to let the user choose the
+								// If there is only one possible TargetSection,
+								// we only need to let the user choose the
 								// instance...
 								//
 								TargetSectionClass resolvedSection = choices.keySet().iterator().next();
@@ -840,7 +897,8 @@ public class TargetSectionLinker extends CancelableElement {
 								resolved = new HashMap<>();
 								resolved.put(resolvedSection, resolvedInstances);
 							} else {
-								// ... otherwise, the user also needs to select the container instance.
+								// ... otherwise, the user also needs to select
+								// the container instance.
 								//
 								resolved = this.ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(
 										choices, ref, (MappingHintGroupType) mappingGroup);
@@ -866,9 +924,16 @@ public class TargetSectionLinker extends CancelableElement {
 								targets = new ArrayList<>(Arrays.asList(selected.getValue().get(0).getEObject()));
 							}
 						} catch (AmbiguityResolvingException e) {
-							this.logger.severe(e.getMessage());
-							this.cancel();
-							return;
+							if (e.getCause() instanceof UserAbortException) {
+								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+							} else {
+								this.logger
+										.severe("The following exception occured during the resolving of an ambiguity concerning a target section and instance: "
+												+ e.getMessage());
+								this.logger.severe("Using default section and instance instead...");
+								targets = new ArrayList<>(Arrays
+										.asList(choices.entrySet().iterator().next().getValue().get(0).getEObject()));
+							}
 						}
 
 					} else {
@@ -885,9 +950,11 @@ public class TargetSectionLinker extends CancelableElement {
 								this.addValuesToReference(ref, targets, inst.getEObject());
 							} else {
 								/*
-								 * for library entries, we cannot simply add the value as the reference we are handling
-								 * is not part of the targetSectionClass; instead we want to specify the value as
-								 * 'target' for the affected ExternalReferenceParameter
+								 * for library entries, we cannot simply add the
+								 * value as the reference we are handling is not
+								 * part of the targetSectionClass; instead we
+								 * want to specify the value as 'target' for the
+								 * affected ExternalReferenceParameter
 								 */
 								LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst)
 										.getLibraryEntry();
@@ -922,17 +989,22 @@ public class TargetSectionLinker extends CancelableElement {
 	 * for every found child {@link TargetSectionClass}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} from where to iterate further downward in the containment hierarchy.
+	 *            The {@link TargetSectionClass} from where to iterate further
+	 *            downward in the containment hierarchy.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the
+	 *            TargetSection gets instantiated.
 	 * @param hints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into
+	 *            account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover
+	 *            <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param instancesBySection
-	 *            The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
+	 *            The registry for {@link EObjectWrapper instances} created
+	 *            during the first pass of the instantiation.
 	 */
 	private void instantiateTargetSectionSecondPassGoDeeper(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> hints,
@@ -957,16 +1029,19 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * This creates a link from the given {@link EObject source element} to the given {@link EObject target element} via
-	 * the non-containment reference specified by the given {@link TargetSectionCrossReference}.
+	 * This creates a link from the given {@link EObject source element} to the
+	 * given {@link EObject target element} via the non-containment reference
+	 * specified by the given {@link TargetSectionCrossReference}.
 	 *
 	 * @param ref
-	 *            The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	 *            link.
+	 *            The {@link TargetSectionCrossReference} that specifies the
+	 *            {@link EReference} to be used to create the link.
 	 * @param target
-	 *            The {@link EObject} to be linked to the <em>source</em> via the given reference.
+	 *            The {@link EObject} to be linked to the <em>source</em> via
+	 *            the given reference.
 	 * @param source
-	 *            The {@link EObject} being the source of the link to be created.
+	 *            The {@link EObject} being the source of the link to be
+	 *            created.
 	 */
 	private void addValueToReference(final TargetSectionCrossReference ref, final EObject target,
 			final EObject source) {
@@ -998,16 +1073,19 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target
-	 * elements} via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
+	 * This creates a link from the given {@link EObject source element} to the
+	 * given list of {@link EObject target elements} via the non-containment
+	 * reference specified by the given {@link TargetSectionCrossReference}.
 	 *
 	 * @param ref
-	 *            The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	 *            link.
+	 *            The {@link TargetSectionCrossReference} that specifies the
+	 *            {@link EReference} to be used to create the link.
 	 * @param targets
-	 *            The {@link EObject EObjects} to be linked to the <em>source</em> via the given reference.
+	 *            The {@link EObject EObjects} to be linked to the
+	 *            <em>source</em> via the given reference.
 	 * @param source
-	 *            The {@link EObject} being the source of the link to be created.
+	 *            The {@link EObject} being the source of the link to be
+	 *            created.
 	 */
 	private void addValuesToReference(final TargetSectionCrossReference ref, final List<EObject> targets,
 			final EObject source) {

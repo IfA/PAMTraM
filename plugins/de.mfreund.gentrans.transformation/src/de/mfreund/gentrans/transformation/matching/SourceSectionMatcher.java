@@ -22,6 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.ParserException;
 
+import de.mfreund.gentrans.transformation.CancelTransformationException;
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
@@ -370,8 +372,15 @@ public class SourceSectionMatcher {
 			this.logger.fine("[Ambiguity] ...finished.\n");
 			return resolved.get(0);
 		} catch (AmbiguityResolvingException e) {
-			this.logger.severe(e.getMessage());
-			return null;
+			if (e.getCause() instanceof UserAbortException) {
+				throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+			} else {
+				this.logger
+						.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a matched section: "
+								+ e.getMessage());
+				this.logger.severe("Using default section instead...");
+				return matchesWithMaximumElements.get(0);
+			}
 		}
 	}
 

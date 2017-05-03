@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import de.mfreund.gentrans.transformation.CancelTransformationException;
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
@@ -325,10 +327,19 @@ public class MappingSelector extends CancelableElement {
 							}
 						}
 					}
-				} catch (Exception e) {
-					this.logger.severe(e.getMessage());
-					this.canceled = true;
-					return new ArrayList<>();
+				} catch (AmbiguityResolvingException e) {
+					if (e.getCause() instanceof UserAbortException) {
+						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+					} else {
+						this.logger
+								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a mapping: "
+										+ e.getMessage());
+						this.logger.severe("Using default mapping instead...");
+						mapping = entry.getKey().iterator().next();
+						ret.addAll((this.useParallelization ? entry.getValue().parallelStream()
+								: entry.getValue().stream()).map(d -> this.createMappingInstanceStorage(d, mapping))
+										.collect(Collectors.toList()));
+					}
 				}
 
 			}

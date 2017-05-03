@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.mfreund.gentrans.transformation.CancelTransformationException;
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -562,9 +564,15 @@ public class TargetSectionConnector extends CancelableElement {
 					rootClass = resolved.get(0);
 
 				} catch (AmbiguityResolvingException e) {
-					this.logger.severe(e.getMessage());
-					this.cancel();
-					return;
+					if (e.getCause() instanceof UserAbortException) {
+						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+					} else {
+						this.logger
+								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
+										+ e.getMessage());
+						this.logger.severe("Using default path instead...");
+						rootClass = common.iterator().next();
+					}
 				}
 
 			}
@@ -636,9 +644,16 @@ public class TargetSectionConnector extends CancelableElement {
 									chosenPath = resolved.get(0);
 
 								} catch (AmbiguityResolvingException e) {
-									this.logger.severe(e.getMessage());
-									this.cancel();
-									return;
+									if (e.getCause() instanceof UserAbortException) {
+										throw new CancelTransformationException(e.getCause().getMessage(),
+												e.getCause());
+									} else {
+										this.logger
+												.severe("The following exception occured during the resolving of an ambiguity concerning an connection path: "
+														+ e.getMessage());
+										this.logger.severe("Using default path instead...");
+										chosenPath = fittingPaths.get(0);
+									}
 								}
 							}
 
@@ -942,10 +957,17 @@ public class TargetSectionConnector extends CancelableElement {
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
-
-				this.logger.severe(e.getMessage());
-				this.cancel();
-				return;
+				if (e.getCause() instanceof UserAbortException) {
+					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+				} else {
+					this.logger
+							.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
+									+ e.getMessage());
+					this.logger.severe("Using default path and instance instead...");
+					modelConnectionPath = choices.keySet().iterator().next();
+					inst = instancesByPath.get(modelConnectionPath.toString())
+							.get(choices.entrySet().iterator().next().getValue().get(0).toString());
+				}
 			}
 
 			this.logger.info(section.getName() + "(" + mappingName + "): " + modelConnectionPath.toString());
@@ -1141,9 +1163,16 @@ public class TargetSectionConnector extends CancelableElement {
 					rootInstancesByContainer.put(resolved.get(0), hintValEntry.getValue());
 
 				} catch (AmbiguityResolvingException e) {
-					this.logger.severe(e.getMessage());
-					this.cancel();
-					return unconnectedInstances;
+					if (e.getCause() instanceof UserAbortException) {
+						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+					} else {
+						this.logger
+								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
+										+ e.getMessage());
+						this.logger.severe("Using default element instead...");
+						rootInstancesByContainer.put(contInstsByHintVal.get(hintValEntry.getKey()).iterator().next(),
+								hintValEntry.getValue());
+					}
 				}
 
 			} else {
@@ -1238,9 +1267,15 @@ public class TargetSectionConnector extends CancelableElement {
 					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 					modelConnectionPath = resolved.get(0);
 				} catch (AmbiguityResolvingException e) {
-					this.logger.severe(e.getMessage());
-					this.cancel();
-					return unconnectedInstances;
+					if (e.getCause() instanceof UserAbortException) {
+						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+					} else {
+						this.logger
+								.severe("The following exception occured during the resolving of an ambiguity concerning an connection path: "
+										+ e.getMessage());
+						this.logger.severe("Using default path instead...");
+						modelConnectionPath = pathsToConsider.get(0);
+					}
 				}
 
 			} else {

@@ -179,7 +179,12 @@ public class GenericTransformationRunner extends CancelableElement {
 			 */
 			transformationResult = this.executeMappings(this.transformationConfig.getSourceModels(),
 					this.transformationConfig.getPamtramModel(), monitorWrapper);
-
+		} catch (CancelTransformationException e1) {
+			if (e1.getMessage() != null && !e1.getMessage().isEmpty()) {
+				this.transformationConfig.getLogger().severe(e1.getMessage());
+			}
+			this.transformationConfig.getLogger().severe("Aborting...");
+			return;
 		} catch (RuntimeException e) {
 			this.transformationConfig.getLogger().severe(e.getMessage());
 			this.transformationConfig.getLogger().severe("Aborting...");
@@ -291,6 +296,7 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		super.cancel();
 		this.objectsToCancel.parallelStream().forEach(ICancelable::cancel);
+		throw new CancelTransformationException();
 	}
 
 	/**
@@ -691,7 +697,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Connect all target sections
 		 */
-		boolean joiningResult = suitableMappings.stream().filter(m -> matchingResult.getSelectedMappingsByMapping().get(m) != null)
+		boolean joiningResult = suitableMappings.stream()
+				.filter(m -> matchingResult.getSelectedMappingsByMapping().get(m) != null)
 				.allMatch(m -> this.targetSectionConnector.joinTargetSections(m,
 						matchingResult.getSelectedMappingsByMapping().get(m),
 						expandingResult.getTargetSectionRegistry()));

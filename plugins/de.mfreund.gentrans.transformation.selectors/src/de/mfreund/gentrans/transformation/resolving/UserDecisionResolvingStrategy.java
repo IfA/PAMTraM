@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.widgets.Display;
 
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -33,21 +34,24 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
- * presenting selection dialogues to him.
+ * This class implements a concrete {@link IAmbiguityResolvingStrategy} that
+ * allows a user to resolve ambiguities by presenting selection dialogues to
+ * him.
  *
  * @author mfreund
  */
 public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	/**
-	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
+	 * This prefix will be added to {@link #printMessage(String, String)
+	 * messages} printed after user selections.
 	 */
 	private static final String userDecisionPrefix = "User";
 
 	/**
-	 * If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the
-	 * <em>expanding<em> step as this might lead to a ton of questions.
+	 * If this is set to '<em>false</em>' this strategy will also try to resolve
+	 * ambiguities during the <em>expanding<em> step as this might lead to a ton
+	 * of questions.
 	 * <p />
 	 * The default value is '<em>true</em>'.
 	 */
@@ -57,8 +61,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	 * This allows to change the {@link #skipExpandingAmbiguities} behavior.
 	 *
 	 * @param skipExpandingAmbiguities
-	 *            If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the
-	 *            <em>expanding<em> step
+	 *            If this is set to '<em>false</em>' this strategy will also try
+	 *            to resolve ambiguities during the <em>expanding<em> step
 	 */
 	public void setSkipExpandingAmbiguities(boolean skipExpandingAmbiguities) {
 
@@ -132,7 +136,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(dialog.getSingleValue(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -158,7 +162,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		int cardinality = -1;
@@ -169,7 +173,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			} catch (NumberFormatException e) {
 				throw new AmbiguityResolvingException(
 						"Could not parse a valid cardinality (positive integer) from the string '"
-								+ dialog.getSingleValue() + "'!");
+								+ dialog.getSingleValue() + "'!",
+						e);
 			}
 		}
 		if (cardinality == -1) {
@@ -205,7 +210,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 		this.printMessage(dialog.getSingleSelection().getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
@@ -225,7 +230,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				0, false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
@@ -252,7 +257,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		ModelConnectionPath retPath = dialog.getPath();
@@ -297,7 +302,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -334,7 +339,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(Arrays.toString(dialog.getSelection().toArray()),
@@ -369,7 +374,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		TargetSectionClass retSection = dialog.getPath();

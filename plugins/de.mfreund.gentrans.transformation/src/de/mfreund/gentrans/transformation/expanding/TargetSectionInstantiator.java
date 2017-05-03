@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.mfreund.gentrans.transformation.CancelTransformationException;
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -702,9 +704,15 @@ public class TargetSectionInstantiator extends CancelableElement {
 						}
 					} catch (AmbiguityResolvingException e) {
 
-						this.logger.severe(e.getMessage());
-						this.canceled = true;
-						return 0;
+						if (e.getCause() instanceof UserAbortException) {
+							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+						} else {
+							this.logger
+									.severe("The following exception occured during the resolving of an ambiguity concerning a cardinality: "
+											+ e.getMessage());
+							this.logger.severe("Using default cardinality instead...");
+							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
+						}
 					}
 				}
 			}
@@ -800,7 +808,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *            higher up in the section hierarchy.
 	 * @param cardinality
 	 * @param instances
-	 * @return markedForDelete
+	 * @return markedForDelete The list of instances to be deleted or
+	 *         '<em>null</em>' if an internal error occurred and the
+	 *         transformation should abort.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionAttributes(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
@@ -920,9 +930,15 @@ public class TargetSectionInstantiator extends CancelableElement {
 						this.logger.fine("[Ambiguity] ...finished.\n");
 						attrValue = resolved.get(0);
 					} catch (AmbiguityResolvingException e) {
-						this.logger.severe(e.getMessage());
-						this.canceled = true;
-						return null;
+						if (e.getCause() instanceof UserAbortException) {
+							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+						} else {
+							this.logger
+									.severe("The following exception occured during the resolving of an ambiguity concerning an attribute value: "
+											+ e.getMessage());
+							this.logger.severe("Using default value instead...");
+							continue;
+						}
 					}
 				}
 

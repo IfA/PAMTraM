@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 
+import pamtram.commands.merging.MergeAttributesCommand;
 import pamtram.commands.merging.MergeClassesCommand;
 import pamtram.commands.merging.MergeMetaModelElementsCommand;
 import pamtram.commands.merging.MergeReferenceIntoClassCommand;
@@ -26,8 +27,9 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * A {@link StaticSelectionCommandAction} that can be used to merge multiple {@link MetaModelElement MetaModelElements}
- * via the associated concrete {@link MergeMetaModelElementsCommand}.
+ * A {@link StaticSelectionCommandAction} that can be used to merge multiple
+ * {@link MetaModelElement MetaModelElements} via the associated concrete
+ * {@link MergeMetaModelElementsCommand}.
  *
  * @param <S>
  * @param <C>
@@ -45,7 +47,8 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	 * @param editorPart
 	 *            The {@link IEditorPart} in which this action is used.
 	 * @param selection
-	 *            The {@link IStructuredSelection selected elements} to be merged.
+	 *            The {@link IStructuredSelection selected elements} to be
+	 *            merged.
 	 */
 	public MetaModelElementMergeAction(IEditorPart editorPart, IStructuredSelection selection) {
 
@@ -60,9 +63,11 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	 * This creates an instance.
 	 *
 	 * @param editingDomain
-	 *            The {@link EditingDomain} on which this the command represented by this action is to be executed.
+	 *            The {@link EditingDomain} on which this the command
+	 *            represented by this action is to be executed.
 	 * @param selection
-	 *            The {@link IStructuredSelection selected elements} to be merged.
+	 *            The {@link IStructuredSelection selected elements} to be
+	 *            merged.
 	 */
 	public MetaModelElementMergeAction(EditingDomain editingDomain, IStructuredSelection selection) {
 
@@ -86,25 +91,29 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 			return this.createMergeClassesCommand(editingDomain, collection);
 		} else if (firstElement instanceof Reference<?, ?, ?, ?>) {
 			return this.createMergeReferencesCommand(editingDomain, collection);
+		} else if (firstElement instanceof Attribute<?, ?, ?, ?>) {
+			return this.createMergeAttributesCommand(editingDomain, collection);
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
 
 	/**
-	 * If the given <em>collection</em> consists only of {@link Class Classes}, this creates a
-	 * {@link MergeClassesCommand} to merge the Classes in the collection. Otherwise, an {@link UnexecutableCommand} is
-	 * returned.
+	 * If the given <em>collection</em> consists only of {@link Class Classes},
+	 * this creates a {@link MergeClassesCommand} to merge the Classes in the
+	 * collection. Otherwise, an {@link UnexecutableCommand} is returned.
 	 *
 	 * @param editingDomain
-	 *            The {@link EditingDomain} on which this the command represented by this action is to be executed.
+	 *            The {@link EditingDomain} on which this the command
+	 *            represented by this action is to be executed.
 	 * @param collection
 	 *            The collection of elements to be merged.
 	 * @return The created {@link Command}.
 	 */
 	protected Command createMergeClassesCommand(EditingDomain editingDomain, Collection<?> collection) {
 
-		// This action is only enabled if more than one element of the correct type 'C' are
+		// This action is only enabled if more than one element of the correct
+		// type 'C' are
 		// selected ...
 		//
 		boolean enabled = collection.size() > 1 && collection.stream().allMatch(e -> {
@@ -117,7 +126,8 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 			}
 		});
 
-		// ... and if they all are either Sections, have the same container or no container at all
+		// ... and if they all are either Sections, have the same container or
+		// no container at all
 		//
 		enabled = enabled && (collection.stream().allMatch(e -> e instanceof Section<?, ?, ?, ?>)
 				|| collection.stream().allMatch(e -> ((EObject) e).eContainer() == null)
@@ -134,20 +144,23 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	}
 
 	/**
-	 * If the given <em>collection</em> consists only of {@link Reference References}, this creates a
-	 * {@link MergeReferenceIntoClassCommand} to merge the References in the collection. Otherwise, an
+	 * If the given <em>collection</em> consists only of {@link Reference
+	 * References}, this creates a {@link MergeReferenceIntoClassCommand} to
+	 * merge the References in the collection. Otherwise, an
 	 * {@link UnexecutableCommand} is returned.
 	 *
 	 *
 	 * @param editingDomain
-	 *            The {@link EditingDomain} on which this the command represented by this action is to be executed.
+	 *            The {@link EditingDomain} on which this the command
+	 *            represented by this action is to be executed.
 	 * @param collection
 	 *            The collection of elements to be merged.
 	 * @return The created {@link Command}.
 	 */
 	protected Command createMergeReferencesCommand(EditingDomain editingDomain, Collection<?> collection) {
 
-		// This action is only enabled if more than one element of the correct type 'R' are
+		// This action is only enabled if more than one element of the correct
+		// type 'R' are
 		// selected.
 		//
 		boolean enabled = collection.size() > 1 && collection.stream().allMatch(e -> {
@@ -171,10 +184,52 @@ public class MetaModelElementMergeAction<S extends Section<S, C, R, A>, C extend
 	}
 
 	/**
-	 * This returns the set of {@link EObject elements} that need to be consulted when
+	 * If the given <em>collection</em> consists only of {@link Attribute
+	 * Attributes}, this creates a {@link MergeAttributesCommand} to merge the
+	 * Attributes in the collection. Otherwise, an {@link UnexecutableCommand}
+	 * is returned.
+	 *
+	 *
+	 * @param editingDomain
+	 *            The {@link EditingDomain} on which this the command
+	 *            represented by this action is to be executed.
+	 * @param collection
+	 *            The collection of elements to be merged.
+	 * @return The created {@link Command}.
+	 */
+	protected Command createMergeAttributesCommand(EditingDomain editingDomain, Collection<?> collection) {
+
+		// This action is only enabled if more than one element of the correct
+		// type 'A' are
+		// selected.
+		//
+		boolean enabled = collection.size() > 1 && collection.stream().allMatch(e -> {
+			try {
+				@SuppressWarnings({ "unchecked", "unused" })
+				A temp = (A) e;
+				return true;
+			} catch (ClassCastException e1) {
+				return false;
+			}
+		});
+
+		if (!enabled) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		@SuppressWarnings("unchecked")
+		Set<A> elementsToMerge = collection.stream().map(e -> (A) e).collect(Collectors.toSet());
+
+		return MergeAttributesCommand.create(editingDomain, elementsToMerge, this.getElementsOfInterest());
+	}
+
+	/**
+	 * This returns the set of {@link EObject elements} that need to be
+	 * consulted when
 	 * {@link MergeMetaModelElementsCommand#prepareRedirectCrossReferencesCommand(MetaModelElement, MetaModelElement)
-	 * redirecting cross-references} after merging elements or <em>null</em> when the elements shall be determined from
-	 * the resource set associated with the {@link #editingDomain}.
+	 * redirecting cross-references} after merging elements or <em>null</em>
+	 * when the elements shall be determined from the resource set associated
+	 * with the {@link #editingDomain}.
 	 *
 	 *
 	 * @return The set of elements or <em>null</em>.

@@ -227,15 +227,21 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateExtendsOnlyValidHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
+		SourceSection sourceSection = ((Mapping) this.eContainer()).getSourceSection();
+		
+		if (sourceSection == null) {
+			return true;
+		}
+		
 		List<SourceSection> validExtends = new ArrayList<>();
-		validExtends.add(((Mapping) this.eContainer()).getSourceSection());
-		validExtends.addAll(((Mapping) this.eContainer()).getSourceSection().getAllExtend());
+		validExtends.add(sourceSection);
+		validExtends.addAll(sourceSection.getAllExtend());
 		
 		Optional<MappingHintGroupType> result = this.getExtend().stream()
 				.filter(hg -> !validExtends.contains(((Mapping) hg.eContainer()).getSourceSection())).findFirst();
@@ -364,8 +370,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

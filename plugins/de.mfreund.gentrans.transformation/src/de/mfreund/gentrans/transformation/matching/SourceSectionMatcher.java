@@ -1317,7 +1317,7 @@ public class SourceSectionMatcher extends CancelableElement {
 			 * Check if all the constraints are satisfied for every attribute
 			 * value.
 			 */
-			return values.parallelStream()
+			return !values.isEmpty() && values.parallelStream()
 					.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
 		});
 	}
@@ -1400,6 +1400,10 @@ public class SourceSectionMatcher extends CancelableElement {
 	 */
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
 			final ValueConstraint constraint) {
+
+		if ("sequential".equals(constraint.getName())) {
+			System.out.println();
+		}
 
 		boolean constraintVal = false;
 

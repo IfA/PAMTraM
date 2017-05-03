@@ -249,6 +249,8 @@ public class MappingSelector extends CancelableElement {
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection,
 			List<MatchedSectionDescriptor> descriptors, boolean deferApplicationDependencies) {
 
+		this.checkCanceled();
+
 		// This will be returned in the end
 		//
 		List<MappingInstanceStorage> ret = new ArrayList<>();

@@ -149,6 +149,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected AttributeValueRepresentation extractValue(FixedValue fixedValue,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
+		this.checkCanceled();
+
 		// FIXME two different FixedValues are currently not supported (both get
 		// added to the 'null' attribute
 		return new AttributeValueRepresentation(null, fixedValue.getValue());
@@ -170,6 +172,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	 */
 	protected AttributeValueRepresentation extractValue(GlobalAttributeImporter globaleAttributeImporter,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		this.checkCanceled();
 
 		return this.globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute())
 				? new AttributeValueRepresentation(null,
@@ -198,6 +202,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected AttributeValueRepresentation extractValue(
 			DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		this.checkCanceled();
 
 		MatchedSectionDescriptor sourceDescriptor = matchedSectionDescriptor;
 
@@ -256,6 +262,8 @@ public abstract class ValueExtractor extends CancelableElement {
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			MatchedSectionDescriptor matchedSectionDescriptor, boolean useParallelization) {
 
+		this.checkCanceled();
+
 		List<MatchedSectionDescriptor> sourceDescriptors = matchedSections
 				.get(mappingHintSourceElement.getSource().getContainingSection());
 
@@ -313,6 +321,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected AttributeValueRepresentation extractValue(
 			DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
 			List<EObject> sourceElements) {
+
+		this.checkCanceled();
 
 		if (!(mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
 				|| mappingHintSourceElement.getSource() instanceof VirtualSourceSectionAttribute)) {

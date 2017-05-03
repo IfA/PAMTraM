@@ -520,6 +520,8 @@ public class GenericTransformationRunner extends CancelableElement {
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 
+		this.objectsToCancel.add(sourceSectionMatcher);
+
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
 		this.writePamtramMessage("Extract Values of Global Attributes");
@@ -564,6 +566,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		final HintValueExtractor hintValueExtractor = new HintValueExtractor(matchingResult, mappingInstances,
 				globalValues.getGlobalAttributes(), attributeValueModifier, this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
+
+		this.objectsToCancel.add(hintValueExtractor);
+
 		hintValueExtractor.extractHintValues();
 
 		this.transformationConfig.getLogger()

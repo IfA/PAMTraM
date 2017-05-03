@@ -218,6 +218,8 @@ public class TargetSectionConnector extends CancelableElement {
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup, final Mapping mapping,
 			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
 
+		this.checkCanceled();
+
 		// The TargetSection of which we want to joing created instances
 		//
 		final TargetSection section = hintGroup.getTargetSection();
@@ -307,9 +309,7 @@ public class TargetSectionConnector extends CancelableElement {
 					hintGroup, section.getContainer() != null
 							? new HashSet<>(Arrays.asList(section.getContainer().getEClass())) : null,
 					containerInstances);
-			if (this.isCanceled()) {
-				return false;
-			}
+
 		}
 
 		return true;
@@ -337,6 +337,8 @@ public class TargetSectionConnector extends CancelableElement {
 	 */
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter, final Mapping mapping,
 			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
+
+		this.checkCanceled();
 
 		final ExportedMappingHintGroup g = hintGroupImporter.getHintGroup();
 
@@ -382,10 +384,6 @@ public class TargetSectionConnector extends CancelableElement {
 					// mapping instance
 					for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
 
-						if (this.isCanceled()) {
-							return false;
-						}
-
 						if (group instanceof MappingHintGroup) {
 							final List<EObjectWrapper> insts = selMap.getInstances((MappingHintGroup) group,
 									hintGroupImporter.getContainer());
@@ -400,9 +398,6 @@ public class TargetSectionConnector extends CancelableElement {
 							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
 							containerInstances);
 
-					if (this.isCanceled()) {
-						return false;
-					}
 				}
 			}
 
@@ -425,9 +420,6 @@ public class TargetSectionConnector extends CancelableElement {
 				// link
 				this.linkToTargetModelNoConnectionHint(rootInstances, g.getTargetSection(), mapping.getName(), g,
 						containerClasses, containerInstances);
-				if (this.isCanceled()) {
-					return false;
-				}
 			}
 		}
 
@@ -703,6 +695,8 @@ public class TargetSectionConnector extends CancelableElement {
 	public void linkToTargetModelNoConnectionHint(final List<EObjectWrapper> rootInstances, final TargetSection section,
 			final String mappingName, final MappingHintGroupType mappingGroup, final Set<EClass> containerClasses,
 			final List<EObjectWrapper> containerInstances) {
+
+		this.checkCanceled();
 
 		// nothing to connect
 		if (rootInstances == null || rootInstances.isEmpty()) {
@@ -1016,6 +1010,8 @@ public class TargetSectionConnector extends CancelableElement {
 			final ContainerSelector connectionHint,
 			final LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> modelConnectionHintValues) {// connectionHint.targetAttribute.~owningClass
 
+		this.checkCanceled();
+
 		ArrayList<EObjectWrapper> unconnectedInstances = new ArrayList<>();
 
 		// nothing to connect
@@ -1133,10 +1129,6 @@ public class TargetSectionConnector extends CancelableElement {
 		// now select targetInst
 		final LinkedHashMap<EObjectWrapper, LinkedHashSet<EObjectWrapper>> rootInstancesByContainer = new LinkedHashMap<>();
 		for (final Entry<String, LinkedHashSet<EObjectWrapper>> hintValEntry : rootInstancesByHintVal.entrySet()) {
-
-			if (this.isCanceled()) {
-				return unconnectedInstances;
-			}
 
 			if (contInstsByHintVal.get(hintValEntry.getKey()).size() == 1) {
 

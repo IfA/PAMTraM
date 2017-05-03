@@ -35,6 +35,7 @@ import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.pamtram.util.NullComparator;
 import de.mfreund.pamtram.util.OCLUtil;
 import pamtram.FixedValue;
@@ -63,7 +64,7 @@ import pamtram.structure.source.VirtualSourceSectionCrossReference;
  *
  * @author mfreund
  */
-public class SourceSectionMatcher {
+public class SourceSectionMatcher extends CancelableElement {
 
 	/**
 	 * The {@link ContainmentTree} that represents the list of source models to
@@ -633,6 +634,8 @@ public class SourceSectionMatcher {
 	 */
 	private MatchedSectionDescriptor checkSection(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
+
+		this.checkCanceled();
 
 		final boolean classFits = srcSection.isIncludeSubTypes()
 				? srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass())

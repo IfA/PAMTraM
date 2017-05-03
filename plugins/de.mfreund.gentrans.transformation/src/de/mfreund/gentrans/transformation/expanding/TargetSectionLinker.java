@@ -181,16 +181,14 @@ public class TargetSectionLinker extends CancelableElement {
 	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupImporter hintGroupImporter) {
 
+		this.checkCanceled();
+
 		final ExportedMappingHintGroup expGrp = hintGroupImporter.getHintGroup();
 		if (expGrp.getTargetSection() != null) {
 			if (mappingInstance.getInstancesBySection(hintGroupImporter) != null) {
 				final List<MappingHint> hints = new LinkedList<>();
 				hints.addAll(mappingInstance.getMappingHints(expGrp));
 				for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
-
-					if (this.isCanceled()) {
-						return false;
-					}
 
 					if (h instanceof MappingHint) {
 						hints.add((MappingHint) h);
@@ -201,9 +199,6 @@ public class TargetSectionLinker extends CancelableElement {
 				this.instantiateTargetSectionSecondPass(expGrp.getTargetSection(), hintGroupImporter, hints,
 						mappingInstance.getHintValues(), mappingInstance.getInstancesBySection(hintGroupImporter));
 
-				if (this.isCanceled()) {
-					return false;
-				}
 			}
 		}
 
@@ -227,6 +222,8 @@ public class TargetSectionLinker extends CancelableElement {
 	private boolean linkTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			final MappingHintGroupType hintGroup) {
 
+		this.checkCanceled();
+
 		if (hintGroup.getTargetSection() != null && hintGroup instanceof MappingHintGroup) {
 
 			if (mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup) != null) {
@@ -235,9 +232,6 @@ public class TargetSectionLinker extends CancelableElement {
 						mappingInstance.getMappingHints(hintGroup), mappingInstance.getHintValues(),
 						mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup));
 
-				if (this.isCanceled()) {
-					return false;
-				}
 			}
 		}
 

@@ -714,8 +714,25 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 								abstractHintGroup.getName() + "': These kind of hints are not supported yet in abstract HintGroups!");
 					}
 		
-					if(abstractToConcreteElementMap.get(hintTarget) == null || abstractToConcreteElementMap.get(hintTarget).isEmpty() || concreteHintGroup.getMappingHints().isEmpty() || 
-							EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.get(hintTarget), concreteHintGroup.getMappingHints()).isEmpty()) {
+					// An abstract hint is not overwritten (and may thus get
+					// copied) if...
+					//
+					// ... there are either no concrete hints at all...
+					if (concreteHintGroup.getMappingHints().isEmpty()
+							// ... or if there are are no hints with the same
+							// target element ...
+							|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getMappingHints())
+									.isEmpty()
+									// ... and no hints with a target elements
+									// that extends the target element of the
+									// abstract hint
+									&& (abstractToConcreteElementMap.get(hintTarget) == null
+											|| abstractToConcreteElementMap.get(hintTarget).isEmpty()
+											|| EcoreUtil.UsageCrossReferencer
+													.findAll(abstractToConcreteElementMap.get(hintTarget),
+															concreteHintGroup.getMappingHints())
+													.isEmpty())) {
+		
 						hintsToCopy.add(abstractHint);
 					}
 		

@@ -24,7 +24,10 @@ import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.pamtram.util.OCLUtil;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
+import pamtram.NamedElement;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
@@ -343,7 +346,11 @@ public abstract class ValueExtractor extends CancelableElement {
 				mappingHintSourceElement.getSource(), this.logger);
 
 		if (srcAttrValues.isEmpty()) {
-			this.logger.warning("No hint value found for source element '" + mappingHintSourceElement.getName() + "'!");
+			this.logger.warning("No hint value found for source element '" + mappingHintSourceElement.getName()
+					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
+					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
+							MappingPackage.Literals.MAPPING)).getName()
+					+ "')!");
 			return null;
 		}
 

@@ -186,7 +186,11 @@ public class GenericTransformationRunner extends CancelableElement {
 			this.transformationConfig.getLogger().severe("Aborting...");
 			return;
 		} catch (RuntimeException e) {
-			this.transformationConfig.getLogger().severe(e.getMessage());
+			if (e.getMessage() != null) {
+				this.transformationConfig.getLogger().severe(e.getMessage());
+			} else {
+				this.transformationConfig.getLogger().severe(e.toString());
+			}
 			this.transformationConfig.getLogger().severe("Aborting...");
 			throw e;
 		}

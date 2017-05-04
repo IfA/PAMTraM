@@ -31,25 +31,29 @@ import pamtram.SectionModel;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * A utility class that allows can check if {@link EPackage EPackages} referenced in a {@link PAMTraM} model are already
- * registered and, if not, can register them on-the-fly.
+ * A utility class that allows can check if {@link EPackage EPackages}
+ * referenced in a {@link PAMTraM} model are already registered and, if not, can
+ * register them on-the-fly.
  *
  * @author mfreund
  */
 public interface PamtramEPackageHelper extends EPackageHelper {
 
 	/**
-	 * This determines the various ePackages involved in a PAMTraM model (source, target and context packages) and
-	 * checks if they are already registered. If this is not the case - this may usually only happen if the ePackage is
-	 * only backed by an ecore model and not by generated Java code - this function browses through the ecore models in
-	 * the 'metamodel' folder of the project (if there is any) and manually registers the ePackages if suitable ecore
-	 * models are found.
+	 * This determines the various ePackages involved in a PAMTraM model
+	 * (source, target and context packages) and checks if they are already
+	 * registered. If this is not the case - this may usually only happen if the
+	 * ePackage is only backed by an ecore model and not by generated Java code
+	 * - this function browses through the ecore models in the 'metamodel'
+	 * folder of the project (if there is any) and manually registers the
+	 * ePackages if suitable ecore models are found.
 	 *
 	 * @param pamtramFile
 	 *            an IFile containing the pamtram model to be checked.
 	 * @param registry
-	 *            the registry that the ePackages will be registered to; this could be the registry of a resource set or
-	 *            the global package registry.
+	 *            the registry that the ePackages will be registered to; this
+	 *            could be the registry of a resource set or the global package
+	 *            registry.
 	 *
 	 * @return EPackageCheck
 	 */
@@ -65,9 +69,10 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		PAMTraM pamtram;
 
 		/*
-		 * load the pamtramResource; Note: A distinct resource set is used for loading the resource so that potential
-		 * errors resulting from unregistered packages are not reflected in the 'main' resource set (and are thus not
-		 * displayed e.g. in an editor)!
+		 * load the pamtramResource; Note: A distinct resource set is used for
+		 * loading the resource so that potential errors resulting from
+		 * unregistered packages are not reflected in the 'main' resource set
+		 * (and are thus not displayed e.g. in an editor)!
 		 */
 		Resource pamtramResource = resourceSet.getResource(URI.createPlatformResourceURI(
 				project.getName() + File.separator + PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME")
@@ -83,19 +88,22 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 	}
 
 	/**
-	 * This determines the various ePackages involved in a PAMTraM model (source, target and context packages) and
-	 * checks if they are already registered. If this is not the case - this may usually only happen if the ePackage is
-	 * only backed by an ecore model and not by generated Java code - this function browses through the ecore models in
-	 * the 'metamodel' folder of the project (if there is any) and manually registers the ePackages if suitable ecore
-	 * models are found.
+	 * This determines the various ePackages involved in a PAMTraM model
+	 * (source, target and context packages) and checks if they are already
+	 * registered. If this is not the case - this may usually only happen if the
+	 * ePackage is only backed by an ecore model and not by generated Java code
+	 * - this function browses through the ecore models in the 'metamodel'
+	 * folder of the project (if there is any) and manually registers the
+	 * ePackages if suitable ecore models are found.
 	 *
 	 * @param pamtram
 	 *            the pamtram model to be checked.
 	 * @param project
 	 *            the project that holds the pamtram model.
 	 * @param registry
-	 *            the registry that the ePackages will be registered to; this could be the registry of a resource set or
-	 *            the global package registry.
+	 *            the registry that the ePackages will be registered to; this
+	 *            could be the registry of a resource set or the global package
+	 *            registry.
 	 *
 	 * @return EPackageCheck
 	 */
@@ -103,10 +111,14 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 
 		// a list that holds all ePackages that need to be checked
 		Set<EPackage> ePackagesToCheck = Stream
-				.concat(pamtram.getSourceSectionModels().stream(), pamtram.getTargetSectionModels().stream())
+				.concat(Stream.concat(pamtram.getSourceSectionModels().stream(),
+						pamtram.getSharedSourceSectionModels().stream()),
+						Stream.concat(pamtram.getTargetSectionModels().stream(),
+								pamtram.getSharedTargetSectionModels().stream()))
 				.map(SectionModel::getMetaModelPackage).collect(Collectors.toSet());
 
-		// collect the nsUris of all ePackages that are proxies (which means they have not been
+		// collect the nsUris of all ePackages that are proxies (which means
+		// they have not been
 		// registered) and that thus need to be registered manually
 		//
 		Set<String> nsUrisToRegister = ePackagesToCheck.parallelStream()
@@ -121,7 +133,8 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 			return EPackageCheck.OK_NOTHING_REGISTERED;
 		}
 
-		// try to register the remaining ePackages manually by searching for the metamodels
+		// try to register the remaining ePackages manually by searching for the
+		// metamodels
 		// in the 'metamodel' folder of the project
 		//
 		Map<String, EPackage> ePackagesToRegister;
@@ -148,16 +161,19 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 	}
 
 	/**
-	 * Searches the given list of {@link IResource resources} for metamodels that define {@link EPackage EPackages} for
-	 * the given set of namespace URIs.
+	 * Searches the given list of {@link IResource resources} for metamodels
+	 * that define {@link EPackage EPackages} for the given set of namespace
+	 * URIs.
 	 *
 	 * @param nsUris
-	 *            The list of namespace URIs for which EPackages shall be searched.
+	 *            The list of namespace URIs for which EPackages shall be
+	 *            searched.
 	 * @param iResources
-	 *            The list of {@link IResource Resources} that shall be considered when searching for the required
-	 *            EPackages.
-	 * @return A map that links namespace URIs and found {@link EPackage EPackages}. The keySet of the map will contain
-	 *         a sub-set of the given set of <em>nsURIs</em>.
+	 *            The list of {@link IResource Resources} that shall be
+	 *            considered when searching for the required EPackages.
+	 * @return A map that links namespace URIs and found {@link EPackage
+	 *         EPackages}. The keySet of the map will contain a sub-set of the
+	 *         given set of <em>nsURIs</em>.
 	 */
 	public static Map<String, EPackage> searchMetamodelsForPackages(Set<String> nsUris, List<IResource> iResources) {
 
@@ -185,7 +201,8 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 	}
 
 	/**
-	 * This describes the result of checking references packages involved in a pamtram model.
+	 * This describes the result of checking references packages involved in a
+	 * pamtram model.
 	 *
 	 * @author mfreund
 	 */
@@ -193,14 +210,16 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		OK_NOTHING_REGISTERED, OK_PACKAGES_REGISTERED, ERROR_PACKAGE_NOT_FOUND, ERROR_PAMTRAM_NOT_FOUND, ERROR_METAMODEL_FOLDER_NOT_FOUND;
 
 		/**
-		 * This stores the set of {@link EPackage EPackages} that have been registered during an 'EPackageCheck'.
+		 * This stores the set of {@link EPackage EPackages} that have been
+		 * registered during an 'EPackageCheck'.
 		 */
 		private Set<EPackage> registeredPackages;
 
 		/**
 		 * This is the getter for the the {@link #registeredPackages}.
 		 *
-		 * @return The set of {@link EPackage EPackages} that have been registered during an 'EPackageCheck'.
+		 * @return The set of {@link EPackage EPackages} that have been
+		 *         registered during an 'EPackageCheck'.
 		 */
 		public Set<EPackage> getRegisteredPackages() {
 
@@ -208,11 +227,14 @@ public interface PamtramEPackageHelper extends EPackageHelper {
 		}
 
 		/**
-		 * This sets the set of {@link #registeredPackages} for this instance of 'EPackageCheck'.
+		 * This sets the set of {@link #registeredPackages} for this instance of
+		 * 'EPackageCheck'.
 		 *
 		 * @param registeredPackages
-		 *            The set of {@link EPackage EPackages} to set as {@link #registeredPackages}.
-		 * @return The instance of {@link EPackageCheck} after setting the registered packages.
+		 *            The set of {@link EPackage EPackages} to set as
+		 *            {@link #registeredPackages}.
+		 * @return The instance of {@link EPackageCheck} after setting the
+		 *         registered packages.
 		 */
 		public EPackageCheck withRegisteredPackages(Set<EPackage> registeredPackages) {
 

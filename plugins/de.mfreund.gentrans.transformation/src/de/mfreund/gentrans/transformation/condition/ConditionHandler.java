@@ -22,6 +22,7 @@ import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import pamtram.ConditionalElement;
 import pamtram.FixedValue;
 import pamtram.condition.And;
@@ -302,18 +303,18 @@ public class ConditionHandler {
 			return CondResult.TRUE;
 		}
 
-		EAttribute attribute = attrCondition.getTarget().getAttribute();
-
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<Object> srcAttrValues = correspondEClassInstances.parallelStream()
-				.map(instance -> instance.eGet(attribute)).collect(Collectors.toList());
+		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(correspondEClassInstances,
+				attrCondition.getTarget(), this.logger);
 
 		/*
 		 * First, we check if all the constraints are satisfied for every
 		 * attribute value of an AttributeConditon
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
+
+		EAttribute attribute = attrCondition.getTarget().getAttribute();
 
 		for (Object srcAttrValue : srcAttrValues) {
 

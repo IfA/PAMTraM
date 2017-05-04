@@ -350,7 +350,7 @@ public class MappingSelector extends CancelableElement {
 		// Check conditions of hint groups and hints for the selected
 		// MappingInstanceStorages
 		//
-		ret.parallelStream().forEach(this::determineElementsWithNegativeConditions);
+		ret.stream().forEach(this::determineElementsWithNegativeConditions);
 
 		return ret;
 	}
@@ -449,7 +449,7 @@ public class MappingSelector extends CancelableElement {
 
 		// check conditions of all corresponding MappingHintGroups
 		//
-		mappingInstance.getMapping().getActiveMappingHintGroups().parallelStream()
+		mappingInstance.getMapping().getActiveMappingHintGroups().stream()
 				.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
 
 					boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
@@ -458,13 +458,13 @@ public class MappingSelector extends CancelableElement {
 
 						// Iterate now over all corresponding MappingHints
 						//
-						hg.getMappingHints().parallelStream().forEach(m -> this.checkCondition(m, mappingInstance));
+						hg.getMappingHints().stream().forEach(m -> this.checkCondition(m, mappingInstance));
 					}
 				});
 
 		// check Condition of corresponding IMPORTED MappingHintGroups
 		//
-		mappingInstance.getMapping().getActiveImportedMappingHintGroups().parallelStream()
+		mappingInstance.getMapping().getActiveImportedMappingHintGroups().stream()
 				.forEach(hg -> this.checkCondition(hg, mappingInstance));
 
 	}

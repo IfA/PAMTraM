@@ -49,6 +49,7 @@ import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
+import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -414,7 +415,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	private void findApplicableSection(final EObject element,
 			final Map<SourceSection, MatchedSectionDescriptor> mappingData, SourceSection section) {
 
-		MatchedSectionDescriptor descriptor;
+		Optional<MatchedSectionDescriptor> descriptor;
 
 		/*
 		 * check if the section that is referenced as 'container' can be matched
@@ -427,21 +428,19 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		// check if the section itself is applicable
 		//
-		descriptor = this.checkSection(element, false, section, null);
+		descriptor = this.checkSection(element, Optional.empty(), section, null);
 
-		failed = descriptor == null;
-
-		if (failed) {
+		if (!descriptor.isPresent()) {
 			return;
 		}
 
 		// set the associated container descriptor
 		//
-		this.setContainerDescriptor(descriptor);
+		this.setContainerDescriptor(descriptor.get());
 
 		// all checks were successful -> the section is applicable
 		//
-		mappingData.put(section, descriptor);
+		mappingData.put(section, descriptor.get());
 	}
 
 	/**
@@ -533,9 +532,9 @@ public class SourceSectionMatcher extends CancelableElement {
 				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
 				.allMatch(container -> {
 
-					MatchedSectionDescriptor containerDescriptor = this.checkSection(container.getValue(), false,
-							container.getKey(), null);
-					if (containerDescriptor == null) {
+					Optional<MatchedSectionDescriptor> containerDescriptor = this.checkSection(container.getValue(),
+							Optional.empty(), container.getKey(), null);
+					if (!containerDescriptor.isPresent()) {
 						return false;
 					}
 
@@ -543,7 +542,7 @@ public class SourceSectionMatcher extends CancelableElement {
 					// 'sections2Descriptors' map that will be returned
 					// in the end
 					//
-					this.registerDescriptor(container.getKey(), containerDescriptor, false, true);
+					this.registerDescriptor(container.getKey(), containerDescriptor.get(), false, true);
 
 					return true;
 				});
@@ -622,12 +621,13 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @param srcModelObject
 	 *            The element of the source model that is currently evaluated
 	 *            for applicability.
-	 * @param usedOkay
-	 *            Whether elements already contained in <em>newRefsAndHints</em>
-	 *            can be matched again. This needs to be set to '<em>true</em>
-	 *            when
-	 *            {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}
-	 *            is called for a non-containment reference.
+	 * @param reference
+	 *            If this is called as part of the check for another
+	 *            {@link SourceSectionClass}, this holds the {@link EReference}
+	 *            referencing the given <em>srcModelObject</em>. This will be an
+	 *            empty optional if this is either the <em>root</em> call to
+	 *            <em>checkSection</em> or if called for a
+	 *            {@link VirtualReference}.
 	 * @param srcSection
 	 *            The {@link SourceSectionClass} (either the sourceMMSection
 	 *            itself or a direct or indirect child of it) that is currently
@@ -639,32 +639,50 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @return The {@link MatchedSectionDescriptor} representing the matched
 	 *         section (including all matched child elements).
 	 */
-	private MatchedSectionDescriptor checkSection(final EObject srcModelObject, final boolean usedOkay,
-			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
+	private Optional<MatchedSectionDescriptor> checkSection(final EObject srcModelObject,
+			Optional<EReference> reference, final SourceSectionClass srcSection,
+			final MatchedSectionDescriptor parentDescriptor) {
 
 		this.checkCanceled();
 
+		// This will be returned in the end
+		//
+		MatchedSectionDescriptor descriptor;
+
+		// First, we check if the 'EClass' of the given srcModelObject is
+		// compatible with the srcSection
+		//
 		final boolean classFits = srcSection.isIncludeSubTypes()
 				? srcSection.getEClass().isSuperTypeOf(srcModelObject.eClass())
 				: NullComparator.compare(srcSection.getEClass(), srcModelObject.eClass());
 
-		// first of all: check if usedRefs contains this item and if type fits
-		// (we do not check any of the used elements of other mappings, since
-		// they will be in a different section of the containment tree )
+		if (!classFits) {
+			return Optional.empty();
+		}
+
+		// Check if the element was already matched previously for the same
+		// SourceSectionClass. If this is the case, we just reuse the existing
+		// descriptor
 		//
-		// TODO Is the 'containsSourceModelObjectMapped' check even necessary?
-		// If this returns true, we must deal with a NC-reference - in this
-		// case, however, the 'usedOkay' flag should be set to 'true'!
-		if (!usedOkay && parentDescriptor != null && parentDescriptor.containsSourceModelObjectMapped(srcModelObject)
-				|| !classFits) {
-			return null;
+		Optional<MatchedSectionDescriptor> existingDescriptor = this
+				.getExistingMatchedSectionDescriptor(srcModelObject);
+		if (existingDescriptor.isPresent()
+				&& existingDescriptor.get().getAssociatedSourceSectionClass().equals(srcSection)) {
+
+			// set the list of source model objects that have been mapped.
+			// first, add all mapped objects from 'changedRefsAndHints' ...
+			if (parentDescriptor != null) {
+				existingDescriptor.get().addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+			}
+
+			return existingDescriptor;
 		}
 
 		// this is the 'MatchedSectionDescriptor' that we will return this in
 		// case we find the mapping to be applicable
 		// else we return null
 		//
-		final MatchedSectionDescriptor descriptor = new MatchedSectionDescriptor();
+		descriptor = new MatchedSectionDescriptor();
 		descriptor.setAssociatedSourceModelElement(srcModelObject);
 		descriptor.setAssociatedSourceSectionClass(srcSection);
 
@@ -682,7 +700,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		boolean attributesOk = this.checkAttributes(srcModelObject, srcSection, descriptor);
 
 		if (!attributesOk) {
-			return null;
+			return Optional.empty();
 		}
 
 		/*
@@ -690,17 +708,18 @@ public class SourceSectionMatcher extends CancelableElement {
 		 * iterate further down the hierarchy (and thereby call 'checkMapping',
 		 * 'checkAttributes' and 'checkReferences' multiple times)
 		 */
-		boolean referencesOk = this.checkReferences(srcModelObject, usedOkay, srcSection, descriptor);
+		boolean referencesOk = this.checkReferences(srcModelObject,
+				!reference.isPresent() || !reference.get().isContainment(), srcSection, descriptor);
 
 		if (!referencesOk) {
-			return null;
+			return Optional.empty();
 		}
 
 		// set the associated container descriptor
 		//
 		descriptor.setContainerDescriptor(parentDescriptor);
 
-		return descriptor;
+		return Optional.of(descriptor);
 
 	}
 
@@ -813,8 +832,8 @@ public class SourceSectionMatcher extends CancelableElement {
 			//
 			final Object refTarget = srcModelObject.eGet(reference);
 
-			if (!this.checkReference(refTarget, usedOkay, sourceSectionClass, descriptor, refByClassMap, classes,
-					reference.isContainment())) {
+			if (!this.checkReference(refTarget, Optional.of(reference), sourceSectionClass, descriptor, refByClassMap,
+					classes)) {
 				return false;
 			}
 
@@ -871,8 +890,8 @@ public class SourceSectionMatcher extends CancelableElement {
 			//
 			final Object refTarget = value;
 
-			if (!this.checkReference(refTarget, usedOkay, sourceSectionClass, descriptor, refByClassMap, classes,
-					false)) {
+			if (!this.checkReference(refTarget, Optional.empty(), sourceSectionClass, descriptor, refByClassMap,
+					classes)) {
 				return false;
 			}
 
@@ -889,11 +908,13 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @param referenceValue
 	 *            The value or values referenced via the {@link Reference} to be
 	 *            checked.
-	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can
-	 *            be matched again. This needs to be set to '<em>true</em> when
-	 *            this is called if <em>referenceValue</em> is referenced by a
-	 *            non-containment reference.
+	 * @param reference
+	 *            If this is called as part of the check for another
+	 *            {@link SourceSectionClass}, this holds the {@link EReference}
+	 *            referencing the given <em>srcModelObject</em>. This will be an
+	 *            empty optional if this is either the <em>root</em> call to
+	 *            <em>checkSection</em> or if called for a
+	 *            {@link VirtualReference}.
 	 * @param sourceSectionClass
 	 *            The parent {@link SourceSectionClass} holding the reference
 	 *            currently checked.
@@ -911,74 +932,27 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            that have been modeled as target for the current reference to
 	 *            be checked (these are the potential matches for the given
 	 *            <em>refTargetObj</em>).
-	 * @param referenceIsContainment
-	 *            Whether the reference we are currently checking represents a
-	 *            containment reference.
 	 */
 	@SuppressWarnings("unchecked")
-	private boolean checkReference(final Object referenceValue, final boolean usedOkay,
+	private boolean checkReference(final Object referenceValue, Optional<EReference> reference,
 			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor parentDescriptor,
-			Map<SourceSectionClass, SourceSectionReference> refByClassMap, List<SourceSectionClass> classes,
-			boolean referenceIsContainment) {
+			Map<SourceSectionClass, SourceSectionReference> refByClassMap, List<SourceSectionClass> classes) {
 
+		boolean referenceIsContainment = reference.isPresent() ? reference.get().isContainment() : false;
 		if (!(referenceValue instanceof Collection<?>)) {
-
-			// Check if the referenced element was previously matched.
-			// If this is the case, we reuse the existing
-			// MatchedSectionDescriptor instead of matching the element once
-			// again
-			//
-			Optional<MatchedSectionDescriptor> existingDescriptor = this
-					.getExistingMatchedSectionDescriptor((EObject) referenceValue);
-
-			if (existingDescriptor.isPresent()) {
-				parentDescriptor.add(existingDescriptor.get());
-				return true;
-			}
 
 			// check the single-valued reference
 			//
-			// return this.checkSingleValuedReference((EObject) referenceValue,
-			// parentDescriptor, classes, refByClassMap,
-			// usedOkay, sourceSectionClass);
 			return this.checkSingleValuedReference((EObject) referenceValue,
-					referenceIsContainment ? parentDescriptor : null, classes, refByClassMap, usedOkay,
+					referenceIsContainment ? parentDescriptor : null, classes, refByClassMap, reference,
 					sourceSectionClass);
 
 		} else {
 
-			ArrayList<EObject> unmatchedTargets = new ArrayList<>();
-
-			for (EObject target : new ArrayList<>((Collection<EObject>) referenceValue)) {
-
-				// Check if the referenced element was previously matched.
-				// If this is the case, we reuse the existing
-				// MatchedSectionDescriptor instead of matching the element
-				// once
-				// again
-				//
-				// TODO: Shouldn't we do this check in 'checkSection'? Reusing
-				// existing descriptors in checkSection should work the same way
-				// and would be more correct because we will still perform the
-				// check concerning cardinalities etc. that we might circumvent
-				// by just ignoring already matched elements...???
-				//
-				Optional<MatchedSectionDescriptor> existingDescriptor = this
-						.getExistingMatchedSectionDescriptor(target);
-
-				if (existingDescriptor.isPresent()) {
-					parentDescriptor.add(existingDescriptor.get());
-				} else {
-					unmatchedTargets.add(target);
-				}
-			}
-
 			// check the multi-valued reference
 			//
-			// return this.checkManyValuedReference(unmatchedTargets,
-			// parentDescriptor, classes, refByClassMap, usedOkay);
-			return this.checkManyValuedReference(unmatchedTargets, referenceIsContainment ? parentDescriptor : null,
-					classes, refByClassMap, usedOkay);
+			return this.checkManyValuedReference(new ArrayList<>((Collection<EObject>) referenceValue),
+					referenceIsContainment ? parentDescriptor : null, classes, refByClassMap, reference);
 		}
 	}
 
@@ -1007,11 +981,13 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            A map that collects all {@link SourceSectionClass
 	 *            SourceSectionClasses} and the {@link SourceSectionReference}
 	 *            that they are referenced by.
-	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can
-	 *            be matched again. This needs to be set to '<em>true</em> when
-	 *            this is called if <em>refTargetObj</em> is referenced by a
-	 *            non-containment reference.
+	 * @param reference
+	 *            If this is called as part of the check for another
+	 *            {@link SourceSectionClass}, this holds the {@link EReference}
+	 *            referencing the given <em>srcModelObject</em>. This will be an
+	 *            empty optional if this is either the <em>root</em> call to
+	 *            <em>checkSection</em> or if called for a
+	 *            {@link VirtualReference}.
 	 * @param sourceSectionClass
 	 *            The parent {@link SourceSectionClass} for which the references
 	 *            shall be checked.
@@ -1020,14 +996,14 @@ public class SourceSectionMatcher extends CancelableElement {
 	 */
 	private boolean checkSingleValuedReference(final EObject referencedElement,
 			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
-			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, final boolean usedOkay,
+			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, Optional<EReference> reference,
 			final SourceSectionClass sourceSectionClass) {
 
 		if (referencedElement == null) {
 			return false;
 		}
 
-		MatchedSectionDescriptor childDescriptor = null;
+		Optional<MatchedSectionDescriptor> childDescriptor = null;
 		boolean nonZeroCardSectionFound = false;
 
 		// check non-zero classes (classes with a lower bound != ZERO) first; it
@@ -1055,10 +1031,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 			// iterate further
 			//
-			childDescriptor = this.checkSection(referencedElement,
-					refByClassMap.get(c) instanceof SourceSectionCrossReference
-							|| refByClassMap.get(c) instanceof VirtualSourceSectionCrossReference || usedOkay,
-					c, descriptor);
+			childDescriptor = this.checkSection(referencedElement, reference, c, descriptor);
 		}
 
 		if (!nonZeroCardSectionFound) {
@@ -1072,12 +1045,9 @@ public class SourceSectionMatcher extends CancelableElement {
 
 				// iterate further
 				//
-				childDescriptor = this.checkSection(referencedElement,
-						refByClassMap.get(c) instanceof SourceSectionCrossReference
-								|| refByClassMap.get(c) instanceof VirtualSourceSectionCrossReference || usedOkay,
-						c, descriptor);
+				childDescriptor = this.checkSection(referencedElement, reference, c, descriptor);
 
-				if (childDescriptor != null) {
+				if (childDescriptor.isPresent()) {
 					break;
 				}
 			}
@@ -1087,7 +1057,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		// element; this is not allowed unless there is
 		// a reference with 'ignoreUnmatchedElements' set to 'true'
 		//
-		if (childDescriptor == null) {
+		if (!childDescriptor.isPresent()) {
 			return sourceSectionClass.getReferences().parallelStream()
 					.filter(r -> r instanceof ActualReference<?, ?, ?, ?> && ((ActualReference<?, ?, ?, ?>) r)
 							.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
@@ -1098,20 +1068,21 @@ public class SourceSectionMatcher extends CancelableElement {
 		// descriptor
 		//
 		if (descriptor != null) {
-			descriptor.add(childDescriptor);
+			descriptor.add(childDescriptor.get());
 		}
 
 		// if the given descriptor was retrieved via a
 		// MetaModelSectionReference, we need to register this descriptor in
 		// the 'sections2Descriptors' map that will be returned in the end
 		//
-		if ((refByClassMap.get(childDescriptor.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
-				|| refByClassMap.get(childDescriptor
+		if ((refByClassMap
+				.get(childDescriptor.get().getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
+				|| refByClassMap.get(childDescriptor.get()
 						.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference)
-				&& childDescriptor.getAssociatedSourceSectionClass() instanceof SourceSection) {
+				&& childDescriptor.get().getAssociatedSourceSectionClass() instanceof SourceSection) {
 
-			this.registerDescriptor((SourceSection) childDescriptor.getAssociatedSourceSectionClass(), childDescriptor,
-					true, false);
+			this.registerDescriptor((SourceSection) childDescriptor.get().getAssociatedSourceSectionClass(),
+					childDescriptor.get(), true, false);
 		}
 
 		return true;
@@ -1142,18 +1113,20 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            A map that collects all {@link SourceSectionClass
 	 *            SourceSectionClasses} and the {@link SourceSectionReference}
 	 *            that they are referenced by.
-	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can
-	 *            be matched again. This needs to be set to '<em>true</em> when
-	 *            this is called if <em>referencedElements</em> are referenced
-	 *            by a non-containment reference.
+	 * @param reference
+	 *            If this is called as part of the check for another
+	 *            {@link SourceSectionClass}, this holds the {@link EReference}
+	 *            referencing the given <em>srcModelObject</em>. This will be an
+	 *            empty optional if this is either the <em>root</em> call to
+	 *            <em>checkSection</em> or if called for a
+	 *            {@link VirtualReference}.
 	 *
 	 * @return '<em><b>true</b></em>' if the check succeeded;
 	 *         '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean checkManyValuedReference(final List<EObject> referencedElements,
 			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
-			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, final boolean usedOkay) {
+			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, Optional<EReference> reference) {
 
 		/*
 		 * this is a little more complicated: now we need to find ONE possible
@@ -1187,22 +1160,20 @@ public class SourceSectionMatcher extends CancelableElement {
 
 			for (final SourceSectionClass val : classes) {
 
-				final MatchedSectionDescriptor childDescriptor = this.checkSection(rt,
-						refByClassMap.get(val) instanceof SourceSectionCrossReference
-								|| refByClassMap.get(val) instanceof VirtualSourceSectionCrossReference || usedOkay,
-						val, descriptor);
+				final Optional<MatchedSectionDescriptor> childDescriptor = this.checkSection(rt, reference, val,
+						descriptor);
 
 				// we found a match
 				//
-				if (childDescriptor != null) {
+				if (childDescriptor.isPresent()) {
 					foundMapping = true;
 
 					if (!val.getCardinality().equals(CardinalityType.ONE)) {
-						possibleSrcModelElementsVC.get(val).add(childDescriptor);
+						possibleSrcModelElementsVC.get(val).add(childDescriptor.get());
 						elementsUsableForVC.add(rt);
 
 					} else {
-						possibleSrcModelElementsNoVC.get(val).add(childDescriptor);
+						possibleSrcModelElementsNoVC.get(val).add(childDescriptor.get());
 					}
 				}
 			}

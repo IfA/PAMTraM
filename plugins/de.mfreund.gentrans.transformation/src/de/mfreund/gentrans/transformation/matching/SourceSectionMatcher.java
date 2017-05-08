@@ -684,8 +684,9 @@ public class SourceSectionMatcher extends CancelableElement {
 
 			// set the list of source model objects that have been mapped.
 			// first, add all mapped objects from 'changedRefsAndHints' ...
-			if (parentDescriptor != null) {
+			if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
 				existingDescriptor.get().addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+				existingDescriptor.get().setContainerDescriptor(parentDescriptor);
 			}
 
 			return existingDescriptor;
@@ -954,21 +955,19 @@ public class SourceSectionMatcher extends CancelableElement {
 			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor parentDescriptor,
 			Map<SourceSectionClass, SourceSectionReference> refByClassMap, List<SourceSectionClass> classes) {
 
-		boolean referenceIsContainment = reference.isPresent() ? reference.get().isContainment() : false;
 		if (!(referenceValue instanceof Collection<?>)) {
 
 			// check the single-valued reference
 			//
-			return this.checkSingleValuedReference((EObject) referenceValue,
-					referenceIsContainment ? parentDescriptor : null, classes, refByClassMap, reference,
-					sourceSectionClass);
+			return this.checkSingleValuedReference((EObject) referenceValue, parentDescriptor, classes, refByClassMap,
+					reference, sourceSectionClass);
 
 		} else {
 
 			// check the multi-valued reference
 			//
 			return this.checkManyValuedReference(new ArrayList<>((Collection<EObject>) referenceValue),
-					referenceIsContainment ? parentDescriptor : null, classes, refByClassMap, reference);
+					parentDescriptor, classes, refByClassMap, reference);
 		}
 	}
 

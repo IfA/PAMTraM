@@ -3048,19 +3048,10 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="RadioButtonMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
-      <localCondition xsi:type="condition:And" name="RadioButtonCondition">
-        <localCondParts xsi:type="condition:Or" name="Larger Screens" sharedCondParts="//@conditionModels.0/@conditions.0 //@conditionModels.0/@conditions.1"/>
-        <localCondParts xsi:type="condition:CardinalityCondition" name="=&lt; than 4 selectable Elements" value="4" comparator="LE" target="//@sourceSectionModels.2/@sections.5"/>
-        <localCondParts xsi:type="condition:And" name="Resolution">
-          <localCondParts xsi:type="condition:AttributeCondition" name="xResolution" target="//@sourceSectionModels.4/@sections.0/@attributes.1">
-            <instanceSelectors expression="Samsung Syncmaster 206bw" target="//@sourceSectionModels.4/@sections.0/@attributes.0"/>
-            <valueConstraints xsi:type="constraint:EqualityConstraint" expression="1680"/>
-          </localCondParts>
-          <localCondParts xsi:type="condition:AttributeCondition" name="yResolution" target="//@sourceSectionModels.4/@sections.0/@attributes.2">
-            <instanceSelectors expression="Samsung Syncmaster 206bw" target="//@sourceSectionModels.4/@sections.0/@attributes.0"/>
-            <valueConstraints xsi:type="constraint:EqualityConstraint" expression="1050"/>
-          </localCondParts>
-        </localCondParts>
+      <localCondition xsi:type="condition:ApplicationDependency" name="RadioButtonGroupWasChosen" target="//@mappingModels.2/@mappings.3">
+        <instanceSelectors target="//@sourceSectionModels.2/@sections.6/@attributes.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+        </instanceSelectors>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButton" targetSection="//@targetSectionModels.2/@sections.6">
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.2/@sections.6/@attributes.0">
@@ -3157,6 +3148,11 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="DropdownOptionMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
+      <localCondition xsi:type="condition:ApplicationDependency" name="DropDownWasChosen" target="//@mappingModels.2/@mappings.5">
+        <instanceSelectors target="//@sourceSectionModels.2/@sections.6/@attributes.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+        </instanceSelectors>
+      </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7">
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.2/@sections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>

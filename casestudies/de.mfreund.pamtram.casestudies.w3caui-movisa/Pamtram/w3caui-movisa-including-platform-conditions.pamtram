@@ -3091,7 +3091,7 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" name="test">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
           <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.2/@sections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
@@ -3178,7 +3178,7 @@
           </matcher>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
           <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>

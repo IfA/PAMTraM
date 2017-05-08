@@ -279,6 +279,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getComplexCondition__GetConditionPartsFlat() {
+		return complexConditionEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCondition() {
 		return conditionEClass;
 	}
@@ -522,6 +531,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_LOCAL_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_MAPPING_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION);
+		createEOperation(complexConditionEClass, COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT);
 
 		variadicConditionEClass = createEClass(VARIADIC_CONDITION);
 		createEReference(variadicConditionEClass, VARIADIC_CONDITION__LOCAL_COND_PARTS);
@@ -622,6 +632,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEOperation(getComplexCondition__IsMappingCondition(), ecorePackage.getEBoolean(), "isMappingCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getComplexCondition__IsConditionModelCondition(), ecorePackage.getEBoolean(), "isConditionModelCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getComplexCondition__GetConditionPartsFlat(), this.getComplexCondition(), "getConditionPartsFlat", 1, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(variadicConditionEClass, VariadicCondition.class, "VariadicCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariadicCondition_LocalCondParts(), this.getComplexCondition(), null, "localCondParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

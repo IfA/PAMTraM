@@ -1697,6 +1697,7 @@
           <details key="body" value="return getRootCondition().eContainer() instanceof ConditionModel;"/>
         </eAnnotations>
       </eOperations>
+      <eOperations name="getConditionPartsFlat" lowerBound="1" upperBound="-1" eType="#//condition/ComplexCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="VariadicCondition" abstract="true"
         eSuperTypes="#//condition/ComplexCondition">

@@ -2,6 +2,7 @@
  */
 package pamtram.condition;
 
+import org.eclipse.emf.common.util.EList;
 import pamtram.NamedElement;
 
 /**
@@ -42,6 +43,14 @@ public interface ComplexCondition extends NamedElement {
 	 */
 	boolean isConditionModelCondition();
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	EList<ComplexCondition> getConditionPartsFlat();
+
 	/**
 	 * This iterates upward in the containment hierarchy and determines the <em>root condition</em> of this,
 	 * i.e. the condition for that {@link #eContainer()} returns anything but a {@link ComplexCondition}.

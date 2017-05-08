@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -528,24 +529,35 @@ public class SourceSectionMatcher extends CancelableElement {
 		 * Step 2: Check if each container section (that has not already been
 		 * matched) can be matched, starting from the highest
 		 */
-		return containers.entrySet().stream()
+		List<Entry<SourceSection, EObject>> entries = new ArrayList<>(containers.entrySet());
+		// inverse the iterator order so that we start with the root container
+		Collections.reverse(entries);
+		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new HashMap<>();
+		for (Entry<SourceSection, EObject> container : entries.stream()
 				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
-				.allMatch(container -> {
+				.collect(Collectors.toList())) {
 
-					Optional<MatchedSectionDescriptor> containerDescriptor = this.checkSection(container.getValue(),
-							Optional.empty(), container.getKey(), null);
-					if (!containerDescriptor.isPresent()) {
-						return false;
-					}
+			Optional<MatchedSectionDescriptor> containerDescriptor = this.checkSection(container.getValue(),
+					Optional.empty(), container.getKey(), null);
 
-					// Register the created container descriptor in the
-					// 'sections2Descriptors' map that will be returned
-					// in the end
-					//
-					this.registerDescriptor(container.getKey(), containerDescriptor.get(), false, true);
+			if (!containerDescriptor.isPresent()) {
+				// one of the containers could not be matched so we return
+				// without registering other potential descriptors
+				//
+				return false;
+			}
 
-					return true;
-				});
+			containerDescriptors.put(container.getKey(), containerDescriptor.get());
+		}
+
+		// Register the created container descriptor in the
+		// 'sections2Descriptors' map that will be returned
+		// in the end
+		//
+		containerDescriptors.entrySet().stream()
+				.forEach(entry -> this.registerDescriptor(entry.getKey(), entry.getValue(), false, true));
+
+		return true;
 
 	}
 
@@ -571,7 +583,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 */
 	private Map<SourceSection, EObject> collectContainers(final EObject element, final SourceSection sourceSection) {
 
-		final Map<SourceSection, EObject> containers = new HashMap<>();
+		final LinkedHashMap<SourceSection, EObject> containers = new LinkedHashMap<>();
 
 		SourceSectionClass currentClass = sourceSection;
 		EObject currentElement = element;
@@ -609,6 +621,7 @@ public class SourceSectionMatcher extends CancelableElement {
 			containers.put((SourceSection) currentClass, currentElement);
 
 		}
+
 		return containers;
 	}
 
@@ -688,7 +701,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		// set the list of source model objects that have been mapped.
 		// first, add all mapped objects from 'changedRefsAndHints' ...
-		if (parentDescriptor != null) {
+		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
 			descriptor.addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
 		}
 		// ..., then add the current srcModelObject
@@ -715,9 +728,12 @@ public class SourceSectionMatcher extends CancelableElement {
 			return Optional.empty();
 		}
 
-		// set the associated container descriptor
+		// set the associated container descriptor if the element is checked as
+		// part of a containment reference check
 		//
-		descriptor.setContainerDescriptor(parentDescriptor);
+		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
+			descriptor.setContainerDescriptor(parentDescriptor);
+		}
 
 		return Optional.of(descriptor);
 

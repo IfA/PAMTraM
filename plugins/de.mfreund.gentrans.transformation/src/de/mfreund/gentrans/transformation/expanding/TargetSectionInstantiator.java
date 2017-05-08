@@ -872,6 +872,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							break;
 
 						} else if (hintValues.getHintValues((AttributeMapping) hint).size() < cardinality
+								&& !hintValues.getHintValues((AttributeMapping) hint).isEmpty()
 								&& cardinality % hintValues.getHintValues((AttributeMapping) hint).size() == 0) {
 
 							// Multiply the hint values to fit the cardinality

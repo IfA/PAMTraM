@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -31,6 +32,7 @@ import pamtram.ConditionalElement;
 import pamtram.FixedValue;
 import pamtram.MappingModel;
 import pamtram.condition.ApplicationDependency;
+import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.structure.source.SourceSection;
@@ -177,10 +179,18 @@ public class MappingSelector extends CancelableElement {
 				.collect(Collectors.toList()));
 
 		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings
-				.addAll((this.useParallelization ? this.mappings.parallelStream() : this.mappings.stream())
-						.filter(m -> m.getLocalCondition() instanceof ApplicationDependency)
-						.collect(Collectors.toList()));
+		this.dependentMappings.addAll(
+				(this.useParallelization ? this.mappings.parallelStream() : this.mappings.stream()).filter(m -> {
+					Stream<ComplexCondition> conditionParts;
+					if (m.getLocalCondition() != null) {
+						conditionParts = m.getLocalCondition().getConditionPartsFlat().stream();
+					} else if (m.getSharedCondition() != null) {
+						conditionParts = m.getSharedCondition().getConditionPartsFlat().stream();
+					} else {
+						conditionParts = Stream.empty();
+					}
+					return conditionParts.anyMatch(c -> c instanceof ApplicationDependency);
+				}).collect(Collectors.toList()));
 
 		// Select a mapping for each matched section and each descriptor
 		// instance.

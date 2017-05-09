@@ -7,7 +7,7 @@
 <listAttribute key="libraryPaths"/>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="2"/>
-<stringAttribute key="pamtramFile" value="ctt-aminolight.pamtram"/>
+<stringAttribute key="pamtramFile" value="ctt-aminolight-simple-with-variable-animation-values.pamtram"/>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.ctt-aminolight"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="false"/>
 <listAttribute key="srcFiles">
@@ -21,5 +21,6 @@
 <stringAttribute key="targetLibParser" value=""/>
 <stringAttribute key="targetLibPath" value=""/>
 <stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
 <intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

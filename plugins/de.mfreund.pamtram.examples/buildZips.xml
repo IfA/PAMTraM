@@ -13,11 +13,12 @@
 	<patternset id="autoprobe.includes"
 			includes="
 				.project,
+				autoprobe.launch,
 				metamodel/stgml.xsd_original.ecore,
 				metamodel/stgml.xsd_enhanced.ecore,
 				Pamtram/lib/**,
+				Pamtram/source/**,
 				Pamtram/STGML2Movisa_enhanced.pamtram,
-				Pamtram/STGML2Movisa_original.pamtram,
 				Source/beispiel_ver_0_2_3.xml,
 				Target/out.movisa.xmi"/>
 	
@@ -29,7 +30,8 @@
 				metamodel/AMINO-UI.ecore,
 				metamodel/ctt.xsd.ecore,
 				metamodel/platform.ecore,
-				Pamtram/ctt-aminolight.pamtram,
+				Pamtram/ctt-aminolight-simple-with-fixed-animation-values.pamtram,
+				Pamtram/ctt-aminolight-simple-with-variable-animation-values.pamtram,
 				Source/distanceMeassurement.xml,
 				Source/Smartphone.xmi,
 				Source/SmartphoneWithoutSound.xmi,
@@ -56,6 +58,7 @@
 				metamodel/movisa.ecore,
 				metamodel/Variablen.ecore,
 				Pamtram/excel-movisa-tdp.pamtram,
+				Pamtram/source/**,
 				Source/Variablen.xmi,
 				Target"/>
 	
@@ -73,15 +76,13 @@
 	<patternset id="w3caui-movisa.includes"
 		includes="
 			.project,
-			w3caui-movisa.launch,
-			w3caui-movisa-context-Kleinversuchsanlage01-withMappingConditions.launch,
-			w3caui-movisa-context-Kleinversuchsanlage02-withMappingConditions.launch,
+			w3caui-movisa (platform model 1).launch,
+			w3caui-movisa (platform model 2).launch,
+			w3caui-movisa (platform model 3).launch,
 			metamodel/aui.xsd.ecore,
 			metamodel/movisa.ecore,
 			metamodel/platform_metamodel.ecore,
 			Pamtram/w3caui-movisa.pamtram,
-			Pamtram/w3caui-movisa01.pamtram,
-			Pamtram/w3caui-movisa02.pamtram,
 			Source/allgemeinesModell.xmi,
 			Source/Kleinversuchsanlage.xmi,
 			Source/PMbase1.xmi,
@@ -93,6 +94,7 @@
 	
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
+		
 		<!-- AutoProBe -->
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>
 		<zip destfile="zips/autoprobe.zip" basedir="${projectDir}">

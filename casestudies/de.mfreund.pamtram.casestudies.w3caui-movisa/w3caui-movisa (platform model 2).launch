@@ -7,12 +7,12 @@
 <listAttribute key="libraryPaths"/>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="0"/>
-<stringAttribute key="pamtramFile" value="w3caui-movisa-including-platform-conditions.pamtram"/>
+<stringAttribute key="pamtramFile" value="w3caui-movisa.pamtram"/>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">
 <listEntry value="Kleinversuchsanlage.xmi"/>
-<listEntry value="PMbase1.xmi"/>
+<listEntry value="PMbase2.xmi"/>
 </listAttribute>
 <booleanAttribute key="storeTransformation" value="false"/>
 <stringAttribute key="targetFile" value="out.xmi"/>

@@ -249,20 +249,6 @@
     </setupTask>
     <setupTask
         xsi:type="setup:VariableTask"
-        id="clone.append.suffix"
-        name="clone.append.suffix"
-        defaultValue=" "
-        label="Suffix for cloned repositories">
-      <choice
-          value=" "
-          label="do not append anything"/>
-      <choice
-          value=".git"
-          label=".git"/>
-      <description>Whether or not to append a '.git' suffix to cloned repositories.</description>
-    </setupTask>
-    <setupTask
-        xsi:type="setup:VariableTask"
         id="gitlab.user"
         name="gitlab.user"
         label="Gitlab user name">
@@ -284,7 +270,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.pamtram.main"
           name="clone.location.pamtram.main"
-          value="${clone.location.pamtram}\de.mfreund.pamtram${clone.append.suffix|trimRight}"
+          value="${clone.location.pamtram}\de.mfreund.pamtram"
           defaultValue=""
           label="Clone location pamtram project">
         <description></description>
@@ -293,7 +279,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.genlibrary.main"
           name="clone.location.genlibrary.main"
-          value="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary${clone.append.suffix|trimRight}"
+          value="${clone.location.genlibrary}\de.tud.et.ifa.agtele.genlibrary"
           defaultValue=""
           label="Clone location Genlibrary">
         <description></description>
@@ -302,7 +288,7 @@
           xsi:type="setup:VariableTask"
           id="clone.location.commons.main"
           name="clone.location.commons.main"
-          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons${clone.append.suffix|trimRight}"
+          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons"
           defaultValue=""
           label="Clone location eclipse commons">
         <description></description>

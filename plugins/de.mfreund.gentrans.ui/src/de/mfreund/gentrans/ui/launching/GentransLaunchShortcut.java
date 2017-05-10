@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -14,16 +15,21 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.ui.CommonTab;
 import org.eclipse.debug.ui.ILaunchShortcut2;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.dialogs.ListDialog;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation based on a selection.
+ * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation
+ * based on a selection.
  *
  * @author mfreund
  */
@@ -82,10 +88,33 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 				return;
 			}
 
-		} else {
-			// use the first available launch configuration
-			// TODO let the user choose
+		} else if (launchConfigs.length == 1) {
+
+			// Use the single available configuration
+			//
 			configToLaunch = launchConfigs[0];
+
+		} else {
+
+			// Let the user decide which of the available launch configurations
+			// to use
+			//
+			ListDialog launchConfigSelectionDialog = new ListDialog(UIHelper.getShell());
+			launchConfigSelectionDialog.setTitle("Select Launch Configuration");
+			launchConfigSelectionDialog
+					.setMessage("Multiple suitable launch configurations found. Please select one...");
+			launchConfigSelectionDialog.setLabelProvider(new LabelProvider());
+			launchConfigSelectionDialog.setContentProvider(new ArrayContentProvider());
+			launchConfigSelectionDialog.setInput(launchConfigs);
+			launchConfigSelectionDialog.open();
+
+			Object result = launchConfigSelectionDialog.getResult();
+			if (result == null || !(result instanceof Object[])
+					|| !(((Object[]) result)[0] instanceof ILaunchConfiguration)) {
+				return;
+			}
+
+			configToLaunch = (ILaunchConfiguration) ((Object[]) result)[0];
 		}
 
 		try {
@@ -107,7 +136,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	}
 
 	/**
-	 * Retrieve the existing launch configurations that are available for the current selection.
+	 * Retrieve the existing launch configurations that are available for the
+	 * current selection.
 	 *
 	 * @param selection
 	 *            the current selection
@@ -116,15 +146,17 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	@Override
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
 
-		IResource res = this.getLaunchableResource(selection);
+		IResource launchableResource = this.getLaunchableResource(selection);
+
+		IProject project = launchableResource != null ? launchableResource.getProject() : null;
+
 		// if no launchable project could be determined, return
 		// an empty list of launch configurations
-		if (res == null || !(res instanceof IProject)) {
+		if (project == null) {
 			return new ILaunchConfiguration[] {};
 		}
 
-		IProject project = (IProject) res;
-		ArrayList<ILaunchConfiguration> launchConfigs = new ArrayList<>();
+		List<ILaunchConfiguration> launchConfigs = new ArrayList<>();
 
 		try {
 
@@ -136,11 +168,26 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 			ILaunchConfiguration[] launchConfigurations = launchManager.getLaunchConfigurations(type);
 
 			for (ILaunchConfiguration launchConfiguration : launchConfigurations) {
+
 				// the launch configuration is applicable if the project
-				// attribute matches the launchable resource
+				// attribute matches...
+				//
 				if (launchConfiguration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "")
 						.equals(project.getName())) {
-					launchConfigs.add(launchConfiguration);
+
+					// ... and if the user either selected a project to launch
+					// or the selected file matches a source or the pamtram file
+					// of a launch config
+					//
+					if (launchableResource instanceof IProject
+							|| launchConfiguration
+									.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<>())
+									.contains(launchableResource.getName())
+							|| launchConfiguration
+									.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "")
+									.equals(launchableResource.getName())) {
+						launchConfigs.add(launchConfiguration);
+					}
 				}
 			}
 		} catch (CoreException e) {
@@ -160,10 +207,10 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	@Override
 	public IResource getLaunchableResource(ISelection selection) {
 
-		if (!selection.isEmpty() && selection instanceof TreeSelection) {
+		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
 
 			// the selected object
-			Object el = ((TreeSelection) selection).getFirstElement();
+			Object el = ((IStructuredSelection) selection).getFirstElement();
 
 			if (el instanceof IProject) {
 
@@ -172,14 +219,15 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 			} else if (el instanceof IFile) {
 
-				// if a source or pamtram file has been selected, determine
-				// the corresponding project and return it
+				// if a source or pamtram file has been selected, return it
 				IFile file = (IFile) el;
 				if ((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) && file.getParent().getName()
 						.equals(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))) {
-					return file.getProject();
+					return file;
 				} else if (file.getName().endsWith(".pamtram") && file.getParent().getName()
 						.equals(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"))) {
+					return file;
+				} else {
 					return file.getProject();
 				}
 			}

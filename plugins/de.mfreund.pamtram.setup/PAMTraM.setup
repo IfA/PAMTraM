@@ -192,7 +192,7 @@
         xsi:type="setup:VariableTask"
         id="clone.origin.commons"
         name="clone.origin.commons"
-        defaultValue="git@git.agtele.eats.et.tu-dresden.de:eclipse-commons"
+        defaultValue="git@git.agtele.eats.et.tu-dresden.de:agtele-public/de.tud.et.ifa.agtele.eclipse.commons.git "
         label="AGTele Eclipse Commons clone origin">
       <description>The URL where all projects from the 'AGTele Eclipse Commons' feature will be cloned from.</description>
     </setupTask>
@@ -228,7 +228,7 @@
         xsi:type="setup:VariableTask"
         id="clone.location.commons"
         name="clone.location.commons"
-        defaultValue="${install.root}\repos\eclipse-commons"
+        defaultValue="${install.root}\repos"
         label="AGTele Eclipse Commons clone location">
       <choice
           value="${installation.location/repos/eclipse-commons}"
@@ -307,33 +307,6 @@
           label="Clone location eclipse commons">
         <description></description>
       </setupTask>
-      <setupTask
-          xsi:type="setup:VariableTask"
-          id="clone.location.commons.feature"
-          name="clone.location.commons.feature"
-          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.feature${clone.append.suffix|trimRight}"
-          defaultValue=""
-          label="Clone location eclipse commons feature">
-        <description></description>
-      </setupTask>
-      <setupTask
-          xsi:type="setup:VariableTask"
-          id="clone.location.commons.ui"
-          name="clone.location.commons.ui"
-          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.ui${clone.append.suffix|trimRight}"
-          defaultValue=""
-          label="Clone location eclipse commons ui">
-        <description></description>
-      </setupTask>
-      <setupTask
-          xsi:type="setup:VariableTask"
-          id="clone.location.commons.update-site"
-          name="clone.location.commons.update-site"
-          value="${clone.location.commons}\de.tud.et.ifa.agtele.eclipse.commons.update-site${clone.append.suffix|trimRight}"
-          defaultValue=""
-          label="Clone location eclipse commons update-site">
-        <description></description>
-      </setupTask>
       <description>Definition of clone locations for projects</description>
     </setupTask>
     <setupTask
@@ -406,7 +379,7 @@
           xsi:type="git:GitCloneTask"
           id="clone.commons"
           location="${clone.location.commons.main}"
-          remoteURI="${clone.origin.commons}/de.tud.et.ifa.agtele.eclipse.commons.git">
+          remoteURI="${clone.origin.commons}">
         <configSections
             name="gitflow &quot;prefix&quot;">
           <properties
@@ -433,99 +406,6 @@
         </configSections>
         <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.git' repository.</description>
       </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.commons.ui"
-          location="${clone.location.commons.ui}"
-          remoteURI="${clone.origin.commons}/de.tud.et.ifa.agtele.eclipse.commons.ui.git">
-        <configSections
-            name="gitflow &quot;prefix&quot;">
-          <properties
-              key="feature"
-              value="feature/"/>
-          <properties
-              key="release"
-              value="release/"/>
-          <properties
-              key="hotfix"
-              value="hotfix/"/>
-          <properties
-              key="versiontag"
-              value=""/>
-        </configSections>
-        <configSections
-            name="gitflow &quot;branch&quot;">
-          <properties
-              key="develop"
-              value="develop"/>
-          <properties
-              key="master"
-              value="master"/>
-        </configSections>
-        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.ui.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.commons.feature"
-          location="${clone.location.commons.feature}"
-          remoteURI="${clone.origin.commons}/de.tud.et.ifa.agtele.eclipse.commons.feature.git">
-        <configSections
-            name="gitflow &quot;prefix&quot;">
-          <properties
-              key="feature"
-              value="feature/"/>
-          <properties
-              key="release"
-              value="release/"/>
-          <properties
-              key="hotfix"
-              value="hotfix/"/>
-          <properties
-              key="versiontag"
-              value=""/>
-        </configSections>
-        <configSections
-            name="gitflow &quot;branch&quot;">
-          <properties
-              key="develop"
-              value="develop"/>
-          <properties
-              key="master"
-              value="master"/>
-        </configSections>
-        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.feature.git' repository.</description>
-      </setupTask>
-      <setupTask
-          xsi:type="git:GitCloneTask"
-          id="clone.commons.update-site"
-          location="${clone.location.commons.update-site}"
-          remoteURI="${clone.origin.commons}/de.tud.et.ifa.agtele.eclipse.commons.update-site.git">
-        <configSections
-            name="gitflow &quot;prefix&quot;">
-          <properties
-              key="feature"
-              value="feature/"/>
-          <properties
-              key="release"
-              value="release/"/>
-          <properties
-              key="hotfix"
-              value="hotfix/"/>
-          <properties
-              key="versiontag"
-              value=""/>
-        </configSections>
-        <configSections
-            name="gitflow &quot;branch&quot;">
-          <properties
-              key="develop"
-              value="develop"/>
-          <properties
-              key="master"
-              value="master"/>
-        </configSections>
-        <description>Clone the 'de.tud.et.ifa.agtele.eclipse.commons.update-site.git' repository.</description>
-      </setupTask>
       <description>Clone all necessary git repositories.</description>
     </setupTask>
     <setupTask
@@ -544,12 +424,6 @@
       </sourceLocator>
       <sourceLocator
           rootFolder="${clone.location.commons.main}"/>
-      <sourceLocator
-          rootFolder="${clone.location.commons.ui}"/>
-      <sourceLocator
-          rootFolder="${clone.location.commons.feature}"/>
-      <sourceLocator
-          rootFolder="${clone.location.commons.update-site}"/>
     </setupTask>
     <setupTask
         xsi:type="setup.workingsets:WorkingSetTask"
@@ -660,13 +534,7 @@
               pattern="de.tud.et.ifa.agtele.eclipse.commons"/>
           <operand
               xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.eclipse.commons.ui"/>
-          <operand
-              xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.eclipse.commons.feature"/>
-          <operand
-              xsi:type="predicates:NamePredicate"
-              pattern="de.tud.et.ifa.agtele.eclipse.commons.update-site"/>
+              pattern="de.tud.et.ifa.agtele.eclipse.commons.*"/>
         </predicate>
       </workingSet>
       <description>Add projects to working sets.</description>

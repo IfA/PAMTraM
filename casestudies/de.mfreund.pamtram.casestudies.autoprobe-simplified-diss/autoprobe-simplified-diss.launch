@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+<stringAttribute key="bad_container_name" value="\autoprobe-simplified-diss"/>
+<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableStatistics" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
+<booleanAttribute key="handleExpanding" value="true"/>
+<listAttribute key="libraryPaths"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="2"/>
+<stringAttribute key="pamtramFile" value="stgml-to-movisa-simplified.pamtram"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.autoprobe-simplified-diss"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<listAttribute key="srcFiles">
+<listEntry value="SampleStateModel.xmi"/>
+</listAttribute>
+<booleanAttribute key="storeTransformation" value="false"/>
+<stringAttribute key="targetFile" value="out.xmi"/>
+<stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
+<intAttribute key="weightingFactor" value="50"/>
+</launchConfiguration>

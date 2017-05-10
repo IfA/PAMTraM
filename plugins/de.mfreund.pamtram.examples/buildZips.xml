@@ -22,6 +22,18 @@
 				Source/beispiel_ver_0_2_3.xml,
 				Target/out.movisa.xmi"/>
 	
+	<!-- The files to include in the 'AutoProBe-simplified-diss' example -->
+	<patternset id="autoprobe-simplified-diss.includes"
+			includes="
+				.project,
+				autoprobe-simplified-diss.launch,
+				metamodel/stgml-simplified.ecore,
+				metamodel/movisa-simplified.ecore,
+				Pamtram/stgml-to-movisa-simplified.pamtram,
+				Pamtram/stgml-to-movisa-simplified.pamtram-basic-mappings,
+				Source/SampleStateModel.xmi,
+				Target/SampleVisualizationModel.xmi"/>
+	
 	<!-- The files to include in the 'ctt-aminolight' example -->
 	<patternset id="ctt-aminolight.includes"
 			includes="
@@ -99,6 +111,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>
 		<zip destfile="zips/autoprobe.zip" basedir="${projectDir}">
 			<patternset refid="autoprobe.includes"/>
+		</zip>
+		
+		<!-- AutoProBe -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe-simplified-diss" property="projectDir"/>
+		<zip destfile="zips/autoprobe-simplified-diss.zip" basedir="${projectDir}">
+			<patternset refid="autoprobe-simplified-diss.includes"/>
 		</zip>
 		
 		<!-- CTT-Aminolight -->

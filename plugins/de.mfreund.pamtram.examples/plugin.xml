@@ -17,6 +17,15 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             finalPerspective="de.mfreund.pamtram.pamtramPerspective"
             icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.autoprobe-simplified-diss"
+            name="AutoProBe (simplified version)"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.examples.ctt-aminolight"
             name="CTT -&gt; Aminolight"
             project="true">
@@ -75,6 +84,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.autoprobe/Pamtram/STGML2Movisa_enhanced.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.autoprobe-simplified-diss">
+         <projectDescriptor
+               contentURI="zips/autoprobe-simplified-diss.zip"
+               description="This is an extremely simplified version of the AutoProBe casestudy as used in the dissertation of Matthias Freund. It only demonstrates the creation of Panels/NavigationFlows based on a State model."
+               name="de.mfreund.pamtram.casestudies.autoprobe-simplified-diss">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.autoprobe-simplified-diss/Pamtram/stgml-to-movisa-simplified.pamtram">
          </fileToOpen>
       </example>
       <example

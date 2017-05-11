@@ -8,19 +8,22 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.PAMTraM;
 
 /**
- * This provides an abstract, extensible implementation of {@link IAmbiguityResolvingStrategy}.
+ * This provides an abstract, extensible implementation of
+ * {@link IAmbiguityResolvingStrategy}.
  *
  * @author mfreund
  */
 public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityResolvingStrategy {
 
 	/**
-	 * This keeps track of the {@link PAMTraM} instance that the current transformation operates on.
+	 * This keeps track of the {@link PAMTraM} instances that the current
+	 * transformation operate on.
 	 */
-	protected PAMTraM pamtramModel;
+	protected List<PAMTraM> pamtramModels;
 
 	/**
-	 * This keeps track of the list of {@link EObject sourceModels} that serve as input to the current transformation.
+	 * This keeps track of the list of {@link EObject sourceModels} that serve
+	 * as input to the current transformation.
 	 */
 	protected List<EObject> sourceModels;
 
@@ -32,14 +35,14 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	private Logger logger;
 
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
+	public void init(List<PAMTraM> pamtramModels, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 
 		this.logger = logger;
 
 		this.printMessage("Initializing strategy '" + this.getClass().getSimpleName() + "'...");
 
-		this.pamtramModel = pamtramModel;
+		this.pamtramModels = pamtramModels;
 		this.sourceModels = sourceModels;
 	}
 

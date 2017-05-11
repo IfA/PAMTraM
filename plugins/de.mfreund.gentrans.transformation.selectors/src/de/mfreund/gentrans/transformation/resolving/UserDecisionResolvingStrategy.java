@@ -5,9 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -22,6 +27,9 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootE
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -126,11 +134,16 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			return choices;
 		}
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> EcoreUtil.isAncestor(p.getTargetSections(), attribute)).findAny();
+
 		String dialogMessage = "Please specify a value for the TargetSectionAttribute '"
 				+ attribute.getOwningClass().getName() + "." + attribute.getName() + "':";
 
 		InstantiatingSelectAttributeValueMappingModelEnhancer enhancer = new InstantiatingSelectAttributeValueMappingModelEnhancer(
-				this.pamtramModel, attribute, mappingHintGroup);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				attribute, mappingHintGroup);
 		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage, enhancer);
 
 		Display.getDefault().syncExec(dialog);
@@ -188,14 +201,21 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
-		ArrayList<String> classNames = new ArrayList<>();
+		List<String> classNames = new ArrayList<>();
 
 		for (EClass eClass : choices) {
 			classNames.add(eClass.getName());
 		}
 
+		Set<EPackage> ePackages = choices.stream().map(AgteleEcoreUtil::getRootEPackage).collect(Collectors.toSet());
+
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream().filter(p -> p.getTargetSectionModels().stream()
+				.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toSet()).containsAll(ePackages))
+				.findAny();
+
 		JoiningSelectRootElementMappingModelEnhancer enhancer = new JoiningSelectRootElementMappingModelEnhancer(
-				this.pamtramModel);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
 		final GenericSelectionDialogRunner<EClass> dialog = new GenericSelectionDialogRunner<EClass>(
 				"There was more than one target model element that could not be connected to a root element. Therefore "
 						+ "a model root element needs to be created. Please select a fitting class:",
@@ -220,8 +240,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> p.getTargetSections().contains(section)).findAny();
+
 		JoiningSelectConnectionPathMappingModelEnhancer enhancer = new JoiningSelectConnectionPathMappingModelEnhancer(
-				this.pamtramModel, section);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				section);
 		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
@@ -241,8 +266,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> p.getTargetSections().contains(section)).findAny();
+
 		JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer enhancer = new JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(
-				this.pamtramModel, section);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				section);
 		final PathAndInstanceSelectorRunner<ModelConnectionPath> dialog = new PathAndInstanceSelectorRunner<>(
 				sectionInstances.size() + " Instance" + (sectionInstances.size() > 1 ? "s" : "")
 						+ " of the TargetSection '" + section.getName() + "', created by the mapping '"
@@ -293,8 +323,15 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
 		}
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> p.getTargetSections()
+						.containsAll(modelConnectionHint.getTargetAttributes().stream()
+								.map(t -> t.getSource().getContainingSection()).collect(Collectors.toList())))
+				.findAny();
+
 		JoiningSelectContainerInstanceMappingModelEnhancer enhancer = hintGroup instanceof MappingHintGroup
-				? new JoiningSelectContainerInstanceMappingModelEnhancer(this.pamtramModel,
+				? new JoiningSelectContainerInstanceMappingModelEnhancer(pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 						(MappingHintGroup) hintGroup)
 				: null;
 

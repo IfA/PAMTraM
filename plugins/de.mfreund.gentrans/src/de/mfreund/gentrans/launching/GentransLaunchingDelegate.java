@@ -231,7 +231,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		//
 		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFiles,
 				targetBasePath, defaultTargetModel, transformationFile,
-				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new HashSet<>()),
+				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>()),
 				resolvingStrategy, maxPathLength, rememberAmbiguousMappingChoice, logLevel, useParallelization);
 
 		job.setUser(true);

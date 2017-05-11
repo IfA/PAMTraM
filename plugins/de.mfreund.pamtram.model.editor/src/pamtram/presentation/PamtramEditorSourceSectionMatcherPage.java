@@ -1,6 +1,7 @@
 package pamtram.presentation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
@@ -51,8 +52,8 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * The page of the {@link PamtramEditor} that allows to check which source sections are matched for a given source
- * model..
+ * The page of the {@link PamtramEditor} that allows to check which source
+ * sections are matched for a given source model..
  *
  * @author mfreund
  */
@@ -64,8 +65,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	protected PamtramEditor editor;
 
 	/**
-	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This is the one adapter factory used for providing views of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
@@ -130,7 +131,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	protected IProject project;
 
 	/**
-	 * This is the list of matched sections that is determined when the user selects a source model.
+	 * This is the list of matched sections that is determined when the user
+	 * selects a source model.
 	 */
 	protected Map<SourceSectionClass, Set<EObject>> matchedSections;
 
@@ -138,7 +140,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	 * This creates an instance.
 	 *
 	 * @param parent
-	 *            A widget which will be the parent of the new instance (cannot be null)
+	 *            A widget which will be the parent of the new instance (cannot
+	 *            be null)
 	 * @param style
 	 *            The style of widget to construct
 	 * @param adapterFactory
@@ -223,14 +226,16 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		this.sourceModelGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		this.sourceModelGroup.setLayout(new GridLayout(1, true));
 
-		// Create a drop-down list that allows to select the source model to be analysed.
+		// Create a drop-down list that allows to select the source model to be
+		// analysed.
 		this.sourceModelCombo = new Combo(this.sourceModelGroup, SWT.DROP_DOWN | SWT.BORDER);
 		{
 			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 			gd.grabExcessHorizontalSpace = true;
 			this.sourceModelCombo.setLayoutData(gd);
 		}
-		// Create a modify listener that updates the source model based on the selection.
+		// Create a modify listener that updates the source model based on the
+		// selection.
 		this.sourceModelCombo.addModifyListener(e -> PamtramEditorSourceSectionMatcherPage.this.updateSourceModel());
 
 		// Get the current project.
@@ -238,7 +243,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 		try {
 			if (this.project.hasNature("de.mfreund.pamtram.pamtramNature")) {
-				// populate the current source projects in the workspace to the list
+				// populate the current source projects in the workspace to the
+				// list
 				for (IResource res : this.project.getFolder(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))
 						.members()) {
 					if (res.getName().endsWith(".xml") || res.getName().endsWith(".xmi")) {
@@ -260,11 +266,11 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	}
 
 	/**
-	 * This updates the source model file shown in the source model tree based on the current selection in the source
-	 * model combo.
+	 * This updates the source model file shown in the source model tree based
+	 * on the current selection in the source model combo.
 	 *
-	 * TODO There should be no direct dependency to the gentrans plug-in/the GenericTransformationRunner. This should be
-	 * solved by an extension point.
+	 * TODO There should be no direct dependency to the gentrans plug-in/the
+	 * GenericTransformationRunner. This should be solved by an extension point.
 	 */
 	protected void updateSourceModel() {
 
@@ -302,9 +308,10 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		EList<EObject> contents = modelResource.getContents();
 
 		/*
-		 * If an xml source file has been selected, we have to omit the 'document root' element and instead determine
-		 * the actual contents. Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT' somehow does not
-		 * seem to work.
+		 * If an xml source file has been selected, we have to omit the
+		 * 'document root' element and instead determine the actual contents.
+		 * Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT'
+		 * somehow does not seem to work.
 		 */
 		if (contents.get(0).eClass().getName().equals("DocumentRoot")) {
 			contents = contents.get(0).eContents();
@@ -318,13 +325,14 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				+ PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 		String defaultTargetModel = "temp.xmi";
 
-		// Create a transformation runner and use it to get the matching source sections
+		// Create a transformation runner and use it to get the matching source
+		// sections
 		//
 		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
 				.withDefaultTargetModel(defaultTargetModel);
 
 		GenericTransformationRunner tr = GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourceModels(
-				new ArrayList<>(contents), this.editor.pamtram, targetBasePath, baseConfig);
+				new ArrayList<>(contents), Arrays.asList(this.editor.pamtram), targetBasePath, baseConfig);
 
 		this.matchedSections = tr.matchSourceSections();
 
@@ -341,12 +349,15 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 				SourceSectionClass sourceSectionClass = null;
 
-				// get the source section for which the matched elements in the source
-				// model viewer shall be shown (depending on the users selection)
+				// get the source section for which the matched elements in the
+				// source
+				// model viewer shall be shown (depending on the users
+				// selection)
 				//
 				if (((TreeItem) e.item).getData() instanceof SourceSectionClass) {
 					sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
-					// do not select a mapping because multiple mappings could make use of
+					// do not select a mapping because multiple mappings could
+					// make use of
 					// this source section
 					PamtramEditorSourceSectionMatcherPage.this.mappingViewer.setSelection(new StructuredSelection());
 				} else {
@@ -355,7 +366,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				}
 
 				if (sourceSectionClass != null) {
-					// find the 'matched sections' for the selected source section
+					// find the 'matched sections' for the selected source
+					// section
 					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
 						if (EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
@@ -395,12 +407,15 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 				SourceSectionClass sourceSectionClass = null;
 
-				// get the source section for which the matched elements in the source
-				// model viewer shall be shown (depending on the users selection)
+				// get the source section for which the matched elements in the
+				// source
+				// model viewer shall be shown (depending on the users
+				// selection)
 				//
 				if (((TreeItem) e.item).getData() instanceof MappingType) {
 					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceSection();
-					// select the source section for this mapping (that is used to find the matched elements
+					// select the source section for this mapping (that is used
+					// to find the matched elements
 					PamtramEditorSourceSectionMatcherPage.this.sourceViewer
 							.setSelection(new StructuredSelection(sourceSectionClass), true);
 				} else {
@@ -409,7 +424,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				}
 
 				if (sourceSectionClass != null) {
-					// find the 'matched sections' for the selected source section
+					// find the 'matched sections' for the selected source
+					// section
 					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
 						if (EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
@@ -499,8 +515,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 			String activeSelection = settings.get("ACTIVE_SELECTION");
 			/*
-			 * as the URI of an eObject also reflects the containing resource, we can use this to uniquely identify an
-			 * eObject inside a resource set
+			 * as the URI of an eObject also reflects the containing resource,
+			 * we can use this to uniquely identify an eObject inside a resource
+			 * set
 			 */
 			EObject selection = this.editor.getEditingDomain().getResourceSet()
 					.getEObject(URI.createURI(activeSelection), true);

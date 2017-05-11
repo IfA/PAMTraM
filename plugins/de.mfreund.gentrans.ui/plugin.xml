@@ -8,7 +8,16 @@
         id="de.mfreund.gentrans.launchConfigurationTypeImage.gentrans">
     </launchConfigurationTypeImage>
 </extension>
-
+<extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="de.mfreund.gentrans.ui.launching.IsLaunchablePropertyTester"
+            id="de.mfreund.gentrans.ui.launching.isLaunchable"
+            namespace="de.mfreund.gentrans.ui.launching"
+            properties="isLaunchable"
+            type="java.lang.Object">
+      </propertyTester>
+   </extension>
 <extension
          point="org.eclipse.debug.ui.launchConfigurationTabGroups">
       <launchConfigurationTabGroup
@@ -31,12 +40,11 @@
     </description>
   <contextualLaunch>
   	<enablement>
-  	<with variable="selection">
-  	<iterate>
-          <test property="org.eclipse.core.resources.projectNature" value="de.mfreund.pamtram.pamtramNature" />
-      </iterate>
-     </with>
-  </enablement>
+   <test
+         forcePluginActivation="true"
+         property="de.mfreund.gentrans.ui.launching.isLaunchable">
+   </test>
+   </enablement>
   </contextualLaunch>
   <configurationType
     id="de.mfreund.gentrans.launchConfigurationType.gentrans">

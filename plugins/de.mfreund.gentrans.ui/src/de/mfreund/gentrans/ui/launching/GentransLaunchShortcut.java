@@ -2,6 +2,7 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -20,12 +21,13 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.dialogs.ListDialog;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation
@@ -38,54 +40,70 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	@Override
 	public void launch(ISelection selection, String mode) {
 
-		ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
-		ILaunchConfigurationType type = launchManager
+		this.launch(this.getLaunchableResource(selection), mode);
+
+	}
+
+	@Override
+	public void launch(IEditorPart editor, String mode) {
+
+		this.launch(this.getLaunchableResource(editor), mode);
+
+	}
+
+	protected void launch(IResource launchableResource, String mode) {
+
+		if (launchableResource == null) {
+			MessageDialog.openError(new Shell(), "Error", "No launchable resource found!");
+			return;
+		}
+
+		Optional<ILaunchConfiguration> configToLaunch = this.getConfigurationToLaunch(launchableResource);
+
+		if (!configToLaunch.isPresent()) {
+			return;
+		}
+
+		try {
+			// launch the configuration
+			configToLaunch.get().launch(mode, null);
+
+		} catch (CoreException e) {
+			MessageDialog.openError(new Shell(), "Error", e.getMessage());
+			return;
+		}
+	}
+
+	/**
+	 * For the given launchable {@link IResource}, get a single
+	 * {@link ILaunchConfiguration} to launch.
+	 *
+	 * @param launchableResource
+	 *            The {@link IResource} for which a launch configuration shall
+	 *            be returned.
+	 * @return The {@link ILaunchConfiguration} to launch or an empty optional
+	 *         if no suitable configuration could be determined/created.
+	 */
+	protected Optional<ILaunchConfiguration> getConfigurationToLaunch(IResource launchableResource) {
+
+		ILaunchConfigurationType type = DebugPlugin.getDefault().getLaunchManager()
 				.getLaunchConfigurationType("de.mfreund.gentrans.launchConfigurationType.gentrans");
 
 		// get the existing launch configurations for the current selection
-		ILaunchConfiguration[] launchConfigs = this.getLaunchConfigurations(selection);
+		ILaunchConfiguration[] launchConfigs = this.getLaunchConfigurations(launchableResource);
 
 		ILaunchConfiguration configToLaunch;
 
 		if (launchConfigs.length == 0) {
-			// if no launch config has been found, create a new one
+
+			// If no launch config has been found, create a new one
+			//
 			try {
-				IResource res = this.getLaunchableResource(selection);
-				if (res == null) {
-					MessageDialog.openError(new Shell(), "Error", "No launchable resource found!");
-					return;
-				}
-				ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, res.getName());
-
-				// set default for common settings
-				CommonTab tab = new CommonTab();
-				tab.setDefaults(workingCopy);
-				tab.dispose();
-
-				// the context to use in the transformation
-				GentransLaunchContext context = new GentransLaunchContext();
-
-				// set default for gentrans main settings
-				GentransLaunchMainTab mainTab = new GentransLaunchMainTab(context);
-				mainTab.setDefaults(workingCopy);
-				mainTab.dispose();
-
-				// set default for gentrans ambiguity settings
-				GentransLaunchAmbiguityTab ambiguityTab = new GentransLaunchAmbiguityTab(context);
-				ambiguityTab.setDefaults(workingCopy);
-				ambiguityTab.dispose();
-
-				// set default for gentrans library settings
-				GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab(context);
-				libraryTab.setDefaults(workingCopy);
-				libraryTab.dispose();
-
-				// save the working copy
-				configToLaunch = workingCopy.doSave();
+				configToLaunch = this.createNewLaunchConfiguration(launchableResource, type);
 
 			} catch (CoreException e) {
 				MessageDialog.openError(new Shell(), "Error", e.getMessage());
-				return;
+				return Optional.empty();
 			}
 
 		} else if (launchConfigs.length == 1) {
@@ -111,28 +129,58 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 			Object result = launchConfigSelectionDialog.getResult();
 			if (result == null || !(result instanceof Object[])
 					|| !(((Object[]) result)[0] instanceof ILaunchConfiguration)) {
-				return;
+				return Optional.empty();
 			}
 
 			configToLaunch = (ILaunchConfiguration) ((Object[]) result)[0];
 		}
-
-		try {
-
-			// launch the configuration
-			configToLaunch.launch(mode, null);
-
-		} catch (CoreException e) {
-			MessageDialog.openError(new Shell(), "Error", e.getMessage());
-			return;
-		}
-
+		return Optional.of(configToLaunch);
 	}
 
-	@Override
-	public void launch(IEditorPart editor, String mode) {
+	/**
+	 * Create a new {@link ILaunchConfiguration} for the given launchable
+	 * resource.
+	 *
+	 * @param launchableResource
+	 *            The launchable {@link IResource} for that a configuration
+	 *            shall be create.
+	 * @param type
+	 *            The {@link ILaunchConfigurationType type} of launch
+	 *            configuration to create.
+	 * @return The created {@link ILaunchConfiguration}.
+	 * @throws CoreException
+	 */
+	protected ILaunchConfiguration createNewLaunchConfiguration(IResource launchableResource,
+			ILaunchConfigurationType type) throws CoreException {
+		ILaunchConfiguration configToLaunch;
+		ILaunchConfigurationWorkingCopy workingCopy = type.newInstance(null, launchableResource.getName());
 
-		return;
+		// set default for common settings
+		CommonTab tab = new CommonTab();
+		tab.setDefaults(workingCopy);
+		tab.dispose();
+
+		// the context to use in the transformation
+		GentransLaunchContext context = new GentransLaunchContext();
+
+		// set default for gentrans main settings
+		GentransLaunchMainTab mainTab = new GentransLaunchMainTab(context);
+		mainTab.setDefaults(workingCopy);
+		mainTab.dispose();
+
+		// set default for gentrans ambiguity settings
+		GentransLaunchAmbiguityTab ambiguityTab = new GentransLaunchAmbiguityTab(context);
+		ambiguityTab.setDefaults(workingCopy);
+		ambiguityTab.dispose();
+
+		// set default for gentrans library settings
+		GentransLaunchLibraryTab libraryTab = new GentransLaunchLibraryTab(context);
+		libraryTab.setDefaults(workingCopy);
+		libraryTab.dispose();
+
+		// save the working copy
+		configToLaunch = workingCopy.doSave();
+		return configToLaunch;
 	}
 
 	/**
@@ -148,6 +196,35 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 		IResource launchableResource = this.getLaunchableResource(selection);
 
+		return this.getLaunchConfigurations(launchableResource);
+	}
+
+	/**
+	 * Retrieve the existing launch configurations that are available for the
+	 * current editor part.
+	 *
+	 * @param editorpart
+	 *            the current editor part
+	 * @return a list of launch configurations for the current editor part
+	 */
+	@Override
+	public ILaunchConfiguration[] getLaunchConfigurations(IEditorPart editorpart) {
+
+		IResource launchableResource = this.getLaunchableResource(editorpart);
+
+		return this.getLaunchConfigurations(launchableResource);
+	}
+
+	/**
+	 * Retrieve the existing launch configurations that are available for the
+	 * given launchable {@link IResource resource}.
+	 *
+	 * @param launchableResource
+	 *            the {@link IResource} for that the launch configurations shall
+	 *            be retrieved
+	 * @return a list of launch configurations for the given resource
+	 */
+	protected ILaunchConfiguration[] getLaunchConfigurations(IResource launchableResource) {
 		IProject project = launchableResource != null ? launchableResource.getProject() : null;
 
 		// if no launchable project could be determined, return
@@ -199,46 +276,49 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 	}
 
 	@Override
-	public ILaunchConfiguration[] getLaunchConfigurations(IEditorPart editorpart) {
-
-		return new ILaunchConfiguration[] {};
-	}
-
-	@Override
 	public IResource getLaunchableResource(ISelection selection) {
 
-		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if (selection.isEmpty() || !(selection instanceof IStructuredSelection)) {
+			return null;
+		}
 
-			// the selected object
-			Object el = ((IStructuredSelection) selection).getFirstElement();
+		Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
 
-			if (el instanceof IProject) {
+		if (selectedElement instanceof IProject) {
 
-				// if a project has been selected, return it
-				return (IProject) el;
+			return IsLaunchablePropertyTester.isLaunchablePamtramProject((IProject) selectedElement)
+					? (IProject) selectedElement : null;
 
-			} else if (el instanceof IFile) {
+		} else if (selectedElement instanceof IFile) {
 
-				// if a source or pamtram file has been selected, return it
-				IFile file = (IFile) el;
-				if ((file.getName().endsWith(".xmi") || file.getName().endsWith(".xml")) && file.getParent().getName()
-						.equals(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))) {
-					return file;
-				} else if (file.getName().endsWith(".pamtram") && file.getParent().getName()
-						.equals(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"))) {
-					return file;
-				} else {
-					return file.getProject();
-				}
+			if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) selectedElement)
+					|| IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) selectedElement)) {
+				return (IFile) selectedElement;
+			} else {
+				return IsLaunchablePropertyTester.isLaunchablePamtramProject(((IFile) selectedElement).getProject())
+						? ((IFile) selectedElement).getProject() : null;
 			}
 		}
 
-		// no launchable resource could be determined
 		return null;
 	}
 
 	@Override
 	public IResource getLaunchableResource(IEditorPart editorpart) {
+
+		if (UIHelper.getCurrentEditor() == null || !UIHelper.getCurrentEditor().equals(editorpart)) {
+			return null;
+		}
+
+		IEditorInput editorInput = UIHelper.getCurrentEditorInput();
+
+		if (editorInput instanceof IFileEditorInput) {
+
+			IFile file = ((IFileEditorInput) editorInput).getFile();
+
+			return IsLaunchablePropertyTester.isLaunchablePamtramFile(file)
+					|| IsLaunchablePropertyTester.isLaunchableSourceFile(file) ? file : null;
+		}
 
 		return null;
 	}

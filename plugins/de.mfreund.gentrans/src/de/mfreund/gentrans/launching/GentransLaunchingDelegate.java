@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,7 +61,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	/**
 	 * The name of the 'pamtramFile' attribute.
 	 */
-	public static final String ATTRIBUTE_NAME_PAMTRAM_FILE = "pamtramFile";
+	public static final String ATTRIBUTE_NAME_PAMTRAM_FILES = "pamtramFiles";
 
 	/**
 	 * The name of the 'targetFile' attribute.
@@ -165,14 +167,18 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the associated files from the launch configuration
 		//
 		final String project = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "");
-		ArrayList<String> sourceFiles = new ArrayList<>();
+		Set<String> sourceFiles = new HashSet<>();
 		for (String sourceFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
 				new ArrayList<>())) {
 			sourceFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.SOURCE_FOLDER_NAME + IPath.SEPARATOR
 					+ sourceFile);
 		}
-		String pamtramFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR
-				+ configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "");
+		Set<String> pamtramFiles = new HashSet<>();
+		for (String pamtramFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
+				new ArrayList<>())) {
+			pamtramFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR
+					+ pamtramFile);
+		}
 		String targetBasePath = project + IPath.SEPARATOR + GentransLaunchingDelegate.TARGET_FOLDER_NAME;
 		String defaultTargetModel = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
 				"out.xmi");
@@ -223,9 +229,9 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// Create and run the transformation job
 		//
-		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFile,
+		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFiles,
 				targetBasePath, defaultTargetModel, transformationFile,
-				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>()),
+				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new HashSet<>()),
 				resolvingStrategy, maxPathLength, rememberAmbiguousMappingChoice, logLevel, useParallelization);
 
 		job.setUser(true);
@@ -358,7 +364,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			throw new GentransLaunchingDelegateValidationException("No source file has been specified!");
 		}
 
-		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "").isEmpty()) {
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, new ArrayList<>())
+				.isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No pamtram file has been specified!");
 		}
 

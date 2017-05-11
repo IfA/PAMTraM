@@ -260,9 +260,8 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 							|| launchConfiguration
 									.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<>())
 									.contains(launchableResource.getName())
-							|| launchConfiguration
-									.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "")
-									.equals(launchableResource.getName())) {
+							|| launchConfiguration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
+									new ArrayList<>()).contains(launchableResource.getName())) {
 						launchConfigs.add(launchConfiguration);
 					}
 				}

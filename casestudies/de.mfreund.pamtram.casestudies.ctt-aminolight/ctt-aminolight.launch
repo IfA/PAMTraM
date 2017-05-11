@@ -8,6 +8,7 @@
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="2"/>
 <stringAttribute key="pamtramFile" value="ctt-aminolight-simple-with-variable-animation-values.pamtram"/>
+<listAttribute key="pamtramFiles"/>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.ctt-aminolight"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="false"/>
 <listAttribute key="srcFiles">

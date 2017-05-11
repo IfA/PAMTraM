@@ -177,8 +177,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			 * try to execute all active mappings (this includes the 4 resp. 5
 			 * main steps of the transformation
 			 */
-			transformationResult = this.executeMappings(this.transformationConfig.getSourceModels(),
-					this.transformationConfig.getPamtramModel(), monitorWrapper);
+			transformationResult = this.executeMappings(monitorWrapper);
 		} catch (CancelTransformationException e1) {
 			if (e1.getMessage() != null && !e1.getMessage().isEmpty()) {
 				this.transformationConfig.getLogger().severe(e1.getMessage());
@@ -252,13 +251,14 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// Select the SourceSections that we want to match.
 		// contained in active hint groups?
-		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModel().getSourceSections()
-				.parallelStream().filter(s -> !s.isAbstract()).collect(Collectors.toList());
+		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModels().stream()
+				.flatMap(p -> p.getSourceSections().stream()).filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
 		// Collect the global values modeled in the PAMTraM instance
 		//
-		Map<FixedValue, String> globalFixedValues = this.transformationConfig.getPamtramModel().getGlobalValues()
-				.parallelStream().collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
+		Map<FixedValue, String> globalFixedValues = this.transformationConfig.getPamtramModels().stream()
+				.flatMap(p -> p.getGlobalValues().stream())
+				.collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
 
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
@@ -326,7 +326,7 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// validate the PAMTraM model
 		//
-		if (!this.validatePamtramModel(transformationConfig)) {
+		if (!this.validatePamtramModels(transformationConfig)) {
 			return false;
 		}
 
@@ -335,14 +335,14 @@ public class GenericTransformationRunner extends CancelableElement {
 		// That way, we get a 'clean' model (without any extensions) that we can
 		// handle in a normal way
 		//
-		transformationConfig.getPamtramModel().mergeExtends();
+		transformationConfig.getPamtramModels().stream().forEach(PAMTraM::mergeExtends);
 
 		// Initialize the ambiguity resolving strategy
 		//
 		this.writePamtramMessage("Initializing ambiguity resolving strategy");
 		try {
 
-			transformationConfig.getAmbiguityResolvingStrategy().init(transformationConfig.getPamtramModel(),
+			transformationConfig.getAmbiguityResolvingStrategy().init(transformationConfig.getPamtramModels(),
 					transformationConfig.getSourceModels(), transformationConfig.getLogger());
 			transformationConfig.getLogger().info("\nInitialization Successful!");
 
@@ -357,21 +357,23 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This validates the given {@link PAMTraM} model using the
+	 * This validates the given {@link PAMTraM} models using the
 	 * {@link Diagnostician}. If errors occur, the user is asked whether to
 	 * proceed anyway.
 	 *
 	 * @param transformationConfiguration
 	 *            The {@link TransformationConfiguration} specifying the
-	 *            {@link PAMTraM} model to validate.
+	 *            {@link PAMTraM} models to validate.
 	 * @return '<em><b>true</b></em>' if the validation succeeded or if the user
 	 *         chose to ignore errors; '<em><b>false/b></em>' otherwise.
 	 */
-	private boolean validatePamtramModel(TransformationConfiguration transformationConfiguration) {
+	private boolean validatePamtramModels(TransformationConfiguration transformationConfiguration) {
 
-		Diagnostic diag = Diagnostician.INSTANCE.validate(transformationConfiguration.getPamtramModel());
+		Set<Integer> diags = transformationConfiguration.getPamtramModels().stream()
+				.map(pamtramModel -> Diagnostician.INSTANCE.validate(pamtramModel).getSeverity())
+				.collect(Collectors.toSet());
 
-		if (diag.getSeverity() == Diagnostic.ERROR) {
+		if (diags.contains(Diagnostic.ERROR)) {
 			final AtomicBoolean result = new AtomicBoolean();
 
 			Display.getDefault().syncExec(
@@ -390,19 +392,13 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * This performs the actual execution of the transformation. In the course
 	 * of this method, the four main steps of the transformation get executed.
 	 *
-	 * @param sourceModels
-	 *            The list of {@link EObject source models} to be transformed.
-	 * @param pamtramModel
-	 *            The {@link PAMTraM} instance that describes the
-	 *            transformation.
 	 * @param monitor
 	 *            The {@link IProgressMonitor monitor} that shall be used to
 	 *            visualize the progress of the transformation.
 	 * @return '<em><b>true</b></em>' if the transformation was performed
 	 *         successfully, '<em><b>false</b></em>' otherwise
 	 */
-	private TransformationResult executeMappings(final List<EObject> sourceModels, final PAMTraM pamtramModel,
-			final IProgressMonitor monitor) {
+	private TransformationResult executeMappings(final IProgressMonitor monitor) {
 
 		// The TransformationResult that we will return in the end.
 		//
@@ -410,7 +406,8 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// The list of active mappings defined in the PAMTraM model
 		//
-		final List<Mapping> suitableMappings = this.transformationConfig.getPamtramModel().getActiveMappings();
+		final List<Mapping> suitableMappings = this.transformationConfig.getPamtramModels().stream()
+				.flatMap(p -> p.getActiveMappings().stream()).collect(Collectors.toList());
 
 		// generate storage objects and generators
 		final AttributeValueModifierExecutor attributeValueModifier = AttributeValueModifierExecutor
@@ -419,8 +416,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Perform the 'matching' step of the transformation
 		 */
-		MatchingResult matchingResult = this.performMatching(sourceModels, suitableMappings, attributeValueModifier,
-				monitor);
+		MatchingResult matchingResult = this.performMatching(this.transformationConfig.getSourceModels(),
+				suitableMappings, attributeValueModifier, monitor);
 		transformationResult.setMatchingResult(matchingResult);
 
 		if (matchingResult.isCanceled()) {
@@ -508,13 +505,14 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// Select the SourceSections that we want to match.
 		// contained in active hint groups?
-		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModel().getSourceSections()
-				.stream().filter(s -> !s.isAbstract()).collect(Collectors.toList());
+		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModels().stream()
+				.flatMap(p -> p.getSourceSections().stream()).filter(s -> !s.isAbstract()).collect(Collectors.toList());
 
 		// Collect the global values modeled in the PAMTraM instance
 		//
-		Map<FixedValue, String> globalFixedValues = this.transformationConfig.getPamtramModel().getGlobalValues()
-				.stream().collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
+		Map<FixedValue, String> globalFixedValues = this.transformationConfig.getPamtramModels().stream()
+				.flatMap(p -> p.getGlobalValues().stream())
+				.collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
 
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
@@ -537,8 +535,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		GlobalAttributeValueExtractor globalAttributeValueExtractor = new GlobalAttributeValueExtractor(
 				attributeValueModifier, this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
-		Map<GlobalAttribute, String> globalAttributeValues = globalAttributeValueExtractor.extractGlobalAttributeValues(
-				matchingResult, this.transformationConfig.getPamtramModel().getMappingModels());
+		Map<GlobalAttribute, String> globalAttributeValues = globalAttributeValueExtractor
+				.extractGlobalAttributeValues(matchingResult, this.transformationConfig.getPamtramModels().stream()
+						.flatMap(p -> p.getMappingModels().stream()).collect(Collectors.toList()));
 
 		// Collect the values of FixedValues and GlobalAttributes in a common
 		// map that will be passed to consumers
@@ -623,8 +622,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		this.writePamtramMessage("Analyzing target metamodel");
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				this.transformationConfig.getLogger(), attrValueRegistry,
-				new LinkedHashSet<>(this.transformationConfig.getPamtramModel().getTargetSectionModels().stream()
-						.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toList())));
+				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
+						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+						.collect(Collectors.toList())));
 		this.objectsToCancel.add(targetSectionRegistry);
 
 		this.writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
@@ -893,12 +893,12 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// Populate the transformation model with the participating models
 		//
-		transformationModel.setPamtramInstance( // add pamtram model
-				this.transformationConfig.getPamtramModel());
+		transformationModel.getPamtramInstances().addAll( // add pamtram models
+				this.transformationConfig.getPamtramModels());
 		transformationModel.getLibraryEntries().addAll( // add library entries
-				this.transformationConfig.getPamtramModel().getTargetSectionModels().stream()
-						.flatMap(t -> t.getLibraryElements().stream()).map(LibraryEntry::getOriginalLibraryEntry)
-						.collect(Collectors.toList()));
+				this.transformationConfig.getPamtramModels().stream()
+						.flatMap(p -> p.getTargetSectionModels().stream().flatMap(t -> t.getLibraryElements().stream()))
+						.map(LibraryEntry::getOriginalLibraryEntry).collect(Collectors.toList()));
 		transformationModel.getSourceModels().addAll( // add source models
 				this.transformationConfig.getSourceModels());
 		transformationModel.getTargetModels().addAll( // add target models
@@ -1005,12 +1005,14 @@ public class GenericTransformationRunner extends CancelableElement {
 			}
 
 			/*
-			 * copy the pamtram instance
+			 * copy the pamtram instances
 			 */
-			XMIResource pamtramModelResource = (XMIResource) resFactory.createResource(transformationFolderUri
-					.appendSegment(transformationModel.getPamtramInstance().eResource().getURI().lastSegment()));
-			pamtramModelResource.getContents().add(transformationModel.getPamtramInstance());
-			pamtramModelResource.save(options);
+			for (PAMTraM pamtramModel : transformationModel.getPamtramInstances()) {
+				XMIResource pamtramModelResource = (XMIResource) resFactory.createResource(
+						transformationFolderUri.appendSegment(pamtramModel.eResource().getURI().lastSegment()));
+				pamtramModelResource.getContents().add(pamtramModel);
+				pamtramModelResource.save(options);
+			}
 
 			/*
 			 * copy the source models

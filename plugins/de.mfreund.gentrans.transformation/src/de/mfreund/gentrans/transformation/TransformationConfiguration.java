@@ -33,9 +33,9 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	private List<EObject> sourceModels;
 
 	/**
-	 * The {@link PAMTraM} model to be executed.
+	 * The list of {@link PAMTraM} models to be executed.
 	 */
-	private PAMTraM pamtramModel;
+	private List<PAMTraM> pamtramModels;
 
 	/**
 	 * The path relative to that all target models will be created. This needs
@@ -57,9 +57,9 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * @param sourceModels
 	 *            The list of {@link EObject EObjects} representing the source
 	 *            models to be transformed.
-	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute
-	 *            in the transformation.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM} models containing the mappings to
+	 *            execute in the transformation.
 	 * @param targetBasePath
 	 *            The path to the folder where the target models shall be
 	 *            stored. This needs to be in the form 'project-name/path'.
@@ -67,7 +67,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            The {@link Logger} that shall be used by the transformation to
 	 *            print messages.
 	 */
-	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
+	public TransformationConfiguration(List<EObject> sourceModels, List<PAMTraM> pamtramModels, String targetBasePath,
 			Logger logger) {
 
 		// Initialize all optional parameters with default values
@@ -77,7 +77,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
-		this.pamtramModel = pamtramModel;
+		this.pamtramModels = pamtramModels;
 		this.targetBasePath = targetBasePath;
 		this.logger = logger;
 
@@ -93,9 +93,9 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * @param sourceModels
 	 *            The list of {@link EObject EObjects} representing the source
 	 *            models to be transformed.
-	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute
-	 *            in the transformation.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM} models containing the mappings to
+	 *            execute in the transformation.
 	 * @param targetBasePath
 	 *            The path to the folder where the target models shall be
 	 *            stored. This needs to be in the form '/project-name/path'.
@@ -106,7 +106,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            The {@link BaseTransformationConfiguration} that shall be used
 	 *            to set the optional parameters.
 	 */
-	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
+	public TransformationConfiguration(List<EObject> sourceModels, List<PAMTraM> pamtramModels, String targetBasePath,
 			Logger logger, BaseTransformationConfiguration baseConfig) {
 
 		// Initialize all optional parameters with the values specified in the
@@ -124,7 +124,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
-		this.pamtramModel = pamtramModel;
+		this.pamtramModels = pamtramModels;
 		this.targetBasePath = targetBasePath;
 		this.logger = logger;
 	}
@@ -151,7 +151,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			return false;
 		}
 
-		if (this.pamtramModel == null) {
+		if (this.pamtramModels == null || this.pamtramModels.isEmpty()) {
 			this.logger.severe("No PAMTraM model has been specified!");
 			return false;
 		}
@@ -218,13 +218,13 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	/**
-	 * The getter for the {@link #pamtramModel}.
+	 * The getter for the {@link #pamtramModels}.
 	 *
 	 * @return the pamtramModel
 	 */
-	public PAMTraM getPamtramModel() {
+	public List<PAMTraM> getPamtramModels() {
 
-		return this.pamtramModel;
+		return this.pamtramModels;
 	}
 
 	/**

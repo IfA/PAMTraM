@@ -25,10 +25,12 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This provides support for composing several {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
+ * This provides support for composing several
+ * {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
  * <p />
- * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface iteratively forwards the call to
- * every of the {@link #composedStrategies} and returns the final result.
+ * Any call to a method defined by the {@link IAmbiguityResolvingStrategy}
+ * interface iteratively forwards the call to every of the
+ * {@link #composedStrategies} and returns the final result.
  *
  * @author mfreund
  */
@@ -44,7 +46,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 * This creates an instance.
 	 *
 	 * @param composedStrategies
-	 *            The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 *            The list of {@link IAmbiguityResolvingStrategy strategies}
+	 *            that this composes.
 	 */
 	public ComposedAmbiguityResolvingStrategy(List<IAmbiguityResolvingStrategy> composedStrategies) {
 		this.composedStrategies = composedStrategies;
@@ -53,7 +56,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	/**
 	 * This is the getter for the {@link #composedStrategies}.
 	 *
-	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that
+	 *         this composes.
 	 */
 	public List<IAmbiguityResolvingStrategy> getComposedStrategies() {
 
@@ -61,7 +65,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	/**
-	 * This adds a new strategy to end of the list of {@link #composedStrategies}.
+	 * This adds a new strategy to end of the list of
+	 * {@link #composedStrategies}.
 	 *
 	 * @param strategyToAdd
 	 *            The {@link IAmbiguityResolvingStrategy strategy} to add.
@@ -78,15 +83,15 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 *             If an error occurs during the initialization.
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
+	public void init(List<PAMTraM> pamtramModels, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 
-		super.init(pamtramModel, sourceModels, logger);
+		super.init(pamtramModels, sourceModels, logger);
 
 		this.printMessage("\t--> Init composed stragies:");
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			strategy.init(pamtramModel, sourceModels, logger);
+			strategy.init(pamtramModels, sourceModels, logger);
 		}
 	}
 

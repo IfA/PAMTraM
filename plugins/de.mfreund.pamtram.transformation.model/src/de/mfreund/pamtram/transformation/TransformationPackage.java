@@ -103,13 +103,13 @@ public interface TransformationPackage extends EPackage {
 	int TRANSFORMATION__ID = 3;
 
 	/**
-	 * The feature id for the '<em><b>Pamtram Instance</b></em>' containment reference.
+	 * The feature id for the '<em><b>Pamtram Instances</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION__PAMTRAM_INSTANCE = 4;
+	int TRANSFORMATION__PAMTRAM_INSTANCES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Library Entries</b></em>' containment reference list.
@@ -322,15 +322,15 @@ public interface TransformationPackage extends EPackage {
 	EAttribute getTransformation_Id();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstance <em>Pamtram Instance</em>}'.
+	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstances <em>Pamtram Instances</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Pamtram Instance</em>'.
-	 * @see de.mfreund.pamtram.transformation.Transformation#getPamtramInstance()
+	 * @return the meta object for the containment reference list '<em>Pamtram Instances</em>'.
+	 * @see de.mfreund.pamtram.transformation.Transformation#getPamtramInstances()
 	 * @see #getTransformation()
 	 * @generated
 	 */
-	EReference getTransformation_PamtramInstance();
+	EReference getTransformation_PamtramInstances();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link de.mfreund.pamtram.transformation.Transformation#getLibraryEntries <em>Library Entries</em>}'.
@@ -517,12 +517,12 @@ public interface TransformationPackage extends EPackage {
 		EAttribute TRANSFORMATION__ID = eINSTANCE.getTransformation_Id();
 
 		/**
-		 * The meta object literal for the '<em><b>Pamtram Instance</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Pamtram Instances</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TRANSFORMATION__PAMTRAM_INSTANCE = eINSTANCE.getTransformation_PamtramInstance();
+		EReference TRANSFORMATION__PAMTRAM_INSTANCES = eINSTANCE.getTransformation_PamtramInstances();
 
 		/**
 		 * The meta object literal for the '<em><b>Library Entries</b></em>' containment reference list feature.

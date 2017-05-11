@@ -4,10 +4,15 @@
 <booleanAttribute key="enableStatistics" value="true"/>
 <booleanAttribute key="enableUser" value="false"/>
 <booleanAttribute key="handleExpanding" value="false"/>
-<listAttribute key="libraryPaths"/>
+<listAttribute key="libraryPaths">
+<listEntry value="D:\git-repos\de.tud.et.ifa.agtele.autoprobe\de.tud.et.ifa.agtele.autoprobe.resources\lib"/>
+</listAttribute>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="0"/>
 <stringAttribute key="pamtramFile" value="STGML2Movisa_enhanced.pamtram"/>
+<listAttribute key="pamtramFiles">
+<listEntry value="STGML2Movisa_enhanced.pamtram"/>
+</listAttribute>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.autoprobe"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">

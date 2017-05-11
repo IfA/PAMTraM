@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source">
+  <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+  <sections xsi:type="source:SourceSection" name="AIU">
+    <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+      <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" name="Composition">
+    <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
+      <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+    </attributes>
+  </sections>
+</pamtram:SourceSectionModel>

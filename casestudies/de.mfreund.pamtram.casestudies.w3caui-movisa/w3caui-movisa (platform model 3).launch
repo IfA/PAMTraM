@@ -8,6 +8,9 @@
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="0"/>
 <stringAttribute key="pamtramFile" value="w3caui-movisa.pamtram"/>
+<listAttribute key="pamtramFiles">
+<listEntry value="w3caui-movisa.pamtram"/>
+</listAttribute>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.w3caui-movisa"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">

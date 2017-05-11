@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sharedSourceSectionModels href="17_multiplePamtramModels.pamtram.source#/"/>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="TextLabel" cardinality="ONE__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/TextLabel"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="TextLabelMapping">
+      <sourceSection href="17_multiplePamtramModels.pamtram.source#//@sections.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="associatedWith" modifiers="//@mappingModels.0/@modifierSets.1">
+            <source xsi:type="source:ActualSourceSectionAttribute" href="17_multiplePamtramModels.pamtram.source#//@sections.1/@attributes.0"/>
+          </sourceElements>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="getNumber">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

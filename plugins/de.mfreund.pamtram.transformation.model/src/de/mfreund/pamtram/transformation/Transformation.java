@@ -24,7 +24,7 @@ import pamtram.PAMTraM;
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getEndDate <em>End Date</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getName <em>Name</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getId <em>Id</em>}</li>
- *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstance <em>Pamtram Instance</em>}</li>
+ *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstances <em>Pamtram Instances</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getLibraryEntries <em>Library Entries</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getSourceModels <em>Source Models</em>}</li>
  *   <li>{@link de.mfreund.pamtram.transformation.Transformation#getTargetModels <em>Target Models</em>}</li>
@@ -141,30 +141,20 @@ public interface Transformation extends EObject {
 	void setId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Pamtram Instance</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Pamtram Instances</b></em>' containment reference list.
+	 * The list contents are of type {@link pamtram.PAMTraM}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pamtram Instance</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Pamtram Instances</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pamtram Instance</em>' containment reference.
-	 * @see #setPamtramInstance(PAMTraM)
-	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_PamtramInstance()
+	 * @return the value of the '<em>Pamtram Instances</em>' containment reference list.
+	 * @see de.mfreund.pamtram.transformation.TransformationPackage#getTransformation_PamtramInstances()
 	 * @model containment="true" resolveProxies="true" required="true"
 	 * @generated
 	 */
-	PAMTraM getPamtramInstance();
-
-	/**
-	 * Sets the value of the '{@link de.mfreund.pamtram.transformation.Transformation#getPamtramInstance <em>Pamtram Instance</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pamtram Instance</em>' containment reference.
-	 * @see #getPamtramInstance()
-	 * @generated
-	 */
-	void setPamtramInstance(PAMTraM value);
+	EList<PAMTraM> getPamtramInstances();
 
 	/**
 	 * Returns the value of the '<em><b>Library Entries</b></em>' containment reference list.

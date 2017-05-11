@@ -162,7 +162,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransformation_PamtramInstance() {
+	public EReference getTransformation_PamtramInstances() {
 		return (EReference)transformationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -298,7 +298,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		createEAttribute(transformationEClass, TRANSFORMATION__END_DATE);
 		createEAttribute(transformationEClass, TRANSFORMATION__NAME);
 		createEAttribute(transformationEClass, TRANSFORMATION__ID);
-		createEReference(transformationEClass, TRANSFORMATION__PAMTRAM_INSTANCE);
+		createEReference(transformationEClass, TRANSFORMATION__PAMTRAM_INSTANCES);
 		createEReference(transformationEClass, TRANSFORMATION__LIBRARY_ENTRIES);
 		createEReference(transformationEClass, TRANSFORMATION__SOURCE_MODELS);
 		createEReference(transformationEClass, TRANSFORMATION__TARGET_MODELS);
@@ -354,7 +354,7 @@ public class TransformationPackageImpl extends EPackageImpl implements Transform
 		initEAttribute(getTransformation_EndDate(), ecorePackage.getEDate(), "endDate", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTransformation_Id(), ecorePackage.getEString(), "id", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransformation_PamtramInstance(), thePamtramPackage.getPAMTraM(), null, "pamtramInstance", null, 1, 1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransformation_PamtramInstances(), thePamtramPackage.getPAMTraM(), null, "pamtramInstances", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_LibraryEntries(), theGenLibraryPackage.getLibraryEntry(), null, "libraryEntries", null, 0, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_SourceModels(), ecorePackage.getEObject(), null, "sourceModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTransformation_TargetModels(), ecorePackage.getEObject(), null, "targetModels", null, 1, -1, Transformation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

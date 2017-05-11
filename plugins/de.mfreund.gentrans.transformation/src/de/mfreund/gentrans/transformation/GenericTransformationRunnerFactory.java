@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,10 +28,12 @@ import pamtram.util.PamtramEPackageHelper;
 import pamtram.util.PamtramEPackageHelper.EPackageCheck;
 
 /**
- * This class provides a factory that can be used to create instances of {@link GenericTransformationRunner} via the
- * static <em>createInstanceFrom...</em> methods.
+ * This class provides a factory that can be used to create instances of
+ * {@link GenericTransformationRunner} via the static
+ * <em>createInstanceFrom...</em> methods.
  * <p />
- * The singleton instance of this factory can be accessed via the {@link #eINSTANCE} field.
+ * The singleton instance of this factory can be accessed via the
+ * {@link #eINSTANCE} field.
  *
  * @author mfreund
  */
@@ -44,22 +47,27 @@ public class GenericTransformationRunnerFactory {
 	/**
 	 * This constructs an instance.
 	 *
-	 * @see #createInstanceFromSourcePaths(List, PAMTraM, String, BaseTransformationConfiguration)
-	 * @see #createInstanceFromSourceModels(List, PAMTraM, String, BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourcePaths(Set, List, String,
+	 *      BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourceModels(List, List, String,
+	 *      BaseTransformationConfiguration)
 	 *
 	 * @param sourceFilePaths
-	 *            List of file paths of the source models. They need to be in the form 'project-name/path'.
-	 * @param pamtramPath
-	 *            Path to the {@link PAMTraM} model to be executed in the form 'project-name/path'.
+	 *            List of file paths of the source models. They need to be in
+	 *            the form 'project-name/path'.
+	 * @param pamtramPaths
+	 *            Paths to the {@link PAMTraM} models to be executed in the form
+	 *            'project-name/path'.
 	 * @param targetBasePath
-	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 *            File path relative to that all target models will be created
+	 *            in the form 'project-name/path'.
 	 * @param baseConfiguration
-	 *            The {@link BaseTransformationConfiguration} specifying the optional parameters to be used for the
-	 *            transformation.
+	 *            The {@link BaseTransformationConfiguration} specifying the
+	 *            optional parameters to be used for the transformation.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner createInstanceFromSourcePaths(List<String> sourceFilePaths, String pamtramPath,
-			String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
+	public GenericTransformationRunner createInstanceFromSourcePaths(Set<String> sourceFilePaths,
+			Set<String> pamtramPaths, String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
 
 		Logger logger = this.initializeLogger(baseConfiguration.getLogLevel());
 
@@ -69,20 +77,20 @@ public class GenericTransformationRunnerFactory {
 
 		// Load the PAMTraM model
 		//
-		PAMTraM pamtramModel = this.loadPamtramModel(resourceSet, pamtramPath, logger);
+		List<PAMTraM> pamtramModels = this.loadPamtramModels(resourceSet, pamtramPaths, logger);
 
-		if (pamtramModel == null) {
+		if (pamtramModels == null || pamtramModels.isEmpty()) {
 			return null;
 		}
 
 		// Load the source models
 		//
-		List<EObject> sourceModels = this.loadSourceModel(resourceSet, sourceFilePaths);
+		List<EObject> sourceModels = this.loadSourceModels(resourceSet, sourceFilePaths);
 
 		// Create the TransformationConfiguration
 		//
-		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModel, targetBasePath,
-				logger, baseConfiguration).withAmbiguityResolvingStrategy(
+		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModels,
+				targetBasePath, logger, baseConfiguration).withAmbiguityResolvingStrategy(
 						this.initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
 
 		// Create and return the Runner
@@ -92,24 +100,29 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This constructs an instance based on a PAMTraM model that is already loaded.
+	 * This constructs an instance based on a PAMTraM model that is already
+	 * loaded.
 	 *
-	 * @see #createInstanceFromSourcePaths(List, String, String, BaseTransformationConfiguration)
-	 * @see #createInstanceFromSourceModels(List, PAMTraM, String, BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourcePaths(Set, Set, String,
+	 *      BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourceModels(List, List, String,
+	 *      BaseTransformationConfiguration)
 	 *
 	 * @param sourceFilePaths
-	 *            List of file paths of the source models. They need to be in the form 'project-name/path'.
-	 * @param pamtramModel
-	 *            The transformation model
+	 *            List of file paths of the source models. They need to be in
+	 *            the form 'project-name/path'.
+	 * @param pamtramModels
+	 *            The pamtram models
 	 * @param targetBasePath
-	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 *            File path relative to that all target models will be created
+	 *            in the form 'project-name/path'.
 	 * @param baseConfiguration
-	 *            The {@link BaseTransformationConfiguration} specifying the optional parameters to be used for the
-	 *            transformation.
+	 *            The {@link BaseTransformationConfiguration} specifying the
+	 *            optional parameters to be used for the transformation.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner createInstanceFromSourcePaths(List<String> sourceFilePaths, PAMTraM pamtramModel,
-			String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
+	public GenericTransformationRunner createInstanceFromSourcePaths(Set<String> sourceFilePaths,
+			List<PAMTraM> pamtramModels, String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
 
 		Logger logger = this.initializeLogger(baseConfiguration.getLogLevel());
 
@@ -119,12 +132,12 @@ public class GenericTransformationRunnerFactory {
 
 		// Load the source models
 		//
-		List<EObject> sourceModels = this.loadSourceModel(resourceSet, sourceFilePaths);
+		List<EObject> sourceModels = this.loadSourceModels(resourceSet, sourceFilePaths);
 
 		// Create the TransformationConfiguration
 		//
-		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModel, targetBasePath,
-				logger, baseConfiguration).withAmbiguityResolvingStrategy(
+		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModels,
+				targetBasePath, logger, baseConfiguration).withAmbiguityResolvingStrategy(
 						this.initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
 
 		// Create and return the Runner
@@ -133,31 +146,35 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This constructs an instance based on source and PAMTraM models that are already loaded.
+	 * This constructs an instance based on source and PAMTraM models that are
+	 * already loaded.
 	 *
-	 * @see #createInstanceFromSourcePaths(List, String, String, BaseTransformationConfiguration)
-	 * @see #createInstanceFromSourcePaths(List, PAMTraM, String, BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourcePaths(Set, Set, String,
+	 *      BaseTransformationConfiguration)
+	 * @see #createInstanceFromSourcePaths(Set, List, String,
+	 *      BaseTransformationConfiguration)
 	 *
 	 * @param sourceModels
 	 *            The list of source models
-	 * @param pamtramModel
+	 * @param pamtramModels
 	 *            The transformation model
 	 * @param targetBasePath
-	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 *            File path relative to that all target models will be created
+	 *            in the form 'project-name/path'.
 	 * @param baseConfiguration
-	 *            The {@link BaseTransformationConfiguration} specifying the optional parameters to be used for the
-	 *            transformation.
+	 *            The {@link BaseTransformationConfiguration} specifying the
+	 *            optional parameters to be used for the transformation.
 	 * @return An instance of {@link GenericTransformationRunner}.
 	 */
-	public GenericTransformationRunner createInstanceFromSourceModels(List<EObject> sourceModels, PAMTraM pamtramModel,
-			String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
+	public GenericTransformationRunner createInstanceFromSourceModels(List<EObject> sourceModels,
+			List<PAMTraM> pamtramModels, String targetBasePath, BaseTransformationConfiguration baseConfiguration) {
 
 		Logger logger = this.initializeLogger(baseConfiguration.getLogLevel());
 
 		// Create the TransformationConfiguration
 		//
-		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModel, targetBasePath,
-				logger, baseConfiguration).withAmbiguityResolvingStrategy(
+		TransformationConfiguration config = new TransformationConfiguration(sourceModels, pamtramModels,
+				targetBasePath, logger, baseConfiguration).withAmbiguityResolvingStrategy(
 						this.initializeAmbiguityResolvingStrategy(baseConfiguration.getAmbiguityResolvingStrategy()));
 
 		// Create and return the Runner
@@ -176,12 +193,16 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This creates the {@link Logger} that will be used across the transformation to print messages to the user as well
-	 * as the {@link GenTransConsole} that will display these messages in the console view.
+	 * This creates the {@link Logger} that will be used across the
+	 * transformation to print messages to the user as well as the
+	 * {@link GenTransConsole} that will display these messages in the console
+	 * view.
 	 *
 	 * @param level
-	 *            The minimum Level a logged messages must represent to be printed to the user.
-	 * @return The created {@link Logger} that shall be used to print messages to the user.
+	 *            The minimum Level a logged messages must represent to be
+	 *            printed to the user.
+	 * @return The created {@link Logger} that shall be used to print messages
+	 *         to the user.
 	 */
 	private Logger initializeLogger(Level level) {
 
@@ -204,16 +225,20 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This initializes the {@link IAmbiguityResolvingStrategy} to be used for the transformation.
+	 * This initializes the {@link IAmbiguityResolvingStrategy} to be used for
+	 * the transformation.
 	 * <p />
-	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting strategy is created so that an instance of
-	 * the {@link DefaultAmbiguityResolvingStrategy} is included in the strategy -- if necessary, a
-	 * {@link ComposedAmbiguityResolvingStrategy} is created for this.
+	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting
+	 * strategy is created so that an instance of the
+	 * {@link DefaultAmbiguityResolvingStrategy} is included in the strategy --
+	 * if necessary, a {@link ComposedAmbiguityResolvingStrategy} is created for
+	 * this.
 	 *
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} based on that the {@link #ambiguityResolvingStrategy} shall be
-	 *            initialized. If this is '<em>null</em>', the strategy will be initialized with an instance of
-	 *            {@link DefaultAmbiguityResolvingStrategy}.
+	 *            The {@link IAmbiguityResolvingStrategy} based on that the
+	 *            {@link #ambiguityResolvingStrategy} shall be initialized. If
+	 *            this is '<em>null</em>', the strategy will be initialized with
+	 *            an instance of {@link DefaultAmbiguityResolvingStrategy}.
 	 * @return The resulting {@link IAmbiguityResolvingStrategy}.
 	 */
 	private IAmbiguityResolvingStrategy initializeAmbiguityResolvingStrategy(
@@ -260,39 +285,47 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This loads the {@link PAMTraM} model from an XMI file. If necessary, additional {@link EPackage EPackages} that
-	 * are referenced in the model are registered so that no errors occur during the transformation.
+	 * This loads the {@link PAMTraM} model from an XMI file. If necessary,
+	 * additional {@link EPackage EPackages} that are referenced in the model
+	 * are registered so that no errors occur during the transformation.
 	 *
 	 * @param rs
 	 *            The resource set to be used to load the resource.
-	 * @param pamtramPath
-	 *            The path of the {@link PAMTraM} model to load in the form 'project-name/path'.
+	 * @param pamtramPaths
+	 *            The paths of the {@link PAMTraM} models to load in the form
+	 *            'project-name/path'.
 	 * @param logger
-	 *            The {@link MessageConsoleStream} that shall be used to print message during loading.
-	 * @return The loaded {@link PAMTraM} model; '<em><b>null</b></em>' if the model could not be loaded.
+	 *            The {@link MessageConsoleStream} that shall be used to print
+	 *            message during loading.
+	 * @return The loaded {@link PAMTraM} model; '<em><b>null</b></em>' if the
+	 *         model could not be loaded.
 	 */
-	private PAMTraM loadPamtramModel(ResourceSet rs, String pamtramPath, Logger logger) {
+	private List<PAMTraM> loadPamtramModels(ResourceSet rs, Set<String> pamtramPaths, Logger logger) {
 
 		ResourceSet resourceSet = rs;
-		PAMTraM pamtramModel;
+		List<PAMTraM> pamtramModels = new ArrayList<>();
 
-		// the URI of the pamtram resource
-		final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
+		for (String pamtramPath : pamtramPaths) {
 
-		// load the pamtram model
-		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
-		if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-			logger.severe("The pamtram file does not seem to contain a pamtram instance. Aborting...");
-			return null;
-		}
-		pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+			// the URI of the pamtram resource
+			final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
 
-		// try to register the ePackages involved in the pamtram model (if not
-		// already done)
-		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(pamtramModel,
-				ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramPath).getProject(),
-				EPackage.Registry.INSTANCE);
-		switch (result) {
+			// load the pamtram model
+			XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+			if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
+				logger.severe("The pamtram file does not seem to contain a pamtram instance. Aborting...");
+				return null;
+			}
+
+			PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+
+			// try to register the ePackages involved in the pamtram model (if
+			// not
+			// already done)
+			EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(pamtramModel,
+					ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramPath).getProject(),
+					EPackage.Registry.INSTANCE);
+			switch (result) {
 			case ERROR_PACKAGE_NOT_FOUND:
 				logger.severe("One or more EPackages are not loaded correctly. Aborting...");
 				return null;
@@ -301,7 +334,8 @@ public class GenericTransformationRunnerFactory {
 				logger.severe("Internal error during EPackage check. Aborting...");
 				return null;
 			case OK_PACKAGES_REGISTERED:
-				// if packages have been registered, a new resource set has to be
+				// if packages have been registered, a new resource set has to
+				// be
 				// created; otherwise,
 				// proxy resolving does not seem to work correctly
 				resourceSet = new ResourceSetImpl();
@@ -311,9 +345,12 @@ public class GenericTransformationRunnerFactory {
 			case OK_NOTHING_REGISTERED:
 			default:
 				break;
+			}
+
+			pamtramModels.add(pamtramModel);
 		}
 
-		return pamtramModel;
+		return pamtramModels;
 	}
 
 	/**
@@ -322,10 +359,11 @@ public class GenericTransformationRunnerFactory {
 	 * @param resourceSet
 	 *            The resource set to be used to load the resource.
 	 * @param sourceFilePaths
-	 *            The list of paths pointing to the source models to load (in the form 'project-name/path').
+	 *            The list of paths pointing to the source models to load (in
+	 *            the form 'project-name/path').
 	 * @return The loaded {@link EObject source models}.
 	 */
-	private List<EObject> loadSourceModel(ResourceSet resourceSet, List<String> sourceFilePaths) {
+	private List<EObject> loadSourceModels(ResourceSet resourceSet, Set<String> sourceFilePaths) {
 
 		List<EObject> sourceModels = new ArrayList<>();
 

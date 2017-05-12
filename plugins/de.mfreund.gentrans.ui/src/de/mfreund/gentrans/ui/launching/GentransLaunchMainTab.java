@@ -24,7 +24,6 @@ import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -33,15 +32,13 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
-import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
-import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import de.tud.et.ifa.agtele.ui.widgets.ManageableItemList;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -97,16 +94,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Combo projectCombo;
 
 	/**
-	 * The combo box to select the source file
-	 */
-	private Combo srcFileCombo;
-
-	/**
-	 * The combo box to select the pamtram file
-	 */
-	private Combo pamtramFileCombo;
-
-	/**
 	 * The combo box to select the target file
 	 */
 	private Combo targetFileCombo;
@@ -142,16 +129,16 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Button useParallelization;
 
 	/**
-	 * A {@link List} to display the selected source files to be used in a
-	 * GenTrans transformation.
+	 * A {@link ManageableItemList} that allows the user to manage the source
+	 * files used for the transformation.
 	 */
-	private List sourceFileList;
+	private ManageableItemList srcList;
 
 	/**
-	 * A {@link List} to display the selected pamtram files to be used in a
-	 * GenTrans transformation.
+	 * A {@link ManageableItemList} that allows the user to manage the pamtram
+	 * files used for the transformation.
 	 */
-	private List pamtramFileList;
+	private ManageableItemList pamtramList;
 
 	/**
 	 * This creates an instance.
@@ -209,135 +196,31 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1).applyTo(fileGroup);
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(fileGroup);
 
-		// create a label for the source file selection
+		// The widget that allows to manage the source files used for the
+		// transformation
 		//
-		Label srcFileLabel = new Label(fileGroup, SWT.NONE);
-		srcFileLabel.setText("Source File(s):");
-
-		// create drop-down list for the source file selection (based on the
-		// project)
-		//
-		this.srcFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
-		this.srcFileCombo.setEnabled(false);
-		this.srcFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).applyTo(this.srcFileCombo);
-
-		// create a button that allows to add additional source files to be used
-		// in the transformation
-		//
-		Button addSourceFileButton = new Button(fileGroup, SWT.NONE);
-		addSourceFileButton.setText("Add...");
-		addSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleAddSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(addSourceFileButton);
-
-		// a composite to display the selected source files as well as buttons
-		// to add/remove/reorder files
-		//
-		ScrolledComposite scrolledComposite = new ScrolledComposite(fileGroup, SWT.V_SCROLL);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
-
-		// a list to display the selected source files
-		//
-		this.sourceFileList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
-		this.sourceFileList.addKeyListener((KeyPressedListener) e -> {
-			if (e.keyCode == SWT.DEL && GentransLaunchMainTab.this.sourceFileList.getSelectionIndex() != -1) {
-
-				this.handleDelSourceFileButtonPressed();
-			}
-		});
-		scrolledComposite.setContent(this.sourceFileList);
-		scrolledComposite.setMinSize(this.sourceFileList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-		// a button that allows to delete elements from the 'sourceFileList'
-		//
-		Button delSourceFileButton = new Button(fileGroup, SWT.NONE);
-		delSourceFileButton.setText("Del...");
-		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
-
-		// a button that allows to move elements up in the 'sourceFileList'
-		//
-		Button upSourceFileButton = new Button(fileGroup, SWT.NONE);
-		upSourceFileButton.setText("Up...");
-		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
-
-		// a button that allows to move elements down in the 'sourceFileList'
-		//
-		Button downSourceFileButton = new Button(fileGroup, SWT.NONE);
-		downSourceFileButton.setText("Down...");
-		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
+		this.srcList = new ManageableItemList(fileGroup, SWT.NONE, "Source File(s):");
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).span(3, 1).applyTo(this.srcList);
+		this.srcList.setEnabled(false);
+		// Call 'updateLaunchConfigurationDialog' whenever changes are made to
+		// the list
+		this.srcList.addObserver(o -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 
 		// just a separator
 		//
 		Label separator1 = new Label(fileGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(separator1);
 
-		// create a label for the pamtram file selection
+		// The widget that allows to manage the source files used for the
+		// transformation
 		//
-		Label pamtramFileLabel = new Label(fileGroup, SWT.NONE);
-		pamtramFileLabel.setText("Pamtram File(s):");
-
-		// create drop-down list for the pamtram file selection (based on the
-		// project)
-		//
-		this.pamtramFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
-		this.pamtramFileCombo.setEnabled(false);
-		this.pamtramFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).applyTo(this.pamtramFileCombo);
-
-		// create a button that allows to add additional pamtram files to be
-		// used in the transformation
-		//
-		Button addPamtramFileButton = new Button(fileGroup, SWT.NONE);
-		addPamtramFileButton.setText("Add...");
-		addPamtramFileButton.addSelectionListener((SelectionListener2) e -> this.handleAddPamtramFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(addPamtramFileButton);
-
-		// a composite to display the selected pamtram files as well as buttons
-		// to add/remove/reorder files
-		//
-		ScrolledComposite scrolledComposite2 = new ScrolledComposite(fileGroup, SWT.V_SCROLL);
-		scrolledComposite2.setExpandHorizontal(true);
-		scrolledComposite2.setExpandVertical(true);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3)
-				.applyTo(scrolledComposite2);
-
-		// a list to display the selected pamtram files
-		//
-		this.pamtramFileList = new List(scrolledComposite2, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
-		this.pamtramFileList.addKeyListener((KeyPressedListener) e -> {
-			if (e.keyCode == SWT.DEL && GentransLaunchMainTab.this.pamtramFileList.getSelectionIndex() != -1) {
-
-				this.handleDelPamtramFileButtonPressed();
-			}
-		});
-		scrolledComposite2.setContent(this.pamtramFileList);
-		scrolledComposite2.setMinSize(this.pamtramFileList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-		// a button that allows to delete elements from the 'pamtramFileList'
-		//
-		Button delPamtramFileButton = new Button(fileGroup, SWT.NONE);
-		delPamtramFileButton.setText("Del...");
-		delPamtramFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelPamtramFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delPamtramFileButton);
-
-		// a button that allows to move elements up in the 'pamtramFileList'
-		//
-		Button upPamtramFileButton = new Button(fileGroup, SWT.NONE);
-		upPamtramFileButton.setText("Up...");
-		upPamtramFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpPamtramFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upPamtramFileButton);
-
-		// a button that allows to move elements down in the 'pamtramFileList'
-		//
-		Button downPamtramFileButton = new Button(fileGroup, SWT.NONE);
-		downPamtramFileButton.setText("Down...");
-		downPamtramFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownPamtramFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downPamtramFileButton);
+		this.pamtramList = new ManageableItemList(fileGroup, SWT.NONE, "Pamtram File(s):");
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(3, 1)
+				.applyTo(this.pamtramList);
+		this.pamtramList.setEnabled(false);
+		// Call 'updateLaunchConfigurationDialog' whenever changes are made to
+		// the list
+		this.pamtramList.addObserver(o -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 
 		// just a separator
 		//
@@ -460,155 +343,6 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Add the file specified in the {@link #srcFileCombo} to the
-	 * {@link #sourceFileList}.
-	 */
-	private void handleAddSourceFileButtonPressed() {
-
-		GentransLaunchMainTab.this.sourceFileList.add(GentransLaunchMainTab.this.srcFileCombo.getText());
-		GentransLaunchMainTab.this.sourceFileList.deselectAll();
-		GentransLaunchMainTab.this.sourceFileList.select(GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Delete all elements that are selected in the {@link #sourceFileList}.
-	 */
-	private void handleDelSourceFileButtonPressed() {
-
-		int selected = GentransLaunchMainTab.this.sourceFileList.getSelectionIndex();
-		GentransLaunchMainTab.this.sourceFileList
-				.remove(GentransLaunchMainTab.this.sourceFileList.getSelectionIndices());
-		GentransLaunchMainTab.this.sourceFileList
-				.select(selected > GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1
-						? GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1 : selected);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} up.
-	 */
-	private void handleUpSourceFileButtonPressed() {
-
-		for (int selected : GentransLaunchMainTab.this.sourceFileList.getSelectionIndices()) {
-			if (selected == 0) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.sourceFileList.getItems();
-			String prevItem = GentransLaunchMainTab.this.sourceFileList.getItem(selected - 1);
-			items[selected - 1] = GentransLaunchMainTab.this.sourceFileList.getItem(selected);
-			items[selected] = prevItem;
-			int[] currentSel = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.sourceFileList.setItems(items);
-			GentransLaunchMainTab.this.sourceFileList.select(currentSel);
-			GentransLaunchMainTab.this.sourceFileList.deselect(selected);
-			GentransLaunchMainTab.this.sourceFileList.select(selected - 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} down.
-	 */
-	private void handleDownSourceFileButtonPressed() {
-
-		int[] selections = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-		for (int i = selections.length - 1; i >= 0; i--) {
-			int sel = selections[i];
-			if (sel == GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.sourceFileList.getItems();
-			String nextItem = GentransLaunchMainTab.this.sourceFileList.getItem(sel + 1);
-			items[sel + 1] = GentransLaunchMainTab.this.sourceFileList.getItem(sel);
-			items[sel] = nextItem;
-			int[] currentSel = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.sourceFileList.setItems(items);
-			GentransLaunchMainTab.this.sourceFileList.select(currentSel);
-			GentransLaunchMainTab.this.sourceFileList.deselect(sel);
-			GentransLaunchMainTab.this.sourceFileList.select(sel + 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Add the file specified in the {@link #srcFileCombo} to the
-	 * {@link #sourceFileList}.
-	 */
-	private void handleAddPamtramFileButtonPressed() {
-
-		GentransLaunchMainTab.this.pamtramFileList.add(GentransLaunchMainTab.this.pamtramFileCombo.getText());
-		GentransLaunchMainTab.this.pamtramFileList.deselectAll();
-		GentransLaunchMainTab.this.pamtramFileList
-				.select(GentransLaunchMainTab.this.pamtramFileList.getItemCount() - 1);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Delete all elements that are selected in the {@link #sourceFileList}.
-	 */
-	private void handleDelPamtramFileButtonPressed() {
-
-		int selected = GentransLaunchMainTab.this.pamtramFileList.getSelectionIndex();
-		GentransLaunchMainTab.this.pamtramFileList
-				.remove(GentransLaunchMainTab.this.pamtramFileList.getSelectionIndices());
-		GentransLaunchMainTab.this.pamtramFileList
-				.select(selected > GentransLaunchMainTab.this.pamtramFileList.getItemCount() - 1
-						? GentransLaunchMainTab.this.pamtramFileList.getItemCount() - 1 : selected);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} up.
-	 */
-	private void handleUpPamtramFileButtonPressed() {
-
-		for (int selected : GentransLaunchMainTab.this.pamtramFileList.getSelectionIndices()) {
-			if (selected == 0) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.pamtramFileList.getItems();
-			String prevItem = GentransLaunchMainTab.this.pamtramFileList.getItem(selected - 1);
-			items[selected - 1] = GentransLaunchMainTab.this.pamtramFileList.getItem(selected);
-			items[selected] = prevItem;
-			int[] currentSel = GentransLaunchMainTab.this.pamtramFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.pamtramFileList.setItems(items);
-			GentransLaunchMainTab.this.pamtramFileList.select(currentSel);
-			GentransLaunchMainTab.this.pamtramFileList.deselect(selected);
-			GentransLaunchMainTab.this.pamtramFileList.select(selected - 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} down.
-	 */
-	private void handleDownPamtramFileButtonPressed() {
-
-		int[] selections = GentransLaunchMainTab.this.pamtramFileList.getSelectionIndices();
-		for (int i = selections.length - 1; i >= 0; i--) {
-			int sel = selections[i];
-			if (sel == GentransLaunchMainTab.this.pamtramFileList.getItemCount() - 1) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.pamtramFileList.getItems();
-			String nextItem = GentransLaunchMainTab.this.pamtramFileList.getItem(sel + 1);
-			items[sel + 1] = GentransLaunchMainTab.this.pamtramFileList.getItem(sel);
-			items[sel] = nextItem;
-			int[] currentSel = GentransLaunchMainTab.this.pamtramFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.pamtramFileList.setItems(items);
-			GentransLaunchMainTab.this.pamtramFileList.select(currentSel);
-			GentransLaunchMainTab.this.pamtramFileList.deselect(sel);
-			GentransLaunchMainTab.this.pamtramFileList.select(sel + 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
 	 * Based on a given <em>projectName</em> that represents the project
 	 * selected by the user in the {@link #projectCombo}, update the list of
 	 * available source, pamtram, and target files.
@@ -619,22 +353,22 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// save the selected values in the other combo boxes
 		//
-		String oldSrcFile = GentransLaunchMainTab.this.srcFileCombo.getText();
-		String oldPamtramFile = GentransLaunchMainTab.this.pamtramFileCombo.getText();
-		String oldTargetFile = GentransLaunchMainTab.this.targetFileCombo.getText();
+		String oldSrcFile = this.srcList.getComboText();
+		String oldPamtramFile = this.pamtramList.getComboText();
+		String oldTargetFile = this.targetFileCombo.getText();
 
 		// reset the source and pamtram file combo
 		//
-		GentransLaunchMainTab.this.srcFileCombo.setItems(new String[] {});
-		GentransLaunchMainTab.this.pamtramFileCombo.setItems(new String[] {});
-		GentransLaunchMainTab.this.targetFileCombo.setItems(new String[] {});
+		this.srcList.setSelectableItems(new ArrayList<>());
+		this.pamtramList.setSelectableItems(new ArrayList<>());
+		this.targetFileCombo.setItems(new String[] {});
 
 		// check if a valid project has been selected
 		//
-		if (projectName.isEmpty() || GentransLaunchMainTab.this.projectCombo.indexOf(projectName) == -1) {
-			GentransLaunchMainTab.this.srcFileCombo.setEnabled(false);
-			GentransLaunchMainTab.this.pamtramFileCombo.setEnabled(false);
-			GentransLaunchMainTab.this.targetFileCombo.setEnabled(false);
+		if (projectName.isEmpty() || this.projectCombo.indexOf(projectName) == -1) {
+			this.srcList.setEnabled(false);
+			this.pamtramList.setEnabled(false);
+			this.targetFileCombo.setEnabled(false);
 			return;
 		}
 
@@ -644,12 +378,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			for (IResource r1 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
 					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
 				if (r1.getName().endsWith(".xmi") || r1.getName().endsWith(".xml")) {
-					GentransLaunchMainTab.this.srcFileCombo.add(r1.getName());
+					this.srcList.addSelectableItem(r1.getName());
 				}
 			}
-			int index1 = GentransLaunchMainTab.this.srcFileCombo.indexOf(oldSrcFile);
-			GentransLaunchMainTab.this.srcFileCombo.select(index1 != -1 ? index1 : 0);
-			GentransLaunchMainTab.this.srcFileCombo.setEnabled(true);
+			this.srcList.select(oldSrcFile);
+			this.srcList.setEnabled(true);
 		} catch (CoreException e11) {
 			e11.printStackTrace();
 		}
@@ -659,12 +392,11 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			for (IResource r2 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
 					.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).members()) {
 				if (r2.getName().endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"))) {
-					GentransLaunchMainTab.this.pamtramFileCombo.add(r2.getName());
+					this.pamtramList.addSelectableItem(r2.getName());
 				}
 			}
-			int index2 = GentransLaunchMainTab.this.pamtramFileCombo.indexOf(oldPamtramFile);
-			GentransLaunchMainTab.this.pamtramFileCombo.select(index2 != -1 ? index2 : 0);
-			GentransLaunchMainTab.this.pamtramFileCombo.setEnabled(true);
+			this.pamtramList.select(oldPamtramFile);
+			this.pamtramList.setEnabled(true);
 		} catch (CoreException e12) {
 			e12.printStackTrace();
 		}
@@ -716,16 +448,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			this.projectCombo.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, ""));
 
 			// set the files
-			this.sourceFileList.removeAll();
-			for (String srcFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
-					new ArrayList<>())) {
-				this.sourceFileList.add(srcFile);
-			}
-			this.pamtramFileList.removeAll();
-			for (String pamtramFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
-					new ArrayList<>())) {
-				this.pamtramFileList.add(pamtramFile);
-			}
+			this.srcList.setSelectedItems(
+					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<>()));
+			this.pamtramList.setSelectedItems(configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, new ArrayList<>()));
 			this.targetFileCombo
 					.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, ""));
 
@@ -752,10 +478,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, this.projectCombo.getText());
 
 		// store the files
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
-				new ArrayList<>(Arrays.asList(this.sourceFileList.getItems())));
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, this.srcList.getSelectedItems());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
-				new ArrayList<>(Arrays.asList(this.pamtramFileList.getItems())));
+				this.pamtramList.getSelectedItems());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
 				this.targetFileCombo.getText());
 
@@ -835,7 +560,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 */
 	private boolean isSrcFileListValid() {
 
-		for (String sourceFile : this.sourceFileList.getItems()) {
+		if (this.srcList.getSelectedItems().isEmpty()) {
+			return false;
+		}
+		for (String sourceFile : this.srcList.getSelectedItems()) {
 			if (!(this.workspaceRoot.getProject(this.projectCombo.getText())
 					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).getFile(sourceFile).exists()
 					&& (sourceFile.endsWith(".xmi") || sourceFile.endsWith(".xml")))) {
@@ -854,10 +582,17 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 */
 	private boolean isPamtramFileComboValid() {
 
-		return this.workspaceRoot.getProject(this.projectCombo.getText())
-				.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).getFile(this.pamtramFileCombo.getText()).exists()
-				&& this.pamtramFileCombo.getText()
-						.endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"));
+		if (this.pamtramList.getSelectedItems().isEmpty()) {
+			return false;
+		}
+		for (String pamtramFile : this.pamtramList.getSelectedItems()) {
+			if (!(this.workspaceRoot.getProject(this.projectCombo.getText())
+					.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).getFile(pamtramFile).exists()
+					&& pamtramFile.endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING")))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**

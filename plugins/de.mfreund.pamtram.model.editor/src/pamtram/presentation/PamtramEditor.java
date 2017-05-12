@@ -374,9 +374,7 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 								.toString();
 						IDialogSettings project = section.getSection(pamtramFile);
 
-						if (project != null) {
-							PamtramEditor.this.restore(project);
-						}
+						PamtramEditor.this.restore(project);
 					}
 				}
 
@@ -2638,23 +2636,37 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 	@Override
 	public void restore(final IDialogSettings settings) {
 
-		// perform the restore operations in an asynchronous way
+		// perform the restore operations in an asynchronous way (doing it in a
+		// synchonous way would lead to an error because the UI is not yet
+		// completely ready)
+		//
 		try {
 			this.getSite().getShell().getDisplay().asyncExec(() -> {
-				// restore the active page
-				int index = settings.getInt("ACTIVE_PAGE");
-				if (index >= 0 && index < PamtramEditor.this.getPageCount()) {
-					PamtramEditor.this.setActivePage(index);
-				}
 
-				// restore the state of the pages displayed by the editor
-				IDialogSettings page = settings.getSection("MAIN_PAGE");
-				if (page != null) {
-					PamtramEditor.this.mainPage.restore(page);
-				}
-				page = settings.getSection("SOURCE_SECTION_MATCHER_PAGE");
-				if (page != null) {
-					PamtramEditor.this.sourceSectionMatcherPage.restore(page);
+				if (settings == null) {
+
+					// If there are not any settings to restore from, we simply
+					// initialize the pages
+					//
+					this.mainPage.init();
+				} else {
+
+					// restore the active page
+					int index = settings.getInt("ACTIVE_PAGE");
+					if (index >= 0 && index < PamtramEditor.this.getPageCount()) {
+						PamtramEditor.this.setActivePage(index);
+					}
+
+					// restore the state of the pages displayed by the editor
+					this.mainPage.init();
+					IDialogSettings page = settings.getSection("MAIN_PAGE");
+					if (page != null) {
+						PamtramEditor.this.mainPage.restore(page);
+					}
+					page = settings.getSection("SOURCE_SECTION_MATCHER_PAGE");
+					if (page != null) {
+						PamtramEditor.this.sourceSectionMatcherPage.restore(page);
+					}
 				}
 			});
 		} catch (Exception e) {

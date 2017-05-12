@@ -1125,6 +1125,18 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 	}
 
+	/**
+	 * This intializes the page by minimizing the {@link #conditionViewerGroup},
+	 * the {@link #globalElementsViewerGroup}, and the
+	 * {@link #libTargetViewerGroup}.
+	 *
+	 */
+	public void init() {
+		this.sourceSash.minimizeControl(this.conditionViewerGroup);
+		this.mappingSash.minimizeControl(this.globalElementsViewerGroup);
+		this.targetSash.minimizeControl(this.libTargetViewerGroup);
+	}
+
 	@Override
 	public void persist(IDialogSettings settings) {
 

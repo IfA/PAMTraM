@@ -54,10 +54,10 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 		// Show the ProblemView and ConsoleView to the bottom
 		//
 		IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, (float) 0.7, editorArea);
+		bottom.addView(IPageLayout.ID_PROP_SHEET);
 		bottom.addView("org.eclipse.ui.views.ProblemView");
 		bottom.addView("org.eclipse.ui.console.ConsoleView");
 		bottom.addView("de.mfreund.pamtram.ui.views.PamtramReferencesView");
-		bottom.addView(IPageLayout.ID_PROP_SHEET);
 	}
 
 }

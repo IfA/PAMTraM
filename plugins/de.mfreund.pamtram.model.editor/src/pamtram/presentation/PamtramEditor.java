@@ -48,7 +48,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -131,7 +130,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
-import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
@@ -157,8 +155,8 @@ import pamtram.contentadapter.PamtramContentAdapter;
 import pamtram.mapping.provider.MappingItemProviderAdapterFactory;
 import pamtram.provider.PamtramItemProviderAdapterFactory;
 import pamtram.structure.provider.StructureItemProviderAdapterFactory;
-import pamtram.util.PamtramEPackageHelper;
-import pamtram.util.PamtramEPackageHelper.EPackageCheck;
+import pamtram.util.PamtramModelUtil;
+import pamtram.util.PamtramModelUtil.ModelLoadException;
 
 /**
  * This is an example of a Pamtram model editor. <!-- begin-user-doc --> <!--
@@ -1438,15 +1436,18 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 
 		URI resourceURI = EditUIUtil.getURI(this.getEditorInput(),
 				this.editingDomain.getResourceSet().getURIConverter());
+
 		Exception exception = null;
 		Resource resource = null;
 		try {
-			// Load the resource through the editing domain.
-			//
+			this.pamtram = PamtramModelUtil.loadPamtramModel(this.editingDomain.getResourceSet(), resourceURI, true);
+			resource = this.pamtram.eResource();
+		} catch (ModelLoadException e1) {
+			exception = e1;
 			resource = this.editingDomain.getResourceSet().getResource(resourceURI, true);
-		} catch (Exception e) {
-			exception = e;
-			resource = this.editingDomain.getResourceSet().getResource(resourceURI, false);
+			if (!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof PAMTraM) {
+				this.pamtram = (PAMTraM) resource.getContents().get(0);
+			}
 		}
 
 		Diagnostic diagnostic = this.analyzeResourceProblems(resource, exception);
@@ -1792,14 +1793,11 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 
 		// Load the Pamtram model from the editor input.
 		//
-		boolean pamtramFound = this.getPamtramFromResourceSet();
+		this.createModel();
 
 		// Only creates the other pages if there is something that can be edited
 		//
-		if (pamtramFound) {
-			// Try to register missing ePackages.
-			//
-			this.registerEPackages();
+		if (this.pamtram != null) {
 
 			// Set the Pamtram content adapter.
 			this.pamtram.eAdapters().add(this.pamtramContentAdapter);
@@ -1809,27 +1807,27 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 
 			// Set the Pamtram command stack listener.
 			this.getEditingDomain().getCommandStack().addCommandStackListener(this.pamtramCommandStackListener);
-
-			// Create a page for the selection tree view.
-			//
-			{
-				this.mainPage = new PamtramEditorMainPage(this.getContainer(), SWT.None, this.adapterFactory, this);
-				int pageIndex = this.addPage(this.mainPage);
-				this.setPageText(pageIndex, PamtramEditor.getString("_UI_SelectionPage_label"));
-			}
-
-			// Create a page for the source section matcher view.
-			//
-			{
-				this.sourceSectionMatcherPage = new PamtramEditorSourceSectionMatcherPage(this.getContainer(), SWT.NONE,
-						this.adapterFactory, this);
-				// createContextMenuFor(parentViewer);
-				int pageIndex = this.addPage(this.sourceSectionMatcherPage);
-				this.setPageText(pageIndex, PamtramEditor.getString("_UI_ParentPage_label"));
-			}
-
-			this.getSite().getShell().getDisplay().asyncExec(() -> PamtramEditor.this.setActivePage(0));
 		}
+
+		// Create a page for the selection tree view.
+		//
+		{
+			this.mainPage = new PamtramEditorMainPage(this.getContainer(), SWT.None, this.adapterFactory, this);
+			int pageIndex = this.addPage(this.mainPage);
+			this.setPageText(pageIndex, PamtramEditor.getString("_UI_SelectionPage_label"));
+		}
+
+		// Create a page for the source section matcher view.
+		//
+		{
+			this.sourceSectionMatcherPage = new PamtramEditorSourceSectionMatcherPage(this.getContainer(), SWT.NONE,
+					this.adapterFactory, this);
+			// createContextMenuFor(parentViewer);
+			int pageIndex = this.addPage(this.sourceSectionMatcherPage);
+			this.setPageText(pageIndex, PamtramEditor.getString("_UI_ParentPage_label"));
+		}
+
+		this.getSite().getShell().getDisplay().asyncExec(() -> PamtramEditor.this.setActivePage(0));
 
 		// Ensures that this editor will only display the page's tab
 		// area if there are more than one page
@@ -1850,113 +1848,6 @@ public class PamtramEditor extends ClonableEditor implements IEditingDomainProvi
 		});
 
 		this.getSite().getShell().getDisplay().asyncExec(() -> PamtramEditor.this.updateProblemIndication());
-	}
-
-	/**
-	 * Tries to load the Pamtram model from the editor input.
-	 *
-	 * Therefore, 'createModel()' is called at first. After that, the Pamtram
-	 * instance is extracted from the resource and stored in the editor's
-	 * 'pamtram' field.
-	 *
-	 * @return true if the pamtram model has been found and stored; false
-	 *         otherwise.
-	 */
-	private boolean getPamtramFromResourceSet() {
-
-		// Creates the model from the editor input
-		//
-		this.createModel();
-
-		if (this.getEditingDomain().getResourceSet().getResources().isEmpty()) {
-			return false;
-		}
-
-		// Get the Pamtram instance.
-		for (Resource resource : this.getEditingDomain().getResourceSet().getResources()) {
-			if (!resource.getContents().isEmpty() && resource.getContents().get(0) instanceof PAMTraM) {
-				this.pamtram = (PAMTraM) resource.getContents().get(0);
-				break;
-			}
-		}
-		if (this.pamtram == null) {
-			MessageDialog.openError(this.getContainer().getShell(), "Error",
-					"The root element contained in the resource is no PAMTraM instance!");
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * This checks if all ePackages involved in the pamtram model are
-	 * registered. If not, it tries to register them by scanning the project's
-	 * 'metamodel' folder for suitable ecore models. Any errors that might occur
-	 * during this process will not be reflected in the diagnostic map and will
-	 * thus not be reflected in the editor.
-	 */
-	private void registerEPackages() {
-
-		// Create a backup of the diagnostic map.
-		Map<Resource, Diagnostic> backup = new HashMap<>(this.resourceToDiagnosticMap);
-
-		// try to register the ePackages involved in the pamtram model (if not
-		// already done)
-		EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(this.pamtram,
-				ResourceUtil.getFile(this.getEditorInput()).getProject(), EPackage.Registry.INSTANCE);
-
-		switch (result) {
-		case OK_NOTHING_REGISTERED:
-			return;
-		case OK_PACKAGES_REGISTERED:
-
-			// Reset the diagnostic map so that errors that occurred during the
-			// above operations are
-			// not reflected.
-			this.resourceToDiagnosticMap = backup;
-
-			/*
-			 * If packages did have to be registered, each reference to these
-			 * packages inside the loaded pamtram model will be represented by
-			 * an (unresolvable) proxy. Therefore, we unload and reload the
-			 * pamtram model. As the necessary packages are now present in the
-			 * EPackageRegistry, loading should now complete successfully (all
-			 * remaining proxies can now be successfully resolved if required).
-			 */
-
-			// As we do not need the files/resources containing the registered
-			// packages any longer (the contained
-			// packages are now stored
-			// in the EPackageRegistry), we remove them from the resource set
-			// and unload them
-			//
-			for (EPackage ePackage : result.getRegisteredPackages()) {
-
-				Resource metamodelResource = null;
-				for (Resource resource : this.editingDomain.getResourceSet().getResources()) {
-					if (resource.getURI() != null && resource.getURI().toString().equals(ePackage.getNsURI())) {
-						metamodelResource = resource;
-						break;
-					}
-				}
-
-				if (metamodelResource != null) {
-					this.editingDomain.getResourceSet().getResources().remove(metamodelResource);
-					metamodelResource.unload();
-				}
-			}
-
-			// Now, reload the pamtram model
-			//
-			this.pamtram.eResource().unload();
-			this.getPamtramFromResourceSet();
-
-			break;
-		case ERROR_METAMODEL_FOLDER_NOT_FOUND:
-		case ERROR_PACKAGE_NOT_FOUND:
-		case ERROR_PAMTRAM_NOT_FOUND:
-		default:
-			break;
-		}
 	}
 
 	/**

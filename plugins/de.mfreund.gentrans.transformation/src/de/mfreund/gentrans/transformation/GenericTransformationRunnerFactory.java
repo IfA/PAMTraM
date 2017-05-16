@@ -8,24 +8,20 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.logging.GenTransConsole;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import pamtram.PAMTraM;
-import pamtram.util.PamtramEPackageHelper;
-import pamtram.util.PamtramEPackageHelper.EPackageCheck;
+import pamtram.util.PamtramModelUtil;
+import pamtram.util.PamtramModelUtil.ModelLoadException;
 
 /**
  * This class provides a factory that can be used to create instances of
@@ -77,7 +73,13 @@ public class GenericTransformationRunnerFactory {
 
 		// Load the PAMTraM model
 		//
-		List<PAMTraM> pamtramModels = this.loadPamtramModels(resourceSet, pamtramPaths, logger);
+		List<PAMTraM> pamtramModels = null;
+		try {
+			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSet, pamtramPaths, true);
+		} catch (ModelLoadException e) {
+			logger.severe(e.getMessage());
+			pamtramModels = null;
+		}
 
 		if (pamtramModels == null || pamtramModels.isEmpty()) {
 			return null;
@@ -282,75 +284,6 @@ public class GenericTransformationRunnerFactory {
 		}
 
 		return ret;
-	}
-
-	/**
-	 * This loads the {@link PAMTraM} model from an XMI file. If necessary,
-	 * additional {@link EPackage EPackages} that are referenced in the model
-	 * are registered so that no errors occur during the transformation.
-	 *
-	 * @param rs
-	 *            The resource set to be used to load the resource.
-	 * @param pamtramPaths
-	 *            The paths of the {@link PAMTraM} models to load in the form
-	 *            'project-name/path'.
-	 * @param logger
-	 *            The {@link MessageConsoleStream} that shall be used to print
-	 *            message during loading.
-	 * @return The loaded {@link PAMTraM} model; '<em><b>null</b></em>' if the
-	 *         model could not be loaded.
-	 */
-	private List<PAMTraM> loadPamtramModels(ResourceSet rs, Set<String> pamtramPaths, Logger logger) {
-
-		ResourceSet resourceSet = rs;
-		List<PAMTraM> pamtramModels = new ArrayList<>();
-
-		for (String pamtramPath : pamtramPaths) {
-
-			// the URI of the pamtram resource
-			final URI pamtramUri = URI.createPlatformResourceURI(pamtramPath, true);
-
-			// load the pamtram model
-			XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
-			if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-				logger.severe("The pamtram file does not seem to contain a pamtram instance. Aborting...");
-				return null;
-			}
-
-			PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
-
-			// try to register the ePackages involved in the pamtram model (if
-			// not
-			// already done)
-			EPackageCheck result = PamtramEPackageHelper.checkInvolvedEPackages(pamtramModel,
-					ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramPath).getProject(),
-					EPackage.Registry.INSTANCE);
-			switch (result) {
-			case ERROR_PACKAGE_NOT_FOUND:
-				logger.severe("One or more EPackages are not loaded correctly. Aborting...");
-				return null;
-			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
-			case ERROR_PAMTRAM_NOT_FOUND:
-				logger.severe("Internal error during EPackage check. Aborting...");
-				return null;
-			case OK_PACKAGES_REGISTERED:
-				// if packages have been registered, a new resource set has to
-				// be
-				// created; otherwise,
-				// proxy resolving does not seem to work correctly
-				resourceSet = new ResourceSetImpl();
-				pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
-				pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
-				break;
-			case OK_NOTHING_REGISTERED:
-			default:
-				break;
-			}
-
-			pamtramModels.add(pamtramModel);
-		}
-
-		return pamtramModels;
 	}
 
 	/**

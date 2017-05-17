@@ -278,7 +278,7 @@
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/ActualAttribute/validateAttributeMatchesParentEClass/context"/>
           </genOperations>
         </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/generic/VirtualAttribute">
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/generic/VirtualAttribute">
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/VirtualAttribute/S"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/VirtualAttribute/C"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/VirtualAttribute/R"/>
@@ -376,8 +376,8 @@
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionAttribute">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/source/SourceSectionAttribute/valueConstraints"/>
         </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/source/ActualSourceSectionAttribute"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute">
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/ActualSourceSectionAttribute"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute">
           <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/derivation"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/validateDerivation">
             <genParameters ecoreParameter="pamtram.ecore#//structure/source/VirtualSourceSectionAttribute/validateDerivation/diagnostics"/>
@@ -420,8 +420,8 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/unique"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/value"/>
         </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/target/ActualTargetSectionAttribute"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/target/VirtualTargetSectionAttribute"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/ActualTargetSectionAttribute"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/VirtualTargetSectionAttribute"/>
       </nestedGenPackages>
       <nestedGenPackages prefix="Library" disposableProviderFactory="true" multipleEditorPages="false"
           generateModelWizard="false" ecorePackage="pamtram.ecore#//structure/library">

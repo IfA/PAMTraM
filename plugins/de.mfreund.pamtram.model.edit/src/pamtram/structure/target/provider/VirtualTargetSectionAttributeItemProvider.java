@@ -2,7 +2,7 @@
  */
 package pamtram.structure.target.provider;
 
-
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -16,17 +16,17 @@ import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.target.VirtualTargetSectionAttribute} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.target.VirtualTargetSectionAttribute} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class VirtualTargetSectionAttributeItemProvider
-extends TargetSectionAttributeItemProvider {
+public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttributeItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public VirtualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -34,9 +34,9 @@ extends TargetSectionAttributeItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,20 +49,21 @@ extends TargetSectionAttributeItemProvider {
 	}
 
 	/**
-	 * This returns VirtualTargetSectionAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 *
 	 */
 	@Override
 	public Object getImage(Object object) {
 
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/VirtualAttribute"));
+		Object baseImage = super.getImage(object);
+		Object virtualImage = this.getResourceLocator().getImage("Virtual");
+
+		return new DecoratedComposedImage(Arrays.asList(baseImage, virtualImage), 0, 0);
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -71,9 +72,9 @@ extends TargetSectionAttributeItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	@Override
@@ -83,13 +84,13 @@ extends TargetSectionAttributeItemProvider {
 
 		StyledString styledLabel = new StyledString();
 
-		if(attribute.getName() == null || attribute.getName().isEmpty()) {
+		if (attribute.getName() == null || attribute.getName().isEmpty()) {
 			styledLabel.append((StyledString) super.getStyledText(object));
 		} else {
 			Iterator<Fragment> it = ((StyledString) super.getStyledText(object)).iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				Fragment next = it.next();
-				if(next.getString().equals(attribute.getName())) {
+				if (next.getString().equals(attribute.getName())) {
 					// use the 'qualifier styler' for the label
 					styledLabel.append(next.getString(), StyledString.Style.QUALIFIER_STYLER);
 				} else {
@@ -105,8 +106,8 @@ extends TargetSectionAttributeItemProvider {
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -116,10 +117,10 @@ extends TargetSectionAttributeItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

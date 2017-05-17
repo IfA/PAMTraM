@@ -98,7 +98,6 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 
 	/**
 	 *
-	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {

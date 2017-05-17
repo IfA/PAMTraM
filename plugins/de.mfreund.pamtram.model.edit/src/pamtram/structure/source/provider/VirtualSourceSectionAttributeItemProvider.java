@@ -2,6 +2,7 @@
  */
 package pamtram.structure.source.provider;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -75,14 +76,15 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 	}
 
 	/**
-	 * This returns VirtualSourceSectionAttribute.gif. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 *
-	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/VirtualAttribute"));
+
+		Object baseImage = super.getImage(object);
+		Object virtualImage = this.getResourceLocator().getImage("Virtual");
+
+		return new DecoratedComposedImage(Arrays.asList(baseImage, virtualImage), 0, 0);
 	}
 
 	/**

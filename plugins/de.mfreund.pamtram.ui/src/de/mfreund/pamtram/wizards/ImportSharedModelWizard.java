@@ -8,34 +8,25 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.pamtram.pages.SharedSectionModelSelectionPage;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.util.SharedModelUtil;
 import pamtram.util.SharedModelUtil.SharedModelType;
 
 /**
- * This wizard allows to import one or multiple library elements from a library (represented by a Zip file) into a
- * pamtram model.
+ * This {@link AbstractImportElementWizard} allows to a shared
+ * {@link SectionModel} into a pamtram model.
  *
  * @author mfreund
  */
-public class ImportSharedModelWizard extends Wizard {
+public class ImportSharedModelWizard extends AbstractImportElementWizard {
 
 	private final SharedSectionModelSelectionPage one;
-
-	/**
-	 * This is the pamtram instance into that the library elements shall be imported.
-	 */
-	private final PAMTraM pamtram;
-
-	/**
-	 * This is the editing domain to be used to perform model changes.
-	 */
-	private final EditingDomain editingDomain;
 
 	/**
 	 * The {@link SharedModelType} of SectionModel(s) to be imported.
@@ -46,17 +37,19 @@ public class ImportSharedModelWizard extends Wizard {
 	 * This constructs an instance of the wizard.
 	 *
 	 * @param pamtram
-	 *            The {@link PAMTraM} instance into that the library elements shall be imported.
+	 *            The {@link PAMTraM} instance into that the library elements
+	 *            shall be imported.
 	 * @param editingDomain
 	 *            The editing domain to be used to perform model changes.
+	 * @param viewer
+	 *            The {@link Viewer} where the imported elements will be shown
+	 *            and selected.
 	 * @param type
 	 *            The {@link SharedModelType} of SectionModel(s) to be imported.
 	 */
-	public ImportSharedModelWizard(PAMTraM pamtram, EditingDomain editingDomain, SharedModelType type) {
-		super();
-		this.setNeedsProgressMonitor(true);
-		this.pamtram = pamtram;
-		this.editingDomain = editingDomain;
+	public ImportSharedModelWizard(PAMTraM pamtram, EditingDomain editingDomain, Viewer viewer, SharedModelType type) {
+		super(pamtram, editingDomain, viewer);
+
 		this.type = type;
 		this.one = new SharedSectionModelSelectionPage("Select Shared Model", "Select a shared model to be imported",
 				SharedModelUtil.getFileEndingBySharedModelType(type), false);
@@ -68,8 +61,20 @@ public class ImportSharedModelWizard extends Wizard {
 		this.addPage(this.one);
 	}
 
+	/**
+	 * Show an error to the user by opening a {@link MessageDialog}.
+	 *
+	 * @param errorMessage
+	 *            The message to display to the user.
+	 */
+	protected void showError(String errorMessage) {
+
+		Shell shell = UIHelper.getShell();
+		MessageDialog.openError(shell, "ERROR", errorMessage);
+	}
+
 	@Override
-	public boolean performFinish() {
+	protected void createImportElementsCommand() {
 
 		IFile sharedModelFile = this.one.getSingleSelection();
 
@@ -85,14 +90,14 @@ public class ImportSharedModelWizard extends Wizard {
 
 			if (!SharedModelUtil.isValidSubModelContent(this.type, content)) {
 				this.showError("The selected file does not contain a valid shared model!");
-				return false;
+				return;
 			}
 
 			sharedModel = content;
 
 		} catch (Exception e) {
 			this.showError("Error while loading the resource containing the shared model!");
-			return false;
+			return;
 		}
 
 		EList<?> list = null;
@@ -106,25 +111,7 @@ public class ImportSharedModelWizard extends Wizard {
 			list = this.pamtram.getSharedConditionModels();
 		}
 
-		AddCommand addCommand = new AddCommand(this.editingDomain, list, sharedModel);
-
-		// Execute the command to import the section model
-		//
-		this.editingDomain.getCommandStack().execute(addCommand);
-
-		return true;
-	}
-
-	/**
-	 * Show an error to the user by opening a {@link MessageDialog}.
-	 *
-	 * @param errorMessage
-	 *            The message to display to the user.
-	 */
-	protected void showError(String errorMessage) {
-
-		Shell shell = UIHelper.getShell();
-		MessageDialog.openError(shell, "ERROR", errorMessage);
+		this.importCommand = new AddCommand(this.editingDomain, list, sharedModel);
 	}
 
 }

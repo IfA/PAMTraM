@@ -1006,7 +1006,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 *
 	 * @author mfreund
 	 */
-	public abstract static class TreeViewerGroupToolbarImportButtonOption implements TreeViewerGroupToolbarOption {
+	public abstract class TreeViewerGroupToolbarImportButtonOption implements TreeViewerGroupToolbarOption {
 
 		/**
 		 * The added item.
@@ -1025,6 +1025,27 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		protected SelectionListener2 selectionListener;
 
 		/**
+		 * The containing TreeViewerGroup.
+		 */
+		protected TreeViewerGroup group;
+
+		/**
+		 * This creates an instance without setting the
+		 * {@link #selectionListener}. If this constructor is used, the
+		 * {@link #selectionListener} should be set manually via
+		 * {@link #setSelectionListener(SelectionListener2)}. Otherwise, nothing
+		 * happens when the option is selected by the user.
+		 *
+		 * @param toolTipText
+		 *            The tool-tip text for the import button.
+		 *
+		 */
+		public TreeViewerGroupToolbarImportButtonOption(String toolTipText) {
+			this.toolTipText = toolTipText;
+			this.selectionListener = null;
+		}
+
+		/**
 		 * This creates an instance.
 		 *
 		 * @param toolTipText
@@ -1039,14 +1060,33 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			this.selectionListener = listener;
 		}
 
+		/**
+		 * Set/update the {@link #selectionListener}.
+		 *
+		 * @param selectionListener
+		 *            the selectionListener to set
+		 */
+		public void setSelectionListener(SelectionListener2 selectionListener) {
+			if (this.item != null && this.selectionListener != null) {
+				this.item.removeSelectionListener(this.selectionListener);
+			}
+			this.selectionListener = selectionListener;
+			if (this.item != null) {
+				this.item.addSelectionListener(selectionListener);
+			}
+		}
+
 		@Override
 		public void addToolbarControls(TreeViewerGroup group, ToolBar toolbar, TreeViewerGroupOption[] options) {
 
+			this.group = group;
 			this.item = new ToolItem(toolbar, SWT.PUSH);
 			this.item.setImage(BundleContentHelper.getBundleImage(PamtramEditorPlugin.getPlugin().getSymbolicName(),
 					"icons/import_wiz.gif"));
 			this.item.setToolTipText(this.toolTipText);
-			this.item.addSelectionListener(this.selectionListener);
+			if (this.selectionListener != null) {
+				this.item.addSelectionListener(this.selectionListener);
+			}
 
 		}
 
@@ -1061,7 +1101,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import
 	 * shared {@link SectionModel SectionModels}.
 	 */
-	public static class TreeViewerGroupToolbarImportSharedSectionModelButtonOption
+	public class TreeViewerGroupToolbarImportSharedSectionModelButtonOption
 			extends TreeViewerGroupToolbarImportButtonOption {
 
 		/**
@@ -1080,15 +1120,47 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		public TreeViewerGroupToolbarImportSharedSectionModelButtonOption(PAMTraM pamtram, EditingDomain editingDomain,
 				SharedModelType sharedModelType) {
 
-			super("Import Shared Model", (SelectionListener2) e -> {
+			super("Import Shared Model", null);
+			this.setSelectionListener((SelectionListener2) e -> {
 
 				// create the wizard that allows to import shared
 				// SourceSectionModels
 				//
 				WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-						new ImportSharedModelWizard(pamtram, editingDomain, sharedModelType));
+						new ImportSharedModelWizard(pamtram, editingDomain, this.group.getViewer(), sharedModelType));
 				wizardDialog.create();
 				wizardDialog.open();
+
+				// Ensure that the source section viewer is not minimized
+				//
+				switch (sharedModelType) {
+				case SOURCE:
+					if (PamtramEditorMainPage.this.sourceViewerGroup
+							.equals(PamtramEditorMainPage.this.sourceSash.getMinimizedControl())) {
+						PamtramEditorMainPage.this.sourceSash.restoreLayout();
+					}
+					break;
+				case CONDITION:
+					if (PamtramEditorMainPage.this.conditionViewerGroup
+							.equals(PamtramEditorMainPage.this.sourceSash.getMinimizedControl())) {
+						PamtramEditorMainPage.this.sourceSash.restoreLayout();
+					}
+					break;
+				case MAPPING:
+					if (PamtramEditorMainPage.this.mappingViewerGroup
+							.equals(PamtramEditorMainPage.this.mappingSash.getMinimizedControl())) {
+						PamtramEditorMainPage.this.mappingSash.restoreLayout();
+					}
+					break;
+				case TARGET:
+					if (PamtramEditorMainPage.this.targetViewerGroup
+							.equals(PamtramEditorMainPage.this.targetSash.getMinimizedControl())) {
+						PamtramEditorMainPage.this.targetSash.restoreLayout();
+					}
+					break;
+				default:
+					break;
+				}
 			});
 		}
 
@@ -1098,8 +1170,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import
 	 * {@link LibraryEntry LibraryEntries}.
 	 */
-	public static class TreeViewerGroupToolbarImportLibraryEntryButtonOption
-			extends TreeViewerGroupToolbarImportButtonOption {
+	public class TreeViewerGroupToolbarImportLibraryEntryButtonOption extends TreeViewerGroupToolbarImportButtonOption {
 
 		/**
 		 * This creates an instance.
@@ -1112,15 +1183,29 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 *            elements.
 		 */
 		public TreeViewerGroupToolbarImportLibraryEntryButtonOption(PAMTraM pamtram, EditingDomain editingDomain) {
-			super("Import Library Entry", (SelectionListener2) e -> {
+			super("Import Library Entry", null);
+			this.setSelectionListener((SelectionListener2) e -> {
 
 				// create the wizard that allows to import LibraryEntries
 				//
-				WizardDialog wizardDialog = new WizardDialog(new Shell(),
-						new ImportLibraryElementWizard(pamtram, editingDomain));
+				WizardDialog wizardDialog = new WizardDialog(new Shell(), new ImportLibraryElementWizard(pamtram,
+						editingDomain, this.group.getViewer(), PamtramEditorMainPage.this.mappingViewer));
 				wizardDialog.create();
 				wizardDialog.open();
+
+				// Ensure that the library element viewer and the mapping viewer
+				// are not minimized
+				//
+				if (PamtramEditorMainPage.this.libTargetViewerGroup
+						.equals(PamtramEditorMainPage.this.targetSash.getMinimizedControl())) {
+					PamtramEditorMainPage.this.targetSash.restoreLayout();
+				}
+				if (PamtramEditorMainPage.this.mappingViewerGroup
+						.equals(PamtramEditorMainPage.this.mappingSash.getMinimizedControl())) {
+					PamtramEditorMainPage.this.mappingSash.restoreLayout();
+				}
 			});
+
 		}
 
 	}

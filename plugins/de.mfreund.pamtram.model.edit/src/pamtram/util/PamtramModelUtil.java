@@ -416,8 +416,8 @@ public interface PamtramModelUtil extends EPackageHelper {
 			break;
 		case OK_NOTHING_REGISTERED:
 			// if nothing needed to be registered, we can simply add the
-			// loaded resource to the orginal resource set
-			resourceSet.getResources().add(pamtramResource);
+			// loaded resource(s) to the original resource set
+			resourceSet.getResources().addAll(tempResourceSet.getResources());
 			break;
 		default:
 			break;

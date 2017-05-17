@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -51,15 +52,16 @@ import pamtram.structure.target.TargetFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
+ *
  * @generated
  */
 public class SectionModelItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public SectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -67,24 +69,25 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-
-			addMetaModelPackagePropertyDescriptor(object);
+			this.addMetaModelPackagePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
 	 * This returns the property descriptors for the adapted class.
 	 *
-	 * <!-- begin-user-doc --> Re-initialize the property descriptors every time to add/hide the
-	 * 'SectionModelFilePropertyDescriptor' based on the currently selected object <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> Re-initialize the property descriptors every time
+	 * to add/hide the 'SectionModelFilePropertyDescriptor' based on the
+	 * currently selected object <!-- end-user-doc -->
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
@@ -97,13 +100,15 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Model Package feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Meta Model Package feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	protected void addMetaModelPackagePropertyDescriptor(Object object) {
 
-		// Use a custom item property descriptor that allows importing new EPackages from meta-model files
+		// Use a custom item property descriptor that allows importing new
+		// EPackages from meta-model files
 		//
 		this.itemPropertyDescriptors.add(new MetaModelPackageItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
@@ -114,8 +119,8 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for shared SectionModels that displays the path to the file containing the
-	 * SectionModel.
+	 * This adds a property descriptor for shared SectionModels that displays
+	 * the path to the file containing the SectionModel.
 	 */
 	protected void addSectionModelFilePropertyDescriptor(Object object) {
 
@@ -125,8 +130,10 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 			return;
 		}
 
-		// As the SectionModel file is not represented by an EStructuralFeature, we need to create our own
-		// ItemPropertyDescriptor for a 'virtual' feature (see https://www.eclipse.org/forums/index.php/t/124870/)
+		// As the SectionModel file is not represented by an EStructuralFeature,
+		// we need to create our own
+		// ItemPropertyDescriptor for a 'virtual' feature (see
+		// https://www.eclipse.org/forums/index.php/t/124870/)
 		//
 		EAttribute sectionModelFile = EcoreFactory.eINSTANCE.createEAttribute();
 		sectionModelFile.setEType(EcorePackage.eINSTANCE.getEString());
@@ -151,47 +158,53 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
+			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -221,10 +234,11 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -233,69 +247,70 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SectionModel.class)) {
-			case PamtramPackage.SECTION_MODEL__SECTIONS:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-			case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
-				// adapt the uri of the ePackage resource if necessary to force a namespace- instead of a file-based
-				// serialization
-				if (notification.getNewValue() instanceof EPackage) {
-					EPackage ePackage = (EPackage) notification.getNewValue();
-					if (ePackage.eResource() != null
-							&& (ePackage.eResource().getURI().isFile() || ePackage.eResource().getURI().isPlatform())) {
-						// we need to adapt
-						EPackage.Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
-						ePackage.eResource().setURI(URI.createURI(ePackage.getNsURI()));
-					}
+		case PamtramPackage.SECTION_MODEL__SECTIONS:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
+		case PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE:
+			// adapt the uri of the ePackage resource if necessary to force a
+			// namespace- instead of a file-based
+			// serialization
+			if (notification.getNewValue() instanceof EPackage) {
+				EPackage ePackage = (EPackage) notification.getNewValue();
+				if (ePackage.eResource() != null
+						&& (ePackage.eResource().getURI().isFile() || ePackage.eResource().getURI().isPlatform())) {
+					// we need to adapt
+					EPackage.Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
+					ePackage.eResource().setURI(URI.createURI(ePackage.getNsURI()));
 				}
+			}
 
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				 SourceFactory.eINSTANCE.createSourceSection()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				SourceFactory.eINSTANCE.createSourceSection()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				 TargetFactory.eINSTANCE.createTargetSection()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
+				TargetFactory.eINSTANCE.createTargetSection()));
 	}
 
 	/**
-	 * A custom {@link ItemPropertyDescriptor} that allows to import new {@link EPackage EPackages} on the fly.
+	 * A custom {@link ItemPropertyDescriptor} that allows to import new
+	 * {@link EPackage EPackages} on the fly.
 	 *
 	 * @author mfreund
 	 */
-	protected final class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
+	protected final static class MetaModelPackageItemPropertyDescriptor extends ItemPropertyDescriptor {
 
 		/**
-		 * This represents the option that is presented to the user which allows to import packages from the registry.
+		 * This represents the option that is presented to the user which allows
+		 * to import packages from the registry.
 		 */
 		protected static final String ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY = "... add missing EPackage from global EPackage registry";
 
 		/**
-		 * This represents the option that is presented to the user which allows to import packages from a meta-model
-		 * file.
+		 * This represents the option that is presented to the user which allows
+		 * to import packages from a meta-model file.
 		 */
 		protected static final String ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE = "... add missing EPackage from meta-model file";
 
 		/**
-		 * This keeps track of the fact if a dialog is currently presented to the user to specify an EPackage to add.
+		 * This keeps track of the fact if a dialog is currently presented to
+		 * the user to specify an EPackage to add.
 		 */
-		protected boolean isDialogActive = false;
+		private static boolean isDialogActive = false;
 
 		protected MetaModelPackageItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator,
 				String displayName, String description, EStructuralFeature feature, boolean isSettable,
@@ -303,6 +318,14 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 			super(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine,
 					sortChoices, staticImage, category, filterFlags);
+		}
+
+		/**
+		 * @param isDialogActive
+		 *            the isDialogActive to set
+		 */
+		protected synchronized static void setDialogActive(boolean isDialogActive) {
+			MetaModelPackageItemPropertyDescriptor.isDialogActive = isDialogActive;
 		}
 
 		@Override
@@ -329,17 +352,19 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 					|| value.equals(
 							MetaModelPackageItemPropertyDescriptor.ADD_MISSING_E_PACKAGE_FROM_GLOBAL_E_PACKAGE_REGISTRY))) {
 
-				// As 'setPropertyValue' might get called multiple times, we make sure that the selection dialog is
+				// As 'setPropertyValue' might get called multiple times, we
+				// make sure that the selection dialog is
 				// presented to the user
 				// only once
 				//
-				if (!this.isDialogActive) {
+				if (!MetaModelPackageItemPropertyDescriptor.isDialogActive) {
 
-					this.isDialogActive = true;
+					MetaModelPackageItemPropertyDescriptor.setDialogActive(true);
 
-					EPackage packageToSet = null;
+					Optional<EPackage> packageToSet;
 
-					// Open the dialog and let the user specify the desired meta-model file / EPackage
+					// Open the dialog and let the user specify the desired
+					// meta-model file / EPackage
 					//
 					if (value.equals(
 							MetaModelPackageItemPropertyDescriptor.ADD_MISSING_E_PACKAGE_FROM_META_MODEL_FILE)) {
@@ -351,15 +376,18 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 						packageToSet = this.importPackageFromRegistry();
 
+					} else {
+						packageToSet = Optional.empty();
 					}
 
-					// If a valid package has been specified by the user, set it as new property value
+					// If a valid package has been specified by the user, set it
+					// as new property value
 					//
-					if (packageToSet != null) {
-						super.setPropertyValue(object, packageToSet);
+					if (packageToSet.isPresent()) {
+						super.setPropertyValue(object, packageToSet.get());
 					}
 
-					this.isDialogActive = false;
+					MetaModelPackageItemPropertyDescriptor.setDialogActive(false);
 
 					return;
 				}
@@ -369,12 +397,13 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		}
 
 		/**
-		 * This opens a dialog which allows the user to specify an EPackage from the global {@link EPackage.Registry}.
-		 * The selected package will be returned.
+		 * This opens a dialog which allows the user to specify an EPackage from
+		 * the global {@link EPackage.Registry}. The selected package will be
+		 * returned.
 		 *
 		 * @return The selected {@link EPackage} to be imported.
 		 */
-		protected EPackage importPackageFromRegistry() {
+		protected Optional<EPackage> importPackageFromRegistry() {
 
 			class SelectFromRegistryDialog extends Dialog {
 
@@ -392,10 +421,11 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 				}
 
 				/**
-				 * This opens the dialog and returns the {@link EPackage} specified by the user when the dialog is
-				 * closed again.
+				 * This opens the dialog and returns the {@link EPackage}
+				 * specified by the user when the dialog is closed again.
 				 *
-				 * @return The {@link EPackage} specified by the user or '<em>null</em>' if no valid package has been
+				 * @return The {@link EPackage} specified by the user or
+				 *         '<em>null</em>' if no valid package has been
 				 *         specified.
 				 */
 				public EPackage open() {
@@ -439,7 +469,8 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 						}
 					}
 
-					// The specified EPackage or null in case the dialog was aborted/no valid
+					// The specified EPackage or null in case the dialog was
+					// aborted/no valid
 					// namespace URI was specified
 					//
 					return this.result;
@@ -448,22 +479,25 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 
 			// Open the dialog and return the resulting EPackage
 			//
-			return new SelectFromRegistryDialog().open();
+			return Optional.ofNullable(new SelectFromRegistryDialog().open());
 
 		}
 
 		/**
-		 * This opens a dialog which allows the user to specify a meta-model file (XSD or Ecore). If necessary, the
-		 * EPackages contained in the specified file are copied to a new Ecore resource in the 'metamodel' folder of the
-		 * current project. Finally, the root package contained in the meta-model file is returned.
+		 * This opens a dialog which allows the user to specify a meta-model
+		 * file (XSD or Ecore). If necessary, the EPackages contained in the
+		 * specified file are copied to a new Ecore resource in the 'metamodel'
+		 * folder of the current project. Finally, the root package contained in
+		 * the meta-model file is returned.
 		 *
 		 * @param sectionModel
-		 *            The {@link SectionModel} to that a new EPackage shall be imported. This will be used to determine
-		 *            the current pamtram project and thus the 'metamodel' folder to that the meta-model file shall be
-		 *            copied.
+		 *            The {@link SectionModel} to that a new EPackage shall be
+		 *            imported. This will be used to determine the current
+		 *            pamtram project and thus the 'metamodel' folder to that
+		 *            the meta-model file shall be copied.
 		 * @return The {@link EPackage} to be imported.
 		 */
-		protected EPackage importPackageFromMetaModelFile(SectionModel<?, ?, ?, ?> sectionModel) {
+		protected Optional<EPackage> importPackageFromMetaModelFile(SectionModel<?, ?, ?, ?> sectionModel) {
 
 			FileDialog fileDialog = new FileDialog(UIHelper.getShell(), SWT.OPEN);
 			fileDialog.setText("Select Meta-model File...");
@@ -482,6 +516,9 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 			// Wait for the user to specify a file
 			//
 			String selected = fileDialog.open();
+			if (selected == null) {
+				return Optional.empty();
+			}
 
 			// Check if there are EPackages specified in the file
 			//
@@ -493,7 +530,8 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 			if (packages != null) {
 
 				try {
-					// Copy the contents of the file to the 'metamodel' folder of the current project (if necessary)
+					// Copy the contents of the file to the 'metamodel' folder
+					// of the current project (if necessary)
 					//
 					Resource pamtramResource = ((EObject) sectionModel).eResource();
 					newMetamodelFileName = selected.endsWith(".ecore") ? new File(selected).getName()
@@ -537,7 +575,7 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 								+ new File(selected).getPath() + "'!");
 			}
 
-			return packageToSet;
+			return Optional.ofNullable(packageToSet);
 		}
 	}
 

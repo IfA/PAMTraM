@@ -78,23 +78,12 @@ public class SourceSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * This adds a property descriptor for the EReference feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
 		super.addEReferencePropertyDescriptor(object);
-	}
-
-	/**
-	 * This returns SourceSectionCrossReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionCrossReference"));
 	}
 
 	/**

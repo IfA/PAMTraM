@@ -36,7 +36,7 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public TargetSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -46,7 +46,7 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -62,23 +62,12 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	/**
 	 * This adds a property descriptor for the EReference feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
 		super.addEReferencePropertyDescriptor(object);
-	}
-
-	/**
-	 * This returns TargetSectionCompositeReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionCompositeReference"));
 	}
 
 	/**
@@ -121,7 +110,7 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -132,7 +121,7 @@ public class TargetSectionCompositeReferenceItemProvider extends CompositeRefere
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

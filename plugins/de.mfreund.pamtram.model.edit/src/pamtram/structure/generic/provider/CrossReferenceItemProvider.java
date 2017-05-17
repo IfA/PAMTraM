@@ -111,6 +111,15 @@ public class CrossReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
+	 * This returns CrossReference.gif.
+	 */
+	@Override
+	public Object getImage(Object object) {
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/CrossReference"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->

@@ -26,7 +26,7 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public TargetSectionCrossReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -36,7 +36,7 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -52,23 +52,12 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * This adds a property descriptor for the EReference feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	protected void addEReferencePropertyDescriptor(Object object) {
 		super.addEReferencePropertyDescriptor(object);
-	}
-
-	/**
-	 * This returns TargetSectionCrossReference.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/TargetSectionCrossReference"));
 	}
 
 	/**
@@ -111,7 +100,7 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -122,7 +111,7 @@ public class TargetSectionCrossReferenceItemProvider extends CrossReferenceItemP
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

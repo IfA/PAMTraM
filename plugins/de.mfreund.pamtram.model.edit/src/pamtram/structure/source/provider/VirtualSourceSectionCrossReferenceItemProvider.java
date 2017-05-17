@@ -2,6 +2,7 @@
  */
 package pamtram.structure.source.provider;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public VirtualSourceSectionCrossReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -38,7 +39,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -76,7 +77,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	/**
 	 * This adds a property descriptor for the Derivation feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addDerivationPropertyDescriptor(Object object) {
@@ -96,14 +97,16 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	}
 
 	/**
-	 * This returns VirtualSourceSectionCrossReference.gif.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * @generated
+	 *
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/VirtualSourceSectionCrossReference"));
+
+		Object baseImage = super.getImage(object);
+		Object virtualImage = this.getResourceLocator().getImage("Virtual");
+
+		return new DecoratedComposedImage(Arrays.asList(baseImage, virtualImage), 0, 0);
 	}
 
 	/**
@@ -120,7 +123,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -152,7 +155,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -163,7 +166,7 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

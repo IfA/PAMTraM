@@ -236,7 +236,7 @@
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/VirtualReference/R"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/VirtualReference/A"/>
         </genClasses>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/generic/CompositeReference">
+        <genClasses ecoreClass="pamtram.ecore#//structure/generic/CompositeReference">
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CompositeReference/S"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CompositeReference/C"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CompositeReference/R"/>
@@ -247,7 +247,7 @@
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/CompositeReference/validateEReferenceIsContainment/context"/>
           </genOperations>
         </genClasses>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/generic/CrossReference">
+        <genClasses ecoreClass="pamtram.ecore#//structure/generic/CrossReference">
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CrossReference/S"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CrossReference/C"/>
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/CrossReference/R"/>
@@ -364,9 +364,9 @@
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionReference">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/source/SourceSectionReference/ignoreUnmatchedElements"/>
         </genClasses>
-        <genClasses ecoreClass="pamtram.ecore#//structure/source/SourceSectionCompositeReference"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/source/SourceSectionCrossReference"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/source/VirtualSourceSectionCrossReference">
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionCompositeReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionCrossReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/VirtualSourceSectionCrossReference">
           <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/source/VirtualSourceSectionCrossReference/derivation"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/source/VirtualSourceSectionCrossReference/validateDerivation">
             <genParameters ecoreParameter="pamtram.ecore#//structure/source/VirtualSourceSectionCrossReference/validateDerivation/diagnostics"/>
@@ -409,8 +409,8 @@
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionClass"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionReference"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionCompositeReference"/>
-        <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionCrossReference">
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCompositeReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCrossReference">
           <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment">
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/context"/>
@@ -470,6 +470,7 @@
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isLocalCondition"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isMappingCondition"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isConditionModelCondition"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/getConditionPartsFlat"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//condition/VariadicCondition">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/localCondParts"/>
@@ -546,6 +547,10 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/cardinalityMappings"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/referenceTargetSelectors"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/containerSelectors"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup"/>

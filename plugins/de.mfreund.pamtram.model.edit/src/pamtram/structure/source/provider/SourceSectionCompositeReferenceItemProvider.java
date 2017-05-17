@@ -56,30 +56,34 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addIgnoreUnmatchedElementsPropertyDescriptor(object);
-			this.addEReferencePropertyDescriptor(object);
+			addIgnoreUnmatchedElementsPropertyDescriptor(object);
+			addEReferencePropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Ignore Unmatched Elements
-	 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Ignore Unmatched Elements feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIgnoreUnmatchedElementsPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_SourceSectionReference_ignoreUnmatchedElements_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_SourceSectionReference_ignoreUnmatchedElements_feature",
-						"_UI_SourceSectionReference_type"),
-				SourcePackage.Literals.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SourceSectionReference_ignoreUnmatchedElements_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionReference_ignoreUnmatchedElements_feature", "_UI_SourceSectionReference_type"),
+				 SourcePackage.Literals.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,26 +98,25 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This returns SourceSectionCompositeReference.gif. <!-- begin-user-doc -->
+	 * This returns SourceSectionCompositeReference.gif.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return this.overlayImage(object,
-				this.getResourceLocator().getImage("full/obj16/SourceSectionCompositeReference"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionCompositeReference"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -129,21 +132,20 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionCompositeReference.class)) {
-		case SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__IGNORE_UNMATCHED_ELEMENTS:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case SourcePackage.SOURCE_SECTION_COMPOSITE_REFERENCE__IGNORE_UNMATCHED_ELEMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

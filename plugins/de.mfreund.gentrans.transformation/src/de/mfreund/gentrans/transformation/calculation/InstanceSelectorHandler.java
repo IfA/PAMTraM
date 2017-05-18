@@ -170,7 +170,7 @@ public class InstanceSelectorHandler {
 				return sourceRefAttrAsString.equals(instancePointerRefValue);
 
 			} catch (final Exception e) {
-				this.logger.warning("Message:\n InstancePointerHander failed because of:" + e.getMessage());
+				this.logger.warning(() -> "Message:\n InstancePointerHander failed because of:" + e.getMessage());
 				return false;
 			}
 

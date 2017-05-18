@@ -74,7 +74,12 @@ public abstract class AbstractAmbiguityResolvingStrategy implements IAmbiguityRe
 	 */
 	protected void printMessage(String message, String prefix) {
 		if (this.logger != null) {
-			this.logger.fine("[" + prefix + "]" + message);
+			this.logger.fine(() -> "[" + prefix + "]" + message);
 		}
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 }

@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -138,11 +139,13 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	@Override
 	public boolean validate() {
 
-		if (!super.validate()) {
+		if (this.logger == null) {
 			return false;
 		}
 
-		if (this.logger == null) {
+		this.logger.fine("Validating transformation configuration...");
+
+		if (!super.validate()) {
 			return false;
 		}
 
@@ -160,6 +163,10 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			this.logger.severe("No target base path has been specified!");
 			return false;
 		}
+
+		this.logger.info(this::toString);
+
+		this.logger.fine("Validation successful!");
 
 		return true;
 	}
@@ -245,5 +252,23 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	public Logger getLogger() {
 
 		return this.logger;
+	}
+
+	/**
+	 * Print a summary of the used configuration.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("- Source Model(s): ");
+		builder.append("\n\t" + this.sourceModels.stream().map(m -> m.eResource().getURI().toString())
+				.collect(Collectors.joining("\n\t")));
+		builder.append("\n- PAMTraM Model(s): ");
+		builder.append("\n\t" + this.pamtramModels.stream().map(m -> m.eResource().getURI().toString())
+				.collect(Collectors.joining("\n\t")));
+
+		builder.append("\n" + super.toString());
+
+		return builder.toString();
 	}
 }

@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -325,6 +326,25 @@ public class BaseTransformationConfiguration {
 	public boolean isUseParallelization() {
 
 		return this.useParallelization;
+	}
+
+	/**
+	 * Print a summary of the used configuration.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("- Default Target Model: " + this.defaultTargetModel);
+		builder.append("\n- Maximum length for Connection Paths: " + this.maxPathLength);
+		builder.append("\n- Remember Choices For Ambiguous Mappings: " + this.onlyAskOnceOnAmbiguousMappings);
+		builder.append("\n- Create Transformation Model: " + (this.transformationModelPath != null ? "true" : "false"));
+		builder.append("\n- Extended Parallelization: " + this.useParallelization);
+		builder.append("\n- Used Ambiguity Resolving Strategy: " + this.ambiguityResolvingStrategy);
+		builder.append("\n- Library Location(s): ");
+		builder.append(
+				this.libPaths.isEmpty() ? "---" : "\n\t" + this.libPaths.stream().collect(Collectors.joining("\n\t")));
+
+		return builder.toString();
 	}
 
 }

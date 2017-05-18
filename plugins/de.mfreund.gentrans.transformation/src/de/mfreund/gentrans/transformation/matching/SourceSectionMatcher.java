@@ -386,7 +386,7 @@ public class SourceSectionMatcher extends CancelableElement {
 				throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 			} else {
 				this.logger
-						.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a matched section: "
+						.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a matched section: "
 								+ e.getMessage());
 				this.logger.severe("Using default section instead...");
 				return matchesWithMaximumElements.get(0);
@@ -871,9 +871,9 @@ public class SourceSectionMatcher extends CancelableElement {
 			try {
 				value = OCLUtil.evaluteQuery(virtualReference.getDerivation(), srcModelObject);
 			} catch (ParserException e) {
-				this.logger.severe("Unable to evaluate OCL query '" + virtualReference.getDerivation()
+				this.logger.severe(() -> "Unable to evaluate OCL query '" + virtualReference.getDerivation()
 						+ "' for SourceSectionCrossReference '" + virtualReference.getName() + "'!");
-				this.logger.severe("The following error occurred: " + e.getMessage());
+				this.logger.severe(() -> "The following error occurred: " + e.getMessage());
 				e.printStackTrace();
 				return false;
 			}
@@ -1034,9 +1034,9 @@ public class SourceSectionMatcher extends CancelableElement {
 			if (nonZeroCardSectionFound) {
 
 				// modeling error
-				this.logger.severe("Modeling error in source section: '" + sourceSectionClass.getContainer().getName()
-						+ "', subsection: '" + sourceSectionClass.getName() + "'. The Reference '"
-						+ refByClassMap.get(c)
+				this.logger.severe(() -> "Modeling error in source section: '"
+						+ sourceSectionClass.getContainer().getName() + "', subsection: '"
+						+ sourceSectionClass.getName() + "'. The Reference '" + refByClassMap.get(c)
 						+ "' points to a metamodel reference, that can only hold one value but in the source section "
 						+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
 				return false;
@@ -1379,8 +1379,8 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		srcSection.getAttributes().parallelStream().filter(
 				at -> !(at instanceof ActualSourceSectionAttribute) && !(at instanceof VirtualSourceSectionAttribute))
-				.forEach(at -> this.logger.severe(
-						"SourceSectionAttributes of type '" + at.eClass().getName() + "' are not yet supported!"));
+				.forEach(at -> this.logger.severe(() -> "SourceSectionAttributes of type '" + at.eClass().getName()
+						+ "' are not yet supported!"));
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
@@ -1427,7 +1427,7 @@ public class SourceSectionMatcher extends CancelableElement {
 					.getEFactoryInstance().convertToString(
 							((ActualSourceSectionAttribute) attribute).getAttribute().getEAttributeType(), value);
 		} else {
-			this.logger.severe("Unable to convert the following value of the SourceSectionAttribute '"
+			this.logger.severe(() -> "Unable to convert the following value of the SourceSectionAttribute '"
 					+ attribute.toString() + "' to a String: '" + value.toString() + "'");
 			return false;
 		}
@@ -1508,8 +1508,8 @@ public class SourceSectionMatcher extends CancelableElement {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
 			// placeholder for other MultipleReferenceAttributeValueConstraints
-			this.logger
-					.severe("ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
+			this.logger.severe(
+					() -> "ReferenceableElement type " + constraint.getClass().getName() + " is not yet supported!");
 		}
 
 		return constraintVal;

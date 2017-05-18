@@ -101,19 +101,19 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (this.globalAttributeValues.containsKey(globalAttribute)) {
-			this.logger.warning("Multiple source values found for global attribute '" + globalAttribute.getName() + "'."
-					+ " This is not supported. Only the first element is used!");
+			this.logger.warning(() -> "Multiple source values found for global attribute '" + globalAttribute.getName()
+					+ "'." + " This is not supported. Only the first element is used!");
 		}
 
 		Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
 				.get(globalAttribute.getSource().eContainer());
 
 		if (sourceElements == null) {
-			this.logger.severe("Value of global attribute '" + globalAttribute.getName() + "' not found!");
+			this.logger.severe(() -> "Value of global attribute '" + globalAttribute.getName() + "' not found!");
 			return;
 		} else if (sourceElements.size() > 1) {
-			this.logger.warning("Multiple source elements found for global attribute '" + globalAttribute.getName()
-					+ "'." + " This is not supported. Only the first element is used!");
+			this.logger.warning(() -> "Multiple source elements found for global attribute '"
+					+ globalAttribute.getName() + "'." + " This is not supported. Only the first element is used!");
 		}
 
 		EObject sourceElement = sourceElements.iterator().next();
@@ -125,8 +125,8 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 		 */
 		Object srcAttrValue;
 		if (sourceAttribute.isMany()) {
-			this.logger.warning("Multiple source values found for global attribute '" + globalAttribute.getName() + "'."
-					+ " This is not supported. Only the first element is used!");
+			this.logger.warning(() -> "Multiple source values found for global attribute '" + globalAttribute.getName()
+					+ "'." + " This is not supported. Only the first element is used!");
 			srcAttrValue = ((Collection<?>) sourceElement.eGet(sourceAttribute)).iterator().next();
 		} else {
 			srcAttrValue = sourceElement.eGet(sourceAttribute);

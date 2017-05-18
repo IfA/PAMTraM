@@ -270,7 +270,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private void analyseTargetMetaModel(final EPackage targetMetaModel) {
 
-		this.logger.fine("\nAnalyzing target meta-model '" + targetMetaModel.getName() + "'.");
+		this.logger.fine(() -> "\nAnalyzing target meta-model '" + targetMetaModel.getName() + "'.");
 
 		// Retrieve all EClass defined in the targetMetaModel
 		//
@@ -300,8 +300,8 @@ public class TargetSectionRegistry extends CancelableElement {
 				this.targetClassReferencesRegistry.get(c.getEReferenceType()).add(c);
 
 			} else {
-				this.logger.warning("Ignoring targetMetaModel reference " + c.getName() + " of element " + e.getName()
-						+ " " + c.getEReferenceType().getName() + " " + c.getEType().getName());
+				this.logger.warning(() -> "Ignoring targetMetaModel reference " + c.getName() + " of element "
+						+ e.getName() + " " + c.getEReferenceType().getName() + " " + c.getEType().getName());
 			}
 
 		}));

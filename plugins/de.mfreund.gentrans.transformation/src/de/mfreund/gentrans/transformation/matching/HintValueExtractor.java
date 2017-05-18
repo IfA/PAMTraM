@@ -137,7 +137,7 @@ public class HintValueExtractor extends ValueExtractor {
 						: m.getMappingHintGroups().stream()).filter(hg -> hg instanceof ExportedMappingHintGroup)
 								.forEach(hg -> {
 									if (this.exportedHintGroups.containsKey(hg)) {
-										this.logger.warning("Multiple occurences found for exported hint group '"
+										this.logger.warning(() -> "Multiple occurences found for exported hint group '"
 												+ hg.getName() + "'! This is currently not supported!");
 									}
 									this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
@@ -282,7 +282,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		} else {
 
-			this.logger.severe("Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
+			this.logger.severe(() -> "Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
 		}
 
 		this.storeHintValueConsolidated(hintValue, hint, mappingInstance);
@@ -331,7 +331,7 @@ public class HintValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalAttributeImporter) attributeMappingSourceInterface, matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeMapping found: '"
+				this.logger.severe(() -> "Unsupported type of source element for an AttributeMapping found: '"
 						+ attributeMappingSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -385,7 +385,7 @@ public class HintValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalAttributeImporter) attributeMatcherSourceInterface, matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeMatcher found: '"
+				this.logger.severe(() -> "Unsupported type of source element for an AttributeMatcher found: '"
 						+ attributeMatcherSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -441,7 +441,7 @@ public class HintValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalAttributeImporter) modelConnectionHintSourceInterface, matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for a ModelConnectionHint found: '"
+				this.logger.severe(() -> "Unsupported type of source element for a ModelConnectionHint found: '"
 						+ modelConnectionHintSourceInterface.eClass().getName() + "'!");
 			}
 
@@ -504,7 +504,7 @@ public class HintValueExtractor extends ValueExtractor {
 								.sum();
 
 			} else {
-				this.logger.severe("CardinalityMapping '" + cardinalityMapping.getName()
+				this.logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
 						+ "' specifies an unsupported element type as 'source'. Only SourceSectionClasses and SourceSectionAttributes are supported!");
 				return null;
 			}
@@ -536,7 +536,7 @@ public class HintValueExtractor extends ValueExtractor {
 					attributeValueRepresentation = this.extractValue(
 							(GlobalAttributeImporter) cardinalityMappingSourceInterface, matchedSectionDescriptor);
 				} else {
-					this.logger.severe("Unsupported type of source element for an AttributeMapping found: '"
+					this.logger.severe(() -> "Unsupported type of source element for an AttributeMapping found: '"
 							+ cardinalityMappingSourceInterface.eClass().getName() + "'!");
 				}
 
@@ -653,8 +653,8 @@ public class HintValueExtractor extends ValueExtractor {
 
 			for (AttributeValueRepresentation valueRepresentation : hintValueMap.values()) {
 				if (maxNumberOfValues % valueRepresentation.getValues().size() > 0) {
-					this.logger.warning("The source elements of the mapping hint '" + hint.getName() + "' produced an "
-							+ "inconsistent number of hint values. They are thus skipped...");
+					this.logger.warning(() -> "The source elements of the mapping hint '" + hint.getName()
+							+ "' produced an " + "inconsistent number of hint values. They are thus skipped...");
 					return;
 				}
 			}
@@ -677,7 +677,8 @@ public class HintValueExtractor extends ValueExtractor {
 		} else if (hint instanceof HintImporterMappingHint) {
 
 			if (!(hint instanceof MappedAttributeValueExpander)) {
-				this.logger.severe("Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
+				this.logger.severe(
+						() -> "Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
 				return;
 			}
 
@@ -731,7 +732,8 @@ public class HintValueExtractor extends ValueExtractor {
 			this.expandAttributeMatcher((AttributeMatcher) expandableHint, (String) hintValue, mappingInstance,
 					prepend);
 		} else {
-			this.logger.severe("Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
+			this.logger
+					.severe(() -> "Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
 		}
 	}
 

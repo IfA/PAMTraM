@@ -344,7 +344,7 @@ public class MappingSelector extends CancelableElement {
 						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 					} else {
 						this.logger
-								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a mapping: "
+								.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a mapping: "
 										+ e.getMessage());
 						this.logger.severe("Using default mapping instead...");
 						mapping = entry.getKey().iterator().next();

@@ -222,7 +222,7 @@ public class ConditionHandler {
 
 		} else {
 
-			this.logger.severe("Condition '" + complexCondition.getName() + "' is of an unsupported type: '"
+			this.logger.severe(() -> "Condition '" + complexCondition.getName() + "' is of an unsupported type: '"
 					+ complexCondition.eClass().getName() + "'. Return 'FALSE' by default!");
 			result = CondResult.FALSE;
 
@@ -298,7 +298,7 @@ public class ConditionHandler {
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(attrCondition, matchedSectionDescriptor);
 
 		if (attrCondition.getTarget() == null) {
-			this.logger.warning("No attribute modeled for AttributeCondition '" + attrCondition.getName() + "'."
+			this.logger.warning(() -> "No attribute modeled for AttributeCondition '" + attrCondition.getName() + "'."
 					+ "Evaluating to 'TRUE' by default.");
 			return CondResult.TRUE;
 		}
@@ -370,13 +370,13 @@ public class ConditionHandler {
 						// more types could be supported in the future
 						// placeholder for other
 						// MultipleReferenceAttributeValueConstraints
-						this.logger.severe("ReferenceableElement type " + constraint.getClass().getName()
+						this.logger.severe(() -> "ReferenceableElement type " + constraint.getClass().getName()
 								+ " is not yet supported!");
 					}
 				} catch (final Exception e) {
 
 					this.attributeConditionConstraintsWithErrors.add(constraint);
-					this.logger.warning("The AttributeCondition'" + constraint.getName()
+					this.logger.warning(() -> "The AttributeCondition'" + constraint.getName()
 							+ " could not be evaluated and will be ignored. The following error was supplied:\n"
 							+ e.getLocalizedMessage());
 					continue;
@@ -582,12 +582,12 @@ public class ConditionHandler {
 			} else if (conditionalElement instanceof MappingHint) {
 				affectedClass = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
 			} else {
-				this.logger.severe(
-						"Unknown type of ConditionalElement '" + conditionalElement.eClass().getName() + "' found!");
+				this.logger.severe(() -> "Unknown type of ConditionalElement '" + conditionalElement.eClass().getName()
+						+ "' found!");
 				return new ArrayList<>();
 			}
 		} else {
-			this.logger.severe("Unknown condition type '" + condition.eClass().getName() + "' found!");
+			this.logger.severe(() -> "Unknown condition type '" + condition.eClass().getName() + "' found!");
 			return new ArrayList<>();
 		}
 
@@ -613,7 +613,7 @@ public class ConditionHandler {
 						.equals(affectedClass.getContainingSection())) {
 
 					if (descriptorToConsider.getContainerDescriptor() == null) {
-						this.logger.severe("Internal error while evaluating condition '" + condition.getName()
+						this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
 								+ "'! Unable to determine correct MatchedSectionDescriptor.");
 						break;
 					}
@@ -717,7 +717,7 @@ public class ConditionHandler {
 			return isValue < refValue;
 
 		default:
-			this.logger.severe("Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!"
+			this.logger.severe(() -> "Message:\n ComparatorEnum" + comparator.getLiteral() + "not implemented yet!"
 					+ ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
 			return true;
 		}
@@ -748,7 +748,7 @@ public class ConditionHandler {
 		} else {
 			// If we are here, some mistake is happened, more types could be
 			// supported in the future
-			this.logger.severe("SingleConditionOperator type " + condition.getClass().getName()
+			this.logger.severe(() -> "SingleConditionOperator type " + condition.getClass().getName()
 					+ " is not yet supported!" + ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
 			return CondResult.TRUE;
 		}
@@ -831,8 +831,8 @@ public class ConditionHandler {
 		} else {
 			// If we are here, some mistake is happened
 			// more types could be supported in the future
-			this.logger.severe("MultipleCondition type " + condition.getClass().getName() + " is not yet supported!"
-					+ ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
+			this.logger.severe(() -> "MultipleCondition type " + condition.getClass().getName()
+					+ " is not yet supported!" + ConditionHandler.RETURNING_TRUE_AS_DEFAULT);
 			return CondResult.TRUE;
 		}
 	}

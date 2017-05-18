@@ -301,7 +301,7 @@ public class TargetModelRegistry {
 			resource = this.resourceSet.createResource(targetFileUri);
 
 			if (resource == null) {
-				this.logger.severe("The resource for the target model '" + path + "' could not be created.");
+				this.logger.severe(() -> "The resource for the target model '" + path + "' could not be created.");
 			} else {
 				if (resource instanceof XMLResource) {
 					((XMLResource) resource).setEncoding("UTF-8");
@@ -309,7 +309,7 @@ public class TargetModelRegistry {
 			}
 
 		} catch (final Exception e) {
-			this.logger.severe("The resource for the target model '" + path + "' could not be created.");
+			this.logger.severe(() -> "The resource for the target model '" + path + "' could not be created.");
 			e.printStackTrace();
 		}
 
@@ -342,7 +342,8 @@ public class TargetModelRegistry {
 
 				resource = this.resourceSet.getResource(targetFileUri, false);
 				if (resource == null) {
-					this.logger.severe("The resource for the target model '" + entry.getKey() + "' does not exist.");
+					this.logger
+							.severe(() -> "The resource for the target model '" + entry.getKey() + "' does not exist.");
 					ret = false;
 					continue;
 				} else {
@@ -356,7 +357,7 @@ public class TargetModelRegistry {
 						EClassifier docRootClass = root.eClass().getEPackage().getEClassifier("DocumentRoot");
 
 						if (docRootClass == null || !(docRootClass instanceof EClass)) {
-							this.logger.severe("Error creating a document root for file '" + targetFileUri
+							this.logger.severe(() -> "Error creating a document root for file '" + targetFileUri
 									+ "'! The XML content might not be serialized correctly.");
 						}
 
@@ -377,7 +378,7 @@ public class TargetModelRegistry {
 						}
 
 						if (feature == null) {
-							this.logger.severe("Error creating a document root for file '" + targetFileUri
+							this.logger.severe(() -> "Error creating a document root for file '" + targetFileUri
 									+ "'! The XML content might not be serialized correctly.");
 						} else {
 							docRoot.eSet(feature, root);
@@ -391,11 +392,11 @@ public class TargetModelRegistry {
 					 * Save the resource.
 					 */
 					resource.save(Collections.emptyMap());
-					this.logger.info("Target model resource '" + entry.getKey() + "' successfully saved.");
+					this.logger.info(() -> "Target model resource '" + entry.getKey() + "' successfully saved.");
 				}
 
 			} catch (final Exception e) {
-				this.logger.severe("Error saving the target model '" + entry.getKey() + "'.");
+				this.logger.severe(() -> "Error saving the target model '" + entry.getKey() + "'.");
 				e.printStackTrace();
 				ret = false;
 				continue;

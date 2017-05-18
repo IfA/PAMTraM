@@ -131,7 +131,6 @@ public class TargetSectionLinker extends CancelableElement {
 
 		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
-		logger.info("...parsing done!");
 	}
 
 	/**
@@ -364,7 +363,7 @@ public class TargetSectionLinker extends CancelableElement {
 					} else {
 
 						this.logger.warning(
-								"There was a size mismatch while trying to set a non-containment reference, using the Hint "
+								() -> "There was a size mismatch while trying to set a non-containment reference, using the Hint "
 										+ h.getName() + ". There where " + instancesToConsider.size()
 										+ " instances to be connected but " + hintValues.getHintValues(h).size()
 										+ " MappingHint values. The output below"
@@ -439,7 +438,7 @@ public class TargetSectionLinker extends CancelableElement {
 												e.getCause());
 									} else {
 										this.logger
-												.severe("The following exception occured during the resolving of an ambiguity concerning a target instance: "
+												.severe(() -> "The following exception occured during the resolving of an ambiguity concerning a target instance: "
 														+ e.getMessage());
 										this.logger.severe("Using default instance instead...");
 										targetInst.add(fittingVals.get(0).getEObject());
@@ -540,7 +539,7 @@ public class TargetSectionLinker extends CancelableElement {
 												e.getCause());
 									} else {
 										this.logger
-												.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
+												.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
 														+ e.getMessage());
 										this.logger.severe("Using default instance instead...");
 										targetInstance = insts.get(0);
@@ -548,7 +547,7 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 
 							} else {
-								this.logger.warning("The MappingInstanceSelector '" + h.getName() + " of Mapping"
+								this.logger.warning(() -> "The MappingInstanceSelector '" + h.getName() + " of Mapping"
 										+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
 										+ mappingGroup.getName() + ")' has a Matcher that points to the target class "
 										+ matcherTargetClass.getName() + " (Section: "
@@ -591,7 +590,7 @@ public class TargetSectionLinker extends CancelableElement {
 					}
 
 				} else {
-					this.logger.severe("Matcher of type " + h.getMatcher().eClass().getName() + " in MappingHint "
+					this.logger.severe(() -> "Matcher of type " + h.getMatcher().eClass().getName() + " in MappingHint "
 							+ h.getName() + " is not supported.");
 				}
 
@@ -756,7 +755,7 @@ public class TargetSectionLinker extends CancelableElement {
 									throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 								} else {
 									this.logger
-											.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
+											.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
 													+ e.getMessage());
 									this.logger.severe("Using default instance instead...");
 									targets.add(instances.get(0).getEObject());
@@ -818,7 +817,7 @@ public class TargetSectionLinker extends CancelableElement {
 							}
 
 						} else {
-							this.logger.warning("No suitable refernce target found for non-cont. reference '"
+							this.logger.warning(() -> "No suitable refernce target found for non-cont. reference '"
 									+ ref.getName() + "' of the following instance of target class "
 									+ targetSectionClass.getName() + " (Section: "
 									+ targetSectionClass.getContainingSection().getName() + ").'\n"
@@ -922,7 +921,7 @@ public class TargetSectionLinker extends CancelableElement {
 								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 							} else {
 								this.logger
-										.severe("The following exception occured during the resolving of an ambiguity concerning a target section and instance: "
+										.severe(() -> "The following exception occured during the resolving of an ambiguity concerning a target section and instance: "
 												+ e.getMessage());
 								this.logger.severe("Using default section and instance instead...");
 								targets = new ArrayList<>(Arrays
@@ -931,11 +930,12 @@ public class TargetSectionLinker extends CancelableElement {
 						}
 
 					} else {
-						this.logger.warning("No suitable hint targets found for non-cont reference '" + ref.getName()
-								+ "' of TargetMMSection " + mappingGroup.getTargetMMSectionGeneric().getName()
-								+ "(Section: " + targetSectionClass.getName() + ") in Mapping "
-								+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: " + mappingGroup.getName()
-								+ ").");
+						this.logger
+								.warning(() -> "No suitable hint targets found for non-cont reference '" + ref.getName()
+										+ "' of TargetMMSection " + mappingGroup.getTargetMMSectionGeneric().getName()
+										+ "(Section: " + targetSectionClass.getName() + ") in Mapping "
+										+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
+										+ mappingGroup.getName() + ").");
 					}
 
 					if (targets != null) {
@@ -1044,7 +1044,7 @@ public class TargetSectionLinker extends CancelableElement {
 			if (source.eIsSet(ref.getEReference())) {
 
 				this.logger.warning(
-						"More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
+						() -> "More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 								+ ref.getName() + "' in the target section '" + ref.getContainingSection()
 								+ "Please check your mapping model.");
 
@@ -1088,12 +1088,12 @@ public class TargetSectionLinker extends CancelableElement {
 			if (targets.size() > 1) {
 
 				this.logger.warning(
-						"More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
+						() -> "More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
 								+ ref.getName() + "' in the target section '" + ref.getContainingSection()
 								+ "Please check your mapping model.");
 			} else if (targets.isEmpty()) {
 
-				this.logger.warning("No value found to be connected to the TargetSectionNonContainmentReference '"
+				this.logger.warning(() -> "No value found to be connected to the TargetSectionNonContainmentReference '"
 						+ ref.getName() + "' in the target section '" + ref.getContainingSection()
 						+ "Please check your mapping model.");
 			} else {

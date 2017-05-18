@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -455,6 +456,15 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			}
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(this.getClass().getSimpleName());
+		builder.append(" (Sub-Strategies: ");
+		builder.append(this.composedStrategies.stream().map(Object::toString).collect(Collectors.joining(", ")));
+		builder.append(")");
+		return builder.toString();
 	}
 
 }

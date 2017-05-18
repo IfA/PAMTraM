@@ -157,7 +157,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
-		logger.fine("...parsing done!");
 	}
 
 	/**
@@ -216,7 +215,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		if (instancesBySection == null) {
 			if (hintGroup.getTargetSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 
-				this.logger.severe("Error instantiating target section '" + hintGroup.getTargetSection().getName()
+				this.logger.severe(() -> "Error instantiating target section '" + hintGroup.getTargetSection().getName()
 						+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
 		} else {
@@ -256,7 +255,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		if (instancesBySection == null) {
 			if (mappingHintGroupImporter.getHintGroup().getTargetSection()
 					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-				this.logger.severe("Error instantiating target section '"
+				this.logger.severe(() -> "Error instantiating target section '"
 						+ mappingHintGroupImporter.getHintGroup().getTargetSection().getName()
 						+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
@@ -441,7 +440,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			if (!targetSectionClass.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
 
-				this.logger.severe("TargetMMSection class '" + targetSectionClass.getName()
+				this.logger.severe(() -> "TargetMMSection class '" + targetSectionClass.getName()
 						+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
 
 				return null;
@@ -573,17 +572,21 @@ public class TargetSectionInstantiator extends CancelableElement {
 						if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
 							cardHintValue = Double.valueOf(value).intValue();
 						} else {
-							this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
-									+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+							this.logger
+									.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+											+ cardinalityMapping.getName() + "! The problematic value was '" + value
+											+ "'.");
 							continue;
 						}
 					} catch (NumberFormatException e) {
-						this.logger.severe("Unable to parse Integer from calculated value for CardinalityMapping '"
-								+ cardinalityMapping.getName() + "! The problematic value was '" + value + "'.");
+						this.logger
+								.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+										+ cardinalityMapping.getName() + "! The problematic value was '" + value
+										+ "'.");
 						continue;
 					}
 				} else {
-					this.logger.severe("Internal Error! Unsupported type of hint value for CardinalityMapping '"
+					this.logger.severe(() -> "Internal Error! Unsupported type of hint value for CardinalityMapping '"
 							+ cardinalityMapping.getName());
 					continue;
 				}
@@ -708,7 +711,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 						} else {
 							this.logger
-									.severe("The following exception occured during the resolving of an ambiguity concerning a cardinality: "
+									.severe(() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
 											+ e.getMessage());
 							this.logger.severe("Using default cardinality instead...");
 							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
@@ -897,7 +900,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							// Less hint values found than instance -> This
 							// should not happen
 							//
-							this.logger.severe("Cardinality mismatch (expected: " + cardinality + ", got :"
+							this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
 									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
 									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: "
 									+ mappingGroup.getName() + ") Maybe check Cardinality of Metamodel section?");
@@ -921,21 +924,21 @@ public class TargetSectionInstantiator extends CancelableElement {
 					 * ambiguity.
 					 */
 					try {
-						this.logger.fine("[Ambiguity] Resolve expanding ambiguity...");
+						this.logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
 						List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
 								Arrays.asList((String) null), attr, instance.getEObject(), mappingGroup);
 						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
 									.instantiatingAttributeValueSelected(Arrays.asList((String) null), resolved.get(0));
 						}
-						this.logger.fine("[Ambiguity] ...finished.\n");
+						this.logger.fine("[Ambiguity] ...finished.");
 						attrValue = resolved.get(0);
 					} catch (AmbiguityResolvingException e) {
 						if (e.getCause() instanceof UserAbortException) {
 							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 						} else {
 							this.logger
-									.severe("The following exception occured during the resolving of an ambiguity concerning an attribute value: "
+									.severe(() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
 											+ e.getMessage());
 							this.logger.severe("Using default value instead...");
 							continue;
@@ -1029,8 +1032,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 						}
 
 					} catch (final IllegalArgumentException e) {
-						this.logger.severe("Could not set Attribute " + attr.getName() + " of target section Class "
-								+ targetSectionClass.getName() + " in target section "
+						this.logger.severe(() -> "Could not set Attribute " + attr.getName()
+								+ " of target section Class " + targetSectionClass.getName() + " in target section "
 								+ targetSectionClass.getContainingSection().getName()
 								+ ".\nThe problematic value was: '" + setValue + "'.");
 					}
@@ -1137,7 +1140,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 							this.wrongCardinalityContainmentRefs.add(ref);
 
-							this.logger.severe("More than one value was supposed to be connected to the "
+							this.logger.severe(() -> "More than one value was supposed to be connected to the "
 									+ "TargetSectionContainmentReference '" + ref.getName()
 									+ "' in the target section '" + ref.getContainingSection()
 									+ "', instantiated by the Mapping '"

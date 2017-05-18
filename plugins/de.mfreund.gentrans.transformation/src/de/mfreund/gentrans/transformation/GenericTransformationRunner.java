@@ -180,15 +180,15 @@ public class GenericTransformationRunner extends CancelableElement {
 			transformationResult = this.executeMappings(monitorWrapper);
 		} catch (CancelTransformationException e1) {
 			if (e1.getMessage() != null && !e1.getMessage().isEmpty()) {
-				this.transformationConfig.getLogger().severe(e1.getMessage());
+				this.transformationConfig.getLogger().severe(() -> e1.getMessage());
 			}
 			this.transformationConfig.getLogger().severe("Aborting...");
 			return;
 		} catch (RuntimeException e) {
 			if (e.getMessage() != null) {
-				this.transformationConfig.getLogger().severe(e.getMessage());
+				this.transformationConfig.getLogger().severe(() -> e.getMessage());
 			} else {
-				this.transformationConfig.getLogger().severe(e.toString());
+				this.transformationConfig.getLogger().severe(() -> e.toString());
 			}
 			this.transformationConfig.getLogger().severe("Aborting...");
 			throw e;
@@ -318,6 +318,8 @@ public class GenericTransformationRunner extends CancelableElement {
 	 */
 	private boolean prepare(TransformationConfiguration transformationConfig) {
 
+		this.writePamtramMessage("Preparing transformation");
+
 		// validate the TransformationConfiguration
 		//
 		if (!transformationConfig.validate()) {
@@ -339,12 +341,12 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// Initialize the ambiguity resolving strategy
 		//
-		this.writePamtramMessage("Initializing ambiguity resolving strategy");
+		transformationConfig.getLogger().fine("\nInitializing ambiguity resolving strategy...");
 		try {
 
 			transformationConfig.getAmbiguityResolvingStrategy().init(transformationConfig.getPamtramModels(),
 					transformationConfig.getSourceModels(), transformationConfig.getLogger());
-			transformationConfig.getLogger().info("\nInitialization Successful!");
+			transformationConfig.getLogger().fine("Initialization successful!");
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -369,12 +371,16 @@ public class GenericTransformationRunner extends CancelableElement {
 	 */
 	private boolean validatePamtramModels(TransformationConfiguration transformationConfiguration) {
 
+		transformationConfiguration.getLogger().fine("\nValiding PAMTraM models...");
+
 		Set<Integer> diags = transformationConfiguration.getPamtramModels().stream()
 				.map(pamtramModel -> Diagnostician.INSTANCE.validate(pamtramModel).getSeverity())
 				.collect(Collectors.toSet());
 
 		if (diags.contains(Diagnostic.ERROR)) {
 			final AtomicBoolean result = new AtomicBoolean();
+
+			transformationConfiguration.getLogger().fine("Validation completed with errors!");
 
 			Display.getDefault().syncExec(
 					() -> result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
@@ -383,6 +389,8 @@ public class GenericTransformationRunner extends CancelableElement {
 			if (!result.get()) {
 				return false;
 			}
+		} else {
+			transformationConfiguration.getLogger().fine("Validation successful!");
 		}
 
 		return true;
@@ -500,7 +508,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * keep track of all matched and unmatched elements.
 		 */
 		this.writePamtramMessage("Matching SourceSections");
-		monitor.subTask("Selecting Mappings for source model elements");
+		monitor.subTask("Matching SourceSections");
 		final ContainmentTree containmentTree = ContainmentTree.build(sourceModels);
 
 		// Select the SourceSections that we want to match.
@@ -526,7 +534,14 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult = sourceSectionMatcher.matchSections();
 
-		this.writePamtramMessage("Extract Values of Global Attributes");
+		this.transformationConfig.getLogger()
+				.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
+		this.transformationConfig.getLogger()
+				.info(() -> "\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
+		this.transformationConfig.getLogger()
+				.info(() -> "\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
+
+		this.writePamtramMessage("Extracting Values of Global Attributes");
 
 		/*
 		 * Create the GlobalAttributeValueExtractor that extracts values of
@@ -544,7 +559,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		//
 		GlobalValueMap globalValues = new GlobalValueMap(globalFixedValues, globalAttributeValues);
 
-		this.writePamtramMessage("Select Mappings for Matched Sections");
+		this.writePamtramMessage("Selecting Mappings for Matched Sections");
 
 		AttributeValueCalculator calculator = new AttributeValueCalculator(globalValues, attributeValueModifier,
 				this.transformationConfig.getLogger());
@@ -561,7 +576,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		List<MappingInstanceStorage> mappingInstances = selectedMappingsByMapping.values().stream()
 				.flatMap(l -> l.stream()).collect(Collectors.toList());
 
-		this.writePamtramMessage("Extract Hint Values");
+		this.writePamtramMessage("Extracting Hint Values");
 
 		/*
 		 * Calculate mapping hints
@@ -573,13 +588,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		this.objectsToCancel.add(hintValueExtractor);
 
 		hintValueExtractor.extractHintValues();
-
-		this.transformationConfig.getLogger()
-				.fine("Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
-		this.transformationConfig.getLogger()
-				.fine("\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
-		this.transformationConfig.getLogger()
-				.fine("\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
 
 		selectedMappings = new LinkedList<>((this.transformationConfig.isUseParallelization()
 				? selectedMappingsByMapping.entrySet().parallelStream() : selectedMappingsByMapping.entrySet().stream())
@@ -619,7 +627,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
 		 */
 		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
-		this.writePamtramMessage("Analyzing target metamodel");
+		this.writePamtramMessage("Analyzing target metamodel(s)");
 		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
 				this.transformationConfig.getLogger(), attrValueRegistry,
 				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
@@ -627,7 +635,7 @@ public class GenericTransformationRunner extends CancelableElement {
 						.collect(Collectors.toList())));
 		this.objectsToCancel.add(targetSectionRegistry);
 
-		this.writePamtramMessage("Instantiating targetModelSections for selected mappings. First pass");
+		this.writePamtramMessage("Instantiating TargetSections for Selected Mappings");
 
 		/*
 		 * Initialize the TargetSectionInstantiator
@@ -637,6 +645,9 @@ public class GenericTransformationRunner extends CancelableElement {
 				this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.targetSectionInstantiator);
+
+		this.transformationConfig.getLogger().info(
+				() -> "Instantiating " + matchingResult.getSelectedMappings().size() + " TargetSection instances...");
 
 		// Iterate over all selected mapping instances and expand them
 		//
@@ -685,8 +696,8 @@ public class GenericTransformationRunner extends CancelableElement {
 			final ExpandingResult expandingResult, final AttributeValueModifierExecutor attributeValueModifier,
 			final MatchingResult matchingResult, final IProgressMonitor monitor) {
 
-		this.writePamtramMessage("Joining targetModelSections");
-		monitor.subTask("Joining targetModelSections");
+		this.writePamtramMessage("Joining Instantiated TargetSections");
+		monitor.subTask("Joining Instantiated TargetSections");
 
 		/*
 		 * The TargetModelRegistry that will be returned at the end as part of
@@ -757,8 +768,8 @@ public class GenericTransformationRunner extends CancelableElement {
 	private boolean performLinking(final MatchingResult matchingResult, final ExpandingResult expandingResult,
 			AttributeValueModifierExecutor attributeValueModifier, final IProgressMonitor monitor) {
 
-		this.writePamtramMessage("Instantiating targetModelSections for selected mappings. Second pass");
-		monitor.subTask("Instantiating targetModelSections for selected mappings. Second pass");
+		this.writePamtramMessage("Linking Instantiated TargetSections");
+		monitor.subTask("Linking Instantiated TargetSections");
 
 		/*
 		 * Initialize the TargetSectionLinker
@@ -799,14 +810,15 @@ public class GenericTransformationRunner extends CancelableElement {
 	private boolean performInstantiatingLibraryEntries(MatchingResult matchingResult, ExpandingResult expandingResult,
 			AttributeValueModifierExecutor attributeValueModifier, IProgressMonitor monitor) {
 
-		this.writePamtramMessage("Instantiating libraryEntries for selected mappings.");
-		monitor.subTask("Instantiating libraryEntries for selected mappings.");
+		this.writePamtramMessage("Instantiating LibraryEntries");
+		monitor.subTask("Instantiating LibraryEntries");
 
-		if (expandingResult.getLibEntryInstantiatorMap().isEmpty()) { // nothing
-																		// to be
-																		// done
+		if (expandingResult.getLibEntryInstantiatorMap().isEmpty()) {
 			return true;
 		}
+
+		this.transformationConfig.getLogger().fine(
+				() -> "Instantiating " + expandingResult.getLibEntryInstantiatorMap().size() + " LibraryEntries...");
 
 		/*
 		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin
@@ -815,7 +827,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		GenLibraryManager manager = new GenLibraryManager(this.transformationConfig.getLogger());
 		this.transformationConfig.getLibPaths().stream().forEach(libPath -> {
-			this.transformationConfig.getLogger().info("Registering library location '" + libPath + "'...");
+			this.transformationConfig.getLogger().info(() -> "Registering library location '" + libPath + "'...");
 			manager.addLibPath(libPath);
 		});
 
@@ -835,7 +847,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			boolean successful = libraryEntryInstantiator.instantiate(manager, calculator,
 					expandingResult.getTargetSectionRegistry());
 			if (!successful) {
-				this.transformationConfig.getLogger().severe("Failed to instantiate library entry '"
+				this.transformationConfig.getLogger().severe(() -> "Failed to instantiate library entry '"
 						+ libraryEntryInstantiator.getLibraryEntry().getClasspath().getValue() + "'!");
 			}
 			return successful;
@@ -1079,7 +1091,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 */
 	private void writePamtramMessage(final String msg) {
 
-		this.transformationConfig.getLogger().info("\n################# " + msg + " #################\n");
+		this.transformationConfig.getLogger().info(() -> "\n################# " + msg + " #################\n");
 	}
 
 	/**

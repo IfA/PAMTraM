@@ -11,7 +11,8 @@ import pamtram.mapping.modifier.ValueModifier;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
- * This is a helper class to apply {@link ValueModifier AttributeValueModifiers}.
+ * This is a helper class to apply {@link ValueModifier
+ * AttributeValueModifiers}.
  *
  * @author Sascha Steffen
  * @version 1.0
@@ -31,8 +32,8 @@ public class AttributeValueModifierExecutor {
 	private Logger logger;
 
 	/**
-	 * A set that contains all AttributeValueModifiers with errors so we don't need to send
-	 * a potential error message twice
+	 * A set that contains all AttributeValueModifiers with errors so we don't
+	 * need to send a potential error message twice
 	 */
 	private final Set<ValueModifier> modifiersWithErrors;
 
@@ -52,15 +53,16 @@ public class AttributeValueModifierExecutor {
 	/**
 	 * This returns the single {@link #instance}.
 	 * <p />
-	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any
-	 * {@link MessageConsoleStream}. Thus, {@link #init(Logger)} should be called once before using this in order to
+	 * Note: This will {@link #init(Logger) initialize} the instance if
+	 * necessary but without any {@link MessageConsoleStream}. Thus,
+	 * {@link #init(Logger)} should be called once before using this in order to
 	 * allow for printing messages.
 	 *
 	 * @return The single {@link #instance}.
 	 */
 	public static AttributeValueModifierExecutor getInstance() {
 
-		if(AttributeValueModifierExecutor.instance == null) {
+		if (AttributeValueModifierExecutor.instance == null) {
 			AttributeValueModifierExecutor.init(null);
 		}
 
@@ -81,7 +83,7 @@ public class AttributeValueModifierExecutor {
 
 		// Either create the single instance or only set the consoleStream
 		//
-		if(AttributeValueModifierExecutor.instance == null) {
+		if (AttributeValueModifierExecutor.instance == null) {
 			new AttributeValueModifierExecutor(logger);
 		} else {
 			AttributeValueModifierExecutor.instance.logger = logger;
@@ -91,16 +93,19 @@ public class AttributeValueModifierExecutor {
 	}
 
 	/**
-	 * This applies the given list of {@link ValueModifier AttributeValueModifiers} to the given
-	 * '<em>value</em>'.
+	 * This applies the given list of {@link ValueModifier
+	 * AttributeValueModifiers} to the given '<em>value</em>'.
 	 *
-	 * @param value The value on which the given list of {@link ValueModifier AttributeValueModifiers} shall
-	 * be applied.
-	 * @param modifierSets The modifiers that shall be applied to the given '<em>value</em>'.
-	 * @return The modified string (after application of the {@link ValueModifier AttributeValueModifiers}.
+	 * @param value
+	 *            The value on which the given list of {@link ValueModifier
+	 *            AttributeValueModifiers} shall be applied.
+	 * @param modifierSets
+	 *            The modifiers that shall be applied to the given
+	 *            '<em>value</em>'.
+	 * @return The modified string (after application of the
+	 *         {@link ValueModifier AttributeValueModifiers}.
 	 */
-	public String applyAttributeValueModifiers(final String value,
-			final List<ValueModifierSet> modifierSets) {
+	public String applyAttributeValueModifiers(final String value, final List<ValueModifierSet> modifierSets) {
 		String retVal = value;
 		for (final ValueModifierSet set : modifierSets) {
 			for (final ValueModifier m : set.getModifiers()) {
@@ -114,12 +119,12 @@ public class AttributeValueModifierExecutor {
 					} catch (final Exception e) {
 						this.modifiersWithErrors.add(m);
 
-						if(this.logger != null) {
+						if (this.logger != null) {
 
-							this.logger.warning("The AttributeValueModifier '" + m.getName()
-							+ "' of the AttributeValueModifierSet '"
-							+ set.getName() + "' could not be evaluated. The following error was supplied:\n"
-							+ e.getLocalizedMessage());
+							this.logger.warning(() -> "The AttributeValueModifier '" + m.getName()
+									+ "' of the AttributeValueModifierSet '" + set.getName()
+									+ "' could not be evaluated. The following error was supplied:\n"
+									+ e.getLocalizedMessage());
 						}
 					}
 				}

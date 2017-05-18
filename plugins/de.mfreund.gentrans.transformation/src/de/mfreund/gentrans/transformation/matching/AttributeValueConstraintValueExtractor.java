@@ -167,14 +167,14 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue((GlobalAttributeImporter) sourceElement,
 						matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeValueConstraint found: '"
+				this.logger.severe(() -> "Unsupported type of source element for an AttributeValueConstraint found: '"
 						+ sourceElement.eClass().getName() + "'!");
 			}
 
 			if (attributeValueRepresentation != null) {
 
 				if (attributeValueRepresentation.isMany()) {
-					this.logger.warning("Multiple values found for the source element '" + sourceElement.getName()
+					this.logger.warning(() -> "Multiple values found for the source element '" + sourceElement.getName()
 							+ "' of an AttributeValueConstraint! This is currently not supported and only the first found value will be used!'");
 				}
 

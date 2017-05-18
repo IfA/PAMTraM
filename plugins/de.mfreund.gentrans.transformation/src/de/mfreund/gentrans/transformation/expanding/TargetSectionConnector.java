@@ -491,7 +491,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			this.addToTargetModelRoot(
 					this.unlinkeableElements.values().iterator().next().values().iterator().next().get(0));
-			this.logger.info("Root element: The single instance of the target section '"
+			this.logger.info(() -> "Root element: The single instance of the target section '"
 					+ this.unlinkeableElements.values().iterator().next().keySet().iterator().next().getName() + "'.");
 			return;
 
@@ -529,7 +529,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			for (final EClass c : this.unlinkeableElements.keySet()) {
 
-				this.logger.warning("No suitable path found for target class: " + c.getName());
+				this.logger.warning(() -> "No suitable path found for target class: " + c.getName());
 
 				this.unlinkeableElements.get(c).values().stream().forEach(this::addToTargetModelRoot);
 			}
@@ -560,7 +560,7 @@ public class TargetSectionConnector extends CancelableElement {
 						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 					} else {
 						this.logger
-								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
+								.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
 										+ e.getMessage());
 						this.logger.severe("Using default path instead...");
 						rootClass = common.iterator().next();
@@ -641,7 +641,7 @@ public class TargetSectionConnector extends CancelableElement {
 												e.getCause());
 									} else {
 										this.logger
-												.severe("The following exception occured during the resolving of an ambiguity concerning an connection path: "
+												.severe(() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
 														+ e.getMessage());
 										this.logger.severe("Using default path instead...");
 										chosenPath = fittingPaths.get(0);
@@ -797,7 +797,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			if (containerInstances.isEmpty()) {
 
-				this.logger.warning("Instances of the targetSection '" + section.getName()
+				this.logger.warning(() -> "Instances of the targetSection '" + section.getName()
 						+ "'specify a container section (either the target section itself or a MappingHintImporter)."
 						+ " Unfortunately no instances of the specified container were created. Therefore the sections will not be linked to the target model.");
 				this.addToTargetModelRoot(rootInstances);
@@ -839,13 +839,14 @@ public class TargetSectionConnector extends CancelableElement {
 						.iterator().next();
 
 			} else {
-				this.logger.warning("Could not find a path that leads to the container specified for targetSection '"
-						+ section.getName() + "'");
+				this.logger
+						.warning(() -> "Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
 				this.addToTargetModelRoot(rootInstances);
 				return;
 			}
 
-			this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
+			this.logger.fine("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
 					+ "): " + modelConnectionPath.toString());
 
 			/*
@@ -892,8 +893,9 @@ public class TargetSectionConnector extends CancelableElement {
 
 			if (instancesByPath.isEmpty()) {
 
-				this.logger.warning("Could not find a path that leads to the container specified for targetSection '"
-						+ section.getName() + "'");
+				this.logger
+						.warning(() -> "Could not find a path that leads to the container specified for targetSection '"
+								+ section.getName() + "'");
 				this.addToTargetModelRoot(rootInstances);
 				return;
 			}
@@ -955,7 +957,7 @@ public class TargetSectionConnector extends CancelableElement {
 					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 				} else {
 					this.logger
-							.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
+							.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
 									+ e.getMessage());
 					this.logger.severe("Using default path and instance instead...");
 					modelConnectionPath = choices.keySet().iterator().next();
@@ -973,8 +975,9 @@ public class TargetSectionConnector extends CancelableElement {
 			this.addToTargetModelRoot(modelConnectionPath.instantiate(inst.getEObject(), rootInstances));
 
 		} else {// no suitable container found
-			this.logger.warning("Could not find a path that leads to the container specified for the target section '"
-					+ section.getName() + "'");
+			this.logger.warning(
+					() -> "Could not find a path that leads to the container specified for the target section '"
+							+ section.getName() + "'");
 			this.addToTargetModelRoot(rootInstances);
 		}
 
@@ -1029,8 +1032,9 @@ public class TargetSectionConnector extends CancelableElement {
 
 		if (size == 0) {
 
-			this.logger.warning("Could not find a path that leads to the modelConnectionTarget Class specified for '"
-					+ mappingName + "' (" + mappingGroup.getName() + ")");
+			this.logger
+					.warning(() -> "Could not find a path that leads to the modelConnectionTarget Class specified for '"
+							+ mappingName + "' (" + mappingGroup.getName() + ")");
 
 			unconnectedInstances.addAll(rootInstances);
 			return unconnectedInstances;
@@ -1075,7 +1079,7 @@ public class TargetSectionConnector extends CancelableElement {
 					hintValBuilder.append(hintVal.get(srcElement).getValue());
 
 				} else {
-					this.logger.warning("HintSourceValue not found " + srcElement.getName()
+					this.logger.warning(() -> "HintSourceValue not found " + srcElement.getName()
 							+ " in ComplexModelConnectionHint " + connectionHint.getName() + "(Mapping: " + mappingName
 							+ ", Group: " + mappingGroup.getName() + ").");
 				}
@@ -1159,7 +1163,7 @@ public class TargetSectionConnector extends CancelableElement {
 						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 					} else {
 						this.logger
-								.severe("The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
+								.severe(() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
 										+ e.getMessage());
 						this.logger.severe("Using default element instead...");
 						rootInstancesByContainer.put(contInstsByHintVal.get(hintValEntry.getKey()).iterator().next(),
@@ -1168,8 +1172,8 @@ public class TargetSectionConnector extends CancelableElement {
 				}
 
 			} else {
-				this.logger.warning("The ModelConnectionHint '" + connectionHint.getName() + " of MappingHintGroup "
-						+ mappingGroup.getName() + "(Mapping: " + mappingName
+				this.logger.warning(() -> "The ModelConnectionHint '" + connectionHint.getName()
+						+ " of MappingHintGroup " + mappingGroup.getName() + "(Mapping: " + mappingName
 						+ ") could not find an instance to connect the targetSections.\n"
 						+ contInstsByHintVal.keySet());
 				unconnectedInstances.addAll(hintValEntry.getValue());
@@ -1263,7 +1267,7 @@ public class TargetSectionConnector extends CancelableElement {
 						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 					} else {
 						this.logger
-								.severe("The following exception occured during the resolving of an ambiguity concerning an connection path: "
+								.severe(() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
 										+ e.getMessage());
 						this.logger.severe("Using default path instead...");
 						modelConnectionPath = pathsToConsider.get(0);
@@ -1273,7 +1277,7 @@ public class TargetSectionConnector extends CancelableElement {
 			} else {
 
 				this.logger.warning(
-						"Could not find a path that leads to the container specified by the ModelConnectionHint of "
+						() -> "Could not find a path that leads to the container specified by the ModelConnectionHint of "
 								+ mappingName + "::" + mappingGroup.getName());
 				unconnectedInstances.addAll(rootInstances);
 				this.addToTargetModelRoot(containerEntry.getValue());
@@ -1287,7 +1291,7 @@ public class TargetSectionConnector extends CancelableElement {
 					.getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
 
 				this.standardPaths.put(connectionHint, modelConnectionPath);
-				this.logger.info("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
+				this.logger.fine("Path found: " + section.getName() + "(" + mappingName + "::" + mappingGroup.getName()
 						+ "): " + modelConnectionPath.toString());
 			}
 

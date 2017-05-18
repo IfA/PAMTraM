@@ -77,7 +77,7 @@ public class GenericTransformationRunnerFactory {
 		try {
 			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSet, pamtramPaths, true);
 		} catch (ModelLoadException e) {
-			logger.severe(e.getMessage());
+			logger.severe(e::getMessage);
 			pamtramModels = null;
 		}
 

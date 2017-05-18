@@ -229,7 +229,7 @@ public abstract class ValueExtractor extends CancelableElement {
 				.get(mappingHintSourceElement.getSource().eContainer());
 
 		if (sourceElements == null) {
-			this.logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
 
@@ -296,14 +296,14 @@ public abstract class ValueExtractor extends CancelableElement {
 		}
 
 		if (sourceElements.isEmpty()) {
-			this.logger.warning("Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
 
 		if (!(mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute)) {
 
-			this.logger.severe("Mapping hint source elements of type '" + mappingHintSourceElement.getSource().eClass()
-					+ "' are not yet supported!");
+			this.logger.severe(() -> "Mapping hint source elements of type '"
+					+ mappingHintSourceElement.getSource().eClass() + "' are not yet supported!");
 			return null;
 		}
 
@@ -330,8 +330,8 @@ public abstract class ValueExtractor extends CancelableElement {
 		if (!(mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
 				|| mappingHintSourceElement.getSource() instanceof VirtualSourceSectionAttribute)) {
 
-			this.logger.severe("Mapping hint source elements of type '" + mappingHintSourceElement.getSource().eClass()
-					+ "' are not yet supported!");
+			this.logger.severe(() -> "Mapping hint source elements of type '"
+					+ mappingHintSourceElement.getSource().eClass() + "' are not yet supported!");
 			return null;
 		}
 
@@ -346,7 +346,7 @@ public abstract class ValueExtractor extends CancelableElement {
 				mappingHintSourceElement.getSource(), this.logger);
 
 		if (srcAttrValues.isEmpty()) {
-			this.logger.warning("No hint value found for source element '" + mappingHintSourceElement.getName()
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
 					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
 					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
 							MappingPackage.Literals.MAPPING)).getName()
@@ -450,10 +450,10 @@ public abstract class ValueExtractor extends CancelableElement {
 				result = OCLUtil.evaluteQuery(((VirtualSourceSectionAttribute) sourceAttribute).getDerivation(),
 						sourceElement);
 			} catch (ParserException e) {
-				logger.severe("Unable to evaluate OCL query '"
+				logger.severe(() -> "Unable to evaluate OCL query '"
 						+ ((VirtualSourceSectionAttribute) sourceAttribute).getDerivation()
 						+ "' for SourceSectionAttribute '" + sourceAttribute.getName() + "'!");
-				logger.severe("The following error occurred: " + e.getMessage());
+				logger.severe(() -> "The following error occurred: " + e.getMessage());
 				e.printStackTrace();
 				return new ArrayList<>();
 			}

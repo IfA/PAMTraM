@@ -132,14 +132,14 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue(
 						(GlobalAttributeImporter) instancePointerSourceInterface, matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for an InstanceSelector found: '"
+				this.logger.severe(() -> "Unsupported type of source element for an InstanceSelector found: '"
 						+ instancePointerSourceInterface.eClass().getName() + "'!");
 			}
 
 			if (attributeValueRepresentation != null) {
 
 				if (attributeValueRepresentation.isMany()) {
-					this.logger.warning("Multiple values found for the source element '"
+					this.logger.warning(() -> "Multiple values found for the source element '"
 							+ instancePointerSourceInterface.getName()
 							+ "' of an InstanceSelector! This is currently not supported and only the first found value will be used!'");
 				}

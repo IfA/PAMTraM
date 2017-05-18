@@ -171,8 +171,8 @@ public class AttributeValueConstraintReferenceValueCalculator {
 					((SingleReferenceValueConstraint) rootObj).isLocalConstraint(), matchedSectionDescriptor);
 		} else {
 			// more types could be supported in the future
-			this.consoleStream
-					.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
+			this.consoleStream.severe(
+					() -> "AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU
 							// may have to do some changes here?!)
 		}
@@ -227,8 +227,8 @@ public class AttributeValueConstraintReferenceValueCalculator {
 			// ((RangeBound) rootObj).isLocalConstraint(), null);
 		} else {
 			// more types could be supported in the future
-			this.consoleStream
-					.severe("AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
+			this.consoleStream.severe(
+					() -> "AttributeValueConstraint type " + rootObj.getClass().getName() + " is not yet supported!");
 			return null; // "" keep running the application (in this case YOU
 							// may have to do some changes here?!)
 		}

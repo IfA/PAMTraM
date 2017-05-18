@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
+import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
@@ -103,6 +104,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				T result = caseInstanceSelectorSourceInterface(instanceSelectorSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceInterface);
 				if (result == null) result = caseNamedElement(instanceSelectorSourceInterface);
+				if (result == null) result = caseConditionalElement(instanceSelectorSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -115,6 +117,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorSourceElement);
+				if (result == null) result = caseConditionalElement(instanceSelectorSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,6 +130,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorExternalSourceElement);
+				if (result == null) result = caseConditionalElement(instanceSelectorExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -139,6 +143,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorGlobalSourceElement);
+				if (result == null) result = caseConditionalElement(instanceSelectorGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -358,6 +363,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalElement(ConditionalElement object) {
 		return null;
 	}
 

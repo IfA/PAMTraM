@@ -341,7 +341,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateMappingHintSourceInterface(MappingHintSourceInterface mappingHintSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(mappingHintSourceInterface, diagnostics, context);
+		if (!validate_NoCircularContainment(mappingHintSourceInterface, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintSourceInterface, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -350,7 +363,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateGlobalAttributeImporter(GlobalAttributeImporter globalAttributeImporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(globalAttributeImporter, diagnostics, context);
+		if (!validate_NoCircularContainment(globalAttributeImporter, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(globalAttributeImporter, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(globalAttributeImporter, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -421,7 +447,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingSourceInterface(AttributeMappingSourceInterface attributeMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeMappingSourceInterface, diagnostics, context);
+		if (!validate_NoCircularContainment(attributeMappingSourceInterface, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMappingSourceInterface, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -441,6 +480,10 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMappingSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -461,6 +504,10 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMappingExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -470,7 +517,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeMappingGlobalSourceElement(AttributeMappingGlobalSourceElement attributeMappingGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (!validate_NoCircularContainment(attributeMappingGlobalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(attributeMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(attributeMappingGlobalSourceElement, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -734,7 +794,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMappingSourceInterface(CardinalityMappingSourceInterface cardinalityMappingSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(cardinalityMappingSourceInterface, diagnostics, context);
+		if (!validate_NoCircularContainment(cardinalityMappingSourceInterface, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMappingSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMappingSourceInterface, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -754,6 +827,10 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(cardinalityMappingSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMappingSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMappingSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -774,6 +851,10 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(cardinalityMappingExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMappingExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMappingExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -783,7 +864,20 @@ public class ExtendedValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityMappingGlobalSourceElement(CardinalityMappingGlobalSourceElement cardinalityMappingGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (!validate_NoCircularContainment(cardinalityMappingGlobalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(cardinalityMappingGlobalSourceElement, diagnostics, context);
+		return result;
 	}
 
 	/**

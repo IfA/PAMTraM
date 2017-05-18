@@ -156,6 +156,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCardinalityMappingSourceInterface(fixedValue);
 				if (result == null) result = caseMappingHintSourceInterface(fixedValue);
 				if (result == null) result = caseNamedElement(fixedValue);
+				if (result == null) result = caseConditionalElement(fixedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -343,7 +343,20 @@ public class PamtramValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(fixedValue, diagnostics, context);
+		if (!validate_NoCircularContainment(fixedValue, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(fixedValue, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(fixedValue, diagnostics, context);
+		return result;
 	}
 
 	/**

@@ -1080,6 +1080,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		mappingHintEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		hintImporterMappingHintEClass.getESuperTypes().add(this.getMappingHintType());
 		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		mappingHintSourceInterfaceEClass.getESuperTypes().add(thePamtramPackage.getConditionalElement());
 		globalAttributeImporterEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		globalAttributeImporterEClass.getESuperTypes().add(this.getAttributeMappingSourceInterface());
 		globalAttributeImporterEClass.getESuperTypes().add(theStructurePackage.getInstanceSelectorSourceInterface());

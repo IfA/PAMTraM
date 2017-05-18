@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.FileType;
@@ -105,13 +103,11 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT due to custom setting of cardinality
+	 * @generated
 	 */
 	@Override
 	public TargetSection createTargetSection() {
 		TargetSectionImpl targetSection = new TargetSectionImpl();
-		targetSection.setCardinality(CardinalityType.ONE_INFINITY);
 		return targetSection;
 	}
 

@@ -47,12 +47,17 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
+import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetFactory;
+import pamtram.structure.target.TargetSection;
 
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SectionModelItemProvider extends NamedElementItemProvider {
@@ -74,12 +79,12 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelPackagePropertyDescriptor(object);
+			this.addMetaModelPackagePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -158,42 +163,47 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
+			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -268,21 +278,22 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT due to custom setting of {@link Section#getCardinality()
+	 *            cardinality} for new {@link Section Sections}
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				 SourceFactory.eINSTANCE.createSourceSection()));
+		SourceSection sourceSection = SourceFactory.eINSTANCE.createSourceSection();
+		sourceSection.setCardinality(CardinalityType.ONE_INFINITY);
+		newChildDescriptors
+				.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS, sourceSection));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				 TargetFactory.eINSTANCE.createTargetSection()));
+		TargetSection targetSection = TargetFactory.eINSTANCE.createTargetSection();
+		targetSection.setCardinality(CardinalityType.ONE_INFINITY);
+		newChildDescriptors
+				.add(this.createChildParameter(PamtramPackage.Literals.SECTION_MODEL__SECTIONS, targetSection));
 	}
 
 	/**

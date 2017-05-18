@@ -7,8 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceFactory;
 import pamtram.structure.source.SourcePackage;
@@ -75,13 +73,11 @@ public class SourceFactoryImpl extends EFactoryImpl implements SourceFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT due to custom setting of cardinality
+	 * @generated
 	 */
 	@Override
 	public SourceSection createSourceSection() {
 		SourceSectionImpl sourceSection = new SourceSectionImpl();
-		sourceSection.setCardinality(CardinalityType.ONE_INFINITY);
 		return sourceSection;
 	}
 

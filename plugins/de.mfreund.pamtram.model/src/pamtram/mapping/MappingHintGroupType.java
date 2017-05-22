@@ -171,4 +171,13 @@ public interface MappingHintGroupType extends NamedElement {
 	 */
 	boolean validateExtendsOnlyValidHintGroups(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(getMappingHints().stream().filter(h -> !h.isDeactivated()).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 * @generated
+	 */
+	EList<MappingHint> getActiveMappingHints();
+
 } // MappingHintGroupType

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -263,6 +264,15 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<MappingHint> getActiveMappingHints() {
+		return new BasicEList<>(getMappingHints().stream().filter(h -> !h.isDeactivated()).collect(Collectors.toList()));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -378,6 +388,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 		switch (operationID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsOnlyValidHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS:
+				return getActiveMappingHints();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

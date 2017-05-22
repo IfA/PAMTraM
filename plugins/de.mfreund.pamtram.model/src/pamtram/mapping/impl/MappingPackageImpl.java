@@ -396,6 +396,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMappingHintGroupType__GetActiveMappingHints() {
+		return mappingHintGroupTypeEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstantiableMappingHintGroup() {
 		return instantiableMappingHintGroupEClass;
 	}
@@ -434,6 +443,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EReference getMappingHintGroupImporter_MappingHints() {
 		return (EReference)mappingHintGroupImporterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getMappingHintGroupImporter__GetActiveMappingHints() {
+		return mappingHintGroupImporterEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -521,6 +539,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS);
 
 		instantiableMappingHintGroupEClass = createEClass(INSTANTIABLE_MAPPING_HINT_GROUP);
 
@@ -530,6 +549,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__CONTAINER);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+		createEOperation(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS);
 
 		exportedMappingHintGroupEClass = createEClass(EXPORTED_MAPPING_HINT_GROUP);
 
@@ -642,6 +662,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getMappingHintGroupType__GetActiveMappingHints(), theExtendedPackage.getMappingHint(), "getActiveMappingHints", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(instantiableMappingHintGroupEClass, InstantiableMappingHintGroup.class, "InstantiableMappingHintGroup", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappingHintGroupEClass, MappingHintGroup.class, "MappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -650,6 +672,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_Container(), theTargetPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_MappingHints(), theExtendedPackage.getMappingHintType(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getMappingHintGroupImporter__GetActiveMappingHints(), theExtendedPackage.getMappingHintType(), "getActiveMappingHints", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(exportedMappingHintGroupEClass, ExportedMappingHintGroup.class, "ExportedMappingHintGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -6,9 +6,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -402,6 +404,15 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<MappingHintType> getActiveMappingHints() {
+		return new BasicEList<>(getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).collect(Collectors.toList()));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -668,6 +679,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS:
+				return getActiveMappingHints();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
 				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:

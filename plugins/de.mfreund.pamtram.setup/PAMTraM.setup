@@ -83,9 +83,8 @@
         name="org.eclipse.wb.rcp.doc.user.feature.feature.group"
         optional="true"/>
     <requirement
-        name="org.sonarlint.eclipse.feature.feature.group"/>
-    <requirement
-        name="org.sonarlint.eclipse.jdt.feature.feature.group"/>
+        name="org.sonarlint.eclipse.feature.feature.group"
+        versionRange="3.0.0"/>
     <requirement
         name="de.tud.et.ifa.agtele.eclipse.commons.feature.feature.group"
         optional="true"/>

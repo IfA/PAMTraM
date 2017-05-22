@@ -59,7 +59,7 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		if (this.hintGroup.getMappingHints().parallelStream().filter(hint -> hint instanceof ContainerSelector)
+		if (this.hintGroup.getActiveMappingHints().parallelStream().filter(hint -> hint instanceof ContainerSelector)
 				.findAny().isPresent()) {
 			MessageDialog.openError(UIHelper.getShell(), "Error",
 					"The MappingHintGroup that was responsible for instantiating the instances "

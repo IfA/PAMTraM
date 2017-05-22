@@ -475,7 +475,7 @@ public class MappingSelector extends CancelableElement {
 
 						// Now, iterate over all corresponding MappingHints
 						//
-						hg.getMappingHints().stream().forEach(h -> {
+						hg.getActiveMappingHints().stream().forEach(h -> {
 							boolean hintResult = this.checkCondition(h, mappingInstance);
 
 							if (hintResult) {

@@ -699,7 +699,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				 * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not
 				 * 'overwritten' by hints of the concrete HintGroup.
 				 */
-				for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {
+				for (MappingHint abstractHint : abstractHintGroup.getActiveMappingHints()) {
 					EObject hintTarget = null;
 					if(abstractHint instanceof AttributeMapping) {
 						hintTarget = ((AttributeMapping) abstractHint).getTarget();
@@ -721,7 +721,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 					if (concreteHintGroup.getMappingHints().isEmpty()
 							// ... or if there are are no hints with the same
 							// target element ...
-							|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getMappingHints())
+							|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getActiveMappingHints())
 									.isEmpty()
 									// ... and no hints with a target elements
 									// that extends the target element of the
@@ -730,7 +730,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 											|| abstractToConcreteElementMap.get(hintTarget).isEmpty()
 											|| EcoreUtil.UsageCrossReferencer
 													.findAll(abstractToConcreteElementMap.get(hintTarget),
-															concreteHintGroup.getMappingHints())
+															concreteHintGroup.getActiveMappingHints())
 													.isEmpty())) {
 		
 						hintsToCopy.add(abstractHint);

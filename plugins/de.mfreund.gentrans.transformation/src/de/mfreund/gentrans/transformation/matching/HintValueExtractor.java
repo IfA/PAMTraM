@@ -167,7 +167,7 @@ public class HintValueExtractor extends ValueExtractor {
 		List<MappingHint> mappingHints = (this.useParallelization
 				? mappingInstance.getMappingHintGroups().parallelStream()
 				: mappingInstance.getMappingHintGroups().stream())
-						.flatMap(hintGroup -> hintGroup.getMappingHints().stream()).collect(Collectors.toList());
+						.flatMap(hintGroup -> hintGroup.getActiveMappingHints().stream()).collect(Collectors.toList());
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values
@@ -206,7 +206,7 @@ public class HintValueExtractor extends ValueExtractor {
 			ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
 			MappingInstanceStorage exported = this.exportedHintGroups.get(exportedHintGroup);
 
-			exportedHintGroup.getMappingHints().stream().forEach(hint -> {
+			exportedHintGroup.getActiveMappingHints().stream().forEach(hint -> {
 				this.initializeHintValueMap(hint, mappingInstance);
 				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValuesCloned(hint));
 			});

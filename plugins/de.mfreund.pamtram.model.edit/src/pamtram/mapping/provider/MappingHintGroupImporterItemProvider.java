@@ -28,6 +28,7 @@ import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.target.TargetSectionClass;
@@ -36,7 +37,7 @@ import pamtram.structure.target.TargetSectionClass;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.MappingHintGroupImporter} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class MappingHintGroupImporterItemProvider extends NamedElementItemProvider {
@@ -173,7 +174,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -188,7 +189,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -203,7 +204,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	/**
 	 * This returns MappingHintGroupImporter.gif. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -214,7 +215,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -243,13 +244,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 			styledLabel.append(" imports " + mhg.getHintGroup().getName(), StyledString.Style.DECORATIONS_STYLER);
 		}
 
-		if (mhg.isDeactivated()) {
-			return new StyledString(styledLabel.getString(),
-					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
-		} else {
-			return styledLabel;
-
-		}
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus(mhg, styledLabel);
 	}
 
 	/**
@@ -257,7 +252,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

@@ -17,11 +17,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.DeactivatableElement;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
@@ -51,12 +53,12 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAffectedReferencePropertyDescriptor(object);
+			this.addAffectedReferencePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -100,53 +102,58 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
+			this.childrenFeatures.add(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns ReferenceTargetSelector.gif.
-	 * <!-- begin-user-doc --> <!--
+	 * This returns ReferenceTargetSelector.gif. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceTargetSelector"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/ReferenceTargetSelector"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -170,24 +177,26 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 			styledLabel.append(label);
 		}
 
-		return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(ReferenceTargetSelector.class)) {
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -203,15 +212,11 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
-				 ExtendedFactory.eINSTANCE.createClassMatcher()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
+				ExtendedFactory.eINSTANCE.createClassMatcher()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
-				 ExtendedFactory.eINSTANCE.createAttributeMatcher()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER,
+				ExtendedFactory.eINSTANCE.createAttributeMatcher()));
 	}
 
 }

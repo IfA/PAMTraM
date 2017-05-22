@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
@@ -26,7 +27,7 @@ import pamtram.mapping.modifier.ModifierFactory;
 /**
  * This is the item provider adapter for a {@link pamtram.MappingModel} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class MappingModelItemProvider extends NamedElementItemProvider {
@@ -110,7 +111,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -128,7 +129,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -154,7 +155,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -183,13 +184,8 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 			styledLabel.append(label);
 		}
 
-		if (((MappingModel) object).isDeactivated()) {
-			return new StyledString(styledLabel.getString(),
-					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
-		} else {
-			return styledLabel;
-
-		}
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**
@@ -197,7 +193,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

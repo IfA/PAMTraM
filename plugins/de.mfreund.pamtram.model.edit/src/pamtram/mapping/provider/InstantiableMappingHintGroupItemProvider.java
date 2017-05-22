@@ -21,6 +21,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -111,7 +112,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -125,7 +126,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -140,7 +141,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns InstantiableMappingHintGroup.gif. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -151,7 +152,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -176,13 +177,8 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 			styledLabel.append(label);
 		}
 
-		if (mhg.isDeactivated()) {
-			return new StyledString(styledLabel.getString(),
-					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
-		} else {
-			return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus(mhg, styledLabel);
 
-		}
 	}
 
 	/**
@@ -190,7 +186,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

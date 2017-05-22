@@ -1992,7 +1992,7 @@
           eSuperTypes="#//NamedElement"/>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true"
           eSuperTypes="#//mapping/extended/MappingHintBaseType"/>
-      <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/extended/MappingHintType #//ConditionalElement"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/extended/MappingHintType #//ConditionalElement #//DeactivatableElement"/>
       <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true"
           interface="true"/>
       <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"

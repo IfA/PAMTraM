@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
+import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.extended.ExtendedPackage;
@@ -32,6 +33,7 @@ import pamtram.util.PamtramValidator;
  * <ul>
  *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#isDeactivated <em>Deactivated</em>}</li>
  * </ul>
  *
  * @generated
@@ -55,6 +57,24 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * @ordered
 	 */
 	protected ComplexCondition sharedCondition;
+	/**
+	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEACTIVATED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDeactivated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,6 +180,27 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDeactivated() {
+		return deactivated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDeactivated(boolean newDeactivated) {
+		boolean oldDeactivated = deactivated;
+		deactivated = newDeactivated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__DEACTIVATED, oldDeactivated, deactivated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -232,6 +273,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
+				return isDeactivated();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,6 +292,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 				return;
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
+				return;
+			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
+				setDeactivated((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -268,6 +314,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
+			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
+				setDeactivated(DEACTIVATED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -284,6 +333,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 				return localCondition != null;
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
 				return sharedCondition != null;
+			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
+				return deactivated != DEACTIVATED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -299,6 +350,12 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			switch (derivedFeatureID) {
 				case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				default: return -1;
+			}
+		}
+		if (baseClass == DeactivatableElement.class) {
+			switch (derivedFeatureID) {
+				case ExtendedPackage.MAPPING_HINT__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
 				default: return -1;
 			}
 		}
@@ -319,6 +376,12 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 				default: return -1;
 			}
 		}
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return ExtendedPackage.MAPPING_HINT__DEACTIVATED;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -333,6 +396,11 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 			switch (baseOperationID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
+			}
+		}
+		if (baseClass == DeactivatableElement.class) {
+			switch (baseOperationID) {
 				default: return -1;
 			}
 		}
@@ -354,6 +422,22 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (deactivated: ");
+		result.append(deactivated);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MappingHintImpl

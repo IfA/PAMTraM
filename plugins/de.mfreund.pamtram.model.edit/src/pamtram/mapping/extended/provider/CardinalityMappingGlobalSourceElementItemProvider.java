@@ -35,7 +35,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public CardinalityMappingGlobalSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -45,7 +45,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -123,7 +123,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	/**
 	 * This returns CardinalityMappingGlobalSourceElement.gif. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -146,7 +146,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -216,7 +216,7 @@ public class CardinalityMappingGlobalSourceElementItemProvider extends GlobalDyn
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

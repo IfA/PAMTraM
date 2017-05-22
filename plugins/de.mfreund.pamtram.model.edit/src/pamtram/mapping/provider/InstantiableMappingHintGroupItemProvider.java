@@ -28,14 +28,14 @@ import pamtram.provider.PamtramEditPlugin;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.InstantiableMappingHintGroup} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class InstantiableMappingHintGroupItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public InstantiableMappingHintGroupItemProvider(AdapterFactory adapterFactory) {
@@ -45,7 +45,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -62,7 +62,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This adds a property descriptor for the Deactivated feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -162,7 +162,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -212,7 +212,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -241,7 +241,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

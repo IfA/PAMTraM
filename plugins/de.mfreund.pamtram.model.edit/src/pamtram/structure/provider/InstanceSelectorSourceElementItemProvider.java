@@ -25,14 +25,14 @@ import pamtram.structure.StructurePackage;
  * This is the item provider adapter for a
  * {@link pamtram.structure.InstanceSelectorSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class InstanceSelectorSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public InstanceSelectorSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -42,7 +42,7 @@ public class InstanceSelectorSourceElementItemProvider extends LocalDynamicSourc
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -143,7 +143,7 @@ public class InstanceSelectorSourceElementItemProvider extends LocalDynamicSourc
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -184,7 +184,7 @@ public class InstanceSelectorSourceElementItemProvider extends LocalDynamicSourc
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

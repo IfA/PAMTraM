@@ -3,6 +3,7 @@
 package pamtram.mapping.extended;
 
 import pamtram.ConditionalElement;
+import pamtram.DeactivatableElement;
 
 
 /**
@@ -15,5 +16,5 @@ import pamtram.ConditionalElement;
  * @model abstract="true"
  * @generated
  */
-public interface MappingHint extends MappingHintType, ConditionalElement {
+public interface MappingHint extends MappingHintType, ConditionalElement, DeactivatableElement {
 } // MappingHint

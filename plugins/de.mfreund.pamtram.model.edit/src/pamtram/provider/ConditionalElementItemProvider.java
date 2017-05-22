@@ -40,7 +40,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ConditionalElementItemProvider(AdapterFactory adapterFactory) {
@@ -50,7 +50,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	/**
 	 * This adds a property descriptor for the Shared Condition feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -139,7 +139,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -171,7 +171,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -200,7 +200,7 @@ public class ConditionalElementItemProvider extends PamtramItemProviderAdapter
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

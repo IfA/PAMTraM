@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.ConditionalElement;
+import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
@@ -100,6 +101,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				T result = caseMappingHint(mappingHint);
 				if (result == null) result = caseMappingHintType(mappingHint);
 				if (result == null) result = caseConditionalElement(mappingHint);
+				if (result == null) result = caseDeactivatableElement(mappingHint);
 				if (result == null) result = caseMappingHintBaseType(mappingHint);
 				if (result == null) result = caseNamedElement(mappingHint);
 				if (result == null) result = defaultCase(theEObject);
@@ -149,6 +151,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseExpandableHint(attributeMapping);
 				if (result == null) result = caseMappingHintType(attributeMapping);
 				if (result == null) result = caseConditionalElement(attributeMapping);
+				if (result == null) result = caseDeactivatableElement(attributeMapping);
 				if (result == null) result = caseMappingHintBaseType(attributeMapping);
 				if (result == null) result = caseNamedElement(attributeMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -210,6 +213,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseModifiableElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintType(cardinalityMapping);
 				if (result == null) result = caseConditionalElement(cardinalityMapping);
+				if (result == null) result = caseDeactivatableElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintBaseType(cardinalityMapping);
 				if (result == null) result = caseNamedElement(cardinalityMapping);
 				if (result == null) result = defaultCase(theEObject);
@@ -269,6 +273,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHint(referenceTargetSelector);
 				if (result == null) result = caseMappingHintType(referenceTargetSelector);
 				if (result == null) result = caseConditionalElement(referenceTargetSelector);
+				if (result == null) result = caseDeactivatableElement(referenceTargetSelector);
 				if (result == null) result = caseMappingHintBaseType(referenceTargetSelector);
 				if (result == null) result = caseNamedElement(referenceTargetSelector);
 				if (result == null) result = defaultCase(theEObject);
@@ -305,6 +310,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseInstanceSelector(containerSelector);
 				if (result == null) result = caseMappingHintType(containerSelector);
 				if (result == null) result = caseConditionalElement(containerSelector);
+				if (result == null) result = caseDeactivatableElement(containerSelector);
 				if (result == null) result = caseExpressionElement(containerSelector);
 				if (result == null) result = caseModifiableElement(containerSelector);
 				if (result == null) result = caseMappingHintBaseType(containerSelector);
@@ -825,6 +831,21 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConditionalElement(ConditionalElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeactivatableElement(DeactivatableElement object) {
 		return null;
 	}
 

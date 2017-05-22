@@ -28,14 +28,14 @@ import pamtram.provider.PamtramEditPlugin;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.extended.GlobalAttributeImporter} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class GlobalAttributeImporterItemProvider extends NamedElementItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public GlobalAttributeImporterItemProvider(AdapterFactory adapterFactory) {
@@ -45,7 +45,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -91,7 +91,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 	/**
 	 * This adds a property descriptor for the Global Attribute feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addGlobalAttributePropertyDescriptor(Object object) {
@@ -162,7 +162,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -202,7 +202,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -231,7 +231,7 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 	/**
 	 * Return the resource locator for this item provider's resources. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

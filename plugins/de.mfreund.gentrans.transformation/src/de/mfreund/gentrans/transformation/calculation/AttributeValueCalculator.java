@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.pamtram.util.ExpressionCalculator;
+import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
 import pamtram.ModifiableElement;
@@ -274,9 +275,17 @@ public class AttributeValueCalculator {
 			if (valueParts.containsKey(srcElement)) {
 				attrValueBuilder.append(valueParts.get(srcElement).getNextValue());
 			} else {
-				this.logger.warning(() -> "SourceValue not found for element '"
-						+ (srcElement instanceof NamedElement ? ((NamedElement) srcElement).getName() : srcElement)
-						+ "'.");
+				if (srcElement instanceof ConditionalElement
+						&& (((ConditionalElement) srcElement).getLocalCondition() != null
+								|| ((ConditionalElement) srcElement).getSharedCondition() != null)) {
+					// This is probably due to a condition that evaluated to
+					// false...
+					//
+				} else {
+					this.logger.warning(() -> "SourceValue not found for element '"
+							+ (srcElement instanceof NamedElement ? ((NamedElement) srcElement).getName() : srcElement)
+							+ "'.");
+				}
 			}
 		}
 

@@ -35,6 +35,13 @@ import pamtram.condition.ApplicationDependency;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.Matcher;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSection;
 
 /**
@@ -462,13 +469,41 @@ public class MappingSelector extends CancelableElement {
 		mappingInstance.getMapping().getActiveMappingHintGroups().stream()
 				.filter(hg -> hg instanceof ConditionalElement).forEach(hg -> {
 
-					boolean result = this.checkCondition((ConditionalElement) hg, mappingInstance);
+					boolean hintGroupResult = this.checkCondition((ConditionalElement) hg, mappingInstance);
 
-					if (result) {
+					if (hintGroupResult) {
 
-						// Iterate now over all corresponding MappingHints
+						// Now, iterate over all corresponding MappingHints
 						//
-						hg.getMappingHints().stream().forEach(m -> this.checkCondition(m, mappingInstance));
+						hg.getMappingHints().stream().forEach(h -> {
+							boolean hintResult = this.checkCondition(h, mappingInstance);
+
+							if (hintResult) {
+
+								// Now, iterate over all corresponding
+								// MappingHintSourceElements
+								//
+								List<MappingHintSourceInterface> sourceElements = new ArrayList<>();
+								if (h instanceof AttributeMapping) {
+									sourceElements.addAll(((AttributeMapping) h).getSourceElements());
+								} else if (h instanceof CardinalityMapping) {
+									sourceElements.addAll(((CardinalityMapping) h).getSourceElements());
+								} else if (h instanceof ContainerSelector) {
+									sourceElements.addAll(((ContainerSelector) h).getSourceElements());
+								} else if (h instanceof ReferenceTargetSelector) {
+									Matcher matcher = ((ReferenceTargetSelector) h).getMatcher();
+									if (matcher instanceof AttributeMatcher) {
+										sourceElements.addAll(((AttributeMatcher) matcher).getSourceElements());
+									}
+								} else {
+									this.logger.warning(
+											() -> "Internal Error: Unsupported type of MappingHint encountered ('"
+													+ h.getName() + "')!");
+								}
+
+								sourceElements.stream().forEach(s -> this.checkCondition(s, mappingInstance));
+							}
+						});
 					}
 				});
 

@@ -2,6 +2,7 @@
  */
 package pamtram.mapping.extended;
 
+import pamtram.ConditionalElement;
 import pamtram.NamedElement;
 
 /**
@@ -14,6 +15,6 @@ import pamtram.NamedElement;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface MappingHintSourceInterface extends NamedElement {
+public interface MappingHintSourceInterface extends NamedElement, ConditionalElement {
 
 } // MappingHintSourceInterface

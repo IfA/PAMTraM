@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import pamtram.structure.*;
+import pamtram.util.PamtramValidator;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
@@ -76,6 +77,14 @@ public class StructureValidator extends EObjectValidator {
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
+	 * The cached base package validator.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PamtramValidator pamtramValidator;
+
+	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -83,6 +92,7 @@ public class StructureValidator extends EObjectValidator {
 	 */
 	public StructureValidator() {
 		super();
+		pamtramValidator = PamtramValidator.INSTANCE;
 	}
 
 	/**
@@ -236,7 +246,20 @@ public class StructureValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstanceSelectorSourceInterface(InstanceSelectorSourceInterface instanceSelectorSourceInterface, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(instanceSelectorSourceInterface, diagnostics, context);
+		if (!validate_NoCircularContainment(instanceSelectorSourceInterface, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorSourceInterface, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceInterface, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -256,6 +279,10 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -276,6 +303,10 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_sourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorExternalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -285,7 +316,20 @@ public class StructureValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInstanceSelectorGlobalSourceElement(InstanceSelectorGlobalSourceElement instanceSelectorGlobalSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (!validate_NoCircularContainment(instanceSelectorGlobalSourceElement, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorGlobalSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorGlobalSourceElement, diagnostics, context);
+		return result;
 	}
 
 	/**

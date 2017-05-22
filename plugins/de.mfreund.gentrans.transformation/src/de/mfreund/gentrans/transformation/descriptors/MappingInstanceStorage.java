@@ -24,8 +24,14 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.mapping.extended.MappingHintType;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -338,6 +344,39 @@ public class MappingInstanceStorage {
 		return (this.useParallelization ? hintGroup.getMappingHints().parallelStream()
 				: hintGroup.getMappingHints().stream()).filter(h -> !this.isElementWithNegativeCondition(h))
 						.collect(Collectors.toList());
+	}
+
+	/**
+	 * This returns the {@link MappingHintSourceInterface source elements} for
+	 * the given {@link MappingHint} for that the condition has not been
+	 * determined as {@link #isElementWithNegativeCondition(ConditionalElement)
+	 * false}.
+	 *
+	 * @param hint
+	 *            The {@link MappingHint} for that the
+	 *            {@link MappingHintSourceInterface source elements} shall be
+	 *            returned.
+	 * @return The list of {@link MappingHintSourceInterface source elements}
+	 *         excluding those with negative conditions.
+	 */
+	public List<MappingHintSourceInterface> getMappingHintSourceElements(MappingHint hint) {
+
+		List<MappingHintSourceInterface> sourceElements = new ArrayList<>();
+
+		if (hint instanceof AttributeMapping) {
+			sourceElements.addAll(((AttributeMapping) hint).getSourceElements());
+		} else if (hint instanceof ReferenceTargetSelector
+				&& ((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
+			sourceElements
+					.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getSourceElements());
+		} else if (hint instanceof ContainerSelector) {
+			sourceElements.addAll(((ContainerSelector) hint).getSourceElements());
+		} else if (hint instanceof CardinalityMapping) {
+			sourceElements.addAll(((CardinalityMapping) hint).getSourceElements());
+		}
+
+		return sourceElements.stream().filter(s -> !this.isElementWithNegativeCondition(s))
+				.collect(Collectors.toList());
 	}
 
 	/**

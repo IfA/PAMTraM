@@ -1998,7 +1998,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
           eSuperTypes="#//mapping/extended/MappingHintType"/>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
-          interface="true" eSuperTypes="#//NamedElement"/>
+          interface="true" eSuperTypes="#//NamedElement #//ConditionalElement"/>
       <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
         <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
             eType="#//mapping/GlobalAttribute"/>

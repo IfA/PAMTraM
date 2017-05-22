@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
@@ -140,6 +141,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				T result = caseValueConstraintSourceInterface(valueConstraintSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintSourceInterface);
 				if (result == null) result = caseNamedElement(valueConstraintSourceInterface);
+				if (result == null) result = caseConditionalElement(valueConstraintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -152,6 +154,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintSourceElement);
 				if (result == null) result = caseModifiableElement(valueConstraintSourceElement);
+				if (result == null) result = caseConditionalElement(valueConstraintSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,6 +167,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintExternalSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintExternalSourceElement);
 				if (result == null) result = caseModifiableElement(valueConstraintExternalSourceElement);
+				if (result == null) result = caseConditionalElement(valueConstraintExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -176,6 +180,7 @@ public class ConstraintSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(valueConstraintGlobalSourceElement);
 				if (result == null) result = caseNamedElement(valueConstraintGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(valueConstraintGlobalSourceElement);
+				if (result == null) result = caseConditionalElement(valueConstraintGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -375,6 +380,21 @@ public class ConstraintSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalElement(ConditionalElement object) {
 		return null;
 	}
 

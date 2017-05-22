@@ -124,6 +124,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				MappingHintSourceInterface mappingHintSourceInterface = (MappingHintSourceInterface)theEObject;
 				T result = caseMappingHintSourceInterface(mappingHintSourceInterface);
 				if (result == null) result = caseNamedElement(mappingHintSourceInterface);
+				if (result == null) result = caseConditionalElement(mappingHintSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -135,6 +136,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseValueConstraintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseMappingHintSourceInterface(globalAttributeImporter);
 				if (result == null) result = caseNamedElement(globalAttributeImporter);
+				if (result == null) result = caseConditionalElement(globalAttributeImporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,6 +159,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				T result = caseAttributeMappingSourceInterface(attributeMappingSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceInterface);
 				if (result == null) result = caseNamedElement(attributeMappingSourceInterface);
+				if (result == null) result = caseConditionalElement(attributeMappingSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -169,6 +172,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
+				if (result == null) result = caseConditionalElement(attributeMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -181,6 +185,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingExternalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingExternalSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMappingExternalSourceElement);
+				if (result == null) result = caseConditionalElement(attributeMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -193,6 +198,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMappingGlobalSourceElement);
+				if (result == null) result = caseConditionalElement(attributeMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -214,6 +220,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				T result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceInterface);
 				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceInterface);
 				if (result == null) result = caseNamedElement(cardinalityMappingSourceInterface);
+				if (result == null) result = caseConditionalElement(cardinalityMappingSourceInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -226,6 +233,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
 				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
 				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseConditionalElement(cardinalityMappingSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,6 +246,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingExternalSourceElement);
 				if (result == null) result = caseNamedElement(cardinalityMappingExternalSourceElement);
 				if (result == null) result = caseModifiableElement(cardinalityMappingExternalSourceElement);
+				if (result == null) result = caseConditionalElement(cardinalityMappingExternalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -250,6 +259,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = caseNamedElement(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = caseModifiableElement(cardinalityMappingGlobalSourceElement);
+				if (result == null) result = caseConditionalElement(cardinalityMappingGlobalSourceElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

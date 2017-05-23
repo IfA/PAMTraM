@@ -16,8 +16,9 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
@@ -26,16 +27,17 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.SourceSectionModel} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.SourceSectionModel}
+ * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SourceSectionModelItemProvider(AdapterFactory adapterFactory) {
@@ -43,10 +45,12 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated NOT call 'super.getPropertyDescriptors' every time to add/hide the
-	 *            'SectionModelFilePropertyDescriptor' based on the currently selected object
+	 * @generated NOT call 'super.getPropertyDescriptors' every time to add/hide
+	 *            the 'SectionModelFilePropertyDescriptor' based on the
+	 *            currently selected object
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
@@ -57,81 +61,83 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Deactivated feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DeactivatableElement_deactivated_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature",
+						"_UI_DeactivatableElement_type"),
+				PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This returns SourceSectionModel.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SourceSectionModel.gif. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SourceSectionModel"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/SourceSectionModel"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
 
-		return super.getStyledText(object);
+		StyledString styledLabel = (StyledString) super.getStyledText(object);
+
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSectionModel.class)) {
-			case PamtramPackage.SOURCE_SECTION_MODEL__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case PamtramPackage.SOURCE_SECTION_MODEL__DEACTIVATED:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,8 +174,8 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 		}
 
 		return new ReplacingDragAndDropAddCommand(domain, (EObject) owner,
-				PamtramPackage.Literals.SECTION_MODEL__SECTIONS,
-				(Collection<EObject>) sourceSectionClassMap.keySet(), sourceSectionClassMap.values());
+				PamtramPackage.Literals.SECTION_MODEL__SECTIONS, (Collection<EObject>) sourceSectionClassMap.keySet(),
+				sourceSectionClassMap.values());
 
 	}
 

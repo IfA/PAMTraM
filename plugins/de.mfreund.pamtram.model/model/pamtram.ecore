@@ -1347,6 +1347,7 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//DeactivatableElement"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeSubTypes" lowerBound="1"

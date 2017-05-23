@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
@@ -84,6 +85,7 @@ public class SourceSwitch<T> extends Switch<T> {
 				T result = caseSourceSection(sourceSection);
 				if (result == null) result = caseSourceSectionClass(sourceSection);
 				if (result == null) result = caseSection(sourceSection);
+				if (result == null) result = caseDeactivatableElement(sourceSection);
 				if (result == null) result = caseClass(sourceSection);
 				if (result == null) result = caseMetaModelElement(sourceSection);
 				if (result == null) result = caseNamedElement(sourceSection);
@@ -371,6 +373,21 @@ public class SourceSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseSection(Section<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Deactivatable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeactivatableElement(DeactivatableElement object) {
 		return null;
 	}
 

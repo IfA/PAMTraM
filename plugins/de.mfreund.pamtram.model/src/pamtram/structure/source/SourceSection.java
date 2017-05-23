@@ -5,6 +5,7 @@ package pamtram.structure.source;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import pamtram.DeactivatableElement;
 import pamtram.mapping.MappingType;
 import pamtram.structure.generic.Section;
 
@@ -25,7 +26,7 @@ import pamtram.structure.generic.Section;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMapping'"
  * @generated
  */
-public interface SourceSection extends SourceSectionClass, Section<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSection extends SourceSectionClass, Section<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, DeactivatableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Referencing Mappings</b></em>' reference list.

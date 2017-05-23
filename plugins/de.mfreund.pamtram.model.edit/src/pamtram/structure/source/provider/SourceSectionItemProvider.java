@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.PamtramPackage;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
@@ -52,6 +53,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
+			addDeactivatedPropertyDescriptor(object);
 			addReferencingMappingsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -115,6 +117,28 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 						return ret;
 					}
 				});
+	}
+
+	/**
+	 * This adds a property descriptor for the Deactivated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDeactivatedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -224,6 +248,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 		switch (notification.getFeatureID(SourceSection.class)) {
 			case SourcePackage.SOURCE_SECTION__ABSTRACT:
+			case SourcePackage.SOURCE_SECTION__DEACTIVATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

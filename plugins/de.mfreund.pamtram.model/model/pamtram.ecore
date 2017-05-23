@@ -20,7 +20,12 @@
     </eOperations>
     <eOperations name="getActiveSourceSectionModels" upperBound="-1" eType="#//SourceSectionModel">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="Object[] sourceSectionModels = getSourceSectionModels().stream().filter(s -> !s.isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(sourceSectionModels.length, sourceSectionModels);"/>
+        <details key="body" value="Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(sourceSectionModels.length, sourceSectionModels);"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getActiveSourceSections" upperBound="-1" eType="#//structure/source/SourceSection">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(sourceSections.length, sourceSections);"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSectionModels" upperBound="-1"

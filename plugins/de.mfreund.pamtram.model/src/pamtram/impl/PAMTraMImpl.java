@@ -846,8 +846,18 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * @generated
 	 */
 	public EList<SourceSectionModel> getActiveSourceSectionModels() {
-		Object[] sourceSectionModels = getSourceSectionModels().stream().filter(s -> !s.isDeactivated()).toArray();
+		Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSection> getActiveSourceSections() {
+		Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(sourceSections.length, sourceSections);
 	}
 
 	/**
@@ -1095,6 +1105,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				return null;
 			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS:
 				return getActiveSourceSectionModels();
+			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS:
+				return getActiveSourceSections();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -269,7 +269,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 */
 	public EList<MappingHint> getActiveMappingHints() {
-		return new BasicEList<>(getMappingHints().stream().filter(h -> !h.isDeactivated()).collect(Collectors.toList()));
+		Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
 	}
 
 	/**

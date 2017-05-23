@@ -175,7 +175,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(getMappingHints().stream().filter(h -> !h.isDeactivated()).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);'"
 	 * @generated
 	 */
 	EList<MappingHint> getActiveMappingHints();

@@ -5,8 +5,6 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-
-import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -405,7 +403,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	public EList<MappingHintType> getActiveMappingHints() {
-		return new BasicEList<>(getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).collect(Collectors.toList()));
+		Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
 	}
 
 	/**

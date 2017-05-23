@@ -263,17 +263,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupType> getActiveMappingHintGroups() {
-		EList<MappingHintGroupType> hintGroups = getMappingHintGroups();
-		EList<MappingHintGroupType> activeHintGroups = new BasicEList<>();
-		for (MappingHintGroupType hintGroup : hintGroups) {
-			if(hintGroup instanceof InstantiableMappingHintGroup && 
-					((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {
-				// skip this one
-			} else {
-				activeHintGroups.add(hintGroup);
-			}
-		}
-		return activeHintGroups;
+		Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(hintGroups.length, hintGroups);
 	}
 
 	/**
@@ -283,16 +274,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups() {
-		EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();
-		EList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();
-		for (MappingHintGroupImporter hintGroup : hintGroups) {
-			if(hintGroup.isDeactivated()) {
-				// skip this one
-			} else {
-				activeHintGroups.add(hintGroup);
-			}
-		}
-		return activeHintGroups;
+		Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);
 	}
 
 	/**

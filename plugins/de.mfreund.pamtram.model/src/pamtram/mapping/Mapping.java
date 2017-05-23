@@ -89,7 +89,7 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupType> hintGroups = getMappingHintGroups();\r\nEList<MappingHintGroupType> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupType hintGroup : hintGroups) {\r\n\tif(hintGroup instanceof InstantiableMappingHintGroup && \r\n\t\t\t((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hintGroups.length, hintGroups);'"
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getActiveMappingHintGroups();
@@ -98,7 +98,7 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();\r\nEList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupImporter hintGroup : hintGroups) {\r\n\tif(hintGroup.isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);'"
 	 * @generated
 	 */
 	EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups();

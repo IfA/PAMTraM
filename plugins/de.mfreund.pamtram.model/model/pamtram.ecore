@@ -1823,12 +1823,12 @@
       </eAnnotations>
       <eOperations name="getActiveMappingHintGroups" upperBound="-1" eType="#//mapping/MappingHintGroupType">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;MappingHintGroupType> hintGroups = getMappingHintGroups();&#xD;&#xA;EList&lt;MappingHintGroupType> activeHintGroups = new BasicEList&lt;>();&#xD;&#xA;for (MappingHintGroupType hintGroup : hintGroups) {&#xD;&#xA;&#x9;if(hintGroup instanceof InstantiableMappingHintGroup &amp;&amp; &#xD;&#xA;&#x9;&#x9;&#x9;((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {&#xD;&#xA;&#x9;&#x9;// skip this one&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;activeHintGroups.add(hintGroup);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeHintGroups;"/>
+          <details key="body" value="Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(hintGroups.length, hintGroups);"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="getActiveImportedMappingHintGroups" upperBound="-1" eType="#//mapping/MappingHintGroupImporter">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="EList&lt;MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();&#xD;&#xA;EList&lt;MappingHintGroupImporter> activeHintGroups = new BasicEList&lt;>();&#xD;&#xA;for (MappingHintGroupImporter hintGroup : hintGroups) {&#xD;&#xA;&#x9;if(hintGroup.isDeactivated()) {&#xD;&#xA;&#x9;&#x9;// skip this one&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;activeHintGroups.add(hintGroup);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;return activeHintGroups;"/>
+          <details key="body" value="Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(importedHintGroups.length, importedHintGroups);"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="validateContainsHintGroups" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1879,7 +1879,7 @@
       </eOperations>
       <eOperations name="getActiveMappingHints" upperBound="-1" eType="#//mapping/extended/MappingHint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(getMappingHints().stream().filter(h -> !h.isDeactivated()).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+          <details key="body" value="Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(hints.length, hints);"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetSection" lowerBound="1"
@@ -1923,7 +1923,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MappingHintGroupImporter" eSuperTypes="#//NamedElement #//mapping/InstantiableMappingHintGroup">
       <eOperations name="getActiveMappingHints" upperBound="-1" eType="#//mapping/extended/MappingHintType">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="body" value="return new &lt;%org.eclipse.emf.common.util.BasicEList%>&lt;>(getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((&lt;%pamtram.DeactivatableElement%>) h).isDeactivated()).collect(&lt;%java.util.stream.Collectors%>.toList()));"/>
+          <details key="body" value="Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((&lt;%pamtram.DeactivatableElement%>) h).isDeactivated()).toArray();&#xD;&#xA;return new &lt;%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList&lt;>(hints.length, hints);"/>
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="hintGroup" lowerBound="1"

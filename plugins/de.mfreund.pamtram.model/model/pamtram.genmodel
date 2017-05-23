@@ -16,11 +16,14 @@
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//PAMTraM">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sourceSectionModels"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedSourceSectionModels"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedSourceSectionModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/targetSectionModels"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedTargetSectionModels"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedTargetSectionModels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/mappingModels"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedMappingModels"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedMappingModels"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sourceSections"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/targetSections"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/mappings"/>
@@ -29,8 +32,11 @@
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/globalAttributes"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/modifierSets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/conditionModels"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedConditionModels"/>
+      <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedConditionModels"/>
       <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/mergeExtends"/>
+      <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/getActiveSourceSectionModels"/>
+      <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/getActiveSourceSections"/>
     </genClasses>
     <genClasses image="false" ecoreClass="pamtram.ecore#//SectionModel">
       <genTypeParameters ecoreTypeParameter="pamtram.ecore#//SectionModel/S"/>
@@ -536,6 +542,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsDeactivatedHintGroups/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateContainsDeactivatedHintGroups/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -551,6 +561,7 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/getActiveMappingHints"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup"/>
@@ -560,6 +571,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupImporter/getActiveMappingHints"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/GlobalAttribute">

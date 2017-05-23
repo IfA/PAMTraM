@@ -13,8 +13,9 @@ import pamtram.SourceSectionModel;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * A content provider for a viewer that displays the {@link SourceSectionModel SourceSectionModels} and the contained
- * {@link SourceSectionClass SourceSectionClasses}.
+ * A content provider for a viewer that displays the {@link SourceSectionModel
+ * SourceSectionModels} and the contained {@link SourceSectionClass
+ * SourceSectionClasses}.
  *
  * @author mfreund
  */
@@ -40,9 +41,11 @@ public class SourceSectionContentProvider extends AdapterFactoryContentProvider 
 	public boolean isValidFeature(EStructuralFeature feature) {
 
 		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__MAPPING_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)) {
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)) {
 			return false;
 		}
 

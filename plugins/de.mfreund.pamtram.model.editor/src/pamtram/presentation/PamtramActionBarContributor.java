@@ -44,6 +44,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.actions.CreateSharedModelChildAction;
 import pamtram.actions.CreateSharedModelSiblingAction;
 import pamtram.actions.CutClassAndPasteAsNewSectionAction;
@@ -442,6 +445,7 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
 
 		Collection<IAction> actions = new ArrayList<>();
+
 		if (descriptors != null) {
 
 			IContentProvider provider = null;
@@ -463,6 +467,51 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 					}
 				}
 
+			}
+
+			// The user selected a shared SectionModel (that is not contained in
+			// a PAMTraM model but in its own resource); thus, we need to
+			// handle the creation of SectionModels as siblings
+			// manually
+			//
+			if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1
+					&& ((IStructuredSelection) selection).getFirstElement() instanceof SectionModel<?, ?, ?, ?>) {
+				SectionModel<?, ?, ?, ?> object = (SectionModel<?, ?, ?, ?>) ((IStructuredSelection) selection)
+						.getFirstElement();
+
+				if (!(object.eContainer() instanceof PAMTraM)) {
+
+					PAMTraM pamtram = ((PamtramEditor) this.activeEditorPart).getPamtram();
+					List<Object> customDescriptors = new ArrayList<>(
+							AgteleEcoreUtil.getAdapterFactoryItemDelegatorFor(pamtram).getNewChildDescriptors(pamtram,
+									((PamtramEditor) this.activeEditorPart).getEditingDomain(), null));
+
+					// A custom selection to make the Action think the user
+					// selected the 'parent' PAMTraM model
+					//
+					ISelection customSelection = new StructuredSelection(pamtram);
+
+					for (Object descriptor : customDescriptors) {
+
+						if (this.isValidDescriptor(descriptor, provider)) {
+
+							// Use 'CreateChild' instead of 'CreateSibling'
+							// actions based on the (virtually) selected parent
+							// PAMTraM model
+							//
+							if (descriptor instanceof CommandParameter
+									&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+									&& SharedModelUtil.isValidSubModelFeature(
+											(EStructuralFeature) ((CommandParameter) descriptor).getFeature())) {
+								actions.add(new CreateSharedModelChildAction(this.activeEditorPart, customSelection,
+										descriptor));
+							} else {
+								actions.add(new CreateChildAction(this.activeEditorPart, customSelection, descriptor));
+							}
+						}
+
+					}
+				}
 			}
 		}
 

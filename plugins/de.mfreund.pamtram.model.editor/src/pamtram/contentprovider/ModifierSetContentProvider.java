@@ -16,8 +16,9 @@ import pamtram.PamtramPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
- * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the contained
- * {@link ValueModifierSet ValueModifierSets} as well as the {@link FixedValue GlobalValues}.
+ * A content provider for a viewer that displays the {@link MappingModel
+ * MappingModels} and the contained {@link ValueModifierSet ValueModifierSets}
+ * as well as the {@link FixedValue GlobalValues}.
  *
  * @author mfreund
  */
@@ -40,8 +41,8 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider im
 	}
 
 	/*
-	 * extend the content provider in a way that no mappings but only attribute value modifier sets are returned as
-	 * children of a mapping model
+	 * extend the content provider in a way that no mappings but only attribute
+	 * value modifier sets are returned as children of a mapping model
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
@@ -62,6 +63,7 @@ public class ModifierSetContentProvider extends AdapterFactoryContentProvider im
 		if (feature.equals(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__CONDITION_MODELS)
+				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
 				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)) {

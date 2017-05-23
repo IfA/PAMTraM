@@ -12,10 +12,14 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramPackage;
+import pamtram.SourceSectionModel;
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.structure.source.SourceFactory;
 import pamtram.structure.source.SourceSection;
@@ -50,6 +54,28 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 		this.itemPropertyDescriptors = null;
 		super.getPropertyDescriptors(object);
 		return this.itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Deactivated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDeactivatedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,6 +119,12 @@ public class SourceSectionModelItemProvider extends SectionModelItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(SourceSectionModel.class)) {
+			case PamtramPackage.SOURCE_SECTION_MODEL__DEACTIVATED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -25,9 +25,8 @@ import pamtram.PamtramPackage;
 import pamtram.util.PamtramItemProviderAdapter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.DeactivatableElement}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- *
+ * This is the item provider adapter for a {@link pamtram.DeactivatableElement} object.
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class DeactivatableElementItemProvider extends PamtramItemProviderAdapter
@@ -51,12 +50,12 @@ public class DeactivatableElementItemProvider extends PamtramItemProviderAdapter
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addDeactivatedPropertyDescriptor(object);
+			addDeactivatedPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -66,24 +65,30 @@ public class DeactivatableElementItemProvider extends PamtramItemProviderAdapter
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_DeactivatableElement_deactivated_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature",
-						"_UI_DeactivatableElement_type"),
-				PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, true, false, false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_DeactivatableElement_deactivated_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -94,27 +99,25 @@ public class DeactivatableElementItemProvider extends PamtramItemProviderAdapter
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		DeactivatableElement deactivatableElement = (DeactivatableElement) object;
-		return new StyledString(this.getString("_UI_DeactivatableElement_type"), StyledString.Style.QUALIFIER_STYLER)
-				.append(" ").append(Boolean.toString(deactivatableElement.isDeactivated()));
+		DeactivatableElement deactivatableElement = (DeactivatableElement)object;
+		return new StyledString(getString("_UI_DeactivatableElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" ").append(Boolean.toString(deactivatableElement.isDeactivated()));
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(DeactivatableElement.class)) {
-		case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+			case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

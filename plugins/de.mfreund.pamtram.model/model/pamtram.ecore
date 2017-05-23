@@ -131,6 +131,7 @@
       <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
       <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
     </eGenericSuperTypes>
+    <eGenericSuperTypes eClassifier="#//DeactivatableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetSectionModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"

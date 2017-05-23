@@ -397,13 +397,22 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_MODEL__DEACTIVATED = SECTION_MODEL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Source Section Model</em>' class.

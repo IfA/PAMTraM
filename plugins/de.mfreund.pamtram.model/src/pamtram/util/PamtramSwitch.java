@@ -101,6 +101,7 @@ public class PamtramSwitch<T> extends Switch<T> {
 				SourceSectionModel sourceSectionModel = (SourceSectionModel)theEObject;
 				T result = caseSourceSectionModel(sourceSectionModel);
 				if (result == null) result = caseSectionModel(sourceSectionModel);
+				if (result == null) result = caseDeactivatableElement(sourceSectionModel);
 				if (result == null) result = caseNamedElement(sourceSectionModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

@@ -19,7 +19,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.DeactivatableElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
@@ -29,7 +28,7 @@ import pamtram.provider.DeactivatableElementItemProvider;
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.Mapping}
  * object. <!-- begin-user-doc --> <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class MappingItemProvider extends MappingTypeItemProvider {
@@ -83,8 +82,9 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 				// Only allow to reference ConditionModel-conditions as shared
 				// conditions
 				//
-				return choices.stream().filter(
-						c -> c instanceof ComplexCondition && ((ComplexCondition) c).isConditionModelCondition())
+				return choices.stream()
+						.filter(c -> c instanceof pamtram.condition.ComplexCondition
+								&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
 						.collect(Collectors.toList());
 			}
 		});
@@ -113,7 +113,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +129,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,7 +168,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
 	 * This returns Mapping.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -179,7 +179,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,7 +216,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

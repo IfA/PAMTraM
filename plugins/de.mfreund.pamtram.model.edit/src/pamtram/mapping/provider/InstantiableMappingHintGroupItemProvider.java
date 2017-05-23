@@ -17,7 +17,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingPackage;
@@ -98,8 +97,9 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 				// Only allow to reference ConditionModel-conditions as shared
 				// conditions
 				//
-				return choices.stream().filter(
-						c -> c instanceof ComplexCondition && ((ComplexCondition) c).isConditionModelCondition())
+				return choices.stream()
+						.filter(c -> c instanceof pamtram.condition.ComplexCondition
+								&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
 						.collect(Collectors.toList());
 			}
 		});
@@ -112,7 +112,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +126,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +141,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns InstantiableMappingHintGroup.gif. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -152,7 +152,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,7 +186,7 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

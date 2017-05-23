@@ -17,7 +17,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.PamtramPackage;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
@@ -81,8 +80,9 @@ public class GlobalAttributeImporterItemProvider extends NamedElementItemProvide
 				// Only allow to reference ConditionModel-conditions as shared
 				// conditions
 				//
-				return choices.stream().filter(
-						c -> c instanceof ComplexCondition && ((ComplexCondition) c).isConditionModelCondition())
+				return choices.stream()
+						.filter(c -> c instanceof pamtram.condition.ComplexCondition
+								&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
 						.collect(Collectors.toList());
 			}
 		});

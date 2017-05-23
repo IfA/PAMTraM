@@ -846,6 +846,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		sourceSectionModelEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getDeactivatableElement());
+		sourceSectionModelEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getSectionModel());
 		g2 = createEGenericType(theTargetPackage.getTargetSection());
 		g1.getETypeArguments().add(g2);

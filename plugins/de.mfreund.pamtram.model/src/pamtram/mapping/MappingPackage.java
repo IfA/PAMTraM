@@ -261,13 +261,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Validate Source Section Is Active</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 6;
+
+	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 6;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -1016,6 +1025,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getMapping__ValidateContainsDeactivatedHintGroups__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#validateSourceSectionIsActive(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Section Is Active</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Source Section Is Active</em>' operation.
+	 * @see pamtram.mapping.Mapping#validateSourceSectionIsActive(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1345,6 +1364,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateContainsDeactivatedHintGroups__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Source Section Is Active</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.

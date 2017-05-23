@@ -89,7 +89,7 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupType> hintGroups = getMappingHintGroups();\r\nEList<MappingHintGroupType> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupType hintGroup : hintGroups) {\r\n\tif(hintGroup instanceof InstantiableMappingHintGroup && \r\n\t\t\t((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hintGroups.length, hintGroups);'"
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getActiveMappingHintGroups();
@@ -98,7 +98,7 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();\r\nEList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();\r\nfor (MappingHintGroupImporter hintGroup : hintGroups) {\r\n\tif(hintGroup.isDeactivated()) {\r\n\t\t// skip this one\r\n\t} else {\r\n\t\tactiveHintGroups.add(hintGroup);\r\n\t}\r\n}\r\nreturn activeHintGroups;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);'"
 	 * @generated
 	 */
 	EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups();
@@ -118,5 +118,13 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * @generated
 	 */
 	boolean validateContainsDeactivatedHintGroups(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getSourceSection() == null || !this.getSourceSection().isDeactivated();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The mapping is based on a deactivated SourceSection and will not be used in a transformation!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateSourceSectionIsActive(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // Mapping

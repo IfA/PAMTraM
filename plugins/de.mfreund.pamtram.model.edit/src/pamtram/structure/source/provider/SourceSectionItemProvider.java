@@ -17,6 +17,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import pamtram.DeactivatableElement;
+import pamtram.PamtramPackage;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
@@ -24,16 +28,18 @@ import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.source.SourceSection} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.source.SourceSection} object. <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SourceSectionItemProvider(AdapterFactory adapterFactory) {
@@ -41,45 +47,43 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAbstractPropertyDescriptor(object);
-			addExtendPropertyDescriptor(object);
-			addReferencingMappingsPropertyDescriptor(object);
+			this.addAbstractPropertyDescriptor(object);
+			this.addExtendPropertyDescriptor(object);
+			this.addDeactivatedPropertyDescriptor(object);
+			this.addReferencingMappingsPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Abstract feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
-				 GenericPackage.Literals.SECTION__ABSTRACT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Section_abstract_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature",
+						"_UI_Section_type"),
+				GenericPackage.Literals.SECTION__ABSTRACT, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extend feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -105,7 +109,8 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 						Collection<SourceSection> ret = new BasicEList<>();
 
 						for (SourceSection val : values) {
-							// only abstract sections that have a matching eClass can be used as extended section
+							// only abstract sections that have a matching
+							// eClass can be used as extended section
 							if (val.isAbstract() && (val.getEClass() == sourceSection.getEClass()
 									|| sourceSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
 								ret.add(val);
@@ -118,25 +123,34 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Referencing Mappings feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This adds a property descriptor for the Deactivated feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDeactivatedPropertyDescriptor(Object object) {
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DeactivatableElement_deactivated_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature",
+						"_UI_DeactivatableElement_type"),
+				PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Referencing Mappings feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addReferencingMappingsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SourceSection_referencingMappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
-				 SourcePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
-				 false,
-				 false,
-				 false,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_SourceSection_referencingMappings_feature"),
+				this.getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature",
+						"_UI_SourceSection_type"),
+				SourcePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS, false, false, false, null, null, null));
 	}
 
 	@Override
@@ -150,7 +164,8 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns SourceSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns SourceSection.gif. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated NOT
 	 */
@@ -161,17 +176,19 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -209,23 +226,26 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 			styledLabel.append(" -> " + String.join(", ", extend), StyledString.Style.DECORATIONS_STYLER);
 		}
 
-		return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(SourceSection.class)) {
-			case SourcePackage.SOURCE_SECTION__ABSTRACT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case SourcePackage.SOURCE_SECTION__ABSTRACT:
+		case SourcePackage.SOURCE_SECTION__DEACTIVATED:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -238,9 +258,10 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

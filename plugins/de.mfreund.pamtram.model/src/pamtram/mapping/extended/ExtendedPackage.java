@@ -170,13 +170,22 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPING_HINT__SHARED_CONDITION = MAPPING_HINT_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__DEACTIVATED = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -461,6 +470,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1025,6 +1043,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -1663,6 +1690,15 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
+
+	/**
 	 * The feature id for the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1935,6 +1971,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.

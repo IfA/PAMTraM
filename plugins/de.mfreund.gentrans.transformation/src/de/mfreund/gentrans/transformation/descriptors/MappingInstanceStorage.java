@@ -324,8 +324,9 @@ public class MappingInstanceStorage {
 	}
 
 	/**
-	 * This returns the hints for the given {@link MappingHintGroupType
-	 * hintGroup} for that the condition has not been determined as
+	 * This returns the {@link DeactivatableElement#isDeactivated() active}
+	 * hints for the given {@link MappingHintGroupType hintGroup} for that the
+	 * condition has not been determined as
 	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
 	 *
 	 * @param hintGroup
@@ -341,8 +342,8 @@ public class MappingInstanceStorage {
 			return new BasicEList<>();
 		}
 
-		return (this.useParallelization ? hintGroup.getMappingHints().parallelStream()
-				: hintGroup.getMappingHints().stream()).filter(h -> !this.isElementWithNegativeCondition(h))
+		return (this.useParallelization ? hintGroup.getActiveMappingHints().parallelStream()
+				: hintGroup.getActiveMappingHints().stream()).filter(h -> !this.isElementWithNegativeCondition(h))
 						.collect(Collectors.toList());
 	}
 
@@ -380,8 +381,9 @@ public class MappingInstanceStorage {
 	}
 
 	/**
-	 * This returns the hints for the given {@link MappingHintGroupImporter hint
-	 * group importer} for that the condition has not been determined as
+	 * This returns the {@link DeactivatableElement#isDeactivated() active}
+	 * hints for the given {@link MappingHintGroupImporter hint group importer}
+	 * for that the condition has not been determined as
 	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
 	 *
 	 * @param hintGroupImporter
@@ -396,8 +398,8 @@ public class MappingInstanceStorage {
 			return new BasicEList<>();
 		}
 
-		return (this.useParallelization ? hintGroupImporter.getMappingHints().parallelStream()
-				: hintGroupImporter.getMappingHints().stream())
+		return (this.useParallelization ? hintGroupImporter.getActiveMappingHints().parallelStream()
+				: hintGroupImporter.getActiveMappingHints().stream())
 						.filter(h -> !(h instanceof ConditionalElement)
 								|| !this.isElementWithNegativeCondition((ConditionalElement) h))
 						.collect(Collectors.toList());

@@ -18,6 +18,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -26,6 +27,7 @@ import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -290,7 +292,8 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 			styledLabel.append(" = " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 		}
 
-		return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**

@@ -309,7 +309,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<Mapping> getActiveMappings() {
 		List<Mapping> mappings = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())
-				.flatMap(s -> s.getActiveMappings().stream()).collect(Collectors.toList());
+				.flatMap(s -> s.getActiveMappings().stream()).filter(m -> !m.getSourceSection().isDeactivated()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
 	}
@@ -405,8 +405,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		 * reference them
 		 */
 		HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
-		Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getSourceSections());
-		for (Section section : getSourceSections()) {
+		Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getActiveSourceSections());
+		for (Section section : getActiveSourceSections()) {
 			if(section.isAbstract() && sourceSettings.containsKey(section)) {
 				LinkedList<Section> concreteSections = new LinkedList<>();
 				for (Setting setting : sourceSettings.get(section)) {
@@ -501,7 +501,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				 */
 				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(
 						abstractToConcreteElementMap.keySet(),
-						this.getSourceSections().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList()));
+						this.getActiveSourceSections().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList()));
 				for (EObject referencedObject : refsToAbstractSection.keySet()) {
 		
 					for (Setting setting : refsToAbstractSection.get(referencedObject).stream()
@@ -699,7 +699,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				 * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not
 				 * 'overwritten' by hints of the concrete HintGroup.
 				 */
-				for (MappingHint abstractHint : abstractHintGroup.getMappingHints()) {
+				for (MappingHint abstractHint : abstractHintGroup.getActiveMappingHints()) {
 					EObject hintTarget = null;
 					if(abstractHint instanceof AttributeMapping) {
 						hintTarget = ((AttributeMapping) abstractHint).getTarget();
@@ -721,7 +721,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 					if (concreteHintGroup.getMappingHints().isEmpty()
 							// ... or if there are are no hints with the same
 							// target element ...
-							|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getMappingHints())
+							|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getActiveMappingHints())
 									.isEmpty()
 									// ... and no hints with a target elements
 									// that extends the target element of the
@@ -730,7 +730,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 											|| abstractToConcreteElementMap.get(hintTarget).isEmpty()
 											|| EcoreUtil.UsageCrossReferencer
 													.findAll(abstractToConcreteElementMap.get(hintTarget),
-															concreteHintGroup.getMappingHints())
+															concreteHintGroup.getActiveMappingHints())
 													.isEmpty())) {
 		
 						hintsToCopy.add(abstractHint);
@@ -838,6 +838,26 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 				concreteHintGroup.getExtend().remove(entry.getKey());
 			}
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SourceSectionModel> getActiveSourceSectionModels() {
+		Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<SourceSection> getActiveSourceSections() {
+		Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(sourceSections.length, sourceSections);
 	}
 
 	/**
@@ -1083,6 +1103,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
+			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS:
+				return getActiveSourceSectionModels();
+			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS:
+				return getActiveSourceSections();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

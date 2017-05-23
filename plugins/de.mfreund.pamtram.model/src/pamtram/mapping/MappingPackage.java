@@ -261,13 +261,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 5;
 
 	/**
+	 * The operation id for the '<em>Validate Source Section Is Active</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 6;
+
+	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 6;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -370,13 +379,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Get Active Mapping Hints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImpl <em>Hint Group</em>}' class.
@@ -588,6 +606,15 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Get Active Mapping Hints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP___GET_ACTIVE_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS;
+
+	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -735,13 +762,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Active Mapping Hints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Hint Group Importer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -832,6 +868,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Get Active Mapping Hints</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP___GET_ACTIVE_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS;
 
 	/**
 	 * The number of operations of the '<em>Exported Mapping Hint Group</em>' class.
@@ -980,6 +1025,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getMapping__ValidateContainsDeactivatedHintGroups__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#validateSourceSectionIsActive(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Section Is Active</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Source Section Is Active</em>' operation.
+	 * @see pamtram.mapping.Mapping#validateSourceSectionIsActive(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1108,6 +1163,16 @@ public interface MappingPackage extends EPackage {
 	EOperation getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#getActiveMappingHints() <em>Get Active Mapping Hints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Mapping Hints</em>' operation.
+	 * @see pamtram.mapping.MappingHintGroupType#getActiveMappingHints()
+	 * @generated
+	 */
+	EOperation getMappingHintGroupType__GetActiveMappingHints();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1159,6 +1224,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroupImporter_MappingHints();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupImporter#getActiveMappingHints() <em>Get Active Mapping Hints</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Mapping Hints</em>' operation.
+	 * @see pamtram.mapping.MappingHintGroupImporter#getActiveMappingHints()
+	 * @generated
+	 */
+	EOperation getMappingHintGroupImporter__GetActiveMappingHints();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.ExportedMappingHintGroup <em>Exported Mapping Hint Group</em>}'.
@@ -1291,6 +1366,14 @@ public interface MappingPackage extends EPackage {
 		EOperation MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateContainsDeactivatedHintGroups__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Source Section Is Active</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1393,6 +1476,14 @@ public interface MappingPackage extends EPackage {
 		EOperation MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Active Mapping Hints</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS = eINSTANCE.getMappingHintGroupType__GetActiveMappingHints();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1435,6 +1526,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS = eINSTANCE.getMappingHintGroupImporter_MappingHints();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Mapping Hints</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS = eINSTANCE.getMappingHintGroupImporter__GetActiveMappingHints();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.ExportedMappingHintGroupImpl <em>Exported Mapping Hint Group</em>}' class.

@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.extended.ContainerSelector;
@@ -22,6 +23,7 @@ import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.impl.ExtendedPackageImpl;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
@@ -196,7 +198,8 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		}
 		styledLabel.append(" == " + String.join(" + ", sources), StyledString.Style.COUNTER_STYLER);
 
-		return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**

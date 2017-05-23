@@ -480,6 +480,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 
 		// Obtain other dependent packages
 		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
+		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
@@ -499,6 +500,8 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(this.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
+		sourceSectionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getDeactivatableElement());
 		sourceSectionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getClass_());
 		g2 = createEGenericType(this.getSourceSection());

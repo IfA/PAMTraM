@@ -1193,7 +1193,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 						.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)
 						.collect(Collectors.toList());
 
-		hints.addAll(exportedHintGroup.getMappingHints());
+		hints.addAll(exportedHintGroup.getActiveMappingHints());
 
 		return hints;
 	}

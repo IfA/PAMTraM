@@ -252,7 +252,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		// Select the SourceSections that we want to match.
 		// contained in active hint groups?
 		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModels().stream()
-				.flatMap(p -> p.getSourceSections().stream()).filter(s -> !s.isAbstract()).collect(Collectors.toList());
+				.flatMap(p -> p.getActiveSourceSections().stream()).filter(s -> !s.isAbstract())
+				.collect(Collectors.toList());
 
 		// Collect the global values modeled in the PAMTraM instance
 		//
@@ -514,7 +515,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		// Select the SourceSections that we want to match.
 		// contained in active hint groups?
 		List<SourceSection> activeSourceSections = this.transformationConfig.getPamtramModels().stream()
-				.flatMap(p -> p.getSourceSections().stream()).filter(s -> !s.isAbstract()).collect(Collectors.toList());
+				.flatMap(p -> p.getActiveSourceSections().stream()).filter(s -> !s.isAbstract())
+				.collect(Collectors.toList());
 
 		// Collect the global values modeled in the PAMTraM instance
 		//

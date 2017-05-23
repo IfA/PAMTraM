@@ -18,5 +18,5 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface SourceSectionModel extends SectionModel<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSectionModel extends SectionModel<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, DeactivatableElement {
 } // SourceSectionModel

@@ -263,17 +263,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupType> getActiveMappingHintGroups() {
-		EList<MappingHintGroupType> hintGroups = getMappingHintGroups();
-		EList<MappingHintGroupType> activeHintGroups = new BasicEList<>();
-		for (MappingHintGroupType hintGroup : hintGroups) {
-			if(hintGroup instanceof InstantiableMappingHintGroup && 
-					((InstantiableMappingHintGroup) hintGroup).isDeactivated()) {
-				// skip this one
-			} else {
-				activeHintGroups.add(hintGroup);
-			}
-		}
-		return activeHintGroups;
+		Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(hintGroups.length, hintGroups);
 	}
 
 	/**
@@ -283,16 +274,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups() {
-		EList<MappingHintGroupImporter> hintGroups = getImportedMappingHintGroups();
-		EList<MappingHintGroupImporter> activeHintGroups = new BasicEList<>();
-		for (MappingHintGroupImporter hintGroup : hintGroups) {
-			if(hintGroup.isDeactivated()) {
-				// skip this one
-			} else {
-				activeHintGroups.add(hintGroup);
-			}
-		}
-		return activeHintGroups;
+		Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);
 	}
 
 	/**
@@ -337,6 +320,31 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 					(Diagnostic.WARNING,
 					MappingValidator.DIAGNOSTIC_SOURCE,
 							MappingValidator.MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSourceSectionIsActive(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		boolean result = this.getSourceSection() == null || !this.getSourceSection().isDeactivated();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The mapping is based on a deactivated SourceSection and will not be used in a transformation!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE,
 							errorMessage,
 					new Object[] { this, MappingPackage.Literals.MAPPING }));
 		
@@ -583,6 +591,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return validateContainsHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
 				return validateContainsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP:
+				return validateSourceSectionIsActive((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
 				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:

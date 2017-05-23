@@ -53,12 +53,20 @@ public class MappingValidator extends EObjectValidator {
 	public static final int MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS = 2;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Section Is Active' of 'Mapping'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE = 3;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Extends Only Valid Hint Groups' of 'Hint Group Type'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS = 3;
+	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
@@ -66,7 +74,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 4;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -74,7 +82,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -176,6 +184,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMapping_containsDeactivatedHintGroups(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_validateContainsHintGroups(mapping, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMapping_validateContainsDeactivatedHintGroups(mapping, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMapping_validateSourceSectionIsActive(mapping, diagnostics, context);
 		return result;
 	}
 
@@ -253,6 +262,16 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMapping_validateContainsDeactivatedHintGroups(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return mapping.validateContainsDeactivatedHintGroups(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateSourceSectionIsActive constraint of '<em>Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMapping_validateSourceSectionIsActive(Mapping mapping, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mapping.validateSourceSectionIsActive(diagnostics, context);
 	}
 
 	/**

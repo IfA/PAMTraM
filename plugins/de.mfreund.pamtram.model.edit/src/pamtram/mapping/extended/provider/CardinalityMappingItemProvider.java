@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
@@ -27,6 +28,7 @@ import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
@@ -351,7 +353,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		}
 		styledLabel.append(".cardinality", StyledString.Style.COUNTER_STYLER);
 
-		return styledLabel;
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**

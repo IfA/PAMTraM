@@ -145,4 +145,13 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 */
 	boolean isSetMappingHints();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((<%pamtram.DeactivatableElement%>) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);'"
+	 * @generated
+	 */
+	EList<MappingHintType> getActiveMappingHints();
+
 } // MappingHintGroupImporter

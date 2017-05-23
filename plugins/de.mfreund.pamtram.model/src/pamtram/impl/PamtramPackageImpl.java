@@ -448,7 +448,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPAMTraM__GetActiveSourceSections_1() {
+	public EOperation getPAMTraM__GetActiveSourceSections() {
 		return pamTraMEClass.getEOperations().get(2);
 	}
 
@@ -916,7 +916,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEOperation(getPAMTraM__GetActiveSourceSectionModels(), this.getSourceSectionModel(), "getActiveSourceSectionModels", 0, -1, IS_UNIQUE, IS_ORDERED);
 
-		initEOperation(getPAMTraM__GetActiveSourceSections_1(), theSourcePackage.getSourceSection(), "getActiveSourceSections", 0, -1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getPAMTraM__GetActiveSourceSections(), theSourcePackage.getSourceSection(), "getActiveSourceSections", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSectionModel_MetaModelPackage(), ecorePackage.getEPackage(), null, "metaModelPackage", null, 1, 1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

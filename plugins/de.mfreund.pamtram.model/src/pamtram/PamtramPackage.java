@@ -1143,7 +1143,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.PAMTraM#getActiveSourceSections()
 	 * @generated
 	 */
-	EOperation getPAMTraM__GetActiveSourceSections_1();
+	EOperation getPAMTraM__GetActiveSourceSections();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
@@ -1620,7 +1620,7 @@ public interface PamtramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = eINSTANCE.getPAMTraM__GetActiveSourceSections_1();
+		EOperation PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = eINSTANCE.getPAMTraM__GetActiveSourceSections();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.

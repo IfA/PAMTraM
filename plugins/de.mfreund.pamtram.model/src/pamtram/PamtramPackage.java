@@ -296,13 +296,22 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M___MERGE_EXTENDS = 0;
 
 	/**
+	 * The operation id for the '<em>Get Active Source Section Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = 1;
+
+	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_OPERATION_COUNT = 1;
+	int PAM_TRA_M_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -1108,6 +1117,16 @@ public interface PamtramPackage extends EPackage {
 	EOperation getPAMTraM__MergeExtends();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.PAMTraM#getActiveSourceSectionModels() <em>Get Active Source Section Models</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Source Section Models</em>' operation.
+	 * @see pamtram.PAMTraM#getActiveSourceSectionModels()
+	 * @generated
+	 */
+	EOperation getPAMTraM__GetActiveSourceSectionModels();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1567,6 +1586,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation PAM_TRA_M___MERGE_EXTENDS = eINSTANCE.getPAMTraM__MergeExtends();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Source Section Models</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = eINSTANCE.getPAMTraM__GetActiveSourceSectionModels();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.

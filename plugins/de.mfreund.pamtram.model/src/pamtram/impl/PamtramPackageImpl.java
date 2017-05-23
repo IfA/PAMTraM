@@ -439,6 +439,15 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getPAMTraM__GetActiveSourceSectionModels() {
+		return pamTraMEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSectionModel() {
 		return sectionModelEClass;
 	}
@@ -710,6 +719,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		createEReference(pamTraMEClass, PAM_TRA_M__CONDITION_MODELS);
 		createEReference(pamTraMEClass, PAM_TRA_M__SHARED_CONDITION_MODELS);
 		createEOperation(pamTraMEClass, PAM_TRA_M___MERGE_EXTENDS);
+		createEOperation(pamTraMEClass, PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS);
 
 		sectionModelEClass = createEClass(SECTION_MODEL);
 		createEReference(sectionModelEClass, SECTION_MODEL__META_MODEL_PACKAGE);
@@ -893,6 +903,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEReference(getPAMTraM_SharedConditionModels(), this.getConditionModel(), null, "sharedConditionModels", null, 0, -1, PAMTraM.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getPAMTraM__MergeExtends(), null, "mergeExtends", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getPAMTraM__GetActiveSourceSectionModels(), this.getSourceSectionModel(), "getActiveSourceSectionModels", 0, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sectionModelEClass, SectionModel.class, "SectionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSectionModel_MetaModelPackage(), ecorePackage.getEPackage(), null, "metaModelPackage", null, 1, 1, SectionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -841,6 +841,16 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSectionModel> getActiveSourceSectionModels() {
+		Object[] sourceSectionModels = getSourceSectionModels().stream().filter(s -> !s.isDeactivated()).toArray();
+		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);
+	}
+
+	/**
 	 * This merges the given {@link TargetSectionAttribute} 'copy' into the the
 	 * given {@link TargetSection} 'targetSection'. Merging in this case means
 	 * that before adding the attribute, the algorithm checks whether the 'same'
@@ -1083,6 +1093,8 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
 				mergeExtends();
 				return null;
+			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS:
+				return getActiveSourceSectionModels();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

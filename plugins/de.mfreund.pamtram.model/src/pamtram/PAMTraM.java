@@ -297,4 +297,13 @@ public interface PAMTraM extends EObject {
 	 */
 	void mergeExtends();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] sourceSectionModels = getSourceSectionModels().stream().filter(s -> !s.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);'"
+	 * @generated
+	 */
+	EList<SourceSectionModel> getActiveSourceSectionModels();
+
 } // PAMTraM

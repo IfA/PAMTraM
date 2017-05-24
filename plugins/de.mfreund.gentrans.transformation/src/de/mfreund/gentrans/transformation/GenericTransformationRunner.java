@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -943,7 +944,8 @@ public class GenericTransformationRunner extends CancelableElement {
 			selMap.getMapping().getActiveMappingHintGroups().stream()
 					.filter(g -> g.getTargetSection() != null && g instanceof InstantiableMappingHintGroup)
 					.forEach(g -> {
-						if (g.getTargetSection() != null && g instanceof InstantiableMappingHintGroup) {
+						if (g.getTargetSection() != null && g instanceof InstantiableMappingHintGroup
+								&& selMap.getInstancesBySection((InstantiableMappingHintGroup) g) != null) {
 
 							/*
 							 * Create a TransformationMappingHintGroup for the
@@ -964,7 +966,8 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			selMap.getMapping().getActiveImportedMappingHintGroups().stream()
 					.filter(g -> g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null).forEach(g -> {
-						if (g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null) {
+						if (g.getHintGroup() != null && g.getHintGroup().getTargetSection() != null
+								&& selMap.getInstancesBySection(g) != null) {
 
 							/*
 							 * Create a TransformationMappingHintGroup for the
@@ -993,15 +996,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		transformationFolderUri = URI.createURI(transformationFolderUri.toString() + " - " + transformationModelName);
 		transformationModelUri = transformationFolderUri.appendSegment(transformationModelUri.lastSegment());
 		final Map<Object, Object> options = new LinkedHashMap<>();
-		options.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE); // suppress
-																			// 'document
-																			// root'
-																			// element
-																			// in
-																			// case
-																			// of
-																			// xml
-																			// models
+		// suppress 'document root' element in case of XML models
+		//
+		options.put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
 		try {
 
@@ -1016,6 +1013,25 @@ public class GenericTransformationRunner extends CancelableElement {
 				XMIResource libEntryResource = (XMIResource) resFactory.createResource(libEntryUri);
 				libEntryResource.getContents().add(libraryEntry);
 				libEntryResource.save(options);
+			}
+
+			/*
+			 * copy the shared sub-models
+			 */
+			List<EObject> sharedSubModels = new ArrayList<>();
+			sharedSubModels.addAll(transformationModel.getPamtramInstances().stream()
+					.flatMap(p -> p.getSharedSourceSectionModels().stream()).collect(Collectors.toList()));
+			sharedSubModels.addAll(transformationModel.getPamtramInstances().stream()
+					.flatMap(p -> p.getSharedTargetSectionModels().stream()).collect(Collectors.toList()));
+			sharedSubModels.addAll(transformationModel.getPamtramInstances().stream()
+					.flatMap(p -> p.getSharedMappingModels().stream()).collect(Collectors.toList()));
+			sharedSubModels.addAll(transformationModel.getPamtramInstances().stream()
+					.flatMap(p -> p.getSharedConditionModels().stream()).collect(Collectors.toList()));
+			for (EObject sharedSubModel : sharedSubModels) {
+				XMIResource sharedSubModelResource = (XMIResource) resFactory.createResource(
+						transformationFolderUri.appendSegment(sharedSubModel.eResource().getURI().lastSegment()));
+				sharedSubModelResource.getContents().add(sharedSubModel);
+				sharedSubModelResource.save(options);
 			}
 
 			/*

@@ -994,7 +994,9 @@ public class GenericTransformationRunner extends CancelableElement {
 				.createPlatformResourceURI(this.transformationConfig.getTransformationModelPath(), true);
 		URI transformationFolderUri = transformationModelUri.trimSegments(1);
 		transformationFolderUri = URI.createURI(transformationFolderUri.toString() + " - " + transformationModelName);
-		transformationModelUri = transformationFolderUri.appendSegment(transformationModelUri.lastSegment());
+		String fileExtension = transformationModelUri.fileExtension();
+		transformationModelUri = transformationFolderUri.appendSegment(transformationModelUri.lastSegment()
+				.replaceAll("\\." + fileExtension, " - " + transformationModelName + "." + fileExtension));
 		final Map<Object, Object> options = new LinkedHashMap<>();
 		// suppress 'document root' element in case of XML models
 		//

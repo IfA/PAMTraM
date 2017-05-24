@@ -371,10 +371,9 @@ public interface IAmbiguityResolvingStrategy {
 	 *            ambiguous choices. This is '<em><b>null</b></em>' if no
 	 *            MappingInstanceSelector was defined for the given
 	 *            '<em>reference</em>'.
-	 * @param sourceElement
-	 *            The {@link EObjectWrapper element} for that the target of the
-	 *            given 'reference' shall be chosen or '<em><b>null</b></em>' if
-	 *            a target shall be determined for every possible instance.
+	 * @param sourceElements
+	 *            The list of {@link EObjectWrapper elements} for that the
+	 *            target of the given 'reference' shall be chosen.
 	 * @return The list of choices after applying the resolving strategy (this
 	 *         should be a sub-set of '<em>choices</em>').
 	 * @throws AmbiguityResolvingException
@@ -382,7 +381,7 @@ public interface IAmbiguityResolvingStrategy {
 	 */
 	public default List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();

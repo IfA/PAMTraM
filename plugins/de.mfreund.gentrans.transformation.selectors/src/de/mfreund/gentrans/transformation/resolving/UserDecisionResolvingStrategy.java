@@ -349,8 +349,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector referenceTargetSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector referenceTargetSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
+
+		if (sourceElements.isEmpty()) {
+			return sourceElements;
+		}
 
 		String dialogMessage;
 		if (referenceTargetSelector != null) {
@@ -358,7 +362,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
 					+ ")' has a Matcher that points to a target element with more than one instance. "
 					+ "Please choose to which element the Reference '" + reference.getName() + "' of the "
-					+ (sourceElement != null ? "following element should point to:\n\n" + sourceElement.toString()
+					+ (sourceElements.size() == 1
+							? "following element should point to:\n\n" + sourceElements.get(0).toString()
 							: "affected elements should point to.");
 		} else {
 			dialogMessage = "There was more than one target element found for the CrossReference '"
@@ -366,8 +371,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ (hintGroup.getTargetSection().getName().isEmpty() ? hintGroup.getTargetSection().getName()
 							: hintGroup.getTargetSection().getEClass().getName())
 					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
-					+ hintGroup.getName() + ") . Please select a target element"
-					+ (sourceElement != null ? " for the following source:\n" + sourceElement.toString() : ".");
+					+ hintGroup.getName() + ") . Please select a target element" + (sourceElements.size() == 1
+							? " for the following source:\n" + sourceElements.get(0).toString() : ".");
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,

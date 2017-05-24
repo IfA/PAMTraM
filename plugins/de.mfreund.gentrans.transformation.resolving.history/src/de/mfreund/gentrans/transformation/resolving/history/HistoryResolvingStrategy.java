@@ -957,75 +957,96 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
 
-		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'sourceElement' in the 'old' target model.
-		 */
-		EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
-		IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()),
-				this.transformationModel.getTargetModels().get(0), null);
-		Comparison comparison = comparator.compare(scope);
-		Match match = comparison.getMatch(sourceElement.getEObject());
-		if (match == null || match.getRight() == null || match.getAllDifferences().iterator().hasNext()) {
+		if (sourceElements.isEmpty()) {
 			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 		}
 
-		EObject oldInstance = match.getRight();
+		// We can only reuse a previous decision if the same choice was made for
+		// each of the given 'sourceElements'. Thus, we have to compare all
+		// these choices...
+		//
+		List<EObjectWrapper> targetInstancesToUse = null;
 
-		/*
-		 * Now, we can check which element was used as target for the
-		 * 'reference'.
-		 */
-		EObject oldTargetInstance = null;
-
-		if (reference.getEReference().isMany()) {
-			@SuppressWarnings("unchecked")
-			EList<EObject> referenceTargets = (EList<EObject>) oldInstance.eGet(reference.getEReference());
-			if (referenceTargets.isEmpty()) {
+		for (EObjectWrapper sourceElement : sourceElements) {
+			/*
+			 * First, we need to check if we can find a match for the given
+			 * 'sourceElement' in the 'old' target model.
+			 */
+			EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
+			IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()),
+					this.transformationModel.getTargetModels().get(0), null);
+			Comparison comparison = comparator.compare(scope);
+			Match match = comparison.getMatch(sourceElement.getEObject());
+			if (match == null || match.getRight() == null || match.getAllDifferences().iterator().hasNext()) {
 				return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-						sourceElement);
+						sourceElements);
+			}
+			EObject oldInstance = match.getRight();
+			/*
+			 * Now, we can check which element was used as target for the
+			 * 'reference'.
+			 */
+			EObject oldTargetInstance = null;
+			if (reference.getEReference().isMany()) {
+				@SuppressWarnings("unchecked")
+				EList<EObject> referenceTargets = (EList<EObject>) oldInstance.eGet(reference.getEReference());
+				if (referenceTargets.isEmpty()) {
+					return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
+							sourceElements);
+				} else {
+					oldTargetInstance = referenceTargets.get(0);
+				}
 			} else {
-				oldTargetInstance = referenceTargets.get(0);
+				oldTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
 			}
-		} else {
-			oldTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
-		}
-
-		if (oldTargetInstance == null) {
-			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
-		}
-
-		/*
-		 * Finally, we have to determine which of the new choices matches the
-		 * 'oldTargetInstance'. Therefore, we once more rely on EMFCompare.
-		 */
-		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
-		for (EObjectWrapper instance : choices) {
-			scope = new DefaultComparisonScope(instance.getEObject(), oldTargetInstance, null);
-			comparison = comparator.compare(scope);
-			match = comparison.getMatch(oldTargetInstance);
-			if (match == null || match.getLeft() == null) {
-				continue;
+			if (oldTargetInstance == null) {
+				return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
+						sourceElements);
 			}
-			if (match.getDifferences().isEmpty()) {
-				// we have found a matching instance that can be used
-				targetInstancesToUse.add(instance);
+			/*
+			 * Finally, we have to determine which of the new choices matches
+			 * the 'oldTargetInstance'. Therefore, we once more rely on
+			 * EMFCompare.
+			 */
+			ArrayList<EObjectWrapper> localTargetInstancesToUse = new ArrayList<>();
+			for (EObjectWrapper instance : choices) {
+				scope = new DefaultComparisonScope(instance.getEObject(), oldTargetInstance, null);
+				comparison = comparator.compare(scope);
+				match = comparison.getMatch(oldTargetInstance);
+				if (match == null || match.getLeft() == null) {
+					continue;
+				}
+				if (match.getDifferences().isEmpty()) {
+					// we have found a matching instance that can be used
+					localTargetInstancesToUse.add(instance);
+				}
+			}
+
+			// Now, we check if the found choice(s) to reuse match the choice(s)
+			// found for the other source elements
+			//
+			if (targetInstancesToUse == null) {
+				targetInstancesToUse = localTargetInstancesToUse;
+			} else if (!targetInstancesToUse.equals(localTargetInstancesToUse)) {
+				// We cannot reuse the decision if the results are not equal...
+				//
+				return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup,
+						mappingInstanceSelector, sourceElements);
 			}
 		}
 
 		if (targetInstancesToUse.isEmpty()) {
 			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 		} else {
 			this.printMessage(targetInstancesToUse.toString(), HistoryResolvingStrategy.historyDecisionPrefix);
 			System.out.println("Reusing choice during 'linkingSelectTargetInstance': " + targetInstancesToUse);
 			return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup,
-					mappingInstanceSelector, sourceElement);
+					mappingInstanceSelector, sourceElements);
 		}
 	}
 

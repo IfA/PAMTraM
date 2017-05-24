@@ -418,7 +418,7 @@ public class TargetSectionLinker extends CancelableElement {
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
 									List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
 											.linkingSelectTargetInstance(fittingVals, h.getAffectedReference(),
-													(MappingHintGroupType) mappingGroup, h, srcInst);
+													(MappingHintGroupType) mappingGroup, h, Arrays.asList(srcInst));
 									if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 										((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
 												.linkingTargetInstanceSelected(new ArrayList<>(fittingVals),
@@ -530,7 +530,7 @@ public class TargetSectionLinker extends CancelableElement {
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
 									List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
 											.linkingSelectTargetInstance(insts, h.getAffectedReference(), null, h,
-													null);
+													instancesBySection.get(targetSectionClass));
 									this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 									targetInstance = resolved.get(0);
 								} catch (AmbiguityResolvingException e) {
@@ -742,7 +742,7 @@ public class TargetSectionLinker extends CancelableElement {
 							try {
 								List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
 										.linkingSelectTargetInstance(instances, ref,
-												(MappingHintGroupType) mappingGroup, null, source);
+												(MappingHintGroupType) mappingGroup, null, Arrays.asList(source));
 								if (ref.getEReference().isMany()) {
 									for (EObjectWrapper eObjectWrapper : resolved) {
 										targets.add(eObjectWrapper.getEObject());
@@ -886,7 +886,8 @@ public class TargetSectionLinker extends CancelableElement {
 								TargetSectionClass resolvedSection = choices.keySet().iterator().next();
 								List<EObjectWrapper> resolvedInstances = this.ambiguityResolvingStrategy
 										.linkingSelectTargetInstance(choices.values().iterator().next(), ref,
-												(MappingHintGroupType) mappingGroup, null, null);
+												(MappingHintGroupType) mappingGroup, null,
+												instancesBySection.get(targetSectionClass));
 								resolved = new HashMap<>();
 								resolved.put(resolvedSection, resolvedInstances);
 							} else {

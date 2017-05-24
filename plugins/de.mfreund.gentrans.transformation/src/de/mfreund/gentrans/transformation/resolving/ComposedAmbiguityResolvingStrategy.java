@@ -225,7 +225,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
@@ -233,13 +233,13 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			ret.addAll(choices);
 		}
 
-		if (ret.size() <= 1) {
+		if (ret.size() <= 1 && sourceElements.isEmpty()) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.linkingSelectTargetInstance(ret, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 			if (ret == null) {
 				return null;
 			} else if (ret.size() <= 1) {

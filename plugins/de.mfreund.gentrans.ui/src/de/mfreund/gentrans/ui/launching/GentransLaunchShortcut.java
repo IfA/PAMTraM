@@ -1,13 +1,10 @@
 package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -28,11 +25,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.dialogs.ListDialog;
-import org.eclipse.ui.dialogs.ListSelectionDialog;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchShortcut2} that is able to launch a GenTrans transformation
@@ -170,7 +165,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 		// set default for gentrans main settings
 		GentransLaunchMainTab mainTab = new GentransLaunchMainTab(context);
-		mainTab.setDefaults(workingCopy);
+		mainTab.setDefaults(workingCopy, launchableResource);
 		mainTab.dispose();
 
 		// set default for gentrans ambiguity settings
@@ -183,112 +178,9 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 		libraryTab.setDefaults(workingCopy);
 		libraryTab.dispose();
 
-		// determine source and/or pamtram model files to use
-		if (launchableResource instanceof IProject) {
-
-			List<String> pamtramFilesToLaunch = this.getPamtramFilesToLaunch((IProject) launchableResource);
-			if (pamtramFilesToLaunch.isEmpty()) {
-				return null;
-			}
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, pamtramFilesToLaunch);
-
-			List<String> sourceFilesToLaunch = this.getSourceFilesToLaunch((IProject) launchableResource);
-			if (sourceFilesToLaunch.isEmpty()) {
-				return null;
-			}
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, sourceFilesToLaunch);
-
-		} else if (launchableResource instanceof IFile) {
-			if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) launchableResource)) {
-
-				List<String> sourceFilesToLaunch = this.getSourceFilesToLaunch(launchableResource.getProject());
-				if (sourceFilesToLaunch.isEmpty()) {
-					return null;
-				}
-				workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, sourceFilesToLaunch);
-
-			} else if (IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) launchableResource)) {
-
-				List<String> pamtramFilesToLaunch = this.getPamtramFilesToLaunch(launchableResource.getProject());
-				if (pamtramFilesToLaunch.isEmpty()) {
-					return null;
-				}
-				workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, pamtramFilesToLaunch);
-			}
-		}
-
 		// save the working copy
 		configToLaunch = workingCopy.doSave();
 		return configToLaunch;
-	}
-
-	/**
-	 * For a given project, determine one or multiple PAMTraM files to use for a
-	 * transformation by consulting the user if necessary.
-	 *
-	 * @param project
-	 * @return
-	 * @throws CoreException
-	 */
-	protected List<String> getPamtramFilesToLaunch(IProject project) throws CoreException {
-
-		IFolder pamtramFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"));
-		List<String> pamtramFiles = Arrays.asList(pamtramFolder.members()).stream()
-				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) p))
-				.map(IResource::getName).collect(Collectors.toList());
-
-		if (pamtramFiles.isEmpty() || pamtramFiles.size() == 1) {
-			return new ArrayList<>();
-		} else {
-			// Let the user decide which PAMTraM file(s) to use
-			//
-			ListSelectionDialog pamtramFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), pamtramFiles,
-					new ArrayContentProvider(), new LabelProvider(),
-					"Multiple suitable PAMTraM files found. Please select one or multiple to be used in the transformation...");
-			pamtramFileSelectionDialog.setTitle("Select PAMTraM File(s)");
-			pamtramFileSelectionDialog.open();
-
-			Object[] result = pamtramFileSelectionDialog.getResult();
-			if (result == null || result.length == 0) {
-				return new ArrayList<>();
-			}
-			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
-
-		}
-	}
-
-	/**
-	 * For a given project, determine one or multiple source files to use for a
-	 * transformation by consulting the user if necessary.
-	 *
-	 * @param project
-	 * @return
-	 * @throws CoreException
-	 */
-	protected List<String> getSourceFilesToLaunch(IProject project) throws CoreException {
-
-		IFolder sourceFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"));
-		List<String> sourceFiles = Arrays.asList(sourceFolder.members()).stream()
-				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) p))
-				.map(IResource::getName).collect(Collectors.toList());
-		if (sourceFiles.isEmpty() || sourceFiles.size() == 1) {
-			return new ArrayList<>();
-		} else {
-			// Let the user decide which source file(s) to use
-			//
-			ListSelectionDialog sourceFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), sourceFiles,
-					new ArrayContentProvider(), new LabelProvider(),
-					"Multiple suitable source files found. Please select one or multiple to be used in the transformation...");
-			sourceFileSelectionDialog.setTitle("Select Source File(s)");
-			sourceFileSelectionDialog.open();
-
-			Object[] result = sourceFileSelectionDialog.getResult();
-			if (result == null || result.length == 0) {
-				return new ArrayList<>();
-			}
-			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
-
-		}
 	}
 
 	/**

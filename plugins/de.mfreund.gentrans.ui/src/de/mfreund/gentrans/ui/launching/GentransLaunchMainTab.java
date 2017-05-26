@@ -2,12 +2,15 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -21,8 +24,10 @@ import org.eclipse.jface.bindings.Binding;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -34,6 +39,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
@@ -424,16 +430,51 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		ISelection sel = UIHelper.getCurrentSelection();
+		ISelection selection = UIHelper.getCurrentSelection();
 
-		// nothing can be done if the user did not select anything
-		if (sel.isEmpty() || !(sel instanceof TreeSelection)) {
-			return;
+		// get the launchable resource based on the current selection
+		//
+		IResource launchableResource = null;
+
+		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
+
+			Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
+
+			if (selectedElement instanceof IProject) {
+
+				launchableResource = IsLaunchablePropertyTester.isLaunchablePamtramProject((IProject) selectedElement)
+						? (IProject) selectedElement : null;
+
+			} else if (selectedElement instanceof IFile) {
+
+				if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) selectedElement)
+						|| IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) selectedElement)) {
+					launchableResource = (IFile) selectedElement;
+				} else {
+					launchableResource = IsLaunchablePropertyTester.isLaunchablePamtramProject(
+							((IFile) selectedElement).getProject()) ? ((IFile) selectedElement).getProject() : null;
+				}
+			}
 		}
+
+		// init the launch configuration based on the determined launchable
+		// resource
+		//
+		this.setDefaults(configuration, launchableResource);
+	}
+
+	/**
+	 * Initializes the given launch configuration with default values for this
+	 * tab based on the given <em>launchableResource</em>.
+	 *
+	 * @param configuration
+	 * @param launchableResource
+	 */
+	public void setDefaults(ILaunchConfigurationWorkingCopy configuration, IResource launchableResource) {
 
 		try {
 			// initialize the launch configuration
-			this.initLaunchConfiguration(configuration, (TreeSelection) sel);
+			this.initLaunchConfiguration(configuration, launchableResource);
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
@@ -627,89 +668,58 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * @param selection
 	 *            the current selection
 	 */
-	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, TreeSelection selection)
+	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, IResource launchableResource)
 			throws CoreException {
 
-		// the selected element
-		Object el = selection.getFirstElement();
+		String projectToLaunch = null;
+		List<String> pamtramFilesToLaunch = new ArrayList<>();
+		List<String> sourceFilesToLaunch = new ArrayList<>();
 
-		IProject project;
-		IFile srcFile = null;
-		IFile pamtramFile = null;
+		// determine project, source and pamtram model files to use
+		if (launchableResource instanceof IProject) {
 
-		// determine the project based on the selection
-		if (el instanceof IProject) {
-			project = (IProject) el;
-		} else if (el instanceof IFile) {
-			project = ((IFile) el).getProject();
-			IFile file = (IFile) el;
-			// check if the file can be used as source file...
-			if (file.getParent().getName().equals(GentransLaunchMainTab.SOURCE_FOLDER)
-					&& (file.getName().endsWith(".xmi") || file.getName().endsWith(".xml"))) {
-				srcFile = file;
-				// ... or as pamtram file
-			} else if (file.getName().endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"))
-					&& file.getParent().getName().equals(GentransLaunchMainTab.PAMTRAM_FOLDER)) {
-				pamtramFile = file;
+			projectToLaunch = launchableResource.getName();
+			pamtramFilesToLaunch = this.getPamtramFilesToLaunch((IProject) launchableResource);
+			sourceFilesToLaunch = this.getSourceFilesToLaunch((IProject) launchableResource);
+
+		} else if (launchableResource instanceof IFile) {
+
+			projectToLaunch = launchableResource.getProject().getName();
+
+			if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) launchableResource)) {
+
+				pamtramFilesToLaunch = Arrays.asList(launchableResource.getName());
+				sourceFilesToLaunch = this.getSourceFilesToLaunch(launchableResource.getProject());
+
+			} else if (IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) launchableResource)) {
+
+				sourceFilesToLaunch = Arrays.asList(launchableResource.getName());
+				pamtramFilesToLaunch = this.getPamtramFilesToLaunch(launchableResource.getProject());
 			}
-		} else {
-			return;
 		}
 
-		// check if the project has the pamtram nature assigned
-		if (project.hasNature("de.mfreund.pamtram.pamtramNature")) {
-			// set the project attribute
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, project.getName());
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT,
+				projectToLaunch != null ? projectToLaunch : "");
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, pamtramFilesToLaunch);
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, sourceFilesToLaunch);
 
-			// set the srcFile attribute
-			if (srcFile == null) {
-				for (IResource res : project.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
-					// search for a suitable src file
-					if (res instanceof IFile
-							&& (((IFile) res).getName().endsWith(".xmi") || ((IFile) res).getName().endsWith(".xml"))) {
-						srcFile = (IFile) res;
-						break;
-					}
-				}
-			}
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
-					srcFile != null ? Arrays.asList(srcFile.getName()) : new ArrayList<>());
+		// set the targetFile attribute
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "out.xmi");
 
-			// set the pamtramFile attribute
-			if (pamtramFile == null) {
-				for (IResource res : project.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).members()) {
-					// search for a suitable pamtram file
-					if (res instanceof IFile && ((IFile) res).getName()
-							.endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"))) {
-						pamtramFile = (IFile) res;
-						break;
-					}
-				}
-			}
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
-					pamtramFile != null ? Arrays.asList(pamtramFile.getName()) : new ArrayList<>());
+		// set the direct paths only setting
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 
-			// set the targetFile attribute
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "out.xmi");
+		// set the ambiguous Mappings choice
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE, true);
 
-			// set the direct paths only setting
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
+		// set whether a TransformationModel shall be created
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false);
 
-			// set the ambiguous Mappings choice
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE, true);
+		// set the log level
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO");
 
-			// set whether a TransformationModel shall be created
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false);
-
-			// set the log level
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO");
-
-			// set whether parallelization shall be used
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false);
-
-		} else {
-			return;
-		}
+		// set whether parallelization shall be used
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false);
 
 	}
 
@@ -729,5 +739,78 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		bindingContext.bindValue(observeTextProjectComboObserveWidget, projectContextObserveValue, null, null);
 		//
 		return bindingContext;
+	}
+
+	/**
+	 * For a given project, determine one or multiple PAMTraM files to use for a
+	 * transformation by consulting the user if necessary.
+	 *
+	 * @param project
+	 * @return
+	 * @throws CoreException
+	 */
+	protected List<String> getPamtramFilesToLaunch(IProject project) throws CoreException {
+
+		IFolder pamtramFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"));
+		List<String> pamtramFiles = Arrays.asList(pamtramFolder.members()).stream()
+				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) p))
+				.map(IResource::getName).collect(Collectors.toList());
+
+		if (pamtramFiles.isEmpty()) {
+			return new ArrayList<>();
+		} else if (pamtramFiles.size() == 1) {
+			return pamtramFiles;
+		} else {
+			// Let the user decide which PAMTraM file(s) to use
+			//
+			ListSelectionDialog pamtramFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), pamtramFiles,
+					new ArrayContentProvider(), new LabelProvider(),
+					"Multiple suitable PAMTraM files found. Please select one or multiple to be used in the transformation...");
+			pamtramFileSelectionDialog.setTitle("Select PAMTraM File(s)");
+			pamtramFileSelectionDialog.open();
+
+			Object[] result = pamtramFileSelectionDialog.getResult();
+			if (result == null || result.length == 0) {
+				return new ArrayList<>();
+			}
+			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
+
+		}
+	}
+
+	/**
+	 * For a given project, determine one or multiple source files to use for a
+	 * transformation by consulting the user if necessary.
+	 *
+	 * @param project
+	 * @return
+	 * @throws CoreException
+	 */
+	protected List<String> getSourceFilesToLaunch(IProject project) throws CoreException {
+
+		IFolder sourceFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"));
+		List<String> sourceFiles = Arrays.asList(sourceFolder.members()).stream()
+				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) p))
+				.map(IResource::getName).collect(Collectors.toList());
+		if (sourceFiles.isEmpty()) {
+			return new ArrayList<>();
+		} else if (sourceFiles.size() == 1) {
+			return sourceFiles;
+		} else {
+			// Let the user decide which source file(s) to use
+			//
+			ListSelectionDialog sourceFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), sourceFiles,
+					new ArrayContentProvider(), new LabelProvider(),
+					"Multiple suitable source files found. Please select one or multiple to be used in the transformation...");
+			sourceFileSelectionDialog.setTitle("Select Source File(s)");
+			sourceFileSelectionDialog.open();
+
+			Object[] result = sourceFileSelectionDialog.getResult();
+			if (result == null || result.length == 0) {
+				return new ArrayList<>();
+			}
+			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
+
+		}
 	}
 }

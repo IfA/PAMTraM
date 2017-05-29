@@ -13,13 +13,18 @@ import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 
 /**
- * A content provider for a viewer that displays the {@link ConditionModel ConditionModels} and the contained
- * {@link ComplexCondition conditions}.
+ * A content provider for a viewer that displays the {@link ConditionModel
+ * ConditionModels} and the contained {@link ComplexCondition conditions}.
  *
  * @author mfreund
  */
 public class ConditionContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 */
 	public ConditionContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}

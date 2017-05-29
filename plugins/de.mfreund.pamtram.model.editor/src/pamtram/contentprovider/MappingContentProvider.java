@@ -15,13 +15,18 @@ import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 
 /**
- * A content provider for a viewer that displays the {@link MappingModel MappingModels} and the contained {@link Mapping
- * Mappings}.
+ * A content provider for a viewer that displays the {@link MappingModel
+ * MappingModels} and the contained {@link Mapping Mappings}.
  *
  * @author mfreund
  */
 public class MappingContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 */
 	public MappingContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -39,8 +44,8 @@ public class MappingContentProvider extends AdapterFactoryContentProvider implem
 	}
 
 	/*
-	 * extend the content provider in a way that no attribute value modifier sets but only mappings are returned as
-	 * children of a mapping model
+	 * extend the content provider in a way that no attribute value modifier
+	 * sets but only mappings are returned as children of a mapping model
 	 */
 	@Override
 	public Object[] getChildren(Object object) {

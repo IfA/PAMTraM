@@ -21,6 +21,11 @@ import pamtram.structure.source.SourceSectionClass;
  */
 public class SourceSectionContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 */
 	public SourceSectionContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}

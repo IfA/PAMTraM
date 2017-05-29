@@ -24,6 +24,11 @@ import pamtram.mapping.modifier.ValueModifierSet;
  */
 public class ModifierSetContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 */
 	public ModifierSetContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}

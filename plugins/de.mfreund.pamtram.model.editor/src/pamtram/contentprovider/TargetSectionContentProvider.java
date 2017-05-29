@@ -13,13 +13,19 @@ import pamtram.TargetSectionModel;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * A content provider for a viewer that displays the {@link TargetSectionModel TargetSectionModels} and the contained
- * {@link TargetSectionClass TargetSectionClasses}.
+ * A content provider for a viewer that displays the {@link TargetSectionModel
+ * TargetSectionModels} and the contained {@link TargetSectionClass
+ * TargetSectionClasses}.
  *
  * @author mfreund
  */
 public class TargetSectionContentProvider extends AdapterFactoryContentProvider implements IFeatureValidator {
 
+	/**
+	 * This creates an instance.
+	 *
+	 * @param adapterFactory
+	 */
 	public TargetSectionContentProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -37,8 +43,8 @@ public class TargetSectionContentProvider extends AdapterFactoryContentProvider 
 	}
 
 	/*
-	 * extend the content provider in a way that no library elements but only classic target section are returned as
-	 * children of a mapping model
+	 * extend the content provider in a way that no library elements but only
+	 * classic target section are returned as children of a mapping model
 	 */
 	@Override
 	public Object[] getChildren(Object object) {

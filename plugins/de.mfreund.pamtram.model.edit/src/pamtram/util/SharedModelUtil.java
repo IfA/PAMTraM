@@ -14,16 +14,17 @@ import pamtram.TargetSectionModel;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * This provides some convenience methods to work with shared models ({@link SourceSectionModel},
- * {@link TargetSectionModel}, {@link MappingModel}, or {@link ConditionModel}).
+ * This provides some convenience methods to work with shared models
+ * ({@link SourceSectionModel}, {@link TargetSectionModel},
+ * {@link MappingModel}, or {@link ConditionModel}).
  *
  * @author mfreund
  */
 public interface SharedModelUtil {
 
 	/**
-	 * Return the file ending that shall be used to store a shared model referenced by the given
-	 * {@link EStructuralFeature}.
+	 * Return the file ending that shall be used to store a shared model
+	 * referenced by the given {@link EStructuralFeature}.
 	 *
 	 * @param feature
 	 *            The feature that will hold the shared model.
@@ -46,7 +47,8 @@ public interface SharedModelUtil {
 	}
 
 	/**
-	 * Return the file ending that shall be used to store a shared model of the given {@link SharedModelType}.
+	 * Return the file ending that shall be used to store a shared model of the
+	 * given {@link SharedModelType}.
 	 *
 	 * @param type
 	 *            The type of the shared model to create.
@@ -68,7 +70,8 @@ public interface SharedModelUtil {
 	}
 
 	/**
-	 * Return the file ending that shall be used to store the given shared model root.
+	 * Return the file ending that shall be used to store the given shared model
+	 * root.
 	 *
 	 * @param root
 	 *            The root element of the shared model to create.
@@ -94,7 +97,8 @@ public interface SharedModelUtil {
 	 *
 	 * @param feature
 	 *            The feature to validate.
-	 * @return '<em>true</em>' if the feature can be used to reference a shared model; '<em>false</em>' otherwise.
+	 * @return '<em>true</em>' if the feature can be used to reference a shared
+	 *         model; '<em>false</em>' otherwise.
 	 */
 	public static boolean isValidSubModelFeature(EStructuralFeature feature) {
 
@@ -105,14 +109,17 @@ public interface SharedModelUtil {
 	}
 
 	/**
-	 * Validates if the given element can be used as root element for a shared model of the given <em>type</em>.
+	 * Validates if the given element can be used as root element for a shared
+	 * model of the given <em>type</em>.
 	 *
 	 * @param type
-	 *            The {@link SharedModelType} to validate the given <em>element</em> against.
+	 *            The {@link SharedModelType} to validate the given
+	 *            <em>element</em> against.
 	 * @param element
 	 *            The element to validate.
-	 * @return '<em>true</em>' if the given element can be used as root element for a shared model of the given
-	 *         <em>type</em>; '<em>false</em>' otherwise.
+	 * @return '<em>true</em>' if the given element can be used as root element
+	 *         for a shared model of the given <em>type</em>; '<em>false</em>'
+	 *         otherwise.
 	 */
 	public static boolean isValidSubModelContent(SharedModelType type, EObject element) {
 
@@ -128,6 +135,25 @@ public interface SharedModelUtil {
 	 * @author mfreund
 	 */
 	public enum SharedModelType {
-		SOURCE, TARGET, MAPPING, CONDITION;
+
+		/**
+		 * A shared {@link SourceSectionModel}.
+		 */
+		SOURCE,
+
+		/**
+		 * A shared {@link TargetSectionModel}.
+		 */
+		TARGET,
+
+		/**
+		 * A shared {@link MappingModel}.
+		 */
+		MAPPING,
+
+		/**
+		 * A shared {@link ConditionModel}.
+		 */
+		CONDITION;
 	}
 }

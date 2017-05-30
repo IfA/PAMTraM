@@ -165,7 +165,7 @@ public class GentransLaunchShortcut implements ILaunchShortcut2 {
 
 		// set default for gentrans main settings
 		GentransLaunchMainTab mainTab = new GentransLaunchMainTab(context);
-		mainTab.setDefaults(workingCopy, launchableResource);
+		mainTab.initLaunchConfiguration(workingCopy, launchableResource, true);
 		mainTab.dispose();
 
 		// set default for gentrans ambiguity settings

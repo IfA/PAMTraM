@@ -430,6 +430,28 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
+		IResource launchableResource = this.getLaunchableResourceBasedOnSelection();
+
+		try {
+			// init the launch configuration based on the determined launchable
+			// resource
+			//
+			this.initLaunchConfiguration(configuration, launchableResource, false);
+		} catch (CoreException e) {
+			this.setErrorMessage(e.getMessage());
+		}
+	}
+
+	/**
+	 * Based on the current selection made by the user, determine an
+	 * {@link IResource} that can be used as the basis for a GenTrans
+	 * transformation.
+	 *
+	 * @return The {@link IResource} to launch of '<em>null</em>' if no such
+	 *         resource could be determined.
+	 */
+	public IResource getLaunchableResourceBasedOnSelection() {
+
 		ISelection selection = UIHelper.getCurrentSelection();
 
 		// get the launchable resource based on the current selection
@@ -456,28 +478,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				}
 			}
 		}
-
-		// init the launch configuration based on the determined launchable
-		// resource
-		//
-		this.setDefaults(configuration, launchableResource);
-	}
-
-	/**
-	 * Initializes the given launch configuration with default values for this
-	 * tab based on the given <em>launchableResource</em>.
-	 *
-	 * @param configuration
-	 * @param launchableResource
-	 */
-	public void setDefaults(ILaunchConfigurationWorkingCopy configuration, IResource launchableResource) {
-
-		try {
-			// initialize the launch configuration
-			this.initLaunchConfiguration(configuration, launchableResource);
-		} catch (CoreException e) {
-			this.setErrorMessage(e.getMessage());
-		}
+		return launchableResource;
 	}
 
 	@Override
@@ -661,15 +662,22 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	/**
 	 * Initializes the values of a launch configuration based on the current
-	 * selection
+	 * selection.
+	 *
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
+	 * consulted if necessary.
 	 *
 	 * @param workingCopy
 	 *            a launch configuration to be initialized
-	 * @param selection
-	 *            the current selection
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @param launchableResource
+	 *            The {@link IResource} based on which the launch configuration
+	 *            shall be initialized.
+	 * @throws CoreException
 	 */
-	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, IResource launchableResource)
-			throws CoreException {
+	public void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, IResource launchableResource,
+			boolean userInteraction) throws CoreException {
 
 		String projectToLaunch = null;
 		List<String> pamtramFilesToLaunch = new ArrayList<>();
@@ -679,8 +687,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		if (launchableResource instanceof IProject) {
 
 			projectToLaunch = launchableResource.getName();
-			pamtramFilesToLaunch = this.getPamtramFilesToLaunch((IProject) launchableResource);
-			sourceFilesToLaunch = this.getSourceFilesToLaunch((IProject) launchableResource);
+			pamtramFilesToLaunch = GentransLaunchMainTab.getPamtramFilesToLaunch((IProject) launchableResource,
+					userInteraction);
+			sourceFilesToLaunch = GentransLaunchMainTab.getSourceFilesToLaunch((IProject) launchableResource,
+					userInteraction);
 
 		} else if (launchableResource instanceof IFile) {
 
@@ -689,12 +699,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) launchableResource)) {
 
 				pamtramFilesToLaunch = Arrays.asList(launchableResource.getName());
-				sourceFilesToLaunch = this.getSourceFilesToLaunch(launchableResource.getProject());
+				sourceFilesToLaunch = GentransLaunchMainTab.getSourceFilesToLaunch(launchableResource.getProject(),
+						userInteraction);
 
 			} else if (IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) launchableResource)) {
 
 				sourceFilesToLaunch = Arrays.asList(launchableResource.getName());
-				pamtramFilesToLaunch = this.getPamtramFilesToLaunch(launchableResource.getProject());
+				pamtramFilesToLaunch = GentransLaunchMainTab.getPamtramFilesToLaunch(launchableResource.getProject(),
+						userInteraction);
 			}
 		}
 
@@ -743,20 +755,25 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	/**
 	 * For a given project, determine one or multiple PAMTraM files to use for a
-	 * transformation by consulting the user if necessary.
+	 * transformation.
+	 *
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
+	 * consulted if necessary.
 	 *
 	 * @param project
-	 * @return
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @return The list of PAMTraM files to launch.
 	 * @throws CoreException
 	 */
-	protected List<String> getPamtramFilesToLaunch(IProject project) throws CoreException {
+	public static List<String> getPamtramFilesToLaunch(IProject project, boolean userInteraction) throws CoreException {
 
 		IFolder pamtramFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"));
 		List<String> pamtramFiles = Arrays.asList(pamtramFolder.members()).stream()
 				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) p))
 				.map(IResource::getName).collect(Collectors.toList());
 
-		if (pamtramFiles.isEmpty()) {
+		if (pamtramFiles.isEmpty() || pamtramFiles.size() > 1 && !userInteraction) {
 			return new ArrayList<>();
 		} else if (pamtramFiles.size() == 1) {
 			return pamtramFiles;
@@ -780,19 +797,24 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	/**
 	 * For a given project, determine one or multiple source files to use for a
-	 * transformation by consulting the user if necessary.
+	 * transformation.
+	 *
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
+	 * consulted if necessary.
 	 *
 	 * @param project
-	 * @return
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @return The list of source files to launch.
 	 * @throws CoreException
 	 */
-	protected List<String> getSourceFilesToLaunch(IProject project) throws CoreException {
+	public static List<String> getSourceFilesToLaunch(IProject project, boolean userInteraction) throws CoreException {
 
 		IFolder sourceFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"));
 		List<String> sourceFiles = Arrays.asList(sourceFolder.members()).stream()
 				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) p))
 				.map(IResource::getName).collect(Collectors.toList());
-		if (sourceFiles.isEmpty()) {
+		if (sourceFiles.isEmpty() || sourceFiles.size() > 1 && !userInteraction) {
 			return new ArrayList<>();
 		} else if (sourceFiles.size() == 1) {
 			return sourceFiles;

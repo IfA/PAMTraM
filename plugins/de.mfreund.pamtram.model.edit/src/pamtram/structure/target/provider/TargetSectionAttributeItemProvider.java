@@ -65,13 +65,13 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_TargetSectionAttribute_unique_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionAttribute_unique_feature", "_UI_TargetSectionAttribute_type"),
+				 getString("_UI_TargetSectionAttribute_unique_description"),
 				 TargetPackage.Literals.TARGET_SECTION_ATTRIBUTE__UNIQUE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -87,13 +87,13 @@ public class TargetSectionAttributeItemProvider extends AttributeItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_TargetSectionAttribute_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSectionAttribute_value_feature", "_UI_TargetSectionAttribute_type"),
+				 getString("_UI_TargetSectionAttribute_value_description"),
 				 TargetPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

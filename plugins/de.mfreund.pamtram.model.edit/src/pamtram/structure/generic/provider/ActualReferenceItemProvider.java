@@ -61,13 +61,13 @@ public class ActualReferenceItemProvider extends ReferenceItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ActualReference_eReference_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualReference_eReference_feature", "_UI_ActualReference_type"),
+				 getString("_UI_ActualReference_eReference_description"),
 				 GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

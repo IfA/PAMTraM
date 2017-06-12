@@ -67,13 +67,13 @@ extends ReferenceItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SourceSectionReference_ignoreUnmatchedElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionReference_ignoreUnmatchedElements_feature", "_UI_SourceSectionReference_type"),
+				 getString("_UI_SourceSectionReference_ignoreUnmatchedElements_description"),
 				 SourcePackage.Literals.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

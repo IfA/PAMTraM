@@ -167,7 +167,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_InfoPropertyCategory"),
 				 null));
 	}
 

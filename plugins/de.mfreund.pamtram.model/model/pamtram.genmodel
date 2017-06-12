@@ -45,7 +45,8 @@
       <genTypeParameters ecoreTypeParameter="pamtram.ecore#//SectionModel/C"/>
       <genTypeParameters ecoreTypeParameter="pamtram.ecore#//SectionModel/R"/>
       <genTypeParameters ecoreTypeParameter="pamtram.ecore#//SectionModel/A"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//SectionModel/metaModelPackage"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The metamodel (EPackage) providing the elements that will be used for the definition of the Sections in this SectionModel."
+          propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//SectionModel/metaModelPackage"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//SectionModel/sections"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//SourceSectionModel"/>
@@ -62,6 +63,7 @@
     <genClasses image="false" ecoreClass="pamtram.ecore#//ConditionalElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/localCondition"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+          propertyDescription="A shared condition (defined in a ConditionModel) restraining the applicability of this element."
           propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/sharedCondition"/>
       <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition">
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/diagnostics"/>
@@ -76,13 +78,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionModel/conditions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="pamtram.ecore#//ExpressionElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//ExpressionElement/expression"/>
+      <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="A mathematical expression describing how to calculate the (numeric) value of this element."
+          ecoreFeature="ecore:EAttribute pamtram.ecore#//ExpressionElement/expression"/>
     </genClasses>
     <genClasses image="false" ecoreClass="pamtram.ecore#//ModifiableElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ModifiableElement/modifiers"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+          propertyDescription="The list of 'ValueModifierSets' that will be applied on the value of this element."
+          propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ModifiableElement/modifiers"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//FixedValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//FixedValue/value"/>
+      <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The value that this element represents."
+          ecoreFeature="ecore:EAttribute pamtram.ecore#//FixedValue/value"/>
     </genClasses>
     <nestedGenPackages prefix="Structure" basePackage="pamtram" disposableProviderFactory="true"
         multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//structure">
@@ -500,9 +506,11 @@
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/getConditionPartsFlat"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//condition/VariadicCondition">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/localCondParts"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/sharedCondParts"/>
+        <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+            ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/localCondParts"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+            propertyDescription="A list of shared sub-conditions (defined in a ConditionModel) forming this condition."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/VariadicCondition/sharedCondParts"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/VariadicCondition/referencesOnlyValidConditions"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs">
           <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs/diagnostics"/>
@@ -513,8 +521,9 @@
       <genClasses ecoreClass="pamtram.ecore#//condition/Or"/>
       <genClasses image="false" ecoreClass="pamtram.ecore#//condition/UnaryCondition">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/UnaryCondition/localCondPart"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//condition/UnaryCondition/sharedCondPart"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+            propertyDescription="The shared sub-condition (defined in a ConditionModel) for this condition."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/UnaryCondition/sharedCondPart"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg">
           <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/context"/>
@@ -528,17 +537,22 @@
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/Condition">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//condition/Condition/TargetType"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/value"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/comparator"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//condition/Condition/target"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/Condition/instanceSelectors"/>
+        <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The reference value for this condition (the expected number of matches)."
+            ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/value"/>
+        <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The comparator type used to compare the determined against the expected number of matches."
+            ecoreFeature="ecore:EAttribute pamtram.ecore#//condition/Condition/comparator"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The element used to determine the value that is compared to the reference value."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/Condition/target"/>
+        <genFeatures property="None" children="true" createChild="true" propertyCategory="Extended"
+            propertyDescription="A list of InstanceSelectors that can be used to restrain the instances against which this condition is evaluated."
+            ecoreFeature="ecore:EReference pamtram.ecore#//condition/Condition/instanceSelectors"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/Condition/checkCondition">
           <genParameters ecoreParameter="pamtram.ecore#//condition/Condition/checkCondition/condition"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/AttributeCondition">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/valueConstraints"/>
+        <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+            ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/valueConstraints"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/CardinalityCondition"/>
       <genClasses ecoreClass="pamtram.ecore#//condition/ApplicationDependency"/>

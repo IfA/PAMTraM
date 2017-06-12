@@ -77,13 +77,13 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ExpressionElement_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
+				 getString("_UI_ExpressionElement_expression_description"),
 				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -99,13 +99,13 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 getString("_UI_ModifiableElement_modifiers_description"),
 				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

@@ -75,7 +75,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

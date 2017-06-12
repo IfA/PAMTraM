@@ -71,7 +71,7 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

@@ -77,7 +77,7 @@ public class ValueConstraintGlobalSourceElementItemProvider extends ExternalDyna
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

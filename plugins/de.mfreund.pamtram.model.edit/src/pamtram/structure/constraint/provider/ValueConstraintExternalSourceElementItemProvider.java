@@ -75,7 +75,7 @@ public class ValueConstraintExternalSourceElementItemProvider extends ExternalDy
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

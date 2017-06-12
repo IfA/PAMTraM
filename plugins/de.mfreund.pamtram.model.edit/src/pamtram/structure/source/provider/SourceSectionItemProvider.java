@@ -38,7 +38,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public SourceSectionItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -67,7 +67,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	/**
 	 * This adds a property descriptor for the Abstract feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -76,13 +76,13 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 getString("_UI_Section_abstract_description"),
 				 GenericPackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -97,9 +97,10 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_Section_extend_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature",
+						this.getString("_UI_Section_extend_description", "_UI_Section_extend_feature",
 								"_UI_Section_type"),
-						GenericPackage.Literals.SECTION__EXTEND, true, false, true, null, null, null) {
+						GenericPackage.Literals.SECTION__EXTEND, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -130,7 +131,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	/**
 	 * This adds a property descriptor for the Deactivated feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -139,13 +140,13 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 getString("_UI_DeactivatableElement_deactivated_description"),
 				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -160,7 +161,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SourceSection_referencingMappings_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSection_referencingMappings_feature", "_UI_SourceSection_type"),
+				 getString("_UI_SourceSection_referencingMappings_description"),
 				 SourcePackage.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,
 				 false,
 				 false,
@@ -277,7 +278,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

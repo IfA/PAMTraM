@@ -37,6 +37,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetPackage;
@@ -90,28 +91,30 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Class_eClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+				 getString("_UI_Class_eClass_description"),
 				 GenericPackage.Literals.CLASS__ECLASS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the EClass feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_Class_eClass_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Class_eClass_feature",
-								"_UI_Class_type"),
-						GenericPackage.Literals.CLASS__ECLASS, true, false, true, null, null, null) {
+						this.getString("_UI_Class_eClass_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
+						GenericPackage.Literals.CLASS__ECLASS, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -203,44 +206,39 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * This adds a property descriptor for the Cardinality feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addCardinalityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_cardinality_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_cardinality_feature", "_UI_Class_type"),
-				 GenericPackage.Literals.CLASS__CARDINALITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_cardinality_feature"),
+				object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_cardinality_description")
+						: this.getString("_UI_TargetSectionClass_cardinality_description"),
+				GenericPackage.Literals.CLASS__CARDINALITY, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Container feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_container_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Class_container_feature", "_UI_Class_type"),
-				 GenericPackage.Literals.CLASS__CONTAINER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		// For normal 'Classes', the container property is not relevant to the
+		// user (because it will always be the containing 'Class')
+		//
+		if (object instanceof Section) {
+			this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+					((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+					this.getResourceLocator(), this.getString("_UI_Class_container_feature"),
+					object instanceof SourceSectionClass
+							? this.getString("_UI_SourceSectionClass_container_description")
+							: this.getString("_UI_TargetSectionClass_container_description"),
+					GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
+					this.getString("_UI_ExtendedPropertyCategory"), null));
+		}
 	}
 
 	/**

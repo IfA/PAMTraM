@@ -71,13 +71,13 @@ public class InstantiableMappingHintGroupItemProvider extends NamedElementItemPr
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 getString("_UI_DeactivatableElement_deactivated_description"),
 				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

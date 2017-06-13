@@ -85,13 +85,13 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+				 getString("_UI_ValueConstraint_type_description"),
 				 ConstraintPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -104,10 +104,10 @@ public class SingleReferenceValueConstraintItemProvider extends NamedElementItem
 	protected void addExpressionPropertyDescriptor(Object object) {
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ExpressionElement_expression_feature"),
+				this.getString("_UI_SingleReferenceValueConstraint_expression_feature"),
 				this.getString("_UI_SingleReferenceValueConstraint_expression_description"),
 				PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION, true, false, false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_ExtendedPropertyCategory"), null));
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**

@@ -328,7 +328,8 @@
           <genEnumLiterals ecoreEnumLiteral="pamtram.ecore#//structure/constraint/StringConstraintOperatorType/MATCH_REGEX"/>
         </genEnums>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraint">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/ValueConstraint/type"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="Whether the attribute value must (REQUIRED) or must not (FORBIDDEN) match the value(s) defined by this constraint."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/ValueConstraint/type"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/constraint/ValueConstraint/isLocalConstraint"/>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/SingleReferenceValueConstraint">
@@ -360,11 +361,14 @@
           </genOperations>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/constraint/NumericConstraint">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/NumericConstraint/operatorType"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The comparator type used to compare the reference value defined by this constraint to the actual attribute value."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/NumericConstraint/operatorType"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//structure/constraint/StringConstraint">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/operatorType"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/caseSensitive"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The comparator type used to compare the reference value defined by this constraint to the actual attribute value."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/operatorType"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="Whether the comparison between reference value defined by this constraint and actual attribute value shall be performed case sensitive."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/constraint/StringConstraint/caseSensitive"/>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraintSourceInterface"/>
         <genClasses ecoreClass="pamtram.ecore#//structure/constraint/ValueConstraintSourceElement"/>

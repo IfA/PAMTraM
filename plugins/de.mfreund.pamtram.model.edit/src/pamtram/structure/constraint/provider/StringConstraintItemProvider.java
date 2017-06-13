@@ -64,13 +64,13 @@ public class StringConstraintItemProvider extends SingleReferenceValueConstraint
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_StringConstraint_caseSensitive_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringConstraint_caseSensitive_feature", "_UI_StringConstraint_type"),
+				 getString("_UI_StringConstraint_caseSensitive_description"),
 				 ConstraintPackage.Literals.STRING_CONSTRAINT__CASE_SENSITIVE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -86,13 +86,13 @@ public class StringConstraintItemProvider extends SingleReferenceValueConstraint
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_StringConstraint_operatorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringConstraint_operatorType_feature", "_UI_StringConstraint_type"),
+				 getString("_UI_StringConstraint_operatorType_description"),
 				 ConstraintPackage.Literals.STRING_CONSTRAINT__OPERATOR_TYPE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

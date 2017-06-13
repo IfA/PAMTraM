@@ -62,13 +62,13 @@ public class StringAppenderItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_StringAppender_string_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringAppender_string_feature", "_UI_StringAppender_type"),
+				 getString("_UI_StringAppender_string_description"),
 				 ModifierPackage.Literals.STRING_APPENDER__STRING,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

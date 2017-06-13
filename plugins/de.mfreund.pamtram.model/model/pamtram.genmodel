@@ -638,20 +638,26 @@
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/ExpressionModifier"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/modifier/StringModifier"/>
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/SubstringReplacer">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/regex"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/replacement"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The RegularExpression describing the part of the base String that this modifier will replace."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/regex"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The String that this modifier will use to replace the part of the base String matched by the given RegularExpression."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/SubstringReplacer/replacement"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/StringAppender">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringAppender/string"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The String that this modifier appends to the base String."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringAppender/string"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/StringPrepender">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringPrepender/string"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The String that this modifier preprends in front of the base String."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/StringPrepender/string"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/ToLowerCaseConverter">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/ToLowerCaseConverter/regex"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The RegularExpression describing the part of the base String that this modifier will convert to lower case."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/ToLowerCaseConverter/regex"/>
         </genClasses>
         <genClasses ecoreClass="pamtram.ecore#//mapping/modifier/ToUpperCaseConverter">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/ToUpperCaseConverter/regex"/>
+          <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The RegularExpression describing the part of the base String that this modifier will convert to upper case."
+              ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/modifier/ToUpperCaseConverter/regex"/>
         </genClasses>
       </nestedGenPackages>
       <nestedGenPackages prefix="Extended" disposableProviderFactory="true" multipleEditorPages="false"

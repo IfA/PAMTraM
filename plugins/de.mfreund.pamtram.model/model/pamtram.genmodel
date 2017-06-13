@@ -564,13 +564,14 @@
     <nestedGenPackages prefix="Mapping" basePackage="pamtram" disposableProviderFactory="true"
         multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping">
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingType">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingType/sourceSection"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The SourceSection based on which this Mapping will be executed."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingType/sourceSection"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/Mapping">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/mappingHintGroups"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/Mapping/importedMappingHintGroups"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/Mapping/abstract"/>
+        <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="MappingHintGroups that are part of abstract mappings will not be instantiated. They may however be extended by other MappingHintGroups which will then inherit all modeled MappingHints."
+            ecoreFeature="ecore:EAttribute pamtram.ecore#//mapping/Mapping/abstract"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/getActiveMappingHintGroups"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/getActiveImportedMappingHintGroups"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateContainsHintGroups">
@@ -587,11 +588,12 @@
         </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/targetSection"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSection that will be instantiated when the Mapping containing this HintGroup is executed."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/targetSection"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/mappingHints"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/extend"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+            propertyDescription="A HintGroup that is part of an abstract Mapping from which this HintGroup will inherit all modeled MappingHints."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/extend"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/attributeMappings"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/cardinalityMappings"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/referenceTargetSelectors"/>
@@ -605,8 +607,8 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroupImporter">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The ExportedMappingHintGroup that this importer imports."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
@@ -614,8 +616,8 @@
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
       <genClasses ecoreClass="pamtram.ecore#//mapping/GlobalAttribute">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/GlobalAttribute/source"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The (single, unique) Attribute (part of a SourceSection) that delivers the value for this GlobalAttribute."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/GlobalAttribute/source"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/GlobalAttribute/validateSourceAttributeHasUpperBoundOne/context"/>

@@ -90,13 +90,13 @@ extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappingType_sourceSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceSection_feature", "_UI_MappingType_type"),
+				 getString("_UI_MappingType_sourceSection_description"),
 				 MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

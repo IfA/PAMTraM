@@ -71,13 +71,13 @@ public class ValueConstraintGlobalSourceElementItemProvider extends ExternalDyna
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ConditionalElement_sharedCondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+				 getString("_UI_ConditionalElement_sharedCondition_description"),
 				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

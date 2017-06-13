@@ -65,13 +65,13 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ConditionalElement_sharedCondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
+				 getString("_UI_ConditionalElement_sharedCondition_description"),
 				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -87,13 +87,13 @@ public class FixedValueItemProvider extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_FixedValue_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FixedValue_value_feature", "_UI_FixedValue_type"),
+				 getString("_UI_FixedValue_value_description"),
 				 PamtramPackage.Literals.FIXED_VALUE__VALUE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

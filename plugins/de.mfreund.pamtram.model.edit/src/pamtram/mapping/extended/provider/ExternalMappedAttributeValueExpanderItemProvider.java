@@ -63,13 +63,13 @@ public class ExternalMappedAttributeValueExpanderItemProvider extends ExternalDy
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappedAttributeValueExpander_hintsToExpand_feature", "_UI_MappedAttributeValueExpander_type"),
+				 getString("_UI_MappedAttributeValueExpander_hintsToExpand_description"),
 				 ExtendedPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

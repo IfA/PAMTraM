@@ -63,13 +63,13 @@ public class NumericConstraintItemProvider extends SingleReferenceValueConstrain
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_NumericConstraint_operatorType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_NumericConstraint_operatorType_feature", "_UI_NumericConstraint_type"),
+				 getString("_UI_NumericConstraint_operatorType_description"),
 				 ConstraintPackage.Literals.NUMERIC_CONSTRAINT__OPERATOR_TYPE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

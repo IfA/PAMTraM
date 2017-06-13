@@ -71,13 +71,13 @@ public class ChoiceConstraintItemProvider extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ValueConstraint_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ValueConstraint_type_feature", "_UI_ValueConstraint_type"),
+				 getString("_UI_ValueConstraint_type_description"),
 				 ConstraintPackage.Literals.VALUE_CONSTRAINT__TYPE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

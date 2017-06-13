@@ -75,13 +75,13 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_MappingHintGroupType_targetSection_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_targetSection_feature", "_UI_MappingHintGroupType_type"),
+				 getString("_UI_MappingHintGroupType_targetSection_description"),
 				 MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -95,9 +95,9 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_MappingHintGroupType_extend_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingHintGroupType_extend_feature",
-								"_UI_MappingHintGroupType_type"),
-						MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, true, false, true, null, null, null) {
+						this.getString("_UI_MappingHintGroupType_extend_description"),
+						MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

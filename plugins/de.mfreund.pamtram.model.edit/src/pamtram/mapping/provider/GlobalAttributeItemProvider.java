@@ -65,15 +65,17 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	/**
 	 * This adds a property descriptor for the Source feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_GlobalAttribute_source_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_GlobalAttribute_source_feature",
-								"_UI_GlobalAttribute_type"),
-						MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE, true, false, true, null, null, null) {
+						this.getString("_UI_GlobalAttribute_source_description"),
+						MappingPackage.Literals.GLOBAL_ATTRIBUTE__SOURCE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -119,22 +121,15 @@ public class GlobalAttributeItemProvider extends NamedElementItemProvider {
 	 * This adds a property descriptor for the Modifiers feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
-				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ModifiableElement_modifiers_feature"),
+				this.getString("_UI_GlobalAttribute_modifiers_description"),
+				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
+				this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**

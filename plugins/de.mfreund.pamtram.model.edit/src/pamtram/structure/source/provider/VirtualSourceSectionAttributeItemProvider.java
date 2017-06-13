@@ -65,13 +65,13 @@ public class VirtualSourceSectionAttributeItemProvider extends SourceSectionAttr
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_VirtualSourceSectionAttribute_derivation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VirtualSourceSectionAttribute_derivation_feature", "_UI_VirtualSourceSectionAttribute_type"),
+				 getString("_UI_VirtualSourceSectionAttribute_derivation_description"),
 				 SourcePackage.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION,
 				 true,
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

@@ -63,13 +63,13 @@ public class SubstringReplacerItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SubstringReplacer_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_regex_feature", "_UI_SubstringReplacer_type"),
+				 getString("_UI_SubstringReplacer_regex_description"),
 				 ModifierPackage.Literals.SUBSTRING_REPLACER__REGEX,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -85,13 +85,13 @@ public class SubstringReplacerItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SubstringReplacer_replacement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SubstringReplacer_replacement_feature", "_UI_SubstringReplacer_type"),
+				 getString("_UI_SubstringReplacer_replacement_description"),
 				 ModifierPackage.Literals.SUBSTRING_REPLACER__REPLACEMENT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

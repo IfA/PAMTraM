@@ -65,13 +65,13 @@ extends ClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SourceSectionClass_includeSubTypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionClass_includeSubTypes_feature", "_UI_SourceSectionClass_type"),
+				 getString("_UI_SourceSectionClass_includeSubTypes_description"),
 				 SourcePackage.Literals.SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

@@ -57,13 +57,13 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ActualAttribute_attribute_feature", "_UI_ActualAttribute_type"),
+				 getString("_UI_ActualAttribute_attribute_description"),
 				 GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

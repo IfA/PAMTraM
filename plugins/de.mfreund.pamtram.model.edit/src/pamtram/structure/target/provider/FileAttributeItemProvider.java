@@ -65,13 +65,13 @@ public class FileAttributeItemProvider extends VirtualTargetSectionAttributeItem
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_FileAttribute_fileType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FileAttribute_fileType_feature", "_UI_FileAttribute_type"),
+				 getString("_UI_FileAttribute_fileType_description"),
 				 TargetPackage.Literals.FILE_ATTRIBUTE__FILE_TYPE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

@@ -66,27 +66,28 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ConditionalElement_sharedCondition_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature",
-						"_UI_ConditionalElement_type"),
-				PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null, null, null) {
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
+						this.getString("_UI_ConditionalElement_sharedCondition_description"),
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
 
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
 
-				Collection<?> choices = super.getChoiceOfValues(object);
+						Collection<?> choices = super.getChoiceOfValues(object);
 
-				// Only allow to reference ConditionModel-conditions as shared
-				// conditions
-				//
-				return choices.stream()
-						.filter(c -> c instanceof pamtram.condition.ComplexCondition
-								&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
-						.collect(Collectors.toList());
-			}
-		});
+						// Only allow to reference ConditionModel-conditions as
+						// shared
+						// conditions
+						//
+						return choices.stream()
+								.filter(c -> c instanceof pamtram.condition.ComplexCondition
+										&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
+								.collect(Collectors.toList());
+					}
+				});
 	}
 
 	/**
@@ -101,13 +102,13 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Mapping_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_abstract_feature", "_UI_Mapping_type"),
+				 getString("_UI_Mapping_abstract_description"),
 				 MappingPackage.Literals.MAPPING__ABSTRACT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -144,6 +145,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	/**
 	 * This adds a property descriptor for the Source MM Section feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	protected void addSourceSectionPropertyDescriptor(Object object) {
@@ -151,9 +154,9 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_MappingType_sourceMMSection_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature",
-								"_UI_MappingType_type"),
-						MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, true, false, true, null, null, null) {
+						this.getString("_UI_MappingType_sourceSection_description"),
+						MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

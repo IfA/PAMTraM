@@ -28,7 +28,7 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -38,7 +38,7 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -54,15 +54,17 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	/**
 	 * This adds a property descriptor for the Attribute feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_SourceSectionAttribute_attribute_feature"),
-						this.getString("_UI_PropertyDescriptor_description",
-								"_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null, null, null) {
+						this.getString("_UI_ActualAttribute_attribute_description"),
+						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -118,7 +120,7 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

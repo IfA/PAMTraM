@@ -78,13 +78,13 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AttributeMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature", "_UI_AttributeMapping_type"),
+				 getString("_UI_AttributeMapping_target_description"),
 				 ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -96,9 +96,9 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_AttributeMapping_target_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_AttributeMapping_target_feature",
-								"_UI_AttributeMapping_type"),
-						ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET, true, false, true, null, null, null) {
+						this.getString("_UI_AttributeMapping_target_description"),
+						ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
@@ -152,44 +152,30 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	 * This adds a property descriptor for the Expression feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionElement_expression_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExpressionElement_expression_feature", "_UI_ExpressionElement_type"),
-				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ExpressionElement_expression_feature"),
+				this.getString("_UI_AttributeMapping_expression_description"),
+				PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
-				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ModifiableElement_modifiers_feature"),
+				this.getString("_UI_AttributeMapping_modifiers_description"),
+				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
+				this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**

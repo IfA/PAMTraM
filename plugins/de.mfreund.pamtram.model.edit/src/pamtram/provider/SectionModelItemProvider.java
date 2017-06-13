@@ -117,9 +117,9 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		this.itemPropertyDescriptors.add(new MetaModelPackageItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_SectionModel_metaModelPackage_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature",
-						"_UI_SectionModel_type"),
-				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, true, false, true, null, null, null));
+				this.getString("_UI_SectionModel_metaModelPackage_description"),
+				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -142,7 +142,8 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		EAttribute sectionModelFile = EcoreFactory.eINSTANCE.createEAttribute();
 		sectionModelFile.setEType(EcorePackage.eINSTANCE.getEString());
 		IItemPropertyDescriptor descriptor = new ItemPropertyDescriptor(this.adapterFactory, "SectionModel File",
-				"The file containing this shared SectionModel", sectionModelFile, false) {
+				"The file containing this shared SectionModel.", sectionModelFile, false,
+				this.getString("_UI_InfoPropertyCategory")) {
 
 			@Override
 			public Object getPropertyValue(Object object) {

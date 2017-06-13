@@ -47,14 +47,16 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 		IItemLabelProvider, IItemPropertySource, IItemStyledLabelProvider {
 
 	/**
-	 * This keeps track of the children to be displayed. For this to work, the 'stateful' instead of the 'singleton'
-	 * pattern needs to be specified in the GenModel.
+	 * This keeps track of the children to be displayed. For this to work, the
+	 * 'stateful' instead of the 'singleton' pattern needs to be specified in
+	 * the GenModel.
 	 */
 	protected List<Object> children = null;
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public LibraryEntryItemProvider(AdapterFactory adapterFactory) {
@@ -62,8 +64,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
@@ -76,8 +79,10 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This adds the property descriptors for the version, author and description properties of the
-	 * {@link LibraryEntry#getOriginalLibraryEntry()} to the standard property descriptors.
+	 * This adds the property descriptors for the version, author and
+	 * description properties of the
+	 * {@link LibraryEntry#getOriginalLibraryEntry()} to the standard property
+	 * descriptors.
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
@@ -93,8 +98,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This adds a property descriptor for the Library File feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Library File feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addLibraryFilePropertyDescriptor(Object object) {
@@ -103,19 +109,19 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_LibraryEntry_libraryFile_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LibraryEntry_libraryFile_feature", "_UI_LibraryEntry_type"),
+				 getString("_UI_LibraryEntry_libraryFile_description"),
 				 LibraryPackage.Literals.LIBRARY_ENTRY__LIBRARY_FILE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_InfoPropertyCategory"),
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>version</b></em>' feature of the
-	 * {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>version</b></em>' feature
+	 * of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
 	protected void addVersionPropertyDescriptor(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
 
@@ -130,12 +136,17 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 
 				return false;
 			}
+
+			@Override
+			public String getCategory(Object thisObject) {
+				return LibraryEntryItemProvider.this.getString("_UI_InfoPropertyCategory");
+			}
 		});
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>author</b></em>' feature of the
-	 * {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>author</b></em>' feature
+	 * of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
 	protected void addAuthorPropertyDescriptor(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
 
@@ -150,12 +161,17 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 
 				return false;
 			}
+
+			@Override
+			public String getCategory(Object thisObject) {
+				return LibraryEntryItemProvider.this.getString("_UI_InfoPropertyCategory");
+			}
 		});
 	}
 
 	/**
-	 * This adds a property descriptor for the '<em><b>description</b></em>' feature of the
-	 * {@link LibraryEntry#getOriginalLibraryEntry}.
+	 * This adds a property descriptor for the '<em><b>description</b></em>'
+	 * feature of the {@link LibraryEntry#getOriginalLibraryEntry}.
 	 */
 	protected void addDescriptionPropertyDescriptor(
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry object) {
@@ -171,6 +187,11 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 
 				return false;
 			}
+
+			@Override
+			public String getCategory(Object thisObject) {
+				return LibraryEntryItemProvider.this.getString("_UI_InfoPropertyCategory");
+			}
 		});
 	}
 
@@ -178,8 +199,7 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -207,8 +227,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns LibraryEntry.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns LibraryEntry.gif. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -217,8 +238,8 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * Do not allow the parameters as direct children but instead allow the virtual
-	 * '<em><b>ParameterDescription</b></em>'.
+	 * Do not allow the parameters as direct children but instead allow the
+	 * virtual '<em><b>ParameterDescription</b></em>'.
 	 */
 	@Override
 	public Collection<?> getChildren(Object object) {
@@ -234,7 +255,8 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 					CommandParameter.NO_INDEX));
 			// add an ItemProvider for the virtual ParameterDescription
 			this.children.add(new ParameterDescriptionItemProvider(this.adapterFactory, libraryEntry));
-			// add an ItemProvider for the LibraryEntry (for some reason, the 'wrap(...)' method needs to be used
+			// add an ItemProvider for the LibraryEntry (for some reason, the
+			// 'wrap(...)' method needs to be used
 			this.children.add(this.wrap(libraryEntry, LibraryPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY,
 					libraryEntry.getOriginalLibraryEntry(), CommandParameter.NO_INDEX));
 		}
@@ -243,7 +265,8 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -252,8 +275,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -271,9 +295,10 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -281,25 +306,27 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 		this.updateChildren(notification);
 
 		/*
-		 * Do not handle notifications that affect the virtual ParameterDescription.
+		 * Do not handle notifications that affect the virtual
+		 * ParameterDescription.
 		 */
 		switch (notification.getFeatureID(LibraryEntry.class)) {
-			case LibraryPackage.LIBRARY_ENTRY__LIBRARY_FILE:
-			case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
-			case LibraryPackage.LIBRARY_ENTRY__ID:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case LibraryPackage.LIBRARY_ENTRY__LIBRARY_FILE:
+		case LibraryPackage.LIBRARY_ENTRY__CLASSPATH:
+		case LibraryPackage.LIBRARY_ENTRY__ID:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -308,8 +335,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -318,8 +346,9 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * Wrapping is needed because we want to display the target of the non-containment reference
-	 * {@link LibraryEntry#getOriginalLibraryEntry()} as child.
+	 * Wrapping is needed because we want to display the target of the
+	 * non-containment reference {@link LibraryEntry#getOriginalLibraryEntry()}
+	 * as child.
 	 */
 	@Override
 	protected boolean isWrappingNeeded(Object object) {
@@ -328,13 +357,15 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * A special wrapper is needed for the {@link LibraryEntry#getOriginalLibraryEntry()} reference.
+	 * A special wrapper is needed for the
+	 * {@link LibraryEntry#getOriginalLibraryEntry()} reference.
 	 */
 	@Override
 	protected Object createWrapper(EObject object, EStructuralFeature feature, Object value, int index) {
 
 		if (feature.equals(LibraryPackage.Literals.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY)) {
-			// Instead of displaying the original LibrarEntry itself, we show only the LibraryItem inside the
+			// Instead of displaying the original LibrarEntry itself, we show
+			// only the LibraryItem inside the
 			// LibraryEntry
 			return new DelegatingWrapperItemProvider(
 					((de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry) value).getLibraryItem(), object,
@@ -346,9 +377,11 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns the {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
-	 * 
-	 * @return The {@link ParameterDescriptionItemProvider}s for this {@link LibraryEntry}
+	 * This returns the {@link ParameterDescriptionItemProvider}s for this
+	 * {@link LibraryEntry}
+	 *
+	 * @return The {@link ParameterDescriptionItemProvider}s for this
+	 *         {@link LibraryEntry}
 	 */
 	public Object getParameters() {
 
@@ -368,7 +401,8 @@ public class LibraryEntryItemProvider extends PamtramItemProviderAdapter
 	}
 
 	/**
-	 * This returns an {@link UnexecutableCommand} as we do not want to allow any manual adding, removing, etc.
+	 * This returns an {@link UnexecutableCommand} as we do not want to allow
+	 * any manual adding, removing, etc.
 	 */
 	@Override
 	public Command createCommand(Object object, EditingDomain domain, Class<? extends Command> commandClass,

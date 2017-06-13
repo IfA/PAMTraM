@@ -117,9 +117,9 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_DynamicSourceElement_source_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_DynamicSourceElement_source_feature",
-								"_UI_DynamicSourceElement_type"),
-						StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null, null, null) {
+						this.getString("_UI_DynamicSourceElement_source_description"),
+						StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

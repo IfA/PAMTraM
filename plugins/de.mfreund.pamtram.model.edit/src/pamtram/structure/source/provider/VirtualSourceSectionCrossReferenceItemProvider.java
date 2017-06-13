@@ -64,13 +64,13 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SourceSectionReference_ignoreUnmatchedElements_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SourceSectionReference_ignoreUnmatchedElements_feature", "_UI_SourceSectionReference_type"),
+				 getString("_UI_SourceSectionReference_ignoreUnmatchedElements_description"),
 				 SourcePackage.Literals.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -86,13 +86,13 @@ public class VirtualSourceSectionCrossReferenceItemProvider extends CrossReferen
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_VirtualSourceSectionCrossReference_derivation_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VirtualSourceSectionCrossReference_derivation_feature", "_UI_VirtualSourceSectionCrossReference_type"),
+				 getString("_UI_VirtualSourceSectionCrossReference_derivation_description"),
 				 SourcePackage.Literals.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__DERIVATION,
 				 true,
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

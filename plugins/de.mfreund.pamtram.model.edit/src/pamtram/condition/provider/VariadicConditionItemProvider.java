@@ -68,13 +68,13 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_VariadicCondition_sharedCondParts_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_VariadicCondition_sharedCondParts_feature", "_UI_VariadicCondition_type"),
+				 getString("_UI_VariadicCondition_sharedCondParts_description"),
 				 ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

@@ -9,24 +9,27 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.StyledString.Fragment;
 
+import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * This is the item provider adapter for a
  * {@link pamtram.structure.target.VirtualTargetSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttributeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public VirtualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -36,7 +39,7 @@ public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttr
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -46,6 +49,20 @@ public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttr
 
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Value feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 */
+	@Override
+	protected void addValuePropertyDescriptor(Object object) {
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_TargetSectionAttribute_value_feature"),
+				this.getString("_UI_VirtualTargetSectionAttribute_value_description"),
+				TargetPackage.Literals.TARGET_SECTION_ATTRIBUTE__VALUE, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -74,7 +91,7 @@ public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttr
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -120,7 +137,7 @@ public class VirtualTargetSectionAttributeItemProvider extends TargetSectionAttr
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

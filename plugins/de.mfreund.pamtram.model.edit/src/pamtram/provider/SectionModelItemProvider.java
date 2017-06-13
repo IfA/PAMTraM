@@ -142,7 +142,8 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		EAttribute sectionModelFile = EcoreFactory.eINSTANCE.createEAttribute();
 		sectionModelFile.setEType(EcorePackage.eINSTANCE.getEString());
 		IItemPropertyDescriptor descriptor = new ItemPropertyDescriptor(this.adapterFactory, "SectionModel File",
-				"The file containing this shared SectionModel", sectionModelFile, false) {
+				"The file containing this shared SectionModel.", sectionModelFile, false,
+				this.getString("_UI_InfoPropertyCategory")) {
 
 			@Override
 			public Object getPropertyValue(Object object) {

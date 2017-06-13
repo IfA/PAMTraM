@@ -64,15 +64,16 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	/**
 	 * This adds a property descriptor for the Affected Reference feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addAffectedReferencePropertyDescriptor(Object object) {
 		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ReferenceTargetSelector_affectedReference_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_ReferenceTargetSelector_affectedReference_feature", "_UI_ReferenceTargetSelector_type"),
-				ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null, null,
-				null) {
+				this.getString("_UI_ReferenceTargetSelector_affectedReference_description"),
+				ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null) {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {

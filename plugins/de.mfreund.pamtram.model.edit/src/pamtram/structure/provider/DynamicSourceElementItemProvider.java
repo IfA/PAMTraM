@@ -79,13 +79,13 @@ public class DynamicSourceElementItemProvider extends NamedElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DynamicSourceElement_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DynamicSourceElement_source_feature", "_UI_DynamicSourceElement_type"),
+				 getString("_UI_DynamicSourceElement_source_description"),
 				 StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

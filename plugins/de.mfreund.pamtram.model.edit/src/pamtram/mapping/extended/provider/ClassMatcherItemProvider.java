@@ -30,7 +30,7 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ClassMatcherItemProvider(AdapterFactory adapterFactory) {
@@ -40,7 +40,7 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -56,14 +56,16 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This adds a property descriptor for the Target Class feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addTargetClassPropertyDescriptor(Object object) {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ClassMatcher_targetClass_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_ClassMatcher_targetClass_feature",
-								"_UI_ClassMatcher_type"),
-						ExtendedPackage.Literals.CLASS_MATCHER__TARGET_CLASS, true, false, true, null, null, null) {
+						this.getString("_UI_ClassMatcher_targetClass_description"),
+						ExtendedPackage.Literals.CLASS_MATCHER__TARGET_CLASS, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -86,7 +88,7 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This returns ClassMatcher.gif. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -108,7 +110,7 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -150,7 +152,7 @@ public class ClassMatcherItemProvider extends MatcherItemProvider {
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

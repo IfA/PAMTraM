@@ -114,13 +114,13 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CardinalityMapping_source_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature", "_UI_CardinalityMapping_type"),
+				 getString("_UI_CardinalityMapping_source_description"),
 				 ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -133,9 +133,9 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_source_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_source_feature",
-								"_UI_CardinalityMapping_type"),
-						ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null, null, null) {
+						this.getString("_UI_CardinalityMapping_source_description"),
+						ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -205,13 +205,13 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CardinalityMapping_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature", "_UI_CardinalityMapping_type"),
+				 getString("_UI_CardinalityMapping_target_description"),
 				 ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -224,9 +224,9 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_target_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_CardinalityMapping_target_feature",
-								"_UI_CardinalityMapping_type"),
-						ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null, null, null) {
+						this.getString("_UI_CardinalityMapping_target_description"),
+						ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

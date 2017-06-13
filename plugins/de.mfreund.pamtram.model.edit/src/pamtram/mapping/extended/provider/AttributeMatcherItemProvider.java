@@ -123,13 +123,13 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AttributeMatcher_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AttributeMatcher_target_feature", "_UI_AttributeMatcher_type"),
+				 getString("_UI_AttributeMatcher_target_description"),
 				 ExtendedPackage.Literals.ATTRIBUTE_MATCHER__TARGET,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
@@ -142,9 +142,9 @@ public class AttributeMatcherItemProvider extends MatcherItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_AttributeMatcher_targetAttribute_feature"),
-						this.getString("_UI_PropertyDescriptor_description",
-								"_UI_AttributeMatcher_targetAttribute_feature", "_UI_AttributeMatcher_type"),
-						ExtendedPackage.Literals.ATTRIBUTE_MATCHER__TARGET, true, false, true, null, null, null) {
+						this.getString("_UI_AttributeMatcher_targetAttribute_description"),
+						ExtendedPackage.Literals.ATTRIBUTE_MATCHER__TARGET, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {

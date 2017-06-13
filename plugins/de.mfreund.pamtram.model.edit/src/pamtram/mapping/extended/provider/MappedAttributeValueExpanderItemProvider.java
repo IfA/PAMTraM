@@ -26,14 +26,14 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
  * This is the item provider adapter for a
  * {@link pamtram.mapping.extended.MappedAttributeValueExpander} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class MappedAttributeValueExpanderItemProvider extends HintImporterMappingHintItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public MappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
@@ -43,7 +43,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	/**
 	 * This returns the property descriptors for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -59,16 +59,16 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	/**
 	 * This adds a property descriptor for the Hints To Expand feature. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addHintsToExpandPropertyDescriptor(Object object) {
 		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_MappedAttributeValueExpander_hintsToExpand_feature",
-						"_UI_MappedAttributeValueExpander_type"),
+				this.getString("_UI_MappedAttributeValueExpander_hintsToExpand_description"),
 				ExtendedPackage.Literals.MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND, true, false, true, null,
-				null, null) {
+				this.getString("_UI_BasicPropertyCategory"), null) {
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
@@ -176,7 +176,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	/**
 	 * This returns the label styled text for the adapted class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -208,7 +208,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
 	 * describing the children that can be created under this object. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

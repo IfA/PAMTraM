@@ -2,33 +2,31 @@
  */
 package pamtram.mapping.extended.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.provider.DynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceElementItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ContainerSelectorTargetAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -36,9 +34,9 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -51,9 +49,24 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 	}
 
 	/**
+	 * This adds a property descriptor for the Source feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 */
+	@Override
+	protected void addSourcePropertyDescriptor(Object object) {
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DynamicSourceElement_source_feature"),
+				this.getString("_UI_ContainerSelectorTargetAttribute_source_description"),
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
+	}
+
+	/**
 	 * This returns ContainerSelectorTargetAttribute.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,20 +76,19 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -94,8 +106,8 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -105,10 +117,10 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -117,9 +129,9 @@ public class ContainerSelectorTargetAttributeItemProvider extends DynamicSourceE
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override

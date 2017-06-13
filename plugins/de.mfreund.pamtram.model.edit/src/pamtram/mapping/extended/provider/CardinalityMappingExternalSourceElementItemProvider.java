@@ -62,27 +62,28 @@ public class CardinalityMappingExternalSourceElementItemProvider extends Externa
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ConditionalElement_sharedCondition_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature",
-						"_UI_ConditionalElement_type"),
-				PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null, null, null) {
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
+						this.getString("_UI_ConditionalElement_sharedCondition_description"),
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
 
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
 
-				Collection<?> choices = super.getChoiceOfValues(object);
+						Collection<?> choices = super.getChoiceOfValues(object);
 
-				// Only allow to reference ConditionModel-conditions as shared
-				// conditions
-				//
-				return choices.stream()
-						.filter(c -> c instanceof pamtram.condition.ComplexCondition
-								&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
-						.collect(Collectors.toList());
-			}
-		});
+						// Only allow to reference ConditionModel-conditions as
+						// shared
+						// conditions
+						//
+						return choices.stream()
+								.filter(c -> c instanceof pamtram.condition.ComplexCondition
+										&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
+								.collect(Collectors.toList());
+					}
+				});
 	}
 
 	/**

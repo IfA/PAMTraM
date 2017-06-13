@@ -39,8 +39,8 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
- * An {@link ILaunchConfigurationTab2} that allows to customize the GenLibrary-related settings to be applied during a
- * GenTrans transformation.
+ * An {@link ILaunchConfigurationTab2} that allows to customize the
+ * GenLibrary-related settings to be applied during a GenTrans transformation.
  *
  * @author mfreund
  */
@@ -52,13 +52,14 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	private GentransLaunchContext context;
 
 	/**
-	 * The {@link DataBindingContext} that is used to realize all data bindings among widgets and between widgets and
-	 * the {@link #context}.
+	 * The {@link DataBindingContext} that is used to realize all data bindings
+	 * among widgets and between widgets and the {@link #context}.
 	 */
 	private DataBindingContext bindingContext;
 
 	/**
-	 * The {@link FileFieldEditor} that allows the user to select new library locations.
+	 * The {@link FileFieldEditor} that allows the user to select new library
+	 * locations.
 	 */
 	private DirectoryFieldEditor libraryPathSelector;
 
@@ -71,7 +72,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	 * This creates an instance.
 	 *
 	 * @param context
-	 *            The {@link GentransLaunchContext} that shall be used for data bindings to the various widgets.
+	 *            The {@link GentransLaunchContext} that shall be used for data
+	 *            bindings to the various widgets.
 	 */
 	public GentransLaunchLibraryTab(GentransLaunchContext context) {
 		this.context = context;
@@ -96,6 +98,7 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		Group libraryPathsGroup = new Group(comp, SWT.NONE);
 		libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
 		libraryPathsGroup.setText("Library Location(s)");
+		libraryPathsGroup.setToolTipText("Specify the folder(s) containing the libraries to use");
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
 				.applyTo(libraryPathsGroup);
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(libraryPathsGroup);
@@ -106,13 +109,15 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 				.applyTo(directoryEditorComposite);
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
 
-		// create drop-down list for the source file selection (based on the project)
+		// create drop-down list for the source file selection (based on the
+		// project)
 		//
 		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
 				directoryEditorComposite);
 		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// a composite to display the selected source files as well as buttons to add/remove/reorder files
+		// a composite to display the selected source files as well as buttons
+		// to add/remove/reorder files
 		//
 		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
 		scrolledComposite.setExpandHorizontal(true);
@@ -152,7 +157,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
 
-		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
+		// After we have created all widgets, we can initialize the data
+		// bindings among the widgets and between widgets
 		// and the context
 		//
 		this.initDataBindings();
@@ -216,7 +222,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
 
 		if (libraryPaths.isEmpty()) {
-			// do nothing as this is not necessary if no library entries are used
+			// do nothing as this is not necessary if no library entries are
+			// used
 			return true;
 		}
 
@@ -235,7 +242,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initializes the values of a launch configuration based on the current selection
+	 * Initializes the values of a launch configuration based on the current
+	 * selection
 	 *
 	 * @param workingCopy
 	 *            a launch configuration to be initialized
@@ -276,8 +284,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
-	 * {@link #context} as well as among widgets.
+	 * Initialize all {@link Binding data bindings} between the various widgets
+	 * displayed on this tab and the {@link #context} as well as among widgets.
 	 *
 	 */
 	@SuppressWarnings("unchecked")
@@ -304,7 +312,8 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
+	 * Add the file specified in the {@link #libraryPathSelector} to the
+	 * {@link #libraryPathList}.
 	 */
 	private void handleAddLibrarySelected() {
 

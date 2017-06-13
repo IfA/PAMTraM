@@ -206,6 +206,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// transformation
 		//
 		this.srcList = new ManageableItemList(fileGroup, SWT.NONE, "Source File(s):");
+		this.srcList.setToolTipText("Specify the source model(s) that will be used in the transformation");
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).span(3, 1).applyTo(this.srcList);
 		this.srcList.setEnabled(false);
 		// Call 'updateLaunchConfigurationDialog' whenever changes are made to
@@ -221,6 +222,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// transformation
 		//
 		this.pamtramList = new ManageableItemList(fileGroup, SWT.NONE, "Pamtram File(s):");
+		this.pamtramList.setToolTipText("Specify the PAMTraM model(s) that will be used in the transformation");
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(3, 1)
 				.applyTo(this.pamtramList);
 		this.pamtramList.setEnabled(false);
@@ -275,7 +277,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a label for the path length
 		Label pathLengthLabel = new Label(settingsGroup, SWT.NONE);
-		pathLengthLabel.setText("max. length for model connection paths (0 = direct connection only, -1 = unbounded)");
+		pathLengthLabel.setText("Maximum length of connection paths");
+		pathLengthLabel.setToolTipText(
+				"Maximum length of automatically determined connection paths between instantiated elements (0 = direct connection only; -1 = unbounded)");
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(pathLengthLabel);
 
 		// create check box for ambiguous mappings setting
@@ -290,7 +294,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			}
 		});
 		this.onlyAskOnceForAmbiguousMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-		this.onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
+		this.onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous mappings");
+		this.onlyAskOnceForAmbiguousMappings.setToolTipText(
+				"If checked, a user decision concerning an ambiguous mapping will be reused for each instance of the associated SourceSection. Otherwise, the user will be asked every time.");
 
 		// create a check box to customize whether a transformation model shall
 		// be stored
@@ -320,7 +326,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a label for the log level
 		Label logLevelLabel = new Label(settingsGroup, SWT.NONE);
-		logLevelLabel.setText("Select the verbosity of the log.");
+		logLevelLabel.setToolTipText("Select the verbosity of the log");
+		logLevelLabel.setText("Log Level");
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(logLevelLabel);
 
 		// create a check box to customize whether a transformation model shall
@@ -337,7 +344,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		});
 		this.useParallelization.setToolTipText(
 				"Whether extended parallelization shall be used during the transformation. If checked, this will speed up the transformation. However, it might lead to the fact that the transformation result (especially the order of lists) varies between executions.");
-		this.useParallelization.setText("Use extended parallelization");
+		this.useParallelization.setText("Use extended parallelization (experimental)");
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(this.useParallelization);
 
 		// After we have created all widgets, we can initialize the data

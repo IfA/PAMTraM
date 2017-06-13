@@ -57,6 +57,7 @@ import pamtram.structure.target.TargetSection;
 /**
  * This is the item provider adapter for a {@link pamtram.SectionModel} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SectionModelItemProvider extends NamedElementItemProvider {
@@ -78,12 +79,12 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	 * @generated
 	 */
 	public List<IItemPropertyDescriptor> getPropertyDescriptorsGen(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaModelPackagePropertyDescriptor(object);
+			this.addMetaModelPackagePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -117,9 +118,9 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 		this.itemPropertyDescriptors.add(new MetaModelPackageItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_SectionModel_metaModelPackage_feature"),
-				this.getString("_UI_PropertyDescriptor_description", "_UI_SectionModel_metaModelPackage_feature",
-						"_UI_SectionModel_type"),
-				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, true, false, true, null, null, null));
+				this.getString("_UI_SectionModel_metaModelPackage_description"),
+				PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -162,42 +163,47 @@ public class SectionModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
+			this.childrenFeatures.add(PamtramPackage.Literals.SECTION_MODEL__SECTIONS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**

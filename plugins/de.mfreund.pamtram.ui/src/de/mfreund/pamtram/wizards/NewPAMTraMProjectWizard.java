@@ -38,6 +38,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
+import de.tud.et.ifa.agtele.genlibrary.LibraryImplementationRegistry;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -82,7 +83,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			/*
 			 * (non-Javadoc)
 			 *
-			 * @see org.eclipse.ui.dialogs.WizardNewProjectCreationPage#createControl(org.eclipse.swt.widgets.Composite)
+			 * @see
+			 * org.eclipse.ui.dialogs.WizardNewProjectCreationPage#createControl
+			 * (org.eclipse.swt.widgets.Composite)
 			 */
 
 			@Override
@@ -165,15 +168,18 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	/**
 	 * Creates a new project resource with the selected name.
 	 * <p>
-	 * In normal usage, this method is invoked after the user has pressed Finish on the wizard; the enablement of the
-	 * Finish button implies that all controls on the pages currently contain valid values.
+	 * In normal usage, this method is invoked after the user has pressed Finish
+	 * on the wizard; the enablement of the Finish button implies that all
+	 * controls on the pages currently contain valid values.
 	 * </p>
 	 * <p>
-	 * Note that this wizard caches the new project once it has been successfully created; subsequent invocations of
-	 * this method will answer the same project resource without attempting to create it again.
+	 * Note that this wizard caches the new project once it has been
+	 * successfully created; subsequent invocations of this method will answer
+	 * the same project resource without attempting to create it again.
 	 * </p>
 	 *
-	 * @return the created project resource, or <code>null</code> if the project was not created
+	 * @return the created project resource, or <code>null</code> if the project
+	 *         was not created
 	 * @throws InvocationTargetException
 	 * @throws CoreException
 	 */
@@ -192,10 +198,15 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			location = this.mainPage.getLocationURI();
 		}
 
+		boolean setPamtramLibraryNature = this.targetEPackageSpecificationPage.getRegistry().keySet().stream().anyMatch(
+				nsUri -> LibraryImplementationRegistry.getInstance().getLibraryContextImplementation(nsUri) != null);
+
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		final IProjectDescription description = workspace.newProjectDescription(newProjectHandle.getName());
 		description.setLocationURI(location);
-		description.setNatureIds(new String[] { "de.mfreund.pamtram.pamtramNature" });
+		description.setNatureIds(setPamtramLibraryNature
+				? new String[] { "de.mfreund.pamtram.pamtramNature", "de.mfreund.pamtram.pamtramLibraryNature" }
+				: new String[] { "de.mfreund.pamtram.pamtramNature" });
 
 		// create the new project operation
 		IRunnableWithProgress op = monitor -> {
@@ -226,8 +237,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	}
 
 	/**
-	 * The worker method. It performs a 'WorkspaceModifyOperation' that creates the required folders inside the project,
-	 * creates an instance of the Pamtram model and copies the source model if there is one.
+	 * The worker method. It performs a 'WorkspaceModifyOperation' that creates
+	 * the required folders inside the project, creates an instance of the
+	 * Pamtram model and copies the source model if there is one.
 	 */
 	private void doFinish() {
 
@@ -282,7 +294,8 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 							PamtramEditPlugin.INSTANCE.getString("METAMODEL_FOLDER_NAME"),
 							NewPAMTraMProjectWizard.this.newProject.getProject());
 
-					// if the meta-model is an XSD file, we need to create the corresponding Ecore file
+					// if the meta-model is an XSD file, we need to create the
+					// corresponding Ecore file
 					if (entry.getValue().endsWith(".xsd")) {
 						if (!NewPAMTraMProjectWizard.this.createEcoreForXSD(entry.getValue(),
 								sourceRegistry.getEPackage(entry.getKey()))) {
@@ -298,7 +311,8 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 							PamtramEditPlugin.INSTANCE.getString("METAMODEL_FOLDER_NAME"),
 							NewPAMTraMProjectWizard.this.newProject.getProject());
 
-					// if the meta-model is an XSD file, we need to create the corresponding Ecore file
+					// if the meta-model is an XSD file, we need to create the
+					// corresponding Ecore file
 					if (entry.getValue().endsWith(".xsd")) {
 						if (!NewPAMTraMProjectWizard.this.createEcoreForXSD(entry.getValue(),
 								targetRegistry.getEPackage(entry.getKey()))) {
@@ -369,14 +383,15 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	}
 
 	/**
-	 * Create an Ecore file for the given '<em>xsdFile</em>' and the corresponding '<em>ePackage</em>'.
+	 * Create an Ecore file for the given '<em>xsdFile</em>' and the
+	 * corresponding '<em>ePackage</em>'.
 	 *
 	 * @param xsdFile
 	 *            The absolute path to the file containing the XSD.
 	 * @param ePackage
 	 *            The {@link EPackage} that has been created from the XSD.
-	 * @return '<em><b>true</b></em>' if the Ecore file could be created successfully, '<em><b>false</b></em>'
-	 *         otherwise.
+	 * @return '<em><b>true</b></em>' if the Ecore file could be created
+	 *         successfully, '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean createEcoreForXSD(String xsdFile, EPackage ePackage) {
 
@@ -396,10 +411,12 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		}
 
 		/*
-		 * Adapt the uri of the resource to point to the namespace URI. This needs to be set after saving the resource
-		 * so that the resource is still stored to the correct location. However, the in-memory representation of the
-		 * URI needs to represent the namespace instead of the location so that all references (e.g. in the PAMTraM
-		 * model are namespace- instead of location-based.
+		 * Adapt the uri of the resource to point to the namespace URI. This
+		 * needs to be set after saving the resource so that the resource is
+		 * still stored to the correct location. However, the in-memory
+		 * representation of the URI needs to represent the namespace instead of
+		 * the location so that all references (e.g. in the PAMTraM model are
+		 * namespace- instead of location-based.
 		 */
 		org.eclipse.emf.common.util.URI namespaceURI = org.eclipse.emf.common.util.URI.createURI(ePackage.getNsURI());
 		ePackage.eResource().setURI(namespaceURI);

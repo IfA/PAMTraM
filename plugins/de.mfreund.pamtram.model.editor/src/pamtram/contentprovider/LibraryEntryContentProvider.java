@@ -36,7 +36,7 @@ public class LibraryEntryContentProvider extends AdapterFactoryContentProvider i
 			return Stream
 					.concat(((PAMTraM) object).getTargetSectionModels().stream(),
 							((PAMTraM) object).getSharedTargetSectionModels().stream())
-					.collect(Collectors.toList()).toArray();
+					.filter(t -> !t.getLibraryElements().isEmpty()).collect(Collectors.toList()).toArray();
 		}
 		return super.getElements(object);
 	}

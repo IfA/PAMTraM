@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +32,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.part.FileEditorInput;
 
+import de.mfreund.pamtram.properties.PropertySupplier;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
@@ -53,6 +56,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
 import pamtram.contentadapter.DeactivationListenerAdapter;
+import pamtram.contentadapter.LibraryNatureListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
@@ -412,6 +416,27 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		new AdapterFactoryTreeEditor(this.libTargetViewer.getTree(), this.adapterFactory);
 
 		this.editor.createContextMenuFor(this.libTargetViewer);
+
+		try {
+			boolean hasLibraryNature = this.editor.getEditorInput() instanceof FileEditorInput && Boolean
+					.parseBoolean(PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE,
+							((FileEditorInput) this.editor.getEditorInput()).getFile().getProject()));
+
+			// Do not show the libTargetViewerGroup if the project is not
+			// equipped
+			// with the 'PAMTraM Library Nature'
+			//
+			this.libTargetViewerGroup.setVisible(hasLibraryNature);
+
+			// Add an adapter that will add the library nature if necessary
+			//
+			if (!hasLibraryNature) {
+				this.editor.getPamtramContentAdapter().addSubAdapter(new LibraryNatureListenerAdapter(
+						this.editor.getPamtramContentAdapter(), this.libTargetViewerGroup));
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -25,6 +27,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.mfreund.pamtram.properties.PropertySupplier;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -264,13 +268,49 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<MappingHint> getActiveMappingHints() {
 		Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateDoNotUseLibraryElementsWithoutLibraryNature(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if (!this.getTargetSection().isLibraryEntry()) {
+			return true;
+		}
+		
+		// Check if the 'PAMTraM Library Nature' is set for the project
+		//
+		IFile file = ResourceHelper.getFileForResource(this.eResource());
+		if (file == null || file.getProject() == null) {
+			return true;
+		}
+		
+		String errorMessage = "The 'PAMTraM Library Nature' is not activated for this project. Thus, LibraryEntries may not be used as TargetSections! You can activate the nature in the project properties...";
+		
+		try {
+			if (!Boolean.parseBoolean(PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE,
+					file.getProject()))) {
+				if (diagnostics != null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE,
+							errorMessage,
+							new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));
+				}
+				return false;
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	/**
@@ -391,6 +431,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return validateExtendsOnlyValidHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS:
 				return getActiveMappingHints();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP:
+				return validateDoNotUseLibraryElementsWithoutLibraryNature((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

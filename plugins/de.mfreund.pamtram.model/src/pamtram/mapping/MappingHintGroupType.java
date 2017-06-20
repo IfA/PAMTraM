@@ -180,4 +180,12 @@ public interface MappingHintGroupType extends NamedElement {
 	 */
 	EList<MappingHint> getActiveMappingHints();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (!this.getTargetSection().isLibraryEntry()) {\r\n\treturn true;\r\n}\r\n\r\n// Check if the \'PAMTraM Library Nature\' is set for the project\r\n//\r\n<%org.eclipse.core.resources.IFile%> file = <%de.tud.et.ifa.agtele.resources.ResourceHelper%>.getFileForResource(this.eResource());\r\nif (file == null || file.getProject() == null) {\r\n\treturn true;\r\n}\r\n\r\nString errorMessage = \"The \'PAMTraM Library Nature\' is not activated for this project. Thus, LibraryEntries may not be used as TargetSections! You can activate the nature in the project properties...\";\r\n\r\ntry {\r\n\tif (!Boolean.parseBoolean(<%de.mfreund.pamtram.properties.PropertySupplier%>.getResourceProperty(<%de.mfreund.pamtram.properties.PropertySupplier%>.PROP_HAS_LIBRARY_NATURE,\r\n\t\t\tfile.getProject()))) {\r\n\t\tif (diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.util.MappingValidator%>.MAPPING_HINT_GROUP_TYPE__VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));\r\n\t\t}\r\n\t\treturn false;\r\n\t}\r\n} catch (<%org.eclipse.core.runtime.CoreException%> e) {\r\n\te.printStackTrace();\r\n}\r\nreturn true;'"
+	 * @generated
+	 */
+	boolean validateDoNotUseLibraryElementsWithoutLibraryNature(DiagnosticChain diagnostics, Map<?, ?> context);
+
 } // MappingHintGroupType

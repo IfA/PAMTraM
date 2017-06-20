@@ -69,12 +69,20 @@ public class MappingValidator extends EObjectValidator {
 	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS = 4;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Do Not Use Library Elements Without Library Nature' of 'Hint Group Type'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE = 5;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 5;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -82,7 +90,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 5;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -290,6 +298,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroupType, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroupType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(mappingHintGroupType, diagnostics, context);
 		return result;
 	}
 
@@ -301,6 +310,16 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return mappingHintGroupType.validateExtendsOnlyValidHintGroups(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateDoNotUseLibraryElementsWithoutLibraryNature constraint of '<em>Hint Group Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mappingHintGroupType.validateDoNotUseLibraryElementsWithoutLibraryNature(diagnostics, context);
 	}
 
 	/**
@@ -341,6 +360,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
@@ -386,6 +406,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(exportedMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(exportedMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(exportedMappingHintGroup, diagnostics, context);
 		return result;
 	}
 

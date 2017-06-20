@@ -9,6 +9,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.mfreund.pamtram.properties.PropertySupplier;
@@ -22,11 +23,19 @@ import pamtram.TargetSectionModel;
  * A {@link PamtramChildContentAdapter} that automatically assigns the 'PAMTraM
  * Library Nature' to a project if the user creates a {@link TargetSectionModel}
  * with an {@link EPackage} for which a GenLibrary implementation is registered
- * in the {@link LibraryImplementationRegistry}.
+ * in the {@link LibraryImplementationRegistry}. Additionally, a {@link Control}
+ * may be passed that shall be made {@link Control#setVisible(boolean)} when the
+ * nature is assigned.
  *
  * @author mfreund
  */
 public class LibraryNatureListenerAdapter extends PamtramChildContentAdapter {
+
+	/**
+	 * The {@link Control} that shall be made
+	 * {@link Control#setVisible(boolean)} when the nature is assigned.
+	 */
+	protected Control controlToShow;
 
 	/**
 	 * This create an instance.
@@ -36,7 +45,23 @@ public class LibraryNatureListenerAdapter extends PamtramChildContentAdapter {
 	 *            as one of its child adapters.
 	 */
 	public LibraryNatureListenerAdapter(PamtramContentAdapter parentAdapter) {
+		this(parentAdapter, null);
+	}
+
+	/**
+	 * This create an instance.
+	 *
+	 * @param parentAdapter
+	 *            The parent {@link PamtramContentAdapter} that will manage this
+	 *            as one of its child adapters.
+	 * @param controlToShow
+	 *            The {@link Control} that shall be made
+	 *            {@link Control#setVisible(boolean)} when the nature is
+	 *            assigned.
+	 */
+	public LibraryNatureListenerAdapter(PamtramContentAdapter parentAdapter, Control controlToShow) {
 		super(parentAdapter);
+		this.controlToShow = controlToShow;
 	}
 
 	@Override
@@ -44,10 +69,11 @@ public class LibraryNatureListenerAdapter extends PamtramChildContentAdapter {
 
 		if (n.getFeature().equals(PamtramPackage.Literals.SECTION_MODEL__META_MODEL_PACKAGE)
 				&& n.getEventType() == Notification.SET && n.getNewValue() instanceof EPackage
-				&& UIHelper.getCurrentEditorInput() instanceof FileEditorInput) {
+				&& this.parentAdapter.getEditor().getEditorInput() instanceof FileEditorInput) {
 
 			try {
-				IProject project = ((FileEditorInput) UIHelper.getCurrentEditorInput()).getFile().getProject();
+				IProject project = ((FileEditorInput) this.parentAdapter.getEditor().getEditorInput()).getFile()
+						.getProject();
 				IProjectDescription projectDescription = project == null ? null : project.getDescription();
 
 				if (project == null || projectDescription == null
@@ -83,6 +109,12 @@ public class LibraryNatureListenerAdapter extends PamtramChildContentAdapter {
 					//
 					PropertySupplier.setResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE, String.valueOf(true),
 							project);
+
+					// Make the 'controlToShow' visible
+					//
+					if (this.controlToShow != null) {
+						this.controlToShow.setVisible(true);
+					}
 				}
 
 			} catch (CoreException e) {

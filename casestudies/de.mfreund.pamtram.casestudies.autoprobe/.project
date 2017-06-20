@@ -13,5 +13,6 @@
 	</buildSpec>
 	<natures>
 		<nature>de.mfreund.pamtram.pamtramNature</nature>
+		<nature>de.mfreund.pamtram.pamtramLibraryNature</nature>
 	</natures>
 </projectDescription>

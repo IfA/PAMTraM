@@ -9,6 +9,7 @@ import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
@@ -216,6 +217,24 @@ public class GentransLaunchLibraryTab extends AbstractLaunchConfigurationTab {
 
 		this.setErrorMessage(null);
 		this.setWarningMessage(null);
+
+		// Check if the 'PAMTraM Library Nature' is set
+		//
+		try {
+			IProject project = null;
+			project = ResourcesPlugin.getWorkspace().getRoot()
+					.getProject(launchConfig.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, ""));
+
+			if (project != null && project.exists() && !Boolean.parseBoolean(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE, project))) {
+				this.setWarningMessage("The selected project '" + project.getName()
+						+ "' is not equipped with the 'PAMTraM Library Nature'. Thus, the usage of library elements "
+						+ "is not supported. You can change this setting in the project properties...");
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// validate the specified library paths
 		//

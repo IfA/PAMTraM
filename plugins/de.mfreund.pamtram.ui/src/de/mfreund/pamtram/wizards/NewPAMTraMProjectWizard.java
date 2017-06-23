@@ -27,7 +27,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -40,6 +39,7 @@ import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.pages.PamtramFileSpecificationPage;
 import de.tud.et.ifa.agtele.genlibrary.LibraryImplementationRegistry;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
+import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
@@ -51,6 +51,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 	// the project to be created
 	private IProject newProject;
+
+	// the PAMTraM resource to be created
+	private Resource newPamtramResource;
 
 	// the wizard page where the project name can be entered
 	private WizardNewProjectCreationPage mainPage;
@@ -151,16 +154,26 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 			IWorkingSet[] workingSets = this.mainPage.getSelectedWorkingSets();
 			this.workbench.getWorkingSetManager().addToWorkingSets(this.newProject.getProject(), workingSets);
 
-			// Create the project sturcture
+			// Create the project structure
 			this.doFinish();
 
 			// Update the perspective to the 'final perspective' set in
 			// the plugin.xml
 			BasicNewProjectResourceWizard.updatePerspective(this.config);
 
+			// Open the created PAMTraM resource in the PAMTraM editor
+			//
+			UIHelper.openEditor(ResourceHelper.getFileForResource(this.newPamtramResource),
+					"pamtram.presentation.PamtramEditorID");
+
 		} catch (Exception e) {
 			e.printStackTrace();
+			MessageDialog.openError(UIHelper.getShell(), "PAMTraM Project Wizard", e.getMessage());
+			return false;
 		}
+
+		UIHelper.getCurrentEditor().getEditorSite().getActionBars().getStatusLineManager()
+				.setMessage("New PAMTraM project '" + this.newProject.getName() + "' successfully created...");
 
 		return true;
 	}
@@ -182,8 +195,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	 *         was not created
 	 * @throws InvocationTargetException
 	 * @throws CoreException
+	 * @throws InterruptedException
 	 */
-	private IProject createNewProject() throws InvocationTargetException, CoreException {
+	private IProject createNewProject() throws InvocationTargetException, CoreException, InterruptedException {
 
 		if (this.newProject != null) {
 			return this.newProject;
@@ -223,13 +237,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		};
 
 		// run the new project creation operation
-		try {
-			this.getContainer().run(true, true, op);
-		} catch (InterruptedException e) {
-			return null;
-		} catch (InvocationTargetException e) {
-			throw new InvocationTargetException(e);
-		}
+		this.getContainer().run(true, true, op);
 
 		this.newProject = newProjectHandle.getProject();
 
@@ -240,8 +248,11 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 	 * The worker method. It performs a 'WorkspaceModifyOperation' that creates
 	 * the required folders inside the project, creates an instance of the
 	 * Pamtram model and copies the source model if there is one.
+	 *
+	 * @throws InterruptedException
+	 * @throws InvocationTargetException
 	 */
-	private void doFinish() {
+	private void doFinish() throws InvocationTargetException, InterruptedException {
 
 		EPackage.Registry sourceRegistry = this.sourceEPackageSpecificationPage.getRegistry();
 		HashMap<String, String> sourceMap = this.sourceEPackageSpecificationPage.getNamespaceURIsToMetamodelFiles();
@@ -254,7 +265,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 
 			@Override
-			protected void execute(IProgressMonitor progressMonitor) {
+			protected void execute(IProgressMonitor progressMonitor) throws CoreException {
 
 				progressMonitor.beginTask("Creating project structure...", 1);
 
@@ -274,10 +285,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 					}
 				} catch (CoreException e) {
-					e.printStackTrace();
 					NewPAMTraMProjectWizard.this.newProject = null;
 					progressMonitor.done();
-					return;
+					throw new RuntimeException("Error creating folder structure for the project...", e);
 				}
 
 				// copy the specified source file
@@ -299,6 +309,7 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 					if (entry.getValue().endsWith(".xsd")) {
 						if (!NewPAMTraMProjectWizard.this.createEcoreForXSD(entry.getValue(),
 								sourceRegistry.getEPackage(entry.getKey()))) {
+							progressMonitor.done();
 							throw new RuntimeException(
 									"Could not create Ecore model for XSD '" + entry.getValue() + "'!");
 						}
@@ -340,21 +351,26 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 
 					// Create a resource for this file.
 					//
-					Resource resource = resourceSet.createResource(fileURI);
+					NewPAMTraMProjectWizard.this.newPamtramResource = resourceSet.createResource(fileURI);
 
 					// Add the initial model object to the contents.
 					//
 					EObject rootObject = NewPAMTraMProjectWizard.this.createInitialModel();
 					if (rootObject != null) {
-						resource.getContents().add(rootObject);
+						NewPAMTraMProjectWizard.this.newPamtramResource.getContents().add(rootObject);
 					}
 
 					// Save the contents of the resource to the file system.
 					//
-					resource.save(null);
+					NewPAMTraMProjectWizard.this.newPamtramResource.save(null);
+
+					// Refresh the project
+					//
+					ResourceHelper.refresh(NewPAMTraMProjectWizard.this.newProject);
+
 				} catch (Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException("An error occurred during the creation of the PAMTraM model!");
+					progressMonitor.done();
+					throw new RuntimeException("An error occurred during the creation of the PAMTraM model!", e);
 				}
 
 				progressMonitor.done();
@@ -363,15 +379,9 @@ public class NewPAMTraMProjectWizard extends PamtramModelWizard implements IExec
 		};
 
 		// run the operation
-		try {
-			this.getContainer().run(true, false, operation);
-		} catch (InvocationTargetException | InterruptedException e) {
-			e.printStackTrace();
-			return;
-		}
+		//
+		this.getContainer().run(true, false, operation);
 
-		MessageDialog.openInformation(new Shell(), "PAMTraM Project Wizard",
-				"New PAMTraM project '" + this.newProject.getName() + "' successfully created!");
 	}
 
 	@Override

@@ -5,6 +5,9 @@
     <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
     <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
   </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -221,6 +224,9 @@
     <eAnnotations source="http://www.eclipse.org/OCL/Import">
       <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelector" abstract="true"
         eSuperTypes="#//ExpressionElement #//ModifiableElement">
@@ -500,6 +506,9 @@
     </eClassifiers>
     <eSubpackages name="generic" nsURI="http://mfreund.de/pamtram/structure/generic"
         nsPrefix="generic">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the generic description of element structures."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
           eSuperTypes="#//NamedElement">
         <eTypeParameters name="S">
@@ -1191,6 +1200,9 @@
     </eSubpackages>
     <eSubpackages name="constraint" nsURI="http://mfreund.de/pamtram/structure/constraint"
         nsPrefix="constraint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the description of ValueConstraints that may e.g. be used to describe a restriction/claim of specific values of an attribute in a SourceSection."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraint" abstract="true"
           interface="true" eSuperTypes="#//NamedElement">
         <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -1322,6 +1334,9 @@
     </eSubpackages>
     <eSubpackages name="source" nsURI="http://mfreund.de/pamtram/structure/source"
         nsPrefix="source">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the description of source element structures (aka SourceSections). These form the left-hand side (LHS) of a mapping."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSection">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="isReferencedByMapping"/>
@@ -1483,6 +1498,9 @@
     </eSubpackages>
     <eSubpackages name="target" nsURI="http://mfreund.de/pamtram/structure/target"
         nsPrefix="target">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the description of target element structures (aka TargetSections). These form the right-hand side (RHS) of a mapping."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSection">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="isReferencedByMappingHintGroup"/>
@@ -1626,6 +1644,9 @@
     </eSubpackages>
     <eSubpackages name="library" nsURI="http://mfreund.de/pamtram/structure/library"
         nsPrefix="library">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the usage of library elements as TargetSections resp. right-hand side of a mapping.&#xD;&#xA;&lt;br />&#xD;&#xA;The library elements need to be based on the generic library meta-model 'GenLibrary' (or one of its specializations for a specific UI meta-model)."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
           eSuperTypes="#//NamedElement">
         <eTypeParameters name="ParameterType"/>
@@ -1695,6 +1716,9 @@
     <eAnnotations source="http://www.eclipse.org/OCL/Import">
       <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This package contains all elements related to the description of Conditions. These can e.g. be used to restrict the applicability of a Mapping."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
         eSuperTypes="#//NamedElement">
@@ -1824,6 +1848,9 @@
     <eAnnotations source="http://www.eclipse.org/OCL/Import">
       <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
       <details key="genlib" value="http://www.et.tu-dresden.de/ifa/agtele/genlib"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This package contains all elements related to the description of Mappings between a SourceSection (representing its left-hand side) and one or multiple TargetSections (representing its right-hand side).&#xD;&#xA;&lt;br />&#xD;&#xA;The elements directly contained in this package can be used to create 'basic' mappings which only link Source- and TargetSections. Elements that can be used to realize 'extended' mappings which contain additional information for the transformation algorithms (aka MappingHints) are contained in the 'extended' sub-package."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="MappingType" abstract="true" eSuperTypes="#//NamedElement #//DeactivatableElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSection" lowerBound="1"
@@ -1991,6 +2018,9 @@
     </eClassifiers>
     <eSubpackages name="modifier" nsURI="http://mfreund.de/pamtram/mapping/modifier"
         nsPrefix="modifier">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains elements related to the modification of values (e.g. determined values for a TargetSection attribute). "/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
             eType="#//mapping/modifier/ValueModifier" containment="true"/>
@@ -2034,6 +2064,9 @@
     </eSubpackages>
     <eSubpackages name="extended" nsURI="http://mfreund.de/pamtram/mapping/extended"
         nsPrefix="extended">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This package contains all elements related to the description of Mappings between a SourceSection (representing its left-hand side) and one or multiple TargetSections (representing its right-hand side)."/>
+      </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
           eSuperTypes="#//NamedElement"/>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true"

@@ -12,14 +12,22 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A NamedElement provides a human-readable name that can be used to identify it, e.g. when working with the model editor."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A human-readable name for this element. This does not necessarilly need to be unique."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DeactivatableElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A DeactivatableElement can be deactivated by the user (e.g. via the model editor). Deactivated elements will be ignored by the transformation algorithm executing the PAMTraM model."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deactivated" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="If set to 'true', this element (and possible sub-elements) will be ignored during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PAMTraM">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -41,22 +49,49 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSectionModels" upperBound="-1"
-        eType="#//SourceSectionModel" containment="true"/>
+        eType="#//SourceSectionModel" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of SourceSectionModels contained in this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of 'sharedSourceSectionModels', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedSourceSectionModels"
-        upperBound="-1" eType="#//SourceSectionModel"/>
+        upperBound="-1" eType="#//SourceSectionModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of external SourceSectionModels (stored in their own files with the file-ending '*.pamtram.source') referenced by this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of (local) 'sourceSectionModels', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSectionModels" upperBound="-1"
-        eType="#//TargetSectionModel" containment="true"/>
+        eType="#//TargetSectionModel" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of TargetSectionModels contained in this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of 'sharedTargetSectionModels', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedTargetSectionModels"
-        upperBound="-1" eType="#//TargetSectionModel"/>
+        upperBound="-1" eType="#//TargetSectionModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of external TargetSectionModels (stored in their own files with the file-ending '*.pamtram.target') referenced by this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of (local) 'targetSectionModels', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappingModels" upperBound="-1"
-        eType="#//MappingModel" containment="true"/>
+        eType="#//MappingModel" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of MappingModels contained in this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of 'sharedMappingModels', these make up the list of MappingModels defining the Mappings that will be executed during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedMappingModels" upperBound="-1"
-        eType="#//MappingModel"/>
+        eType="#//MappingModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of external MappingSectionModels (stored in their own files with the file-ending '*.pamtram.mapping') referenced by this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of (local) 'mappingSectionModels', these make up the list of MappingModels defining the Mappings that will be executed during a transformation."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceSections" upperBound="-1"
         eType="#//structure/source/SourceSection" changeable="false" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="List&lt;SourceSection> sourceSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getSourceSectionModels().stream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedSourceSectionModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,&#xD;&#xA;&#x9;&#x9;sourceSections.size(), sourceSections.toArray());"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all SourceSections (LHS) contained in all local and global/shared SourceSectionModels."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetSections" upperBound="-1"
@@ -65,12 +100,18 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="List&lt;TargetSection> targetSections = Stream&#xD;&#xA;&#x9;&#x9;.concat(this.getTargetSectionModels().stream(),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.getSharedTargetSectionModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,&#xD;&#xA;&#x9;&#x9;targetSections.size(), targetSections.toArray());"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all TargetSections (RHS) contained in all local and global/shared TargetSectionModels."/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.Mapping%>> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getMappings().stream()).collect(Collectors.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all Mappings contained in all local and global/shared MappingModels."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
@@ -79,12 +120,18 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="List&lt;Mapping> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getActiveMappings().stream()).filter(m -> !m.getSourceSection().isDeactivated()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all 'active' Mappings contained in all local and global/shared MappingModels.&#xD;&#xA;&lt;br />&#xD;&#xA;A Mapping is active if its 'deactivated' attribute is not set to 'true'."/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
         eType="#//FixedValue" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;FixedValue> globalValues = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalValues().stream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,&#xD;&#xA;&#x9;&#x9;globalValues.size(), globalValues.toArray());"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all GlobalValues contained in all local and global/shared MappingModels."/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttributes" upperBound="-1"
@@ -93,6 +140,9 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;GlobalAttribute> globalAttributes = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getGlobalAttributes().stream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,&#xD;&#xA;&#x9;&#x9;globalAttributes.size(), globalAttributes.toArray());"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all GlobalAttributes contained in all local and global/shared MappingModels."/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
         eType="#//mapping/modifier/ValueModifierSet" changeable="false" volatile="true"
@@ -100,11 +150,22 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;&lt;%pamtram.mapping.modifier.ValueModifierSet%>> modifierSets = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getModifierSets().stream()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,&#xD;&#xA;&#x9;&#x9;modifierSets.size(), modifierSets.toArray());"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of all ValueModifierSets contained in all local and global/shared MappingModels."/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionModels" upperBound="-1"
-        eType="#//ConditionModel" containment="true"/>
+        eType="#//ConditionModel" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of ConditionModels contained in this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of 'sharedConditionModels', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sharedConditionModels"
-        upperBound="-1" eType="#//ConditionModel"/>
+        upperBound="-1" eType="#//ConditionModel">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of external ConditionModels (stored in their own files with the file-ending '*.pamtram.condition') referenced by this PAMTraM instance.&#xD;&#xA;&lt;br />&#xD;&#xA;Together with the list of (local) 'conditionModels', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SectionModel" abstract="true" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -143,9 +204,16 @@
       </eBounds>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaModelPackage" lowerBound="1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The meta-model (represented by an EPackage) based on which all element structures (Sections) in this SectionModel need to be based."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
         containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of Sections defined by this SectionModel.&#xD;&#xA;&lt;br />&#xD;&#xA;All Sections need to be based on the meta-model/EPackage specified via the 'metaModelPackage' reference."/>
+      </eAnnotations>
       <eGenericType eTypeParameter="#//SectionModel/S"/>
     </eStructuralFeatures>
   </eClassifiers>
@@ -166,7 +234,11 @@
       <details key="documentation" value="A TargetSectionModel contains a list of TargetSections which can act as the right-hand side (RHS) of a Mapping."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraryElements" upperBound="-1"
-        eType="#//structure/library/LibraryEntry" containment="true"/>
+        eType="#//structure/library/LibraryEntry" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of LibraryElement-based TargetSections defined by this SectionModel."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eGenericSuperTypes eClassifier="#//SectionModel">
       <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
       <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -179,20 +251,39 @@
       <details key="documentation" value="A MappingModel contains a list of Mapping which will be executed by the transformation algorithm."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" lowerBound="1"
-        upperBound="-1" eType="#//mapping/Mapping" containment="true"/>
+        upperBound="-1" eType="#//mapping/Mapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of Mappings which are contained in this MappingModel. These will be executed by the transformation algorithm.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Only 'active' Mappings will actually be executed (also see the 'activeMappings' reference)."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifierSets" upperBound="-1"
-        eType="#//mapping/modifier/ValueModifierSet" containment="true"/>
+        eType="#//mapping/modifier/ValueModifierSet" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of ValueModiferSets which are contained in this MappingModel."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalValues" upperBound="-1"
-        eType="#//FixedValue" containment="true"/>
+        eType="#//FixedValue" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A list of global FixedValues. These values can e.g. be used in calculations of values of attributes in TargetSections. Therefore, they can be referenced in expressions via their name."/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeMappings" upperBound="-1"
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="get" value="&lt;%java.util.List%>&lt;Mapping> mappings = this.getMappings().stream().filter(m -> !m.isDeactivated() &amp;&amp; !m.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The subset of the Mappings contained in this MappingModel that are not 'deactivated'. These will be executed by the transformation algorithm."/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttributes" upperBound="-1"
-        eType="#//mapping/GlobalAttribute" containment="true"/>
+        eType="#//mapping/GlobalAttribute" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of GlobalAttributes defined by this MappingModel."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -226,35 +317,59 @@
       </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="localCondition" eType="#//condition/ComplexCondition"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondition" eType="#//condition/ComplexCondition"/>
+        containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The (locally defined) Condition which restrains the applicability of this element during the course of a transformation.&#xD;&#xA;&lt;br />&#xD;&#xA;This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Only one of 'localCondition' or 'sharedCondition' may be set for each element!"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondition" eType="#//condition/ComplexCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The (globally defined) referenced Condition which restrains the applicability of this element during the course of a transformation.&#xD;&#xA;&lt;br />&#xD;&#xA;This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Only one of 'localCondition' or 'sharedCondition' may be set for each element!"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionModel" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A ConditionModel contains a list of (global, reusable) Conditions which can be attached to ConditionalElements in order to restrain their applicability.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to reference global conditions from a ConditionModel, you have to use a 'sharedCondition(s)' non-containment reference (e.g. present for a ConditionalElement)."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
-        eType="#//condition/ComplexCondition" containment="true"/>
+        eType="#//condition/ComplexCondition" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The lis of (global, reusable) Conditions defined by this ConditionModel."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An ExpressionElement can be equipped with a mathematical expression describing how to calculate the (numeric) value of this element.&#xD;&#xA;&lt;br />&#xD;&#xA;The specific meaning of the calculated 'value' is dependent on the concrete sub-type of this element."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A mathematical expression describing how to calculate the (numeric) value of this element.&#xD;&#xA;&lt;br />&#xD;&#xA;The specific meaning of the calculated 'value' is dependent on the concrete type of this element.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Variables (e.g. global FixedValues or specified source elements) can be referenced in the expression via their name, e.g. '2*x' if their is a (local) source element or a global FixedValue named 'x'."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifiableElement" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A ModifiableElement can be equipped with a list of 'ValueModifierSets' that will be applied on the value of this element.&#xD;&#xA;&lt;br />&#xD;&#xA;The specific meaning of the modified 'value' is dependent on the concrete sub-type of this element."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
-        eType="#//mapping/modifier/ValueModifierSet"/>
+        eType="#//mapping/modifier/ValueModifierSet">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The list of 'ValueModifierSets' that will be applied on the value of this element.&#xD;&#xA;&lt;br />&#xD;&#xA;The specific meaning of the modified 'value' is dependent on the concrete sub-type of this element."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/extended/CardinalityMappingSourceInterface">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This simply represents a certain numeric or literal value. It can be used e.g. as part of an AttributeMapping to specify the value of a TargetSectionAttribute."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The numeric or literal value."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eSubpackages name="structure" nsURI="http://mfreund.de/pamtram/structure" nsPrefix="structure">
     <eAnnotations source="http://www.eclipse.org/OCL/Import">

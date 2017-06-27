@@ -389,6 +389,9 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referenceMatchSpec" upperBound="-1">
+        <eGenericType eTypeParameter="#//structure/LocalDynamicSourceElement/R"/>
+      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
         <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/S"/>
         <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/C"/>

@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
@@ -79,6 +80,20 @@ public class ValueConstraintSourceElementImpl extends
 	@Override
 	protected EClass eStaticClass() {
 		return ConstraintPackage.Literals.VALUE_CONSTRAINT_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
+	 * @generated
+	 */
+	@Override
+	public EList<SourceSectionReference> getReferenceMatchSpec() {
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ConstraintPackage.VALUE_CONSTRAINT_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
+		}
+		return referenceMatchSpec;
 	}
 
 	/**

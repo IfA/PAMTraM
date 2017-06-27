@@ -47,7 +47,7 @@ import pamtram.structure.target.TargetSection;
  * This is the item provider adapter for a
  * {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
@@ -155,9 +155,11 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 									EClass cl = (EClass) c;
 									if (!documentRoot.contains(cl)) {
 										// abstract EClasses are only allowed
-										// for abstract sections
-										if (!cl.isAbstract() || object instanceof Section<?, ?, ?, ?>
-												&& ((Section<?, ?, ?, ?>) object).isAbstract()) {
+										// for SourceSections or abstract
+										// TargetSections
+										if (!cl.isAbstract() || object instanceof SourceSectionClass
+												|| object instanceof TargetSection
+														&& ((TargetSection) object).isAbstract()) {
 											choiceOfValues.add((EClass) c);
 										}
 									}
@@ -245,7 +247,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
 	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -260,7 +262,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -319,7 +321,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -363,7 +365,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * update any cached children and by creating a viewer notification, which
 	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

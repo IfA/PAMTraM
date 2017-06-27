@@ -3,6 +3,7 @@
 package pamtram.structure.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -11,6 +12,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
@@ -22,11 +24,27 @@ import pamtram.structure.util.StructureValidator;
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Local
  * Modified Attribute Element Type</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link pamtram.structure.impl.LocalDynamicSourceElementImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends DynamicSourceElementImpl<S, C, R, A> implements LocalDynamicSourceElement<S, C, R, A> {
+	/**
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferenceMatchSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<R> referenceMatchSpec;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -42,6 +60,18 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	@Override
 	protected EClass eStaticClass() {
 		return StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<R> getReferenceMatchSpec() {
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<R>(Reference.class, this, StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
+		}
+		return referenceMatchSpec;
 	}
 
 	/**
@@ -80,6 +110,66 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 			}
 		
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC:
+				return getReferenceMatchSpec();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				getReferenceMatchSpec().addAll((Collection<? extends R>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC:
+				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**

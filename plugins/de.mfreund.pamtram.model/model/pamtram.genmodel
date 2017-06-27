@@ -129,6 +129,8 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/C"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/R"/>
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/A"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/LocalDynamicSourceElement/referenceMatchSpec"/>
         <genOperations ecoreOperation="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection">
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/context"/>

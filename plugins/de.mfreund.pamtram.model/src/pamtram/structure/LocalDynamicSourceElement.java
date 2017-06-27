@@ -4,6 +4,7 @@ package pamtram.structure;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -13,6 +14,12 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>Local Modified Attribute Element Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ * </ul>
  *
  * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement()
  * @model abstract="true"
@@ -20,6 +27,21 @@ import pamtram.structure.generic.Section;
  * @generated
  */
 public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
+
+	/**
+	 * Returns the value of the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reference Match Spec</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reference Match Spec</em>' reference list.
+	 * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement_ReferenceMatchSpec()
+	 * @model
+	 * @generated
+	 */
+	EList<R> getReferenceMatchSpec();
 
 	/**
 	 * <!-- begin-user-doc -->

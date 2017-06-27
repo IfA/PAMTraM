@@ -508,13 +508,22 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -588,6 +597,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__SOURCE = LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -1255,6 +1273,17 @@ public interface StructurePackage extends EPackage {
 	EClass getLocalDynamicSourceElement();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec <em>Reference Match Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Reference Match Spec</em>'.
+	 * @see pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec()
+	 * @see #getLocalDynamicSourceElement()
+	 * @generated
+	 */
+	EReference getLocalDynamicSourceElement_ReferenceMatchSpec();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.LocalDynamicSourceElement#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Section Or Contained Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1489,6 +1518,14 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOCAL_DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getLocalDynamicSourceElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Match Spec</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = eINSTANCE.getLocalDynamicSourceElement_ReferenceMatchSpec();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Source Attribute Matches Section Or Contained Section</b></em>' operation.

@@ -384,6 +384,9 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="InstanceSelectors can be used to select a certain subset of a list of model excerpts that have been matched for a certain Section.&#xD;&#xA;The specific use case for this selection depends on the concrete sub-type of this class.&#xD;&#xA;&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a certain attribute of the matched Section with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
+      </eAnnotations>
       <eOperations name="validateNoModifiedAttributeElementTypesInConditionModelConditions"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -409,19 +412,44 @@
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
-          eType="#//structure/InstanceSelectorSourceInterface" containment="true"/>
+          eType="#//structure/InstanceSelectorSourceInterface" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of 'sourceElements' based on which the reference value used by this selector is calculated."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SourceInstanceSelector" eSuperTypes="#//structure/InstanceSelector">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="SourceInstanceSelectors can be used to select a certain subset of a list of source model excerpts that have been matched for a certain SourceSection in the course of a transformation.&#xD;&#xA;The specific use case for this selection depends on the concrete sub-type of this class.&#xD;&#xA;&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a certain attribute of the matched SourceSections with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/source/SourceSectionAttribute"/>
+          eType="#//structure/source/SourceSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TargetInstanceSelector" eSuperTypes="#//structure/InstanceSelector">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.&#xD;&#xA;The specific use case for this selection depends on the concrete sub-type of this class.&#xD;&#xA;&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/target/TargetSectionAttribute"/>
+          eType="#//structure/target/TargetSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The specific attribute of the created TargetSections whose value is compared with the reference value used by this selector."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceInterface" abstract="true"
-        interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+        interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The common superclass of all types that can be used as 'sourceElement' to calculate the reference value used by an InstanceSelector."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorSourceElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value used by an InstanceSelector.&lt;br />&#xD;&#xA;This type is based on the value of a 'local' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'LocalDynamicSourceElement' for a detailed explanation of the meaning of 'local' source elements."/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -431,6 +459,9 @@
       <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorExternalSourceElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value used by an InstanceSelector.&lt;br />&#xD;&#xA;This type is based on the value of an 'external' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'ExternalDynamicSourceElement' for a detailed explanation of the meaning of 'external' source elements."/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -440,6 +471,9 @@
       <eGenericSuperTypes eClassifier="#//structure/InstanceSelectorSourceInterface"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelectorGlobalSourceElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value used by an InstanceSelector.&lt;br />&#xD;&#xA;This type is based on the value of a 'global' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'GlobalDynamicSourceElement' for a detailed explanation of the meaning of 'global' source elements."/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
         <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -451,6 +485,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DynamicSourceElement" abstract="true"
         eSuperTypes="#//NamedElement #//ModifiableElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A DynamicSourceElement represents a certain value that can be used in various calculations.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)). As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation."/>
+      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//structure/generic/Section">
           <eTypeArguments eTypeParameter="#//structure/DynamicSourceElement/S"/>
@@ -494,12 +531,18 @@
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as 'source'."/>
+        </eAnnotations>
         <eGenericType eTypeParameter="#//structure/DynamicSourceElement/A"/>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalDynamicSourceElement" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesSectionOrContainedSection"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A LocalDynamicSourceElement represents a certain value that can be used in various calculations.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the 'source' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For 'LocalDynamicSourceElements', only instances of the specified 'source' attribute that are part of the source model excerpt which is currently handled by the transformation are used."/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//structure/generic/Section">
@@ -547,6 +590,9 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referenceMatchSpec" upperBound="-1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the 'own' attribute value but only attribute values of 'referenced' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."/>
+        </eAnnotations>
         <eGenericType eTypeParameter="#//structure/LocalDynamicSourceElement/R"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
@@ -559,6 +605,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="ExternalDynamicSourceElement" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="sourceAttributeMatchesContainerSection"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An ExternalDynamicSourceElement represents a certain value that can be used in various calculations.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the 'source' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For 'ExternalDynamicSourceElements', only instances of the specified 'source' attribute that are part of source model excerpts that are containers of the source model excerpt which is currently handled by the transformation are used."/>
       </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//structure/generic/Section">
@@ -612,6 +661,9 @@
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GlobalDynamicSourceElement" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A GlobalDynamicSourceElement represents a certain value that can be used in various calculations.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the 'source' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For 'GlobalDynamicSourceElements', all instances of the specified 'source' attribute found in the source model are used."/>
+      </eAnnotations>
       <eTypeParameters name="S">
         <eBounds eClassifier="#//structure/generic/Section">
           <eTypeArguments eTypeParameter="#//structure/GlobalDynamicSourceElement/S"/>
@@ -649,6 +701,9 @@
       </eTypeParameters>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
           containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A list of InstanceSelectors that can be used to select a certain subset of the list of matched SourceSectionAttributes that will be used to calculated the value(s) represented by this DynamicSourceElement."/>
+        </eAnnotations>
         <eGenericType eTypeParameter="#//structure/GlobalDynamicSourceElement/InstanceSelectorType"/>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">

@@ -32,7 +32,10 @@ import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.generic.ActualReference;
+import pamtram.structure.generic.Reference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -228,12 +231,63 @@ public abstract class ValueExtractor extends CancelableElement {
 		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped()
 				.get(mappingHintSourceElement.getSource().eContainer());
 
+		if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+
+			// If the user specified an additional 'referenceMatchSpec', use
+			// only that subset of the determined source elements corresponding
+			// to this matching path.
+			//
+			List<Reference<?, ?, ?, ?>> matchSpec = new ArrayList<>(
+					((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).getReferenceMatchSpec());
+
+			if (!matchSpec.isEmpty()) {
+
+				MatchedSectionDescriptor localDescriptor = sourceDescriptor;
+				sourceElements = sourceElements.stream()
+						.filter(s -> this.conformsMatchedObjectToMatchingPath(
+								localDescriptor.getAssociatedSourceModelElement(), s, matchSpec))
+						.collect(Collectors.toSet());
+			}
+		}
+
 		if (sourceElements == null) {
 			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
 
 		return this.extractValue(mappingHintSourceElement, new ArrayList<>(sourceElements));
+	}
+
+	private boolean conformsMatchedObjectToMatchingPath(EObject root, EObject element,
+			List<Reference<?, ?, ?, ?>> matchSpec) {
+
+		// Create a local copy first
+		//
+		List<Reference<?, ?, ?, ?>> localReferenceSegments = new ArrayList<>(matchSpec);
+
+		Reference<?, ?, ?, ?> firstSegment = localReferenceSegments.remove(0);
+
+		if (firstSegment instanceof ActualReference<?, ?, ?, ?>) {
+
+			if (!root.eClass().getEAllReferences()
+					.contains(((ActualReference<?, ?, ?, ?>) firstSegment).getEReference())) {
+				this.logger.severe("Faulty Reference Match Spec encountered!");
+				return false;
+			}
+
+			List<Object> values = AgteleEcoreUtil.getStructuralFeatureValueAsList(root,
+					((ActualReference<?, ?, ?, ?>) firstSegment).getEReference());
+			if (localReferenceSegments.isEmpty()) {
+				return values.contains(element);
+			} else {
+				return !localReferenceSegments.isEmpty() && values.stream().filter(v -> v instanceof EObject).anyMatch(
+						v -> this.conformsMatchedObjectToMatchingPath((EObject) v, element, localReferenceSegments));
+			}
+
+		} else {
+			this.logger.severe("Reference Match Specs based on VirtualReferences are not yet supported!");
+			return false;
+		}
 	}
 
 	/**
@@ -441,7 +495,7 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		if (sourceAttribute instanceof ActualSourceSectionAttribute) {
 			EAttribute eAttribute = ((ActualSourceSectionAttribute) sourceAttribute).getAttribute();
-			return AgteleEcoreUtil.getAttributeValueAsList(sourceElement, eAttribute);
+			return AgteleEcoreUtil.getStructuralFeatureValueAsList(sourceElement, eAttribute);
 		} else {
 
 			Object result;

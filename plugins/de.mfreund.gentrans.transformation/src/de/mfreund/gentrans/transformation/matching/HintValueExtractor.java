@@ -377,7 +377,7 @@ public class HintValueExtractor extends ValueExtractor {
 						: sourceElements.parallelStream()
 								.mapToInt(sourceElement -> sourceAttribute instanceof ActualAttribute<?, ?, ?, ?>
 										? AgteleEcoreUtil
-												.getAttributeValueAsList(sourceElement,
+												.getStructuralFeatureValueAsList(sourceElement,
 														((ActualAttribute<?, ?, ?, ?>) sourceAttribute).getAttribute())
 												.size()
 										: 1)

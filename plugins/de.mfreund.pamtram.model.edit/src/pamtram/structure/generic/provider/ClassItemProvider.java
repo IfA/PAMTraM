@@ -44,10 +44,9 @@ import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
@@ -70,14 +69,14 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addEClassPropertyDescriptor(object);
-			this.addCardinalityPropertyDescriptor(object);
-			this.addContainerPropertyDescriptor(object);
+			addEClassPropertyDescriptor(object);
+			addCardinalityPropertyDescriptor(object);
+			addContainerPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -87,11 +86,19 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_Class_eClass_feature"), this.getString("_UI_Class_eClass_description"),
-				GenericPackage.Literals.CLASS__ECLASS, true, false, true, null,
-				this.getString("_UI_BasicPropertyCategory"), null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Class_eClass_feature"),
+				 getString("_UI_Class_eClass_description"),
+				 GenericPackage.Literals.CLASS__ECLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
 	}
 
 	/**
@@ -155,9 +162,11 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 									EClass cl = (EClass) c;
 									if (!documentRoot.contains(cl)) {
 										// abstract EClasses are only allowed
-										// for abstract sections
-										if (!cl.isAbstract() || object instanceof Section<?, ?, ?, ?>
-												&& ((Section<?, ?, ?, ?>) object).isAbstract()) {
+										// for SourceSections or abstract
+										// TargetSections
+										if (!cl.isAbstract() || object instanceof SourceSectionClass
+												|| object instanceof TargetSection
+														&& ((TargetSection) object).isAbstract()) {
 											choiceOfValues.add((EClass) c);
 										}
 									}
@@ -239,34 +248,29 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
-			this.childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
+			childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
+			childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -317,14 +321,14 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -359,25 +363,24 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.structure.generic.Class.class)) {
-		case GenericPackage.CLASS__CARDINALITY:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case GenericPackage.CLASS__REFERENCES:
-		case GenericPackage.CLASS__ATTRIBUTES:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case GenericPackage.CLASS__CARDINALITY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case GenericPackage.CLASS__REFERENCES:
+			case GenericPackage.CLASS__ATTRIBUTES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

@@ -402,6 +402,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getLocalDynamicSourceElement_ReferenceMatchSpec() {
+		return (EReference)localDynamicSourceElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
 		return localDynamicSourceElementEClass.getEOperations().get(0);
 	}
@@ -496,6 +505,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING);
 
 		localDynamicSourceElementEClass = createEClass(LOCAL_DYNAMIC_SOURCE_ELEMENT);
+		createEReference(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
 		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
 
 		externalDynamicSourceElementEClass = createEClass(EXTERNAL_DYNAMIC_SOURCE_ELEMENT);
@@ -845,6 +855,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEOperation(getDynamicSourceElement__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localDynamicSourceElementEClass, LocalDynamicSourceElement.class, "LocalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(localDynamicSourceElementEClass_R);
+		initEReference(getLocalDynamicSourceElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, LocalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

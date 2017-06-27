@@ -68,6 +68,20 @@ public abstract class LocalMappedAttributeValueExpanderImpl extends LocalDynamic
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific element type known in this context.
+	 * @generated
+	 */
+	@Override
+	public EList<SourceSectionReference> getReferenceMatchSpec() {
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__REFERENCE_MATCH_SPEC);
+		}
+		return referenceMatchSpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

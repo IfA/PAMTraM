@@ -11,6 +11,12 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Multiple Condition Operator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Condition that is composed of multiple sub-conditions.
+ * <br />
+ * The sub-conditions can be specified locally (via the 'localCondParts' reference) and/or globally (specified via the 'sharedCondParts' reference).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +40,9 @@ public interface VariadicCondition extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of locally defined sub-conditions.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Local Cond Parts</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getVariadicCondition_LocalCondParts()
 	 * @model containment="true"
@@ -50,6 +59,9 @@ public interface VariadicCondition extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of globally specified sub-conditions.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Cond Parts</em>' reference list.
 	 * @see pamtram.condition.ConditionPackage#getVariadicCondition_SharedCondParts()
 	 * @model

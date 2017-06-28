@@ -730,6 +730,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 	}
@@ -770,6 +772,244 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of Mappings between a SourceSection (representing its left-hand side) and one or multiple TargetSections (representing its right-hand side).\r\n<br />\r\nThe elements directly contained in this package can be used to create \'basic\' mappings which only link Source- and TargetSections. Elements that can be used to realize \'extended\' mappings which contain additional information for the transformation algorithms (aka MappingHints) are contained in the \'extended\' sub-package."
+		   });	
+		addAnnotation
+		  (mappingTypeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super type for elements describing some kind of mapping. Currently, there is only one concrete sub-element (Mapping)."
+		   });	
+		addAnnotation
+		  (getMappingType_SourceSection(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The SourceSection that this Mapping is based on.\r\n<br /><br />\r\nThis Mapping will be executed/applied if the specified SourceSection is matched in the source model. If the SourceSection is matched multiple times, this Mapping will also be executed multiple times."
+		   });	
+		addAnnotation
+		  (mappingEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Mapping between a SourceSection and one or multiple TargetSections.\r\n<br /><br />\r\nThis Mapping will be executed/applied if the specified SourceSection is matched in the source model. If the SourceSection is matched multiple times, this Mapping will also be executed multiple times.\r\nEach execution of the Mapping will result in the instantiation of each specified TargetSection.\r\n<br /><br />\r\nNote: Each TargetSection to be instantiated is specified via its own MappingHintGroup that can be created as child of the Mapping."
+		   });	
+		addAnnotation
+		  (getMapping__GetActiveMappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hintGroups.length, hintGroups);"
+		   });	
+		addAnnotation
+		  (getMapping__GetActiveImportedMappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);"
+		   });	
+		addAnnotation
+		  (getMapping__ValidateContainsHintGroups__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !this.getMappingHintGroups().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The mapping does not contain any hint groups!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING__VALIDATE_CONTAINS_HINT_GROUPS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getMapping__ValidateContainsDeactivatedHintGroups__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.isDeactivated() ? this.getMappingHintGroups().size() == this.getActiveMappingHintGroups().size() && this.getImportedMappingHintGroups().size() == this.getActiveImportedMappingHintGroups().size() : true;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The mapping contains deactivated hint groups that will not be used in a transformation!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING__VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSourceSection() == null || !this.getSourceSection().isDeactivated();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The mapping is based on a deactivated SourceSection and will not be used in a transformation!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getMapping_MappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of MappingHintGroups specifying the TargetSections to be instantiated when the Mapping is executed."
+		   });	
+		addAnnotation
+		  (getMapping_ImportedMappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of MappingHintGroupImporters specifying imported MappingHintGroups whose TargetSections shall be instantiated when the Mapping is executed."
+		   });	
+		addAnnotation
+		  (getMapping_Abstract(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If a Mapping is marked as \'abstract\', it will not be executed directly. However, the MappingHintGroups contained in other Mappings may extend the MappingHintGroups defined in an abstract Mapping.\r\n<br />\r\nConsequently, abstract Mappings can be used to define some kind of template mappings that can be reqused by other (non-abstract) Mappings."
+		   });	
+		addAnnotation
+		  (mappingHintGroupTypeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for elements describing some kind of MappingHintGroup that will lead to the instantiation of a specified TargetSection."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%pamtram.structure.source.SourceSection%> sourceSection = ((<%pamtram.mapping.Mapping%>) this.eContainer()).getSourceSection();\r\n\r\nif (sourceSection == null) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.List%><SourceSection> validExtends = new <%java.util.ArrayList%><>();\r\nvalidExtends.add(sourceSection);\r\nvalidExtends.addAll(sourceSection.getAllExtend());\r\n\r\n<%java.util.Optional%><MappingHintGroupType> result = this.getExtend().stream()\r\n\t\t.filter(hg -> !validExtends.contains(((Mapping) hg.eContainer()).getSourceSection())).findFirst();\r\n\r\nif (result.isPresent() && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The MappingHintGroup \'\" + result.get().getName() + \"\' may not be extended by this MappingHintGroup because the referenced SourceSections are not compatible!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));\r\n\r\n}\r\n\r\nreturn !result.isPresent();"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType__GetActiveMappingHints(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType__ValidateDoNotUseLibraryElementsWithoutLibraryNature__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if (!this.getTargetSection().isLibraryEntry()) {\r\n\treturn true;\r\n}\r\n\r\n// Check if the \'PAMTraM Library Nature\' is set for the project\r\n//\r\n<%org.eclipse.core.resources.IFile%> file = <%de.tud.et.ifa.agtele.resources.ResourceHelper%>.getFileForResource(this.eResource());\r\nif (file == null || file.getProject() == null) {\r\n\treturn true;\r\n}\r\n\r\nString errorMessage = \"The \'PAMTraM Library Nature\' is not activated for this project. Thus, LibraryEntries may not be used as TargetSections! You can activate the nature in the project properties...\";\r\n\r\ntry {\r\n\tif (!Boolean.parseBoolean(<%de.mfreund.pamtram.properties.PropertySupplier%>.getResourceProperty(<%de.mfreund.pamtram.properties.PropertySupplier%>.PROP_HAS_LIBRARY_NATURE,\r\n\t\t\tfile.getProject()))) {\r\n\t\tif (diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.util.MappingValidator%>.MAPPING_HINT_GROUP_TYPE__VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));\r\n\t\t}\r\n\t\treturn false;\r\n\t}\r\n} catch (<%org.eclipse.core.runtime.CoreException%> e) {\r\n\te.printStackTrace();\r\n}\r\nreturn true;"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_TargetSection(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSection to be instantiated based on this MappingHintGroup."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_MappingHints(), 
+		   source, 
+		   new String[] {
+			 "documentation", "An optional list of MappingHints refining this Mapping resp. MappingHintGroup.\r\n<br /><br />\r\nMappingHints can be used to assist the transformation algorithm in the instantiation of TargetSections. For example, AttributeMappings can be added that specify how to set the values of the Attributes defined as part of the TargetSection."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_Extend(), 
+		   source, 
+		   new String[] {
+			 "documentation", "One or multiple MappingHintGroups (that are part of an \'abstract\' Mapping) which shall be extended by this MappingHintGroup.\r\n<br />\r\nAll MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.\r\n<br /><br />\r\nNote: If an extended Group defines a MappingHint affecting the same element of a TargetSection as a MappingHint defined locally in this group, it will not be added. As a result, local MappingHints will always overwrite MappingHints imported from extended Groups."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AttributeMappings(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.extended.AttributeMapping%>> attributeMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,\r\n\t\tattributeMappings.size(),attributeMappings.toArray());\r\n"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AttributeMappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'mappingHints\' that are of type AttributeMapping."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_CardinalityMappings(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.extended.CardinalityMapping%>> cardinalityMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,\r\n\t\tcardinalityMappings.size(),cardinalityMappings.toArray());\r\n"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_CardinalityMappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'mappingHints\' that are of type CardinalityMapping."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_ReferenceTargetSelectors(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.extended.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());\r\n"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_ReferenceTargetSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'mappingHints\' that are of type ReferenceTargetSelector."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_ContainerSelectors(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.extended.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());\r\n"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_ContainerSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'mappingHints\' that are of type ContainerSelector."
+		   });	
+		addAnnotation
+		  (instantiableMappingHintGroupEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for elements describing some kind of MappingHintGroup that (resp. whose specified TargetSection) can be directly instantiated."
+		   });	
+		addAnnotation
+		  (mappingHintGroupEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHintGroup serves two purposes:\r\n<br />\r\n(1) It specifies a TargetSection that will be instantiated when the Mapping containing this MappingHintGroup is executed.\r\n<br />\r\n(2) It acts as container for a set of MappingHints. MappingHints can be used to assist the transformation algorithm in the instantiation of the specified TargetSection. For example, AttributeMappings can be added that specify how to set the values of the Attributes defined as part of the TargetSection.\r\n<br /><br />\r\nNote: Each execution of the Mapping will result in the instantiation of the specified TargetSection."
+		   });	
+		addAnnotation
+		  (mappingHintGroupImporterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHintGroupImporter does not specify its own TargetSection to be instantiated but \'imports\' an existing (exported) MappingHintGroup instead.\r\n<br />\r\nImporting thereby means that all values that have been collected for the MappingHints defined in the exported MappingHintGroup are reused during the instantiation.\r\n<br /><br />\r\nNote: There is a difference between (1) \'extending\' and (2) \'importing\' MappingHintGroups:\r\n<br />\r\n(1) Extending a HintGroup means that all MappingHints defined in the extended HintGroup are added to the Extending HintGroup (before execution of the transformation).\r\n(2) Importing a HintGroup means that the VALUES of all MappingHints defined in the exported HintGroup are used when instantiating the HintGroupImporter (during the execution of the transformation).\r\n<br /><br />\r\nIn most cases, \'extending\' HintGroups will be the desired behavior. Importing HintGroups is only necessary for a few special use cases."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter__GetActiveMappingHints(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((<%pamtram.DeactivatableElement%>) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter_HintGroup(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The existing (exported) MappingHintGroup that is imported by this HintGroupImporter."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter_Container(), 
+		   source, 
+		   new String[] {
+			 "documentation", "An optional TargetSectionClass that (resp. instances of that) will be used as container for the instances created based on the TargetSection denoted by the imported MappingHintGroup."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter_MappingHints(), 
+		   source, 
+		   new String[] {
+			 "documentation", "An optional list of MappingHints refining the imported MappingHintGroup. The specified MappingHints will be added to those already defined by the imported MappingHintGroup."
+		   });	
+		addAnnotation
+		  (exportedMappingHintGroupEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "If an ExportedMappingHintGroup (resp. the containing Mapping) is executed, the specified TargetSection is not directly instantiated although values for specified MappingHints are collected.\r\nInstead ExportedMappingHintGroups may be imported by means of a MappingHintGroupImporter that is part of another Mapping.\r\n<br />\r\nImporting thereby means that all values that have been collected for the MappingHints defined in the exported MappingHintGroup are reused during the instantiation of the MappingHintGroupImporter.\r\n<br /><br />\r\nNote: There is a difference between (1) \'extending\' and (2) \'importing\' MappingHintGroups:\r\n<br />\r\n(1) Extending a HintGroup means that all MappingHints defined in the extended HintGroup are added to the Extending HintGroup (before execution of the transformation).\r\n(2) Importing a HintGroup means that the VALUES of all MappingHints defined in the exported HintGroup are used when instantiating the HintGroupImporter (during the execution of the transformation).\r\n<br /><br />\r\nIn most cases, \'extending\' HintGroups will be the desired behavior. Importing HintGroups is only necessary for a few special use cases."
+		   });	
+		addAnnotation
+		  (globalAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "GlobalAttributes can be used to store the value of a SourceSectionAttribute in a reusable way.\r\n<br />\r\nThe value of a GlobalAttribute can thereby be reused in various calculations (e.g. in AttributeMappings) by means of a GlobalAttributeImporter. In contrast to the \'local\' usage of an Attribute value in a calculation, GlobalAttributes can be reused as part of any Mapping - the Attribute does not need to be part of the SourceSection associated with the Mapping."
+		   });	
+		addAnnotation
+		  (getGlobalAttribute__ValidateSourceAttributeHasUpperBoundOne__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSource() == null || this.getSource().getAttribute() == null ? true : this.getSource().getAttribute().getUpperBound() == 1;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Global attributes may only be defined for attributes that have an upper bound of 1!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.GLOBAL_ATTRIBUTE__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getGlobalAttribute_Source(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The SourceSectionAttribute based on which the value of this GlobalAttribute is determined."
 		   });
 	}
 

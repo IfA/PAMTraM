@@ -13,6 +13,14 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>External Modified Attribute Element Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An ExternalDynamicSourceElement represents a certain value that can be used in various calculations.
+ * <br /><br />
+ * The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the 'source' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.
+ * <br /><br />
+ * For 'ExternalDynamicSourceElements', only instances of the specified 'source' attribute that are part of source model excerpts that are containers of the source model excerpt which is currently handled by the transformation are used.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.structure.StructurePackage#getExternalDynamicSourceElement()
  * @model abstract="true"

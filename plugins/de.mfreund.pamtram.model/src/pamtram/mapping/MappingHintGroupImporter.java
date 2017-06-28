@@ -13,6 +13,19 @@ import pamtram.structure.target.TargetSectionClass;
  * A representation of the model object '<em><b>Hint Group Importer</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappingHintGroupImporter does not specify its own TargetSection to be instantiated but 'imports' an existing (exported) MappingHintGroup instead.
+ * <br />
+ * Importing thereby means that all values that have been collected for the MappingHints defined in the exported MappingHintGroup are reused during the instantiation.
+ * <br /><br />
+ * Note: There is a difference between (1) 'extending' and (2) 'importing' MappingHintGroups:
+ * <br />
+ * (1) Extending a HintGroup means that all MappingHints defined in the extended HintGroup are added to the Extending HintGroup (before execution of the transformation).
+ * (2) Importing a HintGroup means that the VALUES of all MappingHints defined in the exported HintGroup are used when instantiating the HintGroupImporter (during the execution of the transformation).
+ * <br /><br />
+ * In most cases, 'extending' HintGroups will be the desired behavior. Importing HintGroups is only necessary for a few special use cases.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +48,9 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The existing (exported) MappingHintGroup that is imported by this HintGroupImporter.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Hint Group</em>' reference.
 	 * @see #setHintGroup(ExportedMappingHintGroup)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_HintGroup()
@@ -61,6 +77,9 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional TargetSectionClass that (resp. instances of that) will be used as container for the instances created based on the TargetSection denoted by the imported MappingHintGroup.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
 	 * @see #isSetContainer()
 	 * @see #unsetContainer()
@@ -115,6 +134,9 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional list of MappingHints refining the imported MappingHintGroup. The specified MappingHints will be added to those already defined by the imported MappingHintGroup.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mapping Hints</em>' containment reference list.
 	 * @see #isSetMappingHints()
 	 * @see #unsetMappingHints()

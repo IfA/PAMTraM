@@ -10,6 +10,10 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  * A representation of the model object '<em><b>Resource Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A wrapper element for a GenLibrary ResourceParameter.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,9 @@ public interface ResourceParameter extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Attribute that can be used to set the value for the ResourceParameter (either by specifying a fixed value or by means of an AttributeMapping).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(VirtualTargetSectionAttribute)
 	 * @see pamtram.structure.library.LibraryPackage#getResourceParameter_Attribute()
@@ -57,6 +64,9 @@ public interface ResourceParameter extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The GenLibrary parameter that this wraps.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Parameter</em>' reference.
 	 * @see #setOriginalParameter(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)
 	 * @see pamtram.structure.library.LibraryPackage#getResourceParameter_OriginalParameter()

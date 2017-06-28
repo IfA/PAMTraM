@@ -14,6 +14,14 @@ import pamtram.structure.generic.VirtualReference;
  * A representation of the model object '<em><b>Virtual Source Section Cross Reference</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference of a source model element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <br /><br />
+ * In contrast to 'actual' References, 'virtual' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +42,9 @@ public interface VirtualSourceSectionCrossReference extends CrossReference<Sourc
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An OCL expression describing the derivation of the actual instances of the specified target Classes.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derivation</em>' attribute.
 	 * @see #setDerivation(String)
 	 * @see pamtram.structure.source.SourcePackage#getVirtualSourceSectionCrossReference_Derivation()

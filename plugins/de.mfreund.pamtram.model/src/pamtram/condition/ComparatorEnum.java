@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Comparator Enum</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This specifies how two values shall be compared.
+ * <!-- end-model-doc -->
  * @see pamtram.condition.ConditionPackage#getComparatorEnum()
  * @model
  * @generated
@@ -76,6 +79,9 @@ public enum ComparatorEnum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value to be checked needs to be equal to the reference value.
+	 * <!-- end-model-doc -->
 	 * @see #EQ
 	 * @model
 	 * @generated
@@ -91,6 +97,9 @@ public enum ComparatorEnum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value to be checked needs to be greater than the reference value.
+	 * <!-- end-model-doc -->
 	 * @see #GT
 	 * @model
 	 * @generated
@@ -106,6 +115,9 @@ public enum ComparatorEnum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value to be checked needs to be less than the reference value.
+	 * <!-- end-model-doc -->
 	 * @see #LT
 	 * @model
 	 * @generated
@@ -121,6 +133,9 @@ public enum ComparatorEnum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value to be checked needs to be greater than or equal to the reference value.
+	 * <!-- end-model-doc -->
 	 * @see #GE
 	 * @model
 	 * @generated
@@ -136,6 +151,9 @@ public enum ComparatorEnum implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The value to be checked needs to be less than or equal to the reference value.
+	 * <!-- end-model-doc -->
 	 * @see #LE
 	 * @model
 	 * @generated

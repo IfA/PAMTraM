@@ -10,6 +10,14 @@ import pamtram.structure.target.TargetSectionClass;
  * A representation of the model object '<em><b>Class Matcher</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ClassMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.
+ * <br />
+ * Thereby, all elements that have been created based on the specified 'targetClass' will be used as target instances.
+ * <br /><br />
+ * Note: In most cases, a simple ClassMatcher will not be sufficient if not all but only a subset of the instances created based on the denoted 'targetClass' shall be used. For such more complex use cases, an AttributeMatcher can be used instead.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -30,6 +38,9 @@ public interface ClassMatcher extends Matcher {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The 'targetClass' whose created instances will be used as target instances for the containing ReferenceTargetSelector.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Class</em>' reference.
 	 * @see #setTargetClass(TargetSectionClass)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getClassMatcher_TargetClass()

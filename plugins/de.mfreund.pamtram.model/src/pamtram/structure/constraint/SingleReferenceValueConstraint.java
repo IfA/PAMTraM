@@ -15,6 +15,10 @@ import pamtram.structure.SourceInstanceSelector;
  * A representation of the model object '<em><b>Single Reference Attribute Value Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ValueConstraint for which the reference value is calculated based on the combination of a list of 'sourceElements'.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,6 +42,9 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of 'sourceElements' based on which the reference value for this constraint is calculated.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_SourceElements()
 	 * @model containment="true"
@@ -54,6 +61,11 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of InstanceSelectors that can be used to restrict the application of this constraint: 
+	 * <br />
+	 * Only Attributes (resp. their values) identified by the list of InstanceSelectors are checked against this constraint.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
 	 * @see pamtram.structure.constraint.ConstraintPackage#getSingleReferenceValueConstraint_InstanceSelectors()
 	 * @model containment="true"

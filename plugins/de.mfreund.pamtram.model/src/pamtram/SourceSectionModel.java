@@ -13,6 +13,10 @@ import pamtram.structure.source.SourceSectionReference;
  * A representation of the model object '<em><b>Source Section Model</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A SourceSectionModel contains a list of SourceSections which can act as the left-hand side (LHS) of a Mapping.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.PamtramPackage#getSourceSectionModel()
  * @model

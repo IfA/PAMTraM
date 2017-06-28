@@ -13,6 +13,10 @@ import pamtram.structure.source.SourceSectionReference;
  * A representation of the model object '<em><b>Local Mapped Attribute Value Expander</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local 'source' Attribute.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.extended.ExtendedPackage#getLocalMappedAttributeValueExpander()
  * @model abstract="true"

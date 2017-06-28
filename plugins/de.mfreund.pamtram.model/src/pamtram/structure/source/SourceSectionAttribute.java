@@ -12,6 +12,10 @@ import pamtram.structure.generic.Attribute;
  * A representation of the model object '<em><b>Source Section Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an attribute of a source model element structure.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +38,11 @@ public interface SourceSectionAttribute extends Attribute<SourceSection, SourceS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of ValueConstraints that specify a single reference value or a list/range of reference values which the actual attribute value must or must not satisfy.
+	 * <br /><br />
+	 * A certain attribute (value) in a source model will only match against this Attribute if all specified constraints are met.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Constraints</em>' containment reference list.
 	 * @see pamtram.structure.source.SourcePackage#getSourceSectionAttribute_ValueConstraints()
 	 * @model containment="true"

@@ -15,6 +15,14 @@ import pamtram.structure.source.SourceSectionReference;
  * A representation of the model object '<em><b>Cardinality Mapping Global Source Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A concrete type of 'sourceElement' for a CardinalityMapping.
+ * <br />
+ * This type is based on the value of a 'global' SourceSectionAttribute.
+ * <br /><br />
+ * Note: See the documentation of 'GlobalDynamicSourceElement' for a detailed explanation of the meaning of 'global' source elements.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.extended.ExtendedPackage#getCardinalityMappingGlobalSourceElement()
  * @model

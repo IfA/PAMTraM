@@ -34,6 +34,9 @@ public interface ContainerSelector extends MappingHint, InstanceSelector {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The specific attributes of the created TargetSections whose values are compared with the reference value used by this ContainerSelector.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
 	 * @see pamtram.mapping.extended.ExtendedPackage#getContainerSelector_TargetAttributes()
 	 * @model containment="true" required="true"

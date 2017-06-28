@@ -22,6 +22,9 @@ import pamtram.structure.generic.GenericPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of source element structures (aka SourceSections). These form the left-hand side (LHS) of a mapping.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.source.SourceFactory
  * @model kind="package"
  * @generated

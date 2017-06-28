@@ -8,6 +8,12 @@ import pamtram.structure.generic.Reference;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Source Section Reference</b></em>'. <!--
  * end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference of a source model element structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +37,13 @@ public interface SourceSectionReference
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This determines the matching behavior in the case that there are source model elements that are not covered by one of the Classes specified as 'value' for this Reference.
+	 * <br /><br />
+	 * If this is set to 'true', the source model excerpt will nonetheless be declared a match for this SourceSection.
+	 * <br />
+	 * If this is set to 'false', the source model excerpt will NOT be declared a match. This means, that all source model elements referenced via this Reference need to matched against Classes specified as 'value' for this Reference.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Ignore Unmatched Elements</em>' attribute.
 	 * @see #setIgnoreUnmatchedElements(boolean)
 	 * @see pamtram.structure.source.SourcePackage#getSourceSectionReference_IgnoreUnmatchedElements()

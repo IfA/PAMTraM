@@ -14,6 +14,14 @@ import pamtram.structure.source.SourceSectionReference;
  * A representation of the model object '<em><b>Attribute Mapping Source Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A concrete type of 'sourceElement' for an AttributeMapping.
+ * <br />
+ * This type is based on the value of a 'local' SourceSectionAttribute.
+ * <br /><br />
+ * Note: See the documentation of 'LocalDynamicSourceElement' for a detailed explanation of the meaning of 'local' source elements.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMappingSourceElement()
  * @model

@@ -22,6 +22,11 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of Mappings between a SourceSection (representing its left-hand side) and one or multiple TargetSections (representing its right-hand side).
+ * <br />
+ * The elements directly contained in this package can be used to create 'basic' mappings which only link Source- and TargetSections. Elements that can be used to realize 'extended' mappings which contain additional information for the transformation algorithms (aka MappingHints) are contained in the 'extended' sub-package.
+ * <!-- end-model-doc -->
  * @see pamtram.mapping.MappingFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"

@@ -11,6 +11,12 @@ import pamtram.structure.generic.VirtualAttribute;
  * A representation of the model object '<em><b>Virtual Source Section Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an attribute of a source model element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.
+ * <br />
+ *  As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +37,9 @@ public interface VirtualSourceSectionAttribute extends SourceSectionAttribute, V
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An OCL expression describing the derivation of the actual value(s) of this attribute.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derivation</em>' attribute.
 	 * @see #setDerivation(String)
 	 * @see pamtram.structure.source.SourcePackage#getVirtualSourceSectionAttribute_Derivation()

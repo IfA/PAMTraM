@@ -12,6 +12,12 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Section</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A special Class that represents the root element (as an instance of an EClass) of an element structure.
+ * <br />
+ * Note: Every specified structure must contain one and only one Section element (its root element).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -37,6 +43,11 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If set to 'true', this Section can be extended by other specified Sections (via the 'extend' reference) which will then recursively inherit the structure specified by this Section (all contained Attributes, References and Classes).
+	 * <br /><br />
+	 * Note: Abstract Sections will not be (directly) matched against a source model. Consequently, Mappings based on abstract Sections will never be executed. Such mappings can however be used to specifiy abstract MappingHintGroups which can be extended by concrete MappingHintGroups that are based on a concrete Sub-Section of this abstract Section.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Abstract</em>' attribute.
 	 * @see #setAbstract(boolean)
 	 * @see pamtram.structure.generic.GenericPackage#getSection_Abstract()
@@ -63,6 +74,11 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of (abstract) Sections that this Section extends.
+	 * <br /><br />
+	 * This Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.structure.generic.GenericPackage#getSection_Extend()
 	 * @model

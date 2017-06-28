@@ -1553,8 +1553,314 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		addEEnumLiteral(cardinalityTypeEEnum, CardinalityType.ZERO_INFINITY);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the generic description of element structures.\r\n<br />\r\nElement structures are always based on a specific metamodel but may impose further restrictions. For example, one may describe a structure containing of an element (Class) which holds exactly one element (Class) via a certain reference (Reference), although the metamodel allows for an unlimited number of elements referenced via this reference. Another example is the description of certain constraints for values of attributes (Attribute)."
+		   });	
+		addAnnotation
+		  (metaModelElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The super type for all specific types that can be used to describe element structures."
+		   });	
+		addAnnotation
+		  (getMetaModelElement__GetContainingSection(), 
+		   source, 
+		   new String[] {
+			 "body", "MetaModelElement<S,C,R,A> element = this;\r\n\r\n// move upwards in the hierarchy\r\nwhile(element.eContainer() instanceof MetaModelElement) {\r\n\telement = (MetaModelElement<S,C,R,A>) element.eContainer();\r\n}\r\n\r\nif(element instanceof Section || element.eContainer() instanceof ContainerParameter) {\r\n\t// we have found the section\r\n\treturn (S) element;\r\n} else if((element instanceof TargetSectionAttribute && (element.eContainer() instanceof AttributeParameter || element.eContainer() instanceof ResourceParameter)) || \r\n\t\t(element instanceof TargetSectionCrossReference) && element.eContainer() instanceof ExternalReferenceParameter) {\r\n\tLibraryEntry libEntry = (LibraryEntry) element.eContainer().eContainer();\r\n\tfor (LibraryParameter<?> param : libEntry.getParameters()) {\r\n\t\t//TODO if multiple container parameters exist, there might need to be additional logic\r\n\t\tif(param instanceof ContainerParameter) {\r\n\t\t\treturn (S) ((ContainerParameter) param).getClass_();\r\n\t\t}\r\n\t}\r\n\treturn null;\r\n} else  if(element instanceof VirtualTargetSectionAttribute && element.eContainer() instanceof LibraryEntry) {\r\n\tLibraryEntry libEntry = (LibraryEntry) element.eContainer();\r\n\tfor (LibraryParameter<?> param : libEntry.getParameters()) {\r\n\t\t//TODO if multiple container parameters exist, there might need to be additional logic\r\n\t\tif(param instanceof ContainerParameter) {\r\n\t\t\treturn (S) ((ContainerParameter) param).getClass_();\r\n\t\t}\r\n\t}\r\n\treturn null;\r\n} else {\r\n\t// something went wrong\r\n\treturn null;\r\n}"
+		   });	
+		addAnnotation
+		  (getMetaModelElement__GetContainingSectionModel(), 
+		   source, 
+		   new String[] {
+			 "body", "S section = this.getContainingSection();\r\n\r\nEObject container = section.eContainer();\r\nwhile(!(container instanceof SectionModel)) {\r\n\t// we have reached the root element\r\n\tif(container == null) {\r\n\t\treturn null;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\nreturn (SectionModel<S, C, R, A>) container;"
+		   });	
+		addAnnotation
+		  (getMetaModelElement__IsLibraryEntry(), 
+		   source, 
+		   new String[] {
+			 "body", "return (this.getContainingSection().eContainer() instanceof ContainerParameter);"
+		   });	
+		addAnnotation
+		  (classEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents one element (as an instance of an EClass) of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."
+		   });	
+		addAnnotation
+		  (getClass__IsContainerFor__Class(), 
+		   source, 
+		   new String[] {
+			 "body", "C container = containedClass.getContainer();\r\n\t\t\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif(container == null) {\r\n\treturn false;\r\n// this is the container\r\n} else if(this.equals(container)) {\r\n\treturn true;\r\n// one of the extended sections is the container\r\n} else if(container instanceof Section && ((Section) container).getExtend().contains(this)) {\r\n\treturn true;\r\n// this was not the container, so iterate up in the containment hierarchy\r\n} else {\r\n\treturn isContainerFor(container);\r\n}"
+		   });	
+		addAnnotation
+		  (getClass__IsContainedIn__Class(), 
+		   source, 
+		   new String[] {
+			 "body", "EList<C> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nBasicEList<R> refs = new BasicEList<>(containerClass.getReferences());\r\nif(containerClass instanceof Section) {\r\n\tEList<Section> sections = ((Section) containerClass).getExtend(); \r\n\tfor (Section s : sections) {\r\n\t\trefs.addAll(s.getReferences());\r\n\t}\r\n}\r\n\r\nfor (R ref : containerClass.getReferences()) {\r\n\tif(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof CompositeReference<?,?,?,?>){\r\n\t\tcontainedClasses.addAll(((CompositeReference<S,C,R,A>) ref).getValue());\r\n\t} else if(ref instanceof CrossReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((CrossReference) ref).getValue());\r\n\t}\r\n}\r\n\t\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (C containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedIn(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\n\r\nreturn found;"
+		   });	
+		addAnnotation
+		  (getClass__GetOwningContainmentReference(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.eContainer() instanceof CompositeReference<?,?,?,?>) {\r\n\treturn (CompositeReference<S,C,R,A>) this.eContainer();\r\n} else {\r\n\treturn null;\r\n}"
+		   });	
+		addAnnotation
+		  (getClass__IsReferencedBy__Class_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "if(referencedClasses == null) {\r\n\treferencedClasses = new BasicEList<>();\r\n}\r\nBasicEList<C> classes = new BasicEList<>();\r\n\r\n// collect all classes that are referenced\r\nfor (R ref : referencingClass.getReferences()) {\r\n\r\n\tif(ref instanceof ContainmentReference<?,?,?,?>){\r\n\t\tclasses.addAll(((ContainmentReference<S,C,R,A>) ref).getValue());\r\n\t} else if(ref instanceof MetaModelSectionReference) {\r\n\t\tclasses.addAll((Collection<? extends C>) ((MetaModelSectionReference) ref).getValue());\r\n\t} else if(ref instanceof NonContainmentReference){\r\n\t\tclasses.addAll(((NonContainmentReference<S,C,R,A>) ref).getValue());\r\n\t}\r\n}\r\n\r\n// recursively iterate over all referenced classes\r\nfor (C clazz : classes) {\r\n\tif(clazz.equals(this) || isReferencedBy(clazz, referencedClasses)) {\r\n\t\treturn true;\r\n\t} else {\r\n\t\tif(!referencedClasses.contains(clazz)) {\r\n\t\t\treferencedClasses.add(clazz);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nreturn false;"
+		   });	
+		addAnnotation
+		  (getClass__ValidateEClassMatchesParentEReference__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.generic.ActualReference%><?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eClass \'\" + this.eClass().getName() + \"\' is not allowed by the containing reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ECLASS }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getClass__ValidateCardinalityIsValid__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.generic.ActualReference%><?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();\r\n\r\nif(parentReference.getEReference() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = !(this.cardinality != <%pamtram.structure.generic.CardinalityType%>.ONE && parentReference.getEReference().getUpperBound() == 1);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The cardinality of a Class must be specified as \'CardinalityType::ONE\' when the upper bound of the containing Reference is \'1\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.CLASS__VALIDATE_CARDINALITY_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CARDINALITY }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getClass__ValidateContainerIsValid__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this instanceof <%pamtram.structure.generic.Section%><?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The \'container\' refrence must point to the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CONTAINER }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getClass_EClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The metamodel element (EClass) that this Class represents."
+		   });	
+		addAnnotation
+		  (getClass_Cardinality(), 
+		   source, 
+		   new String[] {
+			 "documentation", "This can be used to specify a cardinality constraint for this element.\r\n<br />\r\nFor example, setting this to \'ONE\' means that exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections)."
+		   });	
+		addAnnotation
+		  (getClass_References(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of References based on which further elements of the element structure a specified."
+		   });	
+		addAnnotation
+		  (getClass_Container(), 
+		   source, 
+		   new String[] {
+			 "documentation", "This can be used to specify additional constraints on the containment structure of the current element structure.\r\n<br />\r\nFor SourceSections: By setting the \'container\' reference, SourceSections will only be matched if the specified container Class can also be matched in the source model.\r\n<br />\r\nFor TargetSections: Created target structures will automatically connected to (contained by) an instance of the specified container Class."
+		   });	
+		addAnnotation
+		  (getClass_Attributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of Attribute further describing the current element.\r\n<br />\r\nSpecified attributes can e.g. be equipped with additional constraints (for SourceSections) or can be set via an AttributeMapping (for TargetSections)."
+		   });	
+		addAnnotation
+		  (getClass_AllContainer(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = new <%java.util.ArrayList%><>();\r\nif(this.getContainer() != null) {\r\n\tret.add(this.getContainer());\r\n\tret.addAll(this.getContainer().getAllContainer());\r\n\t\r\n\tif(this.getContainer() instanceof <%pamtram.structure.generic.Section%><?, ?, ?, ?>) {\t\t\t\t\r\n\t\tret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend());\r\n\t\tret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend().stream().flatMap(s -> s.getAllContainer().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\t}\r\n}\r\n\r\nret = ret.stream().distinct().collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CONTAINER,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllContainer(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of recursively collected \'container\' Classes."
+		   });	
+		addAnnotation
+		  (sectionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A special Class that represents the root element (as an instance of an EClass) of an element structure.\r\n<br />\r\nNote: Every specified structure must contain one and only one Section element (its root element)."
+		   });	
+		addAnnotation
+		  (getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getContainer() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().allMatch(\r\n\t\te -> e.getContainer() == null || e.getContainer() == this.getContainer());\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The section extends a section that specifies a different container!\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new BasicDiagnostic\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tGenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\t}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSection__ValidateExtendsValidSections__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null\r\n\t\t&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSection_Abstract(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If set to \'true\', this Section can be extended by other specified Sections (via the \'extend\' reference) which will then recursively inherit the structure specified by this Section (all contained Attributes, References and Classes).\r\n<br /><br />\r\nNote: Abstract Sections will not be (directly) matched against a source model. Consequently, Mappings based on abstract Sections will never be executed. Such mappings can however be used to specifiy abstract MappingHintGroups which can be extended by concrete MappingHintGroups that are based on a concrete Sub-Section of this abstract Section."
+		   });	
+		addAnnotation
+		  (getSection_Extend(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of (abstract) Sections that this Section extends.\r\n<br /><br />\r\nThis Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes)."
+		   });	
+		addAnnotation
+		  (getSection_AllExtend(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = new <%java.util.ArrayList%><>(this.getExtend());\r\n\r\nret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\nret = ret.stream().distinct().collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTEND,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getSection_AllExtend(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of recursively collected (abstract) extended Sections."
+		   });	
+		addAnnotation
+		  (referenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getReference_OwningClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Class containing this Reference."
+		   });	
+		addAnnotation
+		  (actualReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference (as an instance of an EReference) of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getActualReference__ValidateEReferenceMatchesParentEClass__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof <%pamtram.structure.generic.Class%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((<%pamtram.structure.generic.Class%><?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getActualReference_EReference(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The metamodel element (EReference) that this Reference represents."
+		   });	
+		addAnnotation
+		  (virtualReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of an element structure. In contrast to \'actual\' References, \'virtual\' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified by the modeler by means of additional language elements (dependent on the concrete sub-type)."
+		   });	
+		addAnnotation
+		  (compositeReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of an element structure. CompositeReferences can be used to describe the tree that is the basis of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getCompositeReference__ValidateEReferenceIsContainment__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%org.eclipse.emf.ecore.EReference%> reference = this instanceof <%pamtram.structure.generic.ActualReference%> ? ((ActualReference<?, ?, ?, ?>) this).getEReference() : null;\r\n\r\nboolean result = reference == null || reference.isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + reference.getName() + \"\' is no containment reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCompositeReference_Value(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of elements (Classes) further describing the element structure."
+		   });	
+		addAnnotation
+		  (crossReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of an element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getCrossReference__ValidateValuesMatchReferenceType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%org.eclipse.emf.ecore.EReference%> reference = this instanceof <%pamtram.structure.generic.ActualReference%> ? ((ActualReference<?, ?, ?, ?>) this).getEReference() : null;\r\n\r\nboolean result = reference == null ? true : this.getValue().parallelStream().allMatch(c -> reference.getEReferenceType().isSuperTypeOf(c.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = this.getValue().parallelStream()\r\n\t\t.filter(c -> !reference.getEReferenceType().isSuperTypeOf(c.getEClass())).count()\r\n\t\t+ \" of the selected target Classes (Value) are not allowed by the selected eReference \'\"\r\n\t\t+ reference.getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CROSS_REFERENCE__VALUE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCrossReference_Value(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of elements (Classes) further describing the element structure."
+		   });	
+		addAnnotation
+		  (attributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of an element structure."
+		   });	
+		addAnnotation
+		  (getAttribute_OwningClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Class containing this Attribute."
+		   });	
+		addAnnotation
+		  (actualAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute (as an instance of an EAttribute) of an element structure."
+		   });	
+		addAnnotation
+		  (getActualAttribute__ValidateAttributeMatchesParentEClass__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.isLibraryEntry() || this.getAttribute() == null || !(this.eContainer() instanceof <%pamtram.structure.generic.Class%><?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\nEClass parentEClass = ((<%pamtram.structure.generic.Class%><?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : parentEClass.getEAllAttributes().contains(this.getAttribute());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eAttribute \'\" + this.getAttribute().getName() + \"\' is not allowed by the containing Class!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getActualAttribute_Attribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The metamodel element (EAttribute) that this Attribute represents."
+		   });	
+		addAnnotation
+		  (virtualAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of an element structure. In contrast to \'actual\' Attributes, \'virtual\' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.\r\n<br />\r\n As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually by means of additional language elements (dependent on the concrete sub-type)."
+		   });	
+		addAnnotation
+		  (cardinalityTypeEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of cardinality constraint for an element."
+		   });	
+		addAnnotation
+		  (cardinalityTypeEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "Exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections)."
+		   });	
+		addAnnotation
+		  (cardinalityTypeEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "At least one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).\r\n<br /><br />\r\nFor elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings)."
+		   });	
+		addAnnotation
+		  (cardinalityTypeEEnum.getELiterals().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "Zero or any number of elements must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).\r\n<br /><br />\r\nFor elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings)."
+		   });
 	}
 
 	/**

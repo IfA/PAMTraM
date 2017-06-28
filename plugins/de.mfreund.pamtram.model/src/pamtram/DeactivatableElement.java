@@ -9,6 +9,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Deactivatable Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A DeactivatableElement can be deactivated by the user (e.g. via the model editor). Deactivated elements will be ignored by the transformation algorithm executing the PAMTraM model.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -30,6 +34,9 @@ public interface DeactivatableElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If set to 'true', this element (and possible sub-elements) will be ignored during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Deactivated</em>' attribute.
 	 * @see #setDeactivated(boolean)
 	 * @see pamtram.PamtramPackage#getDeactivatableElement_Deactivated()

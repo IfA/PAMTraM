@@ -677,8 +677,140 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of source element structures (aka SourceSections). These form the left-hand side (LHS) of a mapping."
+		   });	
+		addAnnotation
+		  (sourceSectionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A special SourceSectionClass that represents the root element (as an instance of an EClass) of an element structure in a source model.\r\n<br />\r\nNote: Every specified source model structure must contain one and only one SourceSection element (its root element)."
+		   });	
+		addAnnotation
+		  (getSourceSection__ValidateIsReferencedByMapping__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !this.getReferencingMappings().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section is not referenced by any mapping!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tSourceValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSourceSection_ReferencingMappings(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\nList<<%pamtram.mapping.Mapping%>> mappings = new <%java.util.ArrayList%><>();\r\n\r\nif (this.eResource() != null) {\r\n\r\n\tmappings = this.eResource().getResourceSet().getResources().stream()\r\n\t\t\t.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)\r\n\t\t\t.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())\r\n\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n}\r\n\r\nList<Mapping> referencingMappings = mappings.stream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%><>(this, <%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,\r\n\t\treferencingMappings.size(), referencingMappings.toArray());"
+		   });	
+		addAnnotation
+		  (getSourceSection_ReferencingMappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "All Mappings that are based on this SourceSection (that specify this as their \'sourceSection\')."
+		   });	
+		addAnnotation
+		  (sourceSectionClassEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents one element (as an instance of an EClass) of a source model element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."
+		   });	
+		addAnnotation
+		  (getSourceSectionClass_IncludeSubTypes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "Whether this shall also represent source model elements that are instances of sub-classes of the specified EClass."
+		   });	
+		addAnnotation
+		  (sourceSectionReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of a source model element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getSourceSectionReference_IgnoreUnmatchedElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "This determines the matching behavior in the case that there are source model elements that are not covered by one of the Classes specified as \'value\' for this Reference.\r\n<br /><br />\r\nIf this is set to \'true\', the source model excerpt will nonetheless be declared a match for this SourceSection.\r\n<br />\r\nIf this is set to \'false\', the source model excerpt will NOT be declared a match. This means, that all source model elements referenced via this Reference need to matched against Classes specified as \'value\' for this Reference."
+		   });	
+		addAnnotation
+		  (sourceSectionCompositeReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference (as an instance of an EReference) of a source model element structure. CompositeReferences can be used to describe the tree that is the basis of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (sourceSectionCrossReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference (as an instance of an EReference) of a source model element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (virtualSourceSectionCrossReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of a source model element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference.\r\n<br /><br />\r\nIn contrast to \'actual\' References, \'virtual\' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified manually. Therefore, a \'derivation\' specification has to be given by the modeler."
+		   });	
+		addAnnotation
+		  (getVirtualSourceSectionCrossReference__ValidateDerivation__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif (this.getDerivation() == null || this.getDerivation().isEmpty()\r\n\t\t|| !(this.eContainer() instanceof SourceSectionClass)\r\n\t\t|| ((<%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = true;\r\nString parserException = \"\";\r\n\r\ntry {\r\n\t<%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());\r\n} catch (<%org.eclipse.ocl.ParserException%> e) {\r\n\tresult = false;\r\n\tparserException = e.getMessage();\r\n\te.printStackTrace();\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The specified derivation is not valid! The following error was provided: \" + parserException;\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tSourceValidator.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__VALIDATE_DERIVATION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getVirtualSourceSectionCrossReference_Derivation(), 
+		   source, 
+		   new String[] {
+			 "documentation", "An OCL expression describing the derivation of the actual instances of the specified target Classes."
+		   });	
+		addAnnotation
+		  (sourceSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of a source model element structure."
+		   });	
+		addAnnotation
+		  (getSourceSectionAttribute_ValueConstraints(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of ValueConstraints that specify a single reference value or a list/range of reference values which the actual attribute value must or must not satisfy.\r\n<br /><br />\r\nA certain attribute (value) in a source model will only match against this Attribute if all specified constraints are met."
+		   });	
+		addAnnotation
+		  (actualSourceSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute (as an instance of an EAttribute) of a source model element structure."
+		   });	
+		addAnnotation
+		  (virtualSourceSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of a source model element structure. In contrast to \'actual\' Attributes, \'virtual\' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.\r\n<br />\r\n As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually. Therefore, a \'derivation\' specification has to be given by the modeler."
+		   });	
+		addAnnotation
+		  (getVirtualSourceSectionAttribute__ValidateDerivation__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif (this.getDerivation() == null || this.getDerivation().isEmpty()\r\n\t\t|| !(this.eContainer() instanceof SourceSectionClass)\r\n\t\t|| ((<%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = true;\r\nString parserException = \"\";\r\n\r\ntry {\r\n\t<%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());\r\n} catch (<%org.eclipse.ocl.ParserException%> e) {\r\n\tresult = false;\r\n\tparserException = e.getMessage();\r\n\te.printStackTrace();\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The specified derivation is not valid! The following error was provided: \" + parserException;\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tSourceValidator.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getVirtualSourceSectionAttribute_Derivation(), 
+		   source, 
+		   new String[] {
+			 "documentation", "An OCL expression describing the derivation of the actual value(s) of this attribute."
+		   });
 	}
 
 	/**

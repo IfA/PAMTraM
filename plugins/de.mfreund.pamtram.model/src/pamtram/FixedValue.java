@@ -12,6 +12,10 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * A representation of the model object '<em><b>Fixed Value</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This simply represents a certain numeric or literal value. It can be used e.g. as part of an AttributeMapping to specify the value of a TargetSectionAttribute.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -32,6 +36,9 @@ public interface FixedValue extends NamedElement, AttributeMappingSourceInterfac
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The numeric or literal value.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see pamtram.PamtramPackage#getFixedValue_Value()

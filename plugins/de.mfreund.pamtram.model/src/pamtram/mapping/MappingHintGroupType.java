@@ -19,6 +19,10 @@ import pamtram.structure.target.TargetSection;
  * A representation of the model object '<em><b>Hint Group Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An abstract super-type for elements describing some kind of MappingHintGroup that will lead to the instantiation of a specified TargetSection.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -45,6 +49,9 @@ public interface MappingHintGroupType extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The TargetSection to be instantiated based on this MappingHintGroup.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Section</em>' reference.
 	 * @see #setTargetSection(TargetSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_TargetSection()
@@ -72,6 +79,11 @@ public interface MappingHintGroupType extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An optional list of MappingHints refining this Mapping resp. MappingHintGroup.
+	 * <br /><br />
+	 * MappingHints can be used to assist the transformation algorithm in the instantiation of TargetSections. For example, AttributeMappings can be added that specify how to set the values of the Attributes defined as part of the TargetSection.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mapping Hints</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_MappingHints()
 	 * @model containment="true"
@@ -88,6 +100,13 @@ public interface MappingHintGroupType extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * One or multiple MappingHintGroups (that are part of an 'abstract' Mapping) which shall be extended by this MappingHintGroup.
+	 * <br />
+	 * All MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.
+	 * <br /><br />
+	 * Note: If an extended Group defines a MappingHint affecting the same element of a TargetSection as a MappingHint defined locally in this group, it will not be added. As a result, local MappingHints will always overwrite MappingHints imported from extended Groups.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_Extend()
 	 * @model

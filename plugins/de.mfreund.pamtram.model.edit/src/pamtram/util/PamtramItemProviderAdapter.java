@@ -22,6 +22,7 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.edit.CommonItemProviderAdapter;
 import de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy;
 import de.tud.et.ifa.agtele.emf.edit.IDragAndDropProvider;
+import de.tud.et.ifa.agtele.help.IEMFModelHelpItemProvider;
 import de.tud.et.ifa.agtele.ui.emf.edit.UserChoiceCommandSelectionStrategy;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
@@ -38,7 +39,7 @@ import pamtram.PamtramPackage;
  * @author mfreund
  */
 public class PamtramItemProviderAdapter extends CommonItemProviderAdapter
-		implements INamedElementChildrenChangeNotifier, IDragAndDropProvider {
+		implements INamedElementChildrenChangeNotifier, IDragAndDropProvider, IEMFModelHelpItemProvider {
 
 	/**
 	 * This is used to store all the children features that have influence on

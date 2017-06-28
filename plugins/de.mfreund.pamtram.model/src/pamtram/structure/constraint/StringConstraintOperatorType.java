@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>String Constraint Operator Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * The type of String-based comparison to be performed.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.constraint.ConstraintPackage#getStringConstraintOperatorType()
  * @model
  * @generated
@@ -76,6 +79,9 @@ public enum StringConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be equal to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #MATCH_EQUAL
 	 * @model
 	 * @generated
@@ -91,6 +97,9 @@ public enum StringConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must begin with the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #MATCH_BEGINNING
 	 * @model
 	 * @generated
@@ -106,6 +115,9 @@ public enum StringConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must end with the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #MATCH_ENDING
 	 * @model
 	 * @generated
@@ -121,6 +133,9 @@ public enum StringConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must contain the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #MATCH_SUBSTRING
 	 * @model
 	 * @generated
@@ -136,6 +151,9 @@ public enum StringConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must satisfy the regular expression specified by the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #MATCH_REGEX
 	 * @model
 	 * @generated

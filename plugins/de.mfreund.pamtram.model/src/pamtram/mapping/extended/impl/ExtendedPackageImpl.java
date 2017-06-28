@@ -1428,8 +1428,386 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		initEClass(externalMappedAttributeValueAppenderEClass, ExternalMappedAttributeValueAppender.class, "ExternalMappedAttributeValueAppender", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of MappingHints (i.e. related to the description of \'extended\' mappings)."
+		   });	
+		addAnnotation
+		  (mappingHintBaseTypeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for all MappingHints."
+		   });	
+		addAnnotation
+		  (mappingHintTypeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for all MappingHints."
+		   });	
+		addAnnotation
+		  (mappingHintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for all MappingHints that can be used in MappingHintGroups."
+		   });	
+		addAnnotation
+		  (expandableHintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for all MappingHints that can be defined in ExportedMappingHintGroups and afterwards refined/expanded in MappingHintGroupImporters."
+		   });	
+		addAnnotation
+		  (hintImporterMappingHintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An abstract super-type for all MappingHints that can be used in MappingHintGroupImporters."
+		   });	
+		addAnnotation
+		  (mappingHintSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' to calculate the value of a MappingHint."
+		   });	
+		addAnnotation
+		  (globalAttributeImporterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This specifies a source element whose value is based on the value of a GlobalAttribute. GlobalAttributes can thereby be used to store the value of a SourceSectionAttribute in a reusable way.\r\n<br />\r\nThe value of a GlobalAttribute can thereby be reused in various calculations (e.g. in AttributeMappings). In contrast to the \'local\' usage of an Attribute value in a calculation, GlobalAttributes can be reused as part of any Mapping - the Attribute does not need to be part of the SourceSection associated with the Mapping."
+		   });	
+		addAnnotation
+		  (getGlobalAttributeImporter_GlobalAttribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The GlobalAttribute based on which the value of this element is determined."
+		   });	
+		addAnnotation
+		  (attributeMappingEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHint that tells the transformation algorithm how determine the value of a TargetSectionAttribute in the course of a transformation.\r\n<br /><br />\r\nThe value is thereby determined based on the list of specified \'sourceElements\' and an optional (mathematical) \'expression\'.\r\n<br />\r\nIf the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.\r\n<br />\r\nIf an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named \'x\' is specified, a valid expression to double the value of this element would be \"2*x\".\r\n<br /><br />\r\nNote: As SourceSectionAttributes may be matched multiple times in a single source model excerpt, an AttributeMapping based on such a source element may result in multiple determined values. If this is the case, the specified \'target\' attribute (and if necessary the containing TargetSectionClass) will be instantiated multiple times."
+		   });	
+		addAnnotation
+		  (getAttributeMapping__GetLocalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "\t\tEList<AttributeMappingSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingSourceElement>();\r\n\t\t\r\n\t\tfor(AttributeMappingSourceInterface i : this.getSourceElements()){\r\n\t\t\tif(i instanceof AttributeMappingSourceElement){\r\n\t\t\t\telements.add((AttributeMappingSourceElement) i);\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\treturn elements;"
+		   });	
+		addAnnotation
+		  (getAttributeMapping__GetExternalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "EList<AttributeMappingExternalSourceElement> elements= new org.eclipse.emf.common.util.BasicEList<AttributeMappingExternalSourceElement>();\r\n\r\nfor(AttributeMappingSourceInterface i : this.getSourceElements()){\r\n\tif(i instanceof AttributeMappingExternalSourceElement){\r\n\t\telements.add((AttributeMappingExternalSourceElement) i);\r\n\t}\r\n}\r\n\r\nreturn elements;"
+		   });	
+		addAnnotation
+		  (getAttributeMapping__ValidateTargetAttributeMatchesSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());\r\n\r\nboolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target attribute \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \" + ((MappingHintGroupType) this.eContainer()).getName() + \"!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getAttributeMapping_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionAttribute whose value is determined by this AttributeMapping."
+		   });	
+		addAnnotation
+		  (getAttributeMapping_SourceElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of \'sourceElements\' based on which the value of the \'target\' Attribute is determined."
+		   });	
+		addAnnotation
+		  (attributeMappingSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' in an AttributeMapping."
+		   });	
+		addAnnotation
+		  (attributeMappingSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for an AttributeMapping.\r\n<br />\r\nThis type is based on the value of a \'local\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'LocalDynamicSourceElement\' for a detailed explanation of the meaning of \'local\' source elements."
+		   });	
+		addAnnotation
+		  (attributeMappingExternalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for an AttributeMapping.\r\n<br />\r\nThis type is based on the value of an \'external\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'ExternalDynamicSourceElement\' for a detailed explanation of the meaning of \'external\' source elements."
+		   });	
+		addAnnotation
+		  (attributeMappingGlobalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for an AttributeMapping.\r\n<br />\r\nThis type is based on the value of a \'global\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'GlobalDynamicSourceElement\' for a detailed explanation of the meaning of \'global\' source elements."
+		   });	
+		addAnnotation
+		  (cardinalityMappingEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHint that tells the transformation algorithm how determine the cardinality of a TargetSectionClass (how often the Class shall be instantiated) in the course of a transformation.\r\n<br /><br />\r\nThe value is thereby determined based on one of two possibilities:\r\n<br />\r\n(1) Based on the list of specified \'sourceElements\' and an optional (mathematical) \'expression\'.\r\n<br />\r\nIf the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.\r\n<br />\r\nIf an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named \'x\' is specified, a valid expression to double the value of this element would be \"2*x\".\r\n<br />\r\n(1) Base on the cardinality of the specified \'source\'.\r\n<br /><br />\r\nNote: Only one of \'sourceElements\' or \'source\' may be specified!"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.getSource() == null || !(this.eContainer().eContainer() instanceof <%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName() + \"\' is not part of the source section referenced by parent mapping \'\" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateTargetClassMatchesSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target class \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + ((MappingHintGroupType) this.eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateSourceClassIsVariableCardinality__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSource() == null || !(this.getSource() instanceof SourceSectionClass) ? true : ((SourceSectionClass) this.getSource()).getCardinality() != CardinalityType.ONE;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Cardinality mappings may only be defined for source classes with a specified cardinality distinct from \'CardinalityType::ONE\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateTargetClassIsVariableCardinality__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getTarget() == null ? true : this.getTarget().getCardinality() != <%pamtram.structure.generic.CardinalityType%>.ONE;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Cardinality mappings may only be defined for target classes with a specified cardinality distinct from \'CardinalityType::ONE\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateNoCardinalityMappingForSourceSectionRoot__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSource() == null ? true : this.getSource() != this.getSource().getContainingSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Cardinality mappings must not be defined for SourceSection root classes!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateOnlySourceOrSourceElements__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSource() == null || this.getSourceElements() == null || this.getSourceElements().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must not specify both a \'source\' and a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify an \'expression\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify \'modifiers\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__GetLocalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__GetExternalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping_Source(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The (optional) \'source\' element whose cardinality is used to determine the cardinality of the \'target\' Class."
+		   });	
+		addAnnotation
+		  (getCardinalityMapping_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionClass whose cardinality is determined by this CardinalityMapping."
+		   });	
+		addAnnotation
+		  (getCardinalityMapping_SourceElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The (optional) list of \'sourceElements\' based on which the cardinality of the \'target\' Class is determined."
+		   });	
+		addAnnotation
+		  (cardinalityMappingSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' in a CardinalityMapping."
+		   });	
+		addAnnotation
+		  (cardinalityMappingSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for a CardinalityMapping.\r\n<br />\r\nThis type is based on the value of a \'local\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'LocalDynamicSourceElement\' for a detailed explanation of the meaning of \'local\' source elements."
+		   });	
+		addAnnotation
+		  (cardinalityMappingExternalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for a CardinalityMapping.\r\n<br />\r\nThis type is based on the value of an \'external\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'ExternalDynamicSourceElement\' for a detailed explanation of the meaning of \'external\' source elements."
+		   });	
+		addAnnotation
+		  (cardinalityMappingGlobalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' for a CardinalityMapping.\r\n<br />\r\nThis type is based on the value of a \'global\' SourceSectionAttribute.\r\n<br /><br />\r\nNote: See the documentation of \'GlobalDynamicSourceElement\' for a detailed explanation of the meaning of \'global\' source elements."
+		   });	
+		addAnnotation
+		  (referenceTargetSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHint that tells the transformation algorithm how determine the target value(s)/instance(s) of a TargetSectionCrossReference in the course of a transformation.\r\n<br /><br />\r\nThe target instances are thereby determined based on the specified \'matcher\'."
+		   });	
+		addAnnotation
+		  (getReferenceTargetSelector__ValidateAffectedReferenceIsNonContainment__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is no non-containment reference!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.getAffectedReference() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();\r\n\r\nboolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + hintGroupName + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getReferenceTargetSelector_AffectedReference(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionCrossReference whose target values are determined by this ReferenceTargetSelector."
+		   });	
+		addAnnotation
+		  (getReferenceTargetSelector_Matcher(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Matcher that is used to determine the target instances for the \'affectedReference\'."
+		   });	
+		addAnnotation
+		  (matcherEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A common super-class for all types that can be used to determine the target instances for a ReferenceTargetSelector."
+		   });	
+		addAnnotation
+		  (classMatcherEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ClassMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.\r\n<br />\r\nThereby, all elements that have been created based on the specified \'targetClass\' will be used as target instances.\r\n<br /><br />\r\nNote: In most cases, a simple ClassMatcher will not be sufficient if not all but only a subset of the instances created based on the denoted \'targetClass\' shall be used. For such more complex use cases, an AttributeMatcher can be used instead."
+		   });	
+		addAnnotation
+		  (getClassMatcher_TargetClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The \'targetClass\' whose created instances will be used as target instances for the containing ReferenceTargetSelector."
+		   });	
+		addAnnotation
+		  (attributeMatcherEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An AttributeMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.\r\n<br />\r\nThereby, a certain subset of the elements that have been created based on the specified \'target\' Attribute (resp. the containing TargetSectionClass) is used as target instances.\r\n<br />\r\nThe selection process is based on the comparison of the value of a the \'target\' attribute of the created instance with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'.\r\n<br /><br />\r\nNote: In cases where all instances created based on the denoted \'target\' Attribute (resp. the containing TargetSectionClass) shall be used, a simple ClassMatcher can be used instead."
+		   });	
+		addAnnotation
+		  (getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(!(this.eContainer() instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>) || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference() == null || ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference() == null || this.getTarget() == null || !(this.getTarget().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = ((ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The type of the class containing the target attribute (\'\" + \r\n\t\t\t((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getTarget().eContainer()).getEClass().getName() + \"\') is not allowed by the affected reference of the parent ReferenceTargetSelector that \" +\r\n\t\t\t\"requires a (sub-)type of \'\" + ((pamtram.mapping.extended.ReferenceTargetSelector) this.eContainer()).getAffectedReference().getEReference().getEReferenceType().getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MATCHER__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getAttributeMatcher_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The specific attribute of the created TargetSections whose value is compared with the reference value used by this matcher."
+		   });	
+		addAnnotation
+		  (containerSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingHint that tells the transformation algorithm how to determine the container element for the instances created based on the TargetSection associated with this HintGroup in the course of a transformation.\r\n<br /><br />\r\nThereby, exactly one of the elements that have been created based on the specified \'targetAttributes\' (resp. the containing TargetSectionClasses) is used as container element.\r\n<br />\r\nThe selection of the container element is based on the comparison of the value of a the \'targetAttributes\' of the created instances with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getContainerSelector_TargetAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The specific attributes of the created TargetSections whose values are compared with the reference value used by this ContainerSelector."
+		   });	
+		addAnnotation
+		  (containerSelectorTargetAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a TargetSectionAttribute whose created instances (resp. the instances created based on the containing TargetSectionClass) are potential candidates for the container element determined by this ContainerSelector."
+		   });	
+		addAnnotation
+		  (getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(!(this.eContainer().eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();\r\n\r\nboolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The type of the parent hint group\'s target section (\'\" + \r\n\t\t((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + \r\n\t\t\"\') cannot be connected to (contained in) the type of the class containing the target attribute (\'\" + \r\n\t\t((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getSource().eContainer()).getName() + \"\')!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (mappedAttributeValueExpanderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A common super-class for MappingHints that can be used inside MappingHintGroupImporters and will expand values determined for an imported MappingHint."
+		   });	
+		addAnnotation
+		  (getMappedAttributeValueExpander__GetSourceAttribute(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this instanceof LocalMappedAttributeValueExpander) {\r\n\treturn ((LocalMappedAttributeValueExpander) this).getSource();\r\n} else if(this instanceof ExternalMappedAttributeValueExpander) {\r\n\treturn ((ExternalMappedAttributeValueExpander) this).getSource();\r\n} else {\r\n\treturn null;\r\n}"
+		   });	
+		addAnnotation
+		  (getMappedAttributeValueExpander_HintsToExpand(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The MappingHint for which determined values are expanded by this Expander."
+		   });	
+		addAnnotation
+		  (localMappedAttributeValueExpanderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local \'source\' Attribute."
+		   });	
+		addAnnotation
+		  (mappedAttributeValuePrependerEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local \'source\' Attribute.\r\n<br /><br />\r\nThe local determined values will thereby be prepended to the imported values."
+		   });	
+		addAnnotation
+		  (mappedAttributeValueAppenderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local \'source\' Attribute.\r\n<br /><br />\r\nThe local determined values will thereby be appended to the imported values."
+		   });	
+		addAnnotation
+		  (externalMappedAttributeValueExpanderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external \'source\' Attribute."
+		   });	
+		addAnnotation
+		  (externalMappedAttributeValuePrependerEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external \'source\' Attribute.\r\n<br /><br />\r\nThe external determined values will thereby be appended to the imported values."
+		   });	
+		addAnnotation
+		  (externalMappedAttributeValueAppenderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external \'source\' Attribute.\r\n<br /><br />\r\nThe external determined values will thereby be appended to the imported values."
+		   });
 	}
 
 	/**

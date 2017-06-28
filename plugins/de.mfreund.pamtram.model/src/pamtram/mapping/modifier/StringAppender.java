@@ -7,6 +7,10 @@ package pamtram.mapping.modifier;
  * A representation of the model object '<em><b>String Appender</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This ValueModifier will modify the (String-based) 'value' by appending the given 'string'.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -28,6 +32,9 @@ public interface StringAppender extends StringModifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The String to be appended.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>String</em>' attribute.
 	 * @see #setString(String)
 	 * @see pamtram.mapping.modifier.ModifierPackage#getStringAppender_String()

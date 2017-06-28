@@ -25,6 +25,9 @@ import pamtram.structure.StructurePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of ValueConstraints that may e.g. be used to describe a restriction/claim of specific values of an attribute in a SourceSection.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.constraint.ConstraintFactory
  * @model kind="package"
  * @generated

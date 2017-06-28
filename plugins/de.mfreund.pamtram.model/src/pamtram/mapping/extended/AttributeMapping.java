@@ -15,6 +15,18 @@ import pamtram.structure.target.TargetSectionAttribute;
  * A representation of the model object '<em><b>Attribute Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappingHint that tells the transformation algorithm how determine the value of a TargetSectionAttribute in the course of a transformation.
+ * <br /><br />
+ * The value is thereby determined based on the list of specified 'sourceElements' and an optional (mathematical) 'expression'.
+ * <br />
+ * If the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.
+ * <br />
+ * If an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named 'x' is specified, a valid expression to double the value of this element would be "2*x".
+ * <br /><br />
+ * Note: As SourceSectionAttributes may be matched multiple times in a single source model excerpt, an AttributeMapping based on such a source element may result in multiple determined values. If this is the case, the specified 'target' attribute (and if necessary the containing TargetSectionClass) will be instantiated multiple times.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -36,6 +48,9 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The TargetSectionAttribute whose value is determined by this AttributeMapping.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(TargetSectionAttribute)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMapping_Target()
@@ -63,6 +78,9 @@ public interface AttributeMapping extends MappingHint, ExpressionElement, Modifi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of 'sourceElements' based on which the value of the 'target' Attribute is determined.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMapping_SourceElements()
 	 * @model containment="true" required="true"

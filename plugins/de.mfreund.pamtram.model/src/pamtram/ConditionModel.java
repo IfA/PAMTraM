@@ -10,6 +10,12 @@ import pamtram.condition.ComplexCondition;
  * A representation of the model object '<em><b>Condition Model</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ConditionModel contains a list of (global, reusable) Conditions which can be attached to ConditionalElements in order to restrain their applicability.
+ * <br />
+ * In order to reference global conditions from a ConditionModel, you have to use a 'sharedCondition(s)' non-containment reference (e.g. present for a ConditionalElement).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +37,9 @@ public interface ConditionModel extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The lis of (global, reusable) Conditions defined by this ConditionModel.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conditions</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getConditionModel_Conditions()
 	 * @model containment="true"

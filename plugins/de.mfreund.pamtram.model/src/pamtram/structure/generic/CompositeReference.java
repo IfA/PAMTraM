@@ -12,6 +12,12 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Containment Reference</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference of an element structure. CompositeReferences can be used to describe the tree that is the basis of an element structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +40,9 @@ public interface CompositeReference<S extends Section<S, C, R, A>, C extends pam
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of elements (Classes) further describing the element structure.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference list.
 	 * @see pamtram.structure.generic.GenericPackage#getCompositeReference_Value()
 	 * @model containment="true"

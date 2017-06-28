@@ -13,6 +13,10 @@ import pamtram.condition.ComplexCondition;
  * A representation of the model object '<em><b>Conditional Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ConditionalElement is an element that can be attached with a Condition which restrains its applicability during the course of a transformation. This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +39,13 @@ public interface ConditionalElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The (locally defined) Condition which restrains the applicability of this element during the course of a transformation.
+	 * <br />
+	 * This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.
+	 * <br />
+	 * Note: Only one of 'localCondition' or 'sharedCondition' may be set for each element!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Local Condition</em>' containment reference.
 	 * @see #setLocalCondition(ComplexCondition)
 	 * @see pamtram.PamtramPackage#getConditionalElement_LocalCondition()
@@ -61,6 +72,13 @@ public interface ConditionalElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The (globally defined) referenced Condition which restrains the applicability of this element during the course of a transformation.
+	 * <br />
+	 * This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.
+	 * <br />
+	 * Note: Only one of 'localCondition' or 'sharedCondition' may be set for each element!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Condition</em>' reference.
 	 * @see #setSharedCondition(ComplexCondition)
 	 * @see pamtram.PamtramPackage#getConditionalElement_SharedCondition()

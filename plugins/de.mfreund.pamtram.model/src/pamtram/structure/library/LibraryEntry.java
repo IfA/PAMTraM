@@ -11,6 +11,12 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
  * A representation of the model object '<em><b>Library Entry</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an element structure to be created in a target model based on a GenLibrary LibraryEntry.
+ * <br />
+ * Instances of this class act as wrapper for GenLibrary entries. This wrapper-based approach allows us to (1) instantiate LibraryEntries during the course of a transformation while (2) relying on the existing mechanisms for MappingHints.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -37,6 +43,9 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of LibraryParameters that need to be specified by the user for a successful instantiation of the LibraryEntry.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Parameters()
 	 * @model containment="true" required="true"
@@ -52,6 +61,9 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The file containing the GenLibrary LibraryEntry that this wraps.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Library File</em>' attribute.
 	 * @see #setLibraryFile(String)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_LibraryFile()
@@ -78,6 +90,11 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The classpath identifying the GenLibrary LibraryEntry that this wraps.
+	 * <br /><br />
+	 * Note: This can be overridden by an AttributeMapping during a transformation. That way, more specific LibraryEntries may be instantiated without having to create an own wrapper for each specific GenLibrary LibraryEntry.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Classpath</em>' containment reference.
 	 * @see #setClasspath(VirtualTargetSectionAttribute)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Classpath()
@@ -104,6 +121,9 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This can be used to specify an optional unique id for the entry to be instantiated. The id will be passed to the GenLibrary instantiation mechanism.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Id</em>' containment reference.
 	 * @see #setId(VirtualTargetSectionAttribute)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_Id()
@@ -131,6 +151,9 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of ResourceParameters that need to be specified by the user for a successful instantiation of the LibraryEntry.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Resource Parameters</em>' containment reference list.
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_ResourceParameters()
 	 * @model containment="true"
@@ -146,6 +169,9 @@ public interface LibraryEntry extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The GenLibrary LibraryEntry that this wraps.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Library Entry</em>' reference.
 	 * @see #setOriginalLibraryEntry(de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryEntry_OriginalLibraryEntry()

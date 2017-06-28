@@ -12,6 +12,15 @@ import pamtram.ConditionalElement;
  * A representation of the model object '<em><b>Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Mapping between a SourceSection and one or multiple TargetSections.
+ * <br /><br />
+ * This Mapping will be executed/applied if the specified SourceSection is matched in the source model. If the SourceSection is matched multiple times, this Mapping will also be executed multiple times.
+ * Each execution of the Mapping will result in the instantiation of each specified TargetSection.
+ * <br /><br />
+ * Note: Each TargetSection to be instantiated is specified via its own MappingHintGroup that can be created as child of the Mapping.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +44,9 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of MappingHintGroups specifying the TargetSections to be instantiated when the Mapping is executed.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mapping Hint Groups</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMapping_MappingHintGroups()
 	 * @model containment="true"
@@ -51,6 +63,9 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of MappingHintGroupImporters specifying imported MappingHintGroups whose TargetSections shall be instantiated when the Mapping is executed.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Mapping Hint Groups</em>' containment reference list.
 	 * @see pamtram.mapping.MappingPackage#getMapping_ImportedMappingHintGroups()
 	 * @model containment="true"
@@ -67,6 +82,11 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If a Mapping is marked as 'abstract', it will not be executed directly. However, the MappingHintGroups contained in other Mappings may extend the MappingHintGroups defined in an abstract Mapping.
+	 * <br />
+	 * Consequently, abstract Mappings can be used to define some kind of template mappings that can be reqused by other (non-abstract) Mappings.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Abstract</em>' attribute.
 	 * @see #setAbstract(boolean)
 	 * @see pamtram.mapping.MappingPackage#getMapping_Abstract()

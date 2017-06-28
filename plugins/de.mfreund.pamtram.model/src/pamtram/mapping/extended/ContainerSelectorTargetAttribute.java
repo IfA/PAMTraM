@@ -16,6 +16,10 @@ import pamtram.structure.target.TargetSectionReference;
  * A representation of the model object '<em><b>Model Connection Hint Target Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a TargetSectionAttribute whose created instances (resp. the instances created based on the containing TargetSectionClass) are potential candidates for the container element determined by this ContainerSelector.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.extended.ExtendedPackage#getContainerSelectorTargetAttribute()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceMatchesPossibleContainerType'"

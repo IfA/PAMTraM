@@ -15,6 +15,12 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>Source Section</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A special SourceSectionClass that represents the root element (as an instance of an EClass) of an element structure in a source model.
+ * <br />
+ * Note: Every specified source model structure must contain one and only one SourceSection element (its root element).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

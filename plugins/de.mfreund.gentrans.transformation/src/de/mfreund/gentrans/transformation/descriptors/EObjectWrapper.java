@@ -11,6 +11,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import pamtram.structure.generic.ActualAttribute;
@@ -84,7 +86,7 @@ public class EObjectWrapper {
 
 	/**
 	 * This is the setter for the {@link #eObject}.
-	 * 
+	 *
 	 * @param eObject
 	 *            The actual {@link EObject} that this shall wrap.
 	 */
@@ -192,12 +194,15 @@ public class EObjectWrapper {
 				} catch (Exception e1) {
 					throw e;
 				}
+			} else if (FeatureMapUtil.isFeatureMap(attr.getAttribute())) {
+				throw new RuntimeException(
+						"Setting values of Attributes of type EFeatureMapEntry is currently not supported!", e);
 			} else {
 				throw e;
 			}
 		}
 
-		if (attr.getAttribute().isMany()) {
+		if (attr.getAttribute().isMany() && !(valueObject instanceof FeatureMap.Entry)) {
 			ArrayList<Object> valueObjectList = new ArrayList<>();
 			valueObjectList.add(valueObject);
 			this.eObject.eSet(attr.getAttribute(), valueObjectList);

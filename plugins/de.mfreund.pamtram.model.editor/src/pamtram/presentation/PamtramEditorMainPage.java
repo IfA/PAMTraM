@@ -275,7 +275,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.SOURCE));
+						this.editor.getEditingDomain(), SharedModelType.SOURCE),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
@@ -293,7 +294,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.CONDITION));
+						this.editor.getEditingDomain(), SharedModelType.CONDITION),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.conditionViewer = this.conditionViewerGroup.getViewer();
 		this.conditionViewer.setContentProvider(new ConditionContentProvider(this.adapterFactory));
 		this.conditionViewer.setInput(this.editor.pamtram);
@@ -321,7 +323,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Mappings",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.MAPPING));
+						this.editor.getEditingDomain(), SharedModelType.MAPPING),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.mappingViewer = this.mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an
@@ -351,7 +354,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				"Modifier Sets and Global Values", new TreeViewerGroupToolbarAddButtonOption(),
 				new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.MAPPING));
+						this.editor.getEditingDomain(), SharedModelType.MAPPING),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.globalElementsViewer = this.globalElementsViewerGroup.getViewer();
 
 		this.globalElementsViewer.setContentProvider(new ModifierSetContentProvider(this.adapterFactory));
@@ -384,7 +388,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Target Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.TARGET));
+						this.editor.getEditingDomain(), SharedModelType.TARGET),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.targetViewer = this.targetViewerGroup.getViewer();
 
@@ -403,7 +408,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Library Element Target Sections", new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportLibraryEntryButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain()));
+						this.editor.getEditingDomain()),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.libTargetViewer = this.libTargetViewerGroup.getViewer();
 

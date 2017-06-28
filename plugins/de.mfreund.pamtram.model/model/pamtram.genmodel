@@ -620,8 +620,9 @@
       <genClasses ecoreClass="pamtram.ecore#//mapping/MappingHintGroupImporter">
         <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The ExportedMappingHintGroup that this importer imports."
             propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/hintGroup"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+            propertyDescription="An optional TargetSectionClass that (resp. instances of that) will be used as container for the instances created based on the TargetSection denoted by the imported MappingHintGroup."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupImporter/getActiveMappingHints"/>
       </genClasses>

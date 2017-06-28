@@ -1911,7 +1911,11 @@
           <details key="documentation" value="This represents an attribute of a source model element structure."/>
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" upperBound="-1"
-            eType="#//structure/constraint/ValueConstraint" containment="true"/>
+            eType="#//structure/constraint/ValueConstraint" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A list of ValueConstraints that specify a single reference value or a list/range of reference values which the actual attribute value must or must not satisfy.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;A certain attribute (value) in a source model will only match against this Attribute if all specified constraints are met."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -2313,6 +2317,9 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexCondition" abstract="true"
         eSuperTypes="#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The super type for all specific Condition types."/>
+      </eAnnotations>
       <eOperations name="isLocalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eOperations name="isMappingCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2330,6 +2337,9 @@
         eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="minimalNumberOfArgs"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A Condition that is composed of multiple sub-conditions.&#xD;&#xA;&lt;br />&#xD;&#xA;The sub-conditions can be specified locally (via the 'localCondParts' reference) and/or globally (specified via the 'sharedCondParts' reference)."/>
       </eAnnotations>
       <eOperations name="referencesOnlyValidConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2349,15 +2359,34 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localCondParts" upperBound="-1"
-          eType="#//condition/ComplexCondition" containment="true"/>
+          eType="#//condition/ComplexCondition" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of locally defined sub-conditions."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondParts" upperBound="-1"
-          eType="#//condition/ComplexCondition"/>
+          eType="#//condition/ComplexCondition">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of globally specified sub-conditions."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/VariadicCondition"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/VariadicCondition"/>
+    <eClassifiers xsi:type="ecore:EClass" name="And" eSuperTypes="#//condition/VariadicCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A Condition that evaluates to 'true' only if ALL specified sub-conditions evaluate to 'true'.&#xD;&#xA;&lt;br />&#xD;&#xA;The sub-conditions can be specified locally (via the 'localCondParts' reference) and/or globally (specified via the 'sharedCondParts' reference)."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Or" eSuperTypes="#//condition/VariadicCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A Condition that evaluates to 'true' if AT LEAST ONE of the specified sub-conditions evaluates to 'true'.&#xD;&#xA;&lt;br />&#xD;&#xA;The sub-conditions can be specified locally (via the 'localCondParts' reference) and/or globally (specified via the 'sharedCondParts' reference)."/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnaryCondition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="exactlyOneArg"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A Condition that is composed of exactly one sub-condition.&#xD;&#xA;&lt;br />&#xD;&#xA;The sub-condition can be specified locally (via the 'localCondPart' reference) or globally (specified via the 'sharedCondPart' reference)."/>
       </eAnnotations>
       <eOperations name="validateExactlyOneArg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2372,12 +2401,23 @@
         </eParameters>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="localCondPart" eType="#//condition/ComplexCondition"
-          containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondPart" eType="#//condition/ComplexCondition"/>
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The locally defined sub-condition.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sharedCondPart" eType="#//condition/ComplexCondition">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The globally specified sub-condition.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Not" eSuperTypes="#//condition/UnaryCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="referenceOnlyConditionsFromConditionModelOrFromConditionalElements"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A Condition that evaluates to 'true' if the specified sub-condition evaluates to 'false'.&#xD;&#xA;&lt;br />&#xD;&#xA;The sub-condition can be specified locally (via the 'localCondPart' reference) or globally (specified via the 'sharedCondPart' reference)."/>
       </eAnnotations>
       <eOperations name="validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -2394,41 +2434,92 @@
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Condition" abstract="true" eSuperTypes="#//condition/ComplexCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The super type for all Condition types that are not only simple logical compositions of sub-conditions."/>
+      </eAnnotations>
       <eTypeParameters name="TargetType"/>
       <eOperations name="checkCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="condition" eType="#//condition/ComplexCondition"/>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-          defaultValueLiteral="1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum"/>
+          defaultValueLiteral="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Together with the defined 'comparator', this specifies how often/for how many of the elements matched for the specified 'target' element this Condition needs to be fulfilled.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For example, if 'value' is set to '1' and 'comparator is set to 'GE', the condition needs to be fulfilled at least once."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparator" eType="#//condition/ComparatorEnum">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Together with the defined 'value', this specifies how often/for how many of the elements matched for the specified 'target' element this Condition needs to be fulfilled.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For example, if 'value' is set to '1' and 'comparator is set to 'GE', the condition needs to be fulfilled at least once."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The element on which this condition is evaluated.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: As the specified 'target' element may be matched multiple times in a source model, additional restrictions on how often this condition should be met may be specified via the 'value' and 'comparator' attributes."/>
+        </eAnnotations>
         <eGenericType eTypeParameter="#//condition/Condition/TargetType"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors" upperBound="-1"
-          eType="#//structure/SourceInstanceSelector" containment="true"/>
+          eType="#//structure/SourceInstanceSelector" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A list of InstanceSelectors that can be used to restrict the application of this condition: &#xD;&#xA;&lt;br />&#xD;&#xA;The specified 'target' element may be matched multiple times in a source model. However, the Condition will only evaluated for those matches that are identified by the specified list of InstanceSelectors."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ComparatorEnum">
-      <eLiterals name="EQ" literal="EQ"/>
-      <eLiterals name="GT" value="1" literal="GT"/>
-      <eLiterals name="LT" value="2" literal="LT"/>
-      <eLiterals name="GE" value="3" literal="GE"/>
-      <eLiterals name="LE" value="4" literal="LE"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This specifies how two values shall be compared."/>
+      </eAnnotations>
+      <eLiterals name="EQ" literal="EQ">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The value to be checked needs to be equal to the reference value."/>
+        </eAnnotations>
+      </eLiterals>
+      <eLiterals name="GT" value="1" literal="GT">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The value to be checked needs to be greater than the reference value."/>
+        </eAnnotations>
+      </eLiterals>
+      <eLiterals name="LT" value="2" literal="LT">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The value to be checked needs to be less than the reference value."/>
+        </eAnnotations>
+      </eLiterals>
+      <eLiterals name="GE" value="3" literal="GE">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The value to be checked needs to be greater than or equal to the reference value."/>
+        </eAnnotations>
+      </eLiterals>
+      <eLiterals name="LE" value="4" literal="LE">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The value to be checked needs to be less than or equal to the reference value."/>
+        </eAnnotations>
+      </eLiterals>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AttributeCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This condition can be used to check the value of an Attribute."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" lowerBound="1"
-          upperBound="-1" eType="#//structure/constraint/ValueConstraint" containment="true"/>
+          upperBound="-1" eType="#//structure/constraint/ValueConstraint" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A list of ValueConstraints that specify a single reference value or a list/range of reference values which the value of the 'target' Attribute must or must not satisfy.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;A certain attribute (value) in a source model will only match against the specified 'target' Attribute if all specified constraints are met."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
         <eTypeArguments eClassifier="#//structure/source/ActualSourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This condition can be used to check the cardinality of a Class (how often the class is present in the matched source model excerpt)."/>
+      </eAnnotations>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
         <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependency">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A condition that allows to check whether another 'ConditionalElement' was applied/executed (at least once; exactly n times; for the concrete section instance specified via the given 'InstancePointer', ...).&#xD;&#xA;"/>
+        <details key="documentation" value="A condition that allows to check whether another 'ConditionalElement' was applied/executed a certain number of times.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;This can e.g. be used to create dependencies between mappings like &quot;Only execute this mapping, if another mapping was applied for a certain part of a source model&quot;.&#xD;&#xA;"/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
         <eTypeArguments eClassifier="#//ConditionalElement"/>

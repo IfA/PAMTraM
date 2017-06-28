@@ -2895,26 +2895,60 @@
     <eSubpackages name="extended" nsURI="http://mfreund.de/pamtram/mapping/extended"
         nsPrefix="extended">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This package contains all elements related to the description of Mappings between a SourceSection (representing its left-hand side) and one or multiple TargetSections (representing its right-hand side)."/>
+        <details key="documentation" value="This package contains all elements related to the description of MappingHints (i.e. related to the description of 'extended' mappings)."/>
       </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintBaseType" abstract="true"
-          eSuperTypes="#//NamedElement"/>
+          eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An abstract super-type for all MappingHints."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintType" abstract="true"
-          eSuperTypes="#//mapping/extended/MappingHintBaseType"/>
-      <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/extended/MappingHintType #//ConditionalElement #//DeactivatableElement"/>
+          eSuperTypes="#//mapping/extended/MappingHintBaseType">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An abstract super-type for all MappingHints."/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappingHint" abstract="true" eSuperTypes="#//mapping/extended/MappingHintType #//ConditionalElement #//DeactivatableElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An abstract super-type for all MappingHints that can be used in MappingHintGroups."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ExpandableHint" abstract="true"
-          interface="true"/>
+          interface="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An abstract super-type for all MappingHints that can be defined in ExportedMappingHintGroups and afterwards refined/expanded in MappingHintGroupImporters."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="HintImporterMappingHint" abstract="true"
-          eSuperTypes="#//mapping/extended/MappingHintType"/>
+          eSuperTypes="#//mapping/extended/MappingHintType">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An abstract super-type for all MappingHints that can be used in MappingHintGroupImporters."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MappingHintSourceInterface" abstract="true"
-          interface="true" eSuperTypes="#//NamedElement #//ConditionalElement"/>
+          interface="true" eSuperTypes="#//NamedElement #//ConditionalElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common superclass of all types that can be used as 'sourceElement' to calculate the value of a MappingHint."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="GlobalAttributeImporter" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This specifies a source element whose value is based on the value of a GlobalAttribute. GlobalAttributes can thereby be used to store the value of a SourceSectionAttribute in a reusable way.&#xD;&#xA;&lt;br />&#xD;&#xA;The value of a GlobalAttribute can thereby be reused in various calculations (e.g. in AttributeMappings). In contrast to the 'local' usage of an Attribute value in a calculation, GlobalAttributes can be reused as part of any Mapping - the Attribute does not need to be part of the SourceSection associated with the Mapping."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="globalAttribute" lowerBound="1"
-            eType="#//mapping/GlobalAttribute"/>
+            eType="#//mapping/GlobalAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The GlobalAttribute based on which the value of this element is determined."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMapping" eSuperTypes="#//mapping/extended/MappingHint #//ExpressionElement #//ModifiableElement #//mapping/extended/ExpandableHint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="targetAttributeMatchesSection"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappingHint that tells the transformation algorithm how determine the value of a TargetSectionAttribute in the course of a transformation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The value is thereby determined based on the list of specified 'sourceElements' and an optional (mathematical) 'expression'.&#xD;&#xA;&lt;br />&#xD;&#xA;If the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.&#xD;&#xA;&lt;br />&#xD;&#xA;If an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named 'x' is specified, a valid expression to double the value of this element would be &quot;2*x&quot;.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: As SourceSectionAttributes may be matched multiple times in a single source model excerpt, an AttributeMapping based on such a source element may result in multiple determined values. If this is the case, the specified 'target' attribute (and if necessary the containing TargetSectionClass) will be instantiated multiple times."/>
         </eAnnotations>
         <eOperations name="getLocalSourceElements" unique="false" upperBound="-1"
             eType="#//mapping/extended/AttributeMappingSourceElement">
@@ -2941,14 +2975,29 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-            eType="#//structure/target/TargetSectionAttribute"/>
+            eType="#//structure/target/TargetSectionAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The TargetSectionAttribute whose value is determined by this AttributeMapping."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" lowerBound="1"
             upperBound="-1" eType="#//mapping/extended/AttributeMappingSourceInterface"
-            containment="true"/>
+            containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of 'sourceElements' based on which the value of the 'target' Attribute is determined."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceInterface"
-          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common superclass of all types that can be used as 'sourceElement' in an AttributeMapping."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for an AttributeMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of a 'local' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'LocalDynamicSourceElement' for a detailed explanation of the meaning of 'local' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -2958,6 +3007,9 @@
         <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for an AttributeMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of an 'external' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'ExternalDynamicSourceElement' for a detailed explanation of the meaning of 'external' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -2967,6 +3019,9 @@
         <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMappingGlobalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for an AttributeMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of a 'global' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'GlobalDynamicSourceElement' for a detailed explanation of the meaning of 'global' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -2979,6 +3034,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/extended/MappingHint #//ExpressionElement #//ModifiableElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappingHint that tells the transformation algorithm how determine the cardinality of a TargetSectionClass (how often the Class shall be instantiated) in the course of a transformation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The value is thereby determined based on one of two possibilities:&#xD;&#xA;&lt;br />&#xD;&#xA;(1) Based on the list of specified 'sourceElements' and an optional (mathematical) 'expression'.&#xD;&#xA;&lt;br />&#xD;&#xA;If the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.&#xD;&#xA;&lt;br />&#xD;&#xA;If an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named 'x' is specified, a valid expression to double the value of this element would be &quot;2*x&quot;.&#xD;&#xA;&lt;br />&#xD;&#xA;(1) Base on the cardinality of the specified 'source'.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: Only one of 'sourceElements' or 'source' may be specified!"/>
         </eAnnotations>
         <eOperations name="validateSourceElementMatchesSection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3089,6 +3147,9 @@
           </eAnnotations>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="source">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The (optional) 'source' element whose cardinality is used to determine the cardinality of the 'target' Class."/>
+          </eAnnotations>
           <eGenericType eClassifier="#//structure/generic/MetaModelElement">
             <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
             <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3097,13 +3158,28 @@
           </eGenericType>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-            eType="#//structure/target/TargetSectionClass"/>
+            eType="#//structure/target/TargetSectionClass">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The TargetSectionClass whose cardinality is determined by this CardinalityMapping."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
-            eType="#//mapping/extended/CardinalityMappingSourceInterface" containment="true"/>
+            eType="#//mapping/extended/CardinalityMappingSourceInterface" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The (optional) list of 'sourceElements' based on which the cardinality of the 'target' Class is determined."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
-          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common superclass of all types that can be used as 'sourceElement' in a CardinalityMapping."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for a CardinalityMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of a 'local' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'LocalDynamicSourceElement' for a detailed explanation of the meaning of 'local' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3113,6 +3189,9 @@
         <eGenericSuperTypes eClassifier="#//mapping/extended/CardinalityMappingSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for a CardinalityMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of an 'external' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'ExternalDynamicSourceElement' for a detailed explanation of the meaning of 'external' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3122,6 +3201,9 @@
         <eGenericSuperTypes eClassifier="#//mapping/extended/CardinalityMappingSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingGlobalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' for a CardinalityMapping.&#xD;&#xA;&lt;br />&#xD;&#xA;This type is based on the value of a 'global' SourceSectionAttribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'GlobalDynamicSourceElement' for a detailed explanation of the meaning of 'global' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/GlobalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3134,6 +3216,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="ReferenceTargetSelector" eSuperTypes="#//mapping/extended/MappingHint">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="affectedReferenceIsNonContainment affectedReferenceMatchesSection"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappingHint that tells the transformation algorithm how determine the target value(s)/instance(s) of a TargetSectionCrossReference in the course of a transformation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The target instances are thereby determined based on the specified 'matcher'."/>
         </eAnnotations>
         <eOperations name="validateAffectedReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3160,18 +3245,40 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="affectedReference"
-            lowerBound="1" eType="#//structure/target/TargetSectionCrossReference"/>
+            lowerBound="1" eType="#//structure/target/TargetSectionCrossReference">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The TargetSectionCrossReference whose target values are determined by this ReferenceTargetSelector."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="matcher" lowerBound="1"
-            eType="#//mapping/extended/Matcher" containment="true"/>
+            eType="#//mapping/extended/Matcher" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Matcher that is used to determine the target instances for the 'affectedReference'."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true"/>
+      <eClassifiers xsi:type="ecore:EClass" name="Matcher" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A common super-class for all types that can be used to determine the target instances for a ReferenceTargetSelector."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ClassMatcher" eSuperTypes="#//mapping/extended/Matcher">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A ClassMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.&#xD;&#xA;&lt;br />&#xD;&#xA;Thereby, all elements that have been created based on the specified 'targetClass' will be used as target instances.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: In most cases, a simple ClassMatcher will not be sufficient if not all but only a subset of the instances created based on the denoted 'targetClass' shall be used. For such more complex use cases, an AttributeMatcher can be used instead."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
-            eType="#//structure/target/TargetSectionClass"/>
+            eType="#//structure/target/TargetSectionClass">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The 'targetClass' whose created instances will be used as target instances for the containing ReferenceTargetSelector."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeMatcher" eSuperTypes="#//mapping/extended/Matcher #//mapping/extended/ExpandableHint #//structure/InstanceSelector">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="targetMatchesAffectedReferenceType"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An AttributeMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.&#xD;&#xA;&lt;br />&#xD;&#xA;Thereby, a certain subset of the elements that have been created based on the specified 'target' Attribute (resp. the containing TargetSectionClass) is used as target instances.&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a the 'target' attribute of the created instance with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: In cases where all instances created based on the denoted 'target' Attribute (resp. the containing TargetSectionClass) shall be used, a simple ClassMatcher can be used instead."/>
         </eAnnotations>
         <eOperations name="validateTargetMatchesAffectedReferenceType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3186,16 +3293,30 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-            eType="#//structure/target/TargetSectionAttribute"/>
+            eType="#//structure/target/TargetSectionAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The specific attribute of the created TargetSections whose value is compared with the reference value used by this matcher."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ContainerSelector" eSuperTypes="#//mapping/extended/MappingHint #//structure/InstanceSelector">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappingHint that tells the transformation algorithm how to determine the container element for the instances created based on the TargetSection associated with this HintGroup in the course of a transformation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Thereby, exactly one of the elements that have been created based on the specified 'targetAttributes' (resp. the containing TargetSectionClasses) is used as container element.&#xD;&#xA;&lt;br />&#xD;&#xA;The selection of the container element is based on the comparison of the value of a the 'targetAttributes' of the created instances with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="targetAttributes" lowerBound="1"
             upperBound="-1" eType="#//mapping/extended/ContainerSelectorTargetAttribute"
-            containment="true"/>
+            containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The specific attributes of the created TargetSections whose values are compared with the reference value used by this ContainerSelector."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ContainerSelectorTargetAttribute">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="sourceMatchesPossibleContainerType"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a TargetSectionAttribute whose created instances (resp. the instances created based on the containing TargetSectionClass) are potential candidates for the container element determined by this ContainerSelector."/>
         </eAnnotations>
         <eOperations name="validateSourceMatchesPossibleContainerType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3218,16 +3339,26 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
           eSuperTypes="#//mapping/extended/HintImporterMappingHint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A common super-class for MappingHints that can be used inside MappingHintGroupImporters and will expand values determined for an imported MappingHint."/>
+        </eAnnotations>
         <eOperations name="getSourceAttribute" eType="#//structure/source/SourceSectionAttribute">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="if(this instanceof LocalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((LocalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else if(this instanceof ExternalMappedAttributeValueExpander) {&#xD;&#xA;&#x9;return ((ExternalMappedAttributeValueExpander) this).getSource();&#xD;&#xA;} else {&#xD;&#xA;&#x9;return null;&#xD;&#xA;}"/>
           </eAnnotations>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="hintsToExpand" lowerBound="1"
-            upperBound="-1" eType="#//mapping/extended/ExpandableHint"/>
+            upperBound="-1" eType="#//mapping/extended/ExpandableHint">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The MappingHint for which determined values are expanded by this Expander."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="LocalMappedAttributeValueExpander"
           abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local 'source' Attribute."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3236,10 +3367,21 @@
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
-      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander"/>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValuePrepender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local 'source' Attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The local determined values will thereby be prepended to the imported values."/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueAppender" eSuperTypes="#//mapping/extended/LocalMappedAttributeValueExpander">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified local 'source' Attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The local determined values will thereby be appended to the imported values."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueExpander"
           abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external 'source' Attribute."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -3249,9 +3391,17 @@
         <eGenericSuperTypes eClassifier="#//mapping/extended/MappedAttributeValueExpander"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValuePrepender"
-          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external 'source' Attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The external determined values will thereby be appended to the imported values."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ExternalMappedAttributeValueAppender"
-          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander"/>
+          eSuperTypes="#//mapping/extended/ExternalMappedAttributeValueExpander">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A MappedAttributeValueExpander that will expand values determined for an imported MappingHint by adding values of the specified external 'source' Attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;The external determined values will thereby be appended to the imported values."/>
+        </eAnnotations>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

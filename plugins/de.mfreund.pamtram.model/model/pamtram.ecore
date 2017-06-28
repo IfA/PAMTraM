@@ -716,10 +716,13 @@
     <eSubpackages name="generic" nsURI="http://mfreund.de/pamtram/structure/generic"
         nsPrefix="generic">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This package contains all elements related to the generic description of element structures."/>
+        <details key="documentation" value="This package contains all elements related to the generic description of element structures.&#xD;&#xA;&lt;br />&#xD;&#xA;Element structures are always based on a specific metamodel but may impose further restrictions. For example, one may describe a structure containing of an element (Class) which holds exactly one element (Class) via a certain reference (Reference), although the metamodel allows for an unlimited number of elements referenced via this reference. Another example is the description of certain constraints for values of attributes (Attribute)."/>
       </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="MetaModelElement" abstract="true"
           eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The super type for all specific types that can be used to describe element structures."/>
+        </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
             <eTypeArguments eTypeParameter="#//structure/generic/MetaModelElement/S"/>
@@ -778,6 +781,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="Class" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eClassMatchesParentEReference variableCardinalityIsValid containerIsValid"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents one element (as an instance of an EClass) of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -886,24 +892,44 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" lowerBound="1"
-            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The metamodel element (EClass) that this Class represents."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="cardinality" lowerBound="1"
-            eType="#//structure/generic/CardinalityType" defaultValueLiteral="ONE"/>
+            eType="#//structure/generic/CardinalityType" defaultValueLiteral="ONE">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="This can be used to specify a cardinality constraint for this element.&#xD;&#xA;&lt;br />&#xD;&#xA;For example, setting this to 'ONE' means that exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="references" upperBound="-1"
             containment="true" eOpposite="#//structure/generic/Reference/owningClass">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A list of References based on which further elements of the element structure a specified."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/R"/>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="container">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="This can be used to specify additional constraints on the containment structure of the current element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;For SourceSections: By setting the 'container' reference, SourceSections will only be matched if the specified container Class can also be matched in the source model.&#xD;&#xA;&lt;br />&#xD;&#xA;For TargetSections: Created target structures will automatically connected to (contained by) an instance of the specified container Class."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
             containment="true" eOpposite="#//structure/generic/Attribute/owningClass">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A list of Attribute further describing the current element.&#xD;&#xA;&lt;br />&#xD;&#xA;Specified attributes can e.g. be equipped with additional constraints (for SourceSections) or can be set via an AttributeMapping (for TargetSections)."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/A"/>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="allContainer" upperBound="-1"
             changeable="false" volatile="true" transient="true" derived="true">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;if(this.getContainer() != null) {&#xD;&#xA;&#x9;ret.add(this.getContainer());&#xD;&#xA;&#x9;ret.addAll(this.getContainer().getAllContainer());&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;if(this.getContainer() instanceof &lt;%pamtram.structure.generic.Section%>&lt;?, ?, ?, ?>) {&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;ret.addAll(((Section&lt;?, ?, ?, ?>) this.getContainer()).getAllExtend());&#xD;&#xA;&#x9;&#x9;ret.addAll(((Section&lt;?, ?, ?, ?>) this.getContainer()).getAllExtend().stream().flatMap(s -> s.getAllContainer().stream()).collect(&lt;%java.util.stream.Collectors%>.toList()));&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;ret = ret.stream().distinct().collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CONTAINER,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of recursively collected 'container' Classes."/>
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
         </eStructuralFeatures>
@@ -917,6 +943,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="Section" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="extendsValidSections containerMatchesExtendContainer"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A special Class that represents the root element (as an instance of an EClass) of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Every specified structures must contain only and exactly one Section element (its root element)."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -976,14 +1005,24 @@
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="abstract" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-            defaultValueLiteral="false"/>
+            defaultValueLiteral="false">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="If set to 'true', this Section can be extended by other specified Sections (via the 'extend' reference) which will then recursively inherit the structure specified by this Section (all contained Attributes, References and Classes).&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: Abstract Sections will not be (directly) matched against a source model. Consequently, Mappings based on abstract Sections will never be executed. Such mappings can however be used to specifiy abstract MappingHintGroups which can be extended by concrete MappingHintGroups that are based on a concrete Sub-Section of this abstract Section."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="extend" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of (abstract) Sections that this Section extends.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;This Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes)."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Section/S"/>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="allExtend" upperBound="-1"
             changeable="false" volatile="true" transient="true" derived="true">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = new &lt;%java.util.ArrayList%>&lt;>(this.getExtend());&#xD;&#xA;&#xD;&#xA;ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(&lt;%java.util.stream.Collectors%>.toList()));&#xD;&#xA;&#xD;&#xA;ret = ret.stream().distinct().collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTEND,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of recursively collected (abstract) extended Sections."/>
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Section/S"/>
         </eStructuralFeatures>
@@ -997,6 +1036,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="Reference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceMatchesParentEClass"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1040,6 +1082,9 @@
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" changeable="false"
             eOpposite="#//structure/generic/Class/references">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Class containing this Reference."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Reference/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/MetaModelElement">
@@ -1050,6 +1095,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ActualReference" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference (as an instance of an EReference) of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
             <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
@@ -1095,7 +1143,11 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="eReference" lowerBound="1"
-            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The metamodel element (EReference) that this Reference represents."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
           <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/S"/>
           <eTypeArguments eTypeParameter="#//structure/generic/ActualReference/C"/>
@@ -1104,6 +1156,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualReference" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of an element structure. In contrast to 'actual' References, 'virtual' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+        </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
             <eTypeArguments eTypeParameter="#//structure/generic/VirtualReference/S"/>
@@ -1146,6 +1201,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="CompositeReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceIsContainment"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of an element structure. CompositeReferences can be used to describe the tree that is the basis of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1193,6 +1251,9 @@
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
             containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of elements (Classes) further describing the element structure."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/CompositeReference/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
@@ -1205,6 +1266,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="CrossReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="eReferenceIsNonContainment"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of an element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1251,6 +1315,9 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of elements (Classes) further describing the element structure."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/CrossReference/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
@@ -1261,6 +1328,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="Attribute" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of an element structure."/>
+        </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
             <eTypeArguments eTypeParameter="#//structure/generic/Attribute/S"/>
@@ -1295,6 +1365,9 @@
         </eTypeParameters>
         <eStructuralFeatures xsi:type="ecore:EReference" name="owningClass" changeable="false"
             eOpposite="#//structure/generic/Class/attributes">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Class containing this Attribute."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Attribute/C"/>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/MetaModelElement">
@@ -1307,6 +1380,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="ActualAttribute" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="attributeMatchesParentEClass"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute (as an instance of an EAttribute) of an element structure."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1353,7 +1429,11 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The metamodel element (EAttribute) that this Attribute represents."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
           <eTypeArguments eTypeParameter="#//structure/generic/ActualAttribute/S"/>
           <eTypeArguments eTypeParameter="#//structure/generic/ActualAttribute/C"/>
@@ -1362,6 +1442,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of an element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.&#xD;&#xA;&lt;br />&#xD;&#xA; As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+        </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
             <eTypeArguments eTypeParameter="#//structure/generic/VirtualAttribute/S"/>
@@ -1402,9 +1485,24 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="CardinalityType">
-        <eLiterals name="ONE"/>
-        <eLiterals name="ONE__INFINITY" value="1"/>
-        <eLiterals name="ZERO__INFINITY" value="2"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A cardinality constraint for an element."/>
+        </eAnnotations>
+        <eLiterals name="ONE">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="Exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections)."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="ONE__INFINITY" value="1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="At least one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings)."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="ZERO__INFINITY" value="2">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="Zero or any number of elements must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings)."/>
+          </eAnnotations>
+        </eLiterals>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="constraint" nsURI="http://mfreund.de/pamtram/structure/constraint"

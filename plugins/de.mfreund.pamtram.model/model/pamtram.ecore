@@ -2172,17 +2172,34 @@
       </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="LibraryParameter" abstract="true"
           eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common super type for all wrapper elements for GenLibrary parameters."/>
+        </eAnnotations>
         <eTypeParameters name="ParameterType"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+            eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The model element inside the GenLibrary entry that this parameter influences."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter"
             lowerBound="1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The GenLibrary parameter that this wraps."/>
+          </eAnnotations>
           <eGenericType eTypeParameter="#//structure/library/LibraryParameter/ParameterType"/>
         </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AttributeParameter">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A wrapper element for a GenLibrary AttributeParameter."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-            eType="#//structure/target/ActualTargetSectionAttribute" containment="true"/>
+            eType="#//structure/target/ActualTargetSectionAttribute" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Attribute that can be used to set the value for the AttributeParameter (either by specifying a fixed value or by means of an AttributeMapping)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
           <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractAttributeParameter">
             <eTypeArguments/>
@@ -2190,8 +2207,15 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ContainerParameter">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A wrapper element for a GenLibrary ContainerParameter."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1"
-            eType="#//structure/target/TargetSection" containment="true"/>
+            eType="#//structure/target/TargetSection" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Class that can be used to set the value (the container) for the ContainerParameter (e.g. by means of a ContainerSelector)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
           <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractContainerParameter">
             <eTypeArguments/>
@@ -2200,8 +2224,15 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ExternalReferenceParameter">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A wrapper element for a GenLibrary ExternalReferenceParameter."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
-            eType="#//structure/target/TargetSectionCrossReference" containment="true"/>
+            eType="#//structure/target/TargetSectionCrossReference" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Reference that can be used to set the value(s) for the ExternalReferenceParameter (e.g. by means of a ReferenceTargetSelector)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/library/LibraryParameter">
           <eTypeArguments eClassifier="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//AbstractExternalReferenceParameter">
             <eTypeArguments/>
@@ -2210,28 +2241,65 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ResourceParameter" eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A wrapper element for a GenLibrary ResourceParameter."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
-            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The Attribute that can be used to set the value for the ResourceParameter (either by specifying a fixed value or by means of an AttributeMapping)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="originalParameter"
-            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter"/>
+            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//ResourceParameter">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The GenLibrary parameter that this wraps."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="LibraryEntry">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an element structure to be created in a target model based on a GenLibrary LibraryEntry.&#xD;&#xA;&lt;br />&#xD;&#xA;Instances of this class act as wrapper for GenLibrary entries. This wrapper-based approach allows us to (1) instantiate LibraryEntries during the course of a transformation while (2) relying on the existing mechanisms for MappingHints."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" lowerBound="1"
             upperBound="-1" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of LibraryParameters that need to be specified by the user for a successful instantiation of the LibraryEntry."/>
+          </eAnnotations>
           <eGenericType eClassifier="#//structure/library/LibraryParameter">
             <eTypeArguments/>
           </eGenericType>
         </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="libraryFile" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The file containing the GenLibrary LibraryEntry that this wraps."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="originalLibraryEntry"
-            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry"/>
+            lowerBound="1" eType="ecore:EClass ../../de.tud.et.ifa.agtele.genlibrary/model/genlibrary.ecore#//LibraryEntry">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The GenLibrary LibraryEntry that this wraps."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="classpath" lowerBound="1"
-            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The classpath identifying the GenLibrary LibraryEntry that this wraps.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: This can be overridden by an AttributeMapping during a transformation. That way, more specific LibraryEntries may be instantiated without having to create an own wrapper for each specific GenLibrary LibraryEntry."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="id" lowerBound="1"
-            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true"/>
+            eType="#//structure/target/VirtualTargetSectionAttribute" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="This can be used to specify an optional unique id for the entry to be instantiated. The id will be passed to the GenLibrary instantiation mechanism."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="resourceParameters"
-            upperBound="-1" eType="#//structure/library/ResourceParameter" containment="true"/>
+            upperBound="-1" eType="#//structure/library/ResourceParameter" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of ResourceParameters that need to be specified by the user for a successful instantiation of the LibraryEntry."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>

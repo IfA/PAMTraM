@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>File Type Enum</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * The type of a model/file.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.target.TargetPackage#getFileType()
  * @model
  * @generated
@@ -46,6 +49,9 @@ public enum FileType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An XMI file that is based on an Ecore-based metamodel.
+	 * <!-- end-model-doc -->
 	 * @see #XMI
 	 * @model
 	 * @generated
@@ -61,6 +67,9 @@ public enum FileType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An XML file that is based on an XML schema (XSD).
+	 * <!-- end-model-doc -->
 	 * @see #XML
 	 * @model
 	 * @generated

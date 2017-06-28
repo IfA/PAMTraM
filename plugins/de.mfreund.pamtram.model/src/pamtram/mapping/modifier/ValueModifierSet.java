@@ -11,6 +11,12 @@ import pamtram.NamedElement;
  * A representation of the model object '<em><b>Attribute Value Modifier Set</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A reusable set of ValueModifiers that can be attached to a ModifiableElement in order to modify its 'value'.
+ * <br /><br />
+ * For example, when attached this to an AttributeMapping, the value resulting from evaluating the AttributeMapping is modified by applying the specified ValueModifers before setting the value of the associated TargetSectionAttribute.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -32,6 +38,9 @@ public interface ValueModifierSet extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of ValueModifiers that will be used to modify the 'value'.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Modifiers</em>' containment reference list.
 	 * @see pamtram.mapping.modifier.ModifierPackage#getValueModifierSet_Modifiers()
 	 * @model containment="true"

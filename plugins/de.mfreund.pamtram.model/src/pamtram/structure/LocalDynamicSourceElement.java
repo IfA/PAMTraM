@@ -14,6 +14,14 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>Local Modified Attribute Element Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A LocalDynamicSourceElement represents a certain value that can be used in various calculations.
+ * <br /><br />
+ * The dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the 'source' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.
+ * <br /><br />
+ * For 'LocalDynamicSourceElements', only instances of the specified 'source' attribute that are part of the source model excerpt which is currently handled by the transformation are used.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -36,6 +44,9 @@ public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C exte
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the 'own' attribute value but only attribute values of 'referenced' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Reference Match Spec</em>' reference list.
 	 * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement_ReferenceMatchSpec()
 	 * @model

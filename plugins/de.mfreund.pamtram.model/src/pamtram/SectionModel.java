@@ -14,6 +14,10 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>Section Model</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * SectionModels contain a list of Sections representing element structures. All element structures need to be based on the meta-model/EPackage identified by the 'metaModelPackage' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +39,9 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.s
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The meta-model (represented by an EPackage) based on which all element structures (Sections) in this SectionModel need to be based.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Meta Model Package</em>' reference.
 	 * @see #setMetaModelPackage(EPackage)
 	 * @see pamtram.PamtramPackage#getSectionModel_MetaModelPackage()
@@ -61,6 +68,11 @@ public interface SectionModel<S extends Section<S, C, R, A>, C extends pamtram.s
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of Sections defined by this SectionModel.
+	 * <br />
+	 * All Sections need to be based on the meta-model/EPackage specified via the 'metaModelPackage' reference.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sections</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getSectionModel_Sections()
 	 * @model containment="true"

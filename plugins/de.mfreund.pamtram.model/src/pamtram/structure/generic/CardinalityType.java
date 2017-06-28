@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Cardinality Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * The type of cardinality constraint for an element.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.generic.GenericPackage#getCardinalityType()
  * @model
  * @generated
@@ -56,6 +59,9 @@ public enum CardinalityType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).
+	 * <!-- end-model-doc -->
 	 * @see #ONE
 	 * @model
 	 * @generated
@@ -71,6 +77,11 @@ public enum CardinalityType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * At least one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).
+	 * <br /><br />
+	 * For elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings).
+	 * <!-- end-model-doc -->
 	 * @see #ONE_INFINITY
 	 * @model name="ONE__INFINITY"
 	 * @generated
@@ -86,6 +97,11 @@ public enum CardinalityType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Zero or any number of elements must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).
+	 * <br /><br />
+	 * For elements of TargetSections, the concrete number to be created should be specified by additional MappingHints (CardinalityMappings or AttributeMappings).
+	 * <!-- end-model-doc -->
 	 * @see #ZERO_INFINITY
 	 * @model name="ZERO__INFINITY"
 	 * @generated

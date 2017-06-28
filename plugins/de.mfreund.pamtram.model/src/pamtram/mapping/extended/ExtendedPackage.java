@@ -21,6 +21,9 @@ import pamtram.structure.StructurePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of MappingHints (i.e. related to the description of 'extended' mappings).
+ * <!-- end-model-doc -->
  * @see pamtram.mapping.extended.ExtendedFactory
  * @model kind="package"
  * @generated

@@ -14,6 +14,12 @@ import pamtram.structure.generic.Section;
  * A representation of the model object '<em><b>Target Section</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A special TargetSectionClass that represents the root element (as an instance of an EClass) of an element structure to be created in a target model.
+ * <br />
+ * Note: Every specified target model structure must contain one and only one TargetSection element (its root element).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -53,6 +59,11 @@ public interface TargetSection extends TargetSectionClass, Section<TargetSection
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If present, this specifies the model resp. file to which the created target model structure will be persisted.
+	 * <br /><br />
+	 * This can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>File</em>' reference.
 	 * @see #setFile(FileAttribute)
 	 * @see pamtram.structure.target.TargetPackage#getTargetSection_File()

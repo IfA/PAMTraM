@@ -10,6 +10,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Non
  * Containment Reference</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference of an element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

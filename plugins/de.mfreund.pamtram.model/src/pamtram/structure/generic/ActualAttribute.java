@@ -12,6 +12,10 @@ import org.eclipse.emf.ecore.EAttribute;
  * A representation of the model object '<em><b>Actual Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an attribute (as an instance of an EAttribute) of an element structure.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +38,9 @@ public interface ActualAttribute<S extends Section<S, C, R, A>, C extends pamtra
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The metamodel element (EAttribute) that this Attribute represents.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute</em>' reference.
 	 * @see #setAttribute(EAttribute)
 	 * @see pamtram.structure.generic.GenericPackage#getActualAttribute_Attribute()

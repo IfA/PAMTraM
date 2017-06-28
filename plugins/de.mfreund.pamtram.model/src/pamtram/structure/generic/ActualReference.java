@@ -12,6 +12,12 @@ import org.eclipse.emf.ecore.EReference;
  * A representation of the model object '<em><b>Actual Reference</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference (as an instance of an EReference) of an element structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +39,9 @@ public interface ActualReference<S extends Section<S, C, R, A>, C extends pamtra
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The metamodel element (EReference) that this Reference represents.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>EReference</em>' reference.
 	 * @see #setEReference(EReference)
 	 * @see pamtram.structure.generic.GenericPackage#getActualReference_EReference()

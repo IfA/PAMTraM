@@ -9,6 +9,12 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Expression Hint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An ExpressionElement can be equipped with a mathematical expression describing how to calculate the (numeric) value of this element.
+ * <br />
+ * The specific meaning of the calculated 'value' is dependent on the concrete sub-type of this element.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -30,6 +36,13 @@ public interface ExpressionElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A mathematical expression describing how to calculate the (numeric) value of this element.
+	 * <br />
+	 * The specific meaning of the calculated 'value' is dependent on the concrete type of this element.
+	 * <br />
+	 * Note: Variables (e.g. global FixedValues or specified source elements) can be referenced in the expression via their name, e.g. '2*x' if their is a (local) source element or a global FixedValue named 'x'.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Expression</em>' attribute.
 	 * @see #setExpression(String)
 	 * @see pamtram.PamtramPackage#getExpressionElement_Expression()

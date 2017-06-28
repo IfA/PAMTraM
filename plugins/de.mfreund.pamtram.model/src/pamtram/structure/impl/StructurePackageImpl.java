@@ -885,6 +885,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 	}
@@ -931,6 +933,166 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "InstanceSelectors can be used to select a certain subset of a list of model excerpts that have been matched for a certain Section.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the matched Section with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.eContainer() instanceof <%pamtram.condition.ComplexCondition%> && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getInstanceSelector__GetLocalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getInstanceSelector__GetExternalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorExternalSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getInstanceSelector_SourceElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of \'sourceElements\' based on which the reference value used by this selector is calculated."
+		   });	
+		addAnnotation
+		  (sourceInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "SourceInstanceSelectors can be used to select a certain subset of a list of source model excerpts that have been matched for a certain SourceSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the matched SourceSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getSourceInstanceSelector_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."
+		   });	
+		addAnnotation
+		  (targetInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The specific attribute of the created TargetSections whose value is compared with the reference value used by this selector."
+		   });	
+		addAnnotation
+		  (instanceSelectorSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' to calculate the reference value used by an InstanceSelector."
+		   });	
+		addAnnotation
+		  (instanceSelectorSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of a \'local\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'LocalDynamicSourceElement\' for a detailed explanation of the meaning of \'local\' source elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorExternalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of an \'external\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'ExternalDynamicSourceElement\' for a detailed explanation of the meaning of \'external\' source elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorGlobalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of a \'global\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'GlobalDynamicSourceElement\' for a detailed explanation of the meaning of \'global\' source elements."
+		   });	
+		addAnnotation
+		  (dynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A DynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)). As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation."
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement__GetMappingHintGroup(), 
+		   source, 
+		   new String[] {
+			 "body", "EObject ret = this.eContainer;\r\nwhile(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (NamedElement) ret;"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement__GetMapping(), 
+		   source, 
+		   new String[] {
+			 "body", "EObject ret = this.eContainer;\r\nwhile(!(ret instanceof Mapping)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (Mapping) ret;"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement_Source(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.\r\n<br /><br />\r\nThe concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as \'source\'."
+		   });	
+		addAnnotation
+		  (localDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A LocalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'LocalDynamicSourceElements\', only instances of the specified \'source\' attribute that are part of the source model excerpt which is currently handled by the transformation are used."
+		   });	
+		addAnnotation
+		  (getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\nSourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();\r\n\r\nboolean result = sourceSection == containingSourceSection \r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()\r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()\r\n\t\t|| containingSourceSection.isReferencedBy(sourceSection, null);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The source attribute \'\" +\r\n\t\t\t this.source.getName() + \"\' is not referenced by the source section of the parent mapping \'\" +\r\n\t\t\t sourceSection.getName() + \"\' or in one of its extended sections/sub-sections!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\t}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getLocalDynamicSourceElement_ReferenceMatchSpec(), 
+		   source, 
+		   new String[] {
+			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."
+		   });	
+		addAnnotation
+		  (externalDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An ExternalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'ExternalDynamicSourceElements\', only instances of the specified \'source\' attribute that are part of source model excerpts that are containers of the source model excerpt which is currently handled by the transformation are used."
+		   });	
+		addAnnotation
+		  (getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getMapping() == null || this.getSource() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = sourceSection == null || !(this.getSource().getContainingSection() instanceof SourceSection) ? true : ((SourceSection) this.getSource().getContainingSection()).isContainerFor(sourceSection);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.getSource().getName() + \"\' is not part of a container section of the source section of the parent mapping \'\" + this.getMapping().getSourceSection().getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (globalDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A GlobalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'GlobalDynamicSourceElements\', all instances of the specified \'source\' attribute found in the source model are used."
+		   });	
+		addAnnotation
+		  (getGlobalDynamicSourceElement_InstanceSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of InstanceSelectors that can be used to select a certain subset of the list of matched SourceSectionAttributes that will be used to calculated the value(s) represented by this DynamicSourceElement."
 		   });
 	}
 

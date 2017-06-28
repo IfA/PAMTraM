@@ -544,6 +544,134 @@ public class ModifierPackageImpl extends EPackageImpl implements ModifierPackage
 
 		initEClass(toUpperCaseConverterEClass, ToUpperCaseConverter.class, "ToUpperCaseConverter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getToUpperCaseConverter_Regex(), ecorePackage.getEString(), "regex", null, 1, 1, ToUpperCaseConverter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains elements related to the modification of values (e.g. determined values for a TargetSection attribute). "
+		   });	
+		addAnnotation
+		  (valueModifierSetEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A reusable set of ValueModifiers that can be attached to a ModifiableElement in order to modify its \'value\'.\r\n<br /><br />\r\nFor example, when attached this to an AttributeMapping, the value resulting from evaluating the AttributeMapping is modified by applying the specified ValueModifers before setting the value of the associated TargetSectionAttribute."
+		   });	
+		addAnnotation
+		  (getValueModifierSet_Modifiers(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The set of ValueModifiers that will be used to modify the \'value\'."
+		   });	
+		addAnnotation
+		  (valueModifierEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common super-type of all elements that will modify a \'value\'."
+		   });	
+		addAnnotation
+		  (uniqueNumberAppenderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will add a unique number to the \'value\'.\r\n<br />\r\nIt can be used to ensure unique values e.g. when setting values of a TargetSectionAttribute."
+		   });	
+		addAnnotation
+		  (numericModifierEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common super-type of all elements that will modify a numeric \'value\'."
+		   });	
+		addAnnotation
+		  (expressionModifierEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (numeric) \'value\' by applying the given \'expression\'.\r\n<br /><br />\r\nNote: The \'value\' to be modfied can be referenced in the \'expression\' via the variable \'x\'. For example, a valid expression to duplicate the given value would be \"2*x\"."
+		   });	
+		addAnnotation
+		  (stringModifierEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common super-type of all elements that will modify a String-based \'value\'."
+		   });	
+		addAnnotation
+		  (substringReplacerEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (String-based) \'value\' by replacing the sub-string identified by the given \'regex\' by the given \'replacement\'."
+		   });	
+		addAnnotation
+		  (getSubstringReplacer_Regex(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The regular expression identifying the string to be replaced."
+		   });	
+		addAnnotation
+		  (getSubstringReplacer_Replacement(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The replacement."
+		   });	
+		addAnnotation
+		  (stringAppenderEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (String-based) \'value\' by appending the given \'string\'."
+		   });	
+		addAnnotation
+		  (getStringAppender_String(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The String to be appended."
+		   });	
+		addAnnotation
+		  (stringPrependerEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (String-based) \'value\' by prepending the given \'string\'."
+		   });	
+		addAnnotation
+		  (getStringPrepender_String(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The String to be prepended."
+		   });	
+		addAnnotation
+		  (toLowerCaseConverterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (String-based) \'value\' by converting the sub-string identified by the given \'regex\' to lower case."
+		   });	
+		addAnnotation
+		  (getToLowerCaseConverter_Regex(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The regular expression identifying the string to be converted."
+		   });	
+		addAnnotation
+		  (toUpperCaseConverterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueModifier will modify the (String-based) \'value\' by converting the sub-string identified by the given \'regex\' to upper case."
+		   });	
+		addAnnotation
+		  (getToUpperCaseConverter_Regex(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The regular expression identifying the string to be converted."
+		   });
 	}
 
 } //ModifierPackageImpl

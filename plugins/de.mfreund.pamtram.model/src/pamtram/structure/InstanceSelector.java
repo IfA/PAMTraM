@@ -37,6 +37,9 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of 'sourceElements' based on which the reference value used by this selector is calculated.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.structure.StructurePackage#getInstanceSelector_SourceElements()
 	 * @model containment="true"

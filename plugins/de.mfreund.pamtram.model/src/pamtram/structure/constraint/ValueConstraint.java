@@ -31,6 +31,9 @@ public interface ValueConstraint extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of this constraint (either REQUIRED or FORBIDDEN).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see pamtram.structure.constraint.ValueConstraintType
 	 * @see #setType(ValueConstraintType)

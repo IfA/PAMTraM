@@ -731,8 +731,236 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		addEEnumLiteral(stringConstraintOperatorTypeEEnum, StringConstraintOperatorType.MATCH_REGEX);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of ValueConstraints that may e.g. be used to describe a restriction/claim of specific values of an attribute in a SourceSection."
+		   });	
+		addAnnotation
+		  (valueConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The super type for all specific types that can be used to describe constraints for attribute values.\r\n<br /><br />\r\nValueConstraints thereby specify a single reference value or list/range of reference values which the actual attribute value must or must not satisfy."
+		   });	
+		addAnnotation
+		  (getValueConstraint__IsLocalConstraint(), 
+		   source, 
+		   new String[] {
+			 "body", "if (this instanceof <%pamtram.structure.constraint.ChoiceConstraint%>) {\r\n\treturn ((ChoiceConstraint) this).getChoices().stream().allMatch(<%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);\r\n}\r\n\r\nif (<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {\r\n\treturn true;\r\n}\r\n\r\nif (!(this instanceof <%pamtram.structure.constraint.SingleReferenceValueConstraint%>)\r\n\t\t|| !AgteleEcoreUtil.hasAncestorOfKind(this, <%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {\r\n\tthrow new UnsupportedOperationException();\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> container = this;\r\n\r\nwhile (!(container instanceof <%pamtram.mapping.Mapping%>)) {\r\n\tif (container == null) {\r\n\t\treturn false;\r\n\t}\r\n\tcontainer = container.eContainer();\r\n}\r\n\r\n// The SourceSection of the Mapping that contains the constraint\r\n//\r\nSourceSection localSection = ((Mapping) container).getSourceSection();\r\n\r\nif (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()\r\n\t\t.allMatch(s -> s instanceof <%pamtram.FixedValue%> || s instanceof <%pamtram.mapping.extended.GlobalAttributeImporter%>\r\n\t\t\t\t|| s instanceof <%pamtram.structure.constraint.ValueConstraintSourceElement%> && ((ValueConstraintSourceElement) s).getSource()\r\n\t\t\t\t\t\t.getContainingSection().equals(localSection)\r\n\t\t\t\t|| s instanceof <%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>\r\n\t\t\t\t\t\t&& ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()\r\n\t\t\t\t\t\t\t\t.isContainerFor(localSection))) {\r\n\treturn true;\r\n}\r\n\r\n// A constraint is also \'local\' if an InstancePointer with local or external SourceAttributes exist\r\n//\r\nreturn ((SingleReferenceValueConstraint) this).getInstanceSelectors()\r\n\t\t.parallelStream()\r\n\t\t.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()\r\n\t\t\t\t.filter(s -> s instanceof <%pamtram.structure.InstanceSelectorSourceElement%>\r\n\t\t\t\t\t\t|| s instanceof <%pamtram.structure.InstanceSelectorExternalSourceElement%>))\r\n\t\t.findAny().isPresent();"
+		   });	
+		addAnnotation
+		  (getValueConstraint_Type(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of this constraint (either REQUIRED or FORBIDDEN)."
+		   });	
+		addAnnotation
+		  (valueConstraintTypeEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of value constraint (either REQUIRED or FORBIDDEN)."
+		   });	
+		addAnnotation
+		  (valueConstraintTypeEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value MUST satisfy the value(s) specified by this constraint."
+		   });	
+		addAnnotation
+		  (valueConstraintTypeEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value MUST NOT satisfy the value(s) specified by this constraint."
+		   });	
+		addAnnotation
+		  (singleReferenceValueConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ValueConstraint for which the reference value is calculated based on the combination of a list of \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getSingleReferenceValueConstraint__ValidateOnlyFixedValuesInSourceSections__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getSourceElements().isEmpty() || \r\n\t\t!<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute())) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.FixedValue%>);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"This ValueConstraint must only\"\r\n\t\t\t+ \" contain FixedValues as source elements as it is modeled as part of a SourceSection!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this,  <%pamtram.structure.constraint.ConstraintPackage%>.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));\r\n\t}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSingleReferenceValueConstraint__ValidateOnlyFixedValuesOrGlobalAttributesInConditionModel__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getSourceElements().isEmpty() || \r\n\t\t!<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition())) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.condition.ComplexCondition%> condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, <%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition());\r\n\r\nif(!condition.isConditionModelCondition()) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.FixedValue%> || s instanceof <%pamtram.mapping.extended.GlobalAttributeImporter%>);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"This ValueConstraint must only\"\r\n\t\t\t+ \" contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this,  <%pamtram.structure.constraint.ConstraintPackage%>.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));\r\n\t}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "boolean result = this.getModifiers().isEmpty() ||\r\n\t\t!<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ValueConstraints that are part of a SourceSection must not\"\r\n\t\t\t+ \" specify a Modifier!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, <%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,\r\n\t\t\terrorMessage, new Object[] { this,\r\n\t\t\t\t\t<%pamtram.PamtramPackage%>.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSingleReferenceValueConstraint_SourceElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of \'sourceElements\' based on which the reference value for this constraint is calculated."
+		   });	
+		addAnnotation
+		  (getSingleReferenceValueConstraint_InstanceSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of InstanceSelectors that can be used to restrict the application of this constraint: \r\n<br />\r\nOnly Attributes (resp. their values) identified by the list of InstanceSelectors are checked against this constraint."
+		   });	
+		addAnnotation
+		  (equalityConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This ValueConstraint type checks if the determined attribute value is equal to the calculated reference value."
+		   });	
+		addAnnotation
+		  (choiceConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ValueConstraint that specifies a list of values (each by means of an EqualityConstraint). For this constraint to be fulfilled, the actual attribute value must match at least one of the specified values."
+		   });	
+		addAnnotation
+		  (numericConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ValueConstraint type that can be used for numeric attribute values. It (numerically) compares the determined attribute value to the calculated reference value.\r\n"
+		   });	
+		addAnnotation
+		  (getNumericConstraint_OperatorType(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The comparison type used to (numerically) compare the actual attribute value to the determined reference value."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of numerical comparison to be performed."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be equal to the determined reference value."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be greater then the determined reference value."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum.getELiterals().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be greater then or equal to the determined reference value."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum.getELiterals().get(3), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be less then the determined reference value."
+		   });	
+		addAnnotation
+		  (numericConstraintOperatorTypeEEnum.getELiterals().get(4), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be less then or equal to the determined reference value."
+		   });	
+		addAnnotation
+		  (stringConstraintEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ValueConstraint type that can be used for literal attribute values. It compares the determined attribute value to the calculated reference value based on a String comparison.\r\n"
+		   });	
+		addAnnotation
+		  (getStringConstraint_OperatorType(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The comparison type used to compare the actual attribute value to the determined reference value."
+		   });	
+		addAnnotation
+		  (getStringConstraint_CaseSensitive(), 
+		   source, 
+		   new String[] {
+			 "documentation", "Whether the String comparison shall be performed case-sensitive (true) or case-insensitive (false)."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of String-based comparison to be performed."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must be equal to the determined reference value."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must begin with the determined reference value."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum.getELiterals().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must end with the determined reference value."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum.getELiterals().get(3), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must contain the determined reference value."
+		   });	
+		addAnnotation
+		  (stringConstraintOperatorTypeEEnum.getELiterals().get(4), 
+		   source, 
+		   new String[] {
+			 "documentation", "The actual attribute value must satisfy the regular expression specified by the determined reference value."
+		   });	
+		addAnnotation
+		  (valueConstraintSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' to calculate the reference value of a ValueConstraint."
+		   });	
+		addAnnotation
+		  (valueConstraintSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value of a ValueConstraint.<br />\r\nThis type is based on the value of a \'local\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'LocalDynamicSourceElement\' for a detailed explanation of the meaning of \'local\' source elements."
+		   });	
+		addAnnotation
+		  (valueConstraintExternalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value of a ValueConstraint.<br />\r\nThis type is based on the value of an \'external\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'ExternalDynamicSourceElement\' for a detailed explanation of the meaning of \'external\' source elements."
+		   });	
+		addAnnotation
+		  (valueConstraintGlobalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value of a ValueConstraint.<br />\r\nThis type is based on the value of a \'global\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'GlobalDynamicSourceElement\' for a detailed explanation of the meaning of \'global\' source elements."
+		   });
 	}
 
 	/**

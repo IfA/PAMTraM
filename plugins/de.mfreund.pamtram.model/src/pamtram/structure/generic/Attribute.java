@@ -7,6 +7,10 @@ package pamtram.structure.generic;
  * A representation of the model object '<em><b>Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an attribute of an element structure.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -29,6 +33,9 @@ public interface Attribute<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Class containing this Attribute.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.structure.generic.GenericPackage#getAttribute_OwningClass()
 	 * @see pamtram.structure.generic.Class#getAttributes

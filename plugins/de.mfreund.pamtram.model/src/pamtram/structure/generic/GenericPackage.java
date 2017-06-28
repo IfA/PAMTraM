@@ -23,6 +23,11 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the generic description of element structures.
+ * <br />
+ * Element structures are always based on a specific metamodel but may impose further restrictions. For example, one may describe a structure containing of an element (Class) which holds exactly one element (Class) via a certain reference (Reference), although the metamodel allows for an unlimited number of elements referenced via this reference. Another example is the description of certain constraints for values of attributes (Attribute).
+ * <!-- end-model-doc -->
  * @see pamtram.structure.generic.GenericFactory
  * @model kind="package"
  * @generated

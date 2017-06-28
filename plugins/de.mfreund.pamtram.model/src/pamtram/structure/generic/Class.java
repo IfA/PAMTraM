@@ -12,6 +12,12 @@ import org.eclipse.emf.ecore.EClass;
  * A representation of the model object '<em><b>Class</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents one element (as an instance of an EClass) of an element structure.
+ * <br />
+ * In order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,6 +44,9 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The metamodel element (EClass) that this Class represents.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>EClass</em>' reference.
 	 * @see #setEClass(EClass)
 	 * @see pamtram.structure.generic.GenericPackage#getClass_EClass()
@@ -66,6 +75,11 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This can be used to specify a cardinality constraint for this element.
+	 * <br />
+	 * For example, setting this to 'ONE' means that exactly one element must be present to be matched (for SourceSections) resp. will be created during the execution of one mapping (for TargetSections).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Cardinality</em>' attribute.
 	 * @see pamtram.structure.generic.CardinalityType
 	 * @see #setCardinality(CardinalityType)
@@ -95,6 +109,9 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of References based on which further elements of the element structure a specified.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>References</em>' containment reference list.
 	 * @see pamtram.structure.generic.GenericPackage#getClass_References()
 	 * @see pamtram.structure.generic.Reference#getOwningClass
@@ -111,6 +128,13 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This can be used to specify additional constraints on the containment structure of the current element structure.
+	 * <br />
+	 * For SourceSections: By setting the 'container' reference, SourceSections will only be matched if the specified container Class can also be matched in the source model.
+	 * <br />
+	 * For TargetSections: Created target structures will automatically connected to (contained by) an instance of the specified container Class.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Container</em>' reference.
 	 * @see #setContainer(Class)
 	 * @see pamtram.structure.generic.GenericPackage#getClass_Container()
@@ -138,6 +162,11 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of Attribute further describing the current element.
+	 * <br />
+	 * Specified attributes can e.g. be equipped with additional constraints (for SourceSections) or can be set via an AttributeMapping (for TargetSections).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see pamtram.structure.generic.GenericPackage#getClass_Attributes()
 	 * @see pamtram.structure.generic.Attribute#getOwningClass

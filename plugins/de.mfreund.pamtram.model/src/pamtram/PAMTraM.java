@@ -16,6 +16,10 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * A representation of the model object '<em><b>PAM Tra M</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The root element of a PAMTraM model. It mainly acts as container for the various sub-models that are used to define Source- and TargetSections, Mappings, and Conditions.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -51,6 +55,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of SourceSectionModels contained in this PAMTraM instance.
+	 * <br />
+	 * Together with the list of 'sharedSourceSectionModels', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Section Models</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SourceSectionModels()
 	 * @model containment="true"
@@ -67,6 +76,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of external SourceSectionModels (stored in their own files with the file-ending '*.pamtram.source') referenced by this PAMTraM instance.
+	 * <br />
+	 * Together with the list of (local) 'sourceSectionModels', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Source Section Models</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedSourceSectionModels()
 	 * @model
@@ -83,6 +97,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of TargetSectionModels contained in this PAMTraM instance.
+	 * <br />
+	 * Together with the list of 'sharedTargetSectionModels', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Section Models</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_TargetSectionModels()
 	 * @model containment="true"
@@ -99,6 +118,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of external TargetSectionModels (stored in their own files with the file-ending '*.pamtram.target') referenced by this PAMTraM instance.
+	 * <br />
+	 * Together with the list of (local) 'targetSectionModels', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Target Section Models</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedTargetSectionModels()
 	 * @model
@@ -115,6 +139,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of MappingModels contained in this PAMTraM instance.
+	 * <br />
+	 * Together with the list of 'sharedMappingModels', these make up the list of MappingModels defining the Mappings that will be executed during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mapping Models</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_MappingModels()
 	 * @model containment="true"
@@ -131,6 +160,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of external MappingSectionModels (stored in their own files with the file-ending '*.pamtram.mapping') referenced by this PAMTraM instance.
+	 * <br />
+	 * Together with the list of (local) 'mappingSectionModels', these make up the list of MappingModels defining the Mappings that will be executed during a transformation.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Mapping Models</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedMappingModels()
 	 * @model
@@ -266,6 +300,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of ConditionModels contained in this PAMTraM instance.
+	 * <br />
+	 * Together with the list of 'sharedConditionModels', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Condition Models</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_ConditionModels()
 	 * @model containment="true"
@@ -282,6 +321,11 @@ public interface PAMTraM extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of external ConditionModels (stored in their own files with the file-ending '*.pamtram.condition') referenced by this PAMTraM instance.
+	 * <br />
+	 * Together with the list of (local) 'conditionModels', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Condition Models</em>' reference list.
 	 * @see pamtram.PamtramPackage#getPAMTraM_SharedConditionModels()
 	 * @model

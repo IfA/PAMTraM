@@ -9,6 +9,10 @@ import pamtram.NamedElement;
  * A representation of the model object '<em><b>Attribute Value Modifier</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The common super-type of all elements that will modify a 'value'.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.modifier.ModifierPackage#getValueModifier()
  * @model interface="true" abstract="true"

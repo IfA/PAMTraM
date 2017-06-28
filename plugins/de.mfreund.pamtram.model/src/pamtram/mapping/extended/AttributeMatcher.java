@@ -13,6 +13,16 @@ import pamtram.structure.target.TargetSectionAttribute;
  * A representation of the model object '<em><b>Attribute Matcher</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An AttributeMatcher can be used to determine the target instance(s) for a ReferenceTargetSelector.
+ * <br />
+ * Thereby, a certain subset of the elements that have been created based on the specified 'target' Attribute (resp. the containing TargetSectionClass) is used as target instances.
+ * <br />
+ * The selection process is based on the comparison of the value of a the 'target' attribute of the created instance with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'.
+ * <br /><br />
+ * Note: In cases where all instances created based on the denoted 'target' Attribute (resp. the containing TargetSectionClass) shall be used, a simple ClassMatcher can be used instead.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +43,9 @@ public interface AttributeMatcher extends Matcher, ExpandableHint, InstanceSelec
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The specific attribute of the created TargetSections whose value is compared with the reference value used by this matcher.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(TargetSectionAttribute)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getAttributeMatcher_Target()

@@ -13,6 +13,10 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * A representation of the model object '<em><b>Mapping Model</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappingModel contains a list of Mapping which will be executed by the transformation algorithm.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,6 +42,11 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of Mappings which are contained in this MappingModel. These will be executed by the transformation algorithm.
+	 * <br />
+	 * Note: Only 'active' Mappings will actually be executed (also see the 'activeMappings' reference).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Mappings</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_Mappings()
 	 * @model containment="true" required="true"
@@ -54,6 +63,9 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of ValueModiferSets which are contained in this MappingModel.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Modifier Sets</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_ModifierSets()
 	 * @model containment="true"
@@ -70,6 +82,9 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of global FixedValues. These values can e.g. be used in calculations of values of attributes in TargetSections. Therefore, they can be referenced in expressions via their name.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Global Values</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_GlobalValues()
 	 * @model containment="true"
@@ -99,6 +114,9 @@ public interface MappingModel extends NamedElement, DeactivatableElement, Condit
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of GlobalAttributes defined by this MappingModel.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Global Attributes</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getMappingModel_GlobalAttributes()
 	 * @model containment="true"

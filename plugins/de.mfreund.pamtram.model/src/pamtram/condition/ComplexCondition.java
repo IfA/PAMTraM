@@ -10,6 +10,10 @@ import pamtram.NamedElement;
  * A representation of the model object '<em><b>Complex Condition</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The super type for all specific Condition types.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.condition.ConditionPackage#getComplexCondition()
  * @model abstract="true"

@@ -8,6 +8,10 @@ package pamtram.mapping.modifier;
  * A representation of the model object '<em><b>String Modifier</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The common super-type of all elements that will modify a String-based 'value'.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.modifier.ModifierPackage#getStringModifier()
  * @model abstract="true"

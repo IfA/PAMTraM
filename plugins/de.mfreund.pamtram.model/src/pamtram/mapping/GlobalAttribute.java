@@ -14,6 +14,12 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * A representation of the model object '<em><b>Global Variable</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * GlobalAttributes can be used to store the value of a SourceSectionAttribute in a reusable way.
+ * <br />
+ * The value of a GlobalAttribute can thereby be reused in various calculations (e.g. in AttributeMappings) by means of a GlobalAttributeImporter. In contrast to the 'local' usage of an Attribute value in a calculation, GlobalAttributes can be reused as part of any Mapping - the Attribute does not need to be part of the SourceSection associated with the Mapping.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +41,9 @@ public interface GlobalAttribute extends NamedElement, ModifiableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The SourceSectionAttribute based on which the value of this GlobalAttribute is determined.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(ActualSourceSectionAttribute)
 	 * @see pamtram.mapping.MappingPackage#getGlobalAttribute_Source()

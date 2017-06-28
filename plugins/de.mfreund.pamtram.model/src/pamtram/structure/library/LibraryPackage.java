@@ -21,6 +21,11 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the usage of library elements as TargetSections resp. right-hand side of a mapping.
+ * <br />
+ * The library elements need to be based on the generic library meta-model 'GenLibrary' (or one of its specializations for a specific UI meta-model).
+ * <!-- end-model-doc -->
  * @see pamtram.structure.library.LibraryFactory
  * @model kind="package"
  * @generated

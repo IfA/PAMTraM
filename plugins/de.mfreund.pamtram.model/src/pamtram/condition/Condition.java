@@ -10,6 +10,10 @@ import pamtram.structure.SourceInstanceSelector;
  * A representation of the model object '<em><b>Condition</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The super type for all Condition types that are not only simple logical compositions of sub-conditions.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +38,11 @@ public interface Condition<TargetType> extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Together with the defined 'value', this specifies how often/for how many of the elements matched for the specified 'target' element this Condition needs to be fulfilled.
+	 * <br /><br />
+	 * For example, if 'value' is set to '1' and 'comparator is set to 'GE', the condition needs to be fulfilled at least once.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Comparator</em>' attribute.
 	 * @see pamtram.condition.ComparatorEnum
 	 * @see #setComparator(ComparatorEnum)
@@ -62,6 +71,11 @@ public interface Condition<TargetType> extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The element on which this condition is evaluated.
+	 * <br /><br />
+	 * Note: As the specified 'target' element may be matched multiple times in a source model, additional restrictions on how often this condition should be met may be specified via the 'value' and 'comparator' attributes.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Object)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Target()
@@ -89,6 +103,11 @@ public interface Condition<TargetType> extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A list of InstanceSelectors that can be used to restrict the application of this condition: 
+	 * <br />
+	 * The specified 'target' element may be matched multiple times in a source model. However, the Condition will only evaluated for those matches that are identified by the specified list of InstanceSelectors.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Instance Selectors</em>' containment reference list.
 	 * @see pamtram.condition.ConditionPackage#getCondition_InstanceSelectors()
 	 * @model containment="true"
@@ -113,6 +132,11 @@ public interface Condition<TargetType> extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Together with the defined 'comparator', this specifies how often/for how many of the elements matched for the specified 'target' element this Condition needs to be fulfilled.
+	 * <br /><br />
+	 * For example, if 'value' is set to '1' and 'comparator is set to 'GE', the condition needs to be fulfilled at least once.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(int)
 	 * @see pamtram.condition.ConditionPackage#getCondition_Value()

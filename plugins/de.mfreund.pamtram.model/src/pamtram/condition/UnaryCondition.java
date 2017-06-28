@@ -11,6 +11,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * A representation of the model object '<em><b>Single Condition Operator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Condition that is composed of exactly one sub-condition.
+ * <br />
+ * The sub-condition can be specified locally (via the 'localCondPart' reference) or globally (specified via the 'sharedCondPart' reference).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +39,11 @@ public interface UnaryCondition extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The locally defined sub-condition.
+	 * <br /><br />
+	 * Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Local Cond Part</em>' containment reference.
 	 * @see #setLocalCondPart(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_LocalCondPart()
@@ -59,6 +70,11 @@ public interface UnaryCondition extends ComplexCondition {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The globally specified sub-condition.
+	 * <br /><br />
+	 * Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Cond Part</em>' reference.
 	 * @see #setSharedCondPart(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_SharedCondPart()

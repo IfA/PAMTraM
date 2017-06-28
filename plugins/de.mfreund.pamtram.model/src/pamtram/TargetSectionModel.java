@@ -16,6 +16,10 @@ import pamtram.structure.target.TargetSectionReference;
  * A representation of the model object '<em><b>Target Section Model</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A TargetSectionModel contains a list of TargetSections which can act as the right-hand side (RHS) of a Mapping.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,6 +42,9 @@ public interface TargetSectionModel extends SectionModel<TargetSection, TargetSe
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of LibraryElement-based TargetSections defined by this SectionModel.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Library Elements</em>' containment reference list.
 	 * @see pamtram.PamtramPackage#getTargetSectionModel_LibraryElements()
 	 * @model containment="true"

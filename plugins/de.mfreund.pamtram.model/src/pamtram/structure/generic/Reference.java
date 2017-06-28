@@ -8,6 +8,12 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents a reference of an element structure.
+ * <br />
+ * In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -32,6 +38,9 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Class containing this Reference.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Class</em>' container reference.
 	 * @see pamtram.structure.generic.GenericPackage#getReference_OwningClass()
 	 * @see pamtram.structure.generic.Class#getReferences

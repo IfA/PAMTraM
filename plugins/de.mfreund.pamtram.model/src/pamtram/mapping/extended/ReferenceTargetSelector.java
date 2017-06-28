@@ -12,6 +12,12 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ReferenceTargetSelector</b></em>'. <!--
  * end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappingHint that tells the transformation algorithm how determine the target value(s)/instance(s) of a TargetSectionCrossReference in the course of a transformation.
+ * <br /><br />
+ * The target instances are thereby determined based on the specified 'matcher'.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +39,9 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The TargetSectionCrossReference whose target values are determined by this ReferenceTargetSelector.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Affected Reference</em>' reference.
 	 * @see #setAffectedReference(TargetSectionCrossReference)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_AffectedReference()
@@ -59,6 +68,9 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Matcher that is used to determine the target instances for the 'affectedReference'.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Matcher</em>' containment reference.
 	 * @see #setMatcher(Matcher)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_Matcher()

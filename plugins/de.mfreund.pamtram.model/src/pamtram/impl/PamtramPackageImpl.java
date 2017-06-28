@@ -975,6 +975,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 	}
@@ -993,6 +995,358 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."
+		   });	
+		addAnnotation
+		  (namedElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A NamedElement provides a human-readable name that can be used to identify it, e.g. when working with the model editor."
+		   });	
+		addAnnotation
+		  (getNamedElement_Name(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A human-readable name for this element. This does not necessarilly need to be unique."
+		   });	
+		addAnnotation
+		  (deactivatableElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A DeactivatableElement can be deactivated by the user (e.g. via the model editor). Deactivated elements will be ignored by the transformation algorithm executing the PAMTraM model."
+		   });	
+		addAnnotation
+		  (getDeactivatableElement_Deactivated(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If set to \'true\', this element (and possible sub-elements) will be ignored during a transformation."
+		   });	
+		addAnnotation
+		  (pamTraMEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The root element of a PAMTraM model. It mainly acts as container for the various sub-models that are used to define Source- and TargetSections, Mappings, and Conditions."
+		   });	
+		addAnnotation
+		  (getPAMTraM__MergeExtends(), 
+		   source, 
+		   new String[] {
+			 "body", "//TODO handle hierarchical extensions (an extended section extends other sections\r\n//TODO implement a more sophisticated merging strategy that takes into account overwriting of hints?\r\n\r\n/*\r\n * First, we collect each abstract source and target section as well as the concrete sections that\r\n * reference them\r\n */\r\nHashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();\r\nMap<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer.find(getActiveSourceSections());\r\nfor (Section section : getActiveSourceSections()) {\r\n\tif(section.isAbstract() && sourceSettings.containsKey(section)) {\r\n\t\tLinkedList<Section> concreteSections = new LinkedList<>();\r\n\t\tfor (Setting setting : sourceSettings.get(section)) {\r\n\t\t\tif(setting.getEStructuralFeature().equals(<%pamtram.structure.generic.impl.GenericPackageImpl%>.eINSTANCE.getSection_Extend())) {\r\n\t\t\t\tconcreteSections.add((Section) setting.getEObject());\r\n\t\t\t}\r\n\t\t}\r\n\t\tabstractToConcreteSectionMap.put(section, concreteSections);\r\n\t}\r\n}\r\nMap<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(getTargetSections());\r\nfor (Section section : getTargetSections()) {\r\n\tif(section.isAbstract() && targetSettings.containsKey(section)) {\r\n\t\tLinkedList<Section> concreteSections = new LinkedList<>();\r\n\t\tfor (Setting setting : targetSettings.get(section)) {\r\n\t\t\tif(setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {\r\n\t\t\t\tconcreteSections.add((Section) setting.getEObject());\r\n\t\t\t}\r\n\t\t}\r\n\t\tabstractToConcreteSectionMap.put(section, concreteSections);\r\n\t}\r\n}\r\n\r\nArrayList<Mapping> concreteMappings = new ArrayList<>();\r\nfor (Mapping mapping : getActiveMappings()) {\r\n\tif(!mapping.isAbstract()) {\r\n\t\tconcreteMappings.add(mapping);\r\n\t}\r\n}\r\n\r\n/*\r\n * Now, we copy all elements from the abstract sections to the concrete sections\r\n * that extend them. In this process, we store the associations between the elements from\r\n * the abstract sections and the copied elements in a map.\r\n */\r\nHashMap<EObject, LinkedList<EObject>> abstractToConcreteElementMap = new HashMap<>();\r\nfor (Section abstractSection : abstractToConcreteSectionMap.keySet()) {\r\n\tfor (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {\r\n\r\n\t\tSection copiedSection = EcoreUtil.copy(abstractSection);\r\n\r\n\t\tTreeIterator<EObject> originalIterator = EcoreUtil.getAllContents(Collections.singleton(abstractSection));\r\n\t\tTreeIterator<EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));\r\n\r\n\t\t// these lists will store the elements that we will add to the concrete section\r\n\t\tArrayList<Attribute> attributesToAdd = new ArrayList<>();\r\n\t\tArrayList<Reference> referencesToAdd = new ArrayList<>();\r\n\r\n\t\twhile(originalIterator.hasNext()) {\r\n\t\t\tassert copyIterator.hasNext();\r\n\r\n\t\t\tEObject originalNext = originalIterator.next();\r\n\t\t\tEObject copyNext = copyIterator.next();\r\n\r\n\t\t\t// if the element is the section itself, we skip it\r\n\t\t\tif(originalNext instanceof Section) {\r\n\t\t\t\tcontinue;\r\n\t\t\t}\r\n\r\n\t\t\t// if the element is a top-level element below the section, we add it to the concrete section\r\n\t\t\tif(originalNext.eContainer().equals(abstractSection)) {\r\n\t\t\t\tif(copyNext instanceof Attribute) {\r\n\t\t\t\t\tattributesToAdd.add((Attribute) copyNext);\r\n\t\t\t\t} else if(copyNext instanceof Reference) {\r\n\t\t\t\t\treferencesToAdd.add((Reference) copyNext);\r\n\t\t\t\t} else {\r\n\t\t\t\t\tthrow new RuntimeException(\"Unsupported element type \'\" + copyNext.eClass().getName() + \"\' encountered when merging extends!\");\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t// in any case, we fill the abstractToConcreteElementMap\r\n\t\t\tLinkedList<EObject> vals = abstractToConcreteElementMap.get(originalNext);\r\n\t\t\tif(vals == null) {\r\n\t\t\t\tvals = new LinkedList<>();\r\n\t\t\t}\r\n\t\t\tvals.add(copyNext);\r\n\t\t\tabstractToConcreteElementMap.put(originalNext, vals);\r\n\t\t}\r\n\r\n\t\t/*\r\n\t\t * now, we add the collected elements to the concrete section; we have to do this\r\n\t\t * after the process of iterating over the contents - otherwise, the TreeIterator will throw\r\n\t\t * IndexOutOfBoundsExceptions\r\n\t\t */\r\n\t\tconcreteSection.getAttributes().addAll(attributesToAdd);\r\n\t\tconcreteSection.getReferences().addAll(referencesToAdd);\r\n\r\n\t\t/*\r\n\t\t * Now, we redirect references from concrete sections to\r\n\t\t * elements from the abstract section to the (new) elements from\r\n\t\t * the concrete sections.\r\n\t\t */\r\n\t\tMap<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(\r\n\t\t\t\tabstractToConcreteElementMap.keySet(),\r\n\t\t\t\tthis.getActiveSourceSections().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList()));\r\n\t\tfor (EObject referencedObject : refsToAbstractSection.keySet()) {\r\n\r\n\t\t\tfor (Setting setting : refsToAbstractSection.get(referencedObject).stream()\r\n\t\t\t\t\t\t\t.filter(s -> !s.getEStructuralFeature().isDerived()).collect(Collectors.toList())) {\r\n\r\n\t\t\t\tif (setting.getEStructuralFeature().equals(<%pamtram.structure.generic.GenericPackage%>.eINSTANCE.getSection_Extend())) {\r\n\t\t\t\t\t// the \'extend\' feature has already been handled\r\n\t\t\t\t\t// above\r\n\t\t\t\t\tcontinue;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t// this is the element referencing the abstract section\r\n\t\t\t\t// (it should be an element of a section)\r\n\t\t\t\tEObject hintElement = setting.getEObject();\r\n\r\n\t\t\t\tif (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getClass_Container())) {\r\n\t\t\t\t\tif (abstractSection.equals(hintElement)\r\n\t\t\t\t\t\t\t|| abstractSection.isContainerFor((<%pamtram.structure.generic.Class%><?, ?, ?, ?>) hintElement)) {\r\n\r\n\t\t\t\t\t\t// redirect the reference (we can always use the\r\n\t\t\t\t\t\t// \'last\' of the concrete objects as we just\r\n\t\t\t\t\t\t// added it above\r\n\t\t\t\t\t\tsetting.set(abstractToConcreteElementMap.get(referencedObject).getLast());\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t} else {\r\n\t\t\t\t\tSystem.out.println(\"Unhandled reference to element of an abstract section. Maybe consider redirecting this?\");\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t/*\r\n\t\t * Now, we redirect references from MappingHints to elements from the abstract section to the elements from the concrete sections. \r\n\t\t * Here, we only handle references from concrete mappings as the references from abstract mappings (and thus from extended hint\r\n\t\t * groups) are handled afterwards when these hint groups are copied.\r\n\t\t */\r\n\t\trefsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);\r\n\t\tfor (EObject referencedObject : refsToAbstractSection.keySet()) {\r\n\r\n\r\n\t\t\tfor (Setting setting : refsToAbstractSection.get(referencedObject)) {\r\n\r\n\t\t\t\t// this is the element referencing the abstract section (it should be an element of a mapping hint)\r\n\t\t\t\tEObject hintElement = setting.getEObject().eContainer();\r\n\t\t\t\tMappingHintGroupType hintGroup = null;\r\n\t\t\t\tif(hintElement instanceof MappingHintGroupType) {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement;\r\n\t\t\t\t} else if(hintElement.eContainer() instanceof MappingHintGroupType) {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement.eContainer();\r\n\t\t\t\t} else {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\t// We do not need to handle deactivated Mappings/MappingHintGroups\r\n\t\t\t\t//\r\n\t\t\t\tif(hintGroup instanceof DeactivatableElement && ((DeactivatableElement) hintGroup).isDeactivated() ||\r\n\t\t\t\t\t\thintGroup.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {\r\n\t\t\t\t\tcontinue;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t/* \r\n\t\t\t\t * check if the hint group or its parent mapping equals the section that we just added the concrete elements to\r\n\t\t\t\t */\r\n\t\t\t\tif(concreteSection.equals(hintGroup.getTargetSection()) || \r\n\t\t\t\t\t\tconcreteSection.isContainerFor(hintGroup.getTargetSection()) ||\r\n\t\t\t\t\t\tconcreteSection.equals(((Mapping) hintGroup.eContainer()).getSourceSection()) || \r\n\t\t\t\t\t\tconcreteSection.isContainerFor(((Mapping) hintGroup.eContainer()).getSourceSection())) {\r\n\r\n\t\t\t\t\tif(setting.getEStructuralFeature().equals(<%pamtram.structure.impl.StructurePackageImpl%>.eINSTANCE.getDynamicSourceElement_Source()) && \r\n\t\t\t\t\t\t\tsetting.getEObject() instanceof ContainerSelectorTargetAttribute) {\r\n\t\t\t\t\t\t// do nothing as ContainerSelectors are handled below separately\r\n\t\t\t\t\t} else {\r\n\t\t\t\t\t\t// redirect the reference (we can always use the \'last\' of the concrete objects as we just added it above\r\n\t\t\t\t\t\tsetting.set(abstractToConcreteElementMap.get(referencedObject).getLast());\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t}\r\n}\r\n\r\n/*\r\n * Now, we handle the ContainerSelectors that we skipped above. We can do this now as we now know all concrete TargetSections that\r\n * are a possible match for each ContainerSelector that points to an abstract TargetSection.\r\n */\r\nfor (Section abstractSection : abstractToConcreteSectionMap.keySet()) {\r\n\tfor (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {\r\n\t\t/*\r\n\t\t * as ContainerSelectors will get treated differently (see below), we store the ContainerSelectorTargetAttributes\r\n\t\t * holding the referneces to the Attributes in the abstract section and will delete these later\r\n\t\t */\r\n\t\tArrayList<ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();\r\n\r\n\t\tMap<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);\r\n\t\tfor (EObject referencedObject : refsToAbstractSection.keySet()) {\r\n\r\n\r\n\t\t\tfor (Setting setting : refsToAbstractSection.get(referencedObject)) {\r\n\r\n\t\t\t\t// this is the element referencing the abstract section (it should be an element of a mapping hint)\r\n\t\t\t\tEObject hintElement = setting.getEObject().eContainer();\r\n\t\t\t\tMappingHintGroupType hintGroup = null;\r\n\t\t\t\tif(hintElement instanceof MappingHintGroupType) {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement;\r\n\t\t\t\t} else if(hintElement.eContainer() instanceof MappingHintGroupType) {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement.eContainer();\r\n\t\t\t\t} else {\r\n\t\t\t\t\thintGroup = (MappingHintGroupType) hintElement.eContainer().eContainer();\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\t// We do not need to handle deactivated Mappings/MappingHintGroups\r\n\t\t\t\t//\r\n\t\t\t\tif(hintGroup instanceof DeactivatableElement && ((DeactivatableElement) hintGroup).isDeactivated() ||\r\n\t\t\t\t\t\thintGroup.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) hintGroup.eContainer()).isDeactivated()) {\r\n\t\t\t\t\tcontinue;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t/* \r\n\t\t\t\t * check if the hint group or its parent mapping equals the section that we just added the concrete elements to or\r\n\t\t\t\t * if we are dealing with a model ContainerSelectorTargetAttribute\r\n\t\t\t\t */\r\n\t\t\t\tif(setting.getEStructuralFeature().equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source()) && \r\n\t\t\t\t\t\tsetting.getEObject() instanceof ContainerSelectorTargetAttribute) {\r\n\r\n\t\t\t\t\t// in this case, we must not simply redirect but we create a new ContainerSelectorTargetAttribute\r\n\t\t\t\t\tContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting.getEObject();\r\n\r\n\t\t\t\t\tfor (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap.get(referencedObject)) {\r\n\t\t\t\t\t\tContainerSelectorTargetAttribute copy = <%pamtram.mapping.extended.impl.ExtendedFactoryImpl%>.eINSTANCE.createContainerSelectorTargetAttribute();\r\n\t\t\t\t\t\tcopy.setName(original.getName());\r\n\t\t\t\t\t\tcopy.getModifiers().addAll(original.getModifiers());\r\n\t\t\t\t\t\tcopy.setSource((TargetSectionAttribute) concreteTargetSectionAttribute);\r\n\r\n\t\t\t\t\t\t((ContainerSelector) (setting.getEObject().eContainer())).getTargetAttributes().add(copy);\t\t\t\t\t\t\t\t\r\n\t\t\t\t\t}\r\n\r\n\r\n\t\t\t\t\tmchTargetAttributesToDelete.add((ContainerSelectorTargetAttribute) setting.getEObject());\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\tfor (ContainerSelectorTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {\r\n\t\t\tEcoreUtil.delete(mchTargetAttribute);\r\n\t\t}\r\n\t}\r\n}\r\n\r\n/*\r\n * Finally, we can copy the abstract hint groups\r\n */\r\n\r\n// collect each abstract hint group as well as the concrete hint groups that reference them\r\nHashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();\r\nMap<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(getActiveMappings());\r\nfor (EObject element : mappingSettings.keySet()) {\r\n\tif(element instanceof MappingHintGroupType && ((Mapping)(element.eContainer())).isAbstract()) {\r\n\t\t\r\n\t\t// We do not need to handle deactivated MappingHintGroups\r\n\t\t//\r\n\t\tif(element instanceof DeactivatableElement && ((DeactivatableElement) element).isDeactivated() ||\r\n\t\t\t\telement.eContainer() instanceof DeactivatableElement && ((DeactivatableElement) element.eContainer()).isDeactivated()) {\r\n\t\t\tcontinue;\r\n\t\t}\r\n\t\t\r\n\t\tLinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();\r\n\t\tfor (Setting setting : mappingSettings.get(element)) {\r\n\t\t\tif(setting.getEStructuralFeature().equals(<%pamtram.mapping.impl.MappingPackageImpl%>.eINSTANCE.getMappingHintGroupType_Extend())) {\r\n\t\t\t\t\r\n\t\t\t\t// only copy hints to activated hint groups\r\n\t\t\t\tif((setting.getEObject() instanceof DeactivatableElement && ((DeactivatableElement) setting.getEObject()).isDeactivated()) ||\r\n\t\t\t\t\t\t(setting.getEObject().eContainer() instanceof DeactivatableElement && ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated())) {\r\n\t\t\t\t\tcontinue;\r\n\t\t\t\t} else {\t\t\t\t\t\t\t\r\n\t\t\t\t\tconcreteHintGroups.add((MappingHintGroupType) setting.getEObject());\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t\tabstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);\r\n\t}\r\n}\r\n\r\n// copy the hints to the concrete hint groups\r\nfor (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {\r\n\tfor (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {\r\n\r\n\t\tCollection<MappingHintBaseType> hintsToCopy = new BasicEList<>();\r\n\t\t/*\r\n\t\t * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors) that are not\r\n\t\t * \'overwritten\' by hints of the concrete HintGroup.\r\n\t\t */\r\n\t\tfor (MappingHint abstractHint : abstractHintGroup.getActiveMappingHints()) {\r\n\t\t\tEObject hintTarget = null;\r\n\t\t\tif(abstractHint instanceof AttributeMapping) {\r\n\t\t\t\thintTarget = ((AttributeMapping) abstractHint).getTarget();\r\n\t\t\t} else if(abstractHint instanceof ReferenceTargetSelector) {\r\n\t\t\t\thintTarget = ((ReferenceTargetSelector) abstractHint).getAffectedReference();\r\n\t\t\t} else if(abstractHint instanceof CardinalityMapping) {\r\n\t\t\t\thintTarget = ((CardinalityMapping) abstractHint).getTarget();\r\n\t\t\t} else if(abstractHint instanceof ContainerSelector) {\r\n\t\t\t\t// nothing to do as ContainerSelectorTargetAttributes are handled separately\r\n\t\t\t} else {\r\n\t\t\t\tthrow new RuntimeException(\"Unsupported hint type \'\" + abstractHint.eClass().getName() + \"\' in HintGroup \'\" + \r\n\t\t\t\t\t\tabstractHintGroup.getName() + \"\': These kind of hints are not supported yet in abstract HintGroups!\");\r\n\t\t\t}\r\n\r\n\t\t\t// An abstract hint is not overwritten (and may thus get\r\n\t\t\t// copied) if...\r\n\t\t\t//\r\n\t\t\t// ... there are either no concrete hints at all...\r\n\t\t\tif (concreteHintGroup.getMappingHints().isEmpty()\r\n\t\t\t\t\t// ... or if there are are no hints with the same\r\n\t\t\t\t\t// target element ...\r\n\t\t\t\t\t|| EcoreUtil.UsageCrossReferencer.find(hintTarget, concreteHintGroup.getActiveMappingHints())\r\n\t\t\t\t\t\t\t.isEmpty()\r\n\t\t\t\t\t\t\t// ... and no hints with a target elements\r\n\t\t\t\t\t\t\t// that extends the target element of the\r\n\t\t\t\t\t\t\t// abstract hint\r\n\t\t\t\t\t\t\t&& (abstractToConcreteElementMap.get(hintTarget) == null\r\n\t\t\t\t\t\t\t\t\t|| abstractToConcreteElementMap.get(hintTarget).isEmpty()\r\n\t\t\t\t\t\t\t\t\t|| EcoreUtil.UsageCrossReferencer\r\n\t\t\t\t\t\t\t\t\t\t\t.findAll(abstractToConcreteElementMap.get(hintTarget),\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tconcreteHintGroup.getActiveMappingHints())\r\n\t\t\t\t\t\t\t\t\t\t\t.isEmpty())) {\r\n\r\n\t\t\t\thintsToCopy.add(abstractHint);\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\tCollection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);\r\n\r\n\t\t/* \r\n\t\t * make sure that all references to elements from the abstract sections are redirected to the concrete sections\r\n\t\t * that we created earlier\r\n\t\t */\r\n\t\tfor (MappingHintBaseType copiedHint : copiedHints) {\r\n\r\n\t\t\t/* \r\n\t\t\t * these are the references from the copied hint (that will get added to the concrete hint group) to elements from\r\n\t\t\t * abstract sections\r\n\t\t\t */\r\n\t\t\tMap<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(), copiedHint);\r\n\t\t\tfor (EObject referencedObject : refsToAbstractSection.keySet()) {\r\n\r\n\t\t\t\t/*\r\n\t\t\t\t * based on the type of hint element that we are handling (local or external), source and target \r\n\t\t\t\t * sections or their containers are checked\r\n\t\t\t\t */\r\n\t\t\t\tboolean local = true;\r\n\t\t\t\tif(refsToAbstractSection.get(referencedObject).size() > 1) {\r\n\t\t\t\t\tthrow new RuntimeException(\"Internal Error! The hint \'\" + copiedHint.getName() + \"\' in the hint group \'\" + abstractHintGroup.getName() + \r\n\t\t\t\t\t\t\t\"\' holds multiple references to the same object of an abstract section (\'\" + referencedObject + \"\'.\");\r\n\t\t\t\t}\r\n\t\t\t\tif(refsToAbstractSection.get(referencedObject).iterator().next().getEObject() instanceof <%pamtram.structure.ExternalDynamicSourceElement%>) {\r\n\t\t\t\t\tlocal = false;\r\n\t\t\t\t}\r\n\t\t\t\tArrayList<Section> sourceAndTargetSections = new ArrayList<>();\r\n\t\t\t\tSourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();\r\n\t\t\t\tif(local) {\r\n\t\t\t\t\tsourceAndTargetSections.add(sourceSection);\r\n\t\t\t\t} else {\r\n\t\t\t\t\twhile (sourceSection.getContainer() != null) {\r\n\t\t\t\t\t\tsourceSection = sourceSection.getContainer().getContainingSection();\r\n\t\t\t\t\t\tsourceAndTargetSections.add(sourceSection);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t\tTargetSection targetSection = concreteHintGroup.getTargetSection();\r\n\t\t\t\tif(local) {\r\n\t\t\t\t\tsourceAndTargetSections.add(targetSection);\r\n\t\t\t\t} else {\r\n\t\t\t\t\twhile (targetSection.getContainer() != null) {\r\n\t\t\t\t\t\ttargetSection = targetSection.getContainer().getContainingSection();\r\n\t\t\t\t\t\tsourceAndTargetSections.add(targetSection);\r\n\t\t\t\t\t} \r\n\t\t\t\t}\r\n\r\n\t\t\t\t/* \r\n\t\t\t\t * these are possible targets for the redirection of references to the referenced object\r\n\t\t\t\t */\r\n\t\t\t\tLinkedList<EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);\r\n\r\n\t\t\t\tboolean found = false;\r\n\t\t\t\tEObject target = null; // this will contain the new value for the reference\r\n\t\t\t\tfor (EObject possibleTarget : possibleTargets) {\r\n\t\t\t\t\tSection containingSection = ((MetaModelElement) possibleTarget).getContainingSection();\r\n\t\t\t\t\tif(sourceAndTargetSections.contains(containingSection)) {\r\n\t\t\t\t\t\tif(found == false ) {\r\n\t\t\t\t\t\t\tfound = true;\r\n\t\t\t\t\t\t\ttarget = possibleTarget;\r\n\t\t\t\t\t\t} else {\r\n\t\t\t\t\t\t\t// this should not happen, should it?\r\n\t\t\t\t\t\t\tthrow new RuntimeException(\"Internal error! Multiple targets found for redirection of element \'\" + referencedObject + \"\' in.\");\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\tif(found == false) {\r\n\t\t\t\t\tthrow new RuntimeException(\"Internal error! No target found for redirection of element \'\" + referencedObject + \"\'.\");\r\n\t\t\t\t}\r\n\r\n\t\t\t\tfor (Setting setting : refsToAbstractSection.get(referencedObject)) {\r\n\t\t\t\t\tsetting.set(target);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t}\r\n\r\n\t\t// Finally, we add the copied hints to the concrete hint group\r\n\t\tfor (MappingHintBaseType copiedHint : copiedHints) {\r\n\t\t\tconcreteHintGroup.getMappingHints().add((MappingHint) copiedHint);\r\n\t\t}\r\n\t}\r\n}\r\n\r\n/*\r\n * At the end, we clear the values of the \'extend\' references of the concrete elements as these\r\n * are no longer needed.\r\n */\r\nfor (Entry<Section, LinkedList<Section>> entry : abstractToConcreteSectionMap.entrySet()) {\r\n\tfor (Section concreteSection : entry.getValue()) {\r\n\t\tconcreteSection.getExtend().remove(entry.getKey());\r\n\t}\r\n}\r\nfor (Entry<MappingHintGroupType, LinkedList<MappingHintGroupType>> entry : abstractToConcreteHintGroupMap.entrySet()) {\r\n\tfor (MappingHintGroupType concreteHintGroup : entry.getValue()) {\r\n\t\tconcreteHintGroup.getExtend().remove(entry.getKey());\r\n\t}\r\n}"
+		   });	
+		addAnnotation
+		  (getPAMTraM__GetActiveSourceSectionModels(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);"
+		   });	
+		addAnnotation
+		  (getPAMTraM__GetActiveSourceSections(), 
+		   source, 
+		   new String[] {
+			 "body", "Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(sourceSections.length, sourceSections);"
+		   });	
+		addAnnotation
+		  (getPAMTraM_SourceSectionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of SourceSectionModels contained in this PAMTraM instance.\r\n<br />\r\nTogether with the list of \'sharedSourceSectionModels\', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_SharedSourceSectionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of external SourceSectionModels (stored in their own files with the file-ending \'*.pamtram.source\') referenced by this PAMTraM instance.\r\n<br />\r\nTogether with the list of (local) \'sourceSectionModels\', these make up the list of SourceSectionModels providing the SourceSections (LHS) that will be used during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_TargetSectionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of TargetSectionModels contained in this PAMTraM instance.\r\n<br />\r\nTogether with the list of \'sharedTargetSectionModels\', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_SharedTargetSectionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of external TargetSectionModels (stored in their own files with the file-ending \'*.pamtram.target\') referenced by this PAMTraM instance.\r\n<br />\r\nTogether with the list of (local) \'targetSectionModels\', these make up the list of TargetSectionModels providing the TargetSections (RHS) that will be used during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_MappingModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of MappingModels contained in this PAMTraM instance.\r\n<br />\r\nTogether with the list of \'sharedMappingModels\', these make up the list of MappingModels defining the Mappings that will be executed during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_SharedMappingModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of external MappingSectionModels (stored in their own files with the file-ending \'*.pamtram.mapping\') referenced by this PAMTraM instance.\r\n<br />\r\nTogether with the list of (local) \'mappingSectionModels\', these make up the list of MappingModels defining the Mappings that will be executed during a transformation."
+		   });	
+		addAnnotation
+		  (getPAMTraM_SourceSections(), 
+		   source, 
+		   new String[] {
+			 "get", "List<SourceSection> sourceSections = Stream\r\n\t\t.concat(this.getSourceSectionModels().stream(),\r\n\t\t\t\tthis.getSharedSourceSectionModels().stream())\r\n\t\t.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,\r\n\t\tsourceSections.size(), sourceSections.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_SourceSections(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all SourceSections (LHS) contained in all local and global/shared SourceSectionModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_TargetSections(), 
+		   source, 
+		   new String[] {
+			 "get", "List<TargetSection> targetSections = Stream\r\n\t\t.concat(this.getTargetSectionModels().stream(),\r\n\t\t\t\tthis.getSharedTargetSectionModels().stream())\r\n\t\t.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,\r\n\t\ttargetSections.size(), targetSections.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_TargetSections(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all TargetSections (RHS) contained in all local and global/shared TargetSectionModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_Mappings(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.Mapping%>> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())\r\n\t\t.flatMap(s -> s.getMappings().stream()).collect(Collectors.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_Mappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all Mappings contained in all local and global/shared MappingModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_ActiveMappings(), 
+		   source, 
+		   new String[] {
+			 "get", "List<Mapping> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())\r\n\t\t.flatMap(s -> s.getActiveMappings().stream()).filter(m -> !m.getSourceSection().isDeactivated()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_ActiveMappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all \'active\' Mappings contained in all local and global/shared MappingModels.\r\n<br />\r\nA Mapping is active if its \'deactivated\' attribute is not set to \'true\'."
+		   });	
+		addAnnotation
+		  (getPAMTraM_GlobalValues(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><FixedValue> globalValues = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())\r\n\t\t.flatMap(s -> s.getGlobalValues().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_VALUES,\r\n\t\tglobalValues.size(), globalValues.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_GlobalValues(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all GlobalValues contained in all local and global/shared MappingModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_GlobalAttributes(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><GlobalAttribute> globalAttributes = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())\r\n\t\t.flatMap(s -> s.getGlobalAttributes().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,\r\n\t\tglobalAttributes.size(), globalAttributes.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_GlobalAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all GlobalAttributes contained in all local and global/shared MappingModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_ModifierSets(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><<%pamtram.mapping.modifier.ValueModifierSet%>> modifierSets = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())\r\n\t\t.flatMap(s -> s.getModifierSets().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__MODIFIER_SETS,\r\n\t\tmodifierSets.size(), modifierSets.toArray());"
+		   });	
+		addAnnotation
+		  (getPAMTraM_ModifierSets(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of all ValueModifierSets contained in all local and global/shared MappingModels."
+		   });	
+		addAnnotation
+		  (getPAMTraM_ConditionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of ConditionModels contained in this PAMTraM instance.\r\n<br />\r\nTogether with the list of \'sharedConditionModels\', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model."
+		   });	
+		addAnnotation
+		  (getPAMTraM_SharedConditionModels(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of external ConditionModels (stored in their own files with the file-ending \'*.pamtram.condition\') referenced by this PAMTraM instance.\r\n<br />\r\nTogether with the list of (local) \'conditionModels\', these make up the list of ConditionModels defining the global Conditions that can be referenced by other elements in the PAMTraM model."
+		   });	
+		addAnnotation
+		  (sectionModelEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "SectionModels contain a list of Sections representing element structures. All element structures need to be based on the meta-model/EPackage identified by the \'metaModelPackage\' reference."
+		   });	
+		addAnnotation
+		  (getSectionModel_MetaModelPackage(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The meta-model (represented by an EPackage) based on which all element structures (Sections) in this SectionModel need to be based."
+		   });	
+		addAnnotation
+		  (getSectionModel_Sections(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of Sections defined by this SectionModel.\r\n<br />\r\nAll Sections need to be based on the meta-model/EPackage specified via the \'metaModelPackage\' reference."
+		   });	
+		addAnnotation
+		  (sourceSectionModelEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A SourceSectionModel contains a list of SourceSections which can act as the left-hand side (LHS) of a Mapping."
+		   });	
+		addAnnotation
+		  (targetSectionModelEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A TargetSectionModel contains a list of TargetSections which can act as the right-hand side (RHS) of a Mapping."
+		   });	
+		addAnnotation
+		  (getTargetSectionModel_LibraryElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of LibraryElement-based TargetSections defined by this SectionModel."
+		   });	
+		addAnnotation
+		  (mappingModelEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MappingModel contains a list of Mapping which will be executed by the transformation algorithm."
+		   });	
+		addAnnotation
+		  (getMappingModel_Mappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of Mappings which are contained in this MappingModel. These will be executed by the transformation algorithm.\r\n<br />\r\nNote: Only \'active\' Mappings will actually be executed (also see the \'activeMappings\' reference)."
+		   });	
+		addAnnotation
+		  (getMappingModel_ModifierSets(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of ValueModiferSets which are contained in this MappingModel."
+		   });	
+		addAnnotation
+		  (getMappingModel_GlobalValues(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of global FixedValues. These values can e.g. be used in calculations of values of attributes in TargetSections. Therefore, they can be referenced in expressions via their name."
+		   });	
+		addAnnotation
+		  (getMappingModel_ActiveMappings(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Mapping> mappings = this.getMappings().stream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());"
+		   });	
+		addAnnotation
+		  (getMappingModel_ActiveMappings(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the Mappings contained in this MappingModel that are not \'deactivated\'. These will be executed by the transformation algorithm."
+		   });	
+		addAnnotation
+		  (getMappingModel_GlobalAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of GlobalAttributes defined by this MappingModel."
+		   });	
+		addAnnotation
+		  (conditionalElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ConditionalElement is an element that can be attached with a Condition which restrains its applicability during the course of a transformation. This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available."
+		   });	
+		addAnnotation
+		  (getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify at most one (local or shared) condition!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\tPamtramValidator.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.util.PamtramValidator%>.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof <%pamtram.ConditionModel%>;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"It is only allowed to reference shared conditions that are model inside the ConditionModel!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\tPamtramValidator.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.util.PamtramValidator%>.CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getConditionalElement_LocalCondition(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The (locally defined) Condition which restrains the applicability of this element during the course of a transformation.\r\n<br />\r\nThis can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.\r\n<br />\r\nNote: Only one of \'localCondition\' or \'sharedCondition\' may be set for each element!"
+		   });	
+		addAnnotation
+		  (getConditionalElement_SharedCondition(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The (globally defined) referenced Condition which restrains the applicability of this element during the course of a transformation.\r\n<br />\r\nThis can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.\r\n<br />\r\nNote: Only one of \'localCondition\' or \'sharedCondition\' may be set for each element!"
+		   });	
+		addAnnotation
+		  (conditionModelEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ConditionModel contains a list of (global, reusable) Conditions which can be attached to ConditionalElements in order to restrain their applicability.\r\n<br />\r\nIn order to reference global conditions from a ConditionModel, you have to use a \'sharedCondition(s)\' non-containment reference (e.g. present for a ConditionalElement)."
+		   });	
+		addAnnotation
+		  (getConditionModel_Conditions(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The lis of (global, reusable) Conditions defined by this ConditionModel."
+		   });	
+		addAnnotation
+		  (expressionElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An ExpressionElement can be equipped with a mathematical expression describing how to calculate the (numeric) value of this element.\r\n<br />\r\nThe specific meaning of the calculated \'value\' is dependent on the concrete sub-type of this element."
+		   });	
+		addAnnotation
+		  (getExpressionElement_Expression(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A mathematical expression describing how to calculate the (numeric) value of this element.\r\n<br />\r\nThe specific meaning of the calculated \'value\' is dependent on the concrete type of this element.\r\n<br />\r\nNote: Variables (e.g. global FixedValues or specified source elements) can be referenced in the expression via their name, e.g. \'2*x\' if their is a (local) source element or a global FixedValue named \'x\'."
+		   });	
+		addAnnotation
+		  (modifiableElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A ModifiableElement can be equipped with a list of \'ValueModifierSets\' that will be applied on the value of this element.\r\n<br />\r\nThe specific meaning of the modified \'value\' is dependent on the concrete sub-type of this element."
+		   });	
+		addAnnotation
+		  (getModifiableElement_Modifiers(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of \'ValueModifierSets\' that will be applied on the value of this element.\r\n<br />\r\nThe specific meaning of the modified \'value\' is dependent on the concrete sub-type of this element."
+		   });	
+		addAnnotation
+		  (fixedValueEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This simply represents a certain numeric or literal value. It can be used e.g. as part of an AttributeMapping to specify the value of a TargetSectionAttribute."
+		   });	
+		addAnnotation
+		  (getFixedValue_Value(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The numeric or literal value."
 		   });
 	}
 

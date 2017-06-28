@@ -21,6 +21,22 @@ import pamtram.structure.target.TargetSectionClass;
  * A representation of the model object '<em><b>Cardinality Mapping</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A MappingHint that tells the transformation algorithm how determine the cardinality of a TargetSectionClass (how often the Class shall be instantiated) in the course of a transformation.
+ * <br /><br />
+ * The value is thereby determined based on one of two possibilities:
+ * <br />
+ * (1) Based on the list of specified 'sourceElements' and an optional (mathematical) 'expression'.
+ * <br />
+ * If the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.
+ * <br />
+ * If an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named 'x' is specified, a valid expression to double the value of this element would be "2*x".
+ * <br />
+ * (1) Base on the cardinality of the specified 'source'.
+ * <br /><br />
+ * Note: Only one of 'sourceElements' or 'source' may be specified!
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -43,6 +59,9 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The (optional) 'source' element whose cardinality is used to determine the cardinality of the 'target' Class.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(MetaModelElement)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getCardinalityMapping_Source()
@@ -69,6 +88,9 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The TargetSectionClass whose cardinality is determined by this CardinalityMapping.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(TargetSectionClass)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getCardinalityMapping_Target()
@@ -96,6 +118,9 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The (optional) list of 'sourceElements' based on which the cardinality of the 'target' Class is determined.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Elements</em>' containment reference list.
 	 * @see pamtram.mapping.extended.ExtendedPackage#getCardinalityMapping_SourceElements()
 	 * @model containment="true"

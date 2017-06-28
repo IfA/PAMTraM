@@ -10,6 +10,10 @@ import pamtram.SectionModel;
  * A representation of the model object '<em><b>Meta Model Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The super type for all specific types that can be used to describe element structures.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.structure.generic.GenericPackage#getMetaModelElement()
  * @model abstract="true"

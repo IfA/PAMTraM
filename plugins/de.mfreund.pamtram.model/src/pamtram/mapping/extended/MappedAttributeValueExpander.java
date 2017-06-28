@@ -12,6 +12,10 @@ import pamtram.structure.source.SourceSectionAttribute;
  * A representation of the model object '<em><b>Mapped Attribute Value Expander</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A common super-class for MappingHints that can be used inside MappingHintGroupImporters and will expand values determined for an imported MappingHint.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -34,6 +38,9 @@ public interface MappedAttributeValueExpander extends HintImporterMappingHint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The MappingHint for which determined values are expanded by this Expander.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Hints To Expand</em>' reference list.
 	 * @see pamtram.mapping.extended.ExtendedPackage#getMappedAttributeValueExpander_HintsToExpand()
 	 * @model required="true"

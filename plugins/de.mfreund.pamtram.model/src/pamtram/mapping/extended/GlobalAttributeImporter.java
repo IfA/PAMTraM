@@ -12,6 +12,12 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * A representation of the model object '<em><b>Global Variable Importer</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This specifies a source element whose value is based on the value of a GlobalAttribute. GlobalAttributes can thereby be used to store the value of a SourceSectionAttribute in a reusable way.
+ * <br />
+ * The value of a GlobalAttribute can thereby be reused in various calculations (e.g. in AttributeMappings). In contrast to the 'local' usage of an Attribute value in a calculation, GlobalAttributes can be reused as part of any Mapping - the Attribute does not need to be part of the SourceSection associated with the Mapping.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -32,6 +38,9 @@ public interface GlobalAttributeImporter extends NamedElement, AttributeMappingS
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The GlobalAttribute based on which the value of this element is determined.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Global Attribute</em>' reference.
 	 * @see #setGlobalAttribute(GlobalAttribute)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getGlobalAttributeImporter_GlobalAttribute()

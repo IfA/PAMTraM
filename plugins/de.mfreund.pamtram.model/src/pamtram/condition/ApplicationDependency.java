@@ -10,7 +10,9 @@ import pamtram.ConditionalElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A condition that allows to check whether another 'ConditionalElement' was applied/executed (at least once; exactly n times; for the concrete section instance specified via the given 'InstancePointer', ...).
+ * A condition that allows to check whether another 'ConditionalElement' was applied/executed a certain number of times.
+ * <br /><br />
+ * This can e.g. be used to create dependencies between mappings like "Only execute this mapping, if another mapping was applied for a certain part of a source model".
  * 
  * <!-- end-model-doc -->
  *

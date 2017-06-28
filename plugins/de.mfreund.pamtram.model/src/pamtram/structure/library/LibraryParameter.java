@@ -10,6 +10,10 @@ import pamtram.NamedElement;
  * A representation of the model object '<em><b>Library Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The common super type for all wrapper elements for GenLibrary parameters.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,9 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The model element inside the GenLibrary entry that this parameter influences.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(EObject)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryParameter_Source()
@@ -57,6 +64,9 @@ public interface LibraryParameter<ParameterType> extends NamedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The GenLibrary parameter that this wraps.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Parameter</em>' reference.
 	 * @see #setOriginalParameter(Object)
 	 * @see pamtram.structure.library.LibraryPackage#getLibraryParameter_OriginalParameter()

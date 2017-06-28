@@ -23,6 +23,9 @@ import pamtram.structure.generic.GenericPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of target element structures (aka TargetSections). These form the right-hand side (RHS) of a mapping.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.target.TargetFactory
  * @model kind="package"
  * @generated

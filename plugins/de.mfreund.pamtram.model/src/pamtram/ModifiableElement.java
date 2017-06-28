@@ -12,6 +12,12 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * A representation of the model object '<em><b>Modifiable Hint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ModifiableElement can be equipped with a list of 'ValueModifierSets' that will be applied on the value of this element.
+ * <br />
+ * The specific meaning of the modified 'value' is dependent on the concrete sub-type of this element.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +39,11 @@ public interface ModifiableElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of 'ValueModifierSets' that will be applied on the value of this element.
+	 * <br />
+	 * The specific meaning of the modified 'value' is dependent on the concrete sub-type of this element.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Modifiers</em>' reference list.
 	 * @see pamtram.PamtramPackage#getModifiableElement_Modifiers()
 	 * @model

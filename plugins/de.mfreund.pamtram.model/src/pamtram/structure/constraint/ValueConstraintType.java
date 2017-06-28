@@ -11,6 +11,9 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Value Constraint Type</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * The type of value constraint (either REQUIRED or FORBIDDEN).
+ * <!-- end-model-doc -->
  * @see pamtram.structure.constraint.ConstraintPackage#getValueConstraintType()
  * @model
  * @generated
@@ -44,6 +47,9 @@ public enum ValueConstraintType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value MUST satisfy the value(s) specified by this constraint.
+	 * <!-- end-model-doc -->
 	 * @see #REQUIRED
 	 * @model
 	 * @generated
@@ -59,6 +65,9 @@ public enum ValueConstraintType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value MUST NOT satisfy the value(s) specified by this constraint.
+	 * <!-- end-model-doc -->
 	 * @see #FORBIDDEN
 	 * @model
 	 * @generated

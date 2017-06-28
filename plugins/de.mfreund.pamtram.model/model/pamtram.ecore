@@ -945,7 +945,7 @@
           <details key="constraints" value="extendsValidSections containerMatchesExtendContainer"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A special Class that represents the root element (as an instance of an EClass) of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Every specified structures must contain only and exactly one Section element (its root element)."/>
+          <details key="documentation" value="A special Class that represents the root element (as an instance of an EClass) of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Every specified structure must contain one and only one Section element (its root element)."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1761,6 +1761,9 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="isReferencedByMapping"/>
         </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A special SourceSectionClass that represents the root element (as an instance of an EClass) of an element structure in a source model.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Every specified source model structure must contain one and only one SourceSection element (its root element)."/>
+        </eAnnotations>
         <eOperations name="validateIsReferencedByMapping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappings().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any mapping!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SourceValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
@@ -1779,6 +1782,9 @@
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;Mapping> referencingMappings = mappings.stream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,&#xD;&#xA;&#x9;&#x9;referencingMappings.size(), referencingMappings.toArray());"/>
           </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="All Mappings that are based on this SourceSection (that specify this as their 'sourceSection')."/>
+          </eAnnotations>
         </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionClass"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Section">
@@ -1790,9 +1796,16 @@
         <eGenericSuperTypes eClassifier="#//DeactivatableElement"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents one element (as an instance of an EClass) of a source model element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeSubTypes" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-            defaultValueLiteral="true"/>
+            defaultValueLiteral="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="Whether this shall also represent source model elements that are instances of sub-classes of the specified EClass."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Class">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1801,9 +1814,16 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionReference" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of a source model element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="ignoreUnmatchedElements"
             lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-            defaultValueLiteral="false"/>
+            defaultValueLiteral="false">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="This determines the matching behavior in the case that there are source model elements that are not covered by one of the Classes specified as 'value' for this Reference.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;If this is set to 'true', the source model excerpt will nonetheless be declared a match for this SourceSection.&#xD;&#xA;&lt;br />&#xD;&#xA;If this is set to 'false', the source model excerpt will NOT be declared a match. This means, that all source model elements referenced via this Reference need to matched against Classes specified as 'value' for this Reference."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1812,6 +1832,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionCompositeReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference (as an instance of an EReference) of a source model element structure. CompositeReferences can be used to describe the tree that is the basis of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1830,6 +1853,9 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="valuesMatchReferenceType"/>
         </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference (as an instance of an EReference) of a source model element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1845,6 +1871,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualSourceSectionCrossReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of a source model element structure. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;In contrast to 'actual' References, 'virtual' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+        </eAnnotations>
         <eOperations name="validateDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="&#xD;&#xA;if (this.getDerivation() == null || this.getDerivation().isEmpty()&#xD;&#xA;&#x9;&#x9;|| !(this.eContainer() instanceof SourceSectionClass)&#xD;&#xA;&#x9;&#x9;|| ((&lt;%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = true;&#xD;&#xA;String parserException = &quot;&quot;;&#xD;&#xA;&#xD;&#xA;try {&#xD;&#xA;&#x9;&lt;%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());&#xD;&#xA;} catch (&lt;%org.eclipse.ocl.ParserException%> e) {&#xD;&#xA;&#x9;result = false;&#xD;&#xA;&#x9;parserException = e.getMessage();&#xD;&#xA;&#x9;e.printStackTrace();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The specified derivation is not valid! The following error was provided: &quot; + parserException;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SourceValidator.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__VALIDATE_DERIVATION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
@@ -1858,7 +1887,11 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivation" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="An OCL expression describing the derivation of the actual instances of the specified target Classes."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1874,6 +1907,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SourceSectionAttribute" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of a source model element structure."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="valueConstraints" upperBound="-1"
             eType="#//structure/constraint/ValueConstraint" containment="true"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
@@ -1884,6 +1920,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ActualSourceSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute (as an instance of an EAttribute) of a source model element structure."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionAttribute"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/ActualAttribute">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
@@ -1893,6 +1932,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualSourceSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of a source model element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.&#xD;&#xA;&lt;br />&#xD;&#xA; As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+        </eAnnotations>
         <eOperations name="validateDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="&#xD;&#xA;if (this.getDerivation() == null || this.getDerivation().isEmpty()&#xD;&#xA;&#x9;&#x9;|| !(this.eContainer() instanceof SourceSectionClass)&#xD;&#xA;&#x9;&#x9;|| ((&lt;%pamtram.structure.source.SourceSectionClass%>) this.eContainer()).getEClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;boolean result = true;&#xD;&#xA;String parserException = &quot;&quot;;&#xD;&#xA;&#xD;&#xA;try {&#xD;&#xA;&#x9;&lt;%de.mfreund.pamtram.util.OCLUtil%>.validateQuery(this.getDerivation(), ((SourceSectionClass) this.eContainer()).getEClass());&#xD;&#xA;} catch (&lt;%org.eclipse.ocl.ParserException%> e) {&#xD;&#xA;&#x9;result = false;&#xD;&#xA;&#x9;parserException = e.getMessage();&#xD;&#xA;&#x9;e.printStackTrace();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The specified derivation is not valid! The following error was provided: &quot; + parserException;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;SourceValidator.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__VALIDATE_DERIVATION,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.VIRTUAL_SOURCE_SECTION_ATTRIBUTE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
@@ -1906,7 +1948,11 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="derivation" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="An OCL expression describing the derivation of the actual value(s) of this attribute."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/source/SourceSectionAttribute"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/VirtualAttribute">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>

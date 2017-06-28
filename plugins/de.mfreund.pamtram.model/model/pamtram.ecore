@@ -1157,7 +1157,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualReference" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="This represents a reference of an element structure. In contrast to 'actual' References, 'virtual' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+          <details key="documentation" value="This represents a reference of an element structure. In contrast to 'actual' References, 'virtual' Reference do not represent an actual metamodel element (EReference) but can be used to create additional (virtual) references.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference. As the Reference is not based on an actual EReference, the actual instances of the specified target Classes need to be specified by the modeler by means of additional language elements (dependent on the concrete sub-type)."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1443,7 +1443,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualAttribute" abstract="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="This represents an attribute of an element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.&#xD;&#xA;&lt;br />&#xD;&#xA; As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually. Therefore, a 'derivation' specification has to be given by the modeler."/>
+          <details key="documentation" value="This represents an attribute of an element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.&#xD;&#xA;&lt;br />&#xD;&#xA; As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually by means of additional language elements (dependent on the concrete sub-type)."/>
         </eAnnotations>
         <eTypeParameters name="S">
           <eBounds eClassifier="#//structure/generic/Section">
@@ -1971,6 +1971,9 @@
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="isReferencedByMappingHintGroup"/>
         </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A special TargetSectionClass that represents the root element (as an instance of an EClass) of an element structure to be created in a target model.&#xD;&#xA;&lt;br />&#xD;&#xA;Note: Every specified target model structure must contain one and only one TargetSection element (its root element)."/>
+        </eAnnotations>
         <eOperations name="validateIsReferencedByMappingHintGroup" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="&#xD;&#xA;boolean result = !this.getReferencingMappingHintGroups().isEmpty();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The section is not referenced by any hint group and will not be instantiated!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.WARNING,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
@@ -2001,8 +2004,15 @@
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="get" value="&#xD;&#xA;List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = new &lt;%java.util.ArrayList%>&lt;>();&#xD;&#xA;&#xD;&#xA;if (this.eResource() != null) {&#xD;&#xA;&#xD;&#xA;&#x9;mappings = this.eResource().getResourceSet().getResources().stream()&#xD;&#xA;&#x9;&#x9;&#x9;.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)&#xD;&#xA;&#x9;&#x9;&#x9;.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())&#xD;&#xA;&#x9;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;List&lt;MappingHintGroupType> referencingHintGroups = mappings.stream().flatMap(m -> m.getMappingHintGroups().stream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%>&lt;>(this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,&#xD;&#xA;&#x9;&#x9;referencingHintGroups.size(), referencingHintGroups.toArray());"/>
           </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="All MappingHintGroups that lead to the instantiation of this TargetSection (that specify this as their 'targetSection')."/>
+          </eAnnotations>
         </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//structure/target/FileAttribute"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="file" eType="#//structure/target/FileAttribute">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="If present, this specifies the model resp. file to which the created target model structure will be persisted.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;This can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionClass"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/Section">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
@@ -2012,14 +2022,35 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="FileAttribute" eSuperTypes="#//structure/target/VirtualTargetSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This specifies the model resp. file to which the target model structure(s) created based on this TargetSection will be persisted.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;This can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation. For example, this can be used to persist each instance of a TargetSection in its own file (if the 'value' of this attribute is set dynamically for each instance)."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" lowerBound="1"
-            eType="#//structure/target/FileType"/>
+            eType="#//structure/target/FileType">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The type of the model/file to be created."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="FileType">
-        <eLiterals name="XMI"/>
-        <eLiterals name="XML" value="1"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of a model/file."/>
+        </eAnnotations>
+        <eLiterals name="XMI">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="An XMI file that is based on an Ecore-based metamodel."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="XML" value="1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="An XML file that is based on an XML schema (XSD)."/>
+          </eAnnotations>
+        </eLiterals>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents one element (as an instance of an EClass) of an element structure to be created in a target model.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/generic/Class">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -2028,6 +2059,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionReference" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference of an element structure to be created in a target model.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/generic/Reference">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -2036,6 +2070,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCompositeReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CompositeReferences can be used to describe the tree that is the basis of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -2051,6 +2088,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
         <eOperations name="validateEReferenceIsNonContainment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="&#xD;&#xA;boolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The eReference '&quot; + this.getEReference().getName() + &quot;' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
@@ -2078,10 +2118,21 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAttribute" abstract="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of an element structure to be created in a target model."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-            defaultValueLiteral="false"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            defaultValueLiteral="false">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="If this is set to 'true', no two element structures with the same value of this Attribute will be created in the course of a transformation.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Currently, if a second element structure with the same attribute value would be created, this second structure is simply discarded. In the future, it might be useful to consider merging the two created structures."/>
+          </eAnnotations>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="This can be used to specify a fixed value for this attribute that will be used for all created instances.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: The specified value will be overriden in case an AttributeMapping is specified for this Attribute."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/Attribute">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
@@ -2090,6 +2141,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ActualTargetSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute (as an instance of an EAttribute) of an element structure to be created in a target model."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionAttribute"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/ActualAttribute">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
@@ -2099,6 +2153,9 @@
         </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="VirtualTargetSectionAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents an attribute of a target model element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) an will thus not actually be persisted in the target model.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;VirtualTargetSectionAttributes are usually used as temporary variables (to store values calculated by means of an AttributeMapping). The stored values can then e.g. be used as reference value for Container- or ReferenceTargetSelectors."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionAttribute"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/VirtualAttribute">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>

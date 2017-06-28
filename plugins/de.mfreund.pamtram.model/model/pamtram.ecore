@@ -2787,44 +2787,109 @@
         <details key="documentation" value="This package contains elements related to the modification of values (e.g. determined values for a TargetSection attribute). "/>
       </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifierSet" eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A reusable set of ValueModifiers that can be attached to a ModifiableElement in order to modify its 'value'.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;For example, when attached this to an AttributeMapping, the value resulting from evaluating the AttributeMapping is modified by applying the specified ValueModifers before setting the value of the associated TargetSectionAttribute."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" upperBound="-1"
-            eType="#//mapping/modifier/ValueModifier" containment="true"/>
+            eType="#//mapping/modifier/ValueModifier" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The set of ValueModifiers that will be used to modify the 'value'."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueModifier" abstract="true" interface="true"
           eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common super-type of all elements that will modify a 'value'."/>
+        </eAnnotations>
         <eOperations name="modifyValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
           <eParameters name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eOperations>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/modifier/ValueModifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="UniqueNumberAppender" eSuperTypes="#//mapping/modifier/ValueModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will add a unique number to the 'value'.&#xD;&#xA;&lt;br />&#xD;&#xA;It can be used to ensure unique values e.g. when setting values of a TargetSectionAttribute."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="NumericModifier" abstract="true"
-          eSuperTypes="#//mapping/modifier/ValueModifier"/>
-      <eClassifiers xsi:type="ecore:EClass" name="ExpressionModifier" eSuperTypes="#//mapping/modifier/NumericModifier #//ExpressionElement"/>
+          eSuperTypes="#//mapping/modifier/ValueModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common super-type of all elements that will modify a numeric 'value'."/>
+        </eAnnotations>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ExpressionModifier" eSuperTypes="#//mapping/modifier/NumericModifier #//ExpressionElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (numeric) 'value' by applying the given 'expression'.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: The 'value' to be modfied can be referenced in the 'expression' via the variable 'x'. For example, a valid expression to duplicate the given value would be &quot;2*x&quot;."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StringModifier" abstract="true"
-          eSuperTypes="#//mapping/modifier/ValueModifier"/>
+          eSuperTypes="#//mapping/modifier/ValueModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common super-type of all elements that will modify a String-based 'value'."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SubstringReplacer" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (String-based) 'value' by replacing the sub-string identified by the given 'regex' by the given 'replacement'."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The regular expression identifying the string to be replaced."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacement" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The replacement."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StringAppender" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (String-based) 'value' by appending the given 'string'."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-            defaultValueLiteral=""/>
+            defaultValueLiteral="">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The String to be appended."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StringPrepender" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (String-based) 'value' by prepending the given 'string'."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-            defaultValueLiteral=""/>
+            defaultValueLiteral="">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The String to be prepended."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ToLowerCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (String-based) 'value' by converting the sub-string identified by the given 'regex' to lower case."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The regular expression identifying the string to be converted."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ToUpperCaseConverter" eSuperTypes="#//mapping/modifier/StringModifier">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueModifier will modify the (String-based) 'value' by converting the sub-string identified by the given 'regex' to upper case."/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="regex" lowerBound="1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The regular expression identifying the string to be converted."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="extended" nsURI="http://mfreund.de/pamtram/mapping/extended"

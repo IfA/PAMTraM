@@ -1486,7 +1486,7 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="CardinalityType">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A cardinality constraint for an element."/>
+          <details key="documentation" value="The type of cardinality constraint for an element."/>
         </eAnnotations>
         <eLiterals name="ONE">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1512,22 +1512,43 @@
       </eAnnotations>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraint" abstract="true"
           interface="true" eSuperTypes="#//NamedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The super type for all specific types that can be used to describe constraints for attribute values.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;ValueConstraints thereby specify a single reference value or list/range of reference values which the actual attribute value must or must not satisfy."/>
+        </eAnnotations>
         <eOperations name="isLocalConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="body" value="if (this instanceof &lt;%pamtram.structure.constraint.ChoiceConstraint%>) {&#xD;&#xA;&#x9;return ((ChoiceConstraint) this).getChoices().stream().allMatch(&lt;%pamtram.structure.constraint.ValueConstraint%>::isLocalConstraint);&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%>.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;if (!(this instanceof &lt;%pamtram.structure.constraint.SingleReferenceValueConstraint%>)&#xD;&#xA;&#x9;&#x9;|| !AgteleEcoreUtil.hasAncestorOfKind(this, &lt;%pamtram.condition.ConditionPackage%>.Literals.ATTRIBUTE_CONDITION)) {&#xD;&#xA;&#x9;throw new UnsupportedOperationException();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EObject%> container = this;&#xD;&#xA;&#xD;&#xA;while (!(container instanceof &lt;%pamtram.mapping.Mapping%>)) {&#xD;&#xA;&#x9;if (container == null) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;container = container.eContainer();&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// The SourceSection of the Mapping that contains the constraint&#xD;&#xA;//&#xD;&#xA;SourceSection localSection = ((Mapping) container).getSourceSection();&#xD;&#xA;&#xD;&#xA;if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;.allMatch(s -> s instanceof &lt;%pamtram.FixedValue%> || s instanceof &lt;%pamtram.mapping.extended.GlobalAttributeImporter%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintSourceElement%> &amp;&amp; ((ValueConstraintSourceElement) s).getSource()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.getContainingSection().equals(localSection)&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.constraint.ValueConstraintExternalSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&amp;&amp; ((ValueConstraintExternalSourceElement) s).getSource().getContainingSection()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.isContainerFor(localSection))) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist&#xD;&#xA;//&#xD;&#xA;return ((SingleReferenceValueConstraint) this).getInstanceSelectors()&#xD;&#xA;&#x9;&#x9;.parallelStream()&#xD;&#xA;&#x9;&#x9;.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.filter(s -> s instanceof &lt;%pamtram.structure.InstanceSelectorSourceElement%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;|| s instanceof &lt;%pamtram.structure.InstanceSelectorExternalSourceElement%>))&#xD;&#xA;&#x9;&#x9;.findAny().isPresent();"/>
           </eAnnotations>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
-            eType="#//structure/constraint/ValueConstraintType" defaultValueLiteral="REQUIRED"/>
+            eType="#//structure/constraint/ValueConstraintType" defaultValueLiteral="REQUIRED">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The type of this constraint (either REQUIRED or FORBIDDEN)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="ValueConstraintType">
-        <eLiterals name="REQUIRED"/>
-        <eLiterals name="FORBIDDEN" value="1"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of value constraint (either REQUIRED or FORBIDDEN)."/>
+        </eAnnotations>
+        <eLiterals name="REQUIRED">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value MUST satisfy the value(s) specified by this constraint."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="FORBIDDEN" value="1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value MUST NOT satisfy the value(s) specified by this constraint."/>
+          </eAnnotations>
+        </eLiterals>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="SingleReferenceValueConstraint"
           abstract="true" eSuperTypes="#//structure/constraint/ValueConstraint #//ExpressionElement #//ModifiableElement">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="onlyFixedValuesInSourceSections onlyFixedValuesOrGlobalAttributesInConditionModel"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A ValueConstraint for which the reference value is calculated based on the combination of a list of 'sourceElements'."/>
         </eAnnotations>
         <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1571,12 +1592,27 @@
           </eParameters>
         </eOperations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
-            eType="#//structure/constraint/ValueConstraintSourceInterface" containment="true"/>
+            eType="#//structure/constraint/ValueConstraintSourceInterface" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of 'sourceElements' based on which the reference value for this constraint is calculated."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EReference" name="instanceSelectors"
-            upperBound="-1" eType="#//structure/SourceInstanceSelector" containment="true"/>
+            upperBound="-1" eType="#//structure/SourceInstanceSelector" containment="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="A list of InstanceSelectors that can be used to restrict the application of this constraint: &#xD;&#xA;&lt;br />&#xD;&#xA;Only Attributes (resp. their values) identified by the list of InstanceSelectors are checked against this constraint."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="EqualityConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint"/>
+      <eClassifiers xsi:type="ecore:EClass" name="EqualityConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This ValueConstraint type checks if the determined attribute value is equal to the calculated reference value."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ChoiceConstraint" eSuperTypes="#//structure/constraint/ValueConstraint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A ValueConstraint that specifies a list of values (each by means of an EqualityConstraint). For this constraint to be fulfilled, the actual attribute value must match at least one of the specified values."/>
+        </eAnnotations>
         <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
           <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eParameters name="refValue" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -1585,33 +1621,104 @@
             upperBound="-1" eType="#//structure/constraint/EqualityConstraint" containment="true"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="NumericConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A ValueConstraint type that can be used for numeric attribute values. It (numerically) compares the determined attribute value to the calculated reference value.&#xD;&#xA;"/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorType" lowerBound="1"
-            eType="#//structure/constraint/NumericConstraintOperatorType"/>
+            eType="#//structure/constraint/NumericConstraintOperatorType">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The comparison type used to (numerically) compare the actual attribute value to the determined reference value."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="NumericConstraintOperatorType">
-        <eLiterals name="EQUAL" literal="EQUAL"/>
-        <eLiterals name="GREATER" value="1" literal="GREATER"/>
-        <eLiterals name="GREATER_OR_EQUAL" value="2" literal="GREATER_OR_EQUAL"/>
-        <eLiterals name="LESS" value="3" literal="LESS"/>
-        <eLiterals name="LESS_OR_EQUAL" value="4" literal="LESS_OR_EQUAL"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of numerical comparison to be performed."/>
+        </eAnnotations>
+        <eLiterals name="EQUAL" literal="EQUAL">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be equal to the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="GREATER" value="1" literal="GREATER">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be greater then the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="GREATER_OR_EQUAL" value="2" literal="GREATER_OR_EQUAL">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be greater then or equal to the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="LESS" value="3" literal="LESS">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be less then the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="LESS_OR_EQUAL" value="4" literal="LESS_OR_EQUAL">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be less then or equal to the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="StringConstraint" eSuperTypes="#//structure/constraint/SingleReferenceValueConstraint">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A ValueConstraint type that can be used for literal attribute values. It compares the determined attribute value to the calculated reference value based on a String comparison.&#xD;&#xA;"/>
+        </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatorType" lowerBound="1"
-            eType="#//structure/constraint/StringConstraintOperatorType"/>
+            eType="#//structure/constraint/StringConstraintOperatorType">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The comparison type used to compare the actual attribute value to the determined reference value."/>
+          </eAnnotations>
+        </eStructuralFeatures>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseSensitive" lowerBound="1"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-            defaultValueLiteral="true"/>
+            defaultValueLiteral="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="Whether the String comparison shall be performed case-sensitive (true) or case-insensitive (false)."/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="StringConstraintOperatorType">
-        <eLiterals name="MATCH_EQUAL"/>
-        <eLiterals name="MATCH_BEGINNING" value="1"/>
-        <eLiterals name="MATCH_ENDING" value="2"/>
-        <eLiterals name="MATCH_SUBSTRING" value="3"/>
-        <eLiterals name="MATCH_REGEX" value="4"/>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The type of String-based comparison to be performed."/>
+        </eAnnotations>
+        <eLiterals name="MATCH_EQUAL">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must be equal to the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="MATCH_BEGINNING" value="1">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must begin with the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="MATCH_ENDING" value="2">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must end with the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="MATCH_SUBSTRING" value="3">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must contain the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
+        <eLiterals name="MATCH_REGEX" value="4">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The actual attribute value must satisfy the regular expression specified by the determined reference value."/>
+          </eAnnotations>
+        </eLiterals>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintSourceInterface"
-          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface"/>
+          abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The common superclass of all types that can be used as 'sourceElement' to calculate the reference value of a ValueConstraint."/>
+        </eAnnotations>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value of a ValueConstraint.&lt;br />&#xD;&#xA;This type is based on the value of a 'local' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'LocalDynamicSourceElement' for a detailed explanation of the meaning of 'local' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/LocalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1621,6 +1728,9 @@
         <eGenericSuperTypes eClassifier="#//structure/constraint/ValueConstraintSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintExternalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value of a ValueConstraint.&lt;br />&#xD;&#xA;This type is based on the value of an 'external' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'ExternalDynamicSourceElement' for a detailed explanation of the meaning of 'external' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
@@ -1630,6 +1740,9 @@
         <eGenericSuperTypes eClassifier="#//structure/constraint/ValueConstraintSourceInterface"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ValueConstraintGlobalSourceElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A concrete type of 'sourceElement' to calculate the reference value of a ValueConstraint.&lt;br />&#xD;&#xA;This type is based on the value of a 'global' attribute.&#xD;&#xA;&lt;br />&lt;br />&#xD;&#xA;Note: See the documentation of 'GlobalDynamicSourceElement' for a detailed explanation of the meaning of 'global' source elements."/>
+        </eAnnotations>
         <eGenericSuperTypes eClassifier="#//structure/ExternalDynamicSourceElement">
           <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>

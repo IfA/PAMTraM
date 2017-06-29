@@ -446,7 +446,7 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 
 							} else {
-								this.logger.warning("The MappigInstanceSelector " + h.getName() + " (Mapping: "
+								this.logger.warning("The ReferenceTargetSelector " + h.getName() + " (Mapping: "
 										+ ((Mapping) mappingGroup.eContainer()).getName() + ", Group: "
 										+ mappingGroup.getName()
 										+ " ) has an AttributeMatcher that picked up the value '" + attrValStr
@@ -547,7 +547,7 @@ public class TargetSectionLinker extends CancelableElement {
 								}
 
 							} else {
-								this.logger.warning(() -> "The MappingInstanceSelector '" + h.getName() + " of Mapping"
+								this.logger.warning(() -> "The ReferenceTargetSelector '" + h.getName() + " of Mapping"
 										+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
 										+ mappingGroup.getName() + ")' has a Matcher that points to the target class "
 										+ matcherTargetClass.getName() + " (Section: "

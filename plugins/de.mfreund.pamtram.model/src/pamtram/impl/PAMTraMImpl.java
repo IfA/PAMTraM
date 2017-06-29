@@ -48,6 +48,7 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
@@ -55,6 +56,7 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.MappingHintBaseType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.impl.ExtendedFactoryImpl;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ExternalDynamicSourceElement;
@@ -68,6 +70,8 @@ import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>PAM Tra
@@ -603,11 +607,16 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		
 						if (setting.getEStructuralFeature()
 									.equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source())
-									&& setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
-								// do nothing as ContainerSelectors are handled
+									&& setting.getEObject() instanceof ContainerSelectorTargetAttribute
+									|| setting.getEStructuralFeature()
+											.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
+											&& setting.getEObject() instanceof AttributeMatcher) {
+								// do nothing as ContainerSelectors and
+								// AttributeMatchers are handled
 								// below separately
 							} else {
-								// redirect the reference (we can always use the
+		
+							// redirect the reference (we can always use the
 								// 'last' of the concrete objects as we just
 								// added it above
 								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
@@ -622,10 +631,10 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		}
 		
 		/*
-		 * Now, we handle the ContainerSelectors that we skipped above. We can
-		 * do this now as we now know all concrete TargetSections that are a
-		 * possible match for each ContainerSelector that points to an abstract
-		 * TargetSection.
+		 * Now, we handle the ContainerSelectors and AttributeMatchers that we
+		 * skipped above. We can do this now as we now know all concrete
+		 * TargetSections that are a possible match for each ContainerSelector
+		 * that points to an abstract TargetSection.
 		 */
 		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
 			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
@@ -666,17 +675,12 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 							continue;
 						}
 		
-					/*
-						 * check if the hint group or its parent mapping equals
-						 * the section that we just added the concrete elements
-						 * to or if we are dealing with a model
-						 * ContainerSelectorTargetAttribute
-						 */
-						if (setting.getEStructuralFeature()
+					if (setting.getEStructuralFeature()
 								.equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source())
 								&& setting.getEObject() instanceof ContainerSelectorTargetAttribute) {
 		
-						// in this case, we must not simply redirect but we
+						// For ContainerSelectorTargetAttributes, we must
+							// not simply redirect but we
 							// create a new ContainerSelectorTargetAttribute
 							ContainerSelectorTargetAttribute original = (ContainerSelectorTargetAttribute) setting
 									.getEObject();
@@ -693,6 +697,42 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 							}
 		
 						mchTargetAttributesToDelete.add((ContainerSelectorTargetAttribute) setting.getEObject());
+		
+					} else if (setting.getEStructuralFeature()
+								.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
+								&& setting.getEObject() instanceof AttributeMatcher) {
+		
+						// For AttributeMatchers, we redirect to
+							// (the) one concrete attribute which is contained
+							// in a TargetSectionClass which is a possible
+							// target for the TargetSectionCrossReference
+							// affected by ReferenceTargetSelectors containing
+							// this matcher
+							//
+							ReferenceTargetSelector parentSelector = (ReferenceTargetSelector) setting.getEObject()
+									.eContainer();
+							TargetSectionCrossReference affectedReference = parentSelector.getAffectedReference();
+		
+						for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap
+									.get(referencedObject)) {
+								if (!affectedReference.getValue().isEmpty()) {
+									for (TargetSectionClass targetClass : affectedReference.getValue()) {
+										if (targetClass.getAttributes().contains(concreteTargetSectionAttribute)) {
+											setting.getEObject().eSet(setting.getEStructuralFeature(),
+													concreteTargetSectionAttribute);
+											break;
+										}
+									}
+								} else {
+									if (affectedReference.getEReference().getEReferenceType().isSuperTypeOf(
+											((TargetSectionClass) concreteTargetSectionAttribute.eContainer())
+													.getEClass())) {
+										setting.getEObject().eSet(setting.getEStructuralFeature(),
+												concreteTargetSectionAttribute);
+										break;
+									}
+								}
+							}
 						}
 					}
 		

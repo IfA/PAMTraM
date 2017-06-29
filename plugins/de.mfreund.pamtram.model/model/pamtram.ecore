@@ -118,7 +118,7 @@
         eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="get" value="List&lt;Mapping> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())&#xD;&#xA;&#x9;&#x9;.flatMap(s -> s.getActiveMappings().stream()).filter(m -> !m.getSourceSection().isDeactivated()).collect(Collectors.toList());&#xD;&#xA;return new EcoreEList.UnmodifiableEList&lt;>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
+        <details key="get" value="List&lt;&lt;%pamtram.mapping.Mapping%>> mappings = &lt;%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())&#xD;&#xA;&#x9;&#x9;.filter(m -> !m.isDeactivated()).flatMap(s -> s.getActiveMappings().stream())&#xD;&#xA;&#x9;&#x9;.filter(m -> m.getSourceSection() == null || !m.getSourceSection().isDeactivated())&#xD;&#xA;&#x9;&#x9;.collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,&#xD;&#xA;&#x9;&#x9;mappings.size(), mappings.toArray());"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The list of all 'active' Mappings contained in all local and global/shared MappingModels.&#xD;&#xA;&lt;br />&#xD;&#xA;A Mapping is active if its 'deactivated' attribute is not set to 'true'."/>

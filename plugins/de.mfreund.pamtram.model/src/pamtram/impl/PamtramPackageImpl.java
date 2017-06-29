@@ -1136,7 +1136,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		  (getPAMTraM_ActiveMappings(), 
 		   source, 
 		   new String[] {
-			 "get", "List<Mapping> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream()).filter(m -> !m.isDeactivated())\r\n\t\t.flatMap(s -> s.getActiveMappings().stream()).filter(m -> !m.getSourceSection().isDeactivated()).collect(Collectors.toList());\r\nreturn new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());"
+			 "get", "List<<%pamtram.mapping.Mapping%>> mappings = <%java.util.stream.Stream%>.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())\r\n\t\t.filter(m -> !m.isDeactivated()).flatMap(s -> s.getActiveMappings().stream())\r\n\t\t.filter(m -> m.getSourceSection() == null || !m.getSourceSection().isDeactivated())\r\n\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.PAM_TRA_M__ACTIVE_MAPPINGS,\r\n\t\tmappings.size(), mappings.toArray());"
 		   });	
 		addAnnotation
 		  (getPAMTraM_ActiveMappings(), 

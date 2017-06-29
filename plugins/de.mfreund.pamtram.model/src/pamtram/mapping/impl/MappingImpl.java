@@ -5,6 +5,7 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
@@ -30,9 +32,8 @@ import pamtram.mapping.util.MappingValidator;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mapping</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Mapping</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -49,8 +50,8 @@ import pamtram.util.PamtramValidator;
 public class MappingImpl extends MappingTypeImpl implements Mapping {
 	/**
 	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -59,8 +60,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -69,8 +69,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getMappingHintGroups() <em>Mapping Hint Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -78,9 +78,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	protected EList<MappingHintGroupType> mappingHintGroups;
 
 	/**
-	 * The cached value of the '{@link #getImportedMappingHintGroups() <em>Imported Mapping Hint Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getImportedMappingHintGroups()
+	 * <em>Imported Mapping Hint Groups</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getImportedMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -89,8 +90,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -99,8 +99,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -108,8 +107,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	protected boolean abstract_ = ABSTRACT_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MappingImpl() {
@@ -117,8 +115,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -127,17 +124,16 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getLocalCondition() {
 		return localCondition;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
@@ -151,10 +147,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
@@ -170,10 +166,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getSharedCondition() {
 		if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
@@ -187,8 +183,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComplexCondition basicGetSharedCondition() {
@@ -196,10 +191,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
@@ -208,8 +203,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -221,8 +215,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -234,19 +227,19 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAbstract() {
 		return abstract_;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAbstract(boolean newAbstract) {
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
@@ -255,10 +248,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * This returns the active mappingHintGroups (the subset of the defined {@link #mappingHintGroups} 
-	 * for that {@link InstantiableMappingHintGroup#isDeactivated()}) returns '<em>false</em>'.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This returns the active mappingHintGroups (the
+	 * subset of the defined {@link #mappingHintGroups} for that
+	 * {@link InstantiableMappingHintGroup#isDeactivated()}) returns
+	 * '<em>false</em>'. <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -268,8 +261,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -279,10 +271,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateContainsHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !this.getMappingHintGroups().isEmpty();
@@ -304,10 +296,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateContainsDeactivatedHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = this.isDeactivated() ? this.getMappingHintGroups().size() == this.getActiveMappingHintGroups().size() && this.getImportedMappingHintGroups().size() == this.getActiveImportedMappingHintGroups().size() : true;
@@ -329,10 +321,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateSourceSectionIsActive(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = this.getSourceSection() == null || !this.getSourceSection().isDeactivated();
@@ -354,10 +346,33 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean validateNoConditionForAbstractMapping(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = !this.isAbstract() || this.getLocalCondition() == null && this.getSharedCondition() == null;
+		
+			if (!result && diagnostics != null) {
+		
+				String errorMessage = "Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).";
+		
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,
+							new Object[] { this,
+									this.getLocalCondition() != null
+											? PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION
+											: PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));
+				}
+		
+			return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -379,11 +394,12 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
 		
@@ -404,8 +420,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -422,8 +437,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -445,8 +459,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -475,8 +488,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -502,8 +514,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -524,8 +535,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -541,8 +551,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -558,8 +567,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -575,8 +583,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -593,6 +600,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return validateContainsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP:
 				return validateSourceSectionIsActive((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING__DIAGNOSTICCHAIN_MAP:
+				return validateNoConditionForAbstractMapping((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
 				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
@@ -602,8 +611,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -617,4 +625,4 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		return result.toString();
 	}
 
-} //MappingImpl
+} // MappingImpl

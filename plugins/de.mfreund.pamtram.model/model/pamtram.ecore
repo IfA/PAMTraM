@@ -2638,6 +2638,18 @@
           </eGenericType>
         </eParameters>
       </eOperations>
+      <eOperations name="validateNoConditionForAbstractMapping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="body" value="boolean result = !this.isAbstract() || this.getLocalCondition() == null &amp;&amp; this.getSharedCondition() == null;&#xD;&#xA;&#xD;&#x9;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#x9;&#x9;String errorMessage = &quot;Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).&quot;;&#xD;&#xA;&#xD;&#x9;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.util.MappingValidator%>.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;new Object[] { this,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;this.getLocalCondition() != null&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;? &lt;%pamtram.PamtramPackage%>.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;: &lt;%pamtram.PamtramPackage%>.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#x9;return result;"/>
+        </eAnnotations>
+        <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+        <eParameters name="context">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+            <eTypeArguments/>
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mappingHintGroups" upperBound="-1"
           eType="#//mapping/MappingHintGroupType" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

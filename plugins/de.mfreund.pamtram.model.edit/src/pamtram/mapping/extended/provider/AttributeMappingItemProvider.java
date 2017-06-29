@@ -3,21 +3,25 @@
 package pamtram.mapping.extended.provider;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
@@ -29,12 +33,14 @@ import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMapping} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a
+ * {@link pamtram.mapping.extended.AttributeMapping} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ *
  * @generated
  */
 public class AttributeMappingItemProvider extends MappingHintItemProvider {
@@ -56,14 +62,14 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExpressionPropertyDescriptor(object);
-			addModifiersPropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			this.addExpressionPropertyDescriptor(object);
+			this.addModifiersPropertyDescriptor(object);
+			this.addTargetPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -73,19 +79,12 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AttributeMapping_target_feature"),
-				 getString("_UI_AttributeMapping_target_description"),
-				 ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_AttributeMapping_target_feature"),
+				this.getString("_UI_AttributeMapping_target_description"),
+				ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -104,8 +103,8 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 						AttributeMapping attrMapping = (AttributeMapping) object;
 
-						// the target sections
-						TargetSectionClass target = null;
+						// the target section
+						TargetSection target = null;
 						if (attrMapping.eContainer() instanceof MappingHintGroupType) {
 							target = ((MappingHintGroupType) attrMapping.eContainer()).getTargetSection();
 						} else if (attrMapping.eContainer() instanceof MappingHintGroupImporter) {
@@ -131,16 +130,18 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 						} else {
 
-							// iterate over all elements and return the
-							// attributes as
-							// possible options
-							Iterator<EObject> it = target.eAllContents();
-							while (it.hasNext()) {
-								EObject next = it.next();
-								if (next instanceof pamtram.structure.generic.Attribute) {
-									choiceOfValues.add(next);
-								}
-							}
+							// We can use all of the original 'choice of values'
+							// that are part of the referenced TargetSection or
+							// any of the sections that this extends
+							//
+							List<TargetSection> validTargetSections = new ArrayList<>(Arrays.asList(target));
+							validTargetSections.addAll(target.getAllExtend());
+
+							choiceOfValues = super.getChoiceOfValues(object).stream()
+									.filter(c -> c instanceof TargetSectionAttribute
+											&& EcoreUtil.isAncestor(validTargetSections, (EObject) c))
+									.collect(Collectors.toList());
+
 						}
 
 						return choiceOfValues;
@@ -179,19 +180,22 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	@Override
@@ -212,36 +216,38 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns AttributeMapping.gif.
-	 * <!-- begin-user-doc --> <!--
+	 * This returns AttributeMapping.gif. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AttributeMapping"));
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/AttributeMapping"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -283,22 +289,23 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMapping.class)) {
-			case ExtendedPackage.ATTRIBUTE_MAPPING__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ExtendedPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ExtendedPackage.ATTRIBUTE_MAPPING__EXPRESSION:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ExtendedPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -322,30 +329,35 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 ExtendedFactory.eINSTANCE.createAttributeMappingSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				ExtendedFactory.eINSTANCE.createAttributeMappingSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 ExtendedFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				ExtendedFactory.eINSTANCE.createAttributeMappingExternalSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 ExtendedFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				ExtendedFactory.eINSTANCE.createAttributeMappingGlobalSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
-				 PamtramFactory.eINSTANCE.createFixedValue()));
+		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
+				PamtramFactory.eINSTANCE.createFixedValue()));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see de.tud.et.ifa.agtele.emf.edit.IDragAndDropProvider#
+	 * createCustomDragAndDropCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 * java.lang.Object, float, int, int, java.util.Collection,
+	 * de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy)
+	 */
+	@Override
+	public Command createCustomDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+			int operation, Collection<?> collection, ICommandSelectionStrategy strategy) {
+		// TODO Auto-generated method stub
+		return super.createCustomDragAndDropCommand(domain, owner, location, operations, operation, collection,
+				strategy);
+	}
 }

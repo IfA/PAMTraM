@@ -32,6 +32,7 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 		layout.addShowViewShortcut("org.eclipse.ui.views.ProblemView");
 		layout.addShowViewShortcut("org.eclipse.ui.console.ConsoleView");
 		layout.addShowViewShortcut("de.mfreund.pamtram.ui.views.PamtramReferencesView");
+		layout.addShowViewShortcut("de.tud.et.ifa.agtele.ui.views.EMFModelHelpView");
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 
 	}
@@ -58,6 +59,7 @@ public class PamtramPerspectiveFactory implements IPerspectiveFactory {
 		bottom.addView("org.eclipse.ui.views.ProblemView");
 		bottom.addView("org.eclipse.ui.console.ConsoleView");
 		bottom.addView("de.mfreund.pamtram.ui.views.PamtramReferencesView");
+		bottom.addView("de.tud.et.ifa.agtele.ui.views.EMFModelHelpView");
 	}
 
 }

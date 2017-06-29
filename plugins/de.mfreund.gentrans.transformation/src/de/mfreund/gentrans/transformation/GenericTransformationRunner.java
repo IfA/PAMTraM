@@ -164,25 +164,40 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		monitorWrapper.beginTask("GenTrans", 1000);
 
-		// prepare the transformation (validate pamtram model, merge extends,
-		// etc.)
-		//
-		if (!this.prepare(this.transformationConfig)) {
-			this.transformationConfig.getLogger().severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-			return;
-		}
-
 		TransformationResult transformationResult;
 		try {
+
+			// prepare the transformation (validate pamtram model, merge
+			// extends,
+			// etc.)
+			//
+			if (!this.prepare(this.transformationConfig)) {
+				this.transformationConfig.getLogger()
+						.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
+				return;
+			}
+
 			/*
 			 * try to execute all active mappings (this includes the 4 resp. 5
 			 * main steps of the transformation
 			 */
 			transformationResult = this.executeMappings(monitorWrapper);
 		} catch (CancelTransformationException e1) {
-			if (e1.getMessage() != null && !e1.getMessage().isEmpty()) {
-				this.transformationConfig.getLogger().severe(() -> e1.getMessage());
+
+			String externalMessage = e1.getMessage() != null ? e1.getMessage() : "";
+			String internalMessage = e1.getCause() != null && e1.getCause().getMessage() != null
+					? e1.getCause().getMessage() : "";
+
+			StringBuilder builder = new StringBuilder();
+			if (!externalMessage.isEmpty()) {
+				builder.append(externalMessage);
+				if (!internalMessage.isEmpty()) {
+					builder.append("\n\t-> ");
+				}
 			}
+			builder.append(internalMessage);
+
+			this.transformationConfig.getLogger().severe(() -> builder.toString());
 			this.transformationConfig.getLogger().severe("Aborting...");
 			return;
 		} catch (RuntimeException e) {
@@ -339,7 +354,12 @@ public class GenericTransformationRunner extends CancelableElement {
 		// That way, we get a 'clean' model (without any extensions) that we can
 		// handle in a normal way
 		//
-		transformationConfig.getPamtramModels().stream().forEach(PAMTraM::mergeExtends);
+		try {
+			transformationConfig.getPamtramModels().stream().forEach(PAMTraM::mergeExtends);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CancelTransformationException("Internal error during prepration of the PAMTraM model!", e);
+		}
 
 		// Initialize the ambiguity resolving strategy
 		//

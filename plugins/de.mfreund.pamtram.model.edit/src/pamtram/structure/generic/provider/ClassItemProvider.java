@@ -7,12 +7,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +33,7 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.SectionModel;
+import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
@@ -44,9 +48,10 @@ import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ *
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
@@ -69,14 +74,14 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEClassPropertyDescriptor(object);
-			addCardinalityPropertyDescriptor(object);
-			addContainerPropertyDescriptor(object);
+			this.addEClassPropertyDescriptor(object);
+			this.addCardinalityPropertyDescriptor(object);
+			this.addContainerPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -86,19 +91,11 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Class_eClass_feature"),
-				 getString("_UI_Class_eClass_description"),
-				 GenericPackage.Literals.CLASS__ECLASS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_eClass_feature"), this.getString("_UI_Class_eClass_description"),
+				GenericPackage.Literals.CLASS__ECLASS, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -248,29 +245,34 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to
+	 * deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand},
+	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
+	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
-			childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
+			this.childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
+			this.childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
+		// Check the type of the specified child object and return the proper
+		// feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
@@ -321,14 +323,14 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -363,24 +365,25 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to
+	 * update any cached children and by creating a viewer notification, which
+	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.structure.generic.Class.class)) {
-			case GenericPackage.CLASS__CARDINALITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case GenericPackage.CLASS__REFERENCES:
-			case GenericPackage.CLASS__ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case GenericPackage.CLASS__CARDINALITY:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case GenericPackage.CLASS__REFERENCES:
+		case GenericPackage.CLASS__ATTRIBUTES:
+			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -397,17 +400,80 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				TargetFactory.eINSTANCE.createTargetSectionCompositeReference()));
+		EClass eClass = object instanceof Class<?, ?, ?, ?> ? (eClass = ((Class<?, ?, ?, ?>) object).getEClass())
+				: null;
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				TargetFactory.eINSTANCE.createTargetSectionCrossReference()));
+		ActualReference<?, ?, ?, ?> ref = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
+		if (eClass != null) {
+			// Find a (containment) EReference for that there is not yet a
+			// Reference defined
+			// in the containing Class
+			//
+			Optional<EReference> eReference = eClass.getEAllContainments().stream()
+					.filter(r -> !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
+							.collect(Collectors.toList()).contains(r))
+					.findAny();
+			if (eReference.isPresent()) {
+				ref.setEReference(eReference.get());
+			}
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				SourceFactory.eINSTANCE.createSourceSectionCompositeReference()));
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, ref));
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				SourceFactory.eINSTANCE.createSourceSectionCrossReference()));
+		ref = TargetFactory.eINSTANCE.createTargetSectionCrossReference();
+		if (eClass != null) {
+			// Find a (non-containment) EReference for that there is not yet a
+			// Reference defined
+			// in the containing Class
+			//
+			Optional<EReference> eReference = eClass.getEAllReferences().stream()
+					.filter(r -> !r.isContainment() && !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
+							.collect(Collectors.toList()).contains(r))
+					.findAny();
+			if (eReference.isPresent()) {
+				ref.setEReference(eReference.get());
+			}
+
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, ref));
+
+		ref = SourceFactory.eINSTANCE.createSourceSectionCompositeReference();
+		if (eClass != null) {
+			// Find a (containment) EReference for that there is not yet a
+			// Reference defined
+			// in the containing Class
+			//
+			Optional<EReference> eReference = eClass.getEAllContainments().stream()
+					.filter(r -> !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
+							.collect(Collectors.toList()).contains(r))
+					.findAny();
+			if (eReference.isPresent()) {
+				ref.setEReference(eReference.get());
+			}
+
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, ref));
+
+		ref = SourceFactory.eINSTANCE.createSourceSectionCrossReference();
+		if (eClass != null) {
+			// Find a (non-containment) EReference for that there is not yet a
+			// Reference defined
+			// in the containing Class
+			//
+			Optional<EReference> eReference = eClass.getEAllReferences().stream()
+					.filter(r -> !r.isContainment() && !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
+							.collect(Collectors.toList()).contains(r))
+					.findAny();
+			if (eReference.isPresent()) {
+				ref.setEReference(eReference.get());
+			}
+
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, ref));
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
 				SourceFactory.eINSTANCE.createVirtualSourceSectionCrossReference()));
@@ -426,11 +492,39 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 		// (StructurePackage.Literals.CLASS__ATTRIBUTES,
 		// StructureFactory.eINSTANCE.createFileAttribute()));
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
-				SourceFactory.eINSTANCE.createActualSourceSectionAttribute()));
+		ActualAttribute<?, ?, ?, ?> att = SourceFactory.eINSTANCE.createActualSourceSectionAttribute();
+		if (eClass != null) {
+			// Find an EAttribute for that there is not yet an Attribute defined
+			// in the containing Class
+			//
+			Optional<EAttribute> eAttribute = eClass.getEAllAttributes().stream()
+					.filter(a -> !((Class<?, ?, ?, ?>) object).getActualAttributes().stream()
+							.map(actualAtt -> ((ActualAttribute<?, ?, ?, ?>) actualAtt).getAttribute())
+							.collect(Collectors.toList()).contains(a))
+					.findAny();
+			if (eAttribute.isPresent()) {
+				att.setAttribute(eAttribute.get());
+			}
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
-				TargetFactory.eINSTANCE.createActualTargetSectionAttribute()));
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES, att));
+
+		att = TargetFactory.eINSTANCE.createActualTargetSectionAttribute();
+		if (eClass != null) {
+			// Find an EAttribute for that there is not yet an Attribute defined
+			// in the containing Class
+			//
+			Optional<EAttribute> eAttribute = eClass.getEAllAttributes().stream()
+					.filter(a -> !((Class<?, ?, ?, ?>) object).getActualAttributes().stream()
+							.map(actualAtt -> ((ActualAttribute<?, ?, ?, ?>) actualAtt).getAttribute())
+							.collect(Collectors.toList()).contains(a))
+					.findAny();
+			if (eAttribute.isPresent()) {
+				att.setAttribute(eAttribute.get());
+			}
+
+		}
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES, att));
 	}
 
 	@Override

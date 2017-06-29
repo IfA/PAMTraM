@@ -4,7 +4,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -12,8 +11,6 @@ import pamtram.NamedElement;
 import pamtram.PamtramPackage;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Class;
-import pamtram.structure.generic.CompositeReference;
-import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 
@@ -75,48 +72,58 @@ final class NameSettingAdapter extends PamtramChildContentAdapter {
 	// A Class has issued a notification.
 	private void handleClassNotification(Notification n) {
 
-		if (n.getEventType() == Notification.ADD) {
+		// The automatic setting of the 'EReference' is now handled by the
+		// ClassItemProvider
+		//
 
-			if (n.getFeature() == GenericPackage.Literals.CLASS__REFERENCES
-					&& n.getNewValue() instanceof ActualReference<?, ?, ?, ?>) {
-
-				// the notifying class
-				pamtram.structure.generic.Class<?, ?, ?, ?> c = (Class<?, ?, ?, ?>) n.getNotifier();
-
-				if (n.getNewValue() instanceof CompositeReference) {
-
-					// the created containment reference
-					CompositeReference<?, ?, ?, ?> ref = (CompositeReference<?, ?, ?, ?>) n.getNewValue();
-
-					if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null && c.getEClass() != null
-							&& !c.getEClass().getEAllContainments().isEmpty()) {
-						// set the first containment reference type of the class
-						// as default value for
-						// the eReference reference
-						((ActualReference<?, ?, ?, ?>) ref).setEReference(c.getEClass().getEAllContainments().get(0));
-					}
-				} else if (n.getNewValue() instanceof CrossReference) {
-
-					// the created non-containment reference
-					CrossReference<?, ?, ?, ?> ref = (CrossReference<?, ?, ?, ?>) n.getNewValue();
-
-					if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null && c.getEClass() != null
-							&& !c.getEClass().getEAllReferences().isEmpty()) {
-
-						// set the first non-containment reference type of the
-						// class as default value for
-						// the eReference reference
-						for (EReference eReference : c.getEClass().getEAllReferences()) {
-							if (!eReference.isContainment()) {
-								((ActualReference<?, ?, ?, ?>) ref).setEReference(eReference);
-								break;
-							}
-
-						}
-					}
-				}
-			}
-		}
+		// if (n.getEventType() == Notification.ADD) {
+		//
+		// if (n.getFeature() == GenericPackage.Literals.CLASS__REFERENCES
+		// && n.getNewValue() instanceof ActualReference<?, ?, ?, ?>) {
+		//
+		// // the notifying class
+		// pamtram.structure.generic.Class<?, ?, ?, ?> c = (Class<?, ?, ?, ?>)
+		// n.getNotifier();
+		//
+		// if (n.getNewValue() instanceof CompositeReference) {
+		//
+		// // the created containment reference
+		// CompositeReference<?, ?, ?, ?> ref = (CompositeReference<?, ?, ?, ?>)
+		// n.getNewValue();
+		//
+		// if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null &&
+		// c.getEClass() != null
+		// && !c.getEClass().getEAllContainments().isEmpty()) {
+		// // set the first containment reference type of the class
+		// // as default value for
+		// // the eReference reference
+		// ((ActualReference<?, ?, ?, ?>)
+		// ref).setEReference(c.getEClass().getEAllContainments().get(0));
+		// }
+		// } else if (n.getNewValue() instanceof CrossReference) {
+		//
+		// // the created non-containment reference
+		// CrossReference<?, ?, ?, ?> ref = (CrossReference<?, ?, ?, ?>)
+		// n.getNewValue();
+		//
+		// if (((ActualReference<?, ?, ?, ?>) ref).getEReference() == null &&
+		// c.getEClass() != null
+		// && !c.getEClass().getEAllReferences().isEmpty()) {
+		//
+		// // set the first non-containment reference type of the
+		// // class as default value for
+		// // the eReference reference
+		// for (EReference eReference : c.getEClass().getEAllReferences()) {
+		// if (!eReference.isContainment()) {
+		// ((ActualReference<?, ?, ?, ?>) ref).setEReference(eReference);
+		// break;
+		// }
+		//
+		// }
+		// }
+		// }
+		// }
+		// }
 	}
 
 	/**

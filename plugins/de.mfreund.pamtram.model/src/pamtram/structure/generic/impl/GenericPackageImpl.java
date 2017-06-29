@@ -360,6 +360,42 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_ActualAttributes() {
+		return (EReference)classEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_VirtualAttributes() {
+		return (EReference)classEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_ActualReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_VirtualReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -701,6 +737,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(classEClass, CLASS__CONTAINER);
 		createEReference(classEClass, CLASS__ATTRIBUTES);
 		createEReference(classEClass, CLASS__ALL_CONTAINER);
+		createEReference(classEClass, CLASS__ACTUAL_ATTRIBUTES);
+		createEReference(classEClass, CLASS__VIRTUAL_ATTRIBUTES);
+		createEReference(classEClass, CLASS__ACTUAL_REFERENCES);
+		createEReference(classEClass, CLASS__VIRTUAL_REFERENCES);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
@@ -1397,6 +1437,14 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getClass_Attributes(), g1, this.getAttribute_OwningClass(), "attributes", null, 0, -1, pamtram.structure.generic.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
 		initEReference(getClass_AllContainer(), g1, null, "allContainer", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_A);
+		initEReference(getClass_ActualAttributes(), g1, null, "actualAttributes", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_A);
+		initEReference(getClass_VirtualAttributes(), g1, null, "virtualAttributes", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_R);
+		initEReference(getClass_ActualReferences(), g1, null, "actualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_R);
+		initEReference(getClass_VirtualReferences(), g1, null, "virtualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
@@ -1686,6 +1734,54 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The list of recursively collected \'container\' Classes."
+		   });	
+		addAnnotation
+		  (getClass_ActualAttributes(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_ActualAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'attributes\' that are of type ActualAttribute."
+		   });	
+		addAnnotation
+		  (getClass_VirtualAttributes(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_VirtualAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'attributes\' that are of type VirtualAttribute."
+		   });	
+		addAnnotation
+		  (getClass_ActualReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_REFERENCES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_ActualReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'references\' that are of type ActualReference."
+		   });	
+		addAnnotation
+		  (getClass_VirtualReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.List%><Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__VIRTUAL_REFERENCES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_VirtualReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The subset of the \'references\' that are of type VirtualReference."
 		   });	
 		addAnnotation
 		  (sectionEClass, 

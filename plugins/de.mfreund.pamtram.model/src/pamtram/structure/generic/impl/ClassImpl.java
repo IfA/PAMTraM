@@ -46,6 +46,10 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllContainer <em>All Container</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getActualAttributes <em>Actual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getVirtualAttributes <em>Virtual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getActualReferences <em>Actual References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getVirtualReferences <em>Virtual References</em>}</li>
  * </ul>
  *
  * @generated
@@ -286,6 +290,54 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		ret = ret.stream().distinct().collect(Collectors.toList());
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CONTAINER,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<A> getActualAttributes() {
+		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<A> getVirtualAttributes() {
+		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<R> getActualReferences() {
+		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_REFERENCES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<R> getVirtualReferences() {
+		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__VIRTUAL_REFERENCES,
 				ret.size(), ret.toArray());
 	}
 
@@ -550,6 +602,14 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getAttributes();
 			case GenericPackage.CLASS__ALL_CONTAINER:
 				return getAllContainer();
+			case GenericPackage.CLASS__ACTUAL_ATTRIBUTES:
+				return getActualAttributes();
+			case GenericPackage.CLASS__VIRTUAL_ATTRIBUTES:
+				return getVirtualAttributes();
+			case GenericPackage.CLASS__ACTUAL_REFERENCES:
+				return getActualReferences();
+			case GenericPackage.CLASS__VIRTUAL_REFERENCES:
+				return getVirtualReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -628,6 +688,14 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return attributes != null && !attributes.isEmpty();
 			case GenericPackage.CLASS__ALL_CONTAINER:
 				return !getAllContainer().isEmpty();
+			case GenericPackage.CLASS__ACTUAL_ATTRIBUTES:
+				return !getActualAttributes().isEmpty();
+			case GenericPackage.CLASS__VIRTUAL_ATTRIBUTES:
+				return !getVirtualAttributes().isEmpty();
+			case GenericPackage.CLASS__ACTUAL_REFERENCES:
+				return !getActualReferences().isEmpty();
+			case GenericPackage.CLASS__VIRTUAL_REFERENCES:
+				return !getVirtualReferences().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

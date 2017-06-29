@@ -28,6 +28,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.generic.Class#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllContainer <em>All Container</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getActualAttributes <em>Actual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getVirtualAttributes <em>Virtual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getActualReferences <em>Actual References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getVirtualReferences <em>Virtual References</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getClass_()
@@ -190,6 +194,70 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @generated
 	 */
 	EList<C> getAllContainer();
+
+	/**
+	 * Returns the value of the '<em><b>Actual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actual Attributes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actual Attributes</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_ActualAttributes()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<A> getActualAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Virtual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Virtual Attributes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Virtual Attributes</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_VirtualAttributes()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<A> getVirtualAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Actual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actual References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actual References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_ActualReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_REFERENCES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<R> getActualReferences();
+
+	/**
+	 * Returns the value of the '<em><b>Virtual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Virtual References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Virtual References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_VirtualReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='<%java.util.List%><Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference<?, ?, ?, ?>).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__VIRTUAL_REFERENCES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<R> getVirtualReferences();
 
 	/**
 	 * <!-- begin-user-doc -->

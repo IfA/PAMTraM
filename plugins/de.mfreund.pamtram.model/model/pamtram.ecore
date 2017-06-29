@@ -933,6 +933,46 @@
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="actualAttributes" upperBound="-1"
+            changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute&lt;?, ?, ?, ?>).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The subset of the 'attributes' that are of type ActualAttribute."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Class/A"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="virtualAttributes"
+            upperBound="-1" changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute&lt;?, ?, ?, ?>).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_ATTRIBUTES,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The subset of the 'attributes' that are of type VirtualAttribute."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Class/A"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="actualReferences" upperBound="-1"
+            changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference&lt;?, ?, ?, ?>).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ACTUAL_REFERENCES,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The subset of the 'references' that are of type ActualReference."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Class/R"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="virtualReferences"
+            upperBound="-1" changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&lt;%java.util.List%>&lt;Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference&lt;?, ?, ?, ?>).collect(&lt;%java.util.stream.Collectors%>.toList());&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__VIRTUAL_REFERENCES,&#xD;&#xA;&#x9;&#x9;ret.size(), ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The subset of the 'references' that are of type VirtualReference."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Class/R"/>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/MetaModelElement">
           <eTypeArguments eTypeParameter="#//structure/generic/Class/S"/>
           <eTypeArguments eTypeParameter="#//structure/generic/Class/C"/>

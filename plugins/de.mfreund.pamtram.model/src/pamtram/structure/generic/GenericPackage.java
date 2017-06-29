@@ -203,13 +203,49 @@ public interface GenericPackage extends EPackage {
 	int CLASS__ALL_CONTAINER = META_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Actual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ACTUAL_ATTRIBUTES = META_MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Virtual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__VIRTUAL_ATTRIBUTES = META_MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Actual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ACTUAL_REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Virtual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__VIRTUAL_REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -382,6 +418,42 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int SECTION__ALL_CONTAINER = CLASS__ALL_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Actual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ACTUAL_ATTRIBUTES = CLASS__ACTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__VIRTUAL_ATTRIBUTES = CLASS__VIRTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Actual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ACTUAL_REFERENCES = CLASS__ACTUAL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__VIRTUAL_REFERENCES = CLASS__VIRTUAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1411,6 +1483,50 @@ public interface GenericPackage extends EPackage {
 	EReference getClass_AllContainer();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getActualAttributes <em>Actual Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Actual Attributes</em>'.
+	 * @see pamtram.structure.generic.Class#getActualAttributes()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_ActualAttributes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getVirtualAttributes <em>Virtual Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Virtual Attributes</em>'.
+	 * @see pamtram.structure.generic.Class#getVirtualAttributes()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_VirtualAttributes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getActualReferences <em>Actual References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Actual References</em>'.
+	 * @see pamtram.structure.generic.Class#getActualReferences()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_ActualReferences();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getVirtualReferences <em>Virtual References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Virtual References</em>'.
+	 * @see pamtram.structure.generic.Class#getVirtualReferences()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_VirtualReferences();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1873,6 +1989,38 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__ALL_CONTAINER = eINSTANCE.getClass_AllContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual Attributes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ACTUAL_ATTRIBUTES = eINSTANCE.getClass_ActualAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Virtual Attributes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__VIRTUAL_ATTRIBUTES = eINSTANCE.getClass_VirtualAttributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ACTUAL_REFERENCES = eINSTANCE.getClass_ActualReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Virtual References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__VIRTUAL_REFERENCES = eINSTANCE.getClass_VirtualReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.

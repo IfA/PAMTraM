@@ -182,13 +182,22 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPING_HINT__DEACTIVATED = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__OVERWRITE = MAPPING_HINT_TYPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 3;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -209,13 +218,22 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Mapping Hint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
+	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
@@ -484,6 +502,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__OVERWRITE = MAPPING_HINT__OVERWRITE;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -545,6 +572,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -1066,6 +1102,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__OVERWRITE = MAPPING_HINT__OVERWRITE;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1136,6 +1181,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Source Element Matches Section</em>' operation.
@@ -1720,6 +1774,15 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__OVERWRITE = MAPPING_HINT__OVERWRITE;
+
+	/**
 	 * The feature id for the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1763,6 +1826,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
@@ -2003,6 +2075,15 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR__DEACTIVATED = MAPPING_HINT__DEACTIVATED;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__OVERWRITE = MAPPING_HINT__OVERWRITE;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2064,6 +2145,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -2898,6 +2988,27 @@ public interface ExtendedPackage extends EPackage {
 	EClass getMappingHint();
 
 	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.MappingHint#getOverwrite <em>Overwrite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Overwrite</em>'.
+	 * @see pamtram.mapping.extended.MappingHint#getOverwrite()
+	 * @see #getMappingHint()
+	 * @generated
+	 */
+	EReference getMappingHint_Overwrite();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.MappingHint#validateOverwritesValidMappingHint(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Overwrites Valid Mapping Hint</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
+	 * @see pamtram.mapping.extended.MappingHint#validateOverwritesValidMappingHint(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingHint__ValidateOverwritesValidMappingHint__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3529,6 +3640,20 @@ public interface ExtendedPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MAPPING_HINT = eINSTANCE.getMappingHint();
+		/**
+		 * The meta object literal for the '<em><b>Overwrite</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT__OVERWRITE = eINSTANCE.getMappingHint_Overwrite();
+		/**
+		 * The meta object literal for the '<em><b>Validate Overwrites Valid Mapping Hint</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHint__ValidateOverwritesValidMappingHint__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
 		 * <!-- begin-user-doc -->

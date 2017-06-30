@@ -37,31 +37,31 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.extended.AttributeMapping} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMapping} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class AttributeMappingItemProvider extends MappingHintItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public AttributeMappingItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+
 		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -73,12 +73,12 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
+
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_AttributeMapping_target_feature"),
@@ -88,16 +88,17 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_AttributeMapping_target_feature"),
 						this.getString("_UI_AttributeMapping_target_description"),
 						ExtendedPackage.Literals.ATTRIBUTE_MAPPING__TARGET, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
+
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
@@ -150,12 +151,12 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ExpressionElement_expression_feature"),
@@ -165,12 +166,12 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ModifiableElement_modifiers_feature"),
@@ -180,17 +181,16 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			this.childrenFeatures.add(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
@@ -200,15 +200,14 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	@Override
 	public Collection<? extends EStructuralFeature> getLabelRelatedChildrenFeatures(Object object) {
+
 		if (this.labelRelatedChildrenFeatures == null) {
 			this.labelRelatedChildrenFeatures = new ArrayList<>();
 			this.labelRelatedChildrenFeatures.add(ExtendedPackage.eINSTANCE.getAttributeMapping_SourceElements());
 			this.labelRelatedChildrenFeatures.add(ExtendedPackage.eINSTANCE.getAttributeMapping_Target());
 			/*
-			 * we do not need to add the 'expression' feature here as
-			 * notifications for this attribute are already generated
-			 * automatically as its 'Notify' property in the genmodel is set to
-			 * 'true'
+			 * we do not need to add the 'expression' feature here as notifications for this attribute are already
+			 * generated automatically as its 'Notify' property in the genmodel is set to 'true'
 			 */
 		}
 		return this.labelRelatedChildrenFeatures;
@@ -216,43 +215,41 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns AttributeMapping.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
+	 * This returns AttributeMapping.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
+
 		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/AttributeMapping"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 *
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
+
 		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -289,23 +286,23 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
+
 		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(AttributeMapping.class)) {
-		case ExtendedPackage.ATTRIBUTE_MAPPING__EXPRESSION:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case ExtendedPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
-			this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case ExtendedPackage.ATTRIBUTE_MAPPING__EXPRESSION:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ExtendedPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS:
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -319,14 +316,14 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(this.createChildParameter(ExtendedPackage.Literals.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS,
@@ -349,13 +346,13 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	 * (non-Javadoc)
 	 *
 	 * @see de.tud.et.ifa.agtele.emf.edit.IDragAndDropProvider#
-	 * createCustomDragAndDropCommand(org.eclipse.emf.edit.domain.EditingDomain,
-	 * java.lang.Object, float, int, int, java.util.Collection,
-	 * de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy)
+	 * createCustomDragAndDropCommand(org.eclipse.emf.edit.domain.EditingDomain, java.lang.Object, float, int, int,
+	 * java.util.Collection, de.tud.et.ifa.agtele.emf.edit.ICommandSelectionStrategy)
 	 */
 	@Override
 	public Command createCustomDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
 			int operation, Collection<?> collection, ICommandSelectionStrategy strategy) {
+
 		// TODO Auto-generated method stub
 		return super.createCustomDragAndDropCommand(domain, owner, location, operations, operation, collection,
 				strategy);

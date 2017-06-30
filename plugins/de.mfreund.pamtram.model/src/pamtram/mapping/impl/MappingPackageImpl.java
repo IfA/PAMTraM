@@ -920,7 +920,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_Extend(), 
 		   source, 
 		   new String[] {
-			 "documentation", "One or multiple MappingHintGroups (that are part of an \'abstract\' Mapping) which shall be extended by this MappingHintGroup.\r\n<br />\r\nAll MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.\r\n<br /><br />\r\nNote: If an extended Group defines a MappingHint affecting the same element of a TargetSection as a MappingHint defined locally in this group, it will not be added. As a result, local MappingHints will always overwrite MappingHints imported from extended Groups."
+			 "documentation", "One or multiple MappingHintGroups (that are part of an \'abstract\' Mapping) which shall be extended by this MappingHintGroup.\r\n<br />\r\nAll MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.\r\n<br /><br />\r\nNote: If an extended Group defines a MappingHint that is \'overwritten\' by a MappingHint defined locally, it will not be added."
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_AttributeMappings(), 

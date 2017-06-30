@@ -36,7 +36,7 @@ import pamtram.structure.target.VirtualTargetSectionAttribute;
 public interface LibraryEntry extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.structure.library.LibraryParameter}&lt;?>.
+	 * The list contents are of type {@link pamtram.structure.library.LibraryParameter}<code>&lt;?&gt;</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,

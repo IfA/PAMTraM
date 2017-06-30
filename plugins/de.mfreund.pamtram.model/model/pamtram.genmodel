@@ -597,6 +597,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSection that will be instantiated when the Mapping containing this HintGroup is executed."
@@ -680,7 +684,11 @@
           multipleEditorPages="false" generateModelWizard="false" ecorePackage="pamtram.ecore#//mapping/extended">
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/MappingHintBaseType"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/MappingHintType"/>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/MappingHint"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/MappingHint">
+          <genFeatures notify="false" createChild="false" propertyCategory="Extended"
+              propertyDescription="A MappingHint from an extended MappingHintGroup that shall not be added to this MappingHintGroup but be overwritten instead."
+              propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/extended/MappingHint/overwrite"/>
+        </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/ExpandableHint"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/HintImporterMappingHint"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/MappingHintSourceInterface"/>

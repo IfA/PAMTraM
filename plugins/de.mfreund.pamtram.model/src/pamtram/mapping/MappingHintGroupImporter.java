@@ -171,7 +171,7 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((<%pamtram.DeactivatableElement%>) h).isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getMappingHints().stream().filter(h -&gt; !(h instanceof DeactivatableElement) || !((&lt;%pamtram.DeactivatableElement%&gt;) h).isDeactivated()).toArray();\r\nreturn new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;.UnmodifiableEList&lt;&gt;(hints.length, hints);'"
 	 * @generated
 	 */
 	EList<MappingHintType> getActiveMappingHints();

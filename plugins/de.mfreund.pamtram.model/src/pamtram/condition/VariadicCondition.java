@@ -72,7 +72,7 @@ public interface VariadicCondition extends ComplexCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.sharedCondParts == null || this.sharedCondParts.size() == 0) {\r\n\treturn true;\r\n}\r\nEList<ComplexCondition> conditionRefs = new BasicEList<ComplexCondition>();\r\nconditionRefs.add((ComplexCondition) this.sharedCondParts);\r\nfor(ComplexCondition condition : conditionRefs){\r\n\tif(!(condition instanceof ConditionModel)){\r\n\t\treturn false;\r\n\t}\r\n}\r\nreturn true;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.sharedCondParts == null || this.sharedCondParts.size() == 0) {\r\n\treturn true;\r\n}\r\nEList&lt;ComplexCondition&gt; conditionRefs = new BasicEList&lt;ComplexCondition&gt;();\r\nconditionRefs.add((ComplexCondition) this.sharedCondParts);\r\nfor(ComplexCondition condition : conditionRefs){\r\n\tif(!(condition instanceof ConditionModel)){\r\n\t\treturn false;\r\n\t}\r\n}\r\nreturn true;'"
 	 * @generated
 	 */
 	boolean referencesOnlyValidConditions();
@@ -80,7 +80,7 @@ public interface VariadicCondition extends ComplexCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() > 1;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"At least two (local or shared) condition parts need to be specified!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.VARIADIC_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() &gt; 1;\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"At least two (local or shared) condition parts need to be specified!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.condition.util.ConditionValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.condition.ConditionPackage%&gt;.Literals.VARIADIC_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateMinimalNumberOfArgs(DiagnosticChain diagnostics, Map<?, ?> context);

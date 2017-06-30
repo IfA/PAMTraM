@@ -50,7 +50,7 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.eContainer() instanceof <%pamtram.condition.ComplexCondition%> && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.eContainer() instanceof &lt;%pamtram.condition.ComplexCondition%&gt; &amp;&amp; ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -&gt; s instanceof pamtram.structure.DynamicSourceElement) : true;\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.structure.util.StructureValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.structure.StructurePackage%&gt;.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -59,7 +59,7 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;&gt;(\r\n\t\tthis.getSourceElements().stream().filter(i -&gt; i instanceof InstanceSelectorSourceElement)\r\n\t\t\t\t.map(i -&gt; (InstanceSelectorSourceElement) i).collect(&lt;%java.util.stream.Collectors%&gt;.toList()));'"
 	 * @generated
 	 */
 	EList<InstanceSelectorSourceElement> getLocalSourceElements();
@@ -68,7 +68,7 @@ public interface InstanceSelector extends ExpressionElement, ModifiableElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorExternalSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;&gt;(\r\n\t\tthis.getSourceElements().stream().filter(i -&gt; i instanceof InstanceSelectorExternalSourceElement)\r\n\t\t\t\t.map(i -&gt; (InstanceSelectorExternalSourceElement) i).collect(&lt;%java.util.stream.Collectors%&gt;.toList()));'"
 	 * @generated
 	 */
 	EList<InstanceSelectorExternalSourceElement> getExternalSourceElements();

@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -60,8 +61,8 @@ import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * Class for instantiating target model sections using the hints supplied by
- * {@link MappingInstanceStorage MappingInstanceStorages}.
+ * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceStorage
+ * MappingInstanceStorages}.
  *
  * @author mfreund
  */
@@ -72,9 +73,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private static final String RESOLVE_INSTANTIATING_AMBIGUITY_STARTED = "[Ambiguity] Resolve expanding ambiguity...";
 
 	/**
-	 * TargetSectionContainmentReferences that point to a EReference with an
-	 * upporBound of 1 but at one point more than one element was supposed to be
-	 * connected with them
+	 * TargetSectionContainmentReferences that point to a EReference with an upporBound of 1 but at one point more than
+	 * one element was supposed to be connected with them
 	 */
 	private final Set<TargetSectionCompositeReference> wrongCardinalityContainmentRefs;
 
@@ -94,28 +94,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented
-	 * by an {@link EObjectWrapper}) to their {@link LibraryEntryInstantiator}.
+	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to their
+	 * {@link LibraryEntryInstantiator}.
 	 */
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate
-	 * attribute values.
+	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
 	 */
 	private AttributeValueCalculator calculator;
 
 	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to
-	 * resolve ambiguities that arise during the execution of the
-	 * transformation.
+	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
+	 * execution of the transformation.
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation
-	 * that might lead to the fact that the transformation result (especially
-	 * the order of lists) varies between executions.
+	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
+	 * transformation result (especially the order of lists) varies between executions.
 	 */
 	private boolean useParallelization;
 
@@ -133,13 +130,10 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to
-	 *            resolve occurring ambiguities.
+	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
 	 * @param useParallelzation
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attributeValueRegistry, final GlobalValueMap globalValueMap,
@@ -160,8 +154,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the {@link TargetSection TargetSections} represented by the
-	 * <em>hintGroups</em> of the given {@link MappingInstanceStorage}.
+	 * This expands the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
+	 * {@link MappingInstanceStorage}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
 	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
@@ -191,9 +185,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the given {@link TargetSection} represented by the given
-	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
-	 * redirecting to
+	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
+	 * {@link MappingInstanceStorage} by redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
@@ -203,8 +196,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to expand.
 	 * @param hintGroup
-	 *            The {@link MappingHintGroup} that lead to the instantiation of
-	 *            the given <em>mappingInstance</em>.
+	 *            The {@link MappingHintGroup} that lead to the instantiation of the given <em>mappingInstance</em>.
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance, MappingHintGroup hintGroup) {
 
@@ -228,9 +220,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This expands the given {@link TargetSection} represented by the given
-	 * <em>hintGroup</em> for the given {@link MappingInstanceStorage} by
-	 * redirecting to
+	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
+	 * {@link MappingInstanceStorage} by redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
@@ -240,8 +231,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceStorage mapping instance} to expand.
 	 * @param mappingHintGroupImporter
-	 *            The {@link MappingHintGroupImporter} that lead to the
-	 *            instantiation of the given <em>mappingInstance</em>.
+	 *            The {@link MappingHintGroupImporter} that lead to the instantiation of the given
+	 *            <em>mappingInstance</em>.
 	 */
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
@@ -269,36 +260,28 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * From the given list of {@link MappingHint MappingHints} and the given
-	 * {@link HintValueStorage hint values}, find one attribute mapping that
-	 * determines the cardinality of the given {@link TargetSectionClass}.
+	 * From the given list of {@link MappingHint MappingHints} and the given {@link HintValueStorage hint values}, find
+	 * all attribute mappings that add to the cardinality of the given {@link TargetSectionClass}.
 	 * <p />
-	 * Note: This function iterates downward in the containment hierarchy of the
-	 * {@link TargetSection}. Thereby, the <em>oldSelectedHint</em> is taken
-	 * into account and only attribute mappings that result in a higher
-	 * cardinality than the one already determined are considered.
+	 * Note: This function iterates downward in the containment hierarchy of the {@link TargetSection}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} for that the cardinality shall
-	 *            be determined.
+	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
 	 * @param hints
 	 *            The list of {@link MappingHint MappingHints} to be considered.
 	 * @param hintValues
-	 *            The {@link HintValueStorage} for the current TargetSection
-	 *            containing all extracted hint values.
+	 *            The {@link HintValueStorage} for the current TargetSection containing all extracted hint values.
 	 * @param oldSelectedHint
-	 *            The {@link AttributeMapping} that was previously determined as
-	 *            'cardinality-defining'.
-	 * @return The {@link AttributeMapping} that determines the cardinality or
-	 *         <em>null</em> if no AttributeMapping could be determined that
-	 *         would produce a higher cardinality than the one produced by the
+	 *            The {@link AttributeMapping} that was previously determined as 'cardinality-defining'.
+	 * @return The {@link AttributeMapping} that determines the cardinality or <em>null</em> if no AttributeMapping
+	 *         could be determined that would produce a higher cardinality than the one produced by the
 	 *         '<em>oldSelectedHint</em>'.
 	 */
-	private static AttributeMapping searchAttributeMapping(final TargetSectionClass targetSectionClass,
+	private static List<AttributeMapping> searchAttributesMapping(final TargetSectionClass targetSectionClass,
 			final Collection<MappingHint> hints, final HintValueStorage hintValues,
 			final AttributeMapping oldSelectedHint) {
 
-		AttributeMapping selectedHint = oldSelectedHint;
+		List<AttributeMapping> selectedHints = new ArrayList<>();
 
 		// check attributes
 		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
@@ -306,20 +289,21 @@ public class TargetSectionInstantiator extends CancelableElement {
 			for (final MappingHint hint : hints) {
 				if (hint instanceof AttributeMapping && ((AttributeMapping) hint).getTarget().equals(attr)) {
 
-					if (selectedHint == null || hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
-
-						if (hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
-							return null;// there needs to be at least one
-							// value for each attributeHint
-						} else {
-							selectedHint = (AttributeMapping) hint;
-						}
-
-					} else if (hintValues.getHintValues((AttributeMapping) hint).size() > hintValues
-							.getHintValues(selectedHint).size()) {
-
-						selectedHint = (AttributeMapping) hint;
-					}
+					selectedHints.add((AttributeMapping) hint);
+					// if (selectedHint == null || hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
+					//
+					// if (hintValues.getHintValues((AttributeMapping) hint).isEmpty()) {
+					// return null;// there needs to be at least one
+					// // value for each attributeHint
+					// } else {
+					// selectedHint = (AttributeMapping) hint;
+					// }
+					//
+					// } else if (hintValues.getHintValues((AttributeMapping) hint).size() > hintValues
+					// .getHintValues(selectedHint).size()) {
+					//
+					// selectedHint = (AttributeMapping) hint;
+					// }
 				}
 			}
 		}
@@ -330,46 +314,43 @@ public class TargetSectionInstantiator extends CancelableElement {
 			for (final TargetSectionClass val : ref.getValuesGeneric()) {
 				if (val.getCardinality().equals(CardinalityType.ONE)) {
 
-					final AttributeMapping hint = TargetSectionInstantiator.searchAttributeMapping(val, hints,
-							hintValues, selectedHint);
-
-					if (hint == null && selectedHint != null) {
-						return null;
-					} else {
-						selectedHint = hint;
-					}
+					selectedHints
+							.addAll(TargetSectionInstantiator.searchAttributesMapping(val, hints, hintValues, null));
+					// final AttributeMapping hint = TargetSectionInstantiator.searchAttributeMapping(val, hints,
+					// hintValues, selectedHint);
+					//
+					// if (hint == null && selectedHint != null) {
+					// return null;
+					// } else {
+					// selectedHint = hint;
+					// }
 				}
 			}
 		}
 
-		return selectedHint;
+		return selectedHints;
 	}
 
 	/**
-	 * Instantiate the given {@link TargetSection} using the specified
-	 * {@link HintValueStorage hint values}.
+	 * Instantiate the given {@link TargetSection} using the specified {@link HintValueStorage hint values}.
 	 * <p />
-	 * Note: This constitutes the first pass of the instantiation that only
-	 * creates attributes and containment references. Non-containment references
-	 * are created during the
+	 * Note: This constitutes the first pass of the instantiation that only creates attributes and containment
+	 * references. Non-containment references are created during the
 	 * {@link #instantiateTargetSectionSecondPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)
 	 * second pass}.
 	 *
 	 * @param targetSection
 	 *            The {@link TargetSection} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover
-	 *            <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @return A map relating created {@link EObjectWrapper instances} to the
-	 *         {@link TargetSectionClass} based on which they have been created.
+	 * @return A map relating created {@link EObjectWrapper instances} to the {@link TargetSectionClass} based on which
+	 *         they have been created.
 	 */
 	private Map<TargetSectionClass, List<EObjectWrapper>> instantiateTargetSectionFirstPass(
 			final TargetSection targetSection, final InstantiableMappingHintGroup mappingGroup,
@@ -394,35 +375,26 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * Instantiate the given {@link TargetSectionClass} using the specified
-	 * {@link HintValueStorage hint values}.
+	 * Instantiate the given {@link TargetSectionClass} using the specified {@link HintValueStorage hint values}.
 	 * <p />
-	 * Note: This is called recursively as we iterate downward in the
-	 * containment hierarchy of the {@link TargetSection} to be instantiated.
-	 * Note: Created instances are registered in the
-	 * <em>createdInstancesByTargetSectionClass</em>.
+	 * Note: This is called recursively as we iterate downward in the containment hierarchy of the {@link TargetSection}
+	 * to be instantiated. Note: Created instances are registered in the <em>createdInstancesByTargetSectionClass</em>.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover
-	 *            <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
-	 *            The map where all created {@link EObjectWrapper instances} are
-	 *            registered.
+	 *            The map where all created {@link EObjectWrapper instances} are registered.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used
-	 *            higher up in the section hierarchy.
-	 * @return The list of created {@link EObjectWrapper instances} or
-	 *         '<em>null</em>' if an error occurred.
+	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
+	 * @return The list of created {@link EObjectWrapper instances} or '<em>null</em>' if an error occurred.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionFirstPass(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
@@ -505,36 +477,30 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This determines and returns the cardinality when instantiating the given
-	 * {@link TargetSectionClass} using the specified {@link HintValueStorage
-	 * hint values}, i.e. how many instances of {@link TargetSectionClass} shall
-	 * be created.
+	 * This determines and returns the cardinality when instantiating the given {@link TargetSectionClass} using the
+	 * specified {@link HintValueStorage hint values}, i.e. how many instances of {@link TargetSectionClass} shall be
+	 * created.
 	 * <p />
-	 * Therefore, existing {@link AttributeMapping AttributeMappings} and
-	 * {@link CardinalityMapping CardinalityMappings} are evaluated based on the
-	 * given {@link HintValueStorage hint values}.
+	 * Therefore, existing {@link AttributeMapping AttributeMappings} and {@link CardinalityMapping CardinalityMappings}
+	 * are evaluated based on the given {@link HintValueStorage hint values}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} for that the cardinality shall
-	 *            be determined.
+	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account for the determination of the cardinality.
+	 *            The list of {@link MappingHint MappingHints} to take into account for the determination of the
+	 *            cardinality.
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @return The cardinality to be used whne instantiating the given
-	 *         {@link TargetSectionClass}.
+	 * @return The cardinality to be used whne instantiating the given {@link TargetSectionClass}.
 	 */
 	private int determineCardinality(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
 
 		/*
-		 * ignore attribute hints and cardinality hint, if variableCardinality
-		 * == false
+		 * ignore attribute hints and cardinality hint, if variableCardinality == false
 		 */
 		if (targetSectionClass.getCardinality().equals(CardinalityType.ONE)) {
 			return 1;
@@ -572,8 +538,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 						if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
 							cardHintValue = Double.valueOf(value).intValue();
 						} else {
-							this.logger
-									.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+							this.logger.severe(
+									() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
 											+ cardinalityMapping.getName() + "! The problematic value was '" + value
 											+ "'.");
 							continue;
@@ -619,53 +585,35 @@ public class TargetSectionInstantiator extends CancelableElement {
 			}
 		}
 
-		final AttributeMapping hint = TargetSectionInstantiator.searchAttributeMapping(targetSectionClass, mappingHints,
-				hintValues, null);
+		List<AttributeMapping> hints = TargetSectionInstantiator.searchAttributesMapping(targetSectionClass,
+				mappingHints, hintValues, null);
 
-		if (hint != null) {// there was an AttributeHint....
+		if (!hints.isEmpty()) {// there was an AttributeHint....
 
-			int hintCardinality = hintValues.getHintValues(hint).size();
+			int attributeMappingHintCardinality = 0;
 
-			/*
-			 * Now, we have to check if there are multi-valued attributes that
-			 * also try to determine the cardinality.
-			 */
-			int multiValuedAttributeCardinality = 1;
+			// Collect the cardinality for each TargetSectionAttribute
+			//
+			for (TargetSectionAttribute targetAttribute : hints.stream().map(a -> a.getTarget())
+					.collect(Collectors.toSet())) {
 
-			for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues
-					.getHintValues(hint)) {
+				int localAttributeMappingHintCardinality = this.getTargetAttributeCardinality(hintValues, hints,
+						targetAttribute);
 
-				for (AttributeValueRepresentation rep : x.values()) {
-					if (rep.isMany()) {
-
-						if (multiValuedAttributeCardinality == 1) {
-							multiValuedAttributeCardinality = rep.getValues().size();
-						} else if (multiValuedAttributeCardinality != rep.getValues().size()) {
-							throw new RuntimeException(
-									"There are different multi-valued attributes with" + " different cardinalities!");
-						}
-					}
+				if (localAttributeMappingHintCardinality > attributeMappingHintCardinality) {
+					attributeMappingHintCardinality = localAttributeMappingHintCardinality;
 				}
+
 			}
 
-			/*
-			 * Check if there are contradictory cardinalities...
-			 */
-			if (hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
+			if (attributeMappingHintCardinality > cardinality) {
 
-				throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " + hint.getName());
-
-			} else if (multiValuedAttributeCardinality > 1) {
-				hintCardinality = multiValuedAttributeCardinality;
-			}
-
-			if (hintCardinality > cardinality) {
-
-				cardinality = hintCardinality;
+				cardinality = attributeMappingHintCardinality;
 			}
 
 			// Use the hint value of the found CardinalityMapping
-			if (cardHintValue > hintCardinality && cardHintValue % hintCardinality == 0) {
+			if (cardHintValue > attributeMappingHintCardinality
+					&& cardHintValue % attributeMappingHintCardinality == 0) {
 				cardinality = cardHintValue;
 			}
 
@@ -688,8 +636,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 				} else {
 					/*
-					 * Consult the specified resolving strategy to resolve the
-					 * ambiguity.
+					 * Consult the specified resolving strategy to resolve the ambiguity.
 					 */
 					try {
 						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
@@ -710,8 +657,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 						if (e.getCause() instanceof UserAbortException) {
 							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 						} else {
-							this.logger
-									.severe(() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
+							this.logger.severe(
+									() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
 											+ e.getMessage());
 							this.logger.severe("Using default cardinality instead...");
 							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
@@ -726,24 +673,90 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the given {@link TargetSectionClass} by creating a new
-	 * {@link EObject} and wrapping it in an {@link EObjectWrapper}.
+	 *
+	 *
+	 * @param hintValues
+	 * @param hints
+	 * @param targetAttribute
+	 * @return
+	 */
+	public int getTargetAttributeCardinality(final HintValueStorage hintValues, List<AttributeMapping> hints,
+			TargetSectionAttribute targetAttribute) {
+
+		// This is based on the addition of all cardinalities from all AttributeMappings
+		//
+		int localAttributeMappingHintCardinality = 0;
+
+		for (AttributeMapping hint : hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
+				.collect(Collectors.toList())) {
+
+			int hintCardinality = this.getAttributeMappingCardinality(hintValues, hint);
+
+			localAttributeMappingHintCardinality += hintCardinality;
+
+		}
+		return localAttributeMappingHintCardinality;
+	}
+
+	/**
+	 *
+	 *
+	 * @param hintValues
+	 * @param hint
+	 * @return
+	 */
+	private int getAttributeMappingCardinality(final HintValueStorage hintValues, AttributeMapping hint) {
+
+		int hintCardinality = hintValues.getHintValues(hint).size();
+
+		/*
+		 * Now, we have to check if there are multi-valued attributes that also try to determine the cardinality.
+		 */
+		int multiValuedAttributeCardinality = 1;
+
+		for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues.getHintValues(hint)) {
+
+			for (AttributeValueRepresentation rep : x.values()) {
+				if (rep.isMany()) {
+
+					if (multiValuedAttributeCardinality == 1) {
+						multiValuedAttributeCardinality = rep.getValues().size();
+					} else if (multiValuedAttributeCardinality != rep.getValues().size()) {
+						throw new RuntimeException(
+								"There are different multi-valued attributes with" + " different cardinalities!");
+					}
+				}
+			}
+		}
+
+		/*
+		 * Check if there are contradictory cardinalities...
+		 */
+		if (hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
+
+			throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " + hint.getName());
+
+		} else if (multiValuedAttributeCardinality > 1) {
+			hintCardinality = multiValuedAttributeCardinality;
+		}
+		return hintCardinality;
+	}
+
+	/**
+	 * This instantiates the given {@link TargetSectionClass} by creating a new {@link EObject} and wrapping it in an
+	 * {@link EObjectWrapper}.
 	 * <p />
-	 * If the given TargetSectionClass represents a
-	 * {@link TargetSectionClass#isLibraryEntry() LibraryEntry}, additionally, a
-	 * new {@link LibraryEntryInstantiator} is created and registered in the
+	 * If the given TargetSectionClass represents a {@link TargetSectionClass#isLibraryEntry() LibraryEntry},
+	 * additionally, a new {@link LibraryEntryInstantiator} is created and registered in the
 	 * {@link #libEntryInstantiators} and {@link #libEntryInstantiatorMap}.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} to instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover
-	 *            <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
@@ -762,15 +775,14 @@ public class TargetSectionInstantiator extends CancelableElement {
 		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.attributeValueRegistry);
 
 		/*
-		 * If the target section is a library entry, we create a new
-		 * 'LibraryEntryInstantiator' that will insert the real library entry at
-		 * the end.
+		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator' that will insert the
+		 * real library entry at the end.
 		 */
 		if (targetSectionClass.isLibraryEntry()) {
 
 			/*
-			 * As LibraryEntries may get inserted multiple times, we need to
-			 * create a self-contained copy of the library entry
+			 * As LibraryEntries may get inserted multiple times, we need to create a self-contained copy of the library
+			 * entry
 			 */
 			LibraryEntry originallibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 			ArrayList<EObject> originals = new ArrayList<>();
@@ -788,32 +800,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the {@link TargetSectionAttribute
-	 * TargetSectionAttributes} for the given {@link TargetSectionClass} based
-	 * on the provided {@link HintValueStorage hint values}.
+	 * This instantiates the {@link TargetSectionAttribute TargetSectionAttributes} for the given
+	 * {@link TargetSectionClass} based on the provided {@link HintValueStorage hint values}.
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} defining the attributes to be
-	 *            instantiated.
+	 *            The {@link TargetSectionClass} defining the attributes to be instantiated.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover
-	 *            <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used
-	 *            higher up in the section hierarchy.
+	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
 	 * @param cardinality
 	 * @param instances
-	 * @return markedForDelete The list of instances to be deleted or
-	 *         '<em>null</em>' if an internal error occurred and the
-	 *         transformation should abort.
+	 * @return markedForDelete The list of instances to be deleted or '<em>null</em>' if an internal error occurred and
+	 *         the transformation should abort.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionAttributes(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
@@ -827,8 +832,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		List<EObjectWrapper> markedForDelete = new ArrayList<>();
 
 		/*
-		 * we don't need to reference the EObjects, since their order doesn't
-		 * change while we are using this
+		 * we don't need to reference the EObjects, since their order doesn't change while we are using this
 		 */
 		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
 
@@ -850,63 +854,94 @@ public class TargetSectionInstantiator extends CancelableElement {
 			}
 		}
 
-		for (final TargetSectionAttribute attr : attributes) {
-			attributeValues.put(attr, new LinkedList<String>());
+		List<AttributeMapping> attributeMappings = mappingHints.stream().filter(h -> h instanceof AttributeMapping)
+				.map(h -> (AttributeMapping) h).collect(Collectors.toList());
 
-			MappingHint hintFound = null;
-			// look for an attribute mapping
+		// The cardinalities for each attribute as defined by the associated mapping hints
+		//
+		Map<TargetSectionAttribute, Integer> attributeBasedCardinalities = new HashMap<>();
+		for (final TargetSectionAttribute attr : attributes) {
+			attributeBasedCardinalities.put(attr,
+					this.getTargetAttributeCardinality(hintValues, attributeMappings, attr));
+		}
+
+		for (final TargetSectionAttribute attr : attributes) {
+
+			// The cardinality added by each hint
+			//
+			Map<AttributeMapping, Integer> hintBasedCardinalities = new HashMap<>();
+			for (final MappingHint hint : attributeMappings) {
+				if (((AttributeMapping) hint).getTarget().equals(attr)) {
+					hintBasedCardinalities.put((AttributeMapping) hint,
+							hintValues.getHintValues((AttributeMapping) hint).size());
+				}
+			}
+
+			// If there are multiple hints for one TargetAttribute and the combined cardinality does not match the
+			// expected cardinality, more complex algorithms are necessary. Currently, we do not support this...
+			//
+			if (hintBasedCardinalities.size() > 1 && hintBasedCardinalities.values().stream()
+					.mapToInt(Integer::intValue).sum() != attributeBasedCardinalities.get(attr)) {
+				this.logger.severe(
+						() -> "Internal error during calculation. Inappropriate combination of AttributeMappings found for one TargetSectionAttribute ('"
+								+ attr.getName() + "')!");
+				return null;
+			}
+
 			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
 
-			for (final MappingHint hint : mappingHints) {
-				if (hint instanceof AttributeMapping) {
-					if (((AttributeMapping) hint).getTarget().equals(attr)) {
+			if (hintBasedCardinalities.isEmpty()) {
+				continue;
+			}
 
-						hintFound = hint;
+			attributeValues.put(attr, new LinkedList<String>());
 
-						if (hintValues.getHintValues((AttributeMapping) hint).size() == 1) {
+			if (hintBasedCardinalities.size() == 1) {
+				AttributeMapping hint = hintBasedCardinalities.keySet().iterator().next();
 
-							// Exactly one hint value found -> reuse for all
-							// instances
-							//
-							attrHintValues = new LinkedList<>();
-							for (int i = 0; i < cardinality; i++) {
-								attrHintValues.add(hintValues.getHintValues((AttributeMapping) hint).getFirst());
-							}
-							break;
+				if (hintValues.getHintValues(hint).size() == 1) {
 
-						} else if (hintValues.getHintValues((AttributeMapping) hint).size() < cardinality
-								&& !hintValues.getHintValues((AttributeMapping) hint).isEmpty()
-								&& cardinality % hintValues.getHintValues((AttributeMapping) hint).size() == 0) {
-
-							// Multiply the hint values to fit the cardinality
-							//
-							attrHintValues = new LinkedList<>();
-							for (int i = 0; i < cardinality
-									/ hintValues.getHintValues((AttributeMapping) hint).size(); i++) {
-								attrHintValues.addAll(hintValues.getHintValues((AttributeMapping) hint));
-							}
-							break;
-
-						} else if (hintValues.getHintValues((AttributeMapping) hint).size() >= cardinality) {
-
-							// As many/more hint values found as/than instances
-							// -> each instance gets its own hint value
-							//
-							attrHintValues = hintValues.getHintValues((AttributeMapping) hint);
-							break;
-
-						} else {
-
-							// Less hint values found than instance -> This
-							// should not happen
-							//
-							this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
-									+ hintValues.getHintValues((AttributeMapping) hint).size() + "): " + hint.getName()
-									+ " for Mapping " + ((Mapping) mappingGroup.eContainer()).getName() + " (Group: "
-									+ mappingGroup.getName() + ") Maybe check Cardinality of Metamodel section?");
-							return null;
-						}
+					// Exactly one hint value found -> reuse for all
+					// instances
+					//
+					attrHintValues = new LinkedList<>();
+					for (int i = 0; i < cardinality; i++) {
+						attrHintValues.add(hintValues.getHintValues(hint).getFirst());
 					}
+
+				} else if (hintValues.getHintValues(hint).size() < cardinality
+						&& !hintValues.getHintValues(hint).isEmpty()
+						&& cardinality % hintValues.getHintValues(hint).size() == 0) {
+
+					// Multiply the hint values to fit the cardinality
+					//
+					attrHintValues = new LinkedList<>();
+					for (int i = 0; i < cardinality / hintValues.getHintValues(hint).size(); i++) {
+						attrHintValues.addAll(hintValues.getHintValues(hint));
+					}
+
+				} else if (hintValues.getHintValues(hint).size() >= cardinality) {
+
+					// As many/more hint values found as/than instances
+					// -> each instance gets its own hint value
+					//
+					attrHintValues = hintValues.getHintValues(hint);
+
+				} else {
+
+					// Less hint values found than instance -> This
+					// should not happen
+					//
+					this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
+							+ hintValues.getHintValues(hint).size() + "): " + hint.getName() + " for Mapping "
+							+ ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
+							+ ") Maybe check Cardinality of Metamodel section?");
+					return null;
+				}
+			} else {
+				attrHintValues = new LinkedList<>();
+				for (Entry<AttributeMapping, Integer> entry : hintBasedCardinalities.entrySet()) {
+					attrHintValues.addAll(hintValues.getHintValues(entry.getKey()));
 				}
 			}
 
@@ -916,12 +951,14 @@ public class TargetSectionInstantiator extends CancelableElement {
 			for (int i = 0; i < instances.size(); i++) {
 
 				EObjectWrapper instance = instances.get(i);
-				String attrValue = this.calculator.calculateAttributeValue(attr, hintFound, attrHintValues);
+				String attrValue = this.calculator.calculateAttributeValue(attr,
+						attrHintValues.isEmpty() ? null
+								: (MappingHint) attrHintValues.getFirst().keySet().iterator().next().eContainer(),
+						attrHintValues);
 
 				if (attrValue == null) {
 					/*
-					 * Consult the specified resolving strategy to resolve the
-					 * ambiguity.
+					 * Consult the specified resolving strategy to resolve the ambiguity.
 					 */
 					try {
 						this.logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
@@ -937,8 +974,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 						if (e.getCause() instanceof UserAbortException) {
 							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 						} else {
-							this.logger
-									.severe(() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
+							this.logger.severe(
+									() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
 											+ e.getMessage());
 							this.logger.severe("Using default value instead...");
 							continue;
@@ -975,8 +1012,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 						|| attributeValues.get(attr).contains(attrValue) || attrValUsedInSection)) {
 
 					/*
-					 * we can only delete this at the end, or else the
-					 * attributeHint values won't fit anymore
+					 * we can only delete this at the end, or else the attributeHint values won't fit anymore
 					 */
 					markedForDelete.add(instance);
 
@@ -989,9 +1025,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		/*
-		 * Now that we know which instances will be deleted we set (and
-		 * register) the actual attribute values of the instances that will not
-		 * get deleted
+		 * Now that we know which instances will be deleted we set (and register) the actual attribute values of the
+		 * instances that will not get deleted
 		 */
 		for (final EObjectWrapper instance : instances) {
 
@@ -1008,17 +1043,14 @@ public class TargetSectionInstantiator extends CancelableElement {
 						// finally, we can set the value of the attribute
 						if (!targetSectionClass.isLibraryEntry()) {
 							/*
-							 * setting an Attribute causes the value to be saved
-							 * in the attribute value registry
+							 * setting an Attribute causes the value to be saved in the attribute value registry
 							 */
 							instance.setAttributeValue(attr, setValue);
 						} else {
 							/*
-							 * for library entries, we cannot simply set the
-							 * value as the attribute we are handling is not
-							 * part of the targetSectionClass; instead we want
-							 * to specify the value as 'new value' for the
-							 * affected AttributeParameter
+							 * for library entries, we cannot simply set the value as the attribute we are handling is
+							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
+							 * for the affected AttributeParameter
 							 */
 							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(instance)
 									.getLibraryEntry();
@@ -1049,43 +1081,34 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * This instantiates the {@link TargetSectionContainmentReference
-	 * TargetSectionContainmentReferences} defined by the given
-	 * {@link TargetSectionClass}. Therefore, it iterates further downward in
-	 * the containment hierarchy of the TargetSection and call
+	 * This instantiates the {@link TargetSectionContainmentReference TargetSectionContainmentReferences} defined by the
+	 * given {@link TargetSectionClass}. Therefore, it iterates further downward in the containment hierarchy of the
+	 * TargetSection and call
 	 * {@link #instantiateTargetSectionFirstPass(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map, Map)}
 	 * .
 	 *
 	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} of which the
-	 *            {@link TargetSectionContainmentReference
+	 *            The {@link TargetSectionClass} of which the {@link TargetSectionContainmentReference
 	 *            TargetSectionContainmentReferences} are to be instantiate.
 	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            TargetSection gets instantiated.
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into
-	 *            account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover
-	 *            <em>local</em> hints as well as
+	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
+	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
-	 *            The registry where created {@link EObjectWrapper instances}
-	 *            shall be stored.
+	 *            The registry where created {@link EObjectWrapper instances} shall be stored.
 	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used
-	 *            higher up in the section hierarchy.
+	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
 	 * @param instances
-	 *            The list of {@link EObjectWrapper instances} that have been
-	 *            created for the given {@link TargetSectionClass}. The
-	 *            references need to be created for each of these instances
-	 *            unless they are <em>markedForDelete</em>.
+	 *            The list of {@link EObjectWrapper instances} that have been created for the given
+	 *            {@link TargetSectionClass}. The references need to be created for each of these instances unless they
+	 *            are <em>markedForDelete</em>.
 	 * @param markedForDelete
-	 *            The subset of the given list of <em>instances/<em> that will
-	 *            get deleted in the end due to duplicate attribute values that
-	 *            should be unique.
+	 *            The subset of the given list of <em>instances/<em> that will get deleted in the end due to duplicate
+	 *            attribute values that should be unique.
 	 * @return The created {@link EObjectWrapper instance}.
 	 */
 	private boolean instantiateTargetSectionContainmentReferences(final TargetSectionClass targetSectionClass,
@@ -1098,7 +1121,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 		// collect all containment references
 		//
 		List<TargetSectionCompositeReference> containmentReferences = (this.useParallelization
-				? targetSectionClass.getReferences().parallelStream() : targetSectionClass.getReferences().stream())
+				? targetSectionClass.getReferences().parallelStream()
+				: targetSectionClass.getReferences().stream())
 						.filter(ref -> ref instanceof TargetSectionCompositeReference)
 						.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
 
@@ -1170,14 +1194,12 @@ public class TargetSectionInstantiator extends CancelableElement {
 	}
 
 	/**
-	 * For the given {@link MappingHintGroupImporter}, this collects the
-	 * <em>local</em> hints as well as the imported hints from the referenced
-	 * {@link ExportedMappingHintGroup} for the given
-	 * {@link MappingInstanceStorage mapping instance}.
+	 * For the given {@link MappingHintGroupImporter}, this collects the <em>local</em> hints as well as the imported
+	 * hints from the referenced {@link ExportedMappingHintGroup} for the given {@link MappingInstanceStorage mapping
+	 * instance}.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that imported hints
-	 *            shall be returned.
+	 *            The {@link MappingInstanceStorage} for that imported hints shall be returned.
 	 * @param hintGroupImporter
 	 *            The {@link MappingHintGroupImporter} to handle.
 	 * @return The imported {@link MappingHint MappingHints}.
@@ -1201,8 +1223,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	/**
 	 * This is the getter for the {@link #libEntryInstantiatorMap}.
 	 *
-	 * @return The temporarily created elements for LibraryEntries (represented
-	 *         by an {@link EObjectWrapper}) and their
+	 * @return The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and their
 	 *         {@link LibraryEntryInstantiator}.
 	 */
 	public Map<EObjectWrapper, LibraryEntryInstantiator> getLibEntryInstantiatorMap() {

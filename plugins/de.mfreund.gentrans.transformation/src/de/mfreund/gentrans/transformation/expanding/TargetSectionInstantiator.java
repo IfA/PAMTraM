@@ -680,7 +680,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param targetAttribute
 	 * @return
 	 */
-	public int getTargetAttributeCardinality(final HintValueStorage hintValues, List<AttributeMapping> hints,
+	private int getTargetAttributeCardinality(final HintValueStorage hintValues, List<AttributeMapping> hints,
 			TargetSectionAttribute targetAttribute) {
 
 		// This is based on the addition of all cardinalities from all AttributeMappings
@@ -869,7 +869,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			// The cardinality added by each hint
 			//
-			Map<AttributeMapping, Integer> hintBasedCardinalities = new HashMap<>();
+			Map<AttributeMapping, Integer> hintBasedCardinalities = new LinkedHashMap<>();
 			for (final MappingHint hint : attributeMappings) {
 				if (((AttributeMapping) hint).getTarget().equals(attr)) {
 					hintBasedCardinalities.put((AttributeMapping) hint,

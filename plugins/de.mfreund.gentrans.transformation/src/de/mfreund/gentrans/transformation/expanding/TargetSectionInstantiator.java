@@ -888,60 +888,58 @@ public class TargetSectionInstantiator extends CancelableElement {
 				return null;
 			}
 
-			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = null;
-
-			if (hintBasedCardinalities.isEmpty()) {
-				continue;
-			}
-
+			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = new LinkedList<>();
 			attributeValues.put(attr, new LinkedList<String>());
 
-			if (hintBasedCardinalities.size() == 1) {
-				AttributeMapping hint = hintBasedCardinalities.keySet().iterator().next();
+			if (!hintBasedCardinalities.isEmpty()) {
 
-				if (hintValues.getHintValues(hint).size() == 1) {
+				if (hintBasedCardinalities.size() == 1) {
+					AttributeMapping hint = hintBasedCardinalities.keySet().iterator().next();
 
-					// Exactly one hint value found -> reuse for all
-					// instances
-					//
-					attrHintValues = new LinkedList<>();
-					for (int i = 0; i < cardinality; i++) {
-						attrHintValues.add(hintValues.getHintValues(hint).getFirst());
+					if (hintValues.getHintValues(hint).size() == 1) {
+
+						// Exactly one hint value found -> reuse for all
+						// instances
+						//
+						attrHintValues = new LinkedList<>();
+						for (int i = 0; i < cardinality; i++) {
+							attrHintValues.add(hintValues.getHintValues(hint).getFirst());
+						}
+
+					} else if (hintValues.getHintValues(hint).size() < cardinality
+							&& !hintValues.getHintValues(hint).isEmpty()
+							&& cardinality % hintValues.getHintValues(hint).size() == 0) {
+
+						// Multiply the hint values to fit the cardinality
+						//
+						attrHintValues = new LinkedList<>();
+						for (int i = 0; i < cardinality / hintValues.getHintValues(hint).size(); i++) {
+							attrHintValues.addAll(hintValues.getHintValues(hint));
+						}
+
+					} else if (hintValues.getHintValues(hint).size() >= cardinality) {
+
+						// As many/more hint values found as/than instances
+						// -> each instance gets its own hint value
+						//
+						attrHintValues = hintValues.getHintValues(hint);
+
+					} else {
+
+						// Less hint values found than instance -> This
+						// should not happen
+						//
+						this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
+								+ hintValues.getHintValues(hint).size() + "): " + hint.getName() + " for Mapping "
+								+ ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
+								+ ") Maybe check Cardinality of Metamodel section?");
+						return null;
 					}
-
-				} else if (hintValues.getHintValues(hint).size() < cardinality
-						&& !hintValues.getHintValues(hint).isEmpty()
-						&& cardinality % hintValues.getHintValues(hint).size() == 0) {
-
-					// Multiply the hint values to fit the cardinality
-					//
-					attrHintValues = new LinkedList<>();
-					for (int i = 0; i < cardinality / hintValues.getHintValues(hint).size(); i++) {
-						attrHintValues.addAll(hintValues.getHintValues(hint));
-					}
-
-				} else if (hintValues.getHintValues(hint).size() >= cardinality) {
-
-					// As many/more hint values found as/than instances
-					// -> each instance gets its own hint value
-					//
-					attrHintValues = hintValues.getHintValues(hint);
-
 				} else {
-
-					// Less hint values found than instance -> This
-					// should not happen
-					//
-					this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
-							+ hintValues.getHintValues(hint).size() + "): " + hint.getName() + " for Mapping "
-							+ ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
-							+ ") Maybe check Cardinality of Metamodel section?");
-					return null;
-				}
-			} else {
-				attrHintValues = new LinkedList<>();
-				for (Entry<AttributeMapping, Integer> entry : hintBasedCardinalities.entrySet()) {
-					attrHintValues.addAll(hintValues.getHintValues(entry.getKey()));
+					attrHintValues = new LinkedList<>();
+					for (Entry<AttributeMapping, Integer> entry : hintBasedCardinalities.entrySet()) {
+						attrHintValues.addAll(hintValues.getHintValues(entry.getKey()));
+					}
 				}
 			}
 
@@ -954,7 +952,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 				String attrValue = this.calculator.calculateAttributeValue(attr,
 						attrHintValues.isEmpty() ? null
 								: (MappingHint) attrHintValues.getFirst().keySet().iterator().next().eContainer(),
-						attrHintValues);
+						attrHintValues.isEmpty() ? null : attrHintValues);
 
 				if (attrValue == null) {
 					/*

@@ -312,7 +312,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 		if (((MappingHintGroupType) this.eContainer()).getExtend().isEmpty()
 				|| ((MappingHintGroupType) this.eContainer()).getExtend().stream()
-						.anyMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {
+						.noneMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {
 			ret = false;
 			message = "The overwritten MappingHint is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!";
 		}

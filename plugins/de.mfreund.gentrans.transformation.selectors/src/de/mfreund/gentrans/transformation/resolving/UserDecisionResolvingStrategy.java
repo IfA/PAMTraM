@@ -42,24 +42,21 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This class implements a concrete {@link IAmbiguityResolvingStrategy} that
- * allows a user to resolve ambiguities by presenting selection dialogues to
- * him.
+ * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
+ * presenting selection dialogues to him.
  *
  * @author mfreund
  */
 public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
 
 	/**
-	 * This prefix will be added to {@link #printMessage(String, String)
-	 * messages} printed after user selections.
+	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
 	 */
 	private static final String userDecisionPrefix = "User";
 
 	/**
-	 * If this is set to '<em>false</em>' this strategy will also try to resolve
-	 * ambiguities during the <em>expanding<em> step as this might lead to a ton
-	 * of questions.
+	 * If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the
+	 * <em>expanding<em> step as this might lead to a ton of questions.
 	 * <p />
 	 * The default value is '<em>true</em>'.
 	 */
@@ -69,8 +66,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	 * This allows to change the {@link #skipExpandingAmbiguities} behavior.
 	 *
 	 * @param skipExpandingAmbiguities
-	 *            If this is set to '<em>false</em>' this strategy will also try
-	 *            to resolve ambiguities during the <em>expanding<em> step
+	 *            If this is set to '<em>false</em>' this strategy will also try to resolve ambiguities during the
+	 *            <em>expanding<em> step
 	 */
 	public void setSkipExpandingAmbiguities(boolean skipExpandingAmbiguities) {
 
@@ -267,7 +264,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
-				.filter(p -> p.getTargetSections().contains(section)).findAny();
+				.filter(p -> p.getTargetSections().contains(section) || EcoreUtil.isAncestor(p.getTargetSectionModels()
+						.stream().flatMap(t -> t.getLibraryElements().stream()).collect(Collectors.toList()), section))
+				.findAny();
 
 		JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer enhancer = new JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(
 				pamtramModel.orElseThrow(
@@ -371,8 +370,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ (hintGroup.getTargetSection().getName().isEmpty() ? hintGroup.getTargetSection().getName()
 							: hintGroup.getTargetSection().getEClass().getName())
 					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
-					+ hintGroup.getName() + ") . Please select a target element" + (sourceElements.size() == 1
-							? " for the following source:\n" + sourceElements.get(0).toString() : ".");
+					+ hintGroup.getName() + ") . Please select a target element"
+					+ (sourceElements.size() == 1 ? " for the following source:\n" + sourceElements.get(0).toString()
+							: ".");
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,

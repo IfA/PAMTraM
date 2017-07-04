@@ -322,11 +322,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
 		}
 
-		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
-				.filter(p -> p.getTargetSections()
-						.containsAll(modelConnectionHint.getTargetAttributes().stream()
-								.map(t -> t.getSource().getContainingSection()).collect(Collectors.toList())))
-				.findAny();
+		Optional<PAMTraM> pamtramModel = modelConnectionHint != null
+				? this.pamtramModels.stream()
+						.filter(p -> p.getTargetSections()
+								.containsAll(modelConnectionHint.getTargetAttributes().stream()
+										.map(t -> t.getSource().getContainingSection()).collect(Collectors.toList())))
+						.findAny()
+				: Optional.ofNullable(this.pamtramModels.get(0));
 
 		JoiningSelectContainerInstanceMappingModelEnhancer enhancer = hintGroup instanceof MappingHintGroup
 				? new JoiningSelectContainerInstanceMappingModelEnhancer(pamtramModel.orElseThrow(

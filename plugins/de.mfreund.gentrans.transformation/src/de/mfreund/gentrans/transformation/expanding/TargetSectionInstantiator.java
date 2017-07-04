@@ -507,9 +507,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		// This will be returned in the end. We start by assuming a cardinality
-		// of '1'.
+		// of '0' or '1' depending on the cardinality of the TargetSectionClass.
 		//
-		int cardinality = 1;
+		int cardinality = targetSectionClass.getCardinality().equals(CardinalityType.ONE_INFINITY) ? 1 : 0;
 
 		int cardHintValue = 1;
 		boolean cardMappingExists = false;
@@ -612,7 +612,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			}
 
 			// Use the hint value of the found CardinalityMapping
-			if (cardHintValue > attributeMappingHintCardinality
+			if (cardMappingExists && cardHintValue > attributeMappingHintCardinality
 					&& cardHintValue % attributeMappingHintCardinality == 0) {
 				cardinality = cardHintValue;
 			}

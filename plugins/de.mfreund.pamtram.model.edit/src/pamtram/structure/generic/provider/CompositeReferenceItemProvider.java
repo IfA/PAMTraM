@@ -150,8 +150,12 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 
 		EReference ref = object instanceof ActualReference<?, ?, ?, ?>
 				? ((ActualReference<?, ?, ?, ?>) object).getEReference() : null;
-		if (ref != null && ref.getUpperBound() < 0) {
-			clazz.setCardinality(CardinalityType.ONE_INFINITY);
+		if (ref != null) {
+			if(ref.getLowerBound() == 0) {
+				clazz.setCardinality(CardinalityType.ZERO_INFINITY);
+			} else if(ref.getUpperBound() < 0) {
+				clazz.setCardinality(CardinalityType.ONE_INFINITY);
+			}
 		}
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE, clazz));

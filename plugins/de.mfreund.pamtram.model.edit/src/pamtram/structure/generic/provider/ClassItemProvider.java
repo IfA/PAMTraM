@@ -50,7 +50,7 @@ import pamtram.structure.target.TargetSection;
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
@@ -224,19 +224,37 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
 
-		// For normal 'Classes', the container property is not relevant to the
-		// user (because it will always be the containing 'Class')
-		//
-		if (object instanceof Section) {
-			this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-					((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-					this.getResourceLocator(), this.getString("_UI_Class_container_feature"),
-					object instanceof SourceSectionClass
-							? this.getString("_UI_SourceSectionClass_container_description")
-							: this.getString("_UI_TargetSectionClass_container_description"),
-					GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
-					this.getString("_UI_ExtendedPropertyCategory"), null));
-		}
+		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_container_feature"),
+				object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_container_description")
+						: this.getString("_UI_TargetSectionClass_container_description"),
+				GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
+				this.getString("_UI_ExtendedPropertyCategory"), null) {
+
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
+
+				List<Object> ret = new ArrayList<>();
+
+				if (object instanceof Section<?, ?, ?, ?>) {
+					ret = super.getChoiceOfValues(object).stream().filter(o -> o instanceof Class<?, ?, ?, ?>
+							&& ((Class<?, ?, ?, ?>) o).getEClass().getEAllContainments().stream().anyMatch(
+									c -> c.getEReferenceType().isSuperTypeOf(((Class<?, ?, ?, ?>) object).getEClass())))
+							.collect(Collectors.toList());
+				} else {
+
+					// For normal 'Classes', the container property is not relevant to the
+					// user. If it is set, it has to point to the containing 'Class'...
+					//
+					if (((EObject) object).eContainer().eContainer() instanceof Class<?, ?, ?, ?>) {
+						ret.add(((EObject) object).eContainer().eContainer());
+					}
+				}
+				return ret;
+
+			}
+		});
 	}
 
 	/**
@@ -244,7 +262,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -260,7 +278,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -317,7 +335,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -360,7 +378,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

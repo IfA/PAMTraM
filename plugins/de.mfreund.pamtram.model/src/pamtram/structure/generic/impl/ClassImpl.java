@@ -89,7 +89,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getReferences()
 	 * @generated
 	 * @ordered
@@ -109,7 +109,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -541,23 +541,37 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean validateContainerIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result;
+				String errorMessage = "";
 		
-		boolean result = this instanceof Section<?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());
+			if (this.getContainer() == null) {
+					// nothing specified -> no problem as the 'container' is an optional info
+					//
+					result = true;
+				} else if (this instanceof Section<?, ?, ?, ?>) {
+					// For Sections, the container must point to a Class that can theoretically (according to the metamodel) act
+					// as container
+					//
+					result = this.getEClass() == null || this.getContainer().getEClass() == null
+							|| this.getContainer().getEClass().getEAllContainments().stream().map(org.eclipse.emf.ecore.EReference::getEReferenceType)
+									.anyMatch(e -> e.isSuperTypeOf(this.getEClass()));
+					errorMessage = "The 'container' reference must point to a Class whose type (EClass) owns a suitable containment reference!";
+				} else {
+					// For normal Class, the container must point to a the containing Class
+					//
+					result = this.getContainer().equals(this.eContainer().eContainer());
+					errorMessage = "The 'container' refrence must point to the containing Class!";
+				}
 		
-		if (!result && diagnostics != null) {
+			if (!result && diagnostics != null) {
 		
-			String errorMessage = "The 'container' refrence must point to the containing Class!";
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID, errorMessage,
+							new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
-							errorMessage,
-					new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
+			}
 		
-		}
-		
-		return result;
+			return result;
 	}
 
 	/**

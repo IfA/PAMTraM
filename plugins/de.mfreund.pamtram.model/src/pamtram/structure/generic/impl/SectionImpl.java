@@ -5,10 +5,12 @@ package pamtram.structure.generic.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -18,6 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
+
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
@@ -25,9 +28,7 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Section</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -39,29 +40,33 @@ import pamtram.structure.generic.util.GenericValidator;
  *
  * @generated
  */
-public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ClassImpl<S, C, R, A> implements Section<S, C, R, A> {
+public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends ClassImpl<S, C, R, A> implements Section<S, C, R, A> {
+
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean ABSTRACT_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
 	 */
 	protected boolean abstract_ = ABSTRACT_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExtend()
 	 * @generated
 	 * @ordered
@@ -69,8 +74,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	protected EList<S> extend;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SectionImpl() {
@@ -78,8 +82,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -88,8 +91,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -98,8 +100,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,8 +112,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -124,24 +124,33 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<S> getAllExtend() {
-		List<Object> ret = new ArrayList<>(this.getExtend());
+		Set<Object> ret = new HashSet<>();
 		
-		ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+			List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
+				toCheck.add(this);
 		
-		ret = ret.stream().distinct().collect(Collectors.toList());
+			while (!toCheck.isEmpty()) {
+					Section<?, ?, ?, ?> next = toCheck.remove(0);
 		
-		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND,
-				ret.size(), ret.toArray());
+				List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
+							.collect(Collectors.toList());
+					ret.addAll(localToCheck);
+					toCheck.addAll(localToCheck);
+				}
+		
+			ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		
+			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
+						ret.toArray());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -170,8 +179,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -201,8 +209,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -219,8 +226,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -239,8 +245,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -257,8 +262,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -275,8 +279,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -292,8 +295,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -307,4 +309,4 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		return result.toString();
 	}
 
-} //SectionImpl
+} // SectionImpl

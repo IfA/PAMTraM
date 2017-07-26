@@ -48,28 +48,25 @@ import de.tud.et.ifa.agtele.ui.widgets.ManageableItemList;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * An {@link ILaunchConfigurationTab2} that allows to customize the main
- * settings to be applied during a GenTrans transformation.
+ * An {@link ILaunchConfigurationTab2} that allows to customize the main settings to be applied during a GenTrans
+ * transformation.
  *
  * @author mfreund
  */
 public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 	/**
-	 * The name of the folder in the PAMTraM project where the source files are
-	 * located.
+	 * The name of the folder in the PAMTraM project where the source files are located.
 	 */
 	private static final String SOURCE_FOLDER = PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME");
 
 	/**
-	 * The name of the folder in the PAMTraM project where the PAMTraM files are
-	 * located.
+	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
 	 */
 	private static final String PAMTRAM_FOLDER = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	/**
-	 * The name of the folder in the PAMTraM project where the target files are
-	 * located.
+	 * The name of the folder in the PAMTraM project where the target files are located.
 	 */
 	private static final String TARGET_FOLDER = PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 
@@ -79,8 +76,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private static final String FONT = "Segoe UI";
 
 	/**
-	 * The domain model that this tab operates on and that is used to realize
-	 * all data bindings to the various widgets.
+	 * The domain model that this tab operates on and that is used to realize all data bindings to the various widgets.
 	 */
 	private GentransLaunchContext context;
 
@@ -105,6 +101,12 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Combo targetFileCombo;
 
 	/**
+	 * The check box for setting whether the generated target model should be automatically opened after a successful
+	 * transformation execution
+	 */
+	private Button openTargetModelOnCompletion;
+
+	/**
 	 * The combo box to select the log level
 	 */
 	private Combo logLevelCombo;
@@ -115,34 +117,29 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Spinner pathLengthSpinner;
 
 	/**
-	 * The check box for setting whether the user should be asked only once
-	 * which mapping to use
+	 * The check box for setting whether the user should be asked only once which mapping to use
 	 */
 	private Button onlyAskOnceForAmbiguousMappings;
 
 	/**
-	 * This CheckBox controls whether a TransformationModel representing the
-	 * results of the transformation shall be created at the end of every
-	 * executed transformation.
+	 * This CheckBox controls whether a TransformationModel representing the results of the transformation shall be
+	 * created at the end of every executed transformation.
 	 */
 	private Button createTransformationModel;
 
 	/**
-	 * This CheckBox controls whether extended parallelization is used during
-	 * the transformation that might lead to the fact that the transformation
-	 * result (especially the order of lists) varies between executions.
+	 * This CheckBox controls whether extended parallelization is used during the transformation that might lead to the
+	 * fact that the transformation result (especially the order of lists) varies between executions.
 	 */
 	private Button useParallelization;
 
 	/**
-	 * A {@link ManageableItemList} that allows the user to manage the source
-	 * files used for the transformation.
+	 * A {@link ManageableItemList} that allows the user to manage the source files used for the transformation.
 	 */
 	private ManageableItemList srcList;
 
 	/**
-	 * A {@link ManageableItemList} that allows the user to manage the pamtram
-	 * files used for the transformation.
+	 * A {@link ManageableItemList} that allows the user to manage the pamtram files used for the transformation.
 	 */
 	private ManageableItemList pamtramList;
 
@@ -150,10 +147,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * This creates an instance.
 	 *
 	 * @param context
-	 *            The {@link GentransLaunchContext} that shall be used for data
-	 *            bindings to the various widgets.
+	 *            The {@link GentransLaunchContext} that shall be used for data bindings to the various widgets.
 	 */
 	public GentransLaunchMainTab(GentransLaunchContext context) {
+
 		this.context = context;
 		this.projects = this.workspaceRoot.getProjects();
 	}
@@ -260,6 +257,22 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1).applyTo(settingsGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(settingsGroup);
 
+		// create check box for open target model on completion setting
+		//
+		this.openTargetModelOnCompletion = new Button(settingsGroup, SWT.CHECK);
+		this.openTargetModelOnCompletion.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
+			}
+		});
+		this.openTargetModelOnCompletion.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+		this.openTargetModelOnCompletion.setText("Open Target Model on Completion");
+		this.openTargetModelOnCompletion.setToolTipText(
+				"If checked, the (first of the) generated target model(s) will be automatically opened after a (successful) execution of the transformation.");
+
 		// create a spinner for path setting
 		//
 		this.pathLengthSpinner = new Spinner(settingsGroup, SWT.BORDER);
@@ -356,9 +369,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Based on a given <em>projectName</em> that represents the project
-	 * selected by the user in the {@link #projectCombo}, update the list of
-	 * available source, pamtram, and target files.
+	 * Based on a given <em>projectName</em> that represents the project selected by the user in the
+	 * {@link #projectCombo}, update the list of available source, pamtram, and target files.
 	 *
 	 * @param projectName
 	 */
@@ -450,12 +462,10 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Based on the current selection made by the user, determine an
-	 * {@link IResource} that can be used as the basis for a GenTrans
-	 * transformation.
+	 * Based on the current selection made by the user, determine an {@link IResource} that can be used as the basis for
+	 * a GenTrans transformation.
 	 *
-	 * @return The {@link IResource} to launch of '<em>null</em>' if no such
-	 *         resource could be determined.
+	 * @return The {@link IResource} to launch of '<em>null</em>' if no such resource could be determined.
 	 */
 	public IResource getLaunchableResourceBasedOnSelection() {
 
@@ -472,7 +482,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			if (selectedElement instanceof IProject) {
 
 				launchableResource = IsLaunchablePropertyTester.isLaunchablePamtramProject((IProject) selectedElement)
-						? (IProject) selectedElement : null;
+						? (IProject) selectedElement
+						: null;
 
 			} else if (selectedElement instanceof IFile) {
 
@@ -505,6 +516,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, ""));
 
 			// settings
+			this.openTargetModelOnCompletion.setSelection(configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true));
 			this.pathLengthSpinner.setSelection(
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1));
 			this.onlyAskOnceForAmbiguousMappings.setSelection(configuration
@@ -534,6 +547,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 				this.targetFileCombo.getText());
 
 		// settings
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION,
+				this.openTargetModelOnCompletion.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH,
 				this.pathLengthSpinner.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE,
@@ -588,8 +603,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the project specified in the {@link #projectCombo} exists.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isProjectComboValid() {
 
@@ -604,8 +618,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the source files specified in the {@link #sourceFileList} exist.
 	 *
-	 * @return '<em><b>true</b></em>' if the settings are valid;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the settings are valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isSrcFileListValid() {
 
@@ -623,11 +636,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Check if the pamtram file specified in the {@link #pamtramFileCombo}
-	 * exists.
+	 * Check if the pamtram file specified in the {@link #pamtramFileCombo} exists.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isPamtramFileComboValid() {
 
@@ -647,8 +658,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the target specified in the {@link #targetFileCombo} is valid.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isTargetFileComboValid() {
 
@@ -658,8 +668,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * Check if the specified {@link #logLevelCombo Log Level} is valid.
 	 *
-	 * @return '<em><b>true</b></em>' if the setting is valid;
-	 *         '<em><b>false</b></em>' otherwise.
+	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isLogLevelValid() {
 
@@ -668,19 +677,16 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initializes the values of a launch configuration based on the current
-	 * selection.
+	 * Initializes the values of a launch configuration based on the current selection.
 	 *
-	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
-	 * consulted if necessary.
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
 	 *
 	 * @param workingCopy
 	 *            a launch configuration to be initialized
 	 * @param userInteraction
 	 *            Whether the user shall be asked if necessary.
 	 * @param launchableResource
-	 *            The {@link IResource} based on which the launch configuration
-	 *            shall be initialized.
+	 *            The {@link IResource} based on which the launch configuration shall be initialized.
 	 * @throws CoreException
 	 */
 	public void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, IResource launchableResource,
@@ -725,6 +731,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		// set the targetFile attribute
 		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "out.xmi");
 
+		// set the open target model on completion attribute
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true);
+
 		// set the direct paths only setting
 		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 
@@ -743,8 +752,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initialize all {@link Binding data bindings} between the various widgets
-	 * displayed on this tab and the {@link #context} as well as among widgets.
+	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
+	 * {@link #context} as well as among widgets.
 	 *
 	 */
 	@SuppressWarnings("unchecked")
@@ -761,11 +770,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * For a given project, determine one or multiple PAMTraM files to use for a
-	 * transformation.
+	 * For a given project, determine one or multiple PAMTraM files to use for a transformation.
 	 *
-	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
-	 * consulted if necessary.
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
 	 *
 	 * @param project
 	 * @param userInteraction
@@ -803,11 +810,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * For a given project, determine one or multiple source files to use for a
-	 * transformation.
+	 * For a given project, determine one or multiple source files to use for a transformation.
 	 *
-	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is
-	 * consulted if necessary.
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
 	 *
 	 * @param project
 	 * @param userInteraction

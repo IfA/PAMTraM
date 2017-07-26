@@ -25,6 +25,7 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
+import de.mfreund.gentrans.transformation.BaseTransformationConfiguration;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -36,13 +37,11 @@ import de.tud.et.ifa.agtele.ui.listeners.ProjectRefreshingJobDoneListener;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * An {@link ILaunchConfigurationDelegate} that is able to launch GenTrans
- * transformations.
+ * An {@link ILaunchConfigurationDelegate} that is able to launch GenTrans transformations.
  * <p />
- * Note: The names of the various {@link ILaunchConfiguration#getAttributes()
- * attributes} that are used by this delegate are stored in the various
- * <em>ATTRIBUTE_NAME_...</em> fields. These can be used to store/retrieve
- * values in a configuration more easily.
+ * Note: The names of the various {@link ILaunchConfiguration#getAttributes() attributes} that are used by this delegate
+ * are stored in the various <em>ATTRIBUTE_NAME_...</em> fields. These can be used to store/retrieve values in a
+ * configuration more easily.
  *
  * @author mfreund
  */
@@ -67,6 +66,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * The name of the 'targetFile' attribute.
 	 */
 	public static final String ATTRIBUTE_NAME_TARGET_FILE = "targetFile";
+
+	/**
+	 * The name of the 'openTargetModelOnCompletion' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION = "openTargetModelOnCompletion";
 
 	/**
 	 * The name of the 'maxPathLength' attribute.
@@ -129,8 +133,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	public static final String ATTRIBUTE_NAME_LIB_PATHS = "libraryPaths";
 
 	/**
-	 * The file extension for stored transformations including the '.' before
-	 * the actual extension.
+	 * The file extension for stored transformations including the '.' before the actual extension.
 	 */
 	private static final String TRANSFORMATION_FILE_EXTENSION = ".transformation";
 
@@ -197,6 +200,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// get the settings
 		//
+		boolean openTargetModelOnCompletion = configuration
+				.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true);
 		int maxPathLength = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 		boolean rememberAmbiguousMappingChoice = configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 		Level logLevel = Level.ALL;
@@ -229,10 +234,16 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// Create and run the transformation job
 		//
+		BaseTransformationConfiguration transformationConfig = new BaseTransformationConfiguration()
+				.withOpenTargetModelOnCompletion(openTargetModelOnCompletion).withDefaultTargetModel(defaultTargetModel)
+				.withTransformationModelPath(transformationFile)
+				.withLibPaths(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
+						new ArrayList<>()))
+				.withAmbiguityResolvingStrategy(resolvingStrategy).withMaxPathLength(maxPathLength)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLogLevel(logLevel)
+				.withUseParallelization(useParallelization);
 		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFiles,
-				targetBasePath, defaultTargetModel, transformationFile,
-				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>()),
-				resolvingStrategy, maxPathLength, rememberAmbiguousMappingChoice, logLevel, useParallelization);
+				targetBasePath, transformationConfig);
 
 		job.setUser(true);
 		job.schedule();
@@ -242,20 +253,16 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	}
 
 	/**
-	 * This creates and returns a custom {@link IAmbiguityResolvingStrategy}
-	 * based on the given '<em>configuration</em>'.
+	 * This creates and returns a custom {@link IAmbiguityResolvingStrategy} based on the given
+	 * '<em>configuration</em>'.
 	 *
 	 * @param configuration
-	 *            The {@link ILaunchConfiguration} that shall be used to
-	 *            initialize the launch configuration.
+	 *            The {@link ILaunchConfiguration} that shall be used to initialize the launch configuration.
 	 * @param project
-	 *            The name of the current pamtram project that shall be
-	 *            launched.
-	 * @return The {@link IAmbiguityResolvingStrategy} that shall be used for
-	 *         this launch.
+	 *            The name of the current pamtram project that shall be launched.
+	 * @return The {@link IAmbiguityResolvingStrategy} that shall be used for this launch.
 	 * @throws CoreException
-	 *             If required attributes can not be determined from the given
-	 *             launch configuration.
+	 *             If required attributes can not be determined from the given launch configuration.
 	 */
 	private IAmbiguityResolvingStrategy initializeAmbiguityResolvingStrategy(ILaunchConfiguration configuration,
 			final String project) throws CoreException {
@@ -324,8 +331,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	}
 
 	/**
-	 * Validates a launch configuration by checking if all attributes have
-	 * meaningful values.
+	 * Validates a launch configuration by checking if all attributes have meaningful values.
 	 *
 	 * @param configuration
 	 *            the launch configuration to validate
@@ -345,8 +351,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	}
 
 	/**
-	 * Validate the settings of the given {@link ILaunchConfiguration launch
-	 * configuration} that are represented on the '<em>Main Tab</em>'.
+	 * Validate the settings of the given {@link ILaunchConfiguration launch configuration} that are represented on the
+	 * '<em>Main Tab</em>'.
 	 *
 	 * @param configuration
 	 *            The {@link ILaunchConfiguration} to be validated.
@@ -375,8 +381,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	}
 
 	/**
-	 * Validate the settings of the given {@link ILaunchConfiguration launch
-	 * configuration} that are represented on the '<em>Library Tab</em>'.
+	 * Validate the settings of the given {@link ILaunchConfiguration launch configuration} that are represented on the
+	 * '<em>Library Tab</em>'.
 	 *
 	 * @param configuration
 	 *            The {@link ILaunchConfiguration} to be validated.
@@ -407,8 +413,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	}
 
 	/**
-	 * A {@link CoreException} of this type will be thrown to indicate problems
-	 * during the validation of a gentrans {@link ILaunchConfiguration}.
+	 * A {@link CoreException} of this type will be thrown to indicate problems during the validation of a gentrans
+	 * {@link ILaunchConfiguration}.
 	 *
 	 * @author mfreund
 	 */
@@ -420,8 +426,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		private static final long serialVersionUID = -7164144847724395702L;
 
 		/**
-		 * The id of the gentrans plug-in that will be used in the creation of
-		 * the {@link Status} object describing the status of the validation.
+		 * The id of the gentrans plug-in that will be used in the creation of the {@link Status} object describing the
+		 * status of the validation.
 		 */
 		private static final String ID = "de.mfreund.gentrans";
 
@@ -432,6 +438,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		 *            The message that shall be displayed to the user.
 		 */
 		private GentransLaunchingDelegateValidationException(String message) {
+
 			super(new Status(IStatus.ERROR, GentransLaunchingDelegateValidationException.ID, message));
 		}
 
@@ -441,10 +448,10 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		 * @param message
 		 *            The message that shall be displayed to the user.
 		 * @param cause
-		 *            The {@link Throwable} that caused this exception to be
-		 *            thrown.
+		 *            The {@link Throwable} that caused this exception to be thrown.
 		 */
 		private GentransLaunchingDelegateValidationException(String message, Throwable cause) {
+
 			super(new Status(IStatus.ERROR, GentransLaunchingDelegateValidationException.ID, message, cause));
 		}
 

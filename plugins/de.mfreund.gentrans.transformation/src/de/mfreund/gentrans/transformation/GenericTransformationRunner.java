@@ -194,6 +194,8 @@ public class GenericTransformationRunner extends CancelableElement {
 			}
 			builder.append(internalMessage);
 
+			Activator.log(builder.toString(), e1);
+
 			this.transformationConfig.getLogger().severe(() -> builder.toString());
 			this.transformationConfig.getLogger().severe("Aborting...");
 			return;
@@ -204,6 +206,9 @@ public class GenericTransformationRunner extends CancelableElement {
 				this.transformationConfig.getLogger().severe(() -> e.toString());
 			}
 			this.transformationConfig.getLogger().severe("Aborting...");
+
+			Activator.log(e);
+
 			throw e;
 		}
 

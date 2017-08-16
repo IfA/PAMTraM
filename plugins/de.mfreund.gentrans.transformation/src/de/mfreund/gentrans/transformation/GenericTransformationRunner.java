@@ -214,7 +214,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			throw e;
 		}
 
-		if (transformationResult != null && transformationResult.getOverallResult() && !this.isCanceled()) {
+		if (!this.isCanceled() && !transformationResult.getJoiningResult().getTargetModelRegistry().isEmpty()) {
 
 			this.writePamtramMessage("Storing target model(s).");
 			monitor.subTask("Storing target model(s).");
@@ -871,7 +871,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry in the given target model.
 		 */
-		return libEntryInstantiators.stream().allMatch(libraryEntryInstantiator -> {
+		return libEntryInstantiators.stream().map(libraryEntryInstantiator -> {
 
 			boolean successful = libraryEntryInstantiator.instantiate(manager, calculator,
 					expandingResult.getTargetSectionRegistry());
@@ -880,7 +880,7 @@ public class GenericTransformationRunner extends CancelableElement {
 						+ libraryEntryInstantiator.getLibraryEntry().getClasspath().getValue() + "'!");
 			}
 			return successful;
-		});
+		}).reduce(true, (a, b) -> a && b);
 
 	}
 

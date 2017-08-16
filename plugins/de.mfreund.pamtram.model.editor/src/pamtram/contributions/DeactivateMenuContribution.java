@@ -24,8 +24,7 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.source.SourceSection;
 
 /**
- * This represents a menu contribution that allows to (de-)activate elements of
- * type {@link DeactivatableElement}.
+ * This represents a menu contribution that allows to (de-)activate elements of type {@link DeactivatableElement}.
  */
 public class DeactivateMenuContribution extends ExtensionContributionFactory {
 
@@ -40,12 +39,12 @@ public class DeactivateMenuContribution extends ExtensionContributionFactory {
 		IStructuredSelection selection = (IStructuredSelection) s;
 
 		/*
-		 * Check if all selected elements are of type 'DeactivatableElement' and
-		 * have the same activation status.
+		 * Check if all selected elements are of type 'DeactivatableElement' and have the same activation status.
 		 */
 		List<Object> selectedElements = Arrays.asList(selection.toArray());
-		if (!selectedElements.parallelStream().allMatch(el -> el instanceof DeactivatableElement) || selectedElements
-				.parallelStream().map(el -> ((DeactivatableElement) el)).collect(Collectors.toSet()).size() > 1) {
+		if (!selectedElements.parallelStream().allMatch(el -> el instanceof DeactivatableElement)
+				|| selectedElements.parallelStream().map(el -> ((DeactivatableElement) el).isDeactivated())
+						.collect(Collectors.toSet()).size() > 1) {
 			return;
 		}
 

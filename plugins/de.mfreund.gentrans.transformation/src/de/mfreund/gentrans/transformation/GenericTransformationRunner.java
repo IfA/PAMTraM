@@ -197,6 +197,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			Activator.log(builder.toString(), e1);
 
 			this.transformationConfig.getLogger().severe(() -> builder.toString());
+			this.transformationConfig.getLogger().severe("See the ErrorLog for more information!");
 			this.transformationConfig.getLogger().severe("Aborting...");
 			return;
 		} catch (RuntimeException e) {
@@ -205,6 +206,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			} else {
 				this.transformationConfig.getLogger().severe(() -> e.toString());
 			}
+			this.transformationConfig.getLogger().severe("See the ErrorLog for more information!");
 			this.transformationConfig.getLogger().severe("Aborting...");
 
 			Activator.log(e);

@@ -4298,12 +4298,12 @@
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="Rectangle" expression="Rectangle"/>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image ConveyorStraight" targetSection="//@targetSectionModels.1/@sections.15" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1">
-        <mappingHints xsi:type="extended:AttributeMapping" name="PosXValue" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="PosXValue" overwrite="//@mappingModels.2/@mappings.0/@mappingHintGroups.1/@mappingHints.0" expression="round(x/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="x">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#_o0TZAoKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="PosYValue" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="PosYValue" overwrite="//@mappingModels.2/@mappings.0/@mappingHintGroups.1/@mappingHints.1" expression="round(((ymax-y)-h)/max(xmax/(xRes-100.0),ymax/(yRes-100.0)))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.1/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="y">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#_o0TZA4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
@@ -4311,12 +4311,12 @@
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#_o0TZBYKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="width" expression="max(conveyorWidth,round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="width" overwrite="//@mappingModels.2/@mappings.0/@mappingHintGroups.1/@mappingHints.2" expression="max(conveyorWidth,round(w/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="w">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#_o0TZBIKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="height" expression="max(conveyorWidth,round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="height" overwrite="//@mappingModels.2/@mappings.0/@mappingHintGroups.1/@mappingHints.3" expression="max(conveyorWidth,round(h/max(xmax/(xRes-100.0),ymax/(yRes-100.0))))" target="//@targetSectionModels.1/@sections.15/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="h">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Viobjects.pamtram.source#_o0TZBYKMEeebJtDsk0N1XQ"/>
           </sourceElements>

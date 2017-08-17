@@ -281,7 +281,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			final Collection<MappingHint> hints, final HintValueStorage hintValues,
 			final AttributeMapping oldSelectedHint) {
 
-		List<AttributeMapping> selectedHints = new ArrayList<>();
+		Set<AttributeMapping> selectedHints = new HashSet<>();
 
 		// check attributes
 		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
@@ -328,7 +328,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			}
 		}
 
-		return selectedHints;
+		return new ArrayList<>(selectedHints);
 	}
 
 	/**
@@ -686,6 +686,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 		// This is based on the addition of all cardinalities from all AttributeMappings
 		//
 		int localAttributeMappingHintCardinality = 0;
+
+		List<AttributeMapping> t = hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
+				.collect(Collectors.toList());
 
 		for (AttributeMapping hint : hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
 				.collect(Collectors.toList())) {

@@ -5,8 +5,10 @@ package pamtram.structure.target.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -145,14 +147,24 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 * @generated
 	 */
 	public EList<TargetSection> getAllExtend() {
-		List<Object> ret = new ArrayList<>(this.getExtend());
+		Set<Object> ret = new HashSet<>();
 		
-		ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+			List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
+				toCheck.add(this);
 		
-		ret = ret.stream().distinct().collect(Collectors.toList());
+			while (!toCheck.isEmpty()) {
+					Section<?, ?, ?, ?> next = toCheck.remove(0);
 		
-		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND,
-				ret.size(), ret.toArray());
+				List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
+							.collect(Collectors.toList());
+					ret.addAll(localToCheck);
+					toCheck.addAll(localToCheck);
+				}
+		
+			ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		
+			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
+						ret.toArray());
 	}
 
 	/**

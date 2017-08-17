@@ -3,7 +3,10 @@
 package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -35,10 +38,10 @@ import pamtram.util.PamtramValidator;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getLocalCondition <em>Local Condition</em>}</li>
- * <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getSharedCondition <em>Shared Condition</em>}</li>
- * <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#isDeactivated <em>Deactivated</em>}</li>
- * <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getOverwrite <em>Overwrite</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getLocalCondition <em>Local Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#isDeactivated <em>Deactivated</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.MappingHintImpl#getOverwrite <em>Overwrite</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,9 +59,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	protected ComplexCondition localCondition;
 
 	/**
-	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 *
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -66,9 +69,9 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	protected ComplexCondition sharedCondition;
 
 	/**
-	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -76,19 +79,19 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	protected static final boolean DEACTIVATED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean deactivated = MappingHintImpl.DEACTIVATED_EDEFAULT;
+	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOverwrite() <em>Overwrite</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOverwrite() <em>Overwrite</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getOverwrite()
 	 * @generated
 	 * @ordered
@@ -97,358 +100,368 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected MappingHintImpl() {
-
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ExtendedPackage.Literals.MAPPING_HINT;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getLocalCondition() {
-
-		return this.localCondition;
+		return localCondition;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
-
-		ComplexCondition oldLocalCondition = this.localCondition;
-		this.localCondition = newLocalCondition;
-		if (this.eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
-			if (msgs == null) {
-				msgs = notification;
-			} else {
-				msgs.add(notification);
-			}
+		ComplexCondition oldLocalCondition = localCondition;
+		localCondition = newLocalCondition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, oldLocalCondition, newLocalCondition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
-
-		if (newLocalCondition != this.localCondition) {
+		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
-			if (this.localCondition != null) {
-				msgs = ((InternalEObject) this.localCondition).eInverseRemove(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null,
-						msgs);
-			}
-			if (newLocalCondition != null) {
-				msgs = ((InternalEObject) newLocalCondition).eInverseAdd(this,
-						InternalEObject.EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null,
-						msgs);
-			}
-			msgs = this.basicSetLocalCondition(newLocalCondition, msgs);
-			if (msgs != null) {
-				msgs.dispatch();
-			}
-		} else if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION,
-					newLocalCondition, newLocalCondition));
+			if (localCondition != null)
+				msgs = ((InternalEObject)localCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
+			if (newLocalCondition != null)
+				msgs = ((InternalEObject)newLocalCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, null, msgs);
+			msgs = basicSetLocalCondition(newLocalCondition, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getSharedCondition() {
-
-		if (this.sharedCondition != null && this.sharedCondition.eIsProxy()) {
-			InternalEObject oldSharedCondition = (InternalEObject) this.sharedCondition;
-			this.sharedCondition = (ComplexCondition) this.eResolveProxy(oldSharedCondition);
-			if (this.sharedCondition != oldSharedCondition) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, this.sharedCondition));
-				}
+		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
+			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
+			if (sharedCondition != oldSharedCondition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 			}
 		}
-		return this.sharedCondition;
+		return sharedCondition;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public ComplexCondition basicGetSharedCondition() {
-
-		return this.sharedCondition;
+		return sharedCondition;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
-
-		ComplexCondition oldSharedCondition = this.sharedCondition;
-		this.sharedCondition = newSharedCondition;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION,
-					oldSharedCondition, this.sharedCondition));
-		}
+		ComplexCondition oldSharedCondition = sharedCondition;
+		sharedCondition = newSharedCondition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public boolean isDeactivated() {
-
-		return this.deactivated;
+		return deactivated;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
-
-		boolean oldDeactivated = this.deactivated;
-		this.deactivated = newDeactivated;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__DEACTIVATED,
-					oldDeactivated, this.deactivated));
-		}
+		boolean oldDeactivated = deactivated;
+		deactivated = newDeactivated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__DEACTIVATED, oldDeactivated, deactivated));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public MappingHint getOverwrite() {
-
-		if (this.overwrite != null && this.overwrite.eIsProxy()) {
-			InternalEObject oldOverwrite = (InternalEObject) this.overwrite;
-			this.overwrite = (MappingHint) this.eResolveProxy(oldOverwrite);
-			if (this.overwrite != oldOverwrite) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ExtendedPackage.MAPPING_HINT__OVERWRITE, oldOverwrite, this.overwrite));
-				}
+		if (overwrite != null && overwrite.eIsProxy()) {
+			InternalEObject oldOverwrite = (InternalEObject)overwrite;
+			overwrite = (MappingHint)eResolveProxy(oldOverwrite);
+			if (overwrite != oldOverwrite) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.MAPPING_HINT__OVERWRITE, oldOverwrite, overwrite));
 			}
 		}
-		return this.overwrite;
+		return overwrite;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public MappingHint basicGetOverwrite() {
-
-		return this.overwrite;
+		return overwrite;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public void setOverwrite(MappingHint newOverwrite) {
-
-		MappingHint oldOverwrite = this.overwrite;
-		this.overwrite = newOverwrite;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__OVERWRITE,
-					oldOverwrite, this.overwrite));
-		}
+		MappingHint oldOverwrite = overwrite;
+		overwrite = newOverwrite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__OVERWRITE, oldOverwrite, overwrite));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public boolean validateOverwritesValidMappingHint(DiagnosticChain diagnostics, Map<?, ?> context) {
-
+	@Override
+	public boolean validateOverwritesValidMappingHint(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if (this.overwrite == null) {
-			return true;
-		}
-
-		boolean ret = true;
-		String message = "";
-
-		if (this.eClass() != this.overwrite.eClass()) {
-			ret = false;
-			message = "MappingHints must only overwrite MappingHints of the same type!";
-		}
-
-		if (((MappingHintGroupType) this.eContainer()).getExtend().isEmpty()
-				|| ((MappingHintGroupType) this.eContainer()).getExtend().stream()
-						.noneMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {
-			ret = false;
-			message = "The overwritten MappingHint is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!";
-		}
-
-		if (this instanceof AttributeMapping
-				&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {
-			ret = false;
-			message = "An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!";
-		} else if (this instanceof CardinalityMapping
-				&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {
-			ret = false;
-			message = "A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!";
-		} else if (this instanceof ReferenceTargetSelector && ((ReferenceTargetSelector) this)
-				.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {
-			ret = false;
-			message = "A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!";
-		}
-
-		if (!ret && diagnostics != null) {
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
-					ExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,
-					new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
-		}
-
-		return ret;
+					return true;
+				}
+		
+			boolean ret = true;
+				String message = "";
+		
+			if (this.eClass() != this.overwrite.eClass()) {
+					ret = false;
+					message = "MappingHints must only overwrite MappingHints of the same type!";
+				}
+		
+			if (((MappingHintGroupType) this.eContainer()).getExtend().isEmpty()
+						|| ((MappingHintGroupType) this.eContainer()).getExtend().stream()
+								.noneMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {
+					ret = false;
+					message = "The overwritten MappingHint is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!";
+				}
+		
+			if (this instanceof AttributeMapping
+						&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {
+					ret = false;
+					message = "An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!";
+				} else if (this instanceof CardinalityMapping
+						&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {
+					ret = false;
+					message = "A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!";
+				} else if (this instanceof ReferenceTargetSelector && ((ReferenceTargetSelector) this)
+						.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {
+					ret = false;
+					message = "A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!";
+				}
+		
+			if (!ret && diagnostics != null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,
+							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
+				}
+		
+			return ret;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
+	public boolean validateConsiderOverwritingHint(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if (!(this.eContainer instanceof MappingHintGroupType) || this.overwrite != null) {
+					return true;
+				}
+		
+			List<MappingHint> hintsOfExtendedHintGroups = ((MappingHintGroupType) this.eContainer()).getExtend().stream()
+						.flatMap(hg -> hg.getMappingHints().stream()).collect(Collectors.toList());
+		
+			if (hintsOfExtendedHintGroups.isEmpty()) {
+					return true;
+				}
+		
+			Optional<MappingHint> hintToConsider = Optional.empty();
+		
+			if (this instanceof AttributeMapping && ((AttributeMapping) this).getTarget() != null) {
+		
+				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof AttributeMapping)
+							.filter(h -> ((AttributeMapping) this).getTarget().equals(((AttributeMapping) h).getTarget()))
+							.findAny();
+		
+			} else if (this instanceof CardinalityMapping && ((CardinalityMapping) this).getTarget() != null) {
+		
+				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof CardinalityMapping)
+							.filter(h -> ((CardinalityMapping) this).getTarget().equals(((CardinalityMapping) h).getTarget()))
+							.findAny();
+		
+			} else if (this instanceof ReferenceTargetSelector
+						&& ((ReferenceTargetSelector) this).getAffectedReference() != null) {
+		
+				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof ReferenceTargetSelector)
+							.filter(h -> ((ReferenceTargetSelector) this).getAffectedReference()
+									.equals(((ReferenceTargetSelector) h).getAffectedReference()))
+							.findAny();
+				}
+		
+			if (!hintToConsider.isPresent()) {
+					return true;
+				}
+		
+			String message = "The hint '" + hintToConsider.get().getName() + "' of the extended MappingHintGroup "
+						+ (hintToConsider.get().eContainer() instanceof MappingHintGroupType
+								? "'" + ((MappingHintGroupType) hintToConsider.get().eContainer()).getName() + "' "
+								: "")
+						+ "affects the same target element. Consider overwriting this hint instead of providing additional hint values...";
+		
+			if (diagnostics != null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,
+							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
+				}
+		
+			return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
+		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
-
+		
 		if (!result && diagnostics != null) {
-
+		
 			String errorMessage = "Please specify at most one (local or shared) condition!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, PamtramValidator.DIAGNOSTIC_SOURCE,
-					PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION, errorMessage,
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					PamtramValidator.DIAGNOSTIC_SOURCE,
+							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
+							errorMessage,
 					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
-
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
+	@Override
 	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-
-		boolean result = this.getSharedCondition() == null
-				|| this.getSharedCondition().eContainer() instanceof ConditionModel;
-
+		
+		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
+		
 		if (!result && diagnostics != null) {
-
+		
 			String errorMessage = "It is only allowed to reference shared conditions that are model inside the ConditionModel!";
-
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, PamtramValidator.DIAGNOSTIC_SOURCE,
-					PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
-					errorMessage,
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					PamtramValidator.DIAGNOSTIC_SOURCE,
+							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
+							errorMessage,
 					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));
-
+		
 		}
-
+		
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				return this.basicSetLocalCondition(null, msgs);
+				return basicSetLocalCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				return this.getLocalCondition();
+				return getLocalCondition();
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
-				if (resolve) {
-					return this.getSharedCondition();
-				}
-				return this.basicGetSharedCondition();
+				if (resolve) return getSharedCondition();
+				return basicGetSharedCondition();
 			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-				return this.isDeactivated();
+				return isDeactivated();
 			case ExtendedPackage.MAPPING_HINT__OVERWRITE:
-				if (resolve) {
-					return this.getOverwrite();
-				}
-				return this.basicGetOverwrite();
+				if (resolve) return getOverwrite();
+				return basicGetOverwrite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				this.setLocalCondition((ComplexCondition) newValue);
+				setLocalCondition((ComplexCondition)newValue);
 				return;
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
-				this.setSharedCondition((ComplexCondition) newValue);
+				setSharedCondition((ComplexCondition)newValue);
 				return;
 			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-				this.setDeactivated((Boolean) newValue);
+				setDeactivated((Boolean)newValue);
 				return;
 			case ExtendedPackage.MAPPING_HINT__OVERWRITE:
-				this.setOverwrite((MappingHint) newValue);
+				setOverwrite((MappingHint)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -456,24 +469,22 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				this.setLocalCondition((ComplexCondition) null);
+				setLocalCondition((ComplexCondition)null);
 				return;
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
-				this.setSharedCondition((ComplexCondition) null);
+				setSharedCondition((ComplexCondition)null);
 				return;
 			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-				this.setDeactivated(MappingHintImpl.DEACTIVATED_EDEFAULT);
+				setDeactivated(DEACTIVATED_EDEFAULT);
 				return;
 			case ExtendedPackage.MAPPING_HINT__OVERWRITE:
-				this.setOverwrite((MappingHint) null);
+				setOverwrite((MappingHint)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -481,49 +492,40 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				return this.localCondition != null;
+				return localCondition != null;
 			case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
-				return this.sharedCondition != null;
+				return sharedCondition != null;
 			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-				return this.deactivated != MappingHintImpl.DEACTIVATED_EDEFAULT;
+				return deactivated != DEACTIVATED_EDEFAULT;
 			case ExtendedPackage.MAPPING_HINT__OVERWRITE:
-				return this.overwrite != null;
+				return overwrite != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-
 		if (baseClass == ConditionalElement.class) {
 			switch (derivedFeatureID) {
-				case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-					return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
-				case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION:
-					return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
-				default:
-					return -1;
+				case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
+				case ExtendedPackage.MAPPING_HINT__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				default: return -1;
 			}
 		}
 		if (baseClass == DeactivatableElement.class) {
 			switch (derivedFeatureID) {
-				case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-					return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
-				default:
-					return -1;
+				case ExtendedPackage.MAPPING_HINT__DEACTIVATED: return PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED;
+				default: return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -531,28 +533,21 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-
 		if (baseClass == ConditionalElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION:
-					return ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION;
-				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION:
-					return ExtendedPackage.MAPPING_HINT__SHARED_CONDITION;
-				default:
-					return -1;
+				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return ExtendedPackage.MAPPING_HINT__SHARED_CONDITION;
+				default: return -1;
 			}
 		}
 		if (baseClass == DeactivatableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED:
-					return ExtendedPackage.MAPPING_HINT__DEACTIVATED;
-				default:
-					return -1;
+				case PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED: return ExtendedPackage.MAPPING_HINT__DEACTIVATED;
+				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -560,26 +555,20 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-					return ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
-					return ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
-				default:
-					return -1;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
 			}
 		}
 		if (baseClass == DeactivatableElement.class) {
 			switch (baseOperationID) {
-				default:
-					return -1;
+				default: return -1;
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -587,42 +576,35 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case ExtendedPackage.MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP:
-				return this.validateOverwritesValidMappingHint((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+				return validateOverwritesValidMappingHint((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP:
+				return validateConsiderOverwritingHint((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return this.validateEitherModelOrReferCondition((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
-				return this.validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain) arguments.get(0),
-						(Map<?, ?>) arguments.get(1));
+				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (deactivated: ");
-		result.append(this.deactivated);
+		result.append(deactivated);
 		result.append(')');
 		return result.toString();
 	}

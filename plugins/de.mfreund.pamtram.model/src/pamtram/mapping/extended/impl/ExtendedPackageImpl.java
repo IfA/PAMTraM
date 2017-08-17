@@ -428,6 +428,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMappingHint__ValidateConsiderOverwritingHint__DiagnosticChain_Map() {
+		return mappingHintEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExpandableHint() {
 		return expandableHintEClass;
 	}
@@ -971,6 +980,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		mappingHintEClass = createEClass(MAPPING_HINT);
 		createEReference(mappingHintEClass, MAPPING_HINT__OVERWRITE);
 		createEOperation(mappingHintEClass, MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(mappingHintEClass, MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP);
 
 		expandableHintEClass = createEClass(EXPANDABLE_HINT);
 
@@ -1255,6 +1265,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getMappingHint__ValidateConsiderOverwritingHint__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateConsiderOverwritingHint", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(expandableHintEClass, ExpandableHint.class, "ExpandableHint", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(hintImporterMappingHintEClass, HintImporterMappingHint.class, "HintImporterMappingHint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1500,7 +1519,13 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getMappingHint__ValidateOverwritesValidMappingHint__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "rename me to body", "generate the model code first, insert the validation method body here"
+			 "body", "if (this.overwrite == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tboolean ret = true;\r\n\t\tString message = \"\";\r\n\r\tif (this.eClass() != this.overwrite.eClass()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"MappingHints must only overwrite MappingHints of the same type!\";\r\n\t\t}\r\n\r\tif (((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().isEmpty()\r\n\t\t\t\t|| ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t\t\t.noneMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"The overwritten <%pamtram.mapping.extended.MappingHint%> is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!\";\r\n\t\t}\r\n\r\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.AttributeMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"An <%pamtram.mapping.extended.AttributeMapping%> must only overwrite another <%pamtram.mapping.extended.AttributeMapping%> pointing to the same TargetSectionAttribute!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.CardinalityMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.CardinalityMapping%> must only overwrite another <%pamtram.mapping.extended.CardinalityMapping%> pointing to the same TargetSectionClass!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%> && ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this)\r\n\t\t\t\t.getAffectedReference() != ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this.overwrite).getAffectedReference()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.ReferenceTargetSelector%> must only overwrite another <%pamtram.mapping.extended.ReferenceTargetSelector%> pointing to the same TargetSectionReference!\";\r\n\t\t}\r\n\r\tif (!ret && diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\treturn ret;"
+		   });	
+		addAnnotation
+		  (getMappingHint__ValidateConsiderOverwritingHint__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if (!(this.eContainer instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.overwrite != null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tList<<%pamtram.mapping.extended.MappingHint%>> hintsOfExtendedHintGroups = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t.flatMap(hg -> hg.getMappingHints().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\tif (hintsOfExtendedHintGroups.isEmpty()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tOptional<<%pamtram.mapping.extended.MappingHint%>> hintToConsider = <%java.util.Optional%>.empty();\r\n\r\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%> && ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.AttributeMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.AttributeMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%> && ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.CardinalityMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.CardinalityMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference()\r\n\t\t\t\t\t\t\t.equals(((<%pamtram.mapping.extended.ReferenceTargetSelector%>) h).getAffectedReference()))\r\n\t\t\t\t\t.findAny();\r\n\t\t}\r\n\r\tif (!hintToConsider.isPresent()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tString message = \"The hint \'\" + hintToConsider.get().getName() + \"\' of the extended MappingHintGroup \"\r\n\t\t\t\t+ (hintToConsider.get().eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>\r\n\t\t\t\t\t\t? \"\'\" + ((<%pamtram.mapping.MappingHintGroupType%>) hintToConsider.get().eContainer()).getName() + \"\' \"\r\n\t\t\t\t\t\t: \"\")\r\n\t\t\t\t+ \"affects the same target element. Consider overwriting this hint instead of providing additional hint values...\";\r\n\r\tif (diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\treturn false;"
 		   });	
 		addAnnotation
 		  (getMappingHint_Overwrite(), 

@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,7 +32,6 @@ import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.extended.AttributeMapping} object. <!-- begin-user-doc
@@ -46,7 +43,7 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public AttributeMappingItemProvider(AdapterFactory adapterFactory) {
@@ -56,7 +53,7 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,7 +71,7 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
@@ -139,8 +136,9 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 							validTargetSections.addAll(target.getAllExtend());
 
 							choiceOfValues = super.getChoiceOfValues(object).stream()
-									.filter(c -> c instanceof TargetSectionAttribute
-											&& EcoreUtil.isAncestor(validTargetSections, (EObject) c))
+									.filter(c -> c instanceof pamtram.structure.target.TargetSectionAttribute
+											&& org.eclipse.emf.ecore.util.EcoreUtil.isAncestor(validTargetSections,
+													(org.eclipse.emf.ecore.EObject) c))
 									.collect(Collectors.toList());
 
 						}
@@ -289,7 +287,7 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -318,7 +316,7 @@ public class AttributeMappingItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
 	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

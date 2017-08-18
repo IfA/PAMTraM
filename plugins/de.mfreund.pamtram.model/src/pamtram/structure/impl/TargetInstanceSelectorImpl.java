@@ -13,6 +13,7 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetInstanceSelector;
 
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,21 +23,32 @@ import pamtram.structure.target.TargetSectionAttribute;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.impl.TargetInstanceSelectorImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.structure.impl.TargetInstanceSelectorImpl#getReferenceAttribute <em>Reference Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.impl.TargetInstanceSelectorImpl#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements TargetInstanceSelector {
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * The cached value of the '{@link #getReferenceAttribute() <em>Reference Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 * @see #getReferenceAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected TargetSectionAttribute target;
+	protected TargetSectionAttribute referenceAttribute;
+
+	/**
+	 * The cached value of the '{@link #getTargetClass() <em>Target Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTargetClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected TargetSectionClass targetClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -62,16 +74,16 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionAttribute getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (TargetSectionAttribute)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
+	public TargetSectionAttribute getReferenceAttribute() {
+		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
+			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
+			if (referenceAttribute != oldReferenceAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET, oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
 			}
 		}
-		return target;
+		return referenceAttribute;
 	}
 
 	/**
@@ -79,8 +91,8 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TargetSectionAttribute basicGetTarget() {
-		return target;
+	public TargetSectionAttribute basicGetReferenceAttribute() {
+		return referenceAttribute;
 	}
 
 	/**
@@ -88,11 +100,49 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(TargetSectionAttribute newTarget) {
-		TargetSectionAttribute oldTarget = target;
-		target = newTarget;
+	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
+		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
+		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET, oldTarget, target));
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionClass getTargetClass() {
+		if (targetClass != null && targetClass.eIsProxy()) {
+			InternalEObject oldTargetClass = (InternalEObject)targetClass;
+			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
+			if (targetClass != oldTargetClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+			}
+		}
+		return targetClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionClass basicGetTargetClass() {
+		return targetClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTargetClass(TargetSectionClass newTargetClass) {
+		TargetSectionClass oldTargetClass = targetClass;
+		targetClass = newTargetClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
 	}
 
 	/**
@@ -103,9 +153,12 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE:
+				if (resolve) return getReferenceAttribute();
+				return basicGetReferenceAttribute();
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS:
+				if (resolve) return getTargetClass();
+				return basicGetTargetClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,8 +171,11 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET:
-				setTarget((TargetSectionAttribute)newValue);
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE:
+				setReferenceAttribute((TargetSectionAttribute)newValue);
+				return;
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS:
+				setTargetClass((TargetSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -133,8 +189,11 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET:
-				setTarget((TargetSectionAttribute)null);
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE:
+				setReferenceAttribute((TargetSectionAttribute)null);
+				return;
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS:
+				setTargetClass((TargetSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -148,8 +207,10 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET:
-				return target != null;
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE:
+				return referenceAttribute != null;
+			case StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS:
+				return targetClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

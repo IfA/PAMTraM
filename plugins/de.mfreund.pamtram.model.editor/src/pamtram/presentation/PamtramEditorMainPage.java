@@ -746,7 +746,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 						target = ((ContainerSelector) importer.eContainer()).getTargetAttributes().get(0).getSource();
 					}
 				} else if (importer.eContainer() instanceof SourceInstanceSelector) {
-					target = ((SourceInstanceSelector) importer.eContainer()).getTarget();
+					target = ((SourceInstanceSelector) importer.eContainer()).getReferenceAttribute();
 				}
 				Attribute<?, ?, ?, ?> source = importer.getGlobalAttribute() == null ? null
 						: importer.getGlobalAttribute().getSource();

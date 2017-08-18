@@ -152,12 +152,12 @@ public class InstanceSelectorHandler {
 		String instancePointerRefValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
 				matchedSectionDescriptor);
 
-		if (instanceSelector.getTarget() instanceof VirtualAttribute) {
+		if (instanceSelector.getReferenceAttribute() instanceof VirtualAttribute) {
 			throw new RuntimeException(
 					"Internal Error! InstanceSelectors based on VirtualAttributes are not yet supported!");
 		}
 
-		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector.getTarget();
+		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector.getReferenceAttribute();
 
 		return (this.useParallelization ? instanceList.parallelStream() : instanceList.stream()).filter(element -> {
 

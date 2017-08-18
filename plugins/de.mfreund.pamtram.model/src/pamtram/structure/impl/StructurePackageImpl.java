@@ -294,8 +294,17 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSourceInstanceSelector_Target() {
+	public EReference getSourceInstanceSelector_ReferenceAttribute() {
 		return (EReference)sourceInstanceSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceInstanceSelector_TargetClass() {
+		return (EReference)sourceInstanceSelectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -312,8 +321,17 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetInstanceSelector_Target() {
+	public EReference getTargetInstanceSelector_ReferenceAttribute() {
 		return (EReference)targetInstanceSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetInstanceSelector_TargetClass() {
+		return (EReference)targetInstanceSelectorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -486,10 +504,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS);
 
 		sourceInstanceSelectorEClass = createEClass(SOURCE_INSTANCE_SELECTOR);
-		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET);
+		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE);
+		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET_CLASS);
 
 		targetInstanceSelectorEClass = createEClass(TARGET_INSTANCE_SELECTOR);
-		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__TARGET);
+		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE);
+		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__TARGET_CLASS);
 
 		instanceSelectorSourceInterfaceEClass = createEClass(INSTANCE_SELECTOR_SOURCE_INTERFACE);
 
@@ -833,10 +853,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEOperation(getInstanceSelector__GetExternalSourceElements(), this.getInstanceSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(sourceInstanceSelectorEClass, SourceInstanceSelector.class, "SourceInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSourceInstanceSelector_Target(), theSourcePackage.getSourceSectionAttribute(), null, "target", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceInstanceSelector_ReferenceAttribute(), theSourcePackage.getSourceSectionAttribute(), null, "referenceAttribute", null, 0, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceInstanceSelector_TargetClass(), theSourcePackage.getSourceSectionClass(), null, "targetClass", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetInstanceSelectorEClass, TargetInstanceSelector.class, "TargetInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTargetInstanceSelector_Target(), theTargetPackage.getTargetSectionAttribute(), null, "target", null, 1, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetInstanceSelector_ReferenceAttribute(), theTargetPackage.getTargetSectionAttribute(), null, "referenceAttribute", null, 0, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetInstanceSelector_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceSelectorSourceInterfaceEClass, InstanceSelectorSourceInterface.class, "InstanceSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -987,10 +1009,16 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 			 "documentation", "SourceInstanceSelectors can be used to select a certain subset of a list of source model excerpts that have been matched for a certain SourceSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the matched SourceSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
 		   });	
 		addAnnotation
-		  (getSourceInstanceSelector_Target(), 
+		  (getSourceInstanceSelector_ReferenceAttribute(), 
 		   source, 
 		   new String[] {
 			 "documentation", "The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."
+		   });	
+		addAnnotation
+		  (getSourceInstanceSelector_TargetClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The SourceSectionClass one of whose matched instances shall be selected."
 		   });	
 		addAnnotation
 		  (targetInstanceSelectorEClass, 
@@ -999,10 +1027,16 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 			 "documentation", "TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
 		   });	
 		addAnnotation
-		  (getTargetInstanceSelector_Target(), 
+		  (getTargetInstanceSelector_ReferenceAttribute(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The specific attribute of the created TargetSections whose value is compared with the reference value used by this selector."
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector_TargetClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
 		   });	
 		addAnnotation
 		  (instanceSelectorSourceInterfaceEClass, 

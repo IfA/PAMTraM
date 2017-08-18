@@ -2,13 +2,11 @@
  */
 package pamtram.structure.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
@@ -18,15 +16,15 @@ import pamtram.structure.TargetInstanceSelector;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetInstanceSelector} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc
+ * --> <!-- end-user-doc -->
  * @generated
  */
 public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -35,8 +33,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -44,37 +41,58 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTargetPropertyDescriptor(object);
+			addReferenceAttributePropertyDescriptor(object);
+			addTargetClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Reference Attribute feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptor(Object object) {
+	protected void addReferenceAttributePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TargetInstanceSelector_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetInstanceSelector_target_feature", "_UI_TargetInstanceSelector_type"),
-				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET,
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_feature"),
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE,
 				 true,
 				 false,
 				 true,
 				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_targetClass_feature"),
+				 getString("_UI_TargetInstanceSelector_targetClass_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS,
+				 true,
+				 false,
+				 true,
 				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
 	/**
 	 * This returns TargetInstanceSelector.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,19 +102,17 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
 	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,13 +125,13 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 			styledLabel.append(getString("_UI_TargetInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
-	}	
+	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,8 +143,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

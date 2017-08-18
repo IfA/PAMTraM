@@ -422,10 +422,15 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="SourceInstanceSelectors can be used to select a certain subset of a list of source model excerpts that have been matched for a certain SourceSection in the course of a transformation.&#xD;&#xA;The specific use case for this selection depends on the concrete sub-type of this class.&#xD;&#xA;&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a certain attribute of the matched SourceSections with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/source/SourceSectionAttribute">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referenceAttribute" eType="#//structure/source/SourceSectionAttribute">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
+          eType="#//structure/source/SourceSectionClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The SourceSectionClass one of whose matched instances shall be selected."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -433,10 +438,15 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.&#xD;&#xA;The specific use case for this selection depends on the concrete sub-type of this class.&#xD;&#xA;&lt;br />&#xD;&#xA;&lt;br />&#xD;&#xA;The selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified 'sourceElements'."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-          eType="#//structure/target/TargetSectionAttribute">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referenceAttribute" eType="#//structure/target/TargetSectionAttribute">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="The specific attribute of the created TargetSections whose value is compared with the reference value used by this selector."/>
+          <details key="documentation" value="The TargetSectionClass one of whose created instances shall be selected."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetClass" lowerBound="1"
+          eType="#//structure/target/TargetSectionClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The TargetSectionClass one of whose created instances shall be selected."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

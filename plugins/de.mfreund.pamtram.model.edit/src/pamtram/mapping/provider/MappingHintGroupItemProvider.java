@@ -258,7 +258,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 		newChildDescriptors
 				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						ExtendedFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
+						ExtendedFactory.eINSTANCE.createContainerSelectorWithSource()));
 
 	}
 

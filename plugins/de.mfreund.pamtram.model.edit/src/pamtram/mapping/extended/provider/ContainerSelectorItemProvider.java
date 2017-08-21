@@ -30,8 +30,7 @@ import pamtram.structure.StructurePackage;
 import pamtram.structure.impl.StructurePackageImpl;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.extended.ContainerSelector} object. <!--
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.ContainerSelector} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -39,91 +38,79 @@ import pamtram.structure.impl.StructurePackageImpl;
 public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public ContainerSelectorItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExpressionPropertyDescriptor(object);
-			addModifiersPropertyDescriptor(object);
+			this.addExpressionPropertyDescriptor(object);
+			this.addModifiersPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExpressionElement_expression_feature"),
-				 getString("_UI_ExpressionElement_expression_description"),
-				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ExpressionElement_expression_feature"),
+				this.getString("_UI_ExpressionElement_expression_description"),
+				PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ModifiableElement_modifiers_feature"),
-				 getString("_UI_ModifiableElement_modifiers_description"),
-				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_ModifiableElement_modifiers_feature"),
+				this.getString("_UI_ModifiableElement_modifiers_description"),
+				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
+				this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
-			childrenFeatures.add(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
+			this.childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
+			this.childrenFeatures.add(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	@Override
@@ -140,6 +127,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,30 +139,29 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns ContainerSelector.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns ContainerSelector.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ContainerSelector"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/ContainerSelector"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -203,22 +190,23 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(ContainerSelector.class)) {
 			case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
 			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -232,45 +220,31 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				 ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				 PamtramFactory.eINSTANCE.createFixedValue()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				PamtramFactory.eINSTANCE.createFixedValue()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				 StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				 StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
-				 StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
+		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES,
-				 ExtendedFactory.eINSTANCE.createContainerSelectorTargetAttribute()));
 	}
 
 }

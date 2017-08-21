@@ -19,7 +19,6 @@ import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.mapping.extended.ContainerSelector;
-import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.impl.ExtendedPackageImpl;
@@ -39,7 +38,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public ContainerSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -49,7 +48,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,13 +59,15 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 			this.addExpressionPropertyDescriptor(object);
 			this.addModifiersPropertyDescriptor(object);
+			this.addReferenceAttributePropertyDescriptor(object);
+			this.addTargetClassPropertyDescriptor(object);
 		}
 		return this.itemPropertyDescriptors;
 	}
 
 	/**
 	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
@@ -81,7 +82,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
@@ -92,6 +93,37 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 				this.getString("_UI_ModifiableElement_modifiers_description"),
 				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
 				this.getString("_UI_ExtendedPropertyCategory"), null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reference Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addReferenceAttributePropertyDescriptor(Object object) {
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_TargetInstanceSelector_referenceAttribute_feature"),
+				this.getString("_UI_TargetInstanceSelector_referenceAttribute_description"),
+				StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addTargetClassPropertyDescriptor(Object object) {
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_TargetInstanceSelector_targetClass_feature"),
+				this.getString("_UI_TargetInstanceSelector_targetClass_description"),
+				StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
@@ -108,7 +140,6 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			this.childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
-			this.childrenFeatures.add(ExtendedPackage.Literals.CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
 		}
 		return this.childrenFeatures;
 	}
@@ -119,8 +150,6 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		if (this.labelRelatedChildrenFeatures == null) {
 			this.labelRelatedChildrenFeatures = new ArrayList<>();
 			this.labelRelatedChildrenFeatures.add(StructurePackageImpl.eINSTANCE.getInstanceSelector_SourceElements());
-			this.labelRelatedChildrenFeatures
-					.add(ExtendedPackageImpl.eINSTANCE.getContainerSelector_TargetAttributes());
 		}
 		return this.labelRelatedChildrenFeatures;
 	}
@@ -173,11 +202,9 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 		ContainerSelector mch = (ContainerSelector) object;
 		StyledString styledLabel = new StyledString();
 
-		ArrayList<String> targets = new ArrayList<>();
-		for (ContainerSelectorTargetAttribute target : mch.getTargetAttributes()) {
-			targets.add(target.getName());
+		if (mch.getReferenceAttribute() != null) {
+			styledLabel.append(mch.getReferenceAttribute().getName(), StyledString.Style.COUNTER_STYLER);
 		}
-		styledLabel.append(String.join(", ", targets), StyledString.Style.COUNTER_STYLER);
 
 		ArrayList<String> sources = new ArrayList<>();
 		for (InstanceSelectorSourceInterface source : mch.getSourceElements()) {
@@ -193,7 +220,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -205,7 +232,6 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_ATTRIBUTES:
 				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -222,7 +248,7 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
 	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,7 +270,6 @@ public class ContainerSelectorItemProvider extends MappingHintItemProvider {
 
 		newChildDescriptors.add(this.createChildParameter(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
 				StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
-
 	}
 
 }

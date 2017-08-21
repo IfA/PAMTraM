@@ -48,7 +48,6 @@ import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMatcher;
-import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.MappingHintBaseType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
@@ -62,7 +61,6 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.impl.GenericPackageImpl;
-import pamtram.structure.impl.StructurePackageImpl;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -98,7 +96,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getSourceSectionModels() <em>Source Section Models</em>}' containment reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -108,7 +106,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getSharedSourceSectionModels() <em>Shared Source Section Models</em>}' reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSharedSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -118,7 +116,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getTargetSectionModels() <em>Target Section Models</em>}' containment reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -128,7 +126,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getSharedTargetSectionModels() <em>Shared Target Section Models</em>}' reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSharedTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -158,7 +156,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getConditionModels() <em>Condition Models</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getConditionModels()
 	 * @generated
 	 * @ordered
@@ -168,7 +166,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getSharedConditionModels() <em>Shared Condition Models</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getSharedConditionModels()
 	 * @generated
 	 * @ordered
@@ -177,7 +175,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected PAMTraMImpl() {
@@ -187,7 +185,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -198,7 +196,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -213,22 +211,22 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSectionModel> getSharedSourceSectionModels() {
 
 		if (this.sharedSourceSectionModels == null) {
-			this.sharedSourceSectionModels = new EObjectResolvingEList<>(SourceSectionModel.class,
-					this, PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS);
+			this.sharedSourceSectionModels = new EObjectResolvingEList<>(SourceSectionModel.class, this,
+					PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS);
 		}
 		return this.sharedSourceSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -243,22 +241,22 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public EList<TargetSectionModel> getSharedTargetSectionModels() {
 
 		if (this.sharedTargetSectionModels == null) {
-			this.sharedTargetSectionModels = new EObjectResolvingEList<>(TargetSectionModel.class,
-					this, PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS);
+			this.sharedTargetSectionModels = new EObjectResolvingEList<>(TargetSectionModel.class, this,
+					PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS);
 		}
 		return this.sharedTargetSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -273,7 +271,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -288,7 +286,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -303,7 +301,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -318,7 +316,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -332,7 +330,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -349,7 +347,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -365,7 +363,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -380,7 +378,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -396,7 +394,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -411,7 +409,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -436,7 +434,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <b><em>Note:</em></b> This algorithm changes the contents of the {@link PAMTraM} instance so that it might in
 	 * some cases be necessary to create a {@link EcoreUtil#copy(EObject) copy} that gets changed instead. <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -631,12 +629,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 								|| concreteSection.isContainerFor(mapping.getSourceSection())) {
 
 							if (setting.getEStructuralFeature()
-									.equals(StructurePackageImpl.eINSTANCE.getDynamicSourceElement_Source())
-									&& setting.getEObject() instanceof ContainerSelectorTargetAttribute
-									|| setting.getEStructuralFeature()
-											.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
-											&& setting.getEObject() instanceof AttributeMatcher) {
-								// do nothing as ContainerSelectors and
+									.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
+									&& setting.getEObject() instanceof AttributeMatcher) {
+								// do nothing as
 								// AttributeMatchers are handled
 								// below separately
 							} else {
@@ -662,12 +657,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 		 */
 		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
 			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
-				/*
-				 * as ContainerSelectors will get treated differently (see below), we store the
-				 * ContainerSelectorTargetAttributes holding the references to the Attributes in the abstract section
-				 * and will delete these later
-				 */
-				ArrayList<ContainerSelectorTargetAttribute> mchTargetAttributesToDelete = new ArrayList<>();
 
 				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
 						.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
@@ -738,9 +727,6 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 				}
 
-				for (ContainerSelectorTargetAttribute mchTargetAttribute : mchTargetAttributesToDelete) {
-					EcoreUtil.delete(mchTargetAttribute);
-				}
 			}
 		}
 
@@ -956,7 +942,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -970,7 +956,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -1031,7 +1017,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -1052,7 +1038,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -1095,7 +1081,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -1141,7 +1127,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -1178,7 +1164,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -1221,7 +1207,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

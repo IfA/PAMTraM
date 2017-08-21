@@ -36,7 +36,6 @@ import pamtram.mapping.extended.CardinalityMappingSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.ClassMatcher;
 import pamtram.mapping.extended.ContainerSelector;
-import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
@@ -225,12 +224,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * @generated
 	 */
 	private EClass containerSelectorEClass = null;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass containerSelectorTargetAttributeEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -842,26 +835,8 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getContainerSelector_TargetAttributes() {
-		return (EReference)containerSelectorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getContainerSelectorTargetAttribute() {
-		return containerSelectorTargetAttributeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map() {
-		return containerSelectorTargetAttributeEClass.getEOperations().get(0);
+	public EOperation getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map() {
+		return containerSelectorEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -1045,10 +1020,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		createEOperation(attributeMatcherEClass, ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
-		createEReference(containerSelectorEClass, CONTAINER_SELECTOR__TARGET_ATTRIBUTES);
-
-		containerSelectorTargetAttributeEClass = createEClass(CONTAINER_SELECTOR_TARGET_ATTRIBUTE);
-		createEOperation(containerSelectorTargetAttributeEClass, CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
@@ -1207,17 +1179,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
 		attributeMatcherEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
 		containerSelectorEClass.getESuperTypes().add(this.getMappingHint());
-		containerSelectorEClass.getESuperTypes().add(theStructurePackage.getInstanceSelector());
-		g1 = createEGenericType(theStructurePackage.getDynamicSourceElement());
-		g2 = createEGenericType(theTargetPackage.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theTargetPackage.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		containerSelectorTargetAttributeEClass.getEGenericSuperTypes().add(g1);
+		containerSelectorEClass.getESuperTypes().add(theStructurePackage.getTargetInstanceSelector());
 		mappedAttributeValueExpanderEClass.getESuperTypes().add(this.getHintImporterMappingHint());
 		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -1446,11 +1408,8 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(containerSelectorEClass, ContainerSelector.class, "ContainerSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContainerSelector_TargetAttributes(), this.getContainerSelectorTargetAttribute(), null, "targetAttributes", null, 1, -1, ContainerSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(containerSelectorTargetAttributeEClass, ContainerSelectorTargetAttribute.class, "ContainerSelectorTargetAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetClassMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1804,19 +1763,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 			 "documentation", "A MappingHint that tells the transformation algorithm how to determine the container element for the instances created based on the TargetSection associated with this HintGroup in the course of a transformation.\r\n<br /><br />\r\nThereby, exactly one of the elements that have been created based on the specified \'targetAttributes\' (resp. the containing TargetSectionClasses) is used as container element.\r\n<br />\r\nThe selection of the container element is based on the comparison of the value of a the \'targetAttributes\' of the created instances with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
 		   });	
 		addAnnotation
-		  (getContainerSelector_TargetAttributes(), 
-		   source, 
-		   new String[] {
-			 "documentation", "The specific attributes of the created TargetSections whose values are compared with the reference value used by this ContainerSelector."
-		   });	
-		addAnnotation
-		  (containerSelectorTargetAttributeEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "This represents a TargetSectionAttribute whose created instances (resp. the instances created based on the containing TargetSectionClass) are potential candidates for the container element determined by this ContainerSelector."
-		   });	
-		addAnnotation
-		  (getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map(), 
+		  (getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
 			 "body", "\r\nif(!(this.eContainer().eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();\r\n\r\nboolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The type of the parent hint group\'s target section (\'\" + \r\n\t\t((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + \r\n\t\t\"\') cannot be connected to (contained in) the type of the class containing the target attribute (\'\" + \r\n\t\t((pamtram.structure.generic.Class<?, ?, ?, ?>) this.getSource().eContainer()).getName() + \"\')!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
@@ -1910,7 +1857,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 			 "constraints", "targetMatchesAffectedReferenceType"
 		   });	
 		addAnnotation
-		  (containerSelectorTargetAttributeEClass, 
+		  (containerSelectorEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "sourceMatchesPossibleContainerType"

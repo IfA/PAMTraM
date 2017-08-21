@@ -2,9 +2,9 @@
  */
 package pamtram.mapping.extended;
 
-import org.eclipse.emf.common.util.EList;
-
-import pamtram.structure.InstanceSelector;
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import pamtram.structure.TargetInstanceSelector;
 
 
 /**
@@ -23,25 +23,14 @@ import pamtram.structure.InstanceSelector;
  * @model
  * @generated
  */
-public interface ContainerSelector extends MappingHint, InstanceSelector {
+public interface ContainerSelector extends MappingHint, TargetInstanceSelector {
 
 	/**
-	 * Returns the value of the '<em><b>Target Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Target Attributes</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The specific attributes of the created TargetSections whose values are compared with the reference value used by this ContainerSelector.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target Attributes</em>' containment reference list.
-	 * @see pamtram.mapping.extended.ExtendedPackage#getContainerSelector_TargetAttributes()
-	 * @model containment="true" required="true"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(!(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%&gt;) || this.getSource() == null || !(this.getSource().eContainer() instanceof pamtram.structure.generic.Class&lt;?, ?, ?, ?&gt;)) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%pamtram.structure.target.TargetSection%&gt; targetSection = ((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection();\r\n\r\nboolean result = this.getSource() == null || targetSection == null ? true : ((pamtram.structure.generic.Class&lt;?, ?, ?, ?&gt;) this.getSource().eContainer()).getEClass().getEAllContainments().parallelStream().anyMatch(r -&gt; r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The type of the parent hint group\'s target section (\'\" + \r\n\t\t((MappingHintGroupType) this.eContainer().eContainer()).getTargetSection().getEClass().getName() + \r\n\t\t\"\') cannot be connected to (contained in) the type of the class containing the target attribute (\'\" + \r\n\t\t((pamtram.structure.generic.Class&lt;?, ?, ?, ?&gt;) this.getSource().eContainer()).getName() + \"\')!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.structure.StructurePackage%&gt;.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
-	EList<ContainerSelectorTargetAttribute> getTargetAttributes();
+	boolean validateTargetClassMatchesPossibleContainerType(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // ModelConnectionHint

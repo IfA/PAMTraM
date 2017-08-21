@@ -2147,13 +2147,22 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Target Attributes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Reference Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR__TARGET_ATTRIBUTES = MAPPING_HINT_FEATURE_COUNT + 3;
+	int CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE = MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__TARGET_CLASS = MAPPING_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Container Selector</em>' class.
@@ -2162,7 +2171,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
+	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -2228,96 +2237,22 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Target Class Matches Possible Container Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Container Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl
-	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getContainerSelectorTargetAttribute()
-	 * @generated
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE = 22;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__NAME = StructurePackage.DYNAMIC_SOURCE_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__MODIFIERS = StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS;
-
-	/**
-	 * The feature id for the '<em><b>Source</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__SOURCE = StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE;
-
-	/**
-	 * The number of structural features of the '<em>Container Selector Target Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE_FEATURE_COUNT = StructurePackage.DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___GET_MAPPING_HINT_GROUP = StructurePackage.DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP;
-
-	/**
-	 * The operation id for the '<em>Get Mapping</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___GET_MAPPING = StructurePackage.DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
-
-	/**
-	 * The operation id for the '<em>Validate Source Matches Possible Container Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = StructurePackage.DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Container Selector Target Attribute</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR_TARGET_ATTRIBUTE_OPERATION_COUNT = StructurePackage.DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
-
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -2327,7 +2262,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 23;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2382,7 +2317,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 24;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2491,7 +2426,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 25;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2600,7 +2535,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 26;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2709,7 +2644,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 27;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2809,7 +2744,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 28;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2909,7 +2844,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 29;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 28;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3524,35 +3459,14 @@ public interface ExtendedPackage extends EPackage {
 	EClass getContainerSelector();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.mapping.extended.ContainerSelector#getTargetAttributes <em>Target Attributes</em>}'.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelector#validateTargetClassMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Possible Container Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Target Attributes</em>'.
-	 * @see pamtram.mapping.extended.ContainerSelector#getTargetAttributes()
-	 * @see #getContainerSelector()
+	 * @return the meta object for the '<em>Validate Target Class Matches Possible Container Type</em>' operation.
+	 * @see pamtram.mapping.extended.ContainerSelector#validateTargetClassMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EReference getContainerSelector_TargetAttributes();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.extended.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Container Selector Target Attribute</em>'.
-	 * @see pamtram.mapping.extended.ContainerSelectorTargetAttribute
-	 * @generated
-	 */
-	EClass getContainerSelectorTargetAttribute();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Matches Possible Container Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Source Matches Possible Container Type</em>' operation.
-	 * @see pamtram.mapping.extended.ContainerSelectorTargetAttribute#validateSourceMatchesPossibleContainerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map();
+	EOperation getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
@@ -4070,28 +3984,12 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EClass CONTAINER_SELECTOR = eINSTANCE.getContainerSelector();
 		/**
-		 * The meta object literal for the '<em><b>Target Attributes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Validate Target Class Matches Possible Container Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONTAINER_SELECTOR__TARGET_ATTRIBUTES = eINSTANCE.getContainerSelector_TargetAttributes();
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl <em>Container Selector Target Attribute</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.extended.impl.ContainerSelectorTargetAttributeImpl
-		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getContainerSelectorTargetAttribute()
-		 * @generated
-		 */
-		EClass CONTAINER_SELECTOR_TARGET_ATTRIBUTE = eINSTANCE.getContainerSelectorTargetAttribute();
-		/**
-		 * The meta object literal for the '<em><b>Validate Source Matches Possible Container Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINER_SELECTOR_TARGET_ATTRIBUTE___VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelectorTargetAttribute__ValidateSourceMatchesPossibleContainerType__DiagnosticChain_Map();
+		EOperation CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->

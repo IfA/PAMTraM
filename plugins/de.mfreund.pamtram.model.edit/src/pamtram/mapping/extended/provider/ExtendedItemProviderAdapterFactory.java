@@ -373,29 +373,6 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ContainerSelectorTargetAttributeItemProvider containerSelectorTargetAttributeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.ContainerSelectorTargetAttribute}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createContainerSelectorTargetAttributeAdapter() {
-		if (containerSelectorTargetAttributeItemProvider == null) {
-			containerSelectorTargetAttributeItemProvider = new ContainerSelectorTargetAttributeItemProvider(this);
-		}
-
-		return containerSelectorTargetAttributeItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.MappedAttributeValuePrepender} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -601,7 +578,6 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
 		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
-		if (containerSelectorTargetAttributeItemProvider != null) containerSelectorTargetAttributeItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();
 		if (externalMappedAttributeValuePrependerItemProvider != null) externalMappedAttributeValuePrependerItemProvider.dispose();

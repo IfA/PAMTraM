@@ -424,9 +424,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
-          <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -440,9 +439,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.0/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.0/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
-          <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="Confirmation">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/id"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
       </attributes>
     </sections>
   </sourceSectionModels>
@@ -36,13 +36,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="invalid selector">
+        <mappingHints xsi:type="extended:ContainerSelector" name="invalid selector" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
           <sourceElements xsi:type="pamtram:FixedValue" name="invalid value" value="abcde"/>
-          <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer">
+        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
-          <targetAttributes name="Name" source="//@targetSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

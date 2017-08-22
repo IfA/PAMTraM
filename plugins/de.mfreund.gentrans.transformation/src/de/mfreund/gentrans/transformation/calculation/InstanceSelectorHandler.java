@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.calculation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -9,18 +10,20 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.Mapping;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.target.TargetSectionAttribute;
 
 /**
  * This class will be used to get/extract specific model objects supported by
@@ -117,8 +120,8 @@ public class InstanceSelectorHandler {
 
 		if (this.matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
 			this.matchedSections.get(sourceSectionClass.getContainingSection()).stream()
-					.forEach(descriptor -> correspondEclassInstances
-							.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
+			.forEach(descriptor -> correspondEclassInstances
+					.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
 
 		return this.getSelectedInstancesByInstanceList(instanceSelector, correspondEclassInstances,
@@ -127,35 +130,32 @@ public class InstanceSelectorHandler {
 	}
 
 	/**
-	 * From the given list of {@link EObject elements}, this filters and returns
-	 * those that satisfy the given {@link InstanceSelector}.
+	 * From the given list of {@link EObject elements}, this filters and returns those that satisfy the given
+	 * {@link InstanceSelector}.
 	 *
 	 * @param instanceSelector
 	 *            The {@link InstanceSelector} to evaluate.
 	 * @param instanceList
-	 *            The list of {@link EObject elements} to check.
+	 *            The list of matched {@link EObject elements} to check.
 	 * @param matchedSectionDescriptor
-	 *            the {@link MatchedSectionDescriptor} for that the
-	 *            instancePointer shall be evaluated.
-	 * @return The subset of the given <em>instanceList</em> that satisfy the
-	 *         given <em>instancePointer</em>.
+	 *            The {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated (providing the
+	 *            reference value).
+	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
 	public List<EObject> getSelectedInstancesByInstanceList(SourceInstanceSelector instanceSelector,
 			List<EObject> instanceList, MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		EObject container = instanceSelector.eContainer();
-
-		while (!(container instanceof Mapping)) {
-			container = container.eContainer();
+		if (instanceSelector.getReferenceAttribute() == null) {
+			return new ArrayList<>(instanceList);
 		}
-
-		String instancePointerRefValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
-				matchedSectionDescriptor);
 
 		if (instanceSelector.getReferenceAttribute() instanceof VirtualAttribute) {
 			throw new RuntimeException(
 					"Internal Error! InstanceSelectors based on VirtualAttributes are not yet supported!");
 		}
+
+		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
+				matchedSectionDescriptor);
 
 		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector.getReferenceAttribute();
 
@@ -167,7 +167,7 @@ public class InstanceSelectorHandler {
 				// convert Attribute value to String
 				String sourceRefAttrAsString = sourceAttr.getAttribute().getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttr.getAttribute().getEAttributeType(), sourceRefAttr);
-				return sourceRefAttrAsString.equals(instancePointerRefValue);
+				return sourceRefAttrAsString.equals(referenceValue);
 
 			} catch (final Exception e) {
 				this.logger.warning(() -> "Message:\n InstancePointerHander failed because of:" + e.getMessage());
@@ -175,6 +175,37 @@ public class InstanceSelectorHandler {
 			}
 
 		}).collect(Collectors.toList());
+
+	}
+
+	/**
+	 * From the given list of {@link EObjectWrapper elements}, this filters and returns those that satisfy the given
+	 * {@link InstanceSelector}.
+	 *
+	 * @param instanceSelector
+	 *            The {@link InstanceSelector} to evaluate.
+	 * @param instanceList
+	 *            The list of created {@link EObjectWrapper elements} to check.
+	 * @param matchedSectionDescriptor
+	 *            The {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated (providing the
+	 *            reference value).
+	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
+	 */
+	public List<EObjectWrapper> getSelectedInstancesByInstanceList(TargetInstanceSelector instanceSelector,
+			List<EObjectWrapper> instanceList, MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		if (instanceSelector.getReferenceAttribute() == null) {
+			return new ArrayList<>(instanceList);
+		}
+
+		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
+				matchedSectionDescriptor);
+
+		TargetSectionAttribute targetAttr = instanceSelector.getReferenceAttribute();
+
+		return (this.useParallelization ? instanceList.parallelStream() : instanceList.stream())
+				.filter(element -> element.getAttributeValue(targetAttr).equals(referenceValue))
+				.collect(Collectors.toList());
 
 	}
 

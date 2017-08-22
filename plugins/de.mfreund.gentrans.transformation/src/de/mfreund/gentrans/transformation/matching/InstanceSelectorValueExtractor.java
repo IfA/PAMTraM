@@ -15,7 +15,6 @@ import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -108,7 +107,7 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 *         '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	public String extractRequiredTargetValue(SourceInstanceSelector instancePointer,
+	public String extractRequiredTargetValue(InstanceSelector instancePointer,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Collect the value parts

@@ -817,8 +817,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				ContainerSelector hint = (ContainerSelector) item.getData();
 
-				ArrayList<Attribute<?, ?, ?, ?>> sources = new ArrayList<>();
-				ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
+				List<Object> sources = new ArrayList<>();
+				List<Object> targets = new ArrayList<>();
 
 				for (InstanceSelectorSourceInterface sourceElement : hint.getSourceElements()) {
 					if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
@@ -826,6 +826,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					}
 				}
 
+				targets.add(hint.getTargetClass());
 				targets.add(hint.getReferenceAttribute());
 
 				this.setSourceTargetViewerSelections(sources, targets);

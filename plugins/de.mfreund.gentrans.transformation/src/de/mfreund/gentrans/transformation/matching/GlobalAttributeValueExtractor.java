@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.MappingModel;
 import pamtram.mapping.GlobalAttribute;
@@ -31,7 +31,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -41,7 +41,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 *            transformation result (especially the order of lists) varies
 	 *            between executions.
 	 */
-	public GlobalAttributeValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger,
+	public GlobalAttributeValueExtractor(ValueModifierExecutor attributeValueModifierExecutor, Logger logger,
 			boolean useParallelization) {
 		super(attributeValueModifierExecutor, logger, useParallelization);
 	}

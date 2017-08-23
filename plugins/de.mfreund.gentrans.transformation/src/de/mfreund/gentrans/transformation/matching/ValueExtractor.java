@@ -12,11 +12,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
@@ -54,10 +55,10 @@ import pamtram.structure.source.VirtualSourceSectionAttribute;
 public abstract class ValueExtractor extends CancelableElement {
 
 	/**
-	 * The {@link AttributeValueModifierExecutor} that shall be used for
+	 * The {@link ValueModifierExecutor} that shall be used for
 	 * modifying attribute values.
 	 */
-	protected final AttributeValueModifierExecutor attributeValueModifierExecutor;
+	protected final ValueModifierExecutor attributeValueModifierExecutor;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -81,7 +82,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -91,7 +92,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            transformation result (especially the order of lists) varies
 	 *            between executions.
 	 */
-	public ValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger,
+	public ValueExtractor(ValueModifierExecutor attributeValueModifierExecutor, Logger logger,
 			boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
@@ -109,7 +110,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -120,7 +121,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            between executions.
 	 */
 	public ValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
 		this.logger = logger;
@@ -184,7 +185,7 @@ public abstract class ValueExtractor extends CancelableElement {
 		return this.globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute())
 				? new AttributeValueRepresentation(null,
 						this.globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute()))
-				: null;
+						: null;
 	}
 
 	/**
@@ -328,9 +329,9 @@ public abstract class ValueExtractor extends CancelableElement {
 		//
 		List<EObject> sourceElements = (useParallelization ? sourceDescriptors.parallelStream()
 				: sourceDescriptors.stream())
-						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
-								.get(mappingHintSourceElement.getSource().eContainer()).stream())
-						.collect(Collectors.toList());
+				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
+						.get(mappingHintSourceElement.getSource().eContainer()).stream())
+				.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
@@ -338,7 +339,7 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
 			InstanceSelectorHandler instancePointerHandler = new InstanceSelectorHandler(matchedSections, gv,
-					new AttributeValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger,
+					new ValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger,
 					useParallelization);
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
@@ -394,46 +395,46 @@ public abstract class ValueExtractor extends CancelableElement {
 		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
 				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute() : null;
 
-		// Collect all values of the attribute in all source elements
-		//
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource(), this.logger);
+				// Collect all values of the attribute in all source elements
+				//
+				List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
+						mappingHintSourceElement.getSource(), this.logger);
 
-		if (srcAttrValues.isEmpty()) {
-			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+				if (srcAttrValues.isEmpty()) {
+					this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
 					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
 					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
 							MappingPackage.Literals.MAPPING)).getName()
 					+ "')!");
-			return null;
-		}
+					return null;
+				}
 
-		// Extract a hint value for each retrieved value
-		//
-		for (Object srcAttrValue : srcAttrValues) {
+				// Extract a hint value for each retrieved value
+				//
+				for (Object srcAttrValue : srcAttrValues) {
 
-			String srcAttrAsString = srcAttrValue.toString();
+					String srcAttrAsString = srcAttrValue.toString();
 
-			// if the attribute represents an actual EAttribute, we need to
-			// convert the value based on its type
-			if (sourceAttribute != null) {
-				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-			}
+					// if the attribute represents an actual EAttribute, we need to
+					// convert the value based on its type
+					if (sourceAttribute != null) {
+						srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
+								.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
+					}
 
-			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
-					mappingHintSourceElement.getModifiers());
+					final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
+							mappingHintSourceElement.getModifiers());
 
-			// create a new AttributeValueRepresentation or update the existing
-			// one
-			if (hintValue == null) {
-				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
-			} else {
-				hintValue.addValue(valCopy);
-			}
-		}
+					// create a new AttributeValueRepresentation or update the existing
+					// one
+					if (hintValue == null) {
+						hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
+					} else {
+						hintValue.addValue(valCopy);
+					}
+				}
 
-		return hintValue;
+				return hintValue;
 	}
 
 	/**
@@ -463,23 +464,17 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * For the given {@link EObject}, this returns the value or values of the
-	 * given {@link SourceSectionAttribute}.
+	 * For the given {@link EObject}, this returns the value or values of the given {@link SourceSectionAttribute}.
 	 * <p />
-	 * Note: Depending on the concrete type of {@link SourceSectionAttribute},
-	 * this will either just redirect to
-	 * {@link AgteleEcoreUtil#getAttributeValueAsList(EObject, EAttribute)} (in
-	 * case of {@link ActualSourceSectionAttribute
-	 * ActualSourceSectionAttributes}) or calculate the
-	 * {@link VirtualSourceSectionAttribute#getDerivation() derived} value (in
-	 * case of {@link VirtualSourceSectionAttribute
-	 * VirtualSourceSectionAttributes}). <br />
-	 * Note: As EAttributes can be {@link EAttribute#isMany() many-valued}, too,
-	 * this will return either no value, a single value, or a list of values.
-	 * <br />
-	 * Note: The type of the entries inside the list will match the
-	 * {@link EAttribute#getEAttributeType() type} of the given EAttribute for
-	 * {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}.
+	 * Note: Depending on the concrete type of {@link SourceSectionAttribute}, this will either just redirect to
+	 * {@link AgteleEcoreUtil#getStructuralFeatureValueAsList(EObject, EStructuralFeature)} (in case of
+	 * {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}) or calculate the
+	 * {@link VirtualSourceSectionAttribute#getDerivation() derived} value (in case of
+	 * {@link VirtualSourceSectionAttribute VirtualSourceSectionAttributes}). <br />
+	 * Note: As EAttributes can be {@link EAttribute#isMany() many-valued}, too, this will return either no value, a
+	 * single value, or a list of values. <br />
+	 * Note: The type of the entries inside the list will match the {@link EAttribute#getEAttributeType() type} of the
+	 * given EAttribute for {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}.
 	 *
 	 * @param sourceElement
 	 *            The {@link EObject} for that the values shall be returned.
@@ -487,8 +482,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            The {@link EAttribute} for that the values shall be returned.
 	 * @param logger
 	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of
-	 *         a single value, or multiple values).
+	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
 	public static List<Object> getAttributeValueAsList(EObject sourceElement, SourceSectionAttribute sourceAttribute,
 			Logger logger) {

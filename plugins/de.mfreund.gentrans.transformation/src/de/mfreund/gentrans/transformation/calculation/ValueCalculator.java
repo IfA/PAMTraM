@@ -26,23 +26,22 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * This class can be used to calculate values of
- * {@link TargetSectionAttribute}s.
+ * This class can be used to calculate values (e.g. of {@link TargetSectionAttribute TargetSectionAttributes}) based on
+ * a list of value parts and an optional {@link ExpressionElement#getExpression() expression}.
  *
  * @author mfreund
- * @author gkoltun (modifier)
  */
-public class AttributeValueCalculator {
+public class ValueCalculator {
 
 	/**
 	 * used for modifying attribute values
 	 */
-	private final AttributeValueModifierExecutor attributeValuemodifier;
+	private final ValueModifierExecutor valuemodifierExecutor;
 
 	/**
-	 * Registry for values of global Variables that can be mapped to double
+	 * Registry for global values that can be used in expressions.
 	 */
-	private final Map<String, Double> globalVarValueDoubles;
+	private final Map<String, Double> globalValues;
 
 	/**
 	 * The {@link Logger} to be used to print messages.
@@ -56,23 +55,18 @@ public class AttributeValueCalculator {
 	 *            The {@link GlobalValueMap} providing values of
 	 *            {@link GlobalAttribute GlobalAttributes} and {@link FixedValue
 	 *            FixedValues} that can be used in calculations.
-	 * @param attributeValuemodifier
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 * @param valuemodifierExecutor
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            to apply {@link ValueModifierSet AttributeValueModifierSets}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages to the
 	 *            user.
 	 */
-	public AttributeValueCalculator(GlobalValueMap globalValues, AttributeValueModifierExecutor attributeValuemodifier,
+	public ValueCalculator(GlobalValueMap globalValues, ValueModifierExecutor valuemodifierExecutor,
 			Logger logger) {
 
-		// store the attribute value modifier
-		this.attributeValuemodifier = attributeValuemodifier;
-
-		// store the global var value doubles
-		this.globalVarValueDoubles = globalValues.getAsDoubleByString();
-
-		// store the message stream
+		this.valuemodifierExecutor = valuemodifierExecutor;
+		this.globalValues = globalValues.getAsDoubleByString();
 		this.logger = logger;
 	}
 
@@ -153,7 +147,7 @@ public class AttributeValueCalculator {
 				resultModifiers.addAll(((ModifiableElement) hint).getModifiers());
 			} else if (hint instanceof ReferenceTargetSelector) {
 				resultModifiers
-						.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getModifiers());
+				.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getModifiers());
 			}
 
 			// calculate the value based on the hint values and a possible
@@ -206,7 +200,7 @@ public class AttributeValueCalculator {
 			sourceElements.addAll(((CardinalityMapping) hint).getSourceElements());
 		} else if (hint instanceof ReferenceTargetSelector) {
 			sourceElements
-					.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getSourceElements());
+			.addAll(((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher()).getSourceElements());
 		}
 
 		return this.calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
@@ -247,6 +241,38 @@ public class AttributeValueCalculator {
 	}
 
 	/**
+	 * Based on the given map of <em>valueParts</em> and an optional <em>expression</em>, this assembles a single String
+	 * value. If no expression is given, the order, in which the value parts are assembled is determined by the (order
+	 * of the) list of <em>sourceElements</em>.
+	 * <p />
+	 * Note: Normally, one {@link AttributeValueRepresentation value} for each of the given <em>sourceElements</em>
+	 * should exist in the given map of <em>valueParts</em>.
+	 * <p />
+	 * Note: This simply redirects to {@link #calculateValueWithExpression(Map, String, List)} or
+	 * {@link #calculateAttributeValueWithoutExpression(MappingHint, Map, List)}.
+	 *
+	 * @param sourceElements
+	 *            The list of source elements that determine the order in which the <em>valueParts</em> shall be
+	 *            assembled.
+	 * @param expression
+	 *            An optional mathematical expression based on which the resulting value is calculated (if this is
+	 *            '<em>null</em>' or an empty string, the <em>valueParts</em> are simply stringed together).
+	 * @param valueParts
+	 *            The value parts (the keys of the map should match the list of <em>sourceElements</em>).
+	 * @param resultModifiers
+	 *            A list of {@link ValueModifierSet AttributeValueModifierSets} to apply to the resulting value before
+	 *            returning it.
+	 * @return The assembled value after applying the <em>resultModifiers</em>.
+	 */
+	public String calculateValue(List<Object> sourceElements, String expression,
+			Map<?, AttributeValueRepresentation> valueParts, List<ValueModifierSet> resultModifiers) {
+
+		return expression != null && !expression.isEmpty()
+				? this.calculateValueWithExpression(valueParts, expression, resultModifiers)
+						: this.calculateValueWithoutExpression(sourceElements, valueParts, resultModifiers);
+	}
+
+	/**
 	 * From the given map of <em>valueParts</em>, this assembles a single String
 	 * value. The order, in which the value parts are assembled is thereby
 	 * determined by the (order of the) list of <em>sourceElements</em>.
@@ -277,7 +303,7 @@ public class AttributeValueCalculator {
 			} else {
 				if (srcElement instanceof ConditionalElement
 						&& (((ConditionalElement) srcElement).getLocalCondition() != null
-								|| ((ConditionalElement) srcElement).getSharedCondition() != null)) {
+						|| ((ConditionalElement) srcElement).getSharedCondition() != null)) {
 					// This is probably due to a condition that evaluated to
 					// false...
 					//
@@ -289,7 +315,7 @@ public class AttributeValueCalculator {
 			}
 		}
 
-		return this.attributeValuemodifier.applyAttributeValueModifiers(attrValueBuilder.toString(), resultModifiers);
+		return this.valuemodifierExecutor.applyAttributeValueModifiers(attrValueBuilder.toString(), resultModifiers);
 	}
 
 	/**
@@ -315,7 +341,7 @@ public class AttributeValueCalculator {
 
 		// Add global variables
 		//
-		vars.putAll(this.globalVarValueDoubles);
+		vars.putAll(this.globalValues);
 
 		// Add local variables (as double)
 		//
@@ -338,6 +364,6 @@ public class AttributeValueCalculator {
 
 		// Apply the result modifiers
 		return attrValue == null ? expression
-				: this.attributeValuemodifier.applyAttributeValueModifiers(attrValue, resultModifiers);
+				: this.valuemodifierExecutor.applyAttributeValueModifiers(attrValue, resultModifiers);
 	}
 }

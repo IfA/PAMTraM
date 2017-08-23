@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
@@ -100,9 +100,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 * An instance of {@link ValueCalculator} that is used to calculate attribute values.
 	 */
-	private AttributeValueCalculator calculator;
+	private ValueCalculator calculator;
 
 	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
@@ -126,7 +126,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param globalValueMap
 	 *            Registry for values of global Variables
 	 * @param attributeValuemodifier
-	 *            An instance of the {@link AttributeValueModifierExecutor}.
+	 *            An instance of the {@link ValueModifierExecutor}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
@@ -137,7 +137,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 */
 	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
 			final AttributeValueRegistry attributeValueRegistry, final GlobalValueMap globalValueMap,
-			final AttributeValueModifierExecutor attributeValuemodifier, final Logger logger,
+			final ValueModifierExecutor attributeValuemodifier, final Logger logger,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, boolean useParallelzation) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
@@ -149,7 +149,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
 		this.libEntryInstantiatorMap = new LinkedHashMap<>();
 
-		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
+		this.calculator = new ValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
 	}
 

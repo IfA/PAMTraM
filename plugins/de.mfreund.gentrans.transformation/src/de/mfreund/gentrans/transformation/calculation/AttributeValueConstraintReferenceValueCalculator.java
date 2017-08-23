@@ -75,7 +75,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
 	 *            defined in the PAMTraM model.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -86,7 +86,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 *            between executions.
 	 */
 	public AttributeValueConstraintReferenceValueCalculator(GlobalValueMap globalValues,
-			AttributeValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
+			ValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
 		this(new HashMap<>(), globalValues, null, attributeValueCalculator, logger, useParallelization);
 	}
 
@@ -107,7 +107,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 *            {@link InstanceSelector InstancePointers} that have been
 	 *            modeled.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link MessageConsoleStream} that shall be used to print
@@ -120,7 +120,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 	 */
 	public AttributeValueConstraintReferenceValueCalculator(
 			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues,
-			InstanceSelectorHandler instancePointerHandler, AttributeValueCalculator attributeValueCalculator,
+			InstanceSelectorHandler instancePointerHandler, ValueCalculator attributeValueCalculator,
 			Logger logger, boolean useParallelization) {
 
 		// store the matched sections
@@ -134,7 +134,7 @@ public class AttributeValueConstraintReferenceValueCalculator {
 
 		// create a value extractor
 		this.valueExtractor = new AttributeValueConstraintValueExtractor(globalValues.getGlobalAttributes(),
-				attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), this.consoleStream,
+				attributeValueCalculator, ValueModifierExecutor.getInstance(), this.consoleStream,
 				useParallelization);
 
 	}

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
@@ -129,7 +129,7 @@ public class ConditionHandler {
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
@@ -137,7 +137,7 @@ public class ConditionHandler {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger,
+			GlobalValueMap globalValues, ValueCalculator attributeValueCalculator, Logger logger,
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;

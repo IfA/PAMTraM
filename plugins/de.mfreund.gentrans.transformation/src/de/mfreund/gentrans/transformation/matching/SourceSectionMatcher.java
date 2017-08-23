@@ -25,9 +25,9 @@ import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -141,7 +141,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		this.matchedContainers = new HashMap<>();
 		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
 		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(globalValueMap,
-				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), logger),
+				new ValueCalculator(globalValueMap, ValueModifierExecutor.getInstance(), logger),
 				logger, useParallelization);
 	}
 

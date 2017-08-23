@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
@@ -79,11 +79,10 @@ public class TargetSectionConnector extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * The {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary to
-	 * calculate the values of {@link ContainerSelectorTargetAttribute ModelConnectionHintTargetAttributes} that are
-	 * evaluated here.
+	 * The {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
+	 * ContainerSelectors}.
 	 */
-	private final AttributeValueModifierExecutor attributeValuemodifier;
+	private final ValueCalculator valueCalculator;
 
 	/**
 	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
@@ -110,9 +109,9 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param targetSectionRegistry
 	 *            A {@link TargetSectionRegistry} that is necessary for finding instances to which sections can be
 	 *            connected.
-	 * @param attributeValuemodifier
-	 *            An {@link AttributeValueModifierExecutor} that is used to modify attribute values. This is necessary
-	 *            to evaluate potential {@link ContainerSelector#getModifiers}.
+	 * @param valueCalculator
+	 *            A {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
+	 *            ContainerSelectors}.
 	 * @param targetModelRegistry
 	 *            The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 * @param maxPathLength
@@ -126,16 +125,16 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
-			final AttributeValueModifierExecutor attributeValuemodifier, final TargetModelRegistry targetModelRegistry,
-			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			final Logger logger) {
+			final ValueCalculator valueCalculator,
+			final TargetModelRegistry targetModelRegistry, final int maxPathLength,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, final Logger logger) {
 
 		this.standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.targetModelRegistry = targetModelRegistry;
 		this.logger = logger;
 		this.canceled = false;
-		this.attributeValuemodifier = attributeValuemodifier;
+		this.valueCalculator = valueCalculator;
 		this.maxPathLength = maxPathLength;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.unlinkeableElements = new LinkedHashMap<>();
@@ -985,7 +984,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The hint values for the given ContainerSelector (multiple times if necessary)
 		//
-		LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> containerSelectorHints = this
+		LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> containerSelectorHintValues = this
 				.multiplyContainerSelectorHintValues(mappingInstance.getHintValues().getHintValues(containerSelector),
 						rootInstances.size());
 
@@ -1000,25 +999,15 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		List<EObjectWrapper> unconnectedInstances = new ArrayList<>();
 
-		for (final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal : containerSelectorHints) {
+		for (final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal : containerSelectorHintValues) {
 
-			StringBuilder hintValBuilder = new StringBuilder();
 
-			containerSelector.getSourceElements().stream().forEach(srcElement -> {
-
-				if (hintVal.containsKey(srcElement)) {
-
-					hintValBuilder.append(hintVal.get(srcElement).getValue());
-
-				} else {
-					this.logger.warning(() -> "HintSourceValue not found " + srcElement.getName()
-					+ " in ComplexModelConnectionHint " + containerSelector.getName() + "(Mapping: "
-					+ mappingInstance.getMapping().getName()
-					+ ", Group: " + mappingGroup.getName() + ").");
-				}
-			});
-
-			String hintValAsString = hintValBuilder.toString();
+			// The reference value that will be compared to the value of the 'referenceAttribute' of potential container
+			// instances
+			//
+			String hintValAsString = this.valueCalculator.calculateValue(
+					new ArrayList<>(containerSelector.getSourceElements()),
+					containerSelector.getExpression(), hintVal, containerSelector.getModifiers());
 
 			if (!contInstsByHintVal.containsKey(hintValAsString)) {
 
@@ -1035,9 +1024,6 @@ public class TargetSectionConnector extends CancelableElement {
 
 			TargetSectionAttribute referenceAttribute = containerSelector.getReferenceAttribute();
 
-			final String modifiedHintVal = this.attributeValuemodifier.applyAttributeValueModifiers(hintValAsString,
-					containerSelector.getModifiers());
-
 			/*
 			 * now find a fitting instance get Attribute value
 			 */
@@ -1049,7 +1035,7 @@ public class TargetSectionConnector extends CancelableElement {
 				final String targetValStr = contInst.getAttributeValue(referenceAttribute);
 
 				if (targetValStr != null) {
-					if (modifiedHintVal.equals(targetValStr)) {
+					if (hintValAsString.equals(targetValStr)) {
 
 						contInstsByHintVal.get(hintValAsString).add(contInst);
 					}

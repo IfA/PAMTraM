@@ -11,19 +11,16 @@ import pamtram.mapping.modifier.ValueModifier;
 import pamtram.mapping.modifier.ValueModifierSet;
 
 /**
- * This is a helper class to apply {@link ValueModifier
- * AttributeValueModifiers}.
+ * This is a helper class to apply {@link ValueModifierSet ValueModifierSet}.
  *
- * @author Sascha Steffen
- * @version 1.0
- *
+ * @author mfreund
  */
-public class AttributeValueModifierExecutor {
+public class ValueModifierExecutor {
 
 	/**
 	 * This keeps track of the single instance.
 	 */
-	private static AttributeValueModifierExecutor instance;
+	private static ValueModifierExecutor instance;
 
 	/**
 	 * An {@link Logger} for messages. This is used to print error messages when
@@ -32,8 +29,8 @@ public class AttributeValueModifierExecutor {
 	private Logger logger;
 
 	/**
-	 * A set that contains all AttributeValueModifiers with errors so we don't
-	 * need to send a potential error message twice
+	 * A set that contains all {@link ValueModifier ValueModifiers} with errors so we don't need to send a potential
+	 * error message twice
 	 */
 	private final Set<ValueModifier> modifiersWithErrors;
 
@@ -44,10 +41,10 @@ public class AttributeValueModifierExecutor {
 	 *            A {@link Logger} that will be used to print error messages
 	 *            when the application of an AttributeValueModifier fails.
 	 */
-	private AttributeValueModifierExecutor(final Logger logger) {
+	private ValueModifierExecutor(final Logger logger) {
 		this.logger = logger;
 		this.modifiersWithErrors = new HashSet<>();
-		AttributeValueModifierExecutor.instance = this;
+		ValueModifierExecutor.instance = this;
 	}
 
 	/**
@@ -60,13 +57,13 @@ public class AttributeValueModifierExecutor {
 	 *
 	 * @return The single {@link #instance}.
 	 */
-	public static AttributeValueModifierExecutor getInstance() {
+	public static ValueModifierExecutor getInstance() {
 
-		if (AttributeValueModifierExecutor.instance == null) {
-			AttributeValueModifierExecutor.init(null);
+		if (ValueModifierExecutor.instance == null) {
+			ValueModifierExecutor.init(null);
 		}
 
-		return AttributeValueModifierExecutor.instance;
+		return ValueModifierExecutor.instance;
 	}
 
 	/**
@@ -79,31 +76,27 @@ public class AttributeValueModifierExecutor {
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @return The {@link #instance}.
 	 */
-	public static AttributeValueModifierExecutor init(final Logger logger) {
+	public static ValueModifierExecutor init(final Logger logger) {
 
 		// Either create the single instance or only set the consoleStream
 		//
-		if (AttributeValueModifierExecutor.instance == null) {
-			new AttributeValueModifierExecutor(logger);
+		if (ValueModifierExecutor.instance == null) {
+			new ValueModifierExecutor(logger);
 		} else {
-			AttributeValueModifierExecutor.instance.logger = logger;
+			ValueModifierExecutor.instance.logger = logger;
 		}
 
-		return AttributeValueModifierExecutor.instance;
+		return ValueModifierExecutor.instance;
 	}
 
 	/**
-	 * This applies the given list of {@link ValueModifier
-	 * AttributeValueModifiers} to the given '<em>value</em>'.
+	 * This applies the given list of {@link ValueModifierSet modifierSets} to the given '<em>value</em>'.
 	 *
 	 * @param value
-	 *            The value on which the given list of {@link ValueModifier
-	 *            AttributeValueModifiers} shall be applied.
+	 *            The value on which the given list of {@link ValueModifierSet modifierSets} shall be applied.
 	 * @param modifierSets
-	 *            The modifiers that shall be applied to the given
-	 *            '<em>value</em>'.
-	 * @return The modified string (after application of the
-	 *         {@link ValueModifier AttributeValueModifiers}.
+	 *            The {@link ValueModifierSet modifierSets} that shall be applied to the given '<em>value</em>'.
+	 * @return The modified string (after application of the {@link ValueModifierSet modifierSets}.
 	 */
 	public String applyAttributeValueModifiers(final String value, final List<ValueModifierSet> modifierSets) {
 		String retVal = value;
@@ -121,10 +114,10 @@ public class AttributeValueModifierExecutor {
 
 						if (this.logger != null) {
 
-							this.logger.warning(() -> "The AttributeValueModifier '" + m.getName()
-									+ "' of the AttributeValueModifierSet '" + set.getName()
-									+ "' could not be evaluated. The following error was supplied:\n"
-									+ e.getLocalizedMessage());
+							this.logger.warning(() -> "The ValueModifier '" + m.getName()
+							+ "' of the ValueModifierSet '" + set.getName()
+							+ "' could not be evaluated. The following error was supplied:\n"
+							+ e.getLocalizedMessage());
 						}
 					}
 				}

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -86,7 +86,7 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
@@ -95,7 +95,7 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
 			List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		super(globalAttributes, attributeValueModifierExecutor, logger, useParallelization);
 

@@ -74,7 +74,7 @@ public class InstanceSelectorHandler {
 	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
 	 *            defined in the PAMTraM model.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -85,12 +85,12 @@ public class InstanceSelectorHandler {
 	 *            between executions.
 	 */
 	public InstanceSelectorHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger,
+			GlobalValueMap globalValues, ValueCalculator attributeValueCalculator, Logger logger,
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
 		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues.getGlobalAttributes(),
-				attributeValueCalculator, AttributeValueModifierExecutor.getInstance(), logger, useParallelization);
+				attributeValueCalculator, ValueModifierExecutor.getInstance(), logger, useParallelization);
 		this.logger = logger;
 		this.useParallelization = useParallelization;
 

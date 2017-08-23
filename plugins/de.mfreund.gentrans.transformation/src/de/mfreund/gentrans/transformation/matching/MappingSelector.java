@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
@@ -134,7 +134,7 @@ public class MappingSelector extends CancelableElement {
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -146,7 +146,7 @@ public class MappingSelector extends CancelableElement {
 	 */
 	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings,
 			GlobalValueMap globalValues, boolean onlyAskOnceOnAmbiguousMappings,
-			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, AttributeValueCalculator attributeValueCalculator,
+			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, ValueCalculator attributeValueCalculator,
 			Logger logger, boolean useParallelization) {
 
 		this.matchedSections = matchedSections;

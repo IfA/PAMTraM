@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.FixedValue;
@@ -33,9 +33,9 @@ import pamtram.structure.source.SourceSectionReference;
 public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 	/**
-	 * The {@link AttributeValueCalculator} to be used calculate target values.
+	 * The {@link ValueCalculator} to be used calculate target values.
 	 */
-	private AttributeValueCalculator attributeValueCalculator;
+	private ValueCalculator attributeValueCalculator;
 
 	/**
 	 * This creates an instance for a given list of
@@ -46,10 +46,10 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            shall be used by
 	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -60,8 +60,8 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            between executions.
 	 */
 	public AttributeValueConstraintValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+			ValueCalculator attributeValueCalculator,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		super(globalAttributeValues, attributeValueModifierExecutor, logger, useParallelization);
 
@@ -73,10 +73,10 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used
+	 *            The {@link ValueModifierExecutor} that shall be used
 	 *            for modifying attribute values.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to
+	 *            The {@link ValueCalculator} to use in order to
 	 *            calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -86,8 +86,8 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            transformation result (especially the order of lists) varies
 	 *            between executions.
 	 */
-	public AttributeValueConstraintValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor,
-			AttributeValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
+	public AttributeValueConstraintValueExtractor(ValueModifierExecutor attributeValueModifierExecutor,
+			ValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
 
 		super(attributeValueModifierExecutor, logger, useParallelization);
 

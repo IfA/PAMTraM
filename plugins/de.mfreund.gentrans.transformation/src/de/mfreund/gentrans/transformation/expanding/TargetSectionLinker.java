@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
@@ -92,9 +92,9 @@ public class TargetSectionLinker extends CancelableElement {
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 * An instance of {@link ValueCalculator} that is used to calculate attribute values.
 	 */
-	private AttributeValueCalculator calculator;
+	private ValueCalculator calculator;
 
 	/**
 	 * This creates an instance.
@@ -107,7 +107,7 @@ public class TargetSectionLinker extends CancelableElement {
 	 *            The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and
 	 *            their corresponding {@link LibraryEntryInstantiator}.
 	 * @param attributeValuemodifier
-	 *            An instance of the {@link AttributeValueModifierExecutor}.
+	 *            An instance of the {@link ValueModifierExecutor}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
@@ -115,7 +115,7 @@ public class TargetSectionLinker extends CancelableElement {
 	 */
 	public TargetSectionLinker(final TargetSectionRegistry targetSectionRegistry, final GlobalValueMap globalValueMap,
 			final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap,
-			final AttributeValueModifierExecutor attributeValuemodifier, final Logger logger,
+			final ValueModifierExecutor attributeValuemodifier, final Logger logger,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
@@ -124,7 +124,7 @@ public class TargetSectionLinker extends CancelableElement {
 		this.canceled = false;
 		this.libEntryInstantiatorMap = libEntryInstantiatorMap;
 
-		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
+		this.calculator = new ValueCalculator(globalValueMap, attributeValuemodifier, logger);
 
 	}
 

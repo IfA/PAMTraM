@@ -3,7 +3,9 @@
 package pamtram.mapping.extended;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
+
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 
@@ -70,4 +72,12 @@ public interface MappingHint extends MappingHintType, ConditionalElement, Deacti
 	 * @generated
 	 */
 	boolean validateConsiderOverwritingHint(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * Prints an info about the MappingHint as well as its containing Mapping and MappingHintGroup that can be used in
+	 * log messages, etc.
+	 *
+	 * @return the info string for this MappingHint
+	 */
+	String printInfo();
 } // MappingHint
